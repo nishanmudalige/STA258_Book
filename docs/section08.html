@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section08.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="one-sample-confidence-intervals-on-a-proportion"
+class="section level1">
+<h1>One Sample Confidence Intervals On a Proportion</h1>
+<p>Perviously, we have introduced two types of confidence interval based
+on known and unknown variance. Moreover, confidence intervals are also
+applied to an unknown population proportion. For example, suppose we are
+interested the proportion of total number of left-handed students among
+all students who are currently studying at University of Toronto
+Mississauga. The question is: how do we know such the parameter which
+estimates the proportion of left-handed students at UTM? While, it is
+impossible to proceed it directly by counting both the total number of
+students and all left-handed students at UTM, due to the complexity and
+the total workload of that task. Then, we have to work with confidence
+intervals.<br />
+Firstly, we take a random sample of students at UTM, then we calculate
+how many students are left-handed by dividing total number of
+left-handed students in that sample with total number of students in it,
+and denote the proportion as <span
+class="math inline">\(\hat{p}\)</span>. Next we begin our confidence
+interval calculation to get a range of number with a certain level of
+confidence.<br />
+Now let’s begin with the proper definition of confidence interval on
+proportion.</p>
+<div class="definition">
+<p>We select a random sample of size <span
+class="math inline">\(n\)</span> from a population with
+<strong>unknown</strong> proportion <span
+class="math inline">\(p\)</span> of success. An approximate confidence
+interval for <strong>p</strong> is: <span class="math display">\[p =
+\hat{p}  \pm z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{\hat{p}(1 -
+\hat{p})}{n}}, \text{ where $\hat{p} = \frac{\text{number of
+observations satisfying the criteria}}{n}$.}\]</span> In addition, <span
+class="math inline">\(n\)</span> is the sample size.<br />
+To apply this confidence interval, there are <span
+class="math inline">\(3\)</span> conditions that we need to
+guarantee:</p>
+<ul>
+<li><p><span class="math inline">\(1\)</span>. Random sample;</p></li>
+<li><p><span class="math inline">\(2\)</span>. Independent and
+identically distributed Bernoulli trails;</p></li>
+<li><p><span class="math inline">\(3\)</span>. We have a large chosen
+sample size (<span class="math inline">\(n\hat{p} \ge 10\)</span> and
+<span class="math inline">\(n(1-\hat{p}) \ge 10\)</span>).</p></li>
+</ul>
+</div>
+<p>A good way to understand confidence interval is visualization. Now,
+suppose we have a valid estimation <span
+class="math inline">\(\hat{p}\)</span>. After the entire procedure of
+confidence interval, our population proportion (<span
+class="math inline">\(p\)</span>) should be as the following number line
+shows:<br />
+</p>
+<div class="center">
+
+</div>
+<p>Remember that your final answer of the range of <span
+class="math inline">\(p\)</span> must between <span
+class="math inline">\(0\)</span> and <span
+class="math inline">\(1\)</span>, since we are working with
+proportion.<br />
+<strong>Summary about One Sample Confidence Intervals</strong></p>
+<p>We have introduced one sample confidence interval under three
+different cases: given population variance, unknown population variance
+and unknown population proportion. All the material of one sample
+confidence interval comes from chapter <span class="math inline">\(6, 7,
+8\)</span>, which seems like you to remember a lot. However, the reason
+why we give this summery is to help you to remember the basic skeleton
+of one sample confidence interval. Let’s revisit the three distinct
+types of confidence interval:</p>
+<ul>
+<li><p>Known variance: <span class="math inline">\(\hat{x} \pm
+z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\)</span> <a
+href="#ch:7">(Chapter 7)</a>.</p></li>
+<li><p>Unknown variance: <span class="math inline">\(\bar{x} \pm
+t_{\scriptscriptstyle{\alpha/2}} \cdot
+\frac{s}{\sqrt{n}}\)</span></p></li>
+<li><p>Proportion: <span class="math inline">\(\hat{p} \pm
+z_{\scriptscriptstyle{\alpha/2}} \cdot
+\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span></p></li>
+</ul>
+<p>The question is: what is the similarity between the three distinct
+types of confidence interval? You may have already noticed that the
+confidence intervals above are all follow such a skeleton that <span
+class="math inline">\(\bar{x}\)</span> plus or minus its margin of error
+(different between each type of C.I.).<br />
+If we keep questioning ourselves that how the margin of error comes
+from, you will catch the pattern. The margin of error contains reference
+distribution and the standard deviation of <span
+class="math inline">\(\bar{x}\)</span> under its reference distribution.
+Let’s analyze each type of confidence interval to prove my statement is
+true:<br />
+The first type (given population variance) confidence interval is quite
+easy to recognize. Recall chapter <span
+class="math inline">\(3\)</span>: The Central Limit Theorem, we state
+that <span class="math inline">\(\bar{x} \sim N(\mu,
+\frac{\sigma^2}{n})\)</span>, which is how reference distribution comes
+from with given population variance. To get the standard deviation of
+<span class="math inline">\(\bar{x}\)</span>, we simply take the square
+root of the variance, then <span class="math inline">\(s_{\bar{x}} =
+\frac{\sigma}{\sqrt{n}}\)</span>. Finally, we multiply reference
+distribution at the point <span
+class="math inline">\(\frac{\alpha}{2}\)</span> with the standard
+deviation of <span class="math inline">\(\bar{x}\)</span> under normal
+distribution to get the margin of error.<br />
+The second type (unknown population variance) confidence interval is
+similar to the first type, but the reference distribution is
+t-distribution instead of normal distribution. In chapter <span
+class="math inline">\(7\)</span>, we introduced the calculation of
+sample variance (<span class="math inline">\(s^2\)</span>) to estimate
+population variance (<span class="math inline">\(\sigma^2\)</span>), and
+<span class="math inline">\(s^2\)</span> is an unbiased estimator of
+<span class="math inline">\(\sigma^2\)</span> (the proof of this
+statement is in STA260, in this course we can assume it freely). In
+chapter <span class="math inline">\(2\)</span>, we defined that <span
+class="math inline">\(T = \frac{\bar{x} - \mu}{(\frac{s}{\sqrt{n}})}
+\sim t_{n-1},\)</span> then the term <span
+class="math inline">\(\frac{s}{\sqrt{n}}\)</span> (verify this by
+yourself as an extra exercise) is the standard deviation of <span
+class="math inline">\(\bar{x}\)</span> under t-distribution with <span
+class="math inline">\(n-1\)</span> degrees of freedom. Finally, we
+multiply multiply reference distribution at the point <span
+class="math inline">\(\frac{\alpha}{2}\)</span> with the standard
+deviation of <span class="math inline">\(\bar{x}\)</span> under
+t-distribution to get the margin of error.<br />
+The third type (estimate population proportion) confidence interval is
+slightly harder to identify. Recall chapter <span
+class="math inline">\(4\)</span> that we can approximate binomial
+distribution by normal distribution. Suppose that a random variable
+<span class="math inline">\(X \sim Binomial(n,p)\)</span>, then the
+random variable <span class="math inline">\(X \sim N(np,
+np(1-p)).\)</span> From chapter <span class="math inline">\(4\)</span>,
+we know that <span class="math inline">\(\hat{p} \sim N(\mu_{\hat{p}} =
+p, \sigma_{\hat{p}}^{2} = \frac{p(1-p)}{n})\)</span>. Trivially, the
+standard deviation of <span class="math inline">\(\hat{p}\)</span> is
+<span class="math inline">\(\sqrt{\frac{p(1-p)}{n}}\)</span>, since we
+don’t know the value <span class="math inline">\(p\)</span> and use
+<span class="math inline">\(\hat{p}\)</span> to estimate that. Then,
+standard deviation of <span class="math inline">\(\hat{p}\)</span> is
+<span
+class="math inline">\(\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span>.
+Finally, by multiplying the reference distribution and standard
+deviation, we get the margin of error of the confidence interval.<br />
+<strong>Conclusion About One Sample Confidence Intervals</strong></p>
+<p>If you follow the skeleton below, one sample confidence interval will
+become easier:</p>
+<ul>
+<li><p>1. Identify what type of one sample confidence interval to use
+from given information;</p></li>
+<li><p>2. Construct your confidence interval that fits the circumstance
+which you are facing, it either going to be <span
+class="math inline">\(\bar{x}  \pm M.E.(\bar{x})\text{ or } \hat{p}  \pm
+M.E.(\hat{p});\)</span></p></li>
+<li><p>3. Check the validity of your final answer. For example, the
+range of <span class="math inline">\(p\)</span> must between <span
+class="math inline">\(0\)</span> and <span
+class="math inline">\(1\)</span>.</p></li>
+<li><p>4. Clearly state your final conclusion: we have a certain
+percentage of confidence to guarantee that the value of the chosen
+sample is between its lower bound and upper bound.</p></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

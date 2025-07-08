@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section15.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="introduction-to-simple-linear-regression"
+class="section level1">
+<h1>Introduction to Simple Linear Regression</h1>
+<p>In statistics, simple linear regression (SLR) is a linear regression
+model with a single explanatory variable. In other words, we use linear
+functions to illustrate the relationship of variables (ie. time and
+one’s height). The goal of simple linear regression is to find the
+best-fitting straight line, known as the regression line, that predicts
+the dependent variable based on the independent variable. For example we
+are interested a people’s height within 10 months. Then, we use
+coordinate system to draw each data point and use simple linear
+regression to find a function which perfectly describes the relationship
+between height and time.</p>
+<div class="figure">
+<img src="section15_files/figure-html/unnamed-chunk-1-1.png" alt="An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope which tells you the rate of change, $b$ is the intercept which may have a special meaning depending on the case." width="90%" />
+<p class="caption">
+An illustration of simple linear regression. The blue points are
+measures of height monthly, and the red line is our SLR model. In this
+case <span class="math inline">\(m\)</span> is the slope which tells you
+the rate of change, <span class="math inline">\(b\)</span> is the
+intercept which may have a special meaning depending on the case.
+</p>
+</div>
+<p>Now, you may wonder the accuracy of this model. In statistics, we do
+have parameters that approximate the slope and intercept of the function
+<span class="math inline">\(y = mx + b\)</span>. The model we are going
+to use is: <span class="math inline">\(\hat{y} = \hat{\beta_1}x +
+\hat{\beta_0} + \epsilon\)</span>. From this model, the slope and the
+intercept are <span class="math inline">\(\hat{\beta_1}\)</span>, <span
+class="math inline">\(\hat{\beta_{0}}\)</span> respectively (<span
+class="math inline">\(\hat{\beta_1}\)</span> and <span
+class="math inline">\(\hat{\beta_{0}}\)</span> are unbiased estimators).
+Moreover, the <span class="math inline">\(\epsilon\)</span>-term is
+called error term, which we will discuss it later.</p>
+<div id="measures-of-linear-relationship" class="section level2">
+<h2>Measures of Linear Relationship</h2>
+<p>Before we formally introduce simple linear regression, there are some
+measures of SLR that should be discussed.<br />
+<strong>Covariance (Sample Covariance)</strong></p>
+<p>In probability theory and statistics, covariance is a measure of the
+joint variability of two random variables. The covariance sign shows the
+direction of the linear relationship between two variables. If higher
+values of one variable tend to occur with higher values of the other
+(and lower with lower), the covariance is positive, meaning the
+variables move in the same direction. If higher values of one variable
+tend to occur with lower values of the other, the covariance is
+negative, meaning they move in opposite directions. The size (magnitude)
+of the covariance reflects how much the two variables vary together,
+based on the variances they share.</p>
+<div class="definition">
+<p>The formula of sample covariance is given by: <span
+class="math display">\[S_{xy} = \frac{1}{n-1} \cdot \sum_{i=1}^{n} (x_i
+- \bar{x})(y_i - \bar{y}) = \frac{\sum_{i = 1}^{n}x_i \cdot y_i}{n -1} -
+\frac{n\bar{x}\bar{y}}{n-1}.\]</span> These are the two ways to compute
+covariance. Both will give you the same answer.</p>
+</div>
+<p>Basically, covariance indicates that how two variables move
+together.</p>
+<ul>
+<li><p>If covariance of two random variables is greater than <span
+class="math inline">\(0\)</span> (<span class="math inline">\(cov(x,y)
+&gt; 0\)</span>), then the two random variables show the same trend.
+That is: if one random variable is increasing, then the other one is
+also increasing; while if one random variable is decreasing, then the
+other one is also decreasing.</p></li>
+<li><p>If covariance of two random variables is less than <span
+class="math inline">\(0\)</span> (<span class="math inline">\(cov(x,y)
+&lt; 0\)</span>), then the two random variables show the opposite trend.
+That is: if one random variable is increasing, then the other one is
+decreasing; while if one random variable is decreasing, then the other
+one is increasing.</p></li>
+<li><p>If covariance of two random variables is equal to <span
+class="math inline">\(0\)</span> (<span class="math inline">\(cov(x,y) =
+0\)</span>), then we say that there is no relationship (systematically
+linear) between the two random variables.</p></li>
+</ul>
+<p>Note that covariance is not standardized, so it can be difficult to
+interpret directly.<br />
+<strong>Coefficient of Correlation</strong></p>
+<p>In statistics, correlation or dependence is any statistical
+relationship, whether causal or not, between two random variables or
+bivariate data. It helps us understand whether and how changes in one
+variable are associated with changes in another. A positive correlation
+means that as one variable increases, the other tends to increase as
+well, while a negative correlation means that one variable tends to
+decrease as the other increases. The degree of correlation is usually
+expressed with a correlation coefficient, which ranges from <span
+class="math inline">\(-1\)</span> to <span
+class="math inline">\(+1\)</span>.</p>
+<div class="definition">
+<p>The coefficient of correlation is given by: <span
+class="math display">\[r_{xy} = \frac{S_{xy}}{S_x \cdot S_y}.\]</span>
+Now, <span class="math inline">\(r_{xy} =\)</span> sample correlation
+coefficient, <span class="math inline">\(S_{xy} =\)</span> sample
+covariance, <span class="math inline">\(S_{x} =\)</span> sample standard
+deviation of <span class="math inline">\(x\)</span>, <span
+class="math inline">\(S_{y} =\)</span> sample standard deviation of
+<span class="math inline">\(y\)</span>. Also, remember that the range of
+coefficient of correlation is between <span
+class="math inline">\(-1\)</span> and <span
+class="math inline">\(+1\)</span>: <span class="math inline">\(r_{xy}
+\in [-1, +1]\)</span>.</p>
+</div>
+<p>The correlation r measures the strength and direction of the linear
+association between two quantitative variables <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>. Although you calculate a correlation
+for any scatter plot, <span class="math inline">\(r\)</span> measures
+only straight-line relationships. In short, coefficient of correlation
+is a measure of the strength of the linear relationship between two
+random variables.</p>
+<ul>
+<li><p>If <span class="math inline">\(r_{xy} \approx +1\)</span>, then
+we say that the two random variables have a strong positive correlation.
+(See figure 15.2)</p>
+<figure>
+<p><img src="figures/SP.png" /></p>
+<figcaption>
+<p>An illustration of strong positive correlation (<span
+class="math inline"><em>r</em><sub><em>x</em><em>y</em></sub> ≈ +1</span>).</p>
+</figcaption>
+</figure></li>
+<li><p>If <span class="math inline">\(r_{xy} \approx -1\)</span>, then
+we say that the two random variables have a strong negative correlation.
+(See figure 15.3)</p>
+<figure>
+<p><img src="figures/SN-1.png" /></p>
+<figcaption>
+<p>An illustration of strong negative correlation (<span
+class="math inline"><em>r</em><sub><em>x</em><em>y</em></sub> ≈ −1</span>).</p>
+</figcaption>
+</figure></li>
+<li><p>If <span class="math inline">\(r_{xy} \approx 0\)</span>, then we
+say that there is essentially no correlation between the two random
+variables. Note that if <span class="math inline">\(r \approx
+0\)</span>, then it suggests a linear relationship doesn’t exist but
+other relationship may exist. (See figure 15.4)</p>
+<figure>
+<p><img src="figures/nocorrelation-1.png" /></p>
+<figcaption>
+<p>An illustration of no correlation (<span
+class="math inline"><em>r</em><sub><em>x</em><em>y</em></sub> ≈ 0</span>).</p>
+</figcaption>
+</figure></li>
+</ul>
+<p>Note that correlation doesn’t imply causation:</p>
+<ul>
+<li><p><span class="math inline">\(cor(x,y) \approx +1\)</span> doesn’t
+necessarily imply on increase in <span class="math inline">\(x\)</span>
+causes increase in <span class="math inline">\(y\)</span>.</p></li>
+<li><p><span class="math inline">\(cor(x,y) \approx -1\)</span> doesn’t
+necessarily imply on increase in <span class="math inline">\(x\)</span>
+causes decrease in <span class="math inline">\(y\)</span>.</p></li>
+</ul>
+<p><strong>Properties of Covariance and Correlation</strong></p>
+<p>These two values are symmetric:</p>
+<ul>
+<li><p><span class="math inline">\(cov(x,y) =
+cov(y,x)\)</span>;</p></li>
+<li><p><span class="math inline">\(cor(x,y) =
+cor(y,x)\)</span>.</p></li>
+</ul>
+<div class="example">
+<p>Five observations taken for two variables follow.</p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>y</em><sub><em>i</em></sub></span>
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">4</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">50</span>
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">6</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">50</span>
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">11</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">40</span>
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">60</span>
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">16</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">30</span>
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+Data of example 15.1
+</figcaption>
+</figure>
+</div>
+<p><span class="math inline">\(a\)</span> Compute the sample
+covariance.</p>
+<p><span class="math inline">\(b\)</span> Compute and interpret the
+sample correlation coefficient.</p>
+<p><strong>Solution:</strong></p>
+<p>Step 1: Compute <span class="math inline">\(\bar{x}\)</span> and
+<span class="math inline">\(\bar{y}\)</span>; <span
+class="math inline">\(\bar{x} = 8\)</span> and <span
+class="math inline">\(\bar{y} = 46\)</span> (check this by
+yourself).</p>
+<p>Step 2: Find <span class="math inline">\(s_x\)</span> and <span
+class="math inline">\(s_y\)</span>.</p>
+<p><span class="math display">\[s_x^2 = \frac{1}{5-1} \cdot \sum_{i =
+1}^{5}(x_i - \bar{x})^2 = 29.5 \text{ and } s_y^2 = \frac{1}{5-1} \cdot
+\sum_{i=1}^{5}(y_i - \bar{y})^2 = 130\]</span> Then: <span
+class="math inline">\(s_x = 5.4313\)</span> and <span
+class="math inline">\(s_y = 11.4017\)</span>.</p>
+<p>Step 3: Find <span class="math inline">\(s_{xy}\)</span> and <span
+class="math inline">\(r\)</span>.</p>
+<p><span class="math display">\[\sum_{i=1}^{5}x_i \cdot y_i = 1600,
+\text{ then } s_{xy} = \frac{1600}{5-1} - \frac{5\cdot8\cdot46}{5-1} =
+-60 \text{ and } r_{xy} = \frac{s_{xy}}{s_x \cdot s_y} =
+0.9688.\]</span></p>
+<p><strong>R code</strong></p>
+<p>Step 1: Entering data;</p>
+<div class="tcolorbox">
+<pre><code>X=c(4,6,11,3,16); 
+
+Y=c(50,50,40,60,30);</code></pre>
+</div>
+<p>Step 2: Finding means;</p>
+<div class="tcolorbox">
+<pre><code>mean(X);
+
+mean(Y);</code></pre>
+</div>
+<p>Step 3: Finding variances;</p>
+<div class="tcolorbox">
+<pre><code>var(X);
+
+var(Y);</code></pre>
+</div>
+<p>Step 4: Finding standard deviations;</p>
+<div class="tcolorbox">
+<pre><code>sd(X);
+
+sd(Y):</code></pre>
+</div>
+<p>Step 5: Finding covariance and correlation;</p>
+<div class="tcolorbox">
+<pre><code>cov(X,Y);
+
+cor(X,Y);</code></pre>
+</div>
+</div>
+</div>
+<div id="least-squares-method" class="section level2">
+<h2>Least Squares Method</h2>
+<p>The method of least squares is a mathematical optimization technique
+used to find the best-fitting function by minimizing the sum of the
+squared differences between the observed data points and the values
+predicted by the model. It interested in a linear model of the form:
+<span class="math inline">\(y  = \beta_0 + \beta_1 \cdot x_1 + \cdots +
+\beta_p \cdot x_p + \epsilon\)</span>, where <span
+class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span>, <span
+class="math inline">\(x_i\)</span>’s (<span class="math inline">\(i =
+1,..., p\)</span>) are independent predictors, <span
+class="math inline">\(\beta_j\)</span>’s (<span class="math inline">\(j
+= 0,..., p\)</span>) are coefficients, <span
+class="math inline">\(y\)</span> is dependent variable.<br />
+Using sample data, we get estimates of this model of the form: <span
+class="math inline">\(\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x_1
++ \cdots + \hat{\beta_p} \cdot x_p\)</span>. Now, <span
+class="math inline">\(\hat{y}\)</span> is predicated <span
+class="math inline">\(y\)</span>, <span
+class="math inline">\(x_i\)</span>’s (<span class="math inline">\(i =
+1,...,p\)</span>) are independent predicators, <span
+class="math inline">\(\hat{\beta_j}\)</span>’s (<span
+class="math inline">\(j = 0,...,p\)</span>) are estimated coefficients.
+Moreover, <span class="math inline">\(\hat{\beta_0}\)</span> is
+intercept; <span
+class="math inline">\(\hat{\beta_1},...,\hat{\beta_p}\)</span> are
+quantifiers how much <span class="math inline">\(y\)</span> changes with
+a unit increase in <span class="math inline">\(x_i\)</span>’s.<br />
+In this course, we focus on the following model a bit more: <span
+class="math inline">\(\hat{y} = b_0 + b_1\cdot x\)</span>, where <span
+class="math inline">\(b_0\)</span> is the y-intercept, and <span
+class="math inline">\(b_1\)</span> is the slope, and <span
+class="math inline">\(\hat{y}\)</span> is the value of <span
+class="math inline">\(y\)</span> determined by the line. The
+coefficients <span class="math inline">\(b_0\)</span> and <span
+class="math inline">\(b_1\)</span> are derived using Calculus so that we
+minimize the sum of squared deviations: <span
+class="math inline">\(\sum_{i=1}^{n}(y_i - \hat{y_i})^2\)</span>. Then
+the least squares line coefficients are <span class="math inline">\(b_1
+= r \cdot \frac{s_y}{s_x}\)</span> and <span class="math inline">\(b_0 =
+\bar{y} - b_1\cdot \bar{x}\)</span>.<br />
+<strong>Facts about Least Squares Method</strong></p>
+<ul>
+<li><p>The distinction between explanatory and response variables is
+essential in Least Squares Method.</p></li>
+<li><p>The least-squares line (trendline) always passes through the
+point (<span class="math inline">\(\bar{x}\)</span>, <span
+class="math inline">\(\bar{y}\)</span>) on the graph of <span
+class="math inline">\(y\)</span> against <span
+class="math inline">\(x\)</span>.</p></li>
+<li><p>The square of the correlation, <span
+class="math inline">\(r^2\)</span>, is the fraction of the variation in
+the values of <span class="math inline">\(y\)</span> that is explained
+by the variation in <span class="math inline">\(x\)</span>.</p></li>
+</ul>
+<div class="example">
+<p>A tool die maker operates out of a small shop making specialized
+tools. He is considering increasing the size of his business and needs
+to know more about his costs. One such cost is electricity, which he
+needs to operate his machines and lights. He keeps track of his daily
+electricity costs and the number of tools that he made that day. These
+data are listed next. Determine the fixed and variable electricity costs
+using the Least Squares Method.</p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Day
+</td>
+<td style="text-align: center;">
+Number of tools (<span class="math inline"><em>X</em></span>)
+</td>
+<td style="text-align: center;">
+Electricity costs (<span class="math inline"><em>Y</em></span>)
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">1</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">23.80</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">2</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">11.89</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">2</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">15.89</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">4</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">26.11</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">8</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">31.79</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">6</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">11</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">39.93</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">12.27</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">8</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">15</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">40.06</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">9</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">21.38</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">10</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">6</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">18.65</span>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+Data of example 15.2
+</figcaption>
+</figure>
+</div>
+<p>Solution:</p>
+<p>Step 1: Entering Data;</p>
+<div class="tcolorbox">
+<pre><code>tools=c(7,3,2,5,8,11,5,15,3,6);
+
+cost=c(23.80,11.89,15.98,26.11,31.79, 39.93,12.27,40.06,21.38,18.65);</code></pre>
+</div>
+<p>Step 2: Finding Slope;</p>
+<div class="tcolorbox">
+<pre><code>Sx=sd(tools); 
+
+Sy=sd(cost); 
+
+r=cor(tools,cost); 
+
+b1=r*(Sy/Sx); 
+
+b1;
+ 
+## [1] 2.245882</code></pre>
+</div>
+<p>Step 3: Finding <span class="math inline">\(y\)</span>-intercept;</p>
+<div class="tcolorbox">
+<pre><code>x.bar=mean(tools); 
+
+y.bar=mean(cost);
+
+b0=y.bar - b1*x.bar;
+
+b0; 
+
+## [1] 9.587765</code></pre>
+</div>
+<p>We can also use R-code to draw a graph:</p>
+<div class="tcolorbox">
+<pre><code>plot(tools,cost,pch=19);
+
+abline(least.squares$coeff,col=&quot;red&quot;);
+
+# pch=19 tells R to draw solid circles; 
+
+# abline tells R to add trendline;</code></pre>
+</div>
+<p>Interpretation:</p>
+<p>The slope measures the marginal rate of change in the dependent
+variable. In this example, the slope is <span
+class="math inline">\(2.25\)</span>, which means that in this sample,
+for each one-unit increase in the number of tools, the marginal increase
+in the electricity cost is <span class="math inline">\(\$ 2.25\)</span>
+per tool.</p>
+<p>The <span class="math inline">\(y\)</span>-intercept is <span
+class="math inline">\(9.57\)</span>; that is, the line strikes the <span
+class="math inline">\(y\)</span>-axis at <span
+class="math inline">\(9.57\)</span>. However, when <span
+class="math inline">\(x = 0\)</span>, we are producing no tools and
+hence the estimated ﬁxed cost of electricity is <span
+class="math inline">\(\$9.57\)</span> per day .</p>
+</div>
+</div>
+<div id="simple-linear-regression" class="section level2">
+<h2>Simple Linear Regression</h2>
+<p><strong>Estimating Regression Model Parameters</strong></p>
+<p>The regression line which we are going to use is: <span
+class="math inline">\(E(Y) = \beta_0 + \beta_1 \cdot x\)</span>. This is
+fitted to the data points <span class="math inline">\((x_1, y_1), (x_2,
+y_2), \ldots, (x_n, y_n)\)</span> by finding the line that is closest to
+the data in some sense. There are many ways in which closeness can be
+defined, but the method most generally used is to consider the vertical
+deviations between the line and the data points: <span
+class="math inline">\(y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq
+n\)</span>.<br />
+The fitted line is chosen to be the line that minimizes the sum of the
+squares of these vertical deviations <span class="math display">\[Q =
+\sum_{i=1}^{n} [y_i - (\beta_0 + \beta_1 \cdot x_i)]^2\]</span> and this
+is referred to as the least squares fit. (The quantity <span
+class="math inline">\(Q\)</span> is also called the <strong>sum of
+squares for error</strong>, SSE.)<br />
+The parameter estimates <span
+class="math inline">\(\hat{\beta_0}\)</span> and <span
+class="math inline">\(\hat{\beta_1}\)</span> are therefore the values
+that minimize the quantity <span class="math inline">\(Q\)</span>. They
+are found taking partial derivatives of <span
+class="math inline">\(Q\)</span> with respect to <span
+class="math inline">\(\hat{\beta_0}\)</span> and <span
+class="math inline">\(\hat{\beta_1}\)</span> and setting the resulting
+expressions equal to <span class="math inline">\(0\)</span>.<br />
+Now, you know the method to get the regression model <span
+class="math inline">\(E(Y) = \beta_0 + \beta_1 \cdot x\)</span>, the
+following lines are the derivation:</p>
+<figure>
+<p><img src="figures/SLRmodel-1.png" /></p>
+<figcaption>
+An illustration of a simple linear regression model. The red line is the
+fitted regression line, and the full black vertical lines represent the
+residuals (SSE). The data points deviate from the line to show errors
+clearly. Note that the sum of residuals is necessarily <span
+class="math inline">0</span>.
+</figcaption>
+</figure>
+<p>The following proof is the derive of <span
+class="math inline">\(\hat{\beta_0}\)</span> and <span
+class="math inline">\(\hat{\beta_1}\)</span> for simple linear
+regression model: <span class="math inline">\(\hat{y} = \hat{\beta_0} +
+\hat{\beta_1} \cdot x + \epsilon\)</span>.</p>
+<div class="proof">
+<p><span class="math display">\[\begin{aligned}
+\text{Firstly, we examine sum of residual squared:}\\
+\sum_{i=1}^{n}e_i^2 &amp;= \sum_{i=1}^{n}(y_i - \hat{y_i})^2 = 0\\
+&amp;= \sum_{i=1}^{n}[y_i - (\hat{\beta_0} + \hat{\beta_1} \cdot x_i)]^2
+= 0\\
+&amp;= \sum_{i=1}^{n}(y_i - \hat{\beta_0} - \hat{\beta_1} \cdot x_i)^2 =
+0\\
+\end{aligned}\]</span> To find <span
+class="math inline">\(\hat{\beta_0}\)</span> and <span
+class="math inline">\(\hat{\beta_1}\)</span> which minimizes <span
+class="math inline">\(\sum_{i=1}^{n}e_i^2\)</span>, we need partial
+derivative with respect to <span
+class="math inline">\(\hat{\beta_0}\)</span> and <span
+class="math inline">\(\hat{\beta_1}\)</span>: <span
+class="math display">\[\begin{aligned}
+\frac{\partial}{\partial \hat{\beta_0}}\sum_{i=1}^{n}e_i^2 &amp;=
+\frac{\partial}{\partial \hat{\beta_0}}\sum_{i=1}^{n}(y_i -
+\hat{\beta_0} - \hat{\beta_1} \cdot x_i)^2 = 0\\
+&amp;= \sum_{i=1}^{n}2(\hat{\beta_0} + \hat{\beta_1}x_i - y_i) = 0\\
+&amp;= \sum_{i=1}^{n}\hat{\beta_0} + \hat{\beta_1}\sum_{i=1}^{n}x_i -
+\sum_{i=1}^{n}y_i = 0 \text{; } (\text{consider:} \sum_{i=1}^{n}x_i =
+n\bar{x})\\
+&amp;= n\cdot\hat{\beta_0} + \hat{\beta_1}\cdot n \bar{x} - n\bar{y} =
+0\\
+\text{Hence: } \hat{\beta_0} &amp;= \bar{y} - \hat{\beta_1}\cdot
+\bar{x}. \text{ (Equ 1)}\\
+\frac{\partial}{\partial \hat{\beta_1}}\sum_{i=1}^{n}e_i^2 &amp;=
+\frac{\partial}{\partial \hat{\beta_1}}\sum_{i=1}^{n}(y_i -
+\hat{\beta_0} - \hat{\beta_1} \cdot x_i)^2 = 0\\
+&amp;= \sum_{i=1}^{n}2(y_i - \hat{\beta_0} - \hat{\beta_1}x_i)(-x_i)=0\\
+&amp;= \sum_{i=1}^{n}2(\hat{\beta_0}x_i + \hat{\beta_1}x_i^2 -
+y_ix_i)=0\\
+&amp;= \hat{\beta_0}\sum_{i=1}^{n}x_i + \hat{\beta_1}\sum_{i=1}^{n}x_i^2
+- \sum_{i=1}^{n}x_iy_i = 0\\
+&amp;= \hat{\beta_1}\sum_{i=1}^{n}x_i^2 + \sum_{i=1}^{n}(\bar{y} -
+\hat{\beta_1}\bar{x})x_i - \sum_{i=1}^{n}x_iy_i = 0 \text{; } (\text{sub
+Equ 1 into this line})\\
+&amp;= \hat{\beta_1}\sum_{i=1}^{n}x_i^2 + \bar{y}\sum_{i=1}^{n}x_i -
+\hat{\beta_1}\bar{x}\sum_{i=1}^{n}x_i - \sum_{i=1}^{n}x_iy_i = 0\\
+&amp;= \hat{\beta_1}\sum_{i=1}^{n}x_i^2 + n\bar{x}\bar{y} -
+n\hat{\beta_1}(\bar{x})^2 - \sum_{i=1}^{n}x_iy_i = 0\\
+&amp;= \hat{\beta_1}[\sum_{i=1}^{n}x_i^2 - n(\bar{x})^2] +
+n\bar{x}\bar{y} - \sum_{i=1}^{n}x_iy_i = 0\\
+\text{Hence: } \hat{\beta_1} &amp;= \frac{\sum_{i=1}^{n}x_iy_i -
+n\bar{x}\bar{y}}{\sum_{i=1}^{n}x_i^2 - n(\bar{x})^2} =
+\frac{S_{xy}}{S_{xx}}.
+\end{aligned}\]</span> ◻</p>
+</div>
+<p><strong>Introduction to Simple Linear Regression</strong></p>
+<p>At this point, we are going to provide the definition of simple
+linear regression model as the following:</p>
+<div class="definition">
+<p>Let <span class="math inline">\(x\)</span> be independent variable
+and <span class="math inline">\(y\)</span> be dependent variable, then
+the model of simple linear regression is: <span
+class="math inline">\(\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x +
+\epsilon\)</span>, where <span
+class="math inline">\(\hat{\beta_0}\)</span> represents the <span
+class="math inline">\(y\)</span>-intercept, <span
+class="math inline">\(\hat{\beta_1}\)</span> represents the slope and
+<span class="math inline">\(\epsilon\)</span> is the error term that
+<span class="math inline">\(\epsilon \sim N(0, \sigma^2)\)</span>.
+Moreover, <span class="math inline">\(\hat{\beta_0} = \bar{y} -
+\hat{\beta_1}\cdot \bar{x}\)</span> and <span
+class="math inline">\(\hat{\beta_1} = \frac{S_{xy}}{S_{xx}}\)</span>,
+which is also equal to: <span
+class="math display">\[\frac{\sum_{i=1}^{n}x_iy_i -
+n\bar{x}\bar{y}}{\sum_{i=1}^{n}x_i^2 - n(\bar{x})^2}.\]</span></p>
+</div>
+<div class="example">
+<p>Suppose an appliance store conducts a 5-month experiment to determine
+the effect of advertising on sales revenue. The results are shown in a
+table below. The relationship between sales revenue, <span
+class="math inline">\(y\)</span>, and advertising expenditure, <span
+class="math inline">\(x\)</span>, is hypothesized to follow a ﬁrst-order
+linear model, that is, <span class="math inline">\(y = \beta_0 +
+\beta_1\cdot x + \epsilon\)</span>, where <span class="math inline">\(y
+=\)</span> dependent variable, <span class="math inline">\(x =\)</span>
+independent variable, <span class="math inline">\(\beta_0\)</span>
+y-intercept, <span class="math inline">\(\beta_1 =\)</span> slope of the
+line and <span class="math inline">\(\epsilon =\)</span> error
+variable.</p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Month
+</td>
+<td style="text-align: center;">
+Advertising Expenditure <span class="math inline"><em>x</em></span> ($
+hundreds)
+</td>
+<td style="text-align: center;">
+Sales Revenue <span class="math inline"><em>y</em></span> ($ thousands)
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">1</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">2</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">2</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">2</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">4</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">4</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">2</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<span class="math inline">5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">4</span>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+Data of example 15.3
+</figcaption>
+</figure>
+</div>
+<p>a) Obtain the least squares estimates of <span
+class="math inline">\(\beta_0\)</span> and <span
+class="math inline">\(\beta_1\)</span>, and state the estimated
+regression function.</p>
+<p>b) Plot the estimated regression function and the data.</p>
+<p><strong>Solution:</strong></p>
+<p>a) <span class="math inline">\(\bar{x} = 3\)</span>, <span
+class="math inline">\(\bar{y} = 2\)</span>, <span
+class="math inline">\(S_{xx} = 10\)</span>, <span
+class="math inline">\(S_{xy} = 7\)</span></p>
+<p>Then, the slope of the least squares line is <span
+class="math inline">\(\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} =
+0.7\)</span> and <span class="math inline">\(\hat{\beta_0} = \bar{y} -
+\hat{\beta_1}\bar{x} = -0.1\)</span>. Thus, the least squares line is
+<span class="math inline">\(\hat{y} = -0.1 + 0.7x\)</span>.</p>
+<p>b) R-code</p>
+<div class="tcolorbox">
+<pre><code>plot(x, y, main=&quot;Scatterplot: Simple Linear Regression&quot;,
+xlab=&quot;x&quot;, ylab=&quot;y&quot;, pch=19,col=&quot;blue&quot;);
+
+abline(coef(linear.reg), col=&quot;red&quot;,lty=2);</code></pre>
+</div>
+</div>
+</div>
+<div id="sst-sse-and-ssr" class="section level2">
+<h2>SST, SSE and SSR</h2>
+<p>Early in Section <span class="math inline">\(15.3\)</span>, we
+introduced a value called the sum of residual squared (SSE). There are
+two more values that are important in simple linear regression, which
+are total sum of squares (SST) and sum of squares for regression (SSR).
+We will introduce all these three values with figures, so that you may
+have a better understanding of what they measure.<br />
+<strong>SST (Total Sum of Squares)</strong></p>
+<p>It is defined as the sum over all squared differences between the
+observations and their overall mean <span
+class="math inline">\(\bar{y}\)</span>.</p>
+<figure>
+<p><img src="figures/SST-1.png" /></p>
+<figcaption>
+An illustration of Total Sum of Squares (SST). The blue points represent
+height measurements over time, the dashed line is the mean height <span
+class="math inline"><em>ȳ</em></span>, and the solid black vertical
+lines represent the squared deviations from the mean (SST components).
+</figcaption>
+</figure>
+<div class="definition">
+<p>For any simple linear regression model, SST (Toal sum of squares)
+measures the sum over all squared differences between the observations
+and their overall mean <span class="math inline">\(\bar{y}\)</span> is
+given by: <span class="math display">\[SST = \sum_{i=1}^{n}(y_i -
+\bar{y})^2.\]</span></p>
+</div>
+<p><strong>SSE (Sum of Residual Squared)</strong></p>
+<p>It is the sum of the squares of residuals (deviations predicted from
+actual empirical values of data). It is a measure of the discrepancy
+between the data and an estimation model, such as a linear regression. A
+small SSE indicates a tight fit of the model to the data.</p>
+<figure>
+<p><img src="figures/SSE-1.png" /></p>
+<figcaption>
+A simple linear regression illustration with residuals shown. Blue
+points are observed data, red line is the model, dashed line is the
+average of <span class="math inline"><em>y</em></span>, and black lines
+represent residuals <span class="math inline"><span
+class="math inline">\(y_i -
+\hat{y_i}\)</span></span>.
+</figcaption>
+</figure>
+<div class="definition">
+<p>For any simple linear regression model, SSE (Sum of residual squared)
+measures the distance between observed data and estimated data, which is
+given by: <span class="math display">\[SSE = \sum_{i=1}^{n} (y_i -
+\hat{y_i})^2.\]</span></p>
+</div>
+<p>Note that SSE (sum of residual squared) is an explained
+variation.<br />
+<strong>SSR (Sum Square Regression)</strong></p>
+<p>It measures the distance between estimated value (estimated dependent
+data) and the mean of dependent data (<span
+class="math inline">\(\bar{y}\)</span>).</p>
+<figure>
+<p><img src="figures/SSR-1.png" /></p>
+<figcaption>
+An illustration of simple linear regression. The blue points represent
+monthly height measurements with added variability. The red line is the
+fitted simple linear regression model. The dashed line shows the mean of
+the dependent variable, <span class="math inline"><em>ȳ</em></span>, and
+the solid black lines illustrate the deviation of the model’s
+predictions from this mean.
+</figcaption>
+</figure>
+<div class="definition">
+<p>For any simple linear regression, the distance between the mean of
+dependent value and estimated dependent value is called sum square
+regression (SSR), which is given by <span class="math display">\[SSR =
+\sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2.\]</span></p>
+</div>
+<p>Note that sum square regression (SSR) is an explained
+variation.<br />
+<strong>Summery</strong></p>
+<p>Now, let’s zoom in to see SST, SSE and SSR. Note that the
+relationship of these measures is that total deviation is equal to
+unexplained deviation (error) plus explained deviation (regression),
+that is: <span class="math inline">\((y_i - \bar{y}) = (y_i - \hat{y_i})
++ (\hat{y_i} - \bar{y})\)</span>.<br />
+We square all three deviations for each one of our data points, and sum
+over all <span class="math inline">\(n\)</span> points. Here, cross
+terms drop out, and we are left with the following equation: <span
+class="math display">\[\sum_{i=1}^{n}(y_i - \bar{y})^2 = \sum_{i=1}^{n}
+(y_i - \hat{y_i})^2 + \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2,\]</span>
+SST = SSE + SSR.</p>
+<p>Total sum of squares = Sum of squares for error + Sum of squares for
+regression.</p>
+<figure>
+<p><img src="figures/SUM-1.png" /></p>
+<figcaption>
+Visual representation of regression variability. <strong>SST</strong>
+(green) is total variability from the mean, <strong>SSR</strong> (pink)
+is explained variability, and <strong>SSE</strong> (orange curly brace)
+is the residual (unexplained) variability between the observed value
+<span class="math inline"><em>y</em><sub><em>i</em></sub></span> and the
+prediction <span
+class="math inline"><em>ŷ</em><sub><em>i</em></sub></span>.
+</figcaption>
+</figure>
+<p><strong>Coefficient of Determination (<span
+class="math inline">\(r^2\)</span>)</strong></p>
+<p>Moreover, we can use SST, SSE and SSR to calculate another value
+which is important in simple linear regression, that is coefficient of
+determination. It is proportion of variability in <span
+class="math inline">\(y\)</span> which is explained by <span
+class="math inline">\(x\)</span>.</p>
+<div class="definition">
+<p>We define the coefficient of determination as the sum of squares due
+to the regression divided by the total sum of squares. <span
+class="math display">\[r^2 = \frac{SSR}{SST} = 1 -
+\frac{SSE}{SST}.\]</span> The coefficient of determination can be
+interpreted as the proportion of the variation in <span
+class="math inline">\(Y\)</span> that is explained by the regression
+relationship of <span class="math inline">\(Y\)</span> with <span
+class="math inline">\(X\)</span> (or the proportion of the total
+corrected sum of squares explained by the regression). Note that: <span
+class="math inline">\(0 \leq r^2 \leq 1.\)</span></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

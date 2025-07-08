@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section07.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div
+id="one-sample-confidence-intervals-on-a-mean-when-the-population-variance-is-unknown"
+class="section level1">
+<h1>One-Sample Confidence Intervals on a Mean When the Population
+Variance is Unknown</h1>
+<div id="cis-for-mu" class="section level2">
+<h2>CIs for <span class="math inline">\(\mu\)</span></h2>
+<div class="definition">
+<p>Let <span class="math inline">\(\mu\)</span> be the population mean.
+When the population standard deviation <span
+class="math inline">\(\sigma\)</span> is known and the sample size is
+large, a confidence interval for <span
+class="math inline">\(\mu\)</span> is given by: <span
+class="math display">\[\bar{Y} \pm z_{\alpha/2} \left(
+\frac{\sigma}{\sqrt{n}} \right)\]</span> This interval is valid under
+the following conditions:</p>
+<ul>
+<li><p>The sample is random.</p></li>
+<li><p>The observations are independent and identically distributed
+(i.i.d).</p></li>
+<li><p>The sample size <span class="math inline">\(n\)</span> is large
+enough for the Central Limit Theorem (CLT) to apply.</p></li>
+</ul>
+</div>
+<div class="definition">
+<p>Let <span class="math inline">\(\mu\)</span> be the population mean.
+When the population standard deviation is unknown and the sample size is
+small, a confidence interval for <span
+class="math inline">\(\mu\)</span> is given by: <span
+class="math display">\[\bar{Y} \pm t_{\alpha/2} \left(
+\frac{S}{\sqrt{n}} \right), \quad \nu = n - 1\]</span> This interval is
+valid under the following conditions:</p>
+<ul>
+<li><p>The observations are independent and identically distributed
+(i.i.d).</p></li>
+<li><p>The sample is random.</p></li>
+<li><p>The population <strong>must</strong> follow a Normal distribution
+(CLT does not apply).</p></li>
+</ul>
+</div>
+<div id="independence-assumption" class="section level3 unnumbered">
+<h3 class="unnumbered">Independence Assumption</h3>
+<p>The data values should be independent. There’s really no way to check
+independence of the data by looking at the sample, but we should think
+about whether the assumption is reasonable.</p>
+</div>
+<div id="randomization-condition" class="section level3 unnumbered">
+<h3 class="unnumbered">Randomization Condition</h3>
+<p>The data arise from a random sample or suitably randomized
+experiment. Randomly sampled data — especially data from a Simple Random
+Sample — are ideal.</p>
+<div class="tcolorbox">
+<ul>
+<li><p>For very small samples (<span class="math inline">\(n &lt;
+15\)</span> or so), the data should follow a Normal model pretty
+closely. If you do find outliers or strong skewness, don’t use this
+method.</p></li>
+<li><p>For moderate samples (<span class="math inline">\(n\)</span>
+between 15 and 40 or so), the t-method will work well as long as the
+data is unimodal and reasonably symmetric. Make a histogram, boxplot, or
+Q–Q plot to check.</p></li>
+<li><p>When the sample size is larger than 40 or 50, the t-method is
+safe to use unless the data are extremely skewed. Make a histogram,
+boxplot, or Q–Q plot to check.</p></li>
+</ul>
+</div>
+</div>
+<div id="standard-error" class="section level3 unnumbered">
+<h3 class="unnumbered">Standard Error</h3>
+<p>When the standard deviation of a statistic is estimated from data,
+the result is called the <em>standard error</em> of the statistic. The
+standard error of the sample mean <span
+class="math inline">\(\bar{x}\)</span> is <span
+class="math display">\[\frac{s}{\sqrt{n}}.\]</span></p>
+<div class="tcolorbox">
+<ul>
+<li><p>The density curves of the <em>t</em> distributions are similar in
+shape to the Standard Normal curve. They are symmetric about 0,
+single-peaked, and bell-shaped.</p></li>
+<li><p>The spread of the <em>t</em> distributions is a bit greater than
+that of the Standard Normal distribution. The <em>t</em> distributions
+have more probability in the tails and less in the center than the
+Standard Normal. This is because substituting the estimate <span
+class="math inline">\(s\)</span> for the fixed parameter <span
+class="math inline">\(\sigma\)</span> introduces more variation into the
+statistic.</p></li>
+<li><p>As the degrees of freedom increase, the <em>t</em> density curve
+approaches the <span class="math inline">\(N(0, 1)\)</span> curve more
+closely. This happens because <span class="math inline">\(s\)</span>
+estimates <span class="math inline">\(\sigma\)</span> more accurately as
+the sample size increases. So using <span
+class="math inline">\(s\)</span> in place of <span
+class="math inline">\(\sigma\)</span> causes little extra variation when
+the sample is large.</p></li>
+</ul>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section07_files/figure-html/unnamed-chunk-1-1.png" alt="Comparison of the standard normal distribution and t-distributions with 2 and 9 degrees of freedom" width="672" />
+<p class="caption">
+Comparison of the standard normal distribution and t-distributions with
+2 and 9 degrees of freedom
+</p>
+</div>
+<div class="example">
+<p>The composition of the Earth’s atmosphere may have changed over time.
+To study the nature of the atmosphere long ago, scientists examined the
+gas in air bubbles trapped in ancient amber. Amber is fossilized tree
+resin that preserved the atmospheric gases at the time it was
+formed.</p>
+<p>Measurements on amber specimens from the late Cretaceous era (75 to
+95 million years ago) give the following percent values of nitrogen:</p>
+<div class="center">
+<p>63.4, 65.0, 64.4, 63.3, 54.8, 64.5, 60.8, 49.1, 51.0</p>
+</div>
+<p>Assume these observations are a simple random sample (SRS) from the
+population of all ancient air bubbles. Construct a <strong>90%
+confidence interval</strong> to estimate the mean percent of nitrogen in
+ancient air. (Today’s atmosphere contains about 78.1% nitrogen.)</p>
+<p><strong>Solution:</strong></p>
+<p>Let <span class="math inline">\(\mu\)</span> represent the true mean
+percent of nitrogen in ancient air. We compute a 90% confidence interval
+for <span class="math inline">\(\mu\)</span> using the sample data.</p>
+<p>Given: <span class="math display">\[\bar{x} = 59.5888, \quad s =
+6.2552, \quad n = 9, \quad t^* = 1.860 \quad (\text{df} =
+8)\]</span></p>
+<p><span class="math display">\[59.5888 \pm 1.860 \left(
+\frac{6.2552}{\sqrt{9}} \right) = 59.5888 \pm 3.8782\]</span></p>
+<p><span class="math display">\[\boxed{55.7106 \text{ to }
+63.4670}\]</span></p>
+<p><strong>R code:</strong></p>
+<div class="tcolorbox">
+<pre><code># Step 1: Entering the data
+nitrogen &lt;- c(63.4, 65.0, 64.4, 63.3, 54.8, 64.5, 60.8, 49.1, 51.0)
+
+# Step 2: Constructing the 90% confidence interval
+t.test(nitrogen, conf.level = 0.90)</code></pre>
+</div>
+<p><strong>R output:</strong></p>
+<div class="tcolorbox">
+<pre><code>One Sample t-test
+
+data:  nitrogen
+t = 28.578, df = 8, p-value = 2.43e-09
+alternative hypothesis: true mean is not equal to 0
+90 percent confidence interval:
+ 55.71155 63.46622
+sample estimates:
+mean of x 
+  59.58889 </code></pre>
+</div>
+</div>
+<div class="example">
+<p>Most owners of digital cameras store their pictures on the camera.
+Some will eventually download these to a computer or print them using
+their own printers or a commercial printer. A film-processing company
+wanted to know how many pictures were stored on cameras.</p>
+<p>A random sample of 10 digital camera owners produced the following
+data:</p>
+<div class="center">
+<p>25, 6, 22, 26, 31, 18, 13, 20, 14, 2</p>
+</div>
+<p>Estimate with <strong>95% confidence</strong> the mean number of
+pictures stored on digital cameras.</p>
+<hr />
+<p><strong>Solution:</strong></p>
+<p>We are given raw data with <span class="math inline">\(n =
+10\)</span> and no information about the population standard deviation,
+so we construct a confidence interval for the population mean using the
+t-distribution.</p>
+<p><strong>Step 1: Compute sample statistics</strong></p>
+<ul>
+<li><p>Sample mean: <span class="math inline">\(\bar{x} =
+\dfrac{177}{10} = 17.7\)</span></p></li>
+<li><p>Sample variance (method 1 – direct): <span
+class="math display">\[s^2 = \dfrac{\sum (x_i - \bar{x})^2}{n - 1} =
+\dfrac{742}{9} = 82.4556\]</span></p></li>
+<li><p>Sample standard deviation: <span class="math display">\[s =
+\sqrt{82.4556} = 9.081\]</span></p></li>
+</ul>
+<p><strong>Step 2: Find the critical value</strong></p>
+<p>For a 95% confidence interval with <span class="math inline">\(n =
+10\)</span>, degrees of freedom = 9. From the t-distribution table:
+<span class="math display">\[t_{(9, 0.025)} = 2.262\]</span></p>
+<p><strong>Step 3: Construct the confidence interval</strong></p>
+<p><span class="math display">\[\bar{x} \pm t^* \cdot
+\dfrac{s}{\sqrt{n}} = 17.7 \pm 2.262 \cdot \dfrac{9.081}{\sqrt{10}} =
+17.7 \pm 6.495\]</span></p>
+<p><span class="math display">\[\boxed{11.205 \text{ to }
+24.195}\]</span></p>
+<p><strong>Interpretation:</strong></p>
+<p>We are 95% confident that the mean number of images stored on digital
+cameras is between 11.205 and 24.195.</p>
+<hr />
+<p><strong>R code:</strong></p>
+<div class="tcolorbox">
+<pre><code># Step 1: Entering data
+dataset &lt;- c(25, 6, 22, 26, 31, 18, 13, 20, 14, 2)
+
+# Step 2: Finding 95% confidence interval
+t.test(dataset, conf.level = 0.95)</code></pre>
+</div>
+<p><strong>R output:</strong></p>
+<div class="tcolorbox">
+<pre><code>One Sample t-test
+
+data:  dataset
+t = 6.164, df = 9, p-value = 0.0001659
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 11.2042 24.1958
+sample estimates:
+mean of x 
+     17.7 </code></pre>
+</div>
+</div>
+<div class="example">
+<p>A manufacturing company produces electric insulators. If the
+insulators break when in use, a short circuit is likely. To test the
+strength of the insulators, destructive testing is performed to
+determine how much force (in pounds) is required to break them.</p>
+<p>The following dataset consists of force values (in pounds) recorded
+for a random sample of 30 insulators:</p>
+<div class="center">
+<p>1870, 1728, 1656, 1610, 1634, 1784, 1522, 1696, 1592, 1662, 1866,
+1764, 1734, 1662, 1734, 1774, 1550, 1756, 1762, 1866, 1820, 1744, 1788,
+1688, 1810, 1752, 1680, 1810, 1652, 1736</p>
+</div>
+<p>Construct a <strong>95% confidence interval</strong> for the
+population mean force required to break the insulators.</p>
+<p><strong>Solution:</strong></p>
+<p>We want a confidence interval for the population mean <span
+class="math inline">\(\mu\)</span>, where <span
+class="math inline">\(\mu =\)</span> mean force required to break
+electric insulators. The population standard deviation is unknown, so we
+use a <em>one-sample</em> t-interval.</p>
+<p><strong>R code:</strong></p>
+<div class="tcolorbox">
+<pre><code># Step 1. Entering data;
+dataset &lt;- c(1870, 1728, 1656, 1610, 1634, 1784, 1522, 1696, 1592, 1662,
+             1866, 1764, 1734, 1662, 1734, 1774, 1550, 1756, 1762, 1866,
+             1820, 1744, 1788, 1688, 1810, 1752, 1680, 1810, 1652, 1736)
+
+# Step 2. Finding CI;
+t.test(dataset, conf.level = 0.95)</code></pre>
+</div>
+<p><strong>R output:</strong></p>
+<div class="tcolorbox">
+<pre><code>One Sample t-test
+
+data:  dataset
+t = 105.41, df = 29, p-value &lt; 2.2e-16
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ 1689.961 1756.839
+sample estimates:
+mean of x 
+   1723.4 </code></pre>
+</div>
+<p><strong>Interpretation:</strong></p>
+<p>We are 95% confident that the average force required to break an
+electric insulator is between <strong>1689.961 pounds</strong> and
+<strong>1756.839 pounds</strong>.</p>
+</div>
+<div class="example">
+<p>The operations manager of a production plant would like to estimate
+the mean amount of time a worker takes to assemble a new electronic
+component. After observing 120 workers assembling similar devices, she
+noticed that their average time was 16.2 minutes (with a standard
+deviation of 3.6 minutes).</p>
+<p>Construct a <strong>92% confidence interval</strong> for the mean
+assembly time. State all necessary assumptions.</p>
+</div>
+<div class="example">
+<p>In 2010, 142,823,000 tax returns were filed in the United States. The
+Internal Revenue Service (IRS) examined 1.107%, or 1,581,000, of them to
+determine if they were correctly done. To evaluate auditor performance,
+a random sample of these returns was drawn and the additional tax was
+recorded.</p>
+<p>Estimate with 95% confidence the mean additional income tax collected
+from the 1,581,000 files audited.<br />
+<strong>Solution:</strong></p>
+<p>We use a one-sample confidence interval for the population mean
+additional tax collected.</p>
+<p><strong>Step 1: Import the data from
+<code>taxes.txt</code></strong></p>
+<div class="tcolorbox">
+<pre><code># url of taxes;
+url &lt;- &quot;https://mcs.utm.utoronto.ca/~nosedal/data/taxes.txt&quot;
+taxes_data &lt;- read.table(url, header = TRUE)
+
+# inspect structure
+names(taxes_data)
+head(taxes_data)
+
+# isolate the tax values
+taxes &lt;- taxes_data$Taxes</code></pre>
+</div>
+<p><strong>Step 2: Plot the data</strong></p>
+<p><em>Histogram:</em></p>
+<div class="tcolorbox">
+<pre><code>hist(taxes,
+     main = &quot;Histogram for our example&quot;,
+     xlab = &quot;taxes&quot;, ylab = &quot;frequency&quot;,
+     col = &quot;blue&quot;)</code></pre>
+</div>
+<div class="center">
+<div class="figure" style="text-align: center">
+<img src="section07_files/figure-html/unnamed-chunk-2-1.png" alt=" " width="672" />
+<p class="caption">
+</p>
+</div>
+</div>
+<p><em>Boxplot:</em></p>
+<div class="tcolorbox">
+<pre><code>boxplot(taxes,
+        main = &quot;Additional Income Tax&quot;,
+        col = &quot;blue&quot;)</code></pre>
+</div>
+<div class="center">
+<div class="figure" style="text-align: center">
+<img src="section07_files/figure-html/unnamed-chunk-3-1.png" alt=" " width="672" />
+<p class="caption">
+</p>
+</div>
+</div>
+<p><em>Q-Q Plot:</em></p>
+<div class="tcolorbox">
+<pre><code>qqnorm(taxes, col = &quot;blue&quot;, pch = 19)
+qqline(taxes)</code></pre>
+</div>
+<div class="center">
+<div class="figure" style="text-align: center">
+<img src="section07_files/figure-html/unnamed-chunk-4-1.png" alt=" " width="672" />
+<p class="caption">
+</p>
+</div>
+</div>
+<p><strong>Step 3: Construct 95% CI</strong></p>
+<div class="tcolorbox">
+<pre><code>t.test(taxes, conf.level = 0.95)</code></pre>
+</div>
+<p><strong>Interpretation:</strong> Based on the t-test, we are 95%
+confident that the average additional tax collected lies within the
+interval calculated from the sample.</p>
+<p><strong>Assumptions:</strong></p>
+<ul>
+<li><p>The sample is a random sample from the population of
+interest.</p></li>
+<li><p>Observations are independent.</p></li>
+<li><p>The population is approximately Normal, or the sample size is
+large enough (justified by the histogram, boxplot, and Q-Q
+plot).</p></li>
+</ul>
+<div class="tcolorbox">
+<pre><code>## 
+##  One Sample t-test
+## 
+##  data:  taxes
+##  t = 29.345, df = 191, p-value &lt; 2.2e-16
+##  alternative hypothesis: true mean is not equal to 0
+##  95 percent confidence interval:
+##   8886.932 10167.721
+##  sample estimates:
+##  mean of x 
+##    9527.326 </code></pre>
+</div>
+<p><strong>Interpretation:</strong></p>
+<p>We estimate that the mean additional tax collected lies between
+$8,887 and $10,168 (with 95% confidence).</p>
+</div>
+</div>
+<div id="a-few-final-comments" class="section level3 unnumbered">
+<h3 class="unnumbered">A few final comments</h3>
+<p>When we introduced the Student <em>t</em>-distribution, we pointed
+out that the <em>t</em>-statistic is Student <em>t</em>-distributed if
+the population from which we’ve sampled is Normal. However,
+statisticians have shown that the mathematical process that derived the
+Student <em>t</em>-distribution is <strong>robust</strong>, which means
+that if the population is non-Normal, the results of the confidence
+interval estimate are still valid provided that the population is
+<strong>not extremely non-Normal</strong>. Our histogram, boxplot, and
+Q–Q plot suggest that our variable of interest is not extremely
+non-Normal, and in fact, may be Normal.</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

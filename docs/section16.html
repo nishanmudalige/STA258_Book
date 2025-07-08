@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section16.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="inference-for-simple-linear-regression" class="section level1">
+<h1>Inference for Simple Linear Regression</h1>
+<div id="inference-on-regression" class="section level2">
+<h2>Inference on Regression</h2>
+<p>In previous chapters, we focused on estimating regression parameters
+and interpreting the fitted line. In this chapter, we take a step
+further by conducting formal inference on the slope and intercept of a
+simple linear regression model. We examine the distribution of errors,
+assess variability, and introduce the idea of using hypothesis tests and
+confidence intervals to evaluate whether the linear relationship
+observed in the data is statistically significant.</p>
+<p>We begin by introducing the regression model and exploring the
+assumptions necessary to perform inference on the coefficients,
+particularly the slope.</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_1 X + \varepsilon,
+\quad \varepsilon \sim \mathcal{N}(0, \sigma^2)\]</span></p>
+<p>Can perform inference on <span class="math inline">\(\beta_0\)</span>
+and <span class="math inline">\(\beta_1\)</span>, however we are usually
+more interested in <span class="math inline">\(\beta_1\)</span>.<br />
+What does the error term <span class="math inline">\(\varepsilon \sim
+\mathcal{N}(0, \sigma^2)\)</span> mean?<br />
+<strong>At each</strong> value of <span
+class="math inline">\(X\)</span>, the errors are distributed normally
+with a mean of zero and a constant variance.</p>
+<div class="float">
+<embed src="section16/images/regression_model.pdf"
+style="width:60.0%" />
+<div class="figcaption">Regression line with normal errors at each <span
+class="math inline">\(X\)</span></div>
+</div>
+<p>Can verify with residual plots (assumptions).</p>
+<p>We estimate <span class="math inline">\(\sigma^2\)</span> with a
+value we call <span class="math inline">\(S^2\)</span> and use <span
+class="math inline">\(S^2\)</span> for inference.</p>
+<div id="estimating-variance-in-linear-regression"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Estimating Variance in Linear Regression</h3>
+<p><span class="math display">\[Y = \beta_0 + \beta_1 X + \varepsilon,
+\quad \varepsilon \sim \mathcal{N}(0, \sigma^2)\]</span></p>
+<p><strong>Estimate <span class="math inline">\(\sigma^2\)</span> with
+<span class="math inline">\(S^2\)</span></strong>:</p>
+<p><span class="math display">\[S^2 = \frac{\sum_{i=1}^n e_i^2}{n - 2}
+= \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n - 2}
+= \frac{SSE}{n - 2}\]</span></p>
+<p><span style="color: red"><em>notice similarity</em></span></p>
+<p><span class="math display">\[S_x^2 = \frac{\sum_{i=1}^n (x_i -
+\bar{x})^2}{n - 1}
+\quad \textcolor{blue}{\text{(sample variance, }\bar{x} \text{
+estimated)}}\]</span></p>
+<p><span class="math display">\[S = +\sqrt{S^2}
+\quad \textcolor{blue}{\text{(estimate of standard deviation)}}
+\\\]</span></p>
+<p><strong>In calculating <span class="math inline">\(S^2\)</span>, why
+do we divide by <span class="math inline">\(n-2\)</span>?</strong></p>
+<p>Since we estimate 2 unknown parameters in the model (both <span
+class="math inline">\(\beta_0\)</span> and <span
+class="math inline">\(\beta_1\)</span>), which are used in the
+calculation of <span class="math inline">\(S^2\)</span>.</p>
+<div class="tcolorbox">
+<p>We have data on an explanatory variable <span
+class="math inline">\(x\)</span> and a response variable <span
+class="math inline">\(y\)</span> for <span
+class="math inline">\(n\)</span> individuals. From the data, calculate
+the means <span class="math inline">\(\bar{x}\)</span> and <span
+class="math inline">\(\bar{y}\)</span> and the standard deviations <span
+class="math inline">\(S_x\)</span> and <span
+class="math inline">\(S_y\)</span> of the two variables, and their
+correlation <span class="math inline">\(r\)</span>. The least-squares
+regression line is the line:</p>
+<p><span class="math display">\[\hat{y} = b_0 + b_1 x\]</span></p>
+<p>with <em>slope</em></p>
+<p><span class="math display">\[b_1 = r \frac{S_y}{S_x}\]</span></p>
+<p>and <em>intercept</em></p>
+<p><span class="math display">\[b_0 = \bar{y} - b_1 \bar{x}\]</span></p>
+</div>
+<div class="definition">
+<p>The <strong>least-squares regression line</strong> of <span
+class="math inline">\(y\)</span> on <span
+class="math inline">\(x\)</span> is the line that makes the sum of the
+squares of the vertical distances of the data points from the line as
+small as possible.</p>
+</div>
+<div class="example">
+<p>Suppose an appliance store conducts a 5-month experiment to determine
+the effect of advertising on sales revenue. The results are shown in a
+table below. The relationship between sales revenue, <span
+class="math inline">\(y\)</span>, and advertising expenditure, <span
+class="math inline">\(x\)</span>, is hypothesized to follow a
+first-order linear model, that is,</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1 x +
+\varepsilon\]</span></p>
+<p>where</p>
+<p><span class="math display">\[\begin{aligned}
+y &amp; = \text{dependent variable} \\
+x &amp; = \text{independent variable} \\
+\beta_0 &amp; = \text{$y$-intercept} \\
+\beta_1 &amp; = \text{slope of the line} \\
+\varepsilon &amp; = \text{error variable}
+\end{aligned}\]</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Month</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Expenditure</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(x\)</span> ($
+hundreds)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Revenue</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(y\)</span> ($
+thousands)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td>5</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>The question is this: How can we best use the information in the
+sample of five observations in our table to estimate the unknown <span
+class="math inline">\(y\)</span>-intercept <span
+class="math inline">\(\beta_0\)</span> and slope <span
+class="math inline">\(\beta_1\)</span>?</p>
+<p>We are given: <span class="math display">\[\bar{x} = 3, \quad \bar{y}
+= 2, \quad S_x = 1.5811, \quad S_y = 1.2247, \quad S_{xy} =
+1.75\]</span></p>
+<p>Then, the slope of the least squares line is</p>
+<p><span class="math display">\[b_1 = r \frac{S_y}{S_x} = (0.9037)
+\left( \frac{1.2247}{1.5811} \right) = 0.7\]</span></p>
+<p>and</p>
+<p><span class="math display">\[b_0 = \bar{y} - b_1 \bar{x} = 2 -
+(0.7)(3) = -0.1\]</span></p>
+<p>The least squares line is thus:</p>
+<p><span class="math display">\[\hat{y} = -0.1 + 0.7x\]</span></p>
+</div>
+</div>
+<div id="the-regression-model" class="section level3 unnumbered">
+<h3 class="unnumbered">The Regression Model</h3>
+<p>We have <span class="math inline">\(n\)</span> observations on an
+explanatory variable <span class="math inline">\(x\)</span> and a
+response variable <span class="math inline">\(y\)</span>. Our goal is to
+study or predict the behavior of <span class="math inline">\(y\)</span>
+for given values of <span class="math inline">\(x\)</span>.</p>
+<ul>
+<li><p>For any fixed value of <span class="math inline">\(x\)</span>,
+the response <span class="math inline">\(y\)</span> varies according to
+a Normal distribution. Repeated measures <span
+class="math inline">\(y\)</span> are independent of each other.</p></li>
+<li><p>The mean response <span class="math inline">\(\mu_y\)</span> has
+a straight-line relationship with <span
+class="math inline">\(x\)</span>: <span class="math inline">\(\mu_y =
+\beta_0 + \beta_1 x\)</span>. The slope <span
+class="math inline">\(\beta_1\)</span> and intercept <span
+class="math inline">\(\beta_0\)</span> are <strong>unknown</strong>
+parameters.</p></li>
+<li><p>The standard deviation of <span class="math inline">\(y\)</span>
+(call it <span class="math inline">\(\sigma\)</span>) is the same for
+all values of <span class="math inline">\(x\)</span>. The value of <span
+class="math inline">\(\sigma\)</span> is <strong>unknown</strong>. The
+regression model has three parameters, <span
+class="math inline">\(\beta_0\)</span>, <span
+class="math inline">\(\beta_1\)</span>, and <span
+class="math inline">\(\sigma\)</span>.</p></li>
+</ul>
+<p>Thus, if <span class="math display">\[\hat{y}_i = \hat{\beta}_0 +
+\hat{\beta}_1 x_i\]</span> is the predicted value of the <span
+class="math inline">\(i\)</span>th <span
+class="math inline">\(y\)</span> value, then the deviation of the
+observed value <span class="math inline">\(y_i\)</span> from <span
+class="math inline">\(\hat{y}_i\)</span> is the difference <span
+class="math inline">\(y_i - \hat{y}_i\)</span> and the sum of squares of
+deviations to be minimized is</p>
+<p><span class="math display">\[SSE = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+= \sum_{i=1}^{n} [y_i - (\hat{\beta}_0 + \hat{\beta}_1
+x_i)]^2.\]</span></p>
+<p>The quantity <em>SSE</em> is also called the <strong>sum of squares
+for error</strong>. <span class="math display">\[\begin{aligned}
+\text{Fitted Value:} \quad &amp; \hat{y}_i = \hat{\beta}_0 +
+\hat{\beta}_1 x_i \\
+\text{Residual:} \quad &amp; \hat{\varepsilon}_i = y_i - \hat{y}_i
+\end{aligned}\]</span></p>
+<p>The <strong>regression standard error</strong> is</p>
+<p><span class="math display">\[s = \sqrt{\frac{1}{n - 2} \sum
+\text{residual}^2}
+= \sqrt{\frac{1}{n - 2} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+= \sqrt{\frac{SSE}{n - 2}}\]</span></p>
+<p>Use <span class="math inline">\(s\)</span> to estimate the
+<strong>unknown</strong> <span class="math inline">\(\sigma\)</span> in
+the regression model.<br />
+The standard error of <span class="math inline">\(\hat{\beta}_1\)</span>
+is the standard deviation of the sampling distribution of <span
+class="math inline">\(\hat{\beta}_1\)</span> (estimate of slope <span
+class="math inline">\(\beta_1\)</span>):</p>
+<p><span class="math display">\[SE(\hat{\beta}_1) =
+\frac{s}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2}}
+= \frac{s}{\sqrt{(n - 1) s_x^2}}\]</span></p>
+<p><strong>Confidence Interval for the Slope</strong></p>
+<p><span class="math display">\[\hat{\beta}_1 \pm t_{(n-2, \, \alpha/2)}
+\cdot SE(\hat{\beta}_1)
+\quad = \quad
+\hat{\beta}_1 \pm t_{(n-2, \, \alpha/2)} \cdot
+\frac{s}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2}}\]</span></p>
+<div class="example">
+<p>Revisit the example on advertising and sales and construct a 95%
+confidence interval on the slope. Provide an interpretation of the
+CI.</p>
+<p>From earlier: <span class="math display">\[\hat{y} = -0.1 +
+0.7x\]</span></p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="center"><strong><span
+class="math inline">\(x\)</span></strong></th>
+<th align="center"><strong><span
+class="math inline">\(y\)</span></strong></th>
+<th align="center"><strong><span
+class="math inline">\(\hat{y}\)</span></strong></th>
+<th align="center"><strong><span class="math inline">\(y -
+\hat{y}\)</span></strong></th>
+<th align="center"><strong><span class="math inline">\((y -
+\hat{y})^2\)</span></strong></th>
+<th align="center"><strong><span class="math inline">\((x -
+\bar{x})^2\)</span></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0.6</td>
+<td align="center">0.4</td>
+<td align="center">0.16</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">1.3</td>
+<td align="center">-0.3</td>
+<td align="center">0.09</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">2.0</td>
+<td align="center">0.0</td>
+<td align="center">0.00</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">2.7</td>
+<td align="center">-0.7</td>
+<td align="center">0.49</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">3.4</td>
+<td align="center">0.6</td>
+<td align="center">0.36</td>
+<td align="center">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We are given: <span class="math display">\[\sum x_i = 15, \quad
+\bar{x} = \frac{15}{5} = 3, \quad SSE = 1.10, \quad \sum (x_i -
+\bar{x})^2 = 10\]</span></p>
+<p><strong>Step 1: Estimate variance and standard deviation</strong>
+<span class="math display">\[s^2 = \frac{SSE}{n-2} = \frac{1.10}{5 - 2}
+= 0.3667
+\quad \Rightarrow \quad
+s = \sqrt{0.3667} = 0.6055\]</span></p>
+<p><strong>Step 2: Compute standard error of <span
+class="math inline">\(\hat{\beta}_1\)</span></strong> <span
+class="math display">\[SE(\hat{\beta}_1) = \frac{s}{\sqrt{\sum (x_i -
+\bar{x})^2}}
+= \frac{0.6055}{\sqrt{10}} = 0.1914\]</span></p>
+<p><strong>Step 3: Determine critical <span
+class="math inline">\(t\)</span>-value</strong></p>
+<p><span class="math display">\[n - 2 = 3, \quad \alpha = 0.05, \quad
+\alpha/2 = 0.025
+\Rightarrow \quad
+t_{(3, 0.025)} = 3.182\]</span></p>
+<p><strong>Step 4: Construct CI for the slope</strong> <span
+class="math display">\[\hat{\beta}_1 \pm t_{(n-2, \alpha/2)} \cdot
+SE(\hat{\beta}_1)
+= 0.7 \pm 3.182 \cdot 0.1914 = 0.7 \pm 0.6092\]</span></p>
+<p><span class="math display">\[\Rightarrow \text{CI: } (0.0908, \;
+1.3092)\]</span></p>
+<p><strong>Interpretation:</strong> We are 95% confident the slope
+(<span class="math inline">\(\beta_1\)</span>) for this model lies
+between 0.0908 and 1.3092.</p>
+</div>
+</div>
+<div id="interpreting-confidence-intervals-for-beta_1"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Interpreting Confidence Intervals for <span
+class="math inline">\(\beta_1\)</span></h3>
+<div class="center">
+<table style="width:97%;">
+<colgroup>
+<col width="22%" />
+<col width="74%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="right"><strong>Suppose CI:</strong></td>
+<td align="left"><span class="math inline">\((-, -)\)</span> Suggests
+<span class="math inline">\(\beta_1\)</span> has a
+<strong>negative</strong> sign. Suggests negative correlation,
+potentially good model.</td>
+</tr>
+<tr class="even">
+<td align="right"><strong>Suppose CI:</strong></td>
+<td align="left"><span class="math inline">\((+, +)\)</span> Suggests
+<span class="math inline">\(\beta_1\)</span> has a
+<strong>positive</strong> sign. Suggests positive correlation,
+potentially good model.</td>
+</tr>
+<tr class="odd">
+<td align="right"><strong>Suppose CI:</strong></td>
+<td align="left"><span class="math inline">\((-, +)\)</span> <span
+class="math inline">\(\beta_1 = 0\)</span> is plausible. Suggests
+<strong>no linear relationship</strong> between <span
+class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In cases where the CI does not contain zero, we can infer the sign of
+the slope (just not the steepness).<br />
+The <strong>regression standard error</strong> is</p>
+<p><span class="math display">\[s = \sqrt{\frac{1}{n - 2} \sum_{i=1}^n
+(y_i - \hat{y}_i)^2} = \sqrt{\frac{SSE}{n - 2}} = \sqrt{\frac{1.1}{3}} =
+0.6055\]</span></p>
+<p>Use <span class="math inline">\(s\)</span> to estimate the
+<strong>unknown</strong> <span class="math inline">\(\sigma\)</span> in
+the regression model.<br />
+A level <span class="math inline">\(C\)</span> confidence interval for
+the slope <span class="math inline">\(\beta_1\)</span> of the true
+regression line is</p>
+<p><span class="math display">\[b_1 \pm t^* SE_{b_1}\]</span></p>
+<p>In this formula, the standard error of the least-squares slope <span
+class="math inline">\(b\)</span> is</p>
+<p><span class="math display">\[SE_{b_1} = \frac{s}{\sqrt{\sum (x_i -
+\bar{x})^2}} = \frac{s}{\sqrt{(n - 1) S_x^2}}\]</span></p>
+<p>and <span class="math inline">\(t^*\)</span> is the critical value
+for the <span class="math inline">\(t(n - 2)\)</span> density curve with
+area <span class="math inline">\(C\)</span> between <span
+class="math inline">\(-t^*\)</span> and <span
+class="math inline">\(t^*\)</span>.</p>
+<div class="tcolorbox">
+<p><strong>Hypotheses:</strong> <span
+class="math display">\[\begin{aligned}
+H_0\!: \beta_1 = 0 \quad &amp; \text{vs.} \quad H_a\!: \beta_1 &gt; 0 \\
+H_0\!: \beta_1 = 0 \quad &amp; \text{vs.} \quad H_a\!: \beta_1 &lt; 0 \\
+H_0\!: \beta_1 = 0 \quad &amp; \text{vs.} \quad H_a\!: \beta_1 \neq 0
+\quad \text{\textit{(most common)}}
+\end{aligned}\]</span></p>
+<p><strong>Test Statistic:</strong> <span class="math display">\[t =
+\frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} =
+\frac{\hat{\beta}_1}{\dfrac{s}{\sqrt{\sum_{i=1}^n (x_i -
+\bar{x})^2}}}\]</span></p>
+<p><strong>Reference distribution:</strong> <span
+class="math inline">\(t\)</span> distribution with <span
+class="math inline">\(n - 2\)</span> degrees of freedom.</p>
+<p><em>Note:</em> A test statistic always follows the form: <span
+class="math display">\[\text{test stat} = \frac{\text{statistic} -
+\text{hypothesized value}}{\text{SE(statistic)}}\]</span></p>
+</div>
+<div class="example">
+<p>For the advertising example, perform a two-sided hypothesis test on
+the slope.</p>
+<p><strong>Hypotheses:</strong> <span class="math display">\[H_0\!:
+\beta_1 = 0
+\qquad
+H_a\!: \beta_1 \neq 0\]</span></p>
+<p><strong>Test Statistic:</strong> <span class="math display">\[t^* =
+\frac{\hat{\beta}_1 - 0}{\dfrac{s}{\sqrt{\sum (x_i - \bar{x})^2}}}
+= \frac{0.7 - 0}{0.6055 / \sqrt{10}} = 3.6558\]</span></p>
+<p><strong>Reference Distribution:</strong> <span
+class="math inline">\(t\)</span> distribution with <span
+class="math inline">\(n - 2 = 5 - 2 = 3\)</span> degrees of freedom.</p>
+<p><strong>Decision Rule:</strong></p>
+<p>Using a two-tailed test: <span class="math display">\[\text{p-value}
+= 2 \cdot P(T_3 &gt; 3.6558) &lt; 0.01 \Rightarrow \text{p-value} &lt;
+0.05\]</span></p>
+<p><strong>Conclusion:</strong> Since <span
+class="math inline">\(p\)</span>-value <span class="math inline">\(&lt;
+0.05\)</span>, we reject <span class="math inline">\(H_0\)</span> and
+conclude <span class="math inline">\(H_a\!: \beta_1 \neq 0\)</span>.</p>
+<p><em>Interpretation:</em> The slope should be included in the model.
+There is significant evidence of a linear relationship between
+advertising and sales revenue.<br />
+For the advertising-sales example, a 95% Confidence Interval for the
+slope <span class="math inline">\(\beta_1\)</span> is <span
+class="math display">\[0.7 \pm 3.182 \left( \frac{0.6055}{\sqrt{10}}
+\right)\]</span> <span class="math display">\[0.7 \pm
+0.6092\]</span></p>
+<p>Thus, we estimate with 95% confidence that the interval from 0.0908
+and 1.3092 includes the parameter <span
+class="math inline">\(\beta_1\)</span>.</p>
+</div>
+<p>We can also test hypotheses about the slope <span
+class="math inline">\(\beta_1\)</span>. The most common hypothesis
+is</p>
+<p><span class="math display">\[H_0 : \beta_1 = 0.\]</span></p>
+<p>A regression line with slope 0 is horizontal. That is, the mean of
+<span class="math inline">\(y\)</span> does not change at all when <span
+class="math inline">\(x\)</span> changes. So this <span
+class="math inline">\(H_0\)</span> says that there is no true linear
+relationship between <span class="math inline">\(x\)</span> and <span
+class="math inline">\(y\)</span>.</p>
+<div class="tcolorbox">
+<p>To test the hypothesis <span class="math inline">\(H_0 : \beta_1 =
+0\)</span>, compute the <span class="math inline">\(t\)</span> statistic
+<span class="math display">\[t = \frac{b_1}{SE_{b_1}}.\]</span></p>
+<p>In terms of a random variable <span class="math inline">\(T\)</span>
+having the <span class="math inline">\(t(n - 2)\)</span> distribution,
+the P-value for a test of <span class="math inline">\(H_0\)</span>
+against: <span class="math display">\[\begin{aligned}
+H_a : \beta_1 \ne 0 &amp; \quad \text{is } 2P(T &gt; |t|). \\
+H_a : \beta_1 &gt; 0 &amp; \quad \text{is } P(T &gt; t). \\
+H_a : \beta_1 &lt; 0 &amp; \quad \text{is } P(T &lt; t).
+\end{aligned}\]</span></p>
+</div>
+<div class="example">
+<p><span class="math display">\[\alpha = 0.05\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(H_0: \beta_1 = 0 \quad \text{vs}
+\quad H_a: \beta_1 &gt; 0\)</span></p></li>
+<li><p><span class="math inline">\(t^* = \frac{b_1}{SE_{b_1}} =
+\frac{0.7}{0.1914} = 3.6572\)</span></p></li>
+<li><p><span class="math inline">\(P\text{-value} = P(T &gt; t) = P(T
+&gt; 3.6572) \quad \text{d.f.} = n - 2 = 5 - 2 = 3.\)</span><br />
+Using t-distribution table, <span class="math inline">\(0.01 &lt;
+P\text{ value} &lt; 0.025\)</span></p></li>
+<li><p>Since <span class="math inline">\(P\text{-value} &lt; \alpha =
+0.05\)</span>, we reject <span
+class="math inline">\(H_0\)</span>.</p></li>
+</ol>
+<p>Our example (different <span class="math inline">\(H_a\)</span>)
+<span class="math display">\[\alpha = 0.05\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(H_0: \beta_1 = 0 \quad \text{vs}
+\quad H_a: \beta_1 \neq 0\)</span></p></li>
+<li><p><span class="math inline">\(t^* = \frac{b_1}{SE_{b_1}} =
+\frac{0.7}{0.1914} = 3.6572\)</span></p></li>
+<li><p><span class="math inline">\(P\text{-value} = 2P(T &gt; |t|) =
+2P(T &gt; 3.6572) \quad \text{d.f.} = n - 2 = 5 - 2 = 3.\)</span><br />
+Using Table 3, <span class="math inline">\(0.02 &lt; P\text{ value} &lt;
+0.05\)</span></p></li>
+<li><p>Since <span class="math inline">\(P\text{-value} &lt; \alpha =
+0.05\)</span>, we reject <span
+class="math inline">\(H_0\)</span>.</p></li>
+</ol>
+<p><strong>R code</strong></p>
+<div class="tcolorbox">
+<pre><code>x = c(1, 2, 3, 4, 5);
+y = c(1, 1, 2, 2, 4);
+mod = lm(y~x);
+summary(mod);</code></pre>
+</div>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>## 
+## Call:
+## lm(formula = y~x)
+## 
+## Residuals:
+##       1        2        3        4        5 
+##  4.000e-01 -3.000e-01 -3.886e-16 -7.000e-01  6.000e-01 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  -0.1000     0.6351  -0.157  0.8849    
+## x             0.7000     0.1915   3.656  0.0354 *  
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+## 
+## Residual standard error: 0.6055 on 3 degrees of freedom</code></pre>
+</div>
+<p><span class="math display">\[\hat{y} = \hat{\beta}_0 + \hat{\beta}_1
+x = -0.10 + 0.70x\]</span> <span
+class="math display">\[SE(\hat{\beta}_1) = 0.1915\]</span></p>
+<p>By default, R conducts the following test for each coefficient:</p>
+<p><span class="math display">\[\begin{aligned}
+    H_0&amp;: \beta_j = 0 \\
+    H_a&amp;: \beta_j \ne 0 \quad \text{(two sided)}
+\end{aligned}\]</span></p>
+<p>Test statistic: <span class="math display">\[t^* =
+\frac{\hat{\beta}_j - 0}{SE(\hat{\beta}_j)}\]</span></p>
+<p>For advertising and sales data: <span
+class="math display">\[\begin{aligned}
+    H_0&amp;: \beta_1 = 0 \\
+    H_a&amp;: \beta_1 \ne 0
+\end{aligned}\]</span></p>
+<p><span class="math display">\[t^* = \frac{\hat{\beta}_1 -
+0}{SE(\hat{\beta}_1)} = \frac{0.70}{0.1915} = 3.656\]</span></p>
+</div>
+<div class="nt">
+<p><strong>Review</strong></p>
+<p><span class="math display">\[\begin{aligned}
+y &amp;= \beta_0 + \beta_1 x + \varepsilon, \quad \varepsilon \sim N(0,
+\sigma^2) \\
+\hat{y} &amp;= \hat{\beta}_0 + \hat{\beta}_1 x \\
+\hat{\beta}_1 &amp;= \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum
+(x_i - \bar{x})^2} = \frac{s_{xy}}{s_{xx}} \\
+\hat{\beta}_0 &amp;= \bar{y} - \hat{\beta}_1 \bar{x} \\
+\end{aligned}\]</span></p>
+<p><strong>r:</strong> coefficient of correlation (strength)<br />
+<strong>r<span class="math inline">\(^2\)</span>:</strong> coefficient
+of determination (% variability)</p>
+<p><span class="math display">\[\begin{aligned}
+s^2 &amp;= \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n - 2} = \frac{SSE}{n
+- 2} \\
+s &amp;= \sqrt{s^2} \\
+SE(\hat{\beta}_1) &amp;= \frac{s}{\sqrt{s_{xx}}} \\
+CI &amp;: \hat{\beta}_1 \pm t_{n - 2, \alpha/2} \cdot SE(\hat{\beta}_1)
+\\
+\end{aligned}\]</span> Hypothesis test: <span
+class="math display">\[\begin{aligned}
+H_0 &amp;: \beta_1 = 0 \\
+\text{Test stat:}\quad t &amp;= \frac{\hat{\beta}_1 -
+0}{SE(\hat{\beta}_1)}
+\end{aligned}\]</span></p>
+</div>
+<p>We square all three deviations for each one of our data points, and
+sum over all <span class="math inline">\(n\)</span> points. Here, cross
+terms drop out, and we are left with the following equation:</p>
+<p><span class="math display">\[\sum_{i=1}^{n}(y_i - \bar{y})^2 =
+\sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \sum_{i=1}^{n}(\hat{y}_i -
+\bar{y})^2\]</span></p>
+<p><span class="math display">\[\text{SST} = \text{SSE} +
+\text{SSR}\]</span></p>
+<p>Total sum of squares = Sum of squares for error + Sum of squares for
+regression.<br />
+<span class="math display">\[\begin{aligned}
+SSE &amp;= \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \\
+    &amp;= \sum_{i=1}^{n} (y_i - \bar{y})^2 - \hat{\beta}_1
+\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) \\
+    &amp;= S_{YY} - \hat{\beta}_1 S_{XY}
+\end{aligned}\]</span></p>
+<p>Notice that this provides an easier computational method of finding
+SSE.<br />
+<strong>R output (Additional example)</strong></p>
+<div class="tcolorbox">
+<pre><code>&gt; summary(model);
+
+Call:
+lm(formula = camrys$Price ~ Odometer, data = camrys)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.68679 -0.27263  0.00521  0.23210  0.70071 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  17.248727   0.182093   94.72   &lt;2e-16 ***
+Odometer     -0.066861   0.004975  -13.44   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.3265 on 98 degrees of freedom
+Multiple R-squared:  0.6483,    Adjusted R-squared:  0.6447 
+F-statistic: 180.6 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</div>
+<div id="anova-table-analysis-of-variance" class="section level2">
+<h2>ANOVA Table (ANalysis Of VAriance)</h2>
+<p>Analysis of Variance (ANOVA) is a statistical method used to assess
+whether variation in a response variable can be explained by predictor
+variables in a regression model. It summarizes sources of variation
+using sums of squares, degrees of freedom, and mean squares in a
+structured table format.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Source of Variation</strong></th>
+<th align="center"><strong>Sum of Squares</strong></th>
+<th align="center"><strong>Degrees of Freedom</strong></th>
+<th align="center"><strong>Mean Square</strong></th>
+<th align="center"><strong>Computed F</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Regression</td>
+<td align="center">SSR</td>
+<td align="center">1</td>
+<td align="center">SSR</td>
+<td align="center"><span class="math inline">\(\dfrac{SSR}{SSE / (n -
+2)}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Error</td>
+<td align="center">SSE</td>
+<td align="center"><span class="math inline">\(n - 2\)</span></td>
+<td align="center"><span class="math inline">\(s^2 = \dfrac{SSE}{n -
+2}\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">SST</td>
+<td align="center"><span class="math inline">\(n - 1\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>For the general multivariate regression model: <span
+class="math display">\[\begin{aligned}
+    Y &amp;= \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p
++ \varepsilon, \\
+      &amp;\quad \varepsilon \sim N(0, \sigma^2)
+\end{aligned}\]</span> with <span class="math inline">\(p\)</span>
+predictors.<br />
+ANOVA can be used for testing: <span
+class="math display">\[\begin{aligned}
+    H_0&amp;: \beta_1 = \beta_2 = \cdots = \beta_p = 0 \\
+    H_a&amp;: \text{At least one } \beta_j \ne 0, \quad j = 1, \ldots, p
+\end{aligned}\]</span></p>
+<p><strong>Test Statistic:</strong> <span
+class="math display">\[\begin{aligned}
+    F &amp;= \dfrac{MSR}{MSE} = \dfrac{SSR/p}{SSE / (n - p - 1)} \sim
+F(p, n - p - 1)
+\end{aligned}\]</span></p>
+<p><strong>Reference distribution:</strong> <span
+class="math inline">\(F\)</span> with numerator df = <span
+class="math inline">\(p\)</span>, denominator df = <span
+class="math inline">\(n - p - 1\)</span></p>
+<div class="example">
+<p>We fitted a simple linear regression model using:</p>
+<div class="tcolorbox">
+<pre><code>x = c(1,2,3,4,5);
+y = c(1,1,2,2,4);
+mod = lm(y~x);
+anova(mod);</code></pre>
+</div>
+<p>The ANOVA output was:</p>
+<div class="tcolorbox">
+<pre><code>## Analysis of Variance Table
+##
+## Response: y
+##             Df  Sum Sq Mean Sq F value   Pr(&gt;F)
+## x            1     4.9    4.9000  13.364  0.03535 *
+## Residuals    3     1.1    0.3667
+## ---
+## Signif. codes:
+## 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+</div>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li><p>The regression model includes one predictor <span
+class="math inline">\(x\)</span>, so the degrees of freedom for
+regression is 1.</p></li>
+<li><p>The sum of squares for regression is <span
+class="math inline">\(SSR = 4.9\)</span>, and for residuals <span
+class="math inline">\(SSE = 1.1\)</span>.</p></li>
+<li><p>Mean squares are calculated as: <span class="math display">\[MSR
+= \frac{SSR}{1} = 4.9, \quad MSE = \frac{SSE}{n - 2} = \frac{1.1}{3} =
+0.3667\]</span></p></li>
+<li><p>The F-statistic is: <span class="math display">\[F =
+\frac{MSR}{MSE} = \frac{4.9}{0.3667} \approx 13.364\]</span></p></li>
+<li><p>The p-value is <span class="math inline">\(\approx
+0.03535\)</span>, indicating that the predictor is significant at the 5%
+level.</p></li>
+</ul>
+<p><strong>Conclusion:</strong> Since the p-value is less than 0.05, we
+reject <span class="math inline">\(H_0\)</span> and conclude that <span
+class="math inline">\(x\)</span> has a statistically significant linear
+relationship with <span class="math inline">\(y\)</span>.</p>
+</div>
+<div class="example">
+<p>We consider data on apartments near UTM, with price (in thousands of
+dollars), area (in 100 square feet), and number of beds and baths.</p>
+<div class="center">
+<table>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Price</strong></td>
+<td align="center"><strong>Area</strong></td>
+<td align="center"><strong>Beds</strong></td>
+<td align="center"><strong>Baths</strong></td>
+</tr>
+<tr class="even">
+<td align="center">(<span class="math inline">\(\times
+1000\)</span>)</td>
+<td align="center">(<span class="math inline">\(\times 100\)</span> sq
+ft)</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">620</td>
+<td align="center">11.0</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">590</td>
+<td align="center">6.5</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">620</td>
+<td align="center">10.0</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">700</td>
+<td align="center">8.4</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">680</td>
+<td align="center">8.0</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">500</td>
+<td align="center">5.7</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">760</td>
+<td align="center">12.0</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">800</td>
+<td align="center">14.0</td>
+<td align="center">3</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">660</td>
+<td align="center">7.3</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="float">
+<embed src="section16/images/utm_apartments.pdf" style="width:60.0%" />
+<div class="figcaption">Plot of Price vs Area for Apartments near
+UTM</div>
+</div>
+<table>
+<caption>Deviation table for computing <span
+class="math inline">\(\hat{\beta}_1\)</span> and <span
+class="math inline">\(\hat{\beta}_0\)</span></caption>
+<thead>
+<tr class="header">
+<th align="center"><strong>Price</strong></th>
+<th align="center"><strong>Area</strong></th>
+<th align="center"><span class="math inline">\((x -
+\bar{x})\)</span></th>
+<th align="center"><span class="math inline">\((y -
+\bar{y})\)</span></th>
+<th align="center"><span class="math inline">\((x - \bar{x})(y -
+\bar{y})\)</span></th>
+<th align="center"><span class="math inline">\((x -
+\bar{x})^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">620</td>
+<td align="center">11.0</td>
+<td align="center">1.8</td>
+<td align="center">-38.9</td>
+<td align="center">-70.02</td>
+<td align="center">3.24</td>
+</tr>
+<tr class="even">
+<td align="center">590</td>
+<td align="center">6.5</td>
+<td align="center">-2.7</td>
+<td align="center">-68.9</td>
+<td align="center">186.03</td>
+<td align="center">7.29</td>
+</tr>
+<tr class="odd">
+<td align="center">620</td>
+<td align="center">10.0</td>
+<td align="center">0.8</td>
+<td align="center">-38.9</td>
+<td align="center">-31.12</td>
+<td align="center">0.64</td>
+</tr>
+<tr class="even">
+<td align="center">700</td>
+<td align="center">8.4</td>
+<td align="center">-0.8</td>
+<td align="center">41.1</td>
+<td align="center">-32.88</td>
+<td align="center">0.64</td>
+</tr>
+<tr class="odd">
+<td align="center">680</td>
+<td align="center">8.0</td>
+<td align="center">-1.2</td>
+<td align="center">21.1</td>
+<td align="center">-25.32</td>
+<td align="center">1.44</td>
+</tr>
+<tr class="even">
+<td align="center">500</td>
+<td align="center">5.7</td>
+<td align="center">-3.5</td>
+<td align="center">-158.9</td>
+<td align="center">556.15</td>
+<td align="center">12.25</td>
+</tr>
+<tr class="odd">
+<td align="center">760</td>
+<td align="center">12.0</td>
+<td align="center">2.8</td>
+<td align="center">101.1</td>
+<td align="center">283.08</td>
+<td align="center">7.84</td>
+</tr>
+<tr class="even">
+<td align="center">800</td>
+<td align="center">14.0</td>
+<td align="center">4.8</td>
+<td align="center">141.1</td>
+<td align="center">677.28</td>
+<td align="center">23.04</td>
+</tr>
+<tr class="odd">
+<td align="center">660</td>
+<td align="center">7.3</td>
+<td align="center">-1.9</td>
+<td align="center">1.1</td>
+<td align="center">-2.09</td>
+<td align="center">3.61</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Sum</strong></td>
+<td align="center">82.9</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\sum (x - \bar{x})(y -
+\bar{y}) = 1541.11\)</span></td>
+<td align="center"><span class="math inline">\(\sum (x - \bar{x})^2 =
+60.00\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The sample means are: <span class="math display">\[\bar{y} =
+\frac{\sum y}{n} = \frac{5930}{9} = 658.89, \qquad
+\bar{x} = \frac{\sum x}{n} = \frac{82.9}{9} = 9.21\]</span></p>
+<div id="finding-the-regression-coefficients"
+class="section level4 unnumbered">
+<h4 class="unnumbered">Finding the Regression Coefficients</h4>
+<p>To compute the least squares regression line, we calculate the slope
+and intercept using the formulas:</p>
+<p><span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} =
+\frac{1541.11}{60} = 25.69\]</span> <span
+class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} =
+658.89 - (25.69)(9.21) = 422.28\]</span></p>
+</div>
+<div id="equation-of-the-regression-line"
+class="section level4 unnumbered">
+<h4 class="unnumbered">Equation of the Regression Line</h4>
+<p>Using the values above, we write the estimated regression equation
+as:</p>
+<p><span class="math display">\[\hat{y} = \hat{\beta}_0 + \hat{\beta}_1
+x = 422.28 + 25.69x\]</span></p>
+<p>This equation gives the predicted apartment price (in $1000s) based
+on area (in 100 sq ft).</p>
+</div>
+<div id="interpretation-of-coefficients"
+class="section level4 unnumbered">
+<h4 class="unnumbered">Interpretation of Coefficients</h4>
+<p>The slope <span class="math inline">\(\hat{\beta}_1 = 25.69\)</span>
+means that for every additional 100 sq ft in area, we expect the
+apartment price to increase by approximately $25,690 on average.<br />
+The intercept <span class="math inline">\(\hat{\beta}_0 =
+422.28\)</span> suggests the predicted price when the area is zero.
+While this has no practical interpretation in this context, it is a
+necessary component of the regression model.</p>
+</div>
+<div id="interpolation-and-extrapolation"
+class="section level4 unnumbered">
+<h4 class="unnumbered">Interpolation and Extrapolation</h4>
+<p>To estimate the price of an apartment with an area of 800 sq ft
+(i.e., <span class="math inline">\(x = 8\)</span>), we compute:</p>
+<p><span class="math display">\[\hat{y} = 422.28 + 25.69(8) = 627.8
+\quad (\$1000)\]</span></p>
+<p>Since 8 is within the range of observed values, this is an example of
+<strong>interpolation.</strong></p>
+<p>For an apartment with 2,500 sq ft (<span class="math inline">\(x =
+25\)</span>):</p>
+<p><span class="math display">\[\hat{y} = 422.28 + 25.69(25) = 1064.53
+\quad (\$1000)\]</span></p>
+<p>This is an example of <strong>extrapolation</strong>, and such
+predictions should be treated with caution since they lie outside the
+data range.<br />
+We can create a simple linear regression model in R using the
+<code>lm</code> command:</p>
+<p><strong>R code</strong></p>
+<div class="tcolorbox">
+<pre><code>lm(y ~ x, data = data_source)</code></pre>
+</div>
+<p>The data is available in the <code>apt_around_utm.csv</code>
+file.</p>
+<p><strong>R code</strong></p>
+<div class="tcolorbox">
+<pre><code>apt = read.csv(file.choose())
+# apt = read.csv(&quot;~/PATH_TO_FILE/apt_around_utm.csv&quot;)
+
+apt_model = lm(price ~ area, data = apt)</code></pre>
+</div>
+<p><strong>R output</strong></p>
+<div class="tcolorbox">
+<pre><code>&gt; apt_model
+
+Call:
+lm(formula = price ~ area, data = apt)
+
+Coefficients:
+(Intercept)       area  
+     422.26       25.69  </code></pre>
+</div>
+<p>We can compute the residuals and the sum of squared errors (SSE)
+using the table below:</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(y\)</span></th>
+<th align="center"><span class="math inline">\(x\)</span></th>
+<th align="center"><span class="math inline">\(\hat{y}\)</span></th>
+<th align="center"><span class="math inline">\(y - \hat{y}\)</span></th>
+<th align="center"><span class="math inline">\((y -
+\hat{y})^2\)</span></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">620</td>
+<td align="center">11.0</td>
+<td align="center">704.85</td>
+<td align="center">-84.85</td>
+<td align="center">7198.73</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">590</td>
+<td align="center">6.5</td>
+<td align="center">589.24</td>
+<td align="center">0.76</td>
+<td align="center">0.58</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">620</td>
+<td align="center">10.0</td>
+<td align="center">679.16</td>
+<td align="center">-59.16</td>
+<td align="center">3499.36</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">700</td>
+<td align="center">8.4</td>
+<td align="center">638.05</td>
+<td align="center">61.95</td>
+<td align="center">3837.62</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">680</td>
+<td align="center">8.0</td>
+<td align="center">627.78</td>
+<td align="center">52.22</td>
+<td align="center">2727.4</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">500</td>
+<td align="center">5.7</td>
+<td align="center">568.69</td>
+<td align="center">-68.69</td>
+<td align="center">4718.13</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">760</td>
+<td align="center">12.0</td>
+<td align="center">730.54</td>
+<td align="center">29.46</td>
+<td align="center">868.17</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">800</td>
+<td align="center">14.0</td>
+<td align="center">781.92</td>
+<td align="center">18.08</td>
+<td align="center">327.06</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">660</td>
+<td align="center">7.3</td>
+<td align="center">609.79</td>
+<td align="center">50.21</td>
+<td align="center">2520.79</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Recall our fitted regression model: <span
+class="math display">\[\hat{y} = 25.69x + 422.26\]</span></p>
+<p><span class="math display">\[\text{SSE} = \sum (y_i - \hat{y}_i)^2 =
+25,\!697.83\]</span></p>
+<p>We now conduct a hypothesis test on the slope <span
+class="math inline">\(\beta_1\)</span> at the 5% significance level.</p>
+<p><strong>Step 1: Hypotheses</strong> <span class="math display">\[H_0:
+\beta_1 = 0 \quad \text{vs.} \quad H_a: \beta_1 \ne 0\]</span></p>
+<p><strong>Step 2: Test statistic</strong> <span
+class="math display">\[s^2 = \frac{SSE}{n - 2} = \frac{25,\!697.83}{7} =
+3670.26\]</span> <span class="math display">\[s = \sqrt{3670.26} =
+60.58\]</span> <span class="math display">\[SE(\hat{\beta}_1) =
+\frac{s}{\sqrt{S_{xx}}} = \frac{60.58}{\sqrt{60}} = 7.82\]</span> <span
+class="math display">\[t = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} =
+\frac{25.69}{7.82} = 3.284\]</span></p>
+<p><strong>Step 3: Conclusion</strong> Using <span
+class="math inline">\(t\)</span>-distribution with 7 degrees of
+freedom:</p>
+<p><span class="math display">\[0.005 &lt; p\text{-value} &lt;
+0.01\]</span></p>
+<p>Since <span class="math inline">\(p\)</span>-value <span
+class="math inline">\(&lt; 0.05\)</span>, we reject <span
+class="math inline">\(H_0\)</span> and conclude that there is sufficient
+evidence that <span class="math inline">\(\beta_1 \ne 0\)</span>.This
+suggests there is a statistically significant relationship between price
+and area for apartments near UTM.</p>
+<p><strong>Final Check: Total Sum of Squares</strong></p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(y\)</span></th>
+<th align="center"><span class="math inline">\(x\)</span></th>
+<th align="center"><span class="math inline">\(\hat{y}\)</span></th>
+<th align="center"><span class="math inline">\((y -
+\hat{y})^2\)</span></th>
+<th align="center"><span class="math inline">\((y -
+\bar{y})^2\)</span></th>
+<th align="center"><span class="math inline">\((\hat{y} -
+\bar{y})^2\)</span></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">620</td>
+<td align="center">11.0</td>
+<td align="center">704.85</td>
+<td align="center">7198.73</td>
+<td align="center">2112.00</td>
+<td align="center">1512.35</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">590</td>
+<td align="center">6.5</td>
+<td align="center">589.24</td>
+<td align="center">0.58</td>
+<td align="center">4850.88</td>
+<td align="center">4745.68</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">620</td>
+<td align="center">10.0</td>
+<td align="center">679.16</td>
+<td align="center">3499.36</td>
+<td align="center">410.73</td>
+<td align="center">1512.35</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">700</td>
+<td align="center">8.4</td>
+<td align="center">638.05</td>
+<td align="center">3837.62</td>
+<td align="center">434.20</td>
+<td align="center">1690.12</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">680</td>
+<td align="center">8.0</td>
+<td align="center">627.78</td>
+<td align="center">2727.4</td>
+<td align="center">968.04</td>
+<td align="center">445.68</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">500</td>
+<td align="center">5.7</td>
+<td align="center">568.69</td>
+<td align="center">4718.13</td>
+<td align="center">8136.08</td>
+<td align="center">2524.68</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">760</td>
+<td align="center">12.0</td>
+<td align="center">730.54</td>
+<td align="center">868.17</td>
+<td align="center">5133.21</td>
+<td align="center">10223.46</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center">800</td>
+<td align="center">14.0</td>
+<td align="center">781.92</td>
+<td align="center">327.06</td>
+<td align="center">1513.47</td>
+<td align="center">19912.35</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td align="center">660</td>
+<td align="center">7.3</td>
+<td align="center">609.79</td>
+<td align="center">2520.79</td>
+<td align="center">2410.45</td>
+<td align="center">1.23</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="math display">\[SSE + SSR = SST = 25,\!697.83 +
+39,\!591.06 = 65,\!288.90\]</span> This confirms the ANOVA identity:
+Total = Explained + Residual</p>
+<p>We previously estimated the model:</p>
+<p><span class="math display">\[\hat{y} = 25.69x + 422.26\]</span></p>
+<p><strong>Coefficient of Determination and Correlation</strong></p>
+<p><span class="math display">\[r^2 = \frac{SSR}{SST} =
+\frac{39591.06}{65288.90} = 0.6063 = 60.63\%\]</span></p>
+<p>Interpretation: Approximately 60.63% of the variability in price is
+explained by the regression model.</p>
+<p><span class="math display">\[r = \pm \sqrt{r^2} = \pm \sqrt{0.6063} =
+\pm 0.779\]</span></p>
+<p>Since <span class="math inline">\(\hat{\beta}_1 &gt; 0\)</span>, we
+choose the positive root:</p>
+<p><span class="math display">\[r = 0.779\]</span></p>
+<p>Interpretation: There is a strong positive correlation between
+apartment area and price.</p>
+<p><strong>R code</strong></p>
+<div class="tcolorbox">
+<pre><code>model = lm(y~x, data = data\_source) 
+summary(model)</code></pre>
+</div>
+<p><strong>R code</strong></p>
+<div class="tcolorbox">
+<pre><code>apt\_model = lm(price ~ area, data = apt)
+summary(apt\_model)</code></pre>
+</div>
+<p><strong>R code</strong></p>
+<div class="tcolorbox">
+<pre><code>Call:
+lm(formula = price ~ area, data = apt)
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  422.256   74.834     5.643  0.00078 ***
+area         25.690    7.823      3.284  0.01341 *
+
+Residual standard error: 60.59 on 7 degrees of freedom
+Multiple R-squared: 0.6064,    Adjusted R-squared: 0.5502 
+F-statistic: 10.78 on 1 and 7 DF,  p-value: 0.01341</code></pre>
+</div>
+<p><strong>Two-sided Test for Slope Coefficient</strong></p>
+<p>By default, R performs a two-sided test: <span
+class="math display">\[H_0: \beta_1 = 0 \quad \text{vs.} \quad H_a:
+\beta_1 \neq 0\]</span></p>
+<p>Test statistic: <span class="math display">\[t^* =
+\frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} = \frac{25.690 - 0}{7.823} =
+3.284\]</span></p>
+<p><span class="math display">\[t^* \sim t_{(n - 2)}  \quad \text{with }
+df = 9 - 2 = 7\]</span></p>
+<p><strong>p-value</strong> is the total shaded area in both tails. From
+R output: <span class="math display">\[\text{p-value} =
+0.01341\]</span></p>
+</div>
+</div>
+<div class="definition">
+<ul>
+<li><p><strong>Interpolation</strong> is calculating predicted values of
+<span class="math inline">\(y\)</span> using our linear model while
+working within the range of <span class="math inline">\(x\)</span> in
+which data was available to construct our model.</p></li>
+<li><p><strong>Extrapolation</strong> is calculating predicted values of
+<span class="math inline">\(y\)</span> using our linear model outside
+the range of <span class="math inline">\(x\)</span> used to obtain the
+linear model.</p></li>
+<li><p>Interpolation is usually safe if we have a good linear
+model.</p></li>
+<li><p>Extrapolation must be performed carefully since extrapolations
+that are done without any foresight can be very inaccurate.</p></li>
+</ul>
+</div>
+</div>
+<div id="residual-plots" class="section level2">
+<h2>Residual Plots</h2>
+<p>Residual plots are used to verify assumptions related to the error
+terms in a regression model.</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_1 X + \varepsilon,
+\quad \varepsilon \sim \mathcal{N}(0, \sigma^2)\]</span></p>
+<p>The assumption <span class="math inline">\(\varepsilon \sim
+\mathcal{N}(0, \sigma^2)\)</span> implies:</p>
+<ul>
+<li><p>Mean of errors is 0</p></li>
+<li><p>Constant variance of errors (homoscedasticity)</p></li>
+</ul>
+<p>We plot the residuals: <span class="math display">\[e_i = y_i -
+\hat{y}_i\]</span> against the fitted values <span
+class="math inline">\(\hat{y}_i\)</span> to assess these
+assumptions.</p>
+<div id="what-to-look-for-in-a-good-residual-plot"
+class="section level3 unnumbered">
+<h3 class="unnumbered">What to Look for in a Good Residual Plot</h3>
+<p>If the assumption <span class="math inline">\(\varepsilon \sim
+\mathcal{N}(0, \sigma^2)\)</span> is satisfied, the residual plot should
+have the following features:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Random scattering:</strong> No obvious pattern in
+residuals.</p>
+<ul>
+<li><p>A pattern (e.g., curve) may indicate a non-linear
+relationship.</p></li>
+<li><p>Random scattering also suggests independence of errors.</p></li>
+</ul></li>
+<li><p><strong>Constant variance:</strong> Residuals should fall within
+a horizontal band, roughly half above and half below zero.</p>
+<ul>
+<li>Suggests constant variance (homoscedasticity).</li>
+</ul></li>
+<li><p><strong>No influential points or clustering:</strong> The plot
+should not show isolated influential observations or
+clustering.</p></li>
+</ol>
+<div class="float">
+<embed src="section16/images/residual_plots.pdf" style="width:100.0%" />
+<div class="figcaption">Residual Plots - Good and Bad Examples</div>
+</div>
+<div class="tcolorbox">
+<p>The model is: <span class="math inline">\(Y = \beta_0 + \beta_1 X +
+\varepsilon\)</span>, where <span class="math inline">\(\varepsilon \sim
+\mathcal{N}(0, \sigma^2)\)</span></p>
+<ul>
+<li><p>The relationship between <span class="math inline">\(X\)</span>
+and <span class="math inline">\(Y\)</span> is linear.</p></li>
+<li><p>Residuals:</p>
+<ul>
+<li><p>are independent</p></li>
+<li><p>have constant variance</p></li>
+<li><p>are normally distributed</p></li>
+</ul>
+<p>These assumptions can be verified using residual plots.</p></li>
+</ul>
+</div>
+<div class="center">
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

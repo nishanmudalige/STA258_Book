@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section02.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="sampling-distributions-related-to-a-normal-population"
+class="section level1">
+<h1>Sampling Distributions Related to a Normal Population</h1>
+<p>Previously, we have introduced lots of definitions and given you a
+rough idea about what really statistics it and what people do in
+statistics. Now, we are going to proceed statistical distributions.</p>
+<div id="normal-distribution" class="section level2">
+<h2>Normal Distribution</h2>
+<p>In probability theory and statistics, normal distribution also called
+Gaussian distribution which is discovered by a famous German
+mathematician Johann Carl Friedrich Gauss in 1809. It is one of the most
+important distribution that used to approximate other types of
+probability distribution, such as binomial, hypergeometric, inverse (or
+negative) hypergeometric, negative binomial and Poisson distribution.
+Generally, it is denote as <span class="math inline">\(N(\mu,
+\sigma^2)\)</span> with probability density function as the following:
+<span class="math display">\[f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}
+\cdot e^{-\frac{(x - \mu)^2}{2\sigma^2}}.\]</span> Formally, let’s begin
+with its definition:</p>
+<div class="definition">
+<p>Suppose a random variable <span class="math inline">\(X \sim N(\mu,
+\sigma^2)\)</span>, then <span class="math inline">\(E(X) = \mu \text{
+and } Var(X) = \sigma^2\)</span>. And <span
+class="math inline">\(-\infty &lt; \mu &lt; \infty, \sigma^2 &gt;
+0.\)</span> Moreover, <span class="math inline">\(X\)</span> has
+probability density function as: <span class="math display">\[f(x) =
+\frac{1}{\sqrt{2 \pi \sigma^2}} \cdot e^{-\frac{(x -
+\mu)^2}{2\sigma^2}}, \text{ for $-\infty &lt; x &lt; \infty$ (same as
+above).}\]</span> The only special case of normal distribution is
+standard normal distribution, such that a random variable <span
+class="math inline">\(Y \sim N( \mu = E(Y) = 0, \sigma^2 = Var(Y) =
+1)\)</span>, then <span class="math inline">\(Y\)</span> has probability
+density function as: <span class="math display">\[f(y) =
+\frac{1}{\sqrt{2\pi}} \cdot e^{-\frac{y^2}{2}}.\]</span></p>
+</div>
+</div>
+<div id="gamma-and-chi-square-distribution" class="section level2">
+<h2>Gamma and Chi-square Distribution</h2>
+<p>The Chi-square and Gamma distributions are two fundamental
+probability distributions widely used in statistical theory and
+applications. The Gamma distribution is a continuous distribution
+characterized by its shape and scale parameters, making it versatile for
+modeling waiting times and various positively skewed data. The
+Chi-square distribution, a special case of the Gamma distribution,
+arises naturally in the context of hypothesis testing and confidence
+interval estimation, especially in tests involving variance and
+categorical data.<br />
+<strong>Gamma Distribution</strong></p>
+<div class="definition">
+<p>Suppose a random variable <span class="math inline">\(X\)</span> is
+Gamma distributed with <span class="math inline">\(\alpha &gt;
+0\)</span> (shape parameter) and <span class="math inline">\(\beta &gt;
+0\)</span> (scale parameter) if and only if the probability density
+function of <span class="math inline">\(X\)</span> is <span
+class="math display">\[f(x) = \frac{x^{\alpha - 1}
+e^{\frac{-x}{\beta}}}{\beta^{\alpha} \Gamma(\alpha)}, \text{ for $0 &lt;
+x &lt; \infty.$}\]</span> Then, <span class="math inline">\(E(X) =
+\alpha \beta \text{, } Var(X) = \alpha \beta^2 \text{ and its moment
+generating function is } M_{X}(t) = \frac{1}{(1 - \beta
+t)^{\alpha}},\)</span> for <span class="math inline">\(t &lt;
+\frac{1}{\beta}.\)</span></p>
+</div>
+<p>Now, let’s introduce some properties of Gamma function:</p>
+<ul>
+<li><p>Gamma function (<strong>not a distribution</strong>): <span
+class="math display">\[\Gamma(x) = \int_{0}^{\infty}t^{x-1}e^{-t}\,dt,
+\text{ for $x &gt; 0$.}\]</span></p></li>
+<li><p>Properties</p>
+<ul>
+<li><p>1. <span class="math inline">\(\Gamma(x) = x \cdot
+\Gamma(x-1)\)</span>;</p></li>
+<li><p>2. For all <span class="math inline">\(n \in \mathbb{N} \text{, }
+\Gamma(n) = (n - 1)!\)</span>;</p></li>
+<li><p>3. <span class="math inline">\(\Gamma(\frac{1}{2}) =
+\sqrt{\pi}\)</span>.</p></li>
+</ul></li>
+</ul>
+<p><strong>Chi-square Distribution</strong></p>
+<p>Here is its formal definition:</p>
+<div class="definition">
+<p>A random variable <span class="math inline">\(X\)</span> has a
+Chi-squared distribution with <span class="math inline">\(n\)</span>
+degrees of freedom <span class="math inline">\((\chi_{n}^{2})\)</span>
+if and only if <span class="math inline">\(X\)</span> is a random
+variable with a Gamma distribution with parameters <span
+class="math inline">\(\alpha = \frac{n}{2} \text{ and } \beta =
+2.\)</span> Then, the probability density function of <span
+class="math inline">\(X\)</span> is given by <span
+class="math display">\[f(x) = \frac{1}{2^{\frac{n}{2}}
+\Gamma(\frac{n}{2})} x^{\frac{k}{2} - 1} e^{\frac{-x}{2}}.\]</span>
+Moreover, <span class="math inline">\(E(X) = n \text{, } Var(X) = 2n
+\text{ and moment generating function of $X$ is } M_{X}(t) = (1 -
+2t)^{\frac{-n}{2}}, \text{ for $t &lt; \frac{1}{2}$}.\)</span></p>
+</div>
+<p>We claim that Chi-square distribution is a special case of Gamma
+distribution with <span class="math inline">\(\alpha = \frac{n}{2}
+\text{ and } \beta = 2\)</span>. Now, let’s prove it by using moment
+generating function.<br />
+The proof is quite straightforward as the following shows:</p>
+<div class="proof">
+<p><em>Proof.</em> Suppose <span class="math inline">\(X \sim Gamma(
+\alpha = \frac{n}{2} \text{, } \beta = 2).\)</span><br />
+Then the following moment generating function holds for <span
+class="math inline">\(X\)</span>: <span class="math display">\[M_{X}(t)
+= (1- 2t)^{\frac{-n}{2}}, \text{ for $t &lt; \frac{1}{2}$}.\]</span>
+Compare the moment generating function of <span
+class="math inline">\(X\)</span> under Gamma distribution with
+Chi-square distribution, we can conclude that <span
+class="math inline">\(X \sim \chi_{n}^{2}\)</span>. ◻</p>
+</div>
+<p><strong>Obtaining Chi-square Distribution by Normal
+Distribution</strong></p>
+<p>Previously, we showed how to use Gamma distribution to get Chi-square
+distribution by moment generating function method. Now, let’s do
+something interestingly, to use normal distribution to get Chi-square
+distribution. We will begin with a theorem, then prove it.</p>
+<div class="thm">
+<p>Suppose a random variable <span class="math inline">\(Z\)</span> is
+standard normally distributed, such that <span class="math inline">\(Z
+\sim N(0 \text{, }1).\)</span> Then, <span
+class="math inline">\(Z^2\)</span> is Chi-square distributed with <span
+class="math inline">\(1\)</span> degree of freedom, so that <span
+class="math inline">\(Z^2 \sim \chi_{1}^{2}\)</span>.</p>
+</div>
+<p>The proof of Theorem <span class="math inline">\(2.1\)</span> isn’t
+that trivial to see. We still need moment generating function, but in a
+different way. Before we get into the proper proof, let’s grab
+everything we need:</p>
+<ul>
+<li><p>1. Recall STA256 about how to get moment generating function for
+a given continuous random variable that: <span
+class="math display">\[M_{Z}(t) = \int_{-\infty}^{\infty}
+e^{tx}f_{X}(x)\,dx.\]</span></p></li>
+<li><p>2. We also need Gaussian integral: $$</p>
+<span class="math display">\[\begin{aligned}
+                \int_{-\infty}^{\infty} e^{-x^2}\,dx &amp;= \sqrt{\pi};
+\label{eq:gaussian1} \\
+                \int_{-\infty}^{\infty} e^{-kx^2}\,dx &amp;=
+\sqrt{\frac{\pi}{k}}, \text{ for $k &gt; 0$}; \label{eq:gaussian2} \\
+                \int_{-\infty}^{\infty} e^{kx^2}\,dx &amp;=
+\sqrt{\frac{\pi}{-k}}, \text{ for $k &lt; 0$}. \label{eq:gaussian3}
+
+\end{aligned}\]</span>
+<p>$$</p></li>
+</ul>
+<div class="proof">
+<p><em>Proof.</em> Suppose that <span class="math inline">\(Z \sim N(0,
+1)\)</span>, then <span class="math inline">\(f_{Z}(z) =
+\frac{1}{\sqrt{2\pi}} \cdot e^{\frac{-z^2}{2}}\)</span>.<br />
+The moment generating function (MGF) of <span
+class="math inline">\(Z^2\)</span> is: <span
+class="math display">\[\begin{aligned}
+M_{Z^2}(t) &amp;= \mathbb{E}\left(e^{tZ^2}\right) \\
+&amp;= \int_{-\infty}^{\infty} e^{tz^2} f_Z(z) \, dz \\
+&amp;= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{tz^2}
+e^{-\frac{z^2}{2}} \, dz \\
+&amp;= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}
+e^{-\left(\frac{1}{2}-t\right)z^2} \, dz.
+\end{aligned}\]</span></p>
+<p>Apply substitution with <span class="math inline">\(u =
+z\sqrt{\frac{1}{2}-t}\)</span>, <span class="math inline">\(dz =
+\frac{du}{\sqrt{\frac{1}{2}-t}}\)</span>: <span
+class="math display">\[\begin{aligned}
+M_{Z^2}(t) &amp;= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-u^2}
+\cdot \frac{1}{\sqrt{\frac{1}{2}-t}} \, du \\
+&amp;= \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{\sqrt{\frac{1}{2}-t}}
+\int_{-\infty}^{\infty} e^{-u^2} \, du \\
+&amp;= \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{\sqrt{\frac{1}{2}-t}} \cdot
+\sqrt{\pi} \\
+&amp;= \frac{1}{\sqrt{1-2t}}.
+\end{aligned}\]</span></p>
+<p>This is the MGF of a chi-squared distribution with 1 degree of
+freedom, <span class="math inline">\(Z^2 \sim \chi_1^2\)</span>. ◻</p>
+</div>
+<p>Now, we can do another proof by using Theorem <span
+class="math inline">\(2.1\)</span>.</p>
+<div class="thm">
+<p>Suppose <span class="math inline">\(Z_1, Z_2, ..., Z_n
+\overset{\text{i.i.d.}}{\sim} N(0,1)\)</span>, then the sum of <span
+class="math inline">\(n\)</span> independent <span
+class="math inline">\(Z^2\)</span> is going to be Chi-square distributed
+with <span class="math inline">\(n\)</span> degrees of freedom, as the
+following: <span class="math display">\[\sum_{i=1}^{n}Z_{i}^{2} \sim
+\chi_{n}^{2}.\]</span></p>
+</div>
+<p>We need Theorem <span class="math inline">\(2.1\)</span> to prove
+this, but it going to be easier.</p>
+<div class="proof">
+<p><em>Proof.</em> Suppose <span class="math inline">\(Z \sim
+\mathcal{N}(0,1)\)</span>, then its probability density function is:
+<span class="math display">\[f_Z(z) = \frac{1}{\sqrt{2\pi}}
+e^{-\frac{z^2}{2}}.\]</span></p>
+<p>Let <span class="math inline">\(\delta = \sum_{i=1}^{n}
+Z_i^2\)</span>, where <span class="math inline">\(Z_1, \ldots, Z_n
+\stackrel{\text{i.i.d.}}{\sim} \mathcal{N}(0,1)\)</span>. The moment
+generating function (MGF) of <span class="math inline">\(\delta\)</span>
+is: <span class="math display">\[\begin{aligned}
+M_{\delta}(t) &amp;= \mathbb{E}\left[e^{t\delta}\right] \\
+&amp;= \mathbb{E}\left[e^{t(Z_1^2 + \cdots + Z_n^2)}\right] \\
+&amp;= \mathbb{E}\left[\prod_{i=1}^n e^{tZ_i^2}\right].
+\end{aligned}\]</span></p>
+<p>Since <span class="math inline">\(Z_1, \ldots, Z_n\)</span> are
+independent and identically distributed: <span
+class="math display">\[\begin{aligned}
+M_{\delta}(t) &amp;= \prod_{i=1}^n \mathbb{E}\left[e^{tZ_i^2}\right] \\
+&amp;= \prod_{i=1}^n M_{Z_i^2}(t).
+\end{aligned}\]</span></p>
+<p>From Theorem 2.1, we know <span class="math inline">\(Z_i^2 \sim
+\chi_1^2\)</span> with MGF <span
+class="math inline">\((1-2t)^{-1/2}\)</span>, therefore: <span
+class="math display">\[\begin{aligned}
+M_{\delta}(t) &amp;= \prod_{i=1}^n (1-2t)^{-1/2} \\
+&amp;= (1-2t)^{-n/2}.
+\end{aligned}\]</span></p>
+<p>This is exactly the MGF of a chi-squared distribution with <span
+class="math inline">\(n\)</span> degrees of freedom, proving that <span
+class="math inline">\(\delta \sim \chi_n^2\)</span> as required. ◻</p>
+</div>
+<p>Here is the last theorem for Chi-square and normal distribution, but
+we won’t show you the proof due to its complexity. For people who are
+interested in that, please see STA260 lecture notes or power point slide
+to figure out.</p>
+<div class="thm">
+<p>Let <span class="math inline">\(n\)</span> be sample size, <span
+class="math inline">\(s^2\)</span> be sample variance and <span
+class="math inline">\(\sigma^2\)</span> be population variance, then
+<span class="math inline">\(\frac{(n-1)s^2}{\sigma^2}\)</span> is
+Chi-square distributed with <span class="math inline">\(n - 1\)</span>
+degrees of freedom. As the following: <span
+class="math display">\[\frac{(n-1)s^2}{\sigma^2} \sim
+\chi_{n-1}^{2}.\]</span></p>
+</div>
+</div>
+<div id="students-t-distribution-and-f-distribution"
+class="section level2">
+<h2>Student’s t-Distribution and F-Distribution</h2>
+<p>The t-distribution and F-distribution are essential tools in
+inferential statistics, particularly in the context of hypothesis
+testing and variance analysis. The t-distribution, which resembles the
+normal distribution but with heavier tails, is primarily used when
+estimating population means in situations where the sample size is small
+and the population standard deviation is unknown. On the other hand, the
+F-distribution is used to compare variances between two populations and
+plays a central role in analysis of variance (ANOVA) and regression
+analysis.<br />
+<strong>Student’s t-Distribution</strong></p>
+<div class="definition">
+<p>Suppose <span class="math inline">\(X\)</span> is t-distributed with
+<span class="math inline">\(n\)</span> degrees of freedom, then the
+probability density function of <span class="math inline">\(X\)</span>
+is given by: <span class="math display">\[f_{X}(x) =
+\frac{\Gamma(\frac{n+1}{2})}{\sqrt{\pi n} \Gamma(\frac{n}{2})}
+(1+\frac{x^2}{n})^{\frac{-n+1}{2}}.\]</span> Alternatively, define a new
+variable <span class="math inline">\(T\)</span> is the following: <span
+class="math display">\[T = \frac{W}{\sqrt{\frac{V}{r}}}, \text{ for $W
+\sim N(0, 1)  \text{ and } V \sim \chi_{r}^{2}$.}\]</span> Or suppose
+<span class="math inline">\(X_1, ..., X_n \overset{\text{i.i.d.}}{\sim}
+N(\mu, \text{ } \sigma^2)\)</span>, then <span
+class="math inline">\(\bar{X} \sim N(\mu, \text{ }
+\frac{\sigma^2}{n})\)</span>. Thus, <span class="math display">\[T =
+\frac{ \bar{x} - \mu}{(\frac{s}{\sqrt{n}})}.\]</span></p>
+</div>
+<p>Same as normal distribution, student’s t-distribution is also
+symmetric. Also, as the degrees of freedom of t-distribution getting
+larger, the curve of student’s t-distribution getting closer to standard
+normal distribution.<br />
+<strong>F-Distribution</strong></p>
+<div class="definition">
+<p>We define a new variable <span class="math inline">\(F\)</span> as
+the following shows: <span class="math display">\[F = \frac{
+(\frac{W_1}{v_1}) }{ (\frac{W_2}{v_2})} \sim F_{v_1, \text{ } v_2};
+\text{ for $W_1 \sim \chi_{v_1}^{2}$ and $W_2 \sim \chi_{v_2}^{2}$; also
+both $W_1$ and $W_2$ are independent.}\]</span> Alternatively, we select
+two samples (with same population variance) with size <span
+class="math inline">\(n\)</span> and <span
+class="math inline">\(m\)</span>, and also sample variance <span
+class="math inline">\(s_x\)</span> and <span
+class="math inline">\(s_y\)</span> respectively. Then, F-distribution
+is: <span class="math display">\[F = \frac{ [\frac{
+(\frac{(n-1)}{\sigma^2}) s_x^2}{n-1}] }{ [\frac{
+(\frac{(m-1)}{\sigma^2}) s_y^2}{m-1}] } \sim F_{n-1, \text{ } m-1
+}.\]</span></p>
+</div>
+<p>Both student’s t-distribution and F-distribution are highly used in
+inferential statistics, until confidence interval, testing hypothesis
+and ANOVA analysis, these two distributions will come to play a lot. At
+this point, just guarantee that you know how to obtain those
+distribution from random given information is sufficient.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

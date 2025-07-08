@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section09.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="sample-size-selection-using-confidence-intervals"
+class="section level1">
+<h1>Sample Size Selection using Confidence Intervals</h1>
+<p>In this section we will examine techniques to calculate the minimum
+sample size required to obtain a confidence interval to be within a
+specified margin of error. Recall the one-sample confidence intervals we
+have constructed for a population mean <span
+class="math inline">\(\mu\)</span> are</p>
+<p><span class="math display">\[\begin{aligned}
+{3}
+    &amp; \bar{x} \, \pm \, z_{\alpha/2}
+\frac{\sigma}{\sqrt{n}}    &amp;&amp; \quad \text{(When } \sigma \text{
+is known)} \\[1.0em]
+    &amp; \bar{x} \, \pm \, t_{\alpha/2, n-1}
+\frac{s}{\sqrt{n}}        &amp;&amp; \quad    \text{(When } \sigma
+\text{ is not known)}
+\end{aligned}\]</span></p>
+<p>and the one-sample confidence interval for a proportion is</p>
+<p><span class="math display">\[\hat p \pm z_{\alpha/2} \sqrt{\frac{\hat
+p(1-\hat p)}{n}}\]</span></p>
+<div id="empirical-rule" class="section level3">
+<h3>Empirical Rule</h3>
+<p>For any sample from a population that is close to Normally
+distributed:</p>
+<ul>
+<li><p>about 68% of all observations will lie in the interval <span
+class="math inline">\(\mu \pm \sigma\)</span></p></li>
+<li><p>about 95% of all observations will lie in the interval <span
+class="math inline">\(\mu \pm 2\sigma\)</span></p></li>
+<li><p>about 99.7% of all observations will lie in the interval <span
+class="math inline">\(\mu \pm 3\sigma\)</span></p></li>
+</ul>
+<p>This suggests that for a sample drawn from a population that is
+approximately to Normally distributed, we can approximate the standard
+deviation using</p>
+<p><span class="math display">\[\hat{\sigma} \approx \frac{\text{Sample
+Range}}{4}.\]</span></p>
+</div>
+<div id="secSampleSizeCIMean" class="section level2">
+<h2>Calculating Sample Size for a Confidence Interval on a Mean</h2>
+<p>We will examine how to calculate the minimum sample size <span
+class="math inline">\(n\)</span> for a confidence interval on a mean for
+a margin of error <span class="math inline">\(E\)</span> at confidence
+level <span class="math inline">\(1-\alpha\)</span>.</p>
+<div id="when-sigma-is-known" class="section level3 unnumbered">
+<h3 class="unnumbered">When <span class="math inline">\(\sigma\)</span>
+is Known</h3>
+<p>For a desired margin of error <span class="math inline">\(E\)</span>
+and confidence level <span class="math inline">\(1-\alpha\)</span>:
+<span class="math display">\[E =
+z_{\alpha/2}\,\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>We can rearrange <span class="math inline">\(E\)</span> to calculate
+the sample size using <span class="math display">\[n = \left(
+\frac{z_{\alpha/2}\,\sigma}{E} \right)^2\]</span> where <span
+class="math inline">\(n\)</span> is always <em>rounded up</em> to the
+next integer.<br />
+</p>
+<div class="example">
+<p><span id="exSampleSizePharmaceutical"
+label="exSampleSizePharmaceutical"></span></p>
+<p>A manufacturer of pharmaceutical products analyzes a specimen from
+each batch of a product to verify the concentration of the active
+ingredient. The chemical analysis is not perfectly precise. Repeated
+measurements on the same specimen give slightly different results.
+Suppose we know that the results of repeated measurements follow a
+Normal distribution with mean <span class="math inline">\(\mu\)</span>
+equal to the true concentration and standard deviation <span
+class="math inline">\(\sigma = 0.0068\)</span> grams per liter. (That
+the mean of the population of all measurements is the true concentration
+says that the measurements process has no bias. The standard deviation
+describes the precision of the measurement.) The laboratory analyzes
+each specimen <span class="math inline">\(n\)</span> times and reports
+the mean result.<br />
+Management asks the laboratory to produce results accurate to within
+<span class="math inline">\(\pm 0.005\)</span> with 95% confidence. How
+many measurements must be averaged to comply with this request?</p>
+<p><span class="math display">\[n = \left( \displaystyle
+\frac{z_{0.025}\,\sigma}{E} \right)^2
+    = \Bigl(\frac{1.96 \times 0.0068}{0.005}\Bigr)^2
+    \approx 7.1\]</span> Since the sample size should be a whole number,
+we round our result up to <span class="math inline">\(n=8\)</span>
+measurements.</p>
+</div>
+<p>In Example <a href="#exSampleSizePharmaceutical" reference-type="ref"
+reference="exSampleSizePharmaceutical"><span
+class="math display">\[exSampleSizePharmaceutical\]</span></a>, we note
+that 7 measurements will give a slightly larger margin of error than
+desired, and 8 measurements a slightly smaller margin of error, the lab
+must take 8 measurements on each specimen to meet management’s demand.
+Always round up to the next higher whole number when finding <span
+class="math inline">\(n\)</span>.</p>
+<div class="example">
+<p>Planning value <span class="math inline">\(\sigma=22.50\)</span>,
+desired margin <span class="math inline">\(E=2\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>90% confidence, <span
+class="math inline">\(z_{0.05}=1.65\)</span>: <span
+class="math display">\[n = \Bigl(\frac{1.65 \times 22.50}{2}\Bigr)^2
+      \approx 344.6
+    \quad\Longrightarrow\quad n = 345.\]</span></p></li>
+<li><p>95% confidence, <span
+class="math inline">\(z_{0.025}=1.96\)</span>: <span
+class="math display">\[n = \Bigl(\frac{1.96 \times 22.50}{2}\Bigr)^2
+      \approx 486.2
+    \quad\Longrightarrow\quad n = 487.\]</span></p></li>
+<li><p>99% confidence, <span
+class="math inline">\(z_{0.005}=2.58\)</span>: <span
+class="math display">\[n = \Bigl(\frac{2.58 \times 22.50}{2}\Bigr)^2
+      \approx 842.5
+    \quad\Longrightarrow\quad n = 843.\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+<div
+id="calculating-sample-size-for-a-confidence-interval-on-a-proportion"
+class="section level2">
+<h2>Calculating Sample Size for a Confidence Interval on a
+Proportion</h2>
+<p>We will examine how to calculate the minimum sample size <span
+class="math inline">\(n\)</span> for a confidence interval on a
+proportion for a margin of error <span class="math inline">\(E\)</span>
+at confidence level <span class="math inline">\(1-\alpha\)</span>. For
+sample of size <span class="math inline">\(n\)</span> with unknown
+population proportion <span class="math inline">\(p\)</span>: <span
+class="math display">\[\hat p \pm z^* \sqrt{ \displaystyle \frac{\hat
+p(1-\hat p)}{n}}.\]</span> where the margin of error is <span
+class="math display">\[E=z^*\sqrt{ \displaystyle
+\frac{p^*(1-p^*)}{n}}\]</span> we can rearrange <span
+class="math inline">\(E\)</span> to calculate the sample size using
+<span class="math display">\[n = \left( \displaystyle \frac{z^*}{E}
+\right)^2\,p^*(1-p^*),\]</span> where <span
+class="math inline">\(p^*\)</span> can be a <em>planning value</em>,
+which is value obtained from prior information such as a pilot study. If
+we do not have any prior information on <span
+class="math inline">\(p^*\)</span>, we can use <span
+class="math inline">\(p^* = 0.5\)</span> which is the conservative value
+that maximizes the product <span
+class="math inline">\(p^*(1-p^*)\)</span>.</p>
+<div class="example">
+<p>Aisha Shariff and Yvette Ye are the candidates for mayor in a large
+city. You are planning a sample survey to determine what percent of the
+voters plan to vote for Shariff. This is a population proportion <span
+class="math inline">\(p\)</span>. You will contact an SRS of registered
+voters in the city. You want to estimate <span
+class="math inline">\(p\)</span> with 95% confidence and a margin of
+error no greater than 3%, or 0.03. How large a sample do you need?<br />
+For a 95% CI on <span class="math inline">\(p\)</span>: <span
+class="math inline">\(z_{0.025} = 1.96\)</span>. Margin of error = 0.03.
+Since no information on a good estimate of <span
+class="math inline">\(p\)</span>, use <span class="math inline">\(p^{*}
+= 0.5\)</span>.</p>
+<p><span class="math display">\[1.96 \sqrt{\frac{(0.5)(1 - 0.5)}{n}} \le
+0.03
+\quad\Longrightarrow\quad
+n = \left(\frac{1.96}{0.03}\right)^{2} (0.5)(0.5) \approx
+1067.1.\]</span> Round up: <span class="math display">\[n =
+1068.\]</span></p>
+</div>
+<div class="example">
+<p>The percentage of people not covered by health care insurance in 2007
+in the USA was 15.6%. A congressional committee has been charged with
+conducting a sample survey to obtain more current information.</p>
+<ol style="list-style-type: decimal">
+<li><p>What sample size would you recommend if the committee’s goal is
+to estimate the current proportion of individuals without health care
+insurance with a margin of error of 0.03? Use a 95% confidence
+level.</p></li>
+<li><p>Repeat part (a) using a 99% confidence level.</p></li>
+</ol>
+<p><span class="math display">\[\text{(a) } n
+=
+\left(\frac{z^{*}}{E}\right)^{2}
+p^{*}(1-p^{*}),
+\quad z^{*} = 1.96, \; E = 0.03,\; p^{*} = 0.156.\]</span> <span
+class="math display">\[n
+=
+\left(\frac{1.96}{0.03}\right)^{2}
+(0.156)(1 - 0.156)
+\approx 563.\]</span></p>
+<p><span class="math display">\[\text{(b) } n
+=
+\left(\frac{2.58}{0.03}\right)^{2}
+(0.156)(1 - 0.156)
+\approx 974.\]</span></p>
+</div>
+<div class="example">
+<p>A consumer advocacy group would like to find the proportion of
+consumers who bought the newest generation of iPhone and were happy with
+their purchase. How large a sample should they take to estimate <span
+class="math inline">\(p\)</span> with 2% margin of error and 90%
+confidence?</p>
+<p><strong>Parameters:</strong> <span
+class="math display">\[\begin{aligned}
+E &amp;= 0.02, \quad\text{(margin of error)}\\
+\text{Confidence level} &amp;= 0.90 \;\Longrightarrow\; \alpha =
+0.10,\;\alpha/2 = 0.05,\\
+z^{*} &amp;= z_{0.05} = 1.645,\\
+p^{*} &amp;= 0.5,\quad p^{*}(1 - p^{*}) = 0.5 \times 0.5 = 0.25.
+\end{aligned}\]</span></p>
+<p><strong>Sample‐Size Formula:</strong> <span class="math display">\[n
+\;=\; \left(\frac{z^{*}}{E}\right)^{2}\;p^{*}(1 - p^{*}).\]</span></p>
+<p>Substituting <span class="math inline">\(z^{*} = 1.645\)</span>,
+<span class="math inline">\(E = 0.02\)</span>, and <span
+class="math inline">\(p^{*}(1 - p^{*}) = 0.25\)</span>: <span
+class="math display">\[\begin{aligned}
+n
+&amp;= \left(\frac{1.645}{0.02}\right)^{2} \times 0.25
+= \bigl(82.25\bigr)^{2} \times 0.25
+= 6{,}764.0625 \times 0.25 \\[0.5em]
+&amp;= 1{,}691.015625.
+\end{aligned}\]</span></p>
+<p>Since <span class="math inline">\(n\)</span> must be a whole number
+and we always round up to ensure the margin of error is at most <span
+class="math inline">\(2\%\)</span>, we take <span
+class="math display">\[n = 1{,}692.\]</span></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

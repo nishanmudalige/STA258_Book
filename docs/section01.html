@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section01.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="descriptive-statistics-and-an-introduction-to-r"
+class="section level1">
+<h1>Descriptive Statistics and an Introduction to R</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Intuitively, statistics can be considered the science of uncertainty.
+Formally,</p>
+<div class="definition">
+<p>Statistics is the science of collecting, classifying, summarizing,
+analyzing and interpreting data.</p>
+</div>
+<p><strong>Population, Sample, Parameter</strong></p>
+<p>In statistics, researchers need to observe behavior, pattern, trends
+and other types of data to give a conclusion. To make the conclusion
+more persuasive, researchers require huge amount of data to support
+them, that’s why study statistics need population.</p>
+<div class="definition">
+<p>In statistics, a population is a set of similar observations which is
+of interest for some experimental questions. It can be a set of existing
+objects such as all people in Canada, or hypothetical group of existing
+objects such as the set of all possible hands in a game of poker.</p>
+</div>
+<p>However, data collection from population is a lot work. Usually,
+researchers select a finite number of observations to study.</p>
+<div class="definition">
+<p>It refers to a selection of a subset from population that researchers
+use it to estimate population characteristics.</p>
+</div>
+<p>Now, we have already chosen a sample, but how do we use it to
+estimate population characteristics? This is the point where parameter
+comes to play.</p>
+<div class="definition">
+<p>A parameter is a quantity of statistical population which summerizes
+characteristics of the population. For example, mean, variance and
+standard deviation.</p>
+</div>
+<p><strong>Descriptive and Inferential Statistics</strong></p>
+<p>Now, we have set everything we need. A population, a chosen sample in
+that population with its parameters. Next step is studying. There are
+two major types of analysis: descriptive and Inferential statistics. In
+this section, we are only going to give you a rough idea about what they
+are, more detailed materials will be introduced in later chapters.</p>
+<div class="definition">
+<p>It refers to the summation of all quantitive values that describe
+characteristics of the population. Usually, we use descriptive
+statistics to summerize characteristics of a data set.</p>
+</div>
+<p>Furthermore, we use inferential statistics to do statistical
+analysis.</p>
+<div class="definition">
+<p>It refers to the process of using data analysis to indicate
+properties of a population. For example, testing hypothesis and
+confidence interval (both will be introduced in later chapters).</p>
+</div>
+<p><strong>Qualitative and Quantitative Data</strong></p>
+<p>At this point, assume that we have finished all procedures such as
+obtaining parameters and analyzing properties. Now, another important
+thing is illustrating all the discovery.</p>
+<div class="definition">
+<p>This type of illustration refers to showing categorical data. For
+example, lecture notes from a course, open-question survey.</p>
+</div>
+<p>To illustrate numerical data, we use quantitative data.</p>
+<div class="definition">
+<p>Unless the previous type of illustration, quantitative data is
+represented numerically, including anything that can be counted,
+measured, or given a numerical value. For example, STA258 final mark
+score range from 100 different students who have taken this course.</p>
+</div>
+</div>
+<div id="descriptive-statistics" class="section level2">
+<h2>Descriptive Statistics</h2>
+<p>Previously, we defined descriptive statistics. Now, let’s introduce
+what exact they are.<br />
+<strong>Sample Mean, Variance and Standard Deviation</strong></p>
+<p>Sample mean (or sample average) is the average value of a sample
+which is selected from an interested population of an experiment.
+Usually, the sample mean is used to estimate population mean. In other
+words, we say that the sample mean is an estimator of population
+mean.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(x_1, x_2, x_3, ..., x_n\)</span> be a
+sample of data points. We define sample mean of the sample data points
+(<span class="math inline">\(\bar{x}\)</span>) as the following: <span
+class="math display">\[\bar{x} = \frac{1}{n} \sum_{i=1}^{n}
+x_i.\]</span> Also, we define sample variance of the sample data points
+(<span class="math inline">\(s^2\)</span>) as: <span
+class="math display">\[s^2 = \frac{1}{n-1} \sum_{i=1}^{n}(x_i -
+\bar{x})^2.\]</span> Moreover, the standard deviation of the sample of
+data points (<span class="math inline">\(s\)</span>) is: <span
+class="math display">\[s = \sqrt{s^2}, \quad \text{for } s &gt;
+0.\]</span></p>
+</div>
+<p>Now, let’s move to variance. It refers to the expected value of the
+squared deviation from the mean of a random variable in a population.
+Similarly, we do have sample variance as well, which is the expected
+value of the squared deviation from the mean of a random variable in a
+selected sample. At this point, we can still use sample variance to
+estimate population variance with adjustment, because the sample
+variance may differ significantly based on what data points are chosen
+from that population.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(x_1, x_2, x_3, ..., x_n\)</span> be a
+sample of data points, we define sample variance of the sample data
+points (<span class="math inline">\(s^2\)</span>) as: <span
+class="math display">\[s^2 = \frac{1}{n-1} \sum_{i=1}^{n}(x_i -
+\bar{x})^2, \text{ where $\bar{x}$ is the sample mean of the data
+points.}\]</span></p>
+</div>
+<p>Next is standard deviation. It is a measure of the amount of
+variation of the values of a variable about its mean. If standard
+deviation is relatively larger, then data points are widely spread out
+from the mean. Otherwise, data points stay close from the mean. Also,
+standard deviation is obtained by taking squared root from variance
+which is dependent on the choices of data points as well. To use sample
+standard deviation as an estimator to population standard deviation, we
+still need to adjust it.</p>
+<div class="definition">
+<p>Let <span class="math inline">\(x_1, x_2, x_3, ..., x_n\)</span> be a
+sample of data points. The standard deviation of the sample of data
+points (<span class="math inline">\(s\)</span>) is: <span
+class="math display">\[s = \sqrt{s^2}, \quad \text{for } s &gt;
+0.\]</span></p>
+</div>
+<p><strong>Median and Mode</strong></p>
+<p>The median and mode are two important measures of central tendency
+used in statistics to summarize and understand data. The median
+represents the middle value in a sorted dataset, giving a sense of the
+center that is not affected by extreme values or outliers. In contrast,
+the mode is the value that appears most frequently in a dataset, making
+it useful for identifying common or repeated observations.</p>
+<div class="definition">
+<p>Let: <span class="math inline">\(x_1, x_2, x_3, ... , x_n\)</span> be
+a collection of data points which is arranged in ascending order from
+the smallest value to the largest value (or descending order from the
+largest value to the smallest value in that collection). The median of
+the given collection of data points is the middle value in that
+collection, which equally spreads the collection into two parts. Half of
+all the collection values are above the median value and the rest of the
+values in the collection is below the median value.</p>
+<ul>
+<li><p>Case 1: when n is an odd number. (i.e. <span
+class="math inline">\(1, 3, 11, 237,...\)</span>). Then, the median
+<span class="math inline">\(M\)</span> is defined as: <span
+class="math display">\[M = \frac{n+1}{2} \text{, where n represents the
+$n^{th}$ position}.\]</span></p></li>
+<li><p>Case 2: when n is an even number (i.e. <span
+class="math inline">\(2, 6, 100, 500,...\)</span>). Then, the median
+<span class="math inline">\(M\)</span> is: the average value of <span
+class="math inline">\(\frac{n}{2}\)</span>’s and <span
+class="math inline">\(\frac{n+2}{2}\)</span>’s position, where n
+represents the <span class="math inline">\(n^{th}\)</span>
+position.</p></li>
+</ul>
+</div>
+<p>Now, let’s introduce mode.</p>
+<div class="definition">
+<p>It refers to a value that appears the most frequent than the
+appearance of all other values in a given dataset.</p>
+</div>
+<p><strong>Percentile and Quartile</strong></p>
+<p>Percentiles and quartiles are statistical measures used to describe
+the distribution of data. A percentile indicates the value below which a
+given percentage of observations fall, helping to understand relative
+standing within a dataset. Quartiles, a specific type of percentile,
+divide the data into four equal parts (Q1, Q2/median, and Q3), providing
+insights into the spread and central tendency.</p>
+<div class="definition">
+<p>Let: <span class="math inline">\(x_1, x_2, ..., x_n\)</span> be a
+collection of data points in either ascending order. Percentile is
+denoted as: <span class="math inline">\(p^{th}\)</span>, which indicates
+<span class="math inline">\(p \%\)</span> of observations are below to a
+such value. Quartiles, are special cases of percentile which equally
+spread the collection of data into four parts. Each part contains <span
+class="math inline">\(25\%\)</span> of the entire collection. More
+specifically, we define quartiles as the following:</p>
+<ul>
+<li><p><span class="math inline">\(Q_1\)</span>: the <span
+class="math inline">\(25\)</span> percentile (or <span
+class="math inline">\(25^{th}\)</span>), which shows that <span
+class="math inline">\(25\%\)</span> of the data points are below the
+value <span class="math inline">\(Q_1\)</span>.</p></li>
+<li><p><span class="math inline">\(Q_2\)</span>: the <span
+class="math inline">\(50\)</span> percentile (or <span
+class="math inline">\(50^{th}\)</span>), which shows that <span
+class="math inline">\(50\%\)</span> of the data points are below the
+value <span class="math inline">\(Q_2\)</span>.</p></li>
+<li><p><span class="math inline">\(Q_3\)</span>: the <span
+class="math inline">\(75\)</span> percentile (or <span
+class="math inline">\(75^{th}\)</span>), which shows that <span
+class="math inline">\(75\%\)</span> of the data points are below the
+value <span class="math inline">\(Q_3\)</span>.</p></li>
+<li><p><span class="math inline">\(Q_2\)</span> is qual to
+median.</p></li>
+</ul>
+<p>Moreover, we use <span class="math inline">\(Q_3 - Q_1\)</span> to
+calculate interquartile range (I.P.R), which shows the spread of the
+whole data set.</p>
+</div>
+<p><strong>Skewness and Symmetry</strong></p>
+<p>The two terms ‘skewness’ and ‘symmetry’ are used to describe the
+shape of probability distribution. There are two types of skewness: left
+(or negative) skew and right (or positive) skew. In real life, a famous
+distribution highly used in hypothesis testing which is <span
+class="math inline">\(\chi_{n}^{2}\)</span> with <span
+class="math inline">\(n\)</span> degrees of freedom, is right skewed
+probability distribution function. Another example regarding to symmetry
+is normal distribution such that its probability under its curve greater
+than <span class="math inline">\(\mu\)</span> is same as the probability
+below than <span class="math inline">\(\mu\)</span>. Now let’s introduce
+the proper definition of skewness and symmetry.</p>
+<div class="definition">
+<p>Skewness refers to such a measure of the asymmetry of the probability
+distribution of a real-valued random variable about its mean. The
+skewness value can be positive, zero, negative or undefined.</p>
+</div>
+<p>Now, let’s break down the main definition of skewness and
+symmetry:</p>
+<div class="definition">
+<p>By observing given probability distribution curve, if the left tail
+of the curve is longer than the right tail the mass of the distribution
+is concentrated on the right of the figure, then we say that probability
+distribution is left skew or negative skew. (See figure below)</p>
+</div>
+<div class="float">
+<img src="Section1/img/Leftskew.jpg"
+alt="Visualization of left skew probability distribution" />
+<div class="figcaption">Visualization of left skew probability
+distribution</div>
+</div>
+<div class="definition">
+<p>By observing given probability distribution curve, if the right tail
+of the curve is longer than the left tail the mass of the distribution
+is concentrated on the left of the figure, then we say that probability
+distribution is right skew or positive skew. (See figure below)</p>
+</div>
+<div class="float">
+<img src="Section1/img/Rightskew.jpg"
+alt="Visualization of right skew probability distribution" />
+<div class="figcaption">Visualization of right skew probability
+distribution</div>
+</div>
+<p>Symmetry is a special case of skewness when the value of skewness is
+<span class="math inline">\(0\)</span>.</p>
+<div class="definition">
+<p>In statistics, symmetry s a probability distribution is reflected
+around a vertical line at some value of the random variable represented
+by the distribution. Probability under the curve below that value is
+equal to probability under the curve greater than that value. (see
+figure below)</p>
+</div>
+<p>Since symmetry is a special case, so that it has a unique property as
+the following:</p>
+<div class="theorem">
+<p>For any symmetric (bell-shaped) curve, let <span
+class="math inline">\(\mu\)</span> be its mean and <span
+class="math inline">\(\sigma\)</span> be its standard deviation, the
+following probability set function is true:</p>
+<ul>
+<li><p><span class="math inline">\(1.\)</span> <span
+class="math inline">\(P(\mu - \sigma &lt; X &lt; \mu + \sigma) =
+68.27\%;\)</span></p></li>
+<li><p><span class="math inline">\(2.\)</span> <span
+class="math inline">\(P(\mu - 2\sigma &lt; X &lt; \mu + 2\sigma) =
+95.45\%;\)</span></p></li>
+<li><p><span class="math inline">\(3.\)</span> <span
+class="math inline">\(P(\mu - 3\sigma &lt; X &lt; \mu + 3\sigma) =
+99.73\%.\)</span></p></li>
+</ul>
+</div>
+<div class="float">
+<img src="Section1/img/Symmetry.jpg"
+alt="Visualization of symmetric probability distribution" />
+<div class="figcaption">Visualization of symmetric probability
+distribution</div>
+</div>
+<p><strong>Practice Example</strong></p>
+<div class="example">
+<p>Let: <span class="math inline">\(x_1 = 1, x_2 = 3\)</span> and <span
+class="math inline">\(x_3 = 7\)</span>. Calculate the sample mean,
+sample variance and sample standard deviation for this collection of
+data points.<br />
+Solution (all results are kept in four digits):<br />
+By Definition <span class="math inline">\(1.9 \text{, } 1.10 \text{, }
+1.11\)</span>, sample mean: <span class="math display">\[\bar{x} =
+\frac{1+3+7}{3} \approx 3.6667.\]</span> Then, we use sample mean to
+calculate sample variance: <span class="math display">\[s^2 =
+\frac{1}{3-1} \times [(1-3.6667)^2+(3-3.6667)^2+(7-3.6667)^2] \approx
+9.3333.\]</span> Finally, we take the square root of sample variance to
+get sample deviation, and remember that <span class="math inline">\(s
+&gt; 0\)</span>: <span class="math display">\[s = \sqrt{s^2} \approx
+3.0551.\]</span></p>
+</div>
+<div class="example">
+<p>Given two distinct collections of data points: <span
+class="math inline">\(S_1\)</span> = <span class="math inline">\(\{2, 4,
+6\}\)</span> and <span class="math inline">\(S_2\)</span> = <span
+class="math inline">\(\{1, 5, 16, 28\}\)</span>. Calculate the median of
+both two sets.<br />
+Solution:<br />
+For <span class="math inline">\(S_1\)</span>, since <span
+class="math inline">\(n = 3\)</span> which is an odd number, so by <span
+class="math inline">\(Definition \text{ } 1.3\)</span>, <span
+class="math inline">\(M_{S_1} = 4\)</span>. For <span
+class="math inline">\(S_2\)</span>, <span class="math inline">\(n =
+4\)</span> in this case, so that we need to calculate the average of
+<span class="math inline">\(\frac{n}{2}\)</span> and <span
+class="math inline">\(\frac{n+1}{2}\)</span>. Then, <span
+class="math display">\[M_{S_2} = \frac{5+16}{2} = 10.5.\]</span></p>
+</div>
+<div class="example">
+<p>Consider the data set <span class="math inline">\(S =\)</span> <span
+class="math inline">\(\{4, 25, 30, 30, 30, 32, 32, 35, 50, 50, 50, 55,
+60, 74, 110\}\)</span>. Calculate its median and <span
+class="math inline">\(Q_1\)</span> (<span
+class="math inline">\(25^{th}\)</span>).<br />
+Solution:<br />
+Simply counting the number of data points, <span class="math inline">\(n
+= 15\)</span>, such that <span class="math inline">\(M_{S}\)</span> =
+<span class="math inline">\(\frac{15 + 1}{2}\)</span> = <span
+class="math inline">\(8\)</span>. Thus, the <span
+class="math inline">\(8^{th}\)</span> value in the set which is <span
+class="math inline">\(35\)</span>.<br />
+Since we know the median of this collection of data points, we just need
+to find the median of the lower half of this data, which is exactly
+going to be <span class="math inline">\(25\)</span> percentile (<span
+class="math inline">\(25^{th}\)</span>). In the lower half of the given
+collection (all values below the median), <span
+class="math inline">\(n_{lower} = 7\)</span>. By <span
+class="math inline">\(Definition \text{ } 1.3\)</span>, then median of
+the lower half (<span class="math inline">\(25^{th}\)</span>) is going
+to be: <span class="math display">\[25^{th} = \frac{7+1}{2} = 4, \text{
+the $4^{th}$ position in the data set}.\]</span> Thus, <span
+class="math inline">\(Q_1\)</span> (<span
+class="math inline">\(25^{th}\)</span>) <span class="math inline">\(=
+30\)</span>. To find <span class="math inline">\(Q_3\)</span> (<span
+class="math inline">\(75^{th}\)</span>), apply the same strategy will
+guide you to find the correct answer, and we leave this as an exercise
+to you.</p>
+</div>
+</div>
+<div id="graphical-techniques" class="section level2">
+<h2>Graphical Techniques</h2>
+<p>In statistics, there are lots of types of graph to illustrate data,
+for example histograms and box-plots. This technique is used in the
+field of statistics for data visualization. Our objective is to both be
+able to identify some classical types of graph and interpret key
+statistical values (descriptive statistical values) from it.</p>
+<div id="histograms" class="section level3">
+<h3>Histograms</h3>
+<p><strong>Introduction to Histograms</strong></p>
+<p>Histogram is a graphical representation of data that uses bars to
+display the frequency distribution of a dataset. Unlike bar graphs,
+which represent categorical data, histograms group numerical data into
+intervals (bins) and show how many values fall into each range. This
+makes histograms ideal for visualizing the shape, spread, and central
+tendency of continuous data, helping identify patterns such as symmetry,
+skewness, and outliers.</p>
+<div class="float">
+<img src="Section1/img/Histogram.jpg"
+alt="Visualization of histograms" />
+<div class="figcaption">Visualization of histograms</div>
+</div>
+<p><strong>Advantages and Disadvantages of Histograms</strong></p>
+<ul>
+<li><p>Advantages of Histograms:<br />
+<span class="math inline">\(1.\)</span> Histograms are easily to used
+for visualise data (relatively). It allows us to get the idea of the
+"shape" of distribution (i.e. skewness which will be discussed late in
+this section).<br />
+<span class="math inline">\(2.\)</span> It is also flexible that people
+are able to modify bin widths.</p></li>
+<li><p>Disadvantages of Histograms:<br />
+<span class="math inline">\(1.\)</span> It is not suitable for small
+data sets.<br />
+<span class="math inline">\(2.\)</span> The values from histograms close
+to breaking points are likely similar, in fact they need to be
+classified into different bins (i.e. Student A and B scores 79 and 80
+respectively in STA258, we consider a breaking point between 79 and 80.
+The two students have similar score, but student A is <span
+class="math inline">\(B+\)</span> and student B is <span
+class="math inline">\(A-\)</span> in GPA from).</p></li>
+</ul>
+<p><strong>Histograms with Skewness and Symmetry</strong></p>
+<p>A histogram visually represents the distribution of numerical data,
+making it a useful tool for assessing skewness and symmetry. It is quite
+straightforward to estimate the skewness of histograms by simply drawing
+a curve above bins on the histogram.<br />
+For a histogram to have a left (or negative) skew probability
+distribution:</p>
+<div class="float">
+<img src="Section1/img/HisL.jpg"
+alt="Visualization of a histogram has a left (or negative) skew probability distribution" />
+<div class="figcaption">Visualization of a histogram has a left (or
+negative) skew probability distribution</div>
+</div>
+<p>For a histogram to have a right (or positive) skew probability
+distribution:</p>
+<div class="float">
+<img src="Section1/img/HisR.jpg"
+alt="Visualization of a histogram has a right (or positive) skew probability distribution" />
+<div class="figcaption">Visualization of a histogram has a right (or
+positive) skew probability distribution</div>
+</div>
+<p>For a histogram to have a symmetric probability distribution:</p>
+<div class="float">
+<img src="Section1/img/HisS.jpg"
+alt="Visualization of a histogram has a symmetric probability distribution" />
+<div class="figcaption">Visualization of a histogram has a symmetric
+probability distribution</div>
+</div>
+</div>
+<div id="box-plots" class="section level3">
+<h3>Box-Plots</h3>
+<p>A boxplot (or box-and-whisker plot) is a standardized way to display
+data distribution based on a five-number summary: minimum, first
+quartile (Q1), median (Q2), third quartile (Q3), and maximum. The box
+represents the interquartile range (IQR), while the whiskers show
+variability outside Q1 and Q3. Outliers are plotted as individual
+points. Boxplots efficiently compare distributions and highlight
+skewness, spread, and outliers. (See figure below)</p>
+<div class="float">
+<img src="Section1/img/BoxPlot.jpg" alt="Visualization of a box-plot" />
+<div class="figcaption">Visualization of a box-plot</div>
+</div>
+<p>Similar to histograms, we can still obtain information about skewness
+and symmetry, by observing the cut from the line of Q2.<br />
+If the median (Q2) cuts the box with upper area smaller than lower area,
+then we say that box-plot with left skew probability distribution. Or,
+if the median (Q2) cuts the box with upper area larger than lower area,
+then we say that box-plot with right skew probability
+distribution.<br />
+Otherwise, if the median (Q2) cuts the box with upper area equal to
+lower area, then we say that box-plot with symmetric probability
+distribution.</p>
+<div class="float">
+<img src="Section1/img/Bskew.jpg"
+alt="Visualization of a box-plot with skew and symmetric probability distribution" />
+<div class="figcaption">Visualization of a box-plot with skew and
+symmetric probability distribution</div>
+</div>
+</div>
+</div>
+<div id="introduction-to-r" class="section level2">
+<h2>Introduction to R</h2>
+<p>R is used for data manipulation, statistics, and graphics. It is made
+of: operations (<span class="math inline">\(+\)</span>,<span
+class="math inline">\(-\)</span>, <span
+class="math inline">\(&lt;\)</span>) which is for calculations on
+vectors, arrays and matrices; a huge collection of functions; facilities
+for making unlimited types quality graphs; user contributed packages
+(sets of related functions); the ability to interface with procedures
+written in C, C+, or FORTRAN and to write additional primitives. R is
+also an open-source computing package which has seen a huge growth in
+popularity in the last few years (Please use this website: <a
+href="https://cran.r-project.org"
+class="uri">https://cran.r-project.org</a>, to download R).<br />
+<strong>What is R-studio?</strong></p>
+<p>RStudio is a relatively new editor specially targeted at R. RStudio
+is cross-platform, free and open-source software (Please use: <a
+href="https://www.rstudio.com" class="uri">https://www.rstudio.com</a>,
+to download Rstudio).<br />
+<strong>Make a Histogram Using R-studio</strong></p>
+<p>This is just a demonstration of how to start and use R-studio.</p>
+<p>. First of all, we need to know which dataset are we going to make
+into a histogram. In this case, as an example, we are going to use the
+waiting time in faithful in R-studio.<br />
+2. For any dataset, use the code: names(faithful) to get it. (inside the
+parentheses, type the names of variables you want in faithful
+dataset)<br />
+3. Then, we proceed with the code: hist(faithful$waiting) to get a basic
+plot.<br />
+</p>
+<div class="float">
+<img src="Section1/img/R1.jpg"
+alt="R-studio first three steps (by following the instructions, you should get this histogram)" />
+<div class="figcaption">R-studio first three steps (by following the
+instructions, you should get this histogram)</div>
+</div>
+<p>. Furthermore, we can also get more information. For example, by keep
+proceeding with the code: hist(faithful$waiting,plot=FALSE)$breaks,
+R-studio will show you all the breaking points between histogram
+cells.</p>
+<div class="float">
+<img src="Section1/img/R2.jpg"
+alt="R-studio the forth step(by following the instructions, you should get this histogram)" />
+<div class="figcaption">R-studio the forth step(by following the
+instructions, you should get this histogram)</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

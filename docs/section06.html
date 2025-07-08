@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section06.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div
+id="one-sample-confidence-intervals-on-a-mean-when-the-population-variance-is-known"
+class="section level1">
+<h1>One Sample Confidence Intervals on a Mean When the Population
+Variance is Known</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Statistical inference is concerned primarily with understanding the
+quality of parameter estimates. For example, a classic inferential
+question is, “How sure are we that the estimated mean, <span
+class="math inline">\(\bar{x}\)</span>, is near the true population
+mean, <span class="math inline">\(\mu\)</span>?” While the equations and
+details change depending on the setting, the foundations for inference
+are the same throughout all of statistics. We introduce these common
+themes by discussing inference about the population mean, <span
+class="math inline">\(\mu\)</span>, and set the stage for other
+parameters and scenarios. Some advanced considerations are discussed.
+Understanding this chapter will make the rest of this book, and indeed
+the rest of statistics, seem much more familiar.</p>
+<div class="definition">
+<p><strong>Population:</strong> A group of interest (typically
+large).</p>
+<p><strong>Sample:</strong> A subset of a population.</p>
+<p><strong>Parameter (of population):</strong> A numerical
+characteristic of a population. These are usually <span
+style="color: blue">unknown</span> in real-life settings.<br />
+<span class="math inline">\(\mu\)</span>: population mean<br />
+<span class="math inline">\(\sigma^2\)</span>: population variance<br />
+<span class="math inline">\(\sigma\)</span>: population standard
+deviation<br />
+<span style="color: blue">Note: Different from a parameter of a
+distribution.</span></p>
+<p><strong>Statistic (of sample):</strong> A numerical characteristic of
+a sample, which is calculated and known (i.e., a function of the
+data).<br />
+<span class="math inline">\(\bar{x}\)</span>: sample mean<br />
+<span class="math inline">\(s^2\)</span>: sample variance<br />
+<span class="math inline">\(s\)</span>: sample standard deviation<br />
+<strong>Statistical Inference:</strong> Use statistics (known) to make
+conclusions on parameters (unknown) and quantify the degree of certainty
+of statements made.</p>
+</div>
+<p>The sample mean, <span class="math inline">\(\bar{x} = \frac{1}{n}
+\sum_{i=1}^{n} x_i\)</span>, is a number we use to estimate the
+population mean, <span class="math inline">\(\mu\)</span>. This is
+called a <strong>point estimate</strong>.</p>
+<p>But, we know it’s not equal to <span
+class="math inline">\(\mu\)</span>. Then, we’d rather estimate the
+population mean using an <strong>interval estimate</strong> that gives a
+<em>range of real numbers</em> that we hope contains the population
+mean, <span class="math inline">\(\mu\)</span>.</p>
+<div class="example">
+<ul>
+<li><p><span class="math inline">\(\bar{x}\)</span> is a point estimate
+of <span class="math inline">\(\mu\)</span></p></li>
+<li><p><span class="math inline">\(s^2\)</span> is a point estimate of
+<span class="math inline">\(\sigma^2\)</span></p></li>
+<li><p><span class="math inline">\(s\)</span> is a point estimate of
+<span class="math inline">\(\sigma\)</span></p></li>
+</ul>
+<p><span style="color: blue"><em>(All calculated with data from a
+sample)</em></span></p>
+</div>
+<p>Due to the nature of randomness and calculating based on a subset,
+statistics are not guaranteed to be exactly equal to parameters.</p>
+<p>Therefore, we create <u>intervals</u> around statistics which we
+believe capture the parameter.</p>
+<div class="definition">
+<p>A confidence interval is a plausible range of values that captures a
+parameter with a quantified degree of confidence.</p>
+</div>
+<figure>
+<figcaption>
+Parameter location within the interval.
+</figcaption>
+</figure>
+<p>Suppose we are interested in the average mark for <code>STA258</code>
+for the current semester. We are 100% confident that the average mark is
+between 0 and 100; however, this is not useful information as we already
+know that the average mark must lie between 0 and 100. Using the marks
+of previous years, we can construct a 95% interval for the average mark.
+If it is determined that the average mark lies within 70% and 80%, this
+is much more meaningful as we can state with a high degree of certainty
+that the average mark is going to lie within a substantially narrow
+range.</p>
+<p>In this course, all confidence intervals have the same basic
+skeleton:</p>
+<div class="tcolorbox">
+<p><span class="math display">\[\textit{estimator} \pm
+\underbrace{
+\left(
+\textit{value from reference distribution}
+\right)
+\times
+\left(
+\textit{standard error of estimate}
+\right)
+}_{\text{\textit{margin of error}}}\]</span></p>
+</div>
+<p>The value from the reference distribution in the skeleton above will
+be either a value from the standard normal distribution or the Student
+<em>t</em>-distribution. The margin of error (<em>MOE</em>) can be
+considered as the distance around our estimator in which the true value
+of the parameter of interest will be found, with a specified level of
+confidence.</p>
+<figure id="figureVisualization of CI">
+<div class="center">
+
+</div>
+<figcaption>
+Visualization of a confidence interval on the real number line. The
+margin of error is abbreviated as <span
+class="math inline"><em>M</em><em>O</em><em>E</em></span>. The estimator
+is the centre of the interval. The confidence interval consists of all
+values between the estimator<span
+class="math inline">−<em>M</em><em>O</em><em>E</em></span> and the
+estimator<span
+class="math inline">+<em>M</em><em>O</em><em>E</em></span>.
+</figcaption>
+</figure>
+</div>
+<div id="interpretation" class="section level2">
+<h2>Interpretation</h2>
+<p>We use very specific language when we interpret a confidence
+interval.</p>
+<div class="tcolorbox">
+<p><em>Suppose we construct a <span class="math inline">\(C\%\)</span>
+confidence interval for some parameter such that <span
+class="math inline">\(C\)</span> is between 0 and 100. In repeated
+sampling, we are <span class="math inline">\(C\%\)</span> confident that
+approximately <span class="math inline">\(C\%\)</span> of the intervals
+will capture the true value of the parameter.</em></p>
+</div>
+<p>By this we mean that if we constructed several <span
+class="math inline">\(C\%\)</span> confidence intervals using different
+samples (with or without replacing the units), then we should expect
+approximately <span class="math inline">\(C\%\)</span> of these
+intervals to capture the parameter of interest. For example suppose we
+construct 1000 95% confidence intervals for the population mean <span
+class="math inline">\(\mu\)</span>. We would expect approximately 95% of
+these 1000 intervals (i.e. <span class="math inline">\(95\% \times 1000
+= 950\)</span>) to actually capture <span
+class="math inline">\(\mu\)</span>.</p>
+<div class="nt">
+<p>A more intuitive but equivalent interpretation is to state that we
+are <span class="math inline">\(C\)</span>% confident that our target
+parameter is inside the interval constructed.</p>
+</div>
+<p>It is incorrect to state that there is a <span
+class="math inline">\(C\%\)</span> probability that the interval we
+constructed contains the parameter of interest. We assume that the value
+of a parameter is fixed. Therefore when we construct a confidence
+interval, the interval either contains the parameter or it does not.</p>
+</div>
+<div id="confidence-interval-for-mu-known-variance"
+class="section level2">
+<h2>Confidence Interval for <span class="math inline">\(\mu\)</span>
+(Known Variance)</h2>
+<p>When we know the population standard deviation <span
+class="math inline">\(\sigma\)</span>, we can construct a confidence
+interval for <span class="math inline">\(\mu\)</span> in the following
+manner.</p>
+<div class="tcolorbox">
+<p><em>A <span class="math inline">\((100 - \alpha)\%\)</span>
+confidence interval on <span class="math inline">\(\mu\)</span> when
+<span class="math inline">\(\sigma\)</span> is known is</em> <span
+class="math display">\[\bar{x} \; \pm \; z_{\alpha/2} \left(
+\frac{\sigma}{\sqrt{n}} \right)\]</span></p>
+</div>
+<p>The <span class="math inline">\(z_{\alpha/2}\)</span> value is
+obtained from standard normal tables. The standard error is <span
+class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span> and the margin of
+error is <span class="math inline">\(z_{\alpha/2} \left(
+\frac{\sigma}{\sqrt{n}} \right)\)</span>.<br />
+Let <span class="math inline">\(X_1, X_2, ..., X_n\)</span> be iid <span
+class="math inline">\(N(\mu, \sigma^2)\)</span>, where <span
+class="math inline">\(\mu\)</span> is unknown and <span
+class="math inline">\(\sigma\)</span> is known.</p>
+<p>We know that: <span class="math display">\[Z = \frac{\bar{X} -
+\mu}{\sigma / \sqrt{n}} \sim N(0, 1)\]</span> and <span
+class="math display">\[P(-1.96 &lt; Z &lt; 1.96) = 0.95\]</span>
+Therefore: <span class="math display">\[P\left( -1.96 &lt; \frac{\bar{X}
+- \mu}{\sigma / \sqrt{n}} &lt; 1.96 \right) = 0.95
+\Rightarrow P\left( \bar{X} - 1.96 \frac{\sigma}{\sqrt{n}} &lt; \mu &lt;
+\bar{X} + 1.96 \frac{\sigma}{\sqrt{n}} \right) = 0.95\]</span></p>
+<p><strong>Interpretation of Confidence Interval:</strong></p>
+<ul>
+<li><p>This is a random interval <span class="math inline">\(\bar{X} \pm
+1.96 \frac{\sigma}{\sqrt{n}}\)</span></p></li>
+<li><p>The interval is random since <span
+class="math inline">\(\bar{X}\)</span> is random due to
+sampling.</p></li>
+<li><p>The population mean <span class="math inline">\(\mu\)</span> is a
+fixed, but unknown, number.</p></li>
+<li><p>The probability <span class="math inline">\(\mu\)</span> is
+inside the random interval is 0.95 (success rate of the
+method).</p></li>
+<li><p>95% of all samples give an interval that captures <span
+class="math inline">\(\mu\)</span>, and 5% do not.</p></li>
+</ul>
+<p>Once we observe our sample:</p>
+<ul>
+<li><p>This is <strong>not</strong> a random interval <span
+class="math inline">\(\bar{X} \pm 1.96
+\frac{\sigma}{\sqrt{n}}\)</span></p></li>
+<li><p>The probability <span class="math inline">\(\mu\)</span> is
+inside this interval is either 1 or 0</p></li>
+</ul>
+<p><strong>Confidence Interval Isn’t Always Right:</strong></p>
+<p>Not all CIs contain the true value of the parameter. This can be
+illustrated by plotting many intervals simultaneously and observing.</p>
+<p><strong>R Output:</strong></p>
+<div class="tcolorbox">
+<pre><code>## Step 1. Generate random samples;
+set.seed(2017)
+m = 50;       # m = number of samples;
+n = 25;       # n = number of obs in sample;
+mu.i = 0;     # mu.i = mean of obs;
+sigma.i = 5;  # sigma.i = std. dev. of obs;
+
+mu.total = n * mu.i;          # mean of Total;
+sigma.total = sqrt(n) * sigma.i;  # std. dev. of Total;</code></pre>
+</div>
+<div class="tcolorbox">
+<pre><code>## Step 2. Construct CIs;
+xbar = rnorm(m, mu.total, sigma.total) / n;
+SE = sigma.i / sqrt(n);
+
+alpha = 0.10;
+z.star = qnorm(1 - alpha / 2);</code></pre>
+</div>
+<div class="tcolorbox">
+<pre><code>## Step 3. Graph CIs;
+matplot(rbind(xbar - z.star * SE, xbar + z.star * SE),
+        rbind(1:m, 1:m),
+        type = &quot;l&quot;, lty = 1,
+        xlab = &quot; &quot;, lab = &quot; &quot;);
+abline(v = 0, lty = 2);</code></pre>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section06_files/figure-html/unnamed-chunk-1-1.png" alt="Simulated 95% confidence intervals for the population mean" width="672" />
+<p class="caption">
+Simulated 95% confidence intervals for the population mean
+</p>
+</div>
+</div>
+<div id="confidence-interval-for-the-mean-of-a-normal-population"
+class="section level2 unnumbered">
+<h2 class="unnumbered">Confidence Interval for the Mean of a Normal
+Population</h2>
+<p>Draw an SRS (Simple Random Sample) of size <span
+class="math inline">\(n\)</span> from a Normal population having unknown
+mean <span class="math inline">\(\mu\)</span> and <strong>known</strong>
+standard deviation <span class="math inline">\(\sigma\)</span>. A level
+<span class="math inline">\(C\)</span> confidence interval for <span
+class="math inline">\(\mu\)</span> is:</p>
+<p><span class="math display">\[\bar{x} \pm z_{\ast} \cdot
+\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>The critical value <span class="math inline">\(z_{\ast}\)</span> is
+illustrated in a Figure below and depends on <span
+class="math inline">\(C\)</span>.</p>
+<div class="figure" style="text-align: center">
+<img src="section06_files/figure-html/unnamed-chunk-2-1.png" alt="The central area under the standard normal curve with confidence level \(C\)" width="672" />
+<p class="caption">
+The central area under the standard normal curve with confidence level
+<span class="math inline">\(C\)</span>
+</p>
+</div>
+</div>
+<div id="large-sample-ci-for-mu-normal-data"
+class="section level2 unnumbered">
+<h2 class="unnumbered">Large Sample CI for <span
+class="math inline">\(\mu\)</span> (Normal data)</h2>
+<p>When we have a large sample from a Normal distribution, the
+confidence interval for the population mean <span
+class="math inline">\(\mu\)</span> can be approximated by the formula:
+<span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot
+\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>This formula is valid under the following assumptions:</p>
+<ul>
+<li><p><span class="math inline">\(n\)</span> large</p></li>
+<li><p>random sample from a Normal distribution</p></li>
+<li><p>independent observations</p></li>
+</ul>
+<p>Some definitions:</p>
+<ul>
+<li><p><span class="math inline">\(1 - \alpha\)</span> is the confidence
+coefficient</p></li>
+<li><p><span class="math inline">\(100(1 - \alpha)\%\)</span> is the
+confidence level</p></li>
+</ul>
+</div>
+<div id="one-sample-ci-on-the-population-mean-mu"
+class="section level2 unnumbered">
+<h2 class="unnumbered">One Sample CI on the Population Mean <span
+class="math inline">\(\mu\)</span></h2>
+<p>To construct a confidence interval for the population mean, we rely
+on several important assumptions:</p>
+<ul>
+<li><p>When population standard deviation <span
+class="math inline">\(\sigma\)</span> is <strong>known</strong></p></li>
+<li><p>Formula: <span class="math inline">\(\bar{x} \pm z_{\alpha/2}
+\cdot \frac{\sigma}{\sqrt{n}}\)</span></p></li>
+<li><p>Margin of error comes from standard normal and standard
+error</p></li>
+</ul>
+<p>How to find <span class="math inline">\(z_{\alpha/2}\)</span>?</p>
+<p>Example: Find <span class="math inline">\(z_{\alpha/2}\)</span> for a
+95% CI on <span class="math inline">\(\mu\)</span>: <span
+class="math display">\[1 - \alpha = 0.95, \quad \alpha = 0.05, \quad
+\alpha/2 = 0.025\]</span> <span class="math display">\[z_{\alpha/2} =
+1.96 \quad (\text{from table or R: } \texttt{qnorm(0.975)})\]</span></p>
+</div>
+<div id="table-of-common-z-values" class="section level2 unnumbered">
+<h2 class="unnumbered">Table of Common <span
+class="math inline">\(z\)</span>-values</h2>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="center">Confidence coefficient</th>
+<th align="center">Confidence level</th>
+<th align="center"><span class="math inline">\(z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.90</td>
+<td align="center">90%</td>
+<td align="center">1.645</td>
+</tr>
+<tr class="even">
+<td align="center">0.95</td>
+<td align="center">95%</td>
+<td align="center">1.96</td>
+</tr>
+<tr class="odd">
+<td align="center">0.99</td>
+<td align="center">99%</td>
+<td align="center">2.576</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="example">
+<p>Playbill magazine reported that the mean annual household income of
+its readers is $119,155. Assume this estimate is based on a sample of 80
+households, and that the population standard deviation is known to be
+<span class="math inline">\(\sigma = 30{,}000\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(\bar{x} = 119{,}155\)</span></p></li>
+<li><p><span class="math inline">\(n = 80\)</span></p></li>
+<li><p><span class="math inline">\(\sigma = 30{,}000\)</span></p></li>
+</ul>
+<p><strong>Tasks:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Develop a 90% confidence interval estimate of the population
+mean.</p></li>
+<li><p>Develop a 95% confidence interval estimate of the population
+mean.</p></li>
+<li><p>Develop a 99% confidence interval estimate of the population
+mean.</p></li>
+</ol>
+<p><strong>90% CI Calculation</strong></p>
+<p><span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot
+\frac{\sigma}{\sqrt{n}} = 119{,}155 \pm 1.645 \cdot
+\frac{30{,}000}{\sqrt{80}}\]</span> <span class="math display">\[=
+119{,}155 \pm 5{,}500.73\]</span> <span class="math display">\[=
+(113{,}654.27, \; 124{,}655.73)\]</span></p>
+<p><strong>95% CI Calculation</strong></p>
+<p><span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot
+\frac{\sigma}{\sqrt{n}} = 119{,}155 \pm 1.96 \cdot
+\frac{30{,}000}{\sqrt{80}}\]</span> <span class="math display">\[=
+119{,}155 \pm 6{,}574.04\]</span> <span class="math display">\[=
+(112{,}580.96, \; 125{,}729.04)\]</span></p>
+<p><strong>99% CI Calculation</strong></p>
+<p><span class="math display">\[\bar{x} \pm z_{\alpha/2} \cdot
+\frac{\sigma}{\sqrt{n}} = 119{,}155 \pm 2.576 \cdot
+\frac{30{,}000}{\sqrt{80}}\]</span> <span class="math display">\[=
+119{,}155 \pm 8{,}620.04\]</span> <span class="math display">\[=
+(110{,}534.96, \; 127{,}775.04)\]</span></p>
+<p><strong>Interpretation</strong></p>
+<p>We are 99% confident the mean household income of magazine readers is
+between $110,534.96 and $127,775.04.</p>
+</div>
+<div class="example">
+<p><strong>Scenario:</strong></p>
+<p>The number of cars sold annually by used car salespeople is known to
+be <strong>normally distributed</strong>, with a population standard
+deviation of <span class="math inline">\(\sigma = 15\)</span>. A random
+sample of <span class="math inline">\(n = 15\)</span> salespeople was
+taken, and the number of cars each sold is recorded below. Construct a
+<strong>95% confidence interval</strong> for the population mean number
+of cars sold, and provide an interpretation.</p>
+<p><strong>Raw data:</strong></p>
+<p><span class="math display">\[\begin{matrix}
+79 &amp; 43 &amp; 58 &amp; 66 &amp; 101 \\
+63 &amp; 79 &amp; 33 &amp; 58 &amp; 71 \\
+60 &amp; 101 &amp; 74 &amp; 55 &amp; 88 \\
+\end{matrix}\]</span></p>
+<p>The sample mean is:</p>
+<p><span class="math display">\[\bar{x} = \frac{79 + 43 + \cdots + 55 +
+88}{15} = 68.6\]</span></p>
+<p><strong>R function:</strong></p>
+<div class="tcolorbox">
+<pre><code>simple.z.test = function(x, sigma, conf.level = 0.95) {
+  n = length(x);
+  xbar = mean(x);
+  alpha = 1 - conf.level;
+  zstar = qnorm(1 - alpha/2);
+  SE = sigma / sqrt(n);
+  xbar + c(-zstar * SE, zstar * SE);
+}</code></pre>
+</div>
+<p><strong>R output:</strong></p>
+<div class="tcolorbox">
+<pre><code># Step 1. Entering data;
+cars = c(79, 43, 58, 66, 101, 63, 79,
+         33, 58, 71, 60, 101, 74, 55, 88)
+
+# Step 2. Finding CI;
+simple.z.test(cars, 15)
+
+## [1] 61.00909 76.19091</code></pre>
+</div>
+<p><strong>Interpretation:</strong> <strong>We estimate that the mean
+number of cars sold annually by all used car salespeople lies between 61
+and 76, approximately. This type of estimate is correct 95% of the
+time.</strong></p>
+</div>
+<div class="tcolorbox">
+<ul>
+<li><p>Large samples where population is
+<strong>normal</strong>.</p></li>
+<li><p>Large samples where population is <strong>not normal</strong> (By
+CLT).</p></li>
+<li><p>Small samples where population is
+<strong>normal</strong>.</p></li>
+</ul>
+<p><em>Note: A sample is considered large if <span
+class="math inline">\(n \geq 30\)</span>.</em></p>
+</div>
+<div class="example">
+<p>Suppose a student measuring the boiling temperature of a certain
+liquid observes the readings (in degrees Celsius) 102.5, 101.7, 103.1,
+100.9, 100.5, and 102.2 on 6 different samples of the liquid. He
+calculates the sample mean to be 101.82. If he knows that the
+distribution of boiling points is Normal, with standard deviation 1.2
+degrees, what is the confidence interval for the population mean at a
+95% confidence level?<br />
+</p>
+</div>
+<p><strong>A confidence interval</strong> uses sample data to estimate
+an unknown population parameter with an indication of how accurate the
+estimate is and of how confident we are that the result is correct.</p>
+<p>The <strong>interval</strong> often has the form<br />
+estimate <span class="math inline">\(\pm\)</span> margin of error</p>
+<p>The <strong>confidence level</strong> is the success rate of the
+method that produces the interval. A level <span
+class="math inline">\(C\)</span> <strong>confidence interval for the
+mean</strong> <span class="math inline">\(\mu\)</span> of a Normal
+population with <strong>known</strong> standard deviation <span
+class="math inline">\(\sigma\)</span>, based on an SRS of size <span
+class="math inline">\(n\)</span>, is given by <span
+class="math display">\[\bar{x} \pm z^\star
+\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>The <strong>critical value</strong> <span
+class="math inline">\(z^\star\)</span> is chosen so that the standard
+Normal curve has area <span class="math inline">\(C\)</span> between
+<span class="math inline">\(-z^\star\)</span> and <span
+class="math inline">\(z^\star\)</span>.<br />
+Other things being equal, the <strong>margin of error</strong> of a
+confidence interval gets smaller as</p>
+<ul>
+<li><p>the confidence level <span class="math inline">\(C\)</span>
+decreases,</p></li>
+<li><p>the population standard deviation <span
+class="math inline">\(\sigma\)</span> decreases, and</p></li>
+<li><p>the sample size <span class="math inline">\(n\)</span>
+increases.</p></li>
+</ul>
+</div>
+<div id="appendix" class="section level2">
+<h2>APPENDIX</h2>
+<p>Interval estimators are commonly called <strong>confidence
+intervals</strong>. The upper and lower endpoints of a confidence
+interval are called the <strong>upper</strong> and <strong>lower
+confidence limits</strong>, respectively. The probability that a
+(random) confidence interval will enclose <span
+class="math inline">\(\theta\)</span> (a fixed quantity) is called the
+<strong>confidence coefficient</strong>.<br />
+Suppose that <span class="math inline">\(\hat{\theta}_L\)</span> and
+<span class="math inline">\(\hat{\theta}_U\)</span> are the (random)
+lower and upper confidence limits, respectively, for a parameter <span
+class="math inline">\(\theta\)</span>. Then, if <span
+class="math display">\[P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U)
+= 1 - \alpha,\]</span> the probability <span class="math inline">\((1 -
+\alpha)\)</span> is the <strong>confidence coefficient</strong>.</p>
+<div id="pivotal-quantities" class="section level3 unnumbered">
+<h3 class="unnumbered">Pivotal quantities</h3>
+<p>One very useful method for finding confidence intervals is called the
+<strong>pivotal method</strong>. This method depends on finding a
+pivotal quantity that possesses two characteristics:</p>
+<ul>
+<li><p>It is a function of the sample measurements and the unknown
+parameter <span class="math inline">\(\theta\)</span>, where <span
+class="math inline">\(\theta\)</span> is the <strong>only</strong>
+unknown quantity.</p></li>
+<li><p>Its probability distribution does not depend on the parameter
+<span class="math inline">\(\theta\)</span>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

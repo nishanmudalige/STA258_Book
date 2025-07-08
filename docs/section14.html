@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section14.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="two-sample-hypothesis-tests" class="section level1">
+<h1>Two Sample Hypothesis Tests</h1>
+<div id="comparing-means-with-independent-samples"
+class="section level2">
+<h2>Comparing Means with Independent Samples</h2>
+<figure>
+<figcaption>
+Structure of Two-Sample Hypothesis Tests
+</figcaption>
+</figure>
+<div id="setting-up-hypotheses" class="section level3 unnumbered">
+<h3 class="unnumbered">Setting Up Hypotheses</h3>
+<p>Let <span class="math inline">\(\theta_1\)</span> and <span
+class="math inline">\(\theta_2\)</span> be the parameters of interest
+from populations 1 and 2, respectively.</p>
+<p><strong>1. Interested in whether <span class="math inline">\(\theta_1
+&gt; \theta_2\)</span>:</strong> <span
+class="math display">\[\begin{aligned}
+H_0\!:~ &amp; \theta_1 = \theta_2 \\
+H_a\!:~ &amp; \theta_1 &gt; \theta_2 \\
+\text{Equivalent:} \quad &amp; H_0\!:~ \theta_1 - \theta_2 = 0 \qquad
+H_a\!:~ \theta_1 - \theta_2 &gt; 0
+\end{aligned}\]</span></p>
+<p><strong>2. Interested in whether <span class="math inline">\(\theta_1
+&lt; \theta_2\)</span>:</strong> <span
+class="math display">\[\begin{aligned}
+H_0\!:~ &amp; \theta_1 = \theta_2 \\
+H_a\!:~ &amp; \theta_1 &lt; \theta_2 \\
+\text{Equivalent:} \quad &amp; H_0\!:~ \theta_1 - \theta_2 = 0 \qquad
+H_a\!:~ \theta_1 - \theta_2 &lt; 0
+\end{aligned}\]</span></p>
+<p><strong>3. Interested in whether <span class="math inline">\(\theta_1
+\ne \theta_2\)</span>:</strong> <span
+class="math display">\[\begin{aligned}
+H_0\!:~ &amp; \theta_1 = \theta_2 \\
+H_a\!:~ &amp; \theta_1 \ne \theta_2 \\
+\text{Equivalent:} \quad &amp; H_0\!:~ \theta_1 - \theta_2 = 0 \qquad
+H_a\!:~ \theta_1 - \theta_2 \ne 0
+\end{aligned}\]</span></p>
+</div>
+<div id="structure-of-a-test-statistic"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Structure of a Test Statistic</h3>
+<p>The general structure of a test statistic is: <span
+class="math display">\[\text{test statistic} = \frac{\text{(observed
+statistic)} - \text{(hypothesized value)}}{\text{standard
+error}}\]</span></p>
+<p><strong>Common Cases:</strong></p>
+<ul>
+<li><p><span class="math inline">\(\sigma\)</span> known: <span
+class="math inline">\(z = \dfrac{\bar{x} - \mu_0}{\sigma /
+\sqrt{n}}\)</span></p></li>
+<li><p><span class="math inline">\(\sigma\)</span> unknown: <span
+class="math inline">\(t = \dfrac{\bar{x} - \mu_0}{s /
+\sqrt{n}}\)</span></p></li>
+<li><p>Proportions: <span class="math inline">\(z = \dfrac{\hat{p} -
+p_0}{\sqrt{p_0(1 - p_0)/n}}\)</span></p></li>
+</ul>
+</div>
+</div>
+<div id="hypothesis-test-on-a-difference-of-means-mu_1---mu_2"
+class="section level2 unnumbered">
+<h2 class="unnumbered">Hypothesis Test on a Difference of Means (<span
+class="math inline">\(\mu_1 - \mu_2\)</span>)</h2>
+<ul>
+<li>When <span class="math inline">\(\sigma_1\)</span> and <span
+class="math inline">\(\sigma_2\)</span> are known:</li>
+</ul>
+<p><span class="math display">\[\begin{aligned}
+H_0&amp;: \mu_1 - \mu_2 = 0 \\
+H_a&amp;: \mu_1 - \mu_2 &gt; 0 \quad \text{(or } &lt; 0 \text{, } \ne 0
+\text{)}
+\end{aligned}\]</span></p>
+<p><strong>Test Statistic:</strong> <span class="math display">\[z =
+\frac{(\bar{x}_1 - \bar{x}_2) - 0}{\sqrt{\frac{\sigma_1^2}{n_1} +
+\frac{\sigma_2^2}{n_2}}}\]</span></p>
+<p>Reference distribution: standard normal (Z distribution).</p>
+<p><em>Note: This scenario is rare in practice since both population
+standard deviations <span class="math inline">\(\sigma_1\)</span> and
+<span class="math inline">\(\sigma_2\)</span> are seldom known.</em></p>
+<ul>
+<li>When <span class="math inline">\(\sigma_1\)</span> and <span
+class="math inline">\(\sigma_2\)</span> are unknown:</li>
+</ul>
+<p><strong>Case 1: Assume equal variances <span
+class="math inline">\(\sigma_1^2 = \sigma_2^2\)</span></strong> <span
+class="math display">\[\begin{aligned}
+H_0&amp;: \mu_1 - \mu_2 = 0 \\
+H_a&amp;: \mu_1 - \mu_2 &gt; 0 \quad \text{(or } &lt; 0 \text{, } \ne 0
+\text{)}
+\end{aligned}\]</span></p>
+<p><strong>Test Statistic:</strong> <span class="math display">\[t =
+\frac{(\bar{x}_1 - \bar{x}_2) - 0}{s_p \sqrt{\frac{1}{n_1} +
+\frac{1}{n_2}}}\]</span></p>
+<p>where the pooled standard deviation is defined as: <span
+class="math display">\[s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 -
+1)s_2^2}{n_1 + n_2 - 2}\]</span></p>
+<p>Reference distribution: <span
+class="math inline">\(t\)</span>-distribution with <span
+class="math inline">\(n_1 + n_2 - 2\)</span> degrees of freedom.</p>
+<p>(Use this only when equal variances can reasonably be assumed.)<br />
+</p>
+<p><strong>Case 2: Assume Unequal Variances <span
+class="math inline">\(\sigma_1^2 \ne \sigma_2^2\)</span> (Welch’s
+t-test)</strong> <span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu_1 - \mu_2 = 0 \\
+H_a &amp;: \mu_1 - \mu_2 &gt; 0 \quad (\text{or } &lt; 0,\ \ne 0)
+\end{aligned}\]</span></p>
+<p><strong>Test Statistic:</strong> <span class="math display">\[t^* =
+\frac{(\bar{x}_1 - \bar{x}_2) - 0}{\sqrt{\frac{s_1^2}{n_1} +
+\frac{s_2^2}{n_2}}}\]</span></p>
+<p>Reference distribution: approximately a <span
+class="math inline">\(t\)</span>-distribution.</p>
+<p><em>Degrees of freedom (by hand):</em> <span
+class="math display">\[\min(n_1 - 1,\ n_2 - 1)\]</span></p>
+<p><em>Note:</em> R uses a more sophisticated approximation for degrees
+of freedom in this case.</p>
+</div>
+<div
+id="comparing-means-of-independent-samples-normal-population-assumptions"
+class="section level2 unnumbered">
+<h2 class="unnumbered">Comparing Means of Independent Samples (Normal
+Population Assumptions)</h2>
+<p>We should check the assumption that the underlying populations of
+individual responses are each Normally distributed. Nearly Normal
+Condition:</p>
+<ul>
+<li><p>We must check this for both groups; a violation for either one
+violates the condition.</p></li>
+<li><p>The Normality assumption matters most when sample sizes are very
+small.</p></li>
+<li><p>For <span class="math inline">\(n &lt; 10\)</span> in either
+group, this method should not be used if the histogram or Normality
+plots show clear skewness.</p></li>
+<li><p>For <span class="math inline">\(n\)</span>’s of 10 or so, a
+moderately skewed histogram is okay. But, for strongly skewed data or
+data containing outliers this method should be avoided.</p></li>
+<li><p>For larger samples <span class="math inline">\(n \geq
+20\)</span>, data skewness is less of an issue — but, we still need to
+check if there are any outliers in the data, extreme skewness, and
+multiple modes.</p></li>
+</ul>
+<div
+id="comparing-two-populations-means-independent-sampling-equal-variances-assumed"
+class="section level3">
+<h3>Comparing Two Populations Means: Independent Sampling (Equal
+Variances Assumed)</h3>
+<p>Consider two independent populations with unknown means <span
+class="math inline">\(\mu_1\)</span> and <span
+class="math inline">\(\mu_2\)</span>, and unknown standard deviations
+<span class="math inline">\(\sigma_1\)</span> and <span
+class="math inline">\(\sigma_2\)</span> (<span
+class="math inline">\(\sigma_1 = \sigma_2\)</span>), respectively. We
+can make an inference about their mean difference <span
+class="math inline">\(\mu_1 - \mu_2\)</span> by using the difference
+between their point estimates (sample means): <span
+class="math inline">\(\bar{Y}_1 - \bar{Y}_2\)</span>. When the
+assumptions and conditions are met,</p>
+<p><span class="math display">\[\frac{(\bar{Y}_1 - \bar{Y}_2) - (\mu_1 -
+\mu_2)}{S_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}
+= \frac{(\bar{Y}_1 - \bar{Y}_2) - (\mu_1 - \mu_2)}{\sqrt{S_p^2
+\left[\frac{1}{n_1} + \frac{1}{n_2} \right] }},\]</span></p>
+<p>can be modelled by a <span class="math inline">\(t(\nu)\)</span>
+distribution; where <span class="math inline">\(\nu = n_1 + n_2 -
+2\)</span> and</p>
+<p><span class="math display">\[S_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 -
+1)s_2^2}{n_1 + n_2 - 2}.\]</span></p>
+<div class="tcolorbox">
+<p><strong>Conditions Required for Valid Inference about <span
+class="math inline">\(\mu_1 - \mu_2\)</span>:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>The two samples are randomly selected in an independent manner
+from the two target populations.</p></li>
+<li><p>Both sampled populations have distributions that are
+approximately Normal.</p></li>
+<li><p>The population variances are equal (e.g., <span
+class="math inline">\(\sigma_1 = \sigma_2\)</span>).</p></li>
+</ol>
+</div>
+</div>
+<div
+id="small-sample-confidence-interval-for-mu_1---mu_2-with-equal-variances"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Small-Sample Confidence Interval for <span
+class="math inline">\(\mu_1 - \mu_2\)</span> (with equal variances)</h3>
+<p><strong>Parameter:</strong> <span class="math inline">\(\mu_1 -
+\mu_2\)</span></p>
+<p><strong>Confidence interval</strong> (<span class="math inline">\(\nu
+= \text{df}\)</span>):</p>
+<p><span class="math display">\[(\bar{Y}_1 - \bar{Y}_2) \pm
+t_{\alpha/2}(\nu) S_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}},\]</span></p>
+<p>where <span class="math inline">\(\nu = n_1 + n_2 - 2\)</span> and
+<span class="math display">\[S_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 -
+1)s_2^2}{n_1 + n_2 - 2}\]</span></p>
+<p>(requires that Normal samples are independent and the assumption that
+<span class="math inline">\(\sigma_1^2 = \sigma_2^2\)</span>). The
+critical value <span class="math inline">\(t_{\alpha/2}(\nu)\)</span>
+depends on the particular confidence level and the number of degrees of
+freedom.</p>
+<div class="example">
+<p>Comparing Two Population Means Managerial Success Indexes for Two
+Groups (With Equal Variances Assumed)</p>
+<p>Behavioural researchers have developed an index designed to measure
+managerial success. The index (measured on a 100-point scale) is based
+on the manager’s length of time in the organization and their level
+within the term; the higher the index, the more successful the manager.
+Suppose a researcher wants to compare the average index for the two
+groups of managers at a large manufacturing plant. Managers in group 1
+engage in <strong>high volume of interactions</strong> with people
+outside the managers’ work unit (such interaction include phone and
+face-to-face meetings with customers and suppliers, outside meetings,
+and public relation work). Managers in group 2 <strong>rarely
+interact</strong> with people outside their work unit. Independent
+random samples of 12 and 15 managers are selected from groups 1 and 2,
+respectively, and success index of each is recorded.</p>
+<p><strong>Response variable:</strong> Managerial Success Indexes
+(quantitative, continuous, 0–100 scale)</p>
+<p><strong>Explanatory variable:</strong> Type of group (nominal
+categorical: <em>Group 1 = interaction with outsiders</em>, <em>Group 2
+= fewer interactions</em>)</p>
+<p><strong>R Code</strong></p>
+<div class="tcolorbox">
+<pre><code># Importing data file into R
+success = read.csv(file = &quot;success.csv&quot;, header = TRUE);
+
+# Getting names of variables
+names(success);
+
+# Seeing first few observations
+head(success);
+
+# Attaching data file
+attach(success);</code></pre>
+</div>
+<p><strong>R Code</strong></p>
+<div class="tcolorbox">
+<pre><code>## [1] &quot;Success_Index&quot; &quot;Group&quot;
+##   Success_Index Group
+## 1            65     1
+## 2            66     1
+## 3            58     1
+## 4            70     1
+## 5            78     1
+## 6            53     1</code></pre>
+</div>
+<p><strong>R code (Descriptive Statistics)</strong></p>
+<div class="tcolorbox">
+<pre><code># loading library mosaic
+library(mosaic)
+
+favstats(Success_Index ~ Group)</code></pre>
+</div>
+<p><strong>R Code (Descriptive Statistics)</strong></p>
+<div class="tcolorbox">
+<pre><code>## .group min   Q1 median   Q3 max     mean       sd  n
+##       1  53 62.25  65.50 69.25  78 65.33333 6.610368 12
+##       2  34 42.50  50.00 54.50  68 49.46667 9.334014 15</code></pre>
+</div>
+<p><strong>R Code (Descriptive Statistics)</strong></p>
+<div class="tcolorbox">
+<pre><code>summary(Success_Index[Group == 1]);
+length(Success_Index[Group == 1]);
+sd(Success_Index[Group == 1]);
+
+summary(Success_Index[Group == 2]);
+length(Success_Index[Group == 2]);
+sd(Success_Index[Group == 2]);</code></pre>
+</div>
+<p>Note: Group 1 = “interaction with outsiders” and Group 2 = “fewer
+interactions”.</p>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>##  Min.  1st Qu.  Median    Mean  3rd Qu.    Max. 
+##  53.00   62.25   65.50   65.33   69.25   78.00 
+## [1] 12
+## [1] 6.610368
+
+##  Min.  1st Qu.  Median    Mean  3rd Qu.    Max. 
+##  34.00   42.50   50.00   49.47   54.50   68.00 
+## [1] 15
+## [1] 9.334014</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (Group 1: “interaction with
+outsiders”):</strong></p>
+<div class="tcolorbox">
+<pre><code>stem(Success_Index[Group == 1]);</code></pre>
+</div>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>## 
+##  The decimal point is 1 digit(s) to the right of the |
+## 
+##  5 | 38
+##  6 | 0335689
+##  7 | 018</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (Group 2: “fewer
+interactions”):</strong></p>
+<div class="tcolorbox">
+<pre><code>stem(Success_Index[Group == 2]);</code></pre>
+</div>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>## 
+##  The decimal point is 1 digit(s) to the right of the |
+## 
+##  3 | 46
+##  4 | 22368
+##  5 | 023367
+##  6 | 28</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (Group 1: “interaction with
+outsiders”):</strong></p>
+<div class="tcolorbox">
+<pre><code>qqnorm(Success_Index[Group == 1]);
+qqline(Success_Index[Group == 1]);</code></pre>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section14_files/figure-html/unnamed-chunk-1-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
+<p class="caption">
+Q-Q Plot for Group 1: Interaction with Outsiders
+</p>
+</div>
+<p><strong>Nearly Normal Condition (Group 2: “fewer
+interactions”):</strong></p>
+<div class="tcolorbox">
+<pre><code>qqnorm(Success_Index[Group == 2]);
+qqline(Success_Index[Group == 2]);</code></pre>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section14_files/figure-html/unnamed-chunk-2-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
+<p class="caption">
+Q-Q Plot for Group 2: Fewer Interactions
+</p>
+</div>
+</div>
+<p><strong>Nearly Normal Condition:</strong></p>
+<div class="tcolorbox">
+<pre><code>boxplot(Success_Index ~ Group, col = c(&quot;red&quot;, &quot;blue&quot;))</code></pre>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section14_files/figure-html/unnamed-chunk-3-1.png" alt="Boxplot of Success Index by Group" width="60%" />
+<p class="caption">
+Boxplot of Success Index by Group
+</p>
+</div>
+<p><span id="fig:boxplot-success" label="fig:boxplot-success"></span>
+:::</p>
+<p><strong>Boxplot with <code>ggplot2</code>:</strong></p>
+<div class="tcolorbox">
+<pre><code># loading library;
+library(ggplot2);
+
+# converting a numeric variable into factor (categorical data)
+group &lt;- factor(Group);
+
+# bp: just a name (not code) to store boxplots;
+bp &lt;- ggplot(success,
+             aes(x = group, y = Success_Index, fill = group));
+
+our.labs &lt;- c(&quot;Interaction with Outsiders&quot;, &quot;Fewer Interactions&quot;);
+
+bp +
+  geom_boxplot() +
+  scale_x_discrete(labels = our.labs);</code></pre>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section14_files/figure-html/unnamed-chunk-4-1.png" alt="Boxplot of Success Index by Group using ggplot2" width="60%" />
+<p class="caption">
+Boxplot of Success Index by Group using ggplot2
+</p>
+</div>
+<p><strong>Checking the Assumptions and Conditions</strong></p>
+<p><strong>Independent Group Assumption:</strong> The success index in
+group 1 is unrelated to the success index in group 2.</p>
+<p><strong>Randomization Condition:</strong> The 27 managers were
+randomly and independently selected (12 for group 1, and 15 for group
+2).</p>
+<p><strong>Nearly Normal Condition:</strong> The two boxplots of success
+indexes do not show skewness; the two stemplots/histograms of success
+indexes are unimodal, fairly symmetric and approximately bell-shaped.
+Q–Q plots also suggest the normality assumption is reasonable.</p>
+<p><strong>Equal Variances Assumption:</strong> The two boxplots of
+success indexes appear to have the same spread; thus, the samples appear
+to have come from populations with approximately the same variance.</p>
+<p>Since the conditions are satisfied, it is appropriate to construct a
+<span class="math inline">\(t\)</span> confidence interval with<br />
+<span class="math inline">\(df = 12 + 15 - 2 = 25\)</span>.<br />
+<strong>From the data, the following statistics were
+calculated:</strong></p>
+<p><span class="math display">\[\begin{aligned}
+n_1 &amp;= 12 &amp;\quad n_2 &amp;= 15 \\
+\bar{x}_1 &amp;= 65.33 &amp;\quad \bar{x}_2 &amp;= 49.47 \\
+s_1^2 &amp;= 6.61^2 &amp;\quad s_2^2 &amp;= 9.33^2
+\end{aligned}\]</span></p>
+<p><strong>The pooled variance estimator is:</strong></p>
+<p><span class="math display">\[s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 -
+1)s_2^2}{n_1 + n_2 - 2}
+= \frac{(12 - 1)(6.61^2) + (15 - 1)(9.33^2)}{12 + 15 - 2}
+= 67.97\]</span></p>
+<p><strong>The number of degrees of freedom is:</strong> <span
+class="math display">\[\nu = n_1 + n_2 - 2 = 12 + 15 - 2 =
+25\]</span></p>
+<p><strong>Two-sample t-test (Student’s t-test) for the Difference
+Between Means <span class="math inline">\(\mu_1 -
+\mu_2\)</span>:</strong></p>
+<p>Is there evidence to suggest that the mean success index differs
+between the two groups?</p>
+<p><strong>1. State Hypotheses:</strong> <span
+class="math display">\[\begin{aligned}
+H_0 &amp;: \mu_1 = \mu_2 \quad \text{or} \quad H_0 : \mu_1 - \mu_2 = 0
+\\
+H_a &amp;: \mu_1 \ne \mu_2 \quad \text{or} \quad H_a : \mu_1 - \mu_2 \ne
+0
+\end{aligned}\]</span></p>
+<p><strong>2. Test Statistic:</strong> <span class="math display">\[t^*
+= \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s_p^2}{n_1} +
+\frac{s_p^2}{n_2}}}
+= \frac{65.33 - 49.47}{\sqrt{\frac{67.97}{12} + \frac{67.97}{15}}}
+= 4.97\]</span></p>
+<p><strong>3. P-value:</strong></p>
+<p>Using table: <span class="math display">\[\text{df} = 25 \quad
+\Rightarrow \quad \text{P-value} &lt; 2(0.005)\]</span></p>
+<p>Using R:</p>
+<div class="tcolorbox">
+<pre><code># One way:
+2*(1 - pt(4.97, df = 25));
+
+# Another way:
+2 * pt(4.97, df = 25, lower.tail = FALSE);</code></pre>
+</div>
+<p>Both methods return: <span class="math display">\[\text{P-value}
+\approx 4.03 \times 10^{-5}\]</span> <strong>4. Conclusion.</strong></p>
+<p>Since the P-value is very small, we have strong evidence to indicate
+that there is a difference in mean success index between group 1 and
+group 2.</p>
+<p><strong>Note.</strong> As a follow-up, we could find a 95% CI for
+<span class="math inline">\(\mu_1 - \mu_2\)</span> to estimate this
+difference. Then, we could provide an estimate of how much higher the
+mean success index for group 1 is. ::::::::::::::::::::</p>
+</div>
+<div
+id="comparing-two-populations-means-independent-sampling-unequal-variances-assumed"
+class="section level3">
+<h3>Comparing Two Populations Means: Independent Sampling (Unequal
+Variances Assumed)</h3>
+</div>
+<div
+id="small-sample-confidence-interval-for-mu_1---mu_2-unequal-variances"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Small-Sample Confidence Interval for <span
+class="math inline">\(\mu_1 - \mu_2\)</span> (Unequal Variances)</h3>
+<p>Draw an SRS of size <span class="math inline">\(n_1\)</span> from a
+Normal population with unknown mean <span
+class="math inline">\(\mu_1\)</span>, and draw an independent SRS of
+size <span class="math inline">\(n_2\)</span> from another Normal
+population with unknown mean <span class="math inline">\(\mu_2\)</span>.
+A confidence interval for <span class="math inline">\(\mu_1 -
+\mu_2\)</span> is given by</p>
+<p><span class="math display">\[(\bar{x}_1 - \bar{x}_2) \pm t^*
+\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}\]</span></p>
+<p>Here <span class="math inline">\(t^*\)</span> is the critical value
+for the <span class="math inline">\(t(k)\)</span> density curve with
+area <span class="math inline">\(C\)</span> between <span
+class="math inline">\(-t^*\)</span> and <span
+class="math inline">\(t^*\)</span>. The degrees of freedom <span
+class="math inline">\(k\)</span> are equal to the smaller of <span
+class="math inline">\(n_1 - 1\)</span> and <span
+class="math inline">\(n_2 - 1\)</span>.</p>
+</div>
+<div id="degrees-of-freedom" class="section level3 unnumbered">
+<h3 class="unnumbered">Degrees of Freedom</h3>
+<p><em>Option 1.</em> With software, use the statistic <span
+class="math inline">\(t\)</span> with accurate critical values from the
+approximating <span class="math inline">\(t\)</span> distribution.</p>
+<p>The distribution of the two-sample <span
+class="math inline">\(t\)</span> statistic is very close to the <span
+class="math inline">\(t\)</span> distribution with degrees of freedom
+<span class="math inline">\(df\)</span> given by</p>
+<p><span class="math display">\[df = \frac{\left( \frac{s_1^2}{n_1} +
+\frac{s_2^2}{n_2} \right)^2}
+{
+\left( \frac{1}{n_1 - 1} \left( \frac{s_1^2}{n_1} \right)^2 \right)
++
+\left( \frac{1}{n_2 - 1} \left( \frac{s_2^2}{n_2} \right)^2 \right)
+}\]</span></p>
+<p>This approximation is accurate when both sample sizes <span
+class="math inline">\(n_1\)</span> and <span
+class="math inline">\(n_2\)</span> are 5 or larger.</p>
+<p><em>Option 2.</em> Without software, use the statistic <span
+class="math inline">\(t\)</span> with critical values from the <span
+class="math inline">\(t\)</span> distribution with degrees of freedom
+equal to the smaller of <span class="math inline">\(n_1 - 1\)</span> and
+<span class="math inline">\(n_2 - 1\)</span>. These procedures are
+always conservative for any two Normal populations.</p>
+</div>
+<div id="two-sample-t-test-unequal-variances"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Two-Sample t-Test (Unequal Variances)</h3>
+<p>To test the hypothesis <span class="math inline">\(H_0 : \mu_1 =
+\mu_2\)</span>, calculate the two-sample <span
+class="math inline">\(t\)</span> statistic:</p>
+<p><span class="math display">\[t^* = \frac{\bar{x}_1 -
+\bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}\]</span></p>
+<p>and use <span class="math inline">\(P\)</span>-values or critical
+values for the <span class="math inline">\(t(k)\)</span>
+distribution.</p>
+<div class="example">
+<p>“Conservationists have despaired over destruction of tropical rain
+forest by logging, clearing, and burning”. These words begin a report on
+a statistical study of the effects of logging in Borneo. Here are data
+on the number of tree species in 12 unlogged forest plots and 9 similar
+plots logged 8 years earlier:</p>
+<p>Unlogged: 22 18 22 20 15 21 13 13 19 13 19 15<br />
+Logged : 17 4 18 14 18 15 15 10 12</p>
+<p>Does logging significantly reduce the mean number of species in a
+plot after 8 years? State the hypotheses and do a t test. Is the result
+significant at the 5% level?<br />
+<strong>Solution:</strong><br />
+1. State hypotheses. <span class="math inline">\(H_0: \mu_1 =
+\mu_2\)</span> vs. <span class="math inline">\(H_a: \mu_1 &gt;
+\mu_2\)</span>, where <span class="math inline">\(\mu_1\)</span> is the
+mean number of species in unlogged plots and <span
+class="math inline">\(\mu_2\)</span> is the mean number of species in
+plots logged 8 years earlier.</p>
+<p>2. Test statistic. <span class="math display">\[t^* \;=\;\frac{\bar
+x_1 - \bar x_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}
+\;=\;2.1140\]</span> <span class="math display">\[(\bar x_1 =
+17.5,\;\bar x_2 = 13.6666,\;s_1 = 3.5290,\;s_2 = 4.5,\;n_1 = 12,\;n_2 =
+9)\]</span></p>
+<p>3. P-value. Using Table, we have <span class="math inline">\(df =
+8\)</span>, and <span class="math inline">\(0.025 &lt; \text{P-value}
+&lt; 0.05\)</span>.</p>
+<p>4. Conclusion. Since P-value <span class="math inline">\(&lt;
+0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>. There
+is strong evidence that the mean number of species in unlogged plots is
+greater than that for logged plots 8 years after logging.</p>
+</div>
+<div class="example">
+<p>A company that sells educational materials reports statistical
+studies to convince customers that its materials improve learning. One
+new product supplies “directed reading activities” for classroom use.
+These activities should improve the reading ability of elementary school
+pupils.</p>
+<p>A consultant arranges for a third-grade class of 21 students to take
+part in these activities for an eight-week period. A control classroom
+of 23 third-graders follows the same curriculum without the activities.
+At the end of the eight weeks, all students are given a Degree of
+Reading Power (DRP) test, which measures the aspects of reading ability
+that the treatment is designed to improve. The data appear in the
+following table.</p>
+<div class="center">
+<table style="width:83%;">
+<colgroup>
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th colspan="4" align="center"><strong>Treatment</strong></th>
+<th colspan="4" align="center"><strong>Control</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">24</td>
+<td align="center">61</td>
+<td align="center">59</td>
+<td align="center">46</td>
+<td align="center">42</td>
+<td align="center">33</td>
+<td align="center">46</td>
+<td align="center">37</td>
+</tr>
+<tr class="even">
+<td align="center">43</td>
+<td align="center">44</td>
+<td align="center">52</td>
+<td align="center">43</td>
+<td align="center">43</td>
+<td align="center">41</td>
+<td align="center">10</td>
+<td align="center">42</td>
+</tr>
+<tr class="odd">
+<td align="center">58</td>
+<td align="center">67</td>
+<td align="center">62</td>
+<td align="center">57</td>
+<td align="center">55</td>
+<td align="center">19</td>
+<td align="center">17</td>
+<td align="center">55</td>
+</tr>
+<tr class="even">
+<td align="center">71</td>
+<td align="center">49</td>
+<td align="center">54</td>
+<td align="center"></td>
+<td align="center">26</td>
+<td align="center">54</td>
+<td align="center">60</td>
+<td align="center">28</td>
+</tr>
+<tr class="odd">
+<td align="center">43</td>
+<td align="center">53</td>
+<td align="center">57</td>
+<td align="center"></td>
+<td align="center">62</td>
+<td align="center">20</td>
+<td align="center">53</td>
+<td align="center">48</td>
+</tr>
+<tr class="even">
+<td align="center">49</td>
+<td align="center">56</td>
+<td align="center">33</td>
+<td align="center"></td>
+<td align="center">37</td>
+<td align="center">85</td>
+<td align="center">42</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Because we hope to show that the treatment (Group 1) is better than
+the control (Group 2), the hypotheses are:</p>
+<p><span class="math display">\[H_0 : \mu_1 = \mu_2\]</span> <span
+class="math display">\[H_a : \mu_1 &gt; \mu_2\]</span></p>
+<div class="tcolorbox">
+<pre><code># Step 1. Entering data
+treatment = c(24, 61, 59, 46, 43, 44, 52, 43, 58, 67, 62, 57, 
+              71, 49, 54, 43, 53, 57, 49, 56, 33);
+control = c(42, 33, 46, 37, 43, 41, 10, 42, 55, 19, 17, 55, 
+            26, 54, 60, 28, 62, 20, 53, 48, 37, 85, 42);</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (treatment):</strong></p>
+<div class="tcolorbox">
+<pre><code># Making stemplot;
+
+stem(treatment);</code></pre>
+</div>
+<div class="tcolorbox">
+<pre><code>##
+## The decimal point is 1 digit(s) to the right of the |
+##
+## 2 | 4
+## 3 | 3
+## 4 | 3334699
+## 5 | 23467789
+## 6 | 127
+## 7 | 1</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (control):</strong></p>
+<div class="tcolorbox">
+<pre><code># Making stemplot;
+
+stem(control);</code></pre>
+</div>
+<div class="tcolorbox">
+<pre><code>##
+## The decimal point is 1 digit(s) to the right of the |
+##
+## 0 | 079
+## 2 | 068377
+## 4 | 12223683455
+## 6 | 02
+## 8 | 5</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (treatment):</strong></p>
+<div class="tcolorbox">
+<pre><code># Making Q-Q plot;
+qqnorm(treatment, pch=19, col=&quot;red&quot;, main=&quot;Treatment&quot;);
+qqline(treatment, lty=2);</code></pre>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section14_files/figure-html/unnamed-chunk-5-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
+<p class="caption">
+Q-Q Plot for Treatment Group
+</p>
+</div>
+<p><strong>Nearly Normal Condition (control):</strong></p>
+<div class="tcolorbox">
+<pre><code># Making Q-Q plot;
+qqnorm(treatment, pch=19, col=&quot;red&quot;, main=&quot;Control&quot;);
+qqline(control, lty=2);</code></pre>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section14_files/figure-html/unnamed-chunk-6-1.png" alt="Q-Q Plot for Control Group" width="60%" />
+<p class="caption">
+Q-Q Plot for Control Group
+</p>
+</div>
+</div>
+<p>Stemplots suggest that there is a mild outlier in the control group
+but no deviation from Normality serious enough to prevent us from using
+t procedures. Normal Q-Q plots for both groups confirm that both are
+roughly Normal. The summary statistics are:</p>
+<div class="tcolorbox">
+<pre><code>summary(treatment);
+
+## Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 24.00   44.00   53.00   51.48   58.00   71.00
+
+summary(control);
+
+## Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 10.00   30.50   42.00   41.52   53.50   85.00</code></pre>
+</div>
+<div class="tcolorbox">
+<pre><code># Step 1. Entering data;
+
+treatment = c(24, 61, 59, 46, 43, 44, 52, 43, 58, 67, 62, 57, 
+              71, 49, 54, 43, 53, 57, 49, 56, 33);
+              
+control = c(42, 33, 46, 37, 43, 41, 10, 42, 55, 19, 17, 55, 
+            26, 54, 60, 28, 62, 20, 53, 48, 37, 85, 42);
+
+# Step 2. Hypothesis Test
+
+t.test(treatment, control, alternative=&quot;greater&quot;)</code></pre>
+</div>
+<p><strong>HT (using R)</strong></p>
+<div class="tcolorbox">
+<pre><code>##
+##  Welch Two Sample t-test
+## 
+## data:  treatment and control
+## t = 2.3106, df = 37.855, p-value = 0.01305
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  2.333784      Inf
+## sample estimates:
+## mean of x mean of y 
+##    51.47619 41.52174 </code></pre>
+</div>
+<p><strong>HT (using table)</strong></p>
+<div class="tcolorbox">
+<pre><code>round (mean(treatment) ,2);
+
+##[1] 51.48
+
+round (sd(treatment) ,2);
+
+##[1] 11.01
+
+round (mean(control) ,2);
+
+##[1] 41.52
+
+round (sd(control) ,2);
+
+##[1] 17.15</code></pre>
+</div>
+<p>Test statistic.<br />
+<span class="math display">\[t^* = \frac{\bar{x}_1 -
+\bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} = 2.31\]</span>
+<span class="math display">\[\quad
+(\bar{x}_1 = 51.48, \, \bar{x}_2 = 41.52, \, s_1 = 11.01, \, s_2 =
+17.15,
+\quad n_1 = 21 \text{ and } n_2 = 23)\]</span></p>
+<p>The conservative approach uses the <em>t</em>(20) distribution. The
+P-value for the one-sided test is <span
+class="math display">\[\text{P-value} = P\bigl(T \geq 2.31
+\bigr)\]</span> Comparing <span class="math inline">\(t = 2.31\)</span>
+with the entries in Table 5 for 20 degrees of freedom, we see that <span
+class="math display">\[0.01 &lt; \text{P-value} &lt; 0.025.\]</span></p>
+<p>Since our P-value is “small”, we reject the null hypothesis (Note
+that we would reject <span class="math inline">\(H_0\)</span> at the
+2.5% significance level). The data strongly suggest that directed
+reading activity improves the DRP score.</p>
+<p>The design of the DRP study is not ideal. Random assignment of
+students was not possible in a school environment, so existing
+third-grade classes were used. The effect of the reading programs is
+therefore confounded with any other differences between the two classes.
+The classes were chosen to be as similar as possible in variables such
+as the social and economic status of the students. Pretesting showed
+that the two classes were on the average quite similar in reading
+ability at the beginning of the experiment. To avoid the effect of two
+different teachers, the same teacher taught reading in both classes
+during the eight-week period of the experiment. We can therefore be
+somewhat confident that our two-sample procedure is detecting the effect
+of the treatment and not some other difference between the classes.
+::::::::::::::::</p>
+<div class="nt">
+<p><strong>Why do we use hypothesis tests?</strong></p>
+<p>To conduct tests on parameters and to quantify the degree of
+certainty with probability.</p>
+<p>The smaller the p-value, the stronger the evidence against <span
+class="math inline">\(H_0\)</span> (provided assumptions are met).</p>
+</div>
+<p><strong>Understanding Significance Levels</strong></p>
+<p>Suppose you have the following limited information:</p>
+<ul>
+<li>A test was statistically significant at the 5% level.</li>
+</ul>
+<p>We <strong>cannot</strong> make this conclusion for certain. That is,
+<span class="math display">\[p\text{-value} &lt; 0.05 \quad
+\not\Rightarrow \quad p\text{-value} &lt; 0.01.\]</span></p>
+<ul>
+<li>A test was statistically significant at the 1% level.</li>
+</ul>
+<p>Yes! Because <span class="math display">\[p\text{-value} &lt; 0.01
+&lt; 0.05.\]</span></p>
+</div>
+</div>
+<div id="the-fold-rule" class="section level2">
+<h2>The Fold Rule</h2>
+<p>A rule which can be used to quickly determine whether population
+variances are equal or unequal using sample variances.</p>
+<p><em>Note: only a rule</em></p>
+<p>If <span class="math display">\[\frac{\max(s_1, s_2)}{\min(s_1, s_2)}
+&lt; \sqrt{2}
+\quad \text{then we can consider } \sigma_1^2 = \sigma_2^2\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\frac{\max(s_1^2, s_2^2)}{\min(s_1^2,
+s_2^2)} &lt; 2
+\quad \text{then we can consider } \sigma_1^2 = \sigma_2^2\]</span></p>
+<p><strong>Note:</strong> rather crude technique.</p>
+<p>Hypothesis tests for equality of two variances do exist:</p>
+<p><span class="math display">\[H_0: \sigma_1^2 = \sigma_2^2 \quad
+\text{vs} \quad H_a: \sigma_1^2 \neq \sigma_2^2\]</span></p>
+<p>These tests involve a <span class="math inline">\(\chi^2\)</span>
+test statistic.</p>
+</div>
+<div id="two-sample-hypothesis-test-on-paired-data"
+class="section level2">
+<h2>Two Sample Hypothesis Test on Paired Data</h2>
+<p>When observations in sample 1 matches with an observation in sample
+2. Observations in sample 1 are, usually, highly, correlated with
+observations in sample 2, these data are often called matched pairs. For
+each pair (the same cases), we form: Difference = observation in sample
+2 - observation in sample 1. Thus, we have one single sample of
+differences scores. For example, in longitudinal studies: Pre- and
+post-survey of attitudes towards statistics (Same student is measured
+twice: Time 1 (pre) and Time 2 (post). We measure change in the
+attitudes: Post - Pre (for each student). Often these types of studies
+are called, repeated measures.<br />
+Paired Data Condition: the data must be quantitative and paired.<br />
+Independence Assumption:</p>
+<ul>
+<li><p>If the data are p aired, the groups are not independent. For this
+methods, it is the differences that must be independent of each
+other.</p></li>
+<li><p>The pairs may be a random sample.</p></li>
+<li><p>In experimental design, the order of the two treatments may be
+randomly assigned, or the treatments ma y be randomly assigned to one
+member of each pair.</p></li>
+<li><p>In a before-and-after study, we may believe that the observed
+differences are representative sample of a population of interest. If
+there is any doubt, we need to include a control group to be able to
+draw conclusions.</p></li>
+<li><p>If samples are bigger than 10 % of the target population, we need
+to acknowledge this and note in our report. When we sample from a ﬁnite
+population, we should be careful not to sample more than 10 % of that
+population. Sampling too large a fraction of the population calls the
+independence assumption into question.</p></li>
+</ul>
+<p>Recall chapter 10 when we first introduced paired data, now we are
+going to use it again:</p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Sample Units
+</td>
+<td style="text-align: center;">
+Measurement 1 (<span class="math inline"><em>M</em><sub>1</sub></span>)
+</td>
+<td style="text-align: center;">
+Measurement 2 (<span class="math inline"><em>M</em><sub>2</sub></span>)
+</td>
+<td style="text-align: center;">
+Difference (<span
+class="math inline"><em>M</em><sub>2</sub> − <em>M</em><sub>1</sub></span>
+or <span
+class="math inline"><em>M</em><sub>1</sub> − <em>M</em><sub>2</sub></span>)
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>11</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>12</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>x</em><sub><em>d</em>1</sub> = <em>x</em><sub>12</sub> − <em>x</em><sub>11</sub></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>21</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>22</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>x</em><sub><em>d</em>2</sub> = <em>x</em><sub>22</sub> − <em>x</em><sub>21</sub></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>31</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>32</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>x</em><sub><em>d</em>2</sub> = <em>x</em><sub>32</sub> − <em>x</em><sub>31</sub></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+……
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+n
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>n</em>1</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>n</em>2</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>x</em><sub><em>d</em><em>n</em></sub> = <em>x</em><sub><em>n</em>2</sub> − <em>x</em><sub><em>n</em>1</sub></span>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+A table of paired data
+</figcaption>
+</figure>
+</div>
+<p>From that table, we can get <span
+class="math inline">\(\bar{X_d}\)</span>, which is the mean, variance
+and standard deviation of the difference. We need these values to
+continue our analysis.<br />
+<strong>Step 1: Stating the Structure of Testing Hypothesis</strong></p>
+<p>The idea of two sample hypothesis test on pair data is transforming
+it to one sample hypothesis data, so that our analysis based on <span
+class="math inline">\(\mu_d\)</span>.</p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Cases
+</td>
+<td style="text-align: center;">
+Null Hypothesis
+</td>
+<td style="text-align: center;">
+Alternative Hypothesis
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>μ</em><sub><em>d</em></sub> = 0</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>μ</em><sub><em>d</em></sub> &gt; 0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>μ</em><sub><em>d</em></sub> = 0</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>μ</em><sub><em>d</em></sub> &lt; 0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>μ</em><sub><em>d</em></sub> = 0</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>μ</em><sub><em>d</em></sub> ≠ 0</span>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+All possible cases of two sample hypothesis test on paired data
+</figcaption>
+</figure>
+</div>
+<p><strong>Step 2: Computing Test Statistics</strong></p>
+<div class="definition">
+<p>The test statistics of two sample hypothesis test on paired data is
+given by: <span class="math display">\[t_* = \frac{\bar{x_d}-0}{s_d /
+\sqrt{n}} \sim t_{n-1;\alpha/2}.\]</span> <span
+class="math inline">\(\bar{x_d}\)</span> is the mean of sample
+difference and <span class="math inline">\(s_d\)</span> is the standard
+deviation of difference data.</p>
+</div>
+<p><strong>Step 3: Finding the P-value</strong></p>
+<p>Two sample hypothesis test is quite similar to one sample hypothesis
+test on a mean. Notes that we are working within 2 measurement. You can
+refer one sample hypothesis test to get the idea about find the p-value
+in this case.<br />
+<strong>Step 4: Comparing P-value with <span
+class="math inline">\(\alpha\)</span>-level</strong></p>
+<p>If p-value is less than <span
+class="math inline">\(\alpha\)</span>-level, then we reject the null
+hypothesis (<span class="math inline">\(H_0\)</span>) and accept the
+alternative hypothesis (<span class="math inline">\(H_a\)</span>).
+Otherwise, If p-value is greater than <span
+class="math inline">\(\alpha\)</span>-level, then we do not reject the
+null hypothesis (<span class="math inline">\(H_0\)</span>) and reject
+the alternative hypothesis (<span
+class="math inline">\(H_a\)</span>).<br />
+<strong>Step 5: Final Conclusion</strong> If we reject the null
+hypothesis, then we conclude that: there is sufficient evidence to
+reject the null hypothesis. If we do not reject the null hypothesis,
+then we conclude that: there is insufficient evidence to reject the null
+hypothesis.<br />
+Note that your final conclusion is based on the value of <span
+class="math inline">\(\mu_d\)</span>, but we still need more. We also
+can know which group has larger means from the result (<span
+class="math inline">\(\mu_d\)</span>).</p>
+<ul>
+<li><p>If <span class="math inline">\(\mu_d &gt; 0\)</span>: from the
+table above we get <span class="math inline">\(M_2-M_1 &gt;0\)</span>,
+then <span class="math inline">\(M_2 &gt; M_1\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\mu_d &lt; 0\)</span>: from the
+table above we get <span class="math inline">\(M_2-M_1 &lt;0\)</span>,
+then <span class="math inline">\(M_2 &lt; M_1\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\mu_d \neq 0\)</span>: from the
+table above we get <span class="math inline">\(M_2-M_1 \neq 0\)</span>,
+then <span class="math inline">\(M_2 \neq M_1\)</span>.</p></li>
+</ul>
+<div class="example">
+<p>In an effort to determine whether a new type of fertilizer is more
+effective than the type currently in use, researchers took 12 two-acre
+plots of land scattered throughout the county. Each plot was divided
+into two equal-size sub plots, one of which was treated with the new
+fertilizer. Wheat was planted, and the crop yields were measured.</p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Plot
+</td>
+<td style="text-align: center;">
+<span class="math inline">1</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">2</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">4</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">6</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">8</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">9</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">10</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">11</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">12</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Current
+</td>
+<td style="text-align: center;">
+<span class="math inline">56</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">45</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">68</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">72</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">61</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">69</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">57</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">55</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">60</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">72</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">75</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">66</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+New
+</td>
+<td style="text-align: center;">
+<span class="math inline">60</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">49</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">66</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">73</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">59</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">67</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">61</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">60</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">58</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">75</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">72</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">68</span>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+Data of example 14.1
+</figcaption>
+</figure>
+</div>
+<p>Can we conclude at the 5% signiﬁcance level that the new fertilizer
+is more eﬀective than the current one?</p>
+<p><strong>Solution:</strong></p>
+<p>You can verify that the mean and standard deviation of the twelve
+difference measurements are <span class="math inline">\(\bar{d} = new -
+current = 1\)</span> and <span class="math inline">\(s_d =
+3.0151\)</span>.</p>
+<p><strong>Step 1: State Hypothesis</strong></p>
+<p><span class="math inline">\(H_0: \mu_d = 0\)</span> and <span
+class="math inline">\(H_a: \mu_d&gt;0\)</span></p>
+<p><strong>Step 2: Find test statistics</strong></p>
+<p><span class="math inline">\(t* = \frac{\bar{d} - 0}{s_d/\sqrt{n}} =
+\frac{1}{3.0151/\sqrt{12}} = 1.1489\)</span></p>
+<p><strong>Step 3: Compute p-value</strong></p>
+<p>Using t-distribution table with df <span
+class="math inline">\(=11\)</span>, then <span
+class="math inline">\(0.10 &lt; p-value &lt; 0.15\)</span>.</p>
+<p><strong>Step 4: Conclusion</strong></p>
+<p>Since p-value <span class="math inline">\(&gt; \alpha =
+0.05\)</span>, we can’t reject <span class="math inline">\(H_0\)</span>.
+There is not enough evidence to infer that the new fertilizer is
+better.</p>
+</div>
+</div>
+<div id="two-sample-hypothesis-test-on-proportions"
+class="section level2">
+<h2>Two Sample Hypothesis Test on Proportions</h2>
+<p>Moreover, we can use hypothesis test to compare proportions from two
+independent groups as well. We are going to start all these steps
+again.<br />
+<strong>Step 1: Stating the Structure of Testing Hypothesis</strong></p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Cases
+</td>
+<td style="text-align: center;">
+Null Hypothesis
+</td>
+<td style="text-align: center;">
+Alternative Hypothesis
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>p</em><sub>1</sub> − <em>p</em><sub>2</sub> = 0</span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>p</em><sub>1</sub> − <em>p</em><sub>2</sub> &gt; 0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>p</em><sub>1</sub> − <em>p</em><sub>2</sub> = 0</span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>p</em><sub>1</sub> − <em>p</em><sub>2</sub> &lt; 0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>p</em><sub>1</sub> − <em>p</em><sub>2</sub> = 0</span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>p</em><sub>1</sub> − <em>p</em><sub>2</sub> ≠ 0</span>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+All possible cases of two sample hypothesis test on proportions
+</figcaption>
+</figure>
+</div>
+<p>In this case, we are interested in the difference of proportions.</p>
+<p><strong>Step 2: Computing Test Statistics</strong></p>
+<div class="definition">
+<p>To test the hypothesis <span class="math inline">\(H_0 : p_1 =
+p_2\)</span> first find the pooled proportion <span
+class="math inline">\(\hat{p}\)</span> of successes in both samples
+combined. Then compute the <span class="math inline">\(Z*\)</span>
+statistic: <span class="math display">\[z_* =
+\frac{\hat{p_1}-\hat{p_2}}{\sqrt{\hat{p}(1-\hat{p})(\frac{1}{n_1}+
+\frac{1}{n_2})}} \sim N(0,1).\]</span> In this case, <span
+class="math inline">\(\hat{p} = \frac{x_1 + x_2}{n_1+n_2}\)</span>,
+which is the number of success with two groups combined. <span
+class="math inline">\(n_1 \text{ and } n_2\)</span> represent sample
+size of each group respectively.</p>
+</div>
+<p><strong>Step 3: Finding the P-value</strong></p>
+<p>In terms of a variable <span class="math inline">\(Z\)</span> having
+the standard Normal distribution, the approximate P-value for a test of
+<span class="math inline">\(H_0\)</span> against:</p>
+<ul>
+<li><p><span class="math inline">\(H_a: p_1 - p_2 &gt; 0\)</span> is
+<span class="math inline">\(P(Z &gt; Z_*)\)</span>;</p></li>
+<li><p><span class="math inline">\(H_a: p_1 - p_2 &lt; 0\)</span> is
+<span class="math inline">\(P(Z &lt; Z_*)\)</span>;</p></li>
+<li><p><span class="math inline">\(H_a: p_1 - p_2 \neq 0\)</span> is
+<span class="math inline">\(2 \cdot P(Z &gt; |Z_*|)\)</span>.</p></li>
+</ul>
+<p><strong>Step 4: Comparing P-value with <span
+class="math inline">\(\alpha\)</span>-level</strong></p>
+<p>If p-value is less than <span
+class="math inline">\(\alpha\)</span>-level, then we reject the null
+hypothesis (<span class="math inline">\(H_0\)</span>) and accept the
+alternative hypothesis (<span class="math inline">\(H_a\)</span>).
+Otherwise, If p-value is greater than <span
+class="math inline">\(\alpha\)</span>-level, then we do not reject the
+null hypothesis (<span class="math inline">\(H_0\)</span>) and reject
+the alternative hypothesis (<span
+class="math inline">\(H_a\)</span>).<br />
+<strong>Step 5: Final Conclusion</strong></p>
+<p>If we reject the null hypothesis, then we conclude that: there is
+sufficient evidence to reject the null hypothesis. If we do not reject
+the null hypothesis, then we conclude that: there is insufficient
+evidence to reject the null hypothesis. Moreover:</p>
+<ul>
+<li><p>If <span class="math inline">\(p_1 - p_2 &gt; 0\)</span>: if we
+reject the null hypothesis under this alternative test, then <span
+class="math inline">\(p_1 &gt; p_2\)</span>.</p></li>
+<li><p>If <span class="math inline">\(p_1- p_2 &lt; 0\)</span>: if we
+reject the null hypothesis under this alternative test, then <span
+class="math inline">\(p_1 &lt; p_2\)</span>.</p></li>
+<li><p>If <span class="math inline">\(p_1 - p_2 \neq 0\)</span>: if we
+reject the null hypothesis under this alternative test, then <span
+class="math inline">\(p_1 \neq p_2\)</span>.</p></li>
+</ul>
+<p><strong>Conditions of Two Sample Hypothesis Test on
+Proportions</strong></p>
+<p>i. Independent Response Assumption: Within each group , we need
+independent responses from the cases. We cannot check that for certain,
+but randomization provides evidence of independence. So, we need to
+check the following:</p>
+<ul>
+<li><p>Randomization Condition: The data in each group should be drawn
+independently and at random from a population or generated by a
+completely randomized designed experiment.</p></li>
+<li><p>The 10 % Condition: If the data are sampled without replacement,
+the sample should not exceed 10 % of the population. If samples are
+bigger than 10 % of the target population, random draws are no longer
+approximately independent.</p></li>
+<li><p>Independent Groups Assumption: The two groups we are comparing
+must be independent from each other.</p></li>
+</ul>
+<p>ii. Sample Size Condition Each of the groups must be big enough. As
+with individual proportions, we need larger group s to estimate
+proportions that are near 0% and 100%. We check the success / failure
+condition for each group.</p>
+<ul>
+<li>Success / Failure Condition: Both groups are big enough that at
+least 10 successes and at least 10 failures have been observed in each
+group or will be expected in each (when testing hypothesis).</li>
+</ul>
+<p>Note: Two-sided significance tests (later we will discuss this
+concept) are robust against violations of this condition. In this case,
+we can conduct significance tests with smaller sample sizes. In
+practice, the two-sided significance test works well if there are at
+least five successes and five failures in each sample.</p>
+<div class="example">
+<p>Nicotine patches are often used to help smokers quit. Does giving
+medicine to fight depression help? A randomized double-blind experiment
+assigned 244 smokers who wanted to stop to receive nicotine patches and
+another 245 to receive both a patch and the anti-depression drug
+bupropion. Results: After a y ear, 40 subjects in the nicotine patch
+group had abstained from smoking, as had 87 in the patch-plus-drug
+group. How significant is the evidence that the medicine increases the
+success rate? State hypotheses, calculate a test statistic, use Table 6
+to give its P-value, and state y our conclusion. (Use <span
+class="math inline">\(\alpha = 0.01\)</span>)<br />
+Solution:</p>
+<p><strong>Step 1: State Hypothesis</strong></p>
+<p><span class="math inline">\(H_0: p_1 = p_2\)</span> and <span
+class="math inline">\(H_a: p_1 &lt; p_2\)</span></p>
+<p><strong>Step 2: Find test statistics</strong></p>
+<p><span class="math inline">\(\hat{p_1} = \frac{40}{244} =
+0.1639\)</span> and <span class="math inline">\(\hat{p_2} =
+\frac{87}{245} = 0.3551\)</span>. Then <span
+class="math inline">\(\hat{p} = \frac{40+87}{244+245} =
+0.2597\)</span>.</p>
+<p>Now, <span class="math inline">\(z_* = \frac{\hat{p_1} -
+\hat{p_2}}{\sqrt{\hat{p}(1-\hat{p})(\frac{1}{n_1} + \frac{1}{n_2})}} =
+-4.82\)</span></p>
+<p><strong>Step 3: Compute p-value</strong></p>
+<p>P-value <span class="math inline">\(= P(Z &lt; z_*) = P(Z &lt; -4.82)
+&lt; 0.0003\)</span></p>
+<p><strong>Step 4: Conclusion</strong></p>
+<p>Since p-value <span class="math inline">\(&lt; 0.0003 &lt; \alpha =
+0.01\)</span>, we reject the null hypothesis that <span
+class="math inline">\(p_1 = p_2\)</span>. The data provide very strong
+evidence that bupropion increases success rate.</p>
+<p><strong>R-code:</strong></p>
+<p>Input</p>
+<div class="tcolorbox">
+<pre><code>successes=c(87, 40);
+
+totals=c(245, 244);
+
+prop.test(successes, totals, alternative=&quot;greater&quot;,correct=FALSE);</code></pre>
+</div>
+<p>Output</p>
+<div class="tcolorbox">
+<pre><code>## 
+## 2-sample test for equality of proportions without 
+## continuity correction 
+## 
+## data: x and n
+## X-squared = 23.237, df = 1, p-value = 7.161e-07
+## alternative hypothesis: greater 
+## 95 percent confidence interval: 
+## 0.1275385 1.0000000 
+## sample estimates:
+##    prop 1    prop 2 
+## 0.3551020 0.1639344</code></pre>
+</div>
+</div>
+</div>
+<div id="two-sample-hypothesis-test-on-variances"
+class="section level2">
+<h2>Two Sample Hypothesis Test on Variances</h2>
+<p>Let’s begin this type of hypothesis test with a case. The question
+is: how do you know whether the homogeneity of variance assumption is
+satisﬁed? One simple method involves just looking at two sample
+variances. Logically, if two population variances are equal, then the
+two sample variances should be very similar. When the two sample
+variances are reasonably close, you can be reasonably conﬁdent that the
+homogeneity assumption is satisﬁed and proceed with, for example,
+Student t-interval. However, when one sample variance is three or four
+times larger than the other, then there is reason for a concern. The
+common statistical procedure for comparing population variances <span
+class="math inline">\(\sigma_1^2\)</span> and <span
+class="math inline">\(\sigma_2^2\)</span> makes an inference about the
+ratio of <span class="math inline">\(\sigma_1^2\)</span>/<span
+class="math inline">\(\sigma_2^2\)</span>.<br />
+<strong>Step 1: Stating the Structure of Testing Hypothesis</strong></p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Cases
+</td>
+<td style="text-align: center;">
+Null Hypothesis
+</td>
+<td style="text-align: center;">
+Alternative Hypothesis
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>σ</em><sub>1</sub><sup>2</sup> = <em>σ</em><sub>2</sub><sup>2</sup></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>σ</em><sub>1</sub><sup>2</sup> &gt; <em>σ</em><sub>2</sub><sup>2</sup></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>σ</em><sub>1</sub><sup>2</sup> = <em>σ</em><sub>2</sub><sup>2</sup></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>σ</em><sub>1</sub><sup>2</sup> &lt; <em>σ</em><sub>2</sub><sup>2</sup></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>σ</em><sub>1</sub><sup>2</sup> = <em>σ</em><sub>2</sub><sup>2</sup></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>σ</em><sub>1</sub><sup>2</sup> ≠ <em>σ</em><sub>2</sub><sup>2</sup></span>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+All possible cases of two sample hypothesis test on variances
+</figcaption>
+</figure>
+</div>
+<p><strong>Step 2: Computing Test Statistics</strong></p>
+<div class="definition">
+<p>The test statistics of two sample hypothesis test on variances is
+given by: <span class="math display">\[F_* = \frac{s_1^2}{s_2^2} \sim
+F_{n_1-1,n_2-1}.\]</span></p>
+</div>
+<p><strong>Decision Rules</strong></p>
+<ul>
+<li><p><span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span>
+and <span class="math inline">\(H_a:\sigma_1^2 \neq \sigma_2^2\)</span>.
+If <span class="math inline">\(F^* &gt;
+F_{n_1-1,n_2-1,\alpha/2}\)</span> or <span class="math inline">\(F^*
+&lt; F_{n_1-1,n_2-1,1 - \alpha/2}\)</span>, then we reject <span
+class="math inline">\(H_0\)</span>. Otherwise, we do not reject
+it.</p></li>
+<li><p><span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span>
+and <span class="math inline">\(H_a: \sigma_1^2 &gt;
+\sigma_2^2\)</span>. If <span class="math inline">\(F^*&gt;
+F_{n_1-1,n_2-1,\alpha}\)</span> or <span
+class="math inline">\(P(F_{n_1-1,n_2-1} &gt; F^*)\)</span> is too small,
+then we reject <span class="math inline">\(H_0\)</span>. Otherwise, we
+do not reject it.</p></li>
+<li><p><span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span>
+and <span class="math inline">\(H_a: \sigma_1^2 &lt;
+\sigma_2^2\)</span>. if <span class="math inline">\(F^* &lt;
+F_{n_1-1,n_2-1,1-\alpha}\)</span> or <span
+class="math inline">\(P(F_{n_1-1,n_2-1} &lt; F^*)\)</span> is too small,
+then we reject <span class="math inline">\(H_0\)</span>. Otherwise, we
+do not reject it.</p></li>
+</ul>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

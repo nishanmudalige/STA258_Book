@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section12.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="one-sample-hypothesis-test-on-a-proportion-and-variance"
+class="section level1">
+<h1>One Sample Hypothesis Test on a Proportion and Variance</h1>
+<p>Inferential statistics is a powerful method for statistical analysis,
+because it allows people to analyze a lot parameters. Similarly to
+confidence interval, testing hypothesis can be applied to proportion and
+variance as well. Also, we use the exact same structure for one sample
+hypothesis test on a proportion and variance.</p>
+<div id="one-sample-hypothesis-test-on-a-proportion"
+class="section level2">
+<h2>One Sample Hypothesis Test on a Proportion</h2>
+<p>Suppose we have assume the proportion of a criteria from a population
+<span class="math inline">\(p\)</span> is equal to our parameter <span
+class="math inline">\(p_0\)</span> (null hypothesis <span
+class="math inline">\(H_0: p = p_0\)</span>). While, the question is:
+how do we know whether our assumption is correct or not? We need to use
+testing hypothesis on proportion to verify.<br />
+<strong>Step 1. Stating the Structure of Testing Hypothesis</strong></p>
+<p>First of all, let’s proceed with a table to see all the cases:</p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Cases
+</td>
+<td style="text-align: center;">
+Null Hypothesis
+</td>
+<td style="text-align: center;">
+Alternative Hypothesis
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>H</em><sub>0</sub> : <em>p</em> = <em>p</em><sub>0</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>H</em><sub><em>a</em></sub> : <em>p</em> &gt; <em>p</em><sub>0</sub></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>H</em><sub>0</sub> : <em>p</em> = <em>p</em><sub>0</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>H</em><sub><em>a</em></sub> : <em>p</em> &lt; <em>p</em><sub>0</sub></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>H</em><sub>0</sub> : <em>p</em> = <em>p</em><sub>0</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>H</em><sub><em>a</em></sub> : <em>p</em> ≠ <em>p</em><sub>0</sub></span>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+All possible cases of one sample hypothesis test on a proportion (<span
+class="math inline"><em>p</em></span> represents the actual proportion
+of a population)
+</figcaption>
+</figure>
+</div>
+<p>We are not going to proceed with all three cases in a single
+question. You need to be able to identify which case of testing
+hypothesis are going to be applied from question.<br />
+<strong>Step 2. Computing Test Statistics</strong></p>
+<p>After that we need to compute our test statistics, as the following
+definition provides:</p>
+<div class="definition">
+<p>The test statistics of one sample hypothesis test on a proportion is
+given by: <span class="math display">\[Z^* = Z^* = \frac{\hat{p} - p_0}{
+\sqrt{ \frac{p_0(1-p_0)}{n} } }.\]</span> In this case, <span
+class="math inline">\(n\)</span> means the sample size, <span
+class="math inline">\(\hat{p}\)</span> is the parameter of the
+proportion of the population, which is calculated by <span
+class="math inline">\(\hat{p} = \frac{\text{number of successes in the
+sample}}{n}\)</span>. Also, the reference distribution is standard
+normal distribution: <span class="math inline">\(N(0,1)\)</span>.</p>
+</div>
+<p>Note that be careful while you are computing the test statistics,
+because it directly affects the final answer.<br />
+<strong>Step 3. Finding the <span class="math inline">\(p\)</span> -
+value</strong></p>
+<p>i. When is structure of testing hypothesis is <span
+class="math inline">\(H_0: p = p_0\)</span>, <span
+class="math inline">\(H_a: p &gt; p_0\)</span>:</p>
+<p><img src="figures/i.png" /></p>
+<p>In case (i), calculating <span class="math inline">\(P[Z &gt;
+Z_*]\)</span> as your p-value. Then, comparing with significant level:
+<span class="math inline">\(\alpha\)</span>.</p>
+<p>ii. When is structure of testing hypothesis is <span
+class="math inline">\(H_0: p = p_0\)</span>, <span
+class="math inline">\(H_a: p &lt; p_0\)</span>:</p>
+<p><img src="figures/ii-1.png" /></p>
+<p>In case (ii), calculating <span class="math inline">\(P[Z &lt;
+Z_*]\)</span> as your p-value. Then, comparing with significant level:
+<span class="math inline">\(\alpha\)</span>.</p>
+<p>iii. When is structure of testing hypothesis is <span
+class="math inline">\(H_0: p = p_0\)</span>, <span
+class="math inline">\(H_a: p \neq p_0\)</span>:</p>
+<p><img src="figures/iii-1.png" /></p>
+<p>In case (iii), calculating <span class="math inline">\(2\cdot P[Z
+&gt; |Z_*|]\)</span> as your p-value. Then, comparing with significant
+level: <span class="math inline">\(\alpha\)</span>.<br />
+<strong>Step 4: Comparing P-value with <span
+class="math inline">\(\alpha\)</span>-level</strong></p>
+<p>If p-value is less than <span
+class="math inline">\(\alpha\)</span>-level, then we reject the null
+hypothesis (<span class="math inline">\(H_0\)</span>) and accept the
+alternative hypothesis (<span class="math inline">\(H_a\)</span>).
+Otherwise, If p-value is greater than <span
+class="math inline">\(\alpha\)</span>-level, then we do not reject the
+null hypothesis (<span class="math inline">\(H_0\)</span>) and reject
+the alternative hypothesis (<span
+class="math inline">\(H_a\)</span>).<br />
+<strong>Step 5: Final Conclusion</strong> If we reject the null
+hypothesis, then we conclude that: there is sufficient evidence to
+reject the null hypothesis. If we do not reject the null hypothesis,
+then we conclude that: there is insufficient evidence to reject the null
+hypothesis.<br />
+<strong>Conditions on One Sample Test Hypothesis on a
+Proportion</strong></p>
+<ul>
+<li><p>1. Random sample;</p></li>
+<li><p>2. Independent sample: each observations are independent to
+others;</p></li>
+<li><p>3. Sufficient sample.</p></li>
+</ul>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

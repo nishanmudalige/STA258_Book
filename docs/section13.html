@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section13.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="statistical-power" class="section level1">
+<h1>Statistical Power</h1>
+header-includes: -
+<ul>
+<li><h2 id="statistical-power-1">Statistical Power</h2></li>
+</ul>
+<div class="definition">
+<p>The probability that a fixed level <span
+class="math inline">\(\alpha\)</span> significance test will reject
+<span class="math inline">\(H_0\)</span> when a particular alternative
+value of the parameter is true is called the <strong>power</strong> of
+the test against that alternative.</p>
+</div>
+<p>The statistical power of a test is its ability to detect an effect if
+it exists in reality.</p>
+<p>It is the probability of correctly rejecting <span
+class="math inline">\(H_0\)</span> when <span
+class="math inline">\(H_0\)</span> is false in reality.</p>
+<p><span class="math display">\[\text{Power} = P(\text{reject } H_0 \mid
+H_0 \text{ false})\]</span></p>
+<p><span class="math display">\[0 &lt; \text{power} &lt; 1\]</span></p>
+<p>Power close to 1 (high power):<br />
+Test is good at detecting effects.<br />
+Power close to 0 (low power):<br />
+Test is not reliable (i.e., we expect the test will not reject <span
+class="math inline">\(H_0\)</span> when <span
+class="math inline">\(H_0\)</span> is false).</p>
+<p>Power is affected by:</p>
+<ul>
+<li><p><strong>The effect</strong><br />
+(<span style="color: blue">larger differences between reality and the
+null are easier to detect</span>)</p></li>
+<li><p><strong>Sample size</strong><br />
+(<span style="color: blue">larger samples increase
+power</span>)</p></li>
+<li><p><strong>Significance level</strong> (<span
+class="math inline">\(\alpha\)</span>)<br />
+(<span style="color: blue">as <span
+class="math inline">\(\alpha\)</span> increases, easier to reject <span
+class="math inline">\(H_0\)</span></span>)</p></li>
+<li><p><strong>Variability in data</strong><br />
+(<span style="color: blue">lower variability, higher
+power</span>)</p></li>
+</ul>
+<div id="type-i-and-ii-errors" class="section level3 unnumbered">
+<h3 class="unnumbered">Type I and II Errors</h3>
+<p>It is possible to make an incorrect conclusion on a hypothesis
+test.<br />
+<strong>Type I:</strong> Incorrectly reject <span
+class="math inline">\(H_0\)</span> when <span
+class="math inline">\(H_0\)</span> is true in reality.<br />
+<strong>Type II:</strong> Incorrectly fail to reject <span
+class="math inline">\(H_0\)</span> when <span
+class="math inline">\(H_0\)</span> is false in reality.<br />
+<strong>Reality vs Conclusion Table:</strong></p>
+<div class="center">
+<table>
+<colgroup>
+<col width="3%" />
+<col width="96%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center"><span class="math inline">\(H_0\)</span> True</th>
+<th align="center"><span class="math inline">\(H_0\)</span> False</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Reject <span
+class="math inline">\(H_0\)</span></strong></td>
+<td align="center"><span style="color: red">Type I (<span
+class="math inline">\(\alpha\)</span>)</span></td>
+<td align="center"><span style="color: green!50!black">No
+error</span></td>
+</tr>
+<tr class="even">
+<td><strong>Fail to reject <span
+class="math inline">\(H_0\)</span></strong></td>
+<td align="center"><span style="color: green!50!black">No
+error</span></td>
+<td align="center"><span style="color: red">Type II (<span
+class="math inline">\(\beta\)</span>)</span></td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><em>Note:</em></strong> Type I errors are generally
+considered worse.</p>
+<p>Let <span class="math inline">\(\beta\)</span> be the probability of
+a Type II error. Then:</p>
+<p><span class="math display">\[\text{Power} = 1 - \beta = 1 -
+P(\text{Type II})\]</span></p>
+<div class="example">
+<p>The cola maker determines that a sweetness loss is too large to
+accept if the mean response for all tasters is <span
+class="math inline">\(\mu = 1.1\)</span>. Will a 5% significance test
+detect this?</p>
+<p><strong>Hypotheses:</strong> <span
+class="math display">\[\begin{aligned}
+H_0\!:&amp;\ \mu = 0 \\
+H_A\!:&amp;\ \mu &gt; 0
+\end{aligned}\]</span></p>
+<p>Assume: <span class="math display">\[n = 10, \quad \sigma = 1, \quad
+\alpha = 0.05\]</span></p>
+<p><strong>Step 1: Determine the rejection region.</strong></p>
+<p>Since the test is one-sided with <span class="math inline">\(\alpha =
+0.05\)</span>, we find: <span class="math display">\[z_{\text{crit}} =
+1.645 \quad \text{(from Z-table)}\]</span></p>
+<p>We reject <span class="math inline">\(H_0\)</span> if: <span
+class="math display">\[Z^* &gt; 1.645\]</span></p>
+<div class="center">
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
+<div class="figure" style="text-align: center">
+<img src="section13_files/figure-html/unnamed-chunk-1-1.png" alt="Rejection region for $Z$ with $\alpha = 0.05$" width="60%" />
+<p class="caption">
+Rejection region for <span class="math inline">\(Z\)</span> with <span
+class="math inline">\(\alpha = 0.05\)</span>
+</p>
+</div>
+</div>
+<p><strong>Step 2: Find the equivalent critical value of</strong> <span
+class="math inline">\(\bar{x}\)</span>.</p>
+<p>Since <span class="math inline">\(\sigma\)</span> is known, <span
+class="math display">\[Z = \frac{\bar{x} - \mu_0}{\sigma/\sqrt{n}} \quad
+\Rightarrow \quad
+1.645 = \frac{\bar{x}_{\text{crit}} - 0}{1/\sqrt{10}} \Rightarrow
+\bar{x}_{\text{crit}} \approx 0.520\]</span></p>
+<p>So we reject <span class="math inline">\(H_0\)</span> if <span
+class="math inline">\(\bar{x} &gt; 0.520\)</span>.</p>
+<p><strong>Step 3: Calculate the power when <span
+class="math inline">\(\mu = 1.1\)</span> is true.</strong></p>
+<p><span class="math display">\[P\left(Z &gt; \frac{0.520 -
+1.1}{1/\sqrt{10}}\right)
+\approx P(Z &gt; -1.83) = 1 - 0.0336 = 0.9664\]</span></p>
+<p><strong>Interpretation:</strong> There is a 96.6% chance the test
+correctly detects <span class="math inline">\(\mu = 1.1\)</span>.</p>
+<div class="center">
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
+<div class="figure" style="text-align: center">
+<img src="section13_files/figure-html/unnamed-chunk-2-1.png" alt="Power curve showing shaded rejection area under \( H_A \)" width="60%" />
+<p class="caption">
+Power curve showing shaded rejection area under <span
+class="math inline">\(H_A\)</span>
+</p>
+</div>
+</div>
+<p>This result can also be visualized using a power curve, which shows
+how the probability of correctly rejecting <span
+class="math inline">\(H_0\)</span> increases with the true mean <span
+class="math inline">\(\mu\)</span>.</p>
+<div class="figure" style="text-align: center">
+<img src="section13_files/figure-html/unnamed-chunk-3-1.png" alt="Power curve for a one-sided test with points at \( \mu = 0.52 \) and \( \mu = 1.1 \)" width="672" />
+<p class="caption">
+Power curve for a one-sided test with points at <span
+class="math inline">\(\mu = 0.52\)</span> and <span
+class="math inline">\(\mu = 1.1\)</span>
+</p>
+</div>
+</div>
+</div>
+<div id="type-i-and-type-ii-errors" class="section level2">
+<h2>Type I and Type II Errors</h2>
+<p>If we reject <span class="math inline">\(H_0\)</span> when in fact
+<span class="math inline">\(H_0\)</span> is true, this is a <strong>Type
+I error.</strong><br />
+If we fail to reject <span class="math inline">\(H_0\)</span> when in
+fact <span class="math inline">\(H_a\)</span> is true, this is a
+<strong>Type II error.</strong><br />
+The <strong>significance level</strong> <span
+class="math inline">\(\alpha\)</span> of any fixed level test is the
+probability of a Type I error.<br />
+The <strong>power</strong> of a test against any alternative is 1 minus
+the probability of a Type II error for that alternative.<br />
+The probability of making a Type II error is denoted by <span
+class="math inline">\(\beta\)</span>.</p>
+<div class="tcolorbox">
+<p><strong>Type I Error</strong><br />
+<span class="math inline">\(H_0\)</span> is true, but sampling variation
+in the data leads you to reject <span
+class="math inline">\(H_0\)</span>, you’ve made a Type I error.<br />
+When <span class="math inline">\(H_0\)</span> is true, a Type I error
+occurs if <span class="math inline">\(H_0\)</span> is rejected.<br />
+<strong>Type II Error</strong><br />
+<span class="math inline">\(H_0\)</span> is false, but sampling
+variation in the data does not lead you to reject <span
+class="math inline">\(H_0\)</span>, you’ve made a Type II error.<br />
+When <span class="math inline">\(H_0\)</span> is false, a Type II error
+occurs if <span class="math inline">\(H_0\)</span> is
+<strong>NOT</strong> rejected.</p>
+</div>
+<div class="example">
+<p>According to Access and Support to Education and Training Survey
+(2008), of 4,756 adult Canadians, 1,581 indicated that they worked at a
+job or business at anytime (between July 2007 and June 2008), regardless
+of the number of hours per week.</p>
+<p>Is there evidence to suggest that the true proportion <span
+class="math inline">\(p\)</span> is greater than 0.50?</p>
+<p><span class="math display">\[\begin{aligned}
+H_0\!:&amp;\ p = 0.50 \\
+H_a\!:&amp;\ p &gt; 0.50
+\end{aligned}\]</span></p>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>prop.test(x = 1581, n = 4756, p = 0.50,
+          alternative = &quot;greater&quot;, correct = FALSE)
+
+## 
+##  1-sample proportions test without continuity
+##  correction
+## 
+## data:  1581 out of 4756, null probability 0.5
+## X-squared = 534.24, df = 1, p-value = 1
+## alternative hypothesis: true p is greater than 0.5
+## 95 percent confidence interval:
+##  0.3212845 1.0000000
+## sample estimates:
+##         p 
+## 0.3324222 </code></pre>
+</div>
+<p><strong><span class="math inline">\(P\text{-value} &gt; \alpha =
+0.05\)</span></strong>; we Fail to Reject <span
+class="math inline">\(H_0\)</span>.</p>
+<p><strong>This means we could be making a Type II error.</strong>We
+indicated that there is no evidence to conclude that the true proportion
+of adult Canadians who worked at a job or business at anytime (between
+July 2007 and June 2008), regardless of the number of hours per week,
+was more than 0.50 — this conclusion implies that <span
+class="math inline">\(H_0: p = 0.50\)</span> is plausible, but we could
+be wrong.</p>
+</div>
+<div class="example">
+<p>Bottles of a popular cola are supposed to contain 300 milliliters
+(ml) of cola. There is some variation from bottle to bottle because the
+filling machinery is not perfectly precise. The distribution of contents
+is Normal with standard deviation <span class="math inline">\(\sigma =
+3\)</span> ml. Will inspecting 6 bottles discover underfilling?</p>
+<p>The hypotheses are: <span class="math display">\[\begin{aligned}
+H_0\!:&amp;\ \mu = 300 \\
+H_a\!:&amp;\ \mu &lt; 300
+\end{aligned}\]</span></p>
+<p>A 5% significance test rejects <span
+class="math inline">\(H_0\)</span> if <span class="math inline">\(z_*
+\leq -1.645\)</span>, where the test statistic <span
+class="math inline">\(z_*\)</span> is: <span class="math display">\[z_*
+= \frac{\bar{x} - 300}{3 / \sqrt{6}}\]</span></p>
+<p>Power calculations help us see how large a shortfall in the bottle
+contents the test can be expected to detect. Find the power of this test
+against the alternative <span class="math inline">\(\mu =
+299\)</span>.</p>
+<p><strong>Step 1. Write the rule for rejecting <span
+class="math inline">\(H_0\)</span> in terms of <span
+class="math inline">\(\bar{x}\)</span>.</strong></p>
+<p>We know that <span class="math inline">\(\sigma = 3\)</span>, so the
+<span class="math inline">\(z\)</span> test rejects <span
+class="math inline">\(H_0\)</span> at the <span
+class="math inline">\(\alpha = 0.05\)</span> level when: <span
+class="math display">\[z = \frac{\bar{x} - 300}{3 / \sqrt{6}} &lt;
+-1.645\]</span></p>
+<p>This is the same as: <span class="math display">\[\bar{x} &lt; 300 -
+1.645 \cdot \frac{3}{\sqrt{6}} \quad \Rightarrow \quad \bar{x} &lt;
+297.985\]</span></p>
+<p><strong>Step 2. The power is the probability of this event under the
+condition that the alternative <span class="math inline">\(\mu =
+299\)</span> is true.</strong></p>
+<p>To calculate this probability, standardize <span
+class="math inline">\(\bar{x}\)</span> using <span
+class="math inline">\(\mu = 299\)</span>: <span
+class="math display">\[\begin{aligned}
+\text{power} &amp;= P(\bar{x} &lt; 297.985 \mid \mu = 299) \\
+&amp;= P\left( Z &lt; \frac{297.985 - 299}{3 / \sqrt{6}} \right) \\
+&amp;= P(Z &lt; -0.83) = 0.2033
+\end{aligned}\]</span></p>
+</div>
+</div>
+<div id="using-power-to-determine-sample-size" class="section level2">
+<h2>Using Power to Determine Sample Size</h2>
+<p>When designing a study, one of the most important decisions is how
+large a sample to collect. If the sample size is too small, even
+meaningful effects may go undetected due to low statistical power. On
+the other hand, collecting an unnecessarily large sample can be
+inefficient and costly. By using power calculations, researchers can
+determine the minimum sample size needed to detect an effect of a given
+size with a specified probability (power), while controlling for Type I
+error. This section introduces how statistical power is used in planning
+and justifying sample sizes before conducting a hypothesis test.</p>
+<div class="example">
+<p>Suppose an experimenter wishes to test <span
+class="math display">\[\begin{aligned}
+H_0\!:&amp;\ \mu = 100 \\
+H_a\!:&amp;\ \mu &gt; 100
+\end{aligned}\]</span> at the <span class="math inline">\(\alpha =
+0.05\)</span> level of significance and wants <span
+class="math inline">\(1 - \beta\)</span> to equal 0.60 when <span
+class="math inline">\(\mu = 103\)</span>. What is the smallest (i.e.,
+cheapest) sample size that will achieve that objective? Assume that the
+variable being measured is Normally distributed with <span
+class="math inline">\(\sigma = 14\)</span>.<br />
+<strong>Step 1. Write the rule for rejecting <span
+class="math inline">\(H_0\)</span> in terms of <span
+class="math inline">\(\bar{x}_*\)</span>.</strong></p>
+<p>By definition, <span class="math display">\[\alpha = P(\text{we
+reject } H_0 \mid \mu = 100)
+= P\left( \bar{X} &gt; \bar{x}_* \mid \mu = 100 \right)
+= P\left( Z &gt; \frac{\bar{x}_* - 100}{14 / \sqrt{n}} \right) =
+0.05\]</span></p>
+<p>From the standard normal table, <span class="math inline">\(P(Z &gt;
+1.645) = 0.05\)</span>, so: <span class="math display">\[\bar{x}_* = 100
++ 1.645 \cdot \frac{14}{\sqrt{n}}\]</span></p>
+<p><strong>Step 2. The power is the probability of this event under the
+condition that the alternative <span class="math inline">\(\mu =
+103\)</span> is true.</strong></p>
+<p>To calculate this probability, standardize <span
+class="math inline">\(\bar{x}\)</span> using <span
+class="math inline">\(\mu = 103\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+\text{power} &amp;= 1 - \beta = P(\bar{X} &gt; \bar{x}_* \mid \mu = 103)
+\\
+&amp;= P\left( Z &gt; \frac{\bar{x}_* - 103}{14 / \sqrt{n}} \right) =
+0.60
+\end{aligned}\]</span></p>
+<p>From the standard normal table, <span class="math inline">\(P(Z &gt;
+-0.25) \approx 0.5987 \approx 0.60\)</span>, so: <span
+class="math display">\[\frac{\bar{x}_* - 103}{14 / \sqrt{n}} = -0.25
+\Rightarrow
+\bar{x}_* = 103 - 0.25 \cdot \frac{14}{\sqrt{n}}\]</span></p>
+<p><strong>Step 3. Solving for <span
+class="math inline">\(n\)</span></strong></p>
+<p>From Steps 1 and 2: <span class="math display">\[100 + 1.645 \cdot
+\frac{14}{\sqrt{n}} = 103 - 0.25 \cdot \frac{14}{\sqrt{n}}\]</span></p>
+<p>Solving for <span class="math inline">\(n\)</span>: <span
+class="math display">\[\left( \frac{(1.645 + 0.25) \cdot 14}{103 - 100}
+\right)^2 \approx 78.2045\]</span></p>
+<p>Therefore, a minimum of 79 observations must be taken to guarantee
+that the hypothesis test will have the desired power of at least
+0.60.</p>
+</div>
+<div class="example">
+<p>A vending machine advertises that it dispenses 225 ml cups of coffee
+(<span class="math inline">\(\sigma = 7\)</span> ml). You believe the
+mean volume of coffee per cup is something less than 225 ml. You plan to
+sample 40 cups of coffee from this machine to test your hypothesis.</p>
+<ol style="list-style-type: decimal">
+<li><p>If the true mean volume of coffee per cup is 223 ml, what is the
+power of your test at <span class="math inline">\(\alpha =
+0.05\)</span>? <em>(Homework)</em></p></li>
+<li><p>How many coffee cups should you sample if you want to raise the
+power in part (a) to 0.80?</p></li>
+</ol>
+<p><strong>Solution (b):</strong></p>
+<p><strong>Step 1. Write the rule for rejecting <span
+class="math inline">\(H_0\)</span> in terms of <span
+class="math inline">\(\bar{x}_*\)</span>.</strong></p>
+<p>By definition: <span class="math display">\[\begin{aligned}
+\alpha &amp;= P(\text{we reject } H_0 \mid \mu = 225) \\
+&amp;= P(\bar{X} &lt; \bar{x}_* \mid \mu = 225) \\
+&amp;= P\left( Z &lt; \frac{\bar{x}_* - 225}{7 / \sqrt{n}} \right) =
+0.05
+\end{aligned}\]</span></p>
+<p>From the standard normal table, <span class="math inline">\(P(Z &lt;
+-1.645) = 0.05\)</span>, so: <span class="math display">\[\bar{x}_* =
+225 - 1.645 \cdot \frac{7}{\sqrt{n}}\]</span></p>
+<p><strong>Step 2. The power is the probability of this event under the
+condition that the alternative <span class="math inline">\(\mu =
+223\)</span> is true.</strong></p>
+<p>To calculate this probability, standardize <span
+class="math inline">\(\bar{x}\)</span> using <span
+class="math inline">\(\mu = 223\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+\text{power} &amp;= 1 - \beta = P(\bar{X} &lt; \bar{x}_* \mid \mu = 223)
+\\
+&amp;= P\left( Z &lt; \frac{\bar{x}_* - 223}{7 / \sqrt{n}} \right) =
+0.80
+\end{aligned}\]</span></p>
+<p>From the table, <span class="math inline">\(P(Z &lt; 0.84) = 0.7995
+\approx 0.80\)</span>, so: <span class="math display">\[\frac{\bar{x}_*
+- 223}{7 / \sqrt{n}} = 0.84
+\quad \Rightarrow \quad
+\bar{x}_* = 223 + 0.84 \cdot \frac{7}{\sqrt{n}}\]</span></p>
+<p><strong>Step 3. Solving for <span
+class="math inline">\(n\)</span></strong></p>
+<p>From Steps 1 and 2: <span class="math display">\[225 - 1.645 \cdot
+\frac{7}{\sqrt{n}} = 223 + 0.84 \cdot \frac{7}{\sqrt{n}}\]</span></p>
+<p>Solving for <span class="math inline">\(n\)</span>: <span
+class="math display">\[n = \left( \frac{(1.645 + 0.84) \cdot 7}{225 -
+223} \right)^2 \approx 75.6465\]</span></p>
+<p>Therefore, a minimum of 76 observations must be taken to guarantee
+that the hypothesis test will have the desired precision.</p>
+</div>
+<div class="example">
+<p>A newsletter reports that 90% of adults drink milk. The researchers
+are interested in investigating if fewer than 90% of adults drink milk
+(at <span class="math inline">\(\alpha = 0.05\)</span>). They collect a
+random sample of 200 adults in a certain region.</p>
+<ol style="list-style-type: decimal">
+<li><p>Calculate power of the test if the percentage of adults who drink
+milk is really 85%.</p>
+<p><span class="math display">\[\begin{aligned}
+\text{Under } H_0 &amp;: \hat{p}^* = 0.90 - 1.645 \sqrt{\frac{0.90(1 -
+0.90)}{200}} = 0.8651 \\
+\text{Power} &amp;= P(\text{Reject } H_0 \mid p = 0.85) \\
+&amp;= P(\hat{p} &lt; 0.8651 \mid p = 0.85) \\
+&amp;= P\left(Z &lt; \frac{0.8651 - 0.85}{\sqrt{\frac{0.85(1 -
+0.85)}{200}}} \right) \\
+&amp;= P(Z &lt; 0.5980) \approx 0.7250
+\end{aligned}\]</span></p>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>pnorm(0.5980, mean = 0, sd = 1)
+# [1] 0.72508</code></pre>
+</div></li>
+<li><p>Calculate beta if the percentage of adults who drink milk is
+really 85%.</p>
+<p><span class="math display">\[\begin{aligned}
+\beta &amp;= 1 - \text{Power} = 1 - 0.725 = 0.275
+\end{aligned}\]</span></p></li>
+<li><p>How many adults should you sample if you want to raise the power
+in part (a) to 0.80?</p>
+<p><strong>Step 1: Determine rejection cutoff under</strong> <span
+class="math inline">\(H_0 : p = 0.90\)</span> <span
+class="math display">\[\begin{aligned}
+\hat{p}^* = 0.90 - 1.645 \sqrt{\frac{0.90(1 - 0.90)}{n}}
+\end{aligned}\]</span></p>
+<p><strong>Step 2: Set power to 0.80 under</strong> <span
+class="math inline">\(p = 0.85\)</span> <span
+class="math display">\[\begin{aligned}
+P\left( \frac{\hat{p} - 0.85}{\sqrt{\frac{0.85(1 - 0.85)}{n}}} &lt;
+\frac{\hat{p}^* - 0.85}{\sqrt{\frac{0.85(1 - 0.85)}{n}}} \right) &amp;=
+0.80 \\
+\frac{\hat{p}^* - 0.85}{\sqrt{\frac{0.85(1 - 0.85)}{n}}} &amp;= 0.8416
+\\
+\hat{p}^* &amp;= 0.85 + 0.8416 \sqrt{\frac{0.85(1 - 0.85)}{n}}
+\end{aligned}\]</span></p>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>qnorm(0.80, mean = 0, sd = 1)
+# [1] 0.8416212</code></pre>
+</div>
+<p><strong>Step 3: Equating expressions for</strong> <span
+class="math inline">\(\hat{p}^*\)</span> <span
+class="math display">\[\begin{aligned}
+0.90 - 1.645 \sqrt{\frac{0.90(1 - 0.90)}{n}} &amp;= 0.85 + 0.8416
+\sqrt{\frac{0.85(1 - 0.85)}{n}} \\
+0.05 &amp;= \left(1.645 \sqrt{0.90(0.10)} + 0.8416
+\sqrt{0.85(0.15)}\right) \cdot \frac{1}{\sqrt{n}} \\
+\sqrt{n} &amp;= \frac{0.4935 + 0.3005}{0.05} = 15.87 \Rightarrow n
+\approx 253
+\end{aligned}\]</span></p></li>
+</ol>
+</div>
+<div class="example">
+<p>A newsletter reports that 90% of adults drink milk. The researchers
+are interested in investigating if less than 90% of adults drink milk
+(at <span class="math inline">\(\alpha = 0.05\)</span>). They collect a
+<strong>random sample of 100 adults</strong> in a certain region.<br />
+Calculate power of the test if the percentage of adults who drink milk
+is really 85%.</p>
+<p>We test: <span class="math display">\[\begin{aligned}
+H_0 &amp;: p = 0.90 \\
+H_a &amp;: p &lt; 0.90
+\end{aligned}\]</span></p>
+<p>The rejection region is determined by: <span
+class="math display">\[\begin{aligned}
+\alpha &amp;= 0.05 = P(\text{reject } H_0 \mid H_0 \text{ is true}) \\
+P(Z &lt; -1.645) &amp;= 0.05 \quad \text{(Z critical value is -1.645)}
+\end{aligned}\]</span></p>
+<p>Now calculate power under the alternative <span
+class="math inline">\(p = 0.85\)</span>:</p>
+<p><span class="math display">\[\begin{aligned}
+\text{Power} &amp;= P(\text{reject } H_0 \mid H_0 \text{ is false}) \\
+&amp;= P\left( \frac{\hat{p} - 0.90}{\sqrt{\frac{0.90(1 - 0.90)}{100}}}
+&lt; -1.645 \,\middle|\, p = 0.85 \right) \\
+&amp;= P(\hat{p} &lt; 0.85065 \mid p = 0.85) \\
+&amp;= P\left( Z &lt; \frac{0.85065 - 0.85}{\sqrt{\frac{0.85(1 -
+0.85)}{100}}} \right) \\
+&amp;= P(Z &lt; 0.0182) \approx 0.5072
+\end{aligned}\]</span></p>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>pnorm(0.0182, mean = 0, sd = 1)
+# [1] 0.5072603</code></pre>
+</div>
+</div>
+<div class="example">
+<p>A newsletter reports that 90% of adults drink milk. The researchers
+are interested in investigating if less than 90% of adults drink milk
+(at <span class="math inline">\(\alpha = 0.05\)</span>). They collect a
+<strong>random sample of 50 adults</strong> in a certain region.<br />
+Calculate power of the test if the percentage of adults who drink milk
+is really 85%.</p>
+<p><span class="math display">\[\begin{aligned}
+H_0 &amp;: p = 0.90 \\
+H_a &amp;: p &lt; 0.90
+\end{aligned}\]</span></p>
+<p>The rejection region is determined by: <span
+class="math display">\[\begin{aligned}
+\alpha &amp;= 0.05 = P(\text{reject } H_0 \mid H_0 \text{ is true}) \\
+P(Z &lt; -1.645) &amp;= 0.05 \quad \text{(Z critical value is -1.645)}
+\end{aligned}\]</span></p>
+<p><strong>Power:</strong> <span class="math display">\[\begin{aligned}
+\text{Power} &amp;= P(\text{reject } H_0 \mid H_0 \text{ is false}) \\
+&amp;= P\left( \frac{\hat{p} - 0.90}{\sqrt{\frac{0.90(1-0.90)}{50}}}
+&lt; -1.645 \;\middle|\; p = 0.85 \right) \\
+&amp;= P(\hat{p} &lt; 0.85065 \mid p = 0.85) \\
+&amp;= P\left( Z &lt; \frac{0.85065 - 0.85}{\sqrt{\frac{0.85(1 -
+0.85)}{50}}} \right) \\
+&amp;= P(Z &lt; -0.3921) \\
+&amp;\approx 0.3475
+\end{aligned}\]</span></p>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>pnorm(-0.3921, mean = 0, sd = 1)
+# [1] 0.3474922</code></pre>
+</div>
+</div>
+<p>If we keep <span class="math inline">\(\alpha\)</span> at the same
+size, larger sample sizes increase the power of the test because
+sampling variability (sampling distributions) are much narrower.</p>
+<div class="tcolorbox">
+<p><strong>If <span class="math inline">\(H_a : \mu &gt; \mu_0\)</span>,
+then</strong> <span class="math display">\[\text{Power}(\mu_a) =
+\pi(\mu_a) = P \left[ Z \geq Z_{\alpha} + \frac{\sqrt{n}(\mu_0 -
+\mu_a)}{\sigma} \right]\]</span></p>
+<p><strong>where</strong> <span class="math inline">\(\mu_a &gt;
+\mu_0\)</span>.</p>
+<p><strong>If <span class="math inline">\(H_a : \mu &lt; \mu_0\)</span>,
+then</strong> <span class="math display">\[\text{Power}(\mu_a) =
+\pi(\mu_a) = P \left[ Z \leq -Z_{\alpha} + \frac{\sqrt{n}(\mu_0 -
+\mu_a)}{\sigma} \right]\]</span></p>
+<p><strong>where</strong> <span class="math inline">\(\mu_a &lt;
+\mu_0\)</span>.</p>
+<p><strong>If <span class="math inline">\(H_a : \mu \ne \mu_0\)</span>,
+then</strong> <span class="math display">\[\begin{aligned}
+\text{Power}(\mu_a) &amp;= \pi(\mu_a) \\
+&amp;= 1 - P \left[ -Z_{\alpha/2} + \frac{\sqrt{n}(\mu_0 -
+\mu_a)}{\sigma} \leq Z \leq Z_{\alpha/2} + \frac{\sqrt{n}(\mu_0 -
+\mu_a)}{\sigma} \right]
+\end{aligned}\]</span></p>
+<p><strong>where</strong> <span class="math inline">\(\mu_a \ne
+\mu_0\)</span>.</p>
+<p><strong>You need to know:</strong></p>
+<ul>
+<li><p>Standard deviation, <span
+class="math inline">\(\sigma\)</span></p></li>
+<li><p>Significance level, <span
+class="math inline">\(\alpha\)</span></p></li>
+<li><p>Effect size to detect, <span class="math inline">\(\mu_0 -
+\mu_a\)</span></p></li>
+</ul>
+</div>
+<p>Calculations of power (or of error probabilities) are useful for
+planning studies because we can make these calculations before we have
+any data. Once we actually have data, it is more common to report a
+P-value rather than a reject-or-not decision at a fixed significance
+level <span class="math inline">\(\alpha\)</span>. The P-value measures
+the strength of the evidence provided by the data against <span
+class="math inline">\(H_0\)</span>. It leaves any action or decision
+based on that evidence up to each individual. Different people may
+require different strengths of evidence.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

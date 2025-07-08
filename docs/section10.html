@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section10.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="two-sample-confidence-interval" class="section level1">
+<h1>Two Sample Confidence Interval</h1>
+<p>We have discussed three distinct types of one sample confidence
+interval. Now, let’s keep moving forward to see how confidence interval
+works for two sample. The aim of one sample confidence interval is
+giving a range of numbers to estimate population mean or proportion with
+a certain percentage of confidence. For two samples, the aim is
+comparing with sample has a relatively larger or smaller population mean
+or proportion with a certain percentage of confidence.</p>
+<div id="two-sample-confidence-interval-on-a-difference-of-mean"
+class="section level2">
+<h2>Two Sample Confidence Interval on a Difference of Mean</h2>
+<p>Suppose we are interested in the final mark of MAT135 from the same
+semester but with different campuses at the University of Toronto (let’s
+use UTSG and UTM as the two independent population groups). We want to
+know which campus has a relatively higher average score, the question
+is: how do we determine that? It is going to be complicated if we
+proceed with the study directly by determining the sum of everyone’s
+final marks and calculating the average for the two campuses. Similarly,
+as one sample confidence interval, we can select two groups of random
+sample from the two campuses (one group per each campus), and then
+calculate each sample mean. Finally, we apply a confidence interval to
+approximate which population has a higher mean (or average).<br />
+<strong>Two Sample Confidence Interval for Two Independent Groups of
+Population</strong></p>
+<p>We are going to introduce several definitions because two sample
+confidence interval has distinct cases. You need to be able to identify
+which exact case you are facing from given information. If you know how
+to solve one sample confidence interval, then two sample confidence
+interval is going to be easy, because all the techniques from one sample
+confidence interval are still usable.<br />
+<strong>Case 1:</strong> Two sample confidence interval with given
+population variance for both groups.<br />
+</p>
+<div class="definition">
+<p>Suppose we are given the population variance for both two independent
+groups of population. The confidence interval of <span
+class="math inline">\(\mu_1 - \mu_2\)</span> (difference of mean between
+population group 1 and 2) is given by the following: <span
+class="math display">\[(\bar{x}_{1} - \bar{x}_{2})  \pm
+z_{\small\alpha/2} \cdot \sqrt{ \frac{\sigma_1^2}{n_1} +
+\frac{\sigma_2^2}{n_2}}.\]</span> For <span
+class="math inline">\(\sigma_1^2\)</span>, which is population variance
+of population group 1; <span class="math inline">\(n_1\)</span> is the
+sample size chosen form population group 1. Similarly for <span
+class="math inline">\(\sigma_2^2\)</span>, which is population variance
+of population group 2; <span class="math inline">\(n_2\)</span> is the
+sample size chosen form population group 2.</p>
+</div>
+<p>Additionally, case 1 is a bit unrealistic with other cases because
+the population variance (<span class="math inline">\(\sigma^2\)</span>)
+from both groups are rare to know.<br />
+<strong>Case 2:</strong> Two sample confidence interval with equal
+unknown population variance<br />
+Ideally, we have all the information about population variance from two
+chosen samples. However, that case does not usually happen. We may face
+the case with unknown variance.</p>
+<div class="definition">
+<p>Suppose that the chosen two independent samples have same unknown
+population variance. Then the two sample confidence interval for <span
+class="math inline">\(\mu_1 - \mu_2\)</span> is given by the following:
+<span class="math display">\[(\bar{x}_1 - \bar{x}_2)  \pm  t_{n_1+n_2-2;
+\alpha/2} \cdot s_p \cdot \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}.\]</span>
+In this case, <span class="math inline">\(n_1\)</span> and <span
+class="math inline">\(n_2\)</span> are sample size from the two chosen
+samples respectively; <span class="math inline">\(s_p\)</span> is
+aggregated variance of both samples combined which accommodates samples
+of different sizes. Additionally, <span
+class="math inline">\(s_p\)</span> is called pooled standard deviation
+which is calculated by the following equation: <span
+class="math display">\[s_p^2 = \frac{(n_1-1) \cdot s_1^2 + (n_2-1) \cdot
+s_2^2 }{n_1+n_2-2},\]</span> where <span
+class="math inline">\(s_1^2\)</span> and <span
+class="math inline">\(s_2^2\)</span> are sample variance of the two
+chosen samples respectively.<br />
+Then we take the square root <span class="math inline">\(s_p =
+\sqrt{s_p^2}\)</span> to get pooled standard deviation.</p>
+</div>
+<p>Alternatively, we can write the equation for two sample confidence
+interval with equal unknown variance as: <span
+class="math display">\[(\bar{x}_1 - \bar{x}_2)  \pm  t_{n_1+n_2-2;
+\alpha/2} \cdot \sqrt{s_p^2(\frac{1}{n_1} + \frac{1}{n_2})}, \text{
+which is same as the one above.}\]</span></p>
+<p><strong>Pooled Variance and Standard Deviation</strong></p>
+<p>In statistics, pooled variance (also known as combined variance,
+composite variance, or overall variance) is a method to calculate such a
+value in order to estimate variance between several distinct
+populations. The mean of each population may or may not be the same, but
+the variance of these populations are same. Pooled standard deviation
+does similar thing, we use that value to estimate standard deviation
+instead of variance.<br />
+<strong>Case 3:</strong> Two sample confidence interval with unequal
+unknown population variance<br />
+At this point, you may wonder that what if the population variance is
+both unequal and unknown? Does two sample confidence interval still
+doable in this case? The answer is: Yes. We can still proceed with two
+sample confidence interval.</p>
+<div class="definition">
+<p>Suppose that our chosen two independent samples with unequal and
+unknown population variance, then the confidence interval for <span
+class="math inline">\(\mu_1 - \mu_2\)</span> is given by: <span
+class="math display">\[(\bar{x}_1 - \bar{x}_2)  \pm t_{df; \alpha/2}
+\cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}, \text{ where: $df =
+min(n_1-1, n_2-1)$.}\]</span> Moreover, <span
+class="math inline">\(s_1^2\)</span> and <span
+class="math inline">\(s_2^2\)</span> are sample variance of the two
+chosen groups; and <span class="math inline">\(n_1\)</span>, <span
+class="math inline">\(n_2\)</span> are the sample size of the two chosen
+groups respectively.</p>
+</div>
+<p><strong>Visualization of Two Sample Confidence Interval</strong></p>
+<p>Only with the equation seems hard to understand, the following number
+line helps you to visualize what we try to indicate:</p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of two-sample confidence interval (Case 1, 2, 3)
+</figcaption>
+</figure>
+</div>
+<p>Earlier in this chapter we said that two sample confidence interval
+aims to compare the mean between two populations. The number line above
+shows the result of difference of means between the two populations.
+Now, the question is, how do we know which population has a relatively
+larger mean? While, we can summarize it from that number line, with
+different cases:</p>
+<p><strong>1. <span class="math inline">\(\mu_1 &lt;
+\mu_2\)</span>:</strong></p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of the case when <span
+class="math inline"><em>μ</em><sub>1</sub> &lt; <em>μ</em><sub>2</sub></span>
+</figcaption>
+</figure>
+</div>
+<p>Now, we know that the difference between <span
+class="math inline">\(\mu_1 &lt; \mu_2\)</span> lies on the negative
+side on the number line, such that: <span class="math inline">\(\mu_1 -
+\mu_2 &lt; 0\)</span>. Hence, by solving the inequality above we get:
+<span class="math inline">\(\mu_1 &lt; \mu_2\)</span> trivially.</p>
+<p><strong>2. <span class="math inline">\(\mu_1 &gt;
+\mu_2\)</span>:</strong></p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of the case when <span
+class="math inline"><em>μ</em><sub>1</sub> &gt; <em>μ</em><sub>2</sub></span>
+</figcaption>
+</figure>
+</div>
+<p>Similarly as the case above, we know that <span
+class="math inline">\(\mu_1 - \mu_2 &gt; 0\)</span>, by observing the
+number line. Thus, we have: <span class="math inline">\(\mu_1 &gt;
+\mu_2\)</span>.</p>
+<p><strong>3. <span class="math inline">\(\mu_1 =
+\mu_2\)</span>:</strong></p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of the case when <span
+class="math inline"><em>μ</em><sub>1</sub> = <em>μ</em><sub>2</sub></span>
+</figcaption>
+</figure>
+</div>
+<p>However, 0 is an element in the range of the difference between <span
+class="math inline">\(\mu_1 - \mu_2\)</span>, such that there is a
+chance when the two means could be same. Hence, we conclude that <span
+class="math inline">\(\mu_1 = \mu_2\)</span> in this case. While, if you
+prefer to use <span class="math inline">\(\mu_2 - \mu_1\)</span>, this
+strategy is going to work as well. Just simply following the same steps,
+you will get the same conclusion.<br />
+<strong>Conditions of Two Sample Confidence Interval</strong></p>
+<p>Same as all previous confidence intervals, we still need several
+conditions that guarantee the validity two sample confidence
+interval:</p>
+<ul>
+<li><p>1. The two chosen sample is required to be independent and
+random;</p></li>
+<li><p>2. If both sample size are small (both <span
+class="math inline">\(n_1 &lt; 30\)</span> and <span
+class="math inline">\(n_2 &lt; 30\)</span>), then both sample should be
+from normal population;</p></li>
+<li><p>3. If one of the sample has a small size (either <span
+class="math inline">\(n_1 &lt; 30\)</span> or <span
+class="math inline">\(n_2 &lt; 30\)</span>), then the smaller sample
+must be from a normal population;</p></li>
+</ul>
+<p>Note that if both <span class="math inline">\(n_1 \ge 30\)</span> and
+<span class="math inline">\(n_2 \ge 30\)</span>, then normality
+assumption is not required by the Central Limit Theorem.<br />
+<strong>Example (Comparing Two Population Means Managerial Success
+Indexes for Two Groups)</strong></p>
+<div class="example">
+<p>Behavioural researchers have developed an index designed to measure
+managerial success. The index (measured on a 100- point scale) is based
+on the manager’s length of time in the organization and their level
+within the term; the higher the index, the more successful the manager.
+Suppose a researcher wants to compare the average index for the two
+groups of managers at a large manufacturing plant. Managers in group 1
+engage in high volume of interactions with people outside the managers’
+work unit (such interaction include p hone and face-to-face meetings
+with customers and suppliers, outside meetings, and public relation
+work). Managers in group 2 rarely interact with people outside their
+work unit. Independent random samples of 12 and 15 managers are selected
+from groups 1 and 2, respectively, and success index of each is
+recorded.<br />
+Comparing Two Population Means Managerial Success Indexes for Two Group
+(With Equal Variances Assumed) Note: The response variable is
+“Managerial Success Indexes”.</p>
+<p>Managerial success indexes is a continuous quantitative variable,</p>
+<p>measured on100-point scale.</p>
+<p>The explanatory variable is “Type of group”.</p>
+<p>Type of group (Group 1: Interaction with outsiders, Group 2: Fewer
+interactions) is a nominal categorical variable.</p>
+<p>Let’s use R-code to demonstrate this example. The following lines of
+code helps you to get started.</p>
+<div class="tcolorbox">
+<pre><code># Importing data file into R;
+
+success=read.csv(file=&quot;success.csv&quot;,header=TRUE);
+
+# Getting names of variables;
+
+names(success);
+
+# Seeing first few observations;
+
+head(success);
+
+# Attaching data file; attach(success);</code></pre>
+</div>
+<p>Now, you will get the following table by running the code above from
+R-studio.</p>
+<div class="tcolorbox">
+<pre><code>## [1] &quot;Success_Index&quot; &quot;Group&quot; 
+## Success_Index Group 
+## 1 65 1 
+## 2 66 1 
+## 3 58 1 
+## 4 70 1 
+## 5 78 1 
+## 6 53 1</code></pre>
+</div>
+<p>Then, we use R-studio to obtain some descriptive statistics.</p>
+<div class="tcolorbox">
+<pre><code>##  .group  min    Q1 median    Q3 max     mean       sd  n
+## 1         1   53 62.25   65.5 69.25  78 65.33333 6.610368 12
+## 2         2   34 42.50   50.0 54.50  68 49.46667 9.334014 15
+##  missing
+## 1           0
+## 2           0</code></pre>
+</div>
+<p>Note that: Group 1 = “interaction with outsiders” and Group 2 =
+“fewer interactions”. Then, we can proceed with two sample confidence
+interval.</p>
+<div class="tcolorbox">
+<pre><code># 95\% CI for the difference between means; 
+# equal variances is assumed;
+
+t.test(Success_Index~Group, 
+var.equal=TRUE, conf.level=0.95)$conf.int;</code></pre>
+</div>
+<p>Finally, the output is:</p>
+<div class="tcolorbox">
+<pre><code>## [1] 9.288254 22.445079 
+## attr(,&quot;conf.level&quot;) 
+## [1] 0.95</code></pre>
+</div>
+<p>Therefore, We are 95% conﬁdent that the mean success index is between
+9.28 and 22.44 points higher for group 1 than group 2.</p>
+</div>
+</div>
+<div id="two-sample-confidence-interval-on-paired-data"
+class="section level2">
+<h2>Two Sample Confidence Interval on Paired Data</h2>
+<p>It seems like two sample confidence interval only works on two
+independent samples, however what about two dependent samples? Suppose
+we are interested the growth of height from several distinct elementary
+students. We measure their height recently, then we will do it another
+time with five years later. The question is: how are we going to proceed
+with two confidence interval? While, the answer is yes. We are able to
+do so by constructing two sample confidence interval, but with a
+different strategy. Now, let’s introduce two sample confidence interval
+with paired data:</p>
+<div class="center">
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">
+Sample Units
+</td>
+<td style="text-align: center;">
+Measurement 1 (<span class="math inline"><em>M</em><sub>1</sub></span>)
+</td>
+<td style="text-align: center;">
+Measurement 2 (<span class="math inline"><em>M</em><sub>2</sub></span>)
+</td>
+<td style="text-align: center;">
+Difference (<span
+class="math inline"><em>M</em><sub>2</sub> − <em>M</em><sub>1</sub></span>
+or <span
+class="math inline"><em>M</em><sub>1</sub> − <em>M</em><sub>2</sub></span>)
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>11</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>12</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>x</em><sub><em>d</em>1</sub> = <em>x</em><sub>12</sub> − <em>x</em><sub>11</sub></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>21</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>22</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>x</em><sub><em>d</em>2</sub> = <em>x</em><sub>22</sub> − <em>x</em><sub>21</sub></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>31</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub>32</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>x</em><sub><em>d</em>2</sub> = <em>x</em><sub>32</sub> − <em>x</em><sub>31</sub></span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+……
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+n
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>n</em>1</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>n</em>2</sub></span>
+</td>
+<td style="text-align: center;">
+<span
+class="math inline"><em>x</em><sub><em>d</em><em>n</em></sub> = <em>x</em><sub><em>n</em>2</sub> − <em>x</em><sub><em>n</em>1</sub></span>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>
+A table of paired data
+</figcaption>
+</figure>
+</div>
+<p>The table shows how to get a paired data. The first column on the
+left is the sample size, the second column records the first time of
+measurement of objects, the third column records the second time of
+measurement of the same objects, the last column on the right is the
+difference between the second and the first measurement (<span
+class="math inline">\(M_2 - M_1\)</span>). Then we can use the fourth
+column to get the mean value, sample variance and sample standard
+deviation of the difference. Now, let’s begin with the proper
+definition:</p>
+<div class="definition">
+<p>Suppose we have two samples that are dependent with each other, the
+confidence interval on paired data’s mean (<span
+class="math inline">\(\mu_d\)</span>) is given by: <span
+class="math display">\[\bar{x}_d  \pm t_{n-1, \alpha/2} \cdot
+\frac{s_d}{\sqrt{n}}.\]</span> In this case, the reference distribution
+is t-distribution with <span class="math inline">\(n-1\)</span> degrees
+of freedom (sample size minus <span class="math inline">\(1\)</span>),
+<span class="math inline">\(\bar{x}_d\)</span> represents the sample
+mean of difference between the two measurements on the paired data,
+<span class="math inline">\(s_d\)</span> is the sample standard
+deviation of difference between the two measurements.</p>
+</div>
+<p>Note that: two sample confidence interval on paired data is to
+calculate a range of number on <strong>the mean of difference between
+the two measurement</strong>. Then, we can continue our analysis about
+the data.<br />
+<strong>Visualization of Two Sample Confidence Interval on Paired
+Data</strong></p>
+<p>Next, we need to state our final conclusion from the result of two
+sample confidence interval on paired data. Again, let’s construct a
+number line for each case.</p>
+<p><strong>1. <span class="math inline">\(\bar{M}_1 &lt;
+\bar{M}_2\)</span>:</strong></p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of the case when <span
+class="math inline"><em>M̄</em><sub>1</sub> &lt; <em>M̄</em><sub>2</sub></span>
+</figcaption>
+</figure>
+</div>
+<p>From the number line above, we know that the result of <span
+class="math inline">\(\mu_d\)</span> lies only in the negative side of
+the number line, also we use <span class="math inline">\(M_1 -
+M_2\)</span> to get the difference data then calculate the average of
+difference data. Now, we have: <span class="math inline">\(\bar{M}_1 -
+\bar{M}_2 = \mu_d &lt; 0\)</span>. Hence, we conclude that <span
+class="math inline">\(\bar{M}_1 &lt; \bar{M}_2.\)</span></p>
+<p><strong>2. <span class="math inline">\(\bar{M}_1 &gt;
+\bar{M}_2\)</span>:</strong></p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of the case when <span
+class="math inline"><em>M̄</em><sub>1</sub> &gt; <em>M̄</em><sub>2</sub></span>
+</figcaption>
+</figure>
+</div>
+<p>From the number line above, we know that the result of <span
+class="math inline">\(\mu_d\)</span> lies only in the positive side of
+the number line, also we use <span class="math inline">\(M_1 -
+M_2\)</span> to get the difference data then calculate the average of
+difference data. Now, we have: <span class="math inline">\(\bar{M}_1 -
+\bar{M}_2 = \mu_d &gt; 0\)</span>. Hence, we conclude that <span
+class="math inline">\(\bar{M}_1 &gt; \bar{M}_2.\)</span></p>
+<p><strong>3. <span class="math inline">\(\bar{M}_1 =
+\bar{M}_2\)</span>:</strong></p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of the case when <span
+class="math inline"><em>M̄</em><sub>1</sub> = <em>M̄</em><sub>2</sub></span>
+</figcaption>
+</figure>
+</div>
+<p>While, 0 is included in the range of <span
+class="math inline">\(\mu_d\)</span>, then there is a chance that <span
+class="math inline">\(\bar{M}_1 - \bar{M_2} = \mu_d = 0.\)</span> Hence,
+we conclude that <span class="math inline">\(\bar{M}_1 =
+\bar{M}_2\)</span>.<br />
+<strong>Conditions of Two Sample Confidence Interval on Paired
+Data</strong></p>
+<p>We need the following conditions to make sure the validity of two
+sample confidence interval on paired data:</p>
+<ul>
+<li><p>1. Units are independent (measurements are dependent on each
+unit)</p></li>
+<li><p>2. Units must be random sample</p></li>
+<li><p>3. If we have a small sample (<span class="math inline">\(n &lt;
+30\)</span>), then the population of difference should be normal (no
+restrictions on large samples).</p></li>
+</ul>
+<p>Also, note that two sample confidence interval on paired data can
+only be applied with two dependent groups of data. For independent
+groups of data, you need to refer chapter 10.1.</p>
+</div>
+<div id="two-sample-confidence-interval-on-proportions"
+class="section level2">
+<h2>Two Sample Confidence Interval on Proportions</h2>
+<p>Furthermore, two sample confidence intervals can approximate the
+proportion as well. Suppose we are interested in the proportion of
+left-handed students in UTSG and UTM, and we are asked to find the
+campus that has a relatively larger proportion of left-handed students.
+To begin with this task, it is impossible to complete it directly by
+calculation, due to its complexity and high workload. We can use select
+two independent groups (one group from each campus), then apply two
+sample confidence interval to approximate which campus has a larger
+proportion.<br />
+It may still be difficult to understand, now let’s begin with
+figures:</p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of two population of all students from UTSG (left) and UTM
+(right)
+</figcaption>
+</figure>
+</div>
+<p>This figure represents the population of all students from two
+campuses. To begin with our task (find the proportion of left-handed
+students), we can select a group of random sample from each campus:</p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of two selected random sample from UTSG (left) and UTM
+(right)
+</figcaption>
+</figure>
+</div>
+<p>As you can see, we have chosen our random sample from each campus
+with sample size <span class="math inline">\(n_1\)</span> and <span
+class="math inline">\(n_2\)</span>, respectively. Now we need estimators
+to construct our confidence interval: <span
+class="math inline">\(\hat{p}_1\)</span> and <span
+class="math inline">\(\hat{p}_2\)</span>. Those are the proportion of
+left-handed students from each random sample respectively. Since we have
+all the information we need, now we can apply our confidence interval
+from the two random sample.</p>
+<div class="definition">
+<p>Draw an SRS of size <span class="math inline">\(n_1\)</span> from a
+population having proportion <span class="math inline">\(p_1\)</span> of
+successes and draw an independent SRS of size <span
+class="math inline">\(n_2\)</span> from another population having
+proportion <span class="math inline">\(p_2\)</span> of successes. When
+<span class="math inline">\(n_1\)</span> and <span
+class="math inline">\(n_2\)</span> are large, an approximate level C
+confidence interval for <span class="math inline">\(p_1 - p_2\)</span>
+is given by: <span class="math display">\[(\hat{p}_1 - \hat{p}_2)  \pm
+z_{\alpha/2} \cdot \sqrt{ \frac{\hat{p}_1(1-\hat{p}_1)}{n_1} +
+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}.\]</span> Now, <span
+class="math inline">\(n_1\)</span> and <span
+class="math inline">\(n_2\)</span> are sample size of selected random
+sample from each population; <span
+class="math inline">\(\hat{p}_1\)</span> and <span
+class="math inline">\(\hat{p}_2\)</span> are the proportion of success
+of each selected random sample respectively.</p>
+</div>
+<p>Note that, <span class="math inline">\(\hat{p}_1 = \frac{\text{number
+of successes in random sample 1}}{n_1}\)</span> and <span
+class="math inline">\(\hat{p}_2 = \frac{\text{number of successes in
+random sample 2}}{n_2}\)</span>.</p>
+<p><strong>Visualization of <span class="math inline">\(p_1 -
+p_2\)</span></strong></p>
+<p>Similarly as confidence interval on independent and dependent data,
+we are going to provide number lines, in order to help you to visualize
+the result easily.</p>
+<p><strong>1. <span class="math inline">\(p_1 &gt;
+p_2\)</span>:</strong></p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of the case when <span
+class="math inline"><em>p</em><sub>1</sub> &gt; <em>p</em><sub>2</sub></span>
+</figcaption>
+</figure>
+</div>
+<p>From the number line, the result of <span
+class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span> lies only on the
+positive side, such that <span class="math inline">\(\hat{p}_1 -
+\hat{p}_2 &gt; 0\)</span>. Hence, <span class="math inline">\(\hat{p}_1
+&gt; \hat{p}_2\)</span>. Note that proportion is a number between <span
+class="math inline">\(0\)</span> and <span
+class="math inline">\(1\)</span>, such that the difference of two
+proportions only between <span class="math inline">\(-1\)</span> and
+<span class="math inline">\(1\)</span>.</p>
+<p><strong>2. <span class="math inline">\(\hat{p}_1 &lt;
+\hat{p}_2\)</span></strong></p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of the case when <span
+class="math inline"><em>p</em><sub>1</sub> &lt; <em>p</em><sub>2</sub></span>
+</figcaption>
+</figure>
+</div>
+<p>Now, the result of <span class="math inline">\(\hat{p}_1 -
+\hat{p}_2\)</span> lies only on the positive side, such that <span
+class="math inline">\(\hat{p}_1 - \hat{p}_2 &lt; 0\)</span>. Hence,
+<span class="math inline">\(\hat{p}_1 &lt; \hat{p}_2\)</span>.</p>
+<p><strong>3. <span class="math inline">\(\hat{p}_1 =
+\hat{p}_2\)</span></strong></p>
+<div class="center">
+<figure>
+<figcaption>
+Visualization of the case when <span
+class="math inline"><em>p̂</em><sub>1</sub> = <em>p̂</em><sub>2</sub></span>
+</figcaption>
+</figure>
+</div>
+<p>In this case, <span class="math inline">\(0\)</span> lies in the
+range of <span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span>,
+such that there is a chance when <span class="math inline">\(\hat{p}_1 -
+\hat{p}_2 = 0\)</span>. Hence, we conclude that: <span
+class="math inline">\(\hat{p}_1 = \hat{p}_2\)</span>.<br />
+<strong>Conditions of Two Sample Confidence Interval on
+Proportion</strong></p>
+<ul>
+<li><p>1. Randomization Condition: The data in each group should be
+drawn independently and at random from a population or generated b y a
+completely randomized designed experiment.</p></li>
+<li><p>2. The <span class="math inline">\(10\%\)</span> Condition: If
+the data are sampled without replacement, the sample should not exceed
+<span class="math inline">\(10\%\)</span> of the population. If samples
+are bigger than <span class="math inline">\(10\%\)</span> of the target
+population, random draws are no longer approximately
+independent.</p></li>
+<li><p>3. Independent Groups Assumption: The two groups we are comparing
+must be independent from each other.</p></li>
+<li><p>4. Sample size requirement: both selected sample size must
+greater than <span class="math inline">\(70\)</span>.</p></li>
+</ul>
+</div>
+<div id="two-sample-confidence-interval-on-variances"
+class="section level2">
+<h2>Two Sample Confidence Interval on Variances</h2>
+<p>Confidence interval is a strong technique in inferential statistics,
+we have discussed its application on population mean, proportion and
+dependent data. Now, let’s move on to variance.<br />
+One simple method involves just looking at two sample variances.
+Logically, if two population variances are equal, then the two sample
+variances should be very similar. When the two sample variances are
+reasonably close, you can be reasonably conﬁdent that the homogeneity
+assumption is satisﬁed and proceed with, for example, Student
+t-interval. However, when one sample variance is three or four times
+larger than the other, then there is reason for a concern. The common
+statistical procedure for comparing population variances <span
+class="math inline">\(\sigma_1^2\)</span> and <span
+class="math inline">\(\sigma_2^2\)</span> makes an inference about the
+ratio of <span
+class="math inline">\((\sigma_1^2)/(\sigma_2^2)\)</span>.<br />
+To make an inference about the ratio of <span
+class="math inline">\((\sigma_1^2)/(\sigma_2^2)\)</span> we collect
+sample data and use the ratio of the sample variances <span
+class="math inline">\((\sigma_1^2)/(\sigma_2^2)\)</span>.</p>
+<p>At this point, let’s derive the confidence interval. We know that:
+<span class="math inline">\(\frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2}
+\sim F_{n_1-1, n_2 -1}\)</span>. Then, we can construct our confidence
+interval as: <span class="math display">\[P[F_{n_1-1, n_2 -1;
+1-\alpha/2} &lt; \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} &lt;
+F_{n_1-1, n_2 -1; \alpha/2}]  = 1 -\alpha.\]</span> Now, the reference
+distribution of this confidence interval is F-distribution with <span
+class="math inline">\(n_1 - 1\)</span> and <span
+class="math inline">\(n_2 -1\)</span> degrees of freedom, leaving areas
+of <span class="math inline">\(1 - \alpha/2\)</span> and <span
+class="math inline">\(\alpha/2\)</span>, respectively, to the right.
+Rearranging gives us: <span class="math display">\[P[\frac{s_1^2}{s_2^2}
+\cdot \frac{1}{F_{n_1-1, n_2 -1; \alpha/2}} &lt;
+\frac{\sigma_1^2}{\sigma_2^2} &lt; \frac{s_1^2}{s_2^2} \cdot
+\frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}}] = 1 -\alpha.\]</span> Using the
+face that <span class="math inline">\(F_{n_1-1,n_2-1; 1 - \alpha/2} =
+\frac{1}{F_{n_2-1,n_1-1; \alpha/2}}\)</span>, we have: <span
+class="math display">\[P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1,
+n_2-1, \alpha/2}} &lt; \frac{\sigma_1^2}{\sigma_2^2} &lt;
+\frac{s_1^2}{s_2^2} \cdot F_{n_2-1, n_1 - 1, \alpha/2}] = 1-
+\alpha.\]</span></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

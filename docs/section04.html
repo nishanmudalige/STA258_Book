@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>section04.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAZSB</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="section01.html">Section 1</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="normal-approximation-to-the-binomial-distribution"
+class="section level1">
+<h1>Normal Approximation to the Binomial Distribution</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<div class="definition">
+<p>A <em>statistic</em> is a function of the observable random variables
+in a sample and known constants.</p>
+<p>Since statistics are functions of the random variables observed in a
+sample, they themselves are random variables. As such, all statistics
+have a corresponding probability distribution, which we refer to as
+their <em>sampling distribution</em>.</p>
+</div>
+<div class="tcolorbox">
+<p><strong>Bernoulli Distribution:</strong></p>
+<p>A Bernoulli trial is a single experiment with two outcomes:</p>
+<ul>
+<li><p>Success: <span class="math inline">\(X = 1\)</span> with
+probability <span class="math inline">\(p\)</span></p></li>
+<li><p>Failure: <span class="math inline">\(X = 0\)</span> with
+probability <span class="math inline">\(1 - p\)</span></p></li>
+</ul>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(X = x\)</span></th>
+<th align="center">0</th>
+<th align="center">1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(P(X = x)\)</span></td>
+<td align="center"><span class="math inline">\(1 - p\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The probability mass function (PMF) is: <span
+class="math display">\[f(x) = p^x (1 - p)^{1 - x}, \quad x \in \{0,
+1\}\]</span></p>
+<p><strong>Binomial Distribution:</strong></p>
+<p>A binomial distribution arises from <span
+class="math inline">\(n\)</span> independent Bernoulli trials. Let:
+<span class="math display">\[X = \text{number of successes in } n \text{
+trials}\]</span> Then: <span class="math display">\[X \sim
+\text{Binomial}(n, p)\]</span></p>
+<p>where:</p>
+<ul>
+<li><p>Each trial results in either success (with probability <span
+class="math inline">\(p\)</span>) or failure (with probability <span
+class="math inline">\(1 - p\)</span>)</p></li>
+<li><p><span class="math inline">\(X \in \{0, 1, \dots,
+n\}\)</span></p></li>
+</ul>
+<p>The PMF is: <span class="math display">\[
+P(X = x) = \textstyle \binom{n}{x} p^x (1 - p)^{n - x}
+\]</span></p>
+<p><strong>Moment Generating Function (MGF):</strong></p>
+<p>The moment generating function (MGF) of a random variable <span
+class="math inline">\(X\)</span> is defined as: <span
+class="math display">\[M_X(t) = \mathbb{E}[e^{tX}]\]</span> The MGF
+uniquely characterizes the distribution of <span
+class="math inline">\(X\)</span> (if it exists in an open interval
+around 0), and it can be used to compute moments such as the mean and
+variance.</p>
+</div>
+</div>
+<div id="bernoulli-distribution" class="section level2">
+<h2>Bernoulli Distribution</h2>
+<p>Bernoulli random variable is a discrete random variable that has
+exactly two possible outcomes which are either a
+<strong>success</strong> or a <strong>failure</strong>. An experiment in
+which there are exactly 2 outcomes (which are success or failure) is
+called a <strong>Bernoulli trial</strong>.<br />
+<br />
+When <span class="math inline">\(x = 1\)</span> we have a success and
+when <span class="math inline">\(x = 0\)</span> we have a failure. The
+term success and failure are relative to the problem being studied.</p>
+<div class="tcolorbox">
+<p>We chose to label a person who refuses to administer the worst shock
+a “success” and all others as “failures”. However, we could just as
+easily have reversed these labels. The mathematical framework we will
+build does not depend on which outcome is labeled a success and which a
+failure, as long as we are consistent.</p>
+</div>
+<p>Consider the random experiment of rolling a die once. Define the
+random variable:</p>
+<p><span class="math display">\[X_i =
+\begin{cases}
+1 &amp; \text{if the } i\text{-th roll is a six}, \\
+0 &amp; \text{otherwise}
+\end{cases}\]</span></p>
+<p>Then <span class="math inline">\(X_i \sim
+\text{Bernoulli}(p)\)</span>, where <span class="math inline">\(p =
+P(\text{rolling a six})\)</span>.</p>
+<div class="tcolorbox">
+<p><em>Let <span class="math inline">\(X \sim
+\text{Bernoulli}(p)\)</span>. The mass function of <span
+class="math inline">\(X\)</span> is</em></p>
+<p><span class="math display">\[P(X = x) = p^x (1 - p)^{1 - x}, \quad x
+= 0, 1\]</span></p>
+<p><em>where <span class="math inline">\(p\)</span> represents the
+probability of success.</em></p>
+</div>
+<div class="definition">
+<p>Let <span class="math inline">\(X \sim \text{Bernoulli}(p)\)</span>.
+The mean of <span class="math inline">\(X\)</span> is <span
+class="math display">\[E(X) = \mu = p\]</span> and the variance of <span
+class="math inline">\(X\)</span> is <span
+class="math display">\[\text{Var}(X) = \sigma^2 = p(1 - p)\]</span></p>
+</div>
+<p><em>To support the earlier result, we now provide a derivation of the
+mean, variance, and standard deviation of a Bernoulli random
+variable.</em><br />
+Let <span class="math inline">\(X\)</span> be a Bernoulli random
+variable with the probability of a success as <span
+class="math inline">\(p\)</span>. Then</p>
+<p><span class="math display">\[\begin{aligned}
+E[X] = \mu &amp; = \sum_{i=1}^{n} x_i \cdot P(X = x_i) \\
+&amp;= 0 \cdot P(X = 0) + 1 \cdot P(X = 1) \\
+&amp;= 0 \cdot (1 - p) + 1 \cdot p \\
+&amp;= p
+\end{aligned}\]</span> Similarly, the variance of <span
+class="math inline">\(X\)</span> can be computed:</p>
+<p><span class="math display">\[\begin{aligned}
+V(X) = \sigma^2 &amp; = \sum_{i=1}^{k} (x_i - \mu)^2 \cdot P(X = x_i) \\
+&amp;= (0 - p)^2 \cdot P(X = 0) + (1 - p)^2 \cdot P(X = 1) \\
+&amp;= p^2 (1 - p) + (1 - p)^2 p \\
+&amp;= p(1 - p)
+\end{aligned}\]</span></p>
+<p>The standard deviation is</p>
+<p><span class="math display">\[\begin{aligned}
+\sigma &amp; = \sqrt{\sigma^2} \\
+            &amp; = \sqrt{p(1 - p)}
+\end{aligned}\]</span></p>
+</div>
+<div id="sampling-distribution-of-the-sum-and-mgf-derivation"
+class="section level2">
+<h2>Sampling Distribution of the Sum and MGF Derivation</h2>
+<p>Consider determining the sampling distribution of the sample total:
+<span class="math display">\[T_n = X_1 + X_2 + \dots + X_n\]</span>
+Suppose <span class="math inline">\(X_i \overset{iid}{\sim}
+\text{Bernoulli}(p)\)</span>. Then the moment-generating function of
+<span class="math inline">\(T_n\)</span> is:</p>
+<p><span class="math display">\[\begin{aligned}
+M_{T_n}(t) &amp;= \mathbb{E}[e^{t T_n}] \\
+           &amp;= \mathbb{E}\left[e^{t(X_1 + X_2 + \dots + X_n)}\right]
+\\
+           &amp;= \mathbb{E}\left[e^{tX_1} e^{tX_2} \dots e^{tX_n}
+\right] \quad \text{(independence)} \\
+           &amp;= \mathbb{E}[e^{tX_1}] \cdot \mathbb{E}[e^{tX_2}] \cdots
+\mathbb{E}[e^{tX_n}] \\
+           &amp;= M_{X_1}(t) \cdot M_{X_2}(t) \cdots M_{X_n}(t) \\
+           &amp;= \left[pe^t + (1 - p)\right]^n
+\end{aligned}\]</span></p>
+<p>Since this is the MGF of a binomial random variable with parameters
+<span class="math inline">\(n\)</span> and <span
+class="math inline">\(p\)</span>, we conclude:</p>
+<p><span class="math display">\[T_n \sim \text{Binomial}(n,
+p)\]</span></p>
+<div class="tcolorbox">
+<p>We can think of rolling a die <span class="math inline">\(n\)</span>
+times as an example of the binomial setting. Each roll gives either a
+six (a “success”) or a number different from six (a “failure”).</p>
+<p>Knowing the outcome of one roll doesn’t tell us anything about the
+others, so the <span class="math inline">\(n\)</span> rolls are
+independent.</p>
+<p>If we call a six a success, then:</p>
+<ul>
+<li><p>The probability of success on each trial is <span
+class="math inline">\(p = P(\text{rolling a six}) =
+\frac{1}{6}\)</span></p></li>
+<li><p>The probability of failure is <span class="math inline">\(1 - p =
+\frac{5}{6}\)</span></p></li>
+</ul>
+<p>Let <span class="math inline">\(Y\)</span> be the number of sixes
+rolled in <span class="math inline">\(n\)</span> trials. Then <span
+class="math inline">\(Y \sim \text{Binomial}(n, p)\)</span>, and the
+distribution of <span class="math inline">\(Y\)</span> is called a
+<strong>binomial distribution</strong>.</p>
+</div>
+</div>
+<div id="binomial-distribution" class="section level2">
+<h2>Binomial Distribution</h2>
+<p>In section 4.2 we learnt about Bernoulli random variables in which we
+were interested in the outcome of just a single trial. A
+<strong>binomial random variable</strong> is a generalization of several
+independent Bernoulli trials. Instead of performing just a single
+Bernoulli trial and observing whether we have a success or not, we are
+now performing several Bernoulli trials and observing whether we have a
+certain number of successes and failures. The <strong>binomial
+distribution</strong> describes the probability of having exactly <span
+class="math inline">\(k\)</span> successes in <span
+class="math inline">\(n\)</span> independent Bernoulli trials with
+probability of a success <span class="math inline">\(p\)</span>.<br />
+</p>
+<div class="tcolorbox">
+<p><em>Let <span class="math inline">\(X \sim \text{Bin}(n, p)\)</span>.
+The probability of observing <span class="math inline">\(x\)</span>
+successes in these <span class="math inline">\(n\)</span> independent
+trials is given by</em></p>
+<p><span class="math display">\[P(X = x) = \binom{n}{x} p^x (1 - p)^{n -
+x}\]</span></p>
+<p><em>where</em></p>
+<ul>
+<li><p><span class="math inline">\(n\)</span> represents the number of
+trials,</p></li>
+<li><p><span class="math inline">\(x\)</span> represents the number of
+successes,</p></li>
+<li><p><span class="math inline">\(p\)</span> represents the probability
+of success on any given trial,</p></li>
+</ul>
+<p><span class="math display">\[\binom{n}{x} = \frac{n!}{x!(n - x)!}
+\quad \text{is the binomial coefficient.}\]</span></p>
+</div>
+<div class="definition">
+<p>Let <span class="math inline">\(X \sim \text{Bin}(n, p)\)</span>. The
+mean of <span class="math inline">\(X\)</span> is <span
+class="math display">\[E(X) = \mu = np\]</span> <em>and the variance of
+<span class="math inline">\(X\)</span> is</em> <span
+class="math display">\[\text{Var}(X) = \sigma^2 = np(1 - p)\]</span></p>
+</div>
+<div id="visualizing-the-pmf-of-binomial-distributions"
+class="section level3">
+<h3>Visualizing the PMF of Binomial Distributions</h3>
+<p><strong>R code:</strong></p>
+<div class="tcolorbox">
+<pre><code>## Pmf of Binomial with n=10 and p=1/6.
+
+x &lt;- seq(0, 10, by=1)
+y &lt;- dbinom(x, 10, 1/6)</code></pre>
+</div>
+<p><strong>Probability Mass Functions (PMFs) for increasing <span
+class="math inline">\(n\)</span>:</strong></p>
+<p>The following plots display the probability mass functions (PMFs) for
+a binomial distribution with <span class="math inline">\(p =
+\frac{1}{6}\)</span> and increasing values of <span
+class="math inline">\(n\)</span>. As <span
+class="math inline">\(n\)</span> increases, the binomial distribution
+begins to resemble a normal distribution.</p>
+<div class="figure" style="text-align: center">
+<img src="section04_files/figure-html/unnamed-chunk-1-1.png" alt="PMF of Binomial distribution with \(n = 10\) and \(p = \frac{1}{6}\)" width="672" />
+<p class="caption">
+PMF of Binomial distribution with <span class="math inline">\(n =
+10\)</span> and <span class="math inline">\(p = \frac{1}{6}\)</span>
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section04_files/figure-html/unnamed-chunk-2-1.png" alt="PMF of Binomial distribution with \(n = 50\) and \(p = \frac{1}{6}\)" width="672" />
+<p class="caption">
+PMF of Binomial distribution with <span class="math inline">\(n =
+50\)</span> and <span class="math inline">\(p = \frac{1}{6}\)</span>
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section04_files/figure-html/unnamed-chunk-3-1.png" alt="PMF of Binomial distribution with \(n = 100\) and \(p = \frac{1}{6}\)" width="672" />
+<p class="caption">
+PMF of Binomial distribution with <span class="math inline">\(n =
+100\)</span> and <span class="math inline">\(p = \frac{1}{6}\)</span>
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<img src="section04_files/figure-html/unnamed-chunk-4-1.png" alt="PMF of Binomial distribution with \(n = 300\) and \(p = \frac{1}{6}\)" width="672" />
+<p class="caption">
+PMF of Binomial distribution with <span class="math inline">\(n =
+300\)</span> and <span class="math inline">\(p = \frac{1}{6}\)</span>
+</p>
+</div>
+</div>
+</div>
+<div
+id="sampling-distribution-of-a-sample-proportion-and-the-normal-approximation"
+class="section level2">
+<h2>Sampling Distribution of a Sample Proportion and the Normal
+Approximation</h2>
+<p>When studying categorical data, we are often interested not just in
+individual outcomes, but in the proportion of successes observed in a
+sample. Understanding how this proportion behaves across repeated
+samples is crucial for making inferences about a population. In this
+section, we explore the sampling distribution of a sample proportion and
+how it can be approximated by a normal distribution under certain
+conditions.<br />
+</p>
+<p>Draw a <em>Simple Random Sample (SRS)</em> of size <span
+class="math inline">\(n\)</span> from a large population that contains
+proportion <span class="math inline">\(p\)</span> of “successes”. Let
+<span class="math inline">\(\hat{p}\)</span> be the <strong><em>sample
+proportion</em></strong> of successes:</p>
+<p><span class="math display">\[\hat{p} = \frac{\text{number of
+successes in the sample}}{n}\]</span></p>
+<p>Then:</p>
+<ul>
+<li><p>The <strong>mean</strong> of the sampling distribution of <span
+class="math inline">\(\hat{p}\)</span> is <span
+class="math inline">\(p\)</span>.</p></li>
+<li><p>The <strong>standard deviation</strong> of the sampling
+distribution is <span class="math inline">\(\sqrt{ \frac{p(1 - p)}{n}
+}\)</span>.</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="section04_files/figure-html/unnamed-chunk-5-1.png" alt="Binomial distribution with \(n = 300\), \(p = \frac{1}{6}\), and its Normal approximation" width="672" />
+<p class="caption">
+Binomial distribution with <span class="math inline">\(n = 300\)</span>,
+<span class="math inline">\(p = \frac{1}{6}\)</span>, and its Normal
+approximation
+</p>
+</div>
+<p>According to the Central Limit Theorem (CLT), the sampling
+distribution of a sample proportion becomes approximately normal as the
+sample size increases.</p>
+<p>That is: <span class="math display">\[\hat{p} \sim
+\mathcal{N}\left(p, \sqrt{\frac{p(1 - p)}{n}}\right)\]</span></p>
+<p>This approximation is most accurate when both <span
+class="math inline">\(np \geq 10\)</span> and <span
+class="math inline">\(n(1 - p) \geq 10\)</span>.</p>
+<p>These are called the <strong>success-failure conditions</strong>.</p>
+<p><em>Key Point:</em> When the success-failure conditions are met, the
+normal approximation to the sampling distribution of <span
+class="math inline">\(\hat{p}\)</span> can be used for probability
+calculations.</p>
+<div id="conditions-for-using-the-normal-approximation"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Conditions for Using the Normal
+Approximation</h3>
+<p>Suppose <span class="math inline">\(X \sim \text{Binomial}(n,
+p)\)</span>. Then:</p>
+<p><span class="math display">\[\mu = np, \quad \sigma^2 = np(1 -
+p)\]</span></p>
+<p><strong>Binomial probabilities can be approximated by the normal
+distribution:</strong> <span class="math display">\[X \approx
+\mathcal{N}(np, \, np(1 - p))\]</span></p>
+<p>This approximation is <em>useful for large <span
+class="math inline">\(n\)</span></em> and valid under the following
+conditions:</p>
+<div class="tcolorbox">
+<p>The binomial setting holds (i.e., independent trials, fixed <span
+class="math inline">\(n\)</span>, same probability <span
+class="math inline">\(p\)</span>) and</p>
+<p><span class="math display">\[np \geq 10 \quad \text{and} \quad np(1 -
+p) \geq 10\]</span></p>
+</div>
+<p>Alternatively, a more conservative criterion for using the normal
+approximation is: <span class="math display">\[n &gt; 9 \cdot \left(
+\frac{\max(p, \, 1 - p)}{\min(p, \, 1 - p)} \right)\]</span></p>
+<p>These ensure that the binomial distribution is sufficiently symmetric
+and smooth to approximate with the normal distribution.</p>
+<p>We derive the sampling distribution of <span
+class="math inline">\(\hat{p}\)</span> using properties of the Bernoulli
+distribution.</p>
+</div>
+<div id="bernoulli-distribution-binomial-with-n-1"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Bernoulli Distribution (Binomial with <span
+class="math inline">\(n = 1\)</span>)</h3>
+<p><span class="math display">\[X_i =
+\begin{cases}
+1 &amp; \text{if the $i$-th roll is a six} \\
+0 &amp; \text{otherwise}
+\end{cases}\]</span></p>
+<p><span class="math display">\[\mu = \mathbb{E}(X_i) = p, \quad
+\sigma^2 = \mathrm{Var}(X_i) = p(1 - p)\]</span></p>
+<p>Let <span class="math inline">\(\hat{p}\)</span> be our estimate of
+<span class="math inline">\(p\)</span>. Note that <span
+class="math inline">\(\hat{p} = \frac{1}{n} \sum_{i=1}^{n} X_i =
+\bar{X}\)</span>. Let <span class="math inline">\(\hat{p} =
+\frac{\text{\# successes } (X)}{\text{sample size } (n)}\)</span></p>
+<p>Recall that for <span class="math inline">\(X \sim \text{Binomial}(n,
+p)\)</span>: <span class="math display">\[X \overset{\cdot}{\sim}
+\mathcal{N}(np, np(1 - p))\]</span></p>
+<p>Let <span class="math inline">\(\hat{p} = \frac{X}{n}\)</span></p>
+<div id="mean-of-hatp" class="section level5 unnumbered">
+<h5 class="unnumbered">Mean of <span
+class="math inline">\(\hat{p}\)</span>:</h5>
+<p><span class="math display">\[\mathbb{E}(\hat{p}) = \mathbb{E} \left(
+\frac{X}{n} \right) = \frac{1}{n} \cdot \mathbb{E}(X) = \frac{1}{n}
+\cdot np = p\]</span></p>
+</div>
+<div id="variance-of-hatp" class="section level5 unnumbered">
+<h5 class="unnumbered">Variance of <span
+class="math inline">\(\hat{p}\)</span>:</h5>
+<p><span class="math display">\[\mathrm{Var}(\hat{p}) = \mathrm{Var}
+\left( \frac{X}{n} \right) = \frac{1}{n^2} \cdot \mathrm{Var}(X) =
+\frac{1}{n^2} \cdot np(1 - p) = \frac{p(1 - p)}{n}\]</span></p>
+<p>By the Central Limit Theorem (CLT), for sufficiently large <span
+class="math inline">\(n\)</span>: <span class="math display">\[\hat{p}
+\sim \mathcal{N} \left( p, \frac{p(1 - p)}{n} \right)\]</span></p>
+</div>
+<div id="standardization-of-hatp" class="section level5 unnumbered">
+<h5 class="unnumbered">Standardization of <span
+class="math inline">\(\hat{p}\)</span>:</h5>
+<p><span class="math display">\[Z = \frac{\hat{p} - p}{\sqrt{ \frac{p(1
+- p)}{n} }}\]</span></p>
+<p>If <span class="math inline">\(n\)</span> is large, then by the
+Central Limit Theorem: <span class="math display">\[\bar{X} \approx
+\mathcal{N} \left( \mu, \frac{\sigma}{\sqrt{n}} \right)
+\quad \Rightarrow \quad
+\hat{p} \sim \mathcal{N} \left( p, \sqrt{\frac{p(1 - p)}{n}}
+\right)\]</span></p>
+<div class="example">
+<p>In the last election, a state representative received 52% of the
+votes cast. One year after the election, the representative organized a
+survey that asked a random sample of 300 people whether they would vote
+for him in the next election. If we assume that his popularity has not
+changed, what is the probability that more than half the sample would
+vote for him?</p>
+<div id="solution-1-using-normal-approximation"
+class="section level4 unnumbered">
+<h4 class="unnumbered">Solution 1 (using Normal Approximation)</h4>
+<p>We want to determine the probability that the sample proportion is
+greater than <span class="math inline">\(50\%\)</span>. In other words,
+we want to find <span class="math inline">\(P(\hat{p} &gt;
+0.50)\)</span>.</p>
+<p>We want to determine the probability that the sample proportion is
+greater than 50%. In other words, we want to find <span
+class="math inline">\(P(\hat{p} &gt; 0.50)\)</span>.</p>
+<p>Thus, we calculate <span class="math display">\[\begin{aligned}
+P(\hat{p} &gt; 0.50) &amp; = P\left( \frac{\hat{p} - p}{\sqrt{p(1-p)/n}}
+&gt; \frac{0.50 - 0.52}{0.0288} \right) \\
+&amp;= P(Z &gt; -0.69) = 1 - P(Z &lt; -0.69) \quad \text{(Z is
+symmetric)} \\
+&amp;= P(Z &gt; -0.69) = 1 - P(Z &gt; 0.69) \\
+&amp;= 1 - 0.2451 = 0.7549.
+\end{aligned}\]</span></p>
+<p>If we assume that the level of support remains at 52%, the
+probability that more than half the sample of 300 people would vote for
+the representative is 0.7549.</p>
+<p><strong>R code (Normal Approximation):</strong></p>
+<div class="tcolorbox">
+<pre><code>1 - pnorm(0.50, mean = 0.52, sd = 0.0288)
+## [1] 0.7562982</code></pre>
+</div>
+<p>Recall that, <code>pnorm</code> will give you the area to the left of
+0.50, for a Normal distribution with mean 0.52 and standard deviation
+0.0288.</p>
+</div>
+<div id="solution-2-using-binomial" class="section level4 unnumbered">
+<h4 class="unnumbered">Solution 2 (using Binomial)</h4>
+<p>We want to determine the probability that the sample proportion is
+greater than 50%. In other words, we want to find <span
+class="math inline">\(P(\hat{p} &gt; 0.50)\)</span>. We know that <span
+class="math inline">\(n = 300\)</span> and <span class="math inline">\(p
+= 0.52\)</span>.<br />
+Thus, we calculate <span class="math display">\[\begin{aligned}
+P(\hat{p} &gt; 0.50) &amp;= P\left(\frac{\sum_{i=1}^{n} x_i}{n} &gt;
+0.50\right) \\
+&amp;= P\left(\sum_{i=1}^{300} x_i &gt; 150\right) \\
+&amp;= 1 - P\left(\sum_{i=1}^{300} x_i \leq 150\right) \\
+&amp;\text{(it can be shown that } Y = \sum_{i=1}^{300} x_i \text{ has a
+Binomial distribution with} \\
+&amp;n = 300 \text{ and } p = 0.52\text{)} \\
+&amp;= 1 - F_Y(150)
+\end{aligned}\]</span></p>
+<p><strong>R code (using Binomial distribution):</strong></p>
+<div class="tcolorbox">
+<pre><code>1- pbinom(150, size = 300, prob = 0.52);
+## [1] 0.7375949</code></pre>
+</div>
+<p>Recall that, <code>pbinom</code> will give you the CDF at 150, for a
+Binomial distribution with <span class="math inline">\(n = 300\)</span>
+and <span class="math inline">\(p = 0.52\)</span>.</p>
+</div>
+<div id="solution-3-using-continuity-correction"
+class="section level3 unnumbered">
+<h3 class="unnumbered">Solution 3 (using continuity correction)</h3>
+<p>We have that <span class="math inline">\(n = 300\)</span> and <span
+class="math inline">\(p = 0.52\)</span>. Thus, we calculate <span
+class="math display">\[\begin{aligned}
+P(\hat{p} &gt; 0.50) &amp;= P\left( \frac{\sum_{i=1}^{n} x_i}{n} &gt;
+0.50 \right) \\
+&amp;= P\left( \sum_{i=1}^{300} x_i &gt; 150 \right) \\
+&amp;= 1 - P\left( \sum_{i=1}^{300} x_i \leq 150 \right) \\
+&amp;\text{(it can be shown that } Y = \sum_{i=1}^{300} x_i \text{ has a
+Binomial distribution with} \\
+&amp;n = 300 \text{ and } p = 0.52\text{)}. \\
+&amp;\approx 1 - P\left( \sum_{i=1}^{300} x_i \leq 150.5 \right) \quad
+\text{(continuity correction)} \\
+&amp;= 1 - P\left( \frac{\sum_{i=1}^{300} x_i}{n} \leq \frac{150.5}{300}
+\right) \\
+&amp;= 1 - P(\hat{p} \leq 0.5017) \\
+&amp;= 1 - P\left( Z \leq -0.6354 \right) \quad \text{(Why?)}
+\end{aligned}\]</span> <strong>R code (Normal approximation with
+continuity correction):</strong></p>
+<div class="tcolorbox">
+<pre><code>1 - pnorm(0.5017, mean = 0.52, sd = 0.0288)
+## [1] 0.7374216</code></pre>
+</div>
+<p>Recall that, <code>pnorm</code> will give you the area to the left of
+0.5017, for a Normal distribution with mean 0.52 and standard deviation
+0.0288.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="normal-approximation-to-binomial" class="section level2">
+<h2>Normal Approximation to Binomial</h2>
+<p>Let <span class="math inline">\(X = \sum_{i=1}^{n} Y_i\)</span> where
+<span class="math inline">\(Y_1, Y_2, \ldots, Y_n\)</span> are iid
+Bernoulli random variables. Note that <span class="math inline">\(X =
+n\hat{p}\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(n\hat{p}\)</span> is approximately
+Normally distributed provided that <span class="math inline">\(np \geq
+10\)</span> and <span class="math inline">\(n(1 - p) \geq
+10\)</span>.</p></li>
+<li><p>Another criterion is that the Normal approximation is adequate if
+<span class="math display">\[n &gt; 9 \left( \frac{\text{larger of $p$
+and $q$}}{\text{smaller of $p$ and $q$}} \right)\]</span></p></li>
+<li><p>The expected value: <span class="math inline">\(E(\hat{p}) =
+np\)</span>.</p></li>
+<li><p>The variance: <span class="math inline">\(V(\hat{p}) = np(1 - p)
+= npq\)</span>.</p></li>
+</ol>
+</div>
+<div id="continuity-correction" class="section level2">
+<h2>Continuity Correction</h2>
+<p>The normal distribution is continuous, while the binomial
+distribution is discrete. When we approximate a binomial probability
+using the normal distribution, this mismatch can lead to
+inaccuracy—especially near the boundaries of discrete values. A
+continuity correction improves the approximation by adjusting for this
+difference. In this section, we explore how and why this correction is
+applied.<br />
+</p>
+<div id="continuity-correction-table" class="section level3 unnumbered">
+<h3 class="unnumbered">Continuity Correction Table</h3>
+<div class="center">
+<p><span class="math display">\[
+\begin{array}{|c|c|c|}
+\hline
+\textbf{Binomial Probability} &amp; \textbf{Continuity Correction} &amp;
+\textbf{Normal Approximation} \\
+\hline
+\displaystyle P(X = x) &amp;
+\displaystyle P(x - 0.5 \leq X \leq x + 0.5) &amp;
+\displaystyle P\left( \frac{x - 0.5 - \mu}{\sigma} \leq Z \leq \frac{x +
+0.5 - \mu}{\sigma} \right) \\
+\hline
+\displaystyle P(X \leq x) &amp;
+\displaystyle P(X \leq x + 0.5) &amp;
+\displaystyle P\left( Z \leq \frac{x + 0.5 - \mu}{\sigma} \right) \\
+\hline
+\displaystyle P(X &lt; x) &amp;
+\displaystyle P(X \leq x - 0.5) &amp;
+\displaystyle P\left( Z \leq \frac{x - 0.5 - \mu}{\sigma} \right) \\
+\hline
+\displaystyle P(X \geq x) &amp;
+\displaystyle P(X \geq x - 0.5) &amp;
+\displaystyle P\left( Z \geq \frac{x - 0.5 - \mu}{\sigma} \right) \\
+\hline
+\displaystyle P(X &gt; x) &amp;
+\displaystyle P(X \geq x + 0.5) &amp;
+\displaystyle P\left( Z \geq \frac{x + 0.5 - \mu}{\sigma} \right) \\
+\hline
+\displaystyle P(a \leq X \leq b) &amp;
+\displaystyle P(a - 0.5 \leq X \leq b + 0.5) &amp;
+\displaystyle P\left( \frac{a - 0.5 - \mu}{\sigma} \leq Z \leq \frac{b +
+0.5 - \mu}{\sigma} \right) \\
+\hline
+\end{array}
+\]</span></p>
+</div>
+<p>Suppose that <span class="math inline">\(Y\)</span> has a Binomial
+distribution with <span class="math inline">\(n = 20\)</span> and <span
+class="math inline">\(p = 0.4\)</span>. We will find the exact
+probabilities that <span class="math inline">\(Y \leq y\)</span> and
+compare these to the corresponding values found by using two Normal
+approximations. One of them, when <span class="math inline">\(X\)</span>
+is Normally distributed with <span class="math inline">\(\mu_X =
+np\)</span> and <span class="math inline">\(\sigma_X = \sqrt{np(1 -
+p)}\)</span>. The other one, <span class="math inline">\(W\)</span>, a
+shifted version of <span class="math inline">\(X\)</span>.</p>
+<p>For example, <span class="math display">\[P(Y \leq 8) =
+0.5955987\]</span></p>
+<p>As previously stated, we can think of <span
+class="math inline">\(Y\)</span> as having approximately the same
+distribution as <span class="math inline">\(X\)</span>. <span
+class="math display">\[P(Y \leq 8) \approx P(X \leq 8)
+= P\left[ \frac{X - np}{\sqrt{np(1 - p)}} \leq \frac{8 -
+8}{\sqrt{20(0.4)(0.6)}} \right]
+= P(Z \leq 0) = 0.5\]</span></p>
+<p><span class="math display">\[P(Y \leq 8) \approx P(W \leq 8.5)
+= P\left[ \frac{W - np}{\sqrt{np(1 - p)}} \leq \frac{8.5 -
+8}{\sqrt{20(0.4)(0.6)}} \right]
+= P(Z \leq 0.2282) = 0.5902615\]</span></p>
+<div class="example">
+<p>Fifty-one percent of adults in the U. S. whose New Year’s resolution
+was to exercise more achieved their resolution. You randomly select 65
+adults in the U. S. whose resolution was to exercise more and ask each
+if he or she achieved that resolution. What is the probability that
+exactly forty of them respond yes?<br />
+We are given that <span class="math inline">\(p = 0.51\)</span>, <span
+class="math inline">\(n = 65\)</span>, and we want to find <span
+class="math inline">\(P(X = 40)\)</span> where <span
+class="math inline">\(X \sim Binomial(n = 65, p = 0.51)\)</span>.<br />
+<strong>Use Normal Approximation</strong> We use normal approximation to
+the binomial. First, compute the mean and standard deviation: <span
+class="math display">\[\begin{aligned}
+\mu &amp;= np = 65 \times 0.51 = 33.15 \\
+\sigma^2 &amp;= np(1-p) = 65 \times 0.51 \times 0.49 = 16.485 \\
+\sigma &amp;= \sqrt{16.485} \approx 4.06
+\end{aligned}\]</span></p>
+<p>We apply continuity correction: <span class="math display">\[P(X =
+40) = P(39.5 \leq X \leq 40.5)\]</span></p>
+<p><span class="math display">\[= P\left(\frac{39.5 - 33.15}{4.06} \leq
+Z \leq \frac{40.5 - 33.15}{4.06}\right) = P(1.56 \leq Z \leq
+1.81)\]</span></p>
+<p>From the standard normal table: <span class="math display">\[= P(Z
+\leq 1.81) - P(Z \leq 1.56) = 0.0594 - 0.0352 = 0.0242\]</span></p>
+<p>So the approximate probability is: <span class="math display">\[P(X =
+40) \approx 0.0242\]</span></p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
