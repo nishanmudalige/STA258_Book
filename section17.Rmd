@@ -1,73 +1,179 @@
 # Analysis of Variance
 
-ANOVA (Analysis of Variance)
-used to compare multiple nears
+ANOVA (Analysis of Variance) is used to compare multiple means.<br>
 Suppose we have $k$ groups $(k \geqslant 3)$ and each group is given a treatment.
 
-The A NOVA model is
-![](https://cdn.mathpix.com/cropped/2025_07_03_0e611eebd5aab7c4aee1g-02.jpg?height=679&width=1752&top_left_y=609&top_left_x=21)
-equimient form of ANOLA is
+The ANOVA model is:
 
-$$
-Y_{i j}=\mu_{i}+\varepsilon_{i j}, \quad \varepsilon_{i j} \sim N\left(0, \sigma^{2}\right)
-$$
+\[
+Y_{ij} = \mu + \tau_i + \varepsilon_{ij}, \quad \varepsilon_{ij} \sim N(0, \sigma^2)
+\]
 
-|  | group 1 | group 2 | $\cdots$ | group $k$ |
-| :---: | :---: | :---: | :---: | :---: |
-|  | $x_{11}$ | $x_{21}$ |  | $x_{k 1}$ |
-|  | $x_{12}$ | $x_{22}$ |  | $x_{k 2}$ |
-|  | $\vdots$ |  |  | $\vdots$ |
-| sample <br> mean <br> sample <br> size <br> size | $x_{1 n}$ | $x_{2 n}$ |  | $x_{k n k}$ |
-|  | $x_{1}$ | $x_{1}$ | $\bar{x}_{2}$ |  |
-|  |  |  | $\bar{x}_{k}$ |  |
-|  | $n_{2}$ |  | $S_{k}^{2}$ |  |
-|  |  |  | $n_{k}$ |  |
+Where:  
+- \( Y_{ij} \): outcome on unit \( j \) in group \( i \)  
+- \( \mu \): overall mean  
+- \( \tau_i \): treatment-specific effect for group \( i \)  
+- \( \varepsilon_{ij} \): error term, assumed normally distributed  
+- \( \mu_i = \mu + \tau_i \): group mean
 
-total sample size $n=n_{1}+n_{2}+\ldots+n_{k}$ over all sample mean $\bar{x}=\frac{1}{n} \sum_{i=1}^{k} \sum_{j=1}^{n_{i}} x_{i j}=\frac{1}{n} \sum_{i=1}^{k} n_{i} \bar{x}_{i}$
-Sources of variation
-Variation within goods (SSW /SSE)
-SSE $=\sum_{i=1}^{k}\left(n_{i}-1\right) \cdot s_{i}^{2}$
-treatment affect
-variation between groups (SSB/SSTr)
-SSTro $=\sum_{i=1}^{k} n_{i}\left(\bar{x}_{i}-\bar{x}\right)^{2}$
-Total variation
+The equivalent form of the ANOVA model is:
 
-$$
-\text { SS Total }=\sum_{i=1}^{k} \sum_{j=1}^{n_{i}}\left(x_{i j}-\bar{x}\right)^{2}
-$$
+\[
+Y_{ij} = \mu_i + \varepsilon_{ij}, \quad \varepsilon_{ij} \sim \mathcal{N}(0, \sigma^2)
+\]
 
-SStutal $=$ SSTrt + SSE
 
-| ANOVA Table | MS $=\frac{\delta S}{d f}$ |  |  |  |
-| :--- | :---: | :---: | :---: | :---: |
-| Source | $d f$ <br> degrees of <br> Freedom | $S S$ of <br> Squares | Mean <br> Squere | $F$-Stat |
-| Treatment | $K-1$ | $S S T r t$ | $M S T r=\frac{\delta S T r t}{K-1}$ | $F^{*}=\frac{M S T r}{M S E}$ |
-| Error | $\cap-K$ | $S S G$ | $M S E=\frac{\delta S E}{n-K}$ | $X$ |
-| Total | $\cap-1$ | $S S T o t a l$ | $X$ | $X$ |
+\[
+\begin{array}{c|c|c|c|c}
+\text{Group 1} & \text{Group 2} & \cdots & \text{Group } K \\
+\hline
+X_{11} & X_{21} & \cdots & X_{K1} \\
+X_{12} & X_{22} & \cdots & X_{K2} \\
+\vdots & \vdots & \ddots & \vdots \\
+X_{1n_1} & X_{2n_2} & \cdots & X_{Kn_K} \\
+\hline
+\bar{X}_1 & \bar{X}_2 & \cdots & \bar{X}_K \\
+S_1^2 & S_2^2 & \cdots & S_K^2 \\
+n_1 & n_2 & \cdots & n_K \\
+\end{array}
+\]
 
-Hypothesis Test
-$H_{0}: \mu_{1}=\mu_{2} \ldots .=\mu_{k} \quad \xrightarrow{\text { all }}$ means are equal)
-tai. Al least one $\mu_{j}, j=1, \ldots, k$ fat least one mean different) is different Lat least one treatment has a different effect
+Where:  
+- \( \bar{X}_i \): sample mean of group \( i \)  
+- \( S_i^2 \): sample variance of group \( i \)  
+- \( n_i \): sample size of group \( i \)
 
-Test Stat
 
-$$
-F^{*}=\frac{M S T r}{M S E}=\frac{S S T r+/ k-1}{S S E \mathscr{L} n-k} \sim F_{(k-1, n-k)}
-$$
+**Total Sample Size and Overall Mean**
 
-Reference distribution
-$F$ distrib with amerater $=k=1$ and denominator $=n=k \quad d f$
-p-value
+Total sample size:
 
-Conclusions
-![](https://cdn.mathpix.com/cropped/2025_07_03_0e611eebd5aab7c4aee1g-05.jpg?height=737&width=1476&top_left_y=1091&top_left_x=700)
-usual way
+\[
+n = n_1 + n_2 + \cdots + n_k
+\]
 
-## The Data Matrix
+Overall sample mean:
 
-The following table shows last year's sales data for a small business. The sample is put into a matrix format in which each of the three columns corresponds to one of the three countries in which the company does business. The numbers in the cell represent the sales (in units of $\$ 1000$ ) made in that country last year. These data will be used to develop the theory underlying Analysis of Variance or, for short, ANOVA.
+\[
+\bar{X} = \frac{1}{n} \sum_{i=1}^k \sum_{j=1}^{n_i} X_{ij} = \frac{1}{n} \sum_{i=1}^k n_i \bar{X}_i
+\]
 
-## The Data Matrix
+---
+
+**Sources of Variation**
+
+Variation **within** groups (SSW / SSE):
+
+\[
+\text{SSE} = \sum_{i=1}^k (n_i - 1) \cdot S_i^2
+\]
+
+This represents **error** or **residual** variation.
+
+---
+
+Variation **between** groups (SSB / SSTr):
+
+\[
+\text{SSTr} = \sum_{i=1}^k n_i \cdot (\bar{X}_i - \bar{X})^2
+\]
+
+This captures the **treatment effect** (how group means differ from overall mean).
+
+---
+
+**Total Variation**
+
+\[
+\text{SSTotal} = \sum_{i=1}^k \sum_{j=1}^{n_i} (X_{ij} - \bar{X})^2
+\]
+
+---
+
+**Decomposition Identity**
+
+\[
+\text{SSTotal} = \text{SSTr} + \text{SSE}
+\]
+
+
+**ANOVA Table**
+
+| Source     | df     | SS       | MS                          | F-Statistic         |
+|------------|--------|----------|-----------------------------|---------------------|
+| Treatment  | k - 1  | SSTr     | MSTr = SSTr / (k - 1)       | F* = MSTr / MSE     |
+| Error      | n - k  | SSE      | MSE = SSE / (n - k)         |                     |
+| Total      | n - 1  | SSTotal  |                             |                     |
+                          
+
+
+Where \( MS = \dfrac{SS}{df} \)
+
+---
+
+**Hypothesis Test**
+\[
+\begin{aligned}
+H_0\!: &\quad \mu_1 = \mu_2 = \cdots = \mu_k \\
+&\quad \text{(all means are equal → all treatments equally effective)} \\
+\\
+H_a\!: &\quad \text{At least one } \mu_j \text{ (for } j = 1, \dots, k\text{) is different} \\
+&\quad \text{(→ at least one treatment has a different effect)}
+\end{aligned}
+\]
+
+
+
+**Test Statistic**
+
+\[
+F^* = \frac{\text{MSTr}}{\text{MSE}} = \frac{\text{SSTr} / (k - 1)}{\text{SSE} / (n - k)} \sim F_{(k - 1,\ n - k)}
+\]
+
+---
+
+**Reference Distribution**
+
+The test statistic follows an \( F \)-distribution with:
+
+- numerator degrees of freedom = \( k - 1 \)  
+- denominator degrees of freedom = \( n - k \)
+
+---
+
+**P-value**
+
+```{r fig.cap="F-distribution with shaded p-value area", echo=FALSE, fig.align='center', out.width='70%'}
+# Load library
+library(ggplot2)
+
+# Parameters
+df1 <- 3   # numerator degrees of freedom (k - 1)
+df2 <- 20  # denominator degrees of freedom (n - k)
+f_star <- 3.2
+
+# Generate F-distribution data
+x_vals <- seq(0, 6, length.out = 500)
+y_vals <- df(x_vals, df1, df2)
+f_data <- data.frame(x = x_vals, y = y_vals)
+```
+
+```{r fig.cap="F-distribution with shaded p-value area", echo=FALSE, fig.align='center', out.width='70%'}
+# Plot
+ggplot(f_data, aes(x, y)) +
+  geom_line() +
+  geom_area(data = subset(f_data, x > f_star), aes(x, y), fill = "plum", alpha = 0.5) +
+  geom_vline(xintercept = f_star, linetype = "dashed") +
+  annotate("text", x = f_star + 1.2, y = max(y_vals) * 0.5, label = "p-value", size = 4) +
+  annotate("text", x = f_star, y = -0.01, label = "F*", vjust = 1.5) +
+  labs(x = "F", y = "Density") +
+  theme_minimal(base_size = 12)
+```
+
+**The Data Matrix**
+
+The following table shows last year's sales data for a small business. The sample is put into a matrix format in which each of the three columns corresponds to one of the three countries in which the company does business. The numbers in the cell represent the sales (in units of $\$ 1000$ ) made in that country last year. These data will be used to develop the theory underlying **Analysis of Variance**, or, for short, **ANOVA**.
+
 
 |  | Country A | Country B | Country C |
 | :---: | :---: | :---: | :---: |
@@ -77,34 +183,36 @@ The following table shows last year's sales data for a small business. The sampl
 |  | 9 | 10 | 10 |
 | Average | 8 | 10 | 12 |
 
-Altogether, there were 12 sales last year that totaled $\$ 120$ - so the average sale was $\$ 10$.
-The column (country) averages are:
-Column 1 (Country A) \$8.
-Column 2 (Country B) \$10.
-Column 3 (Country C) \$12.
+Altogether, there were 12 sales last year that totaled \$120 – so the average sale was \$10.  
 
-Now we will begin our study of how to make a statistically valid prediction of the next sales figure. In that regard, there are two possible situations that can occur.
+The column (country) averages are:  
+Column 1 (Country A): \$8  
+Column 2 (Country B): \$10  
+Column 3 (Country C): \$12
 
-1. The country of the next sale (observation) is not known.
+
+Now we will begin our study of how to make a statistically valid prediction of the next sales figure. In that regard, there are two possible situations that can occur:
+
+1. The country of the next sale (observation) is **not** known.  
 2. The country of the next sale is known.
 
-## Situation 1.
 
-Without any additional information, the best prediction is the sample mean $\$ 10$. This prediction is best in the least squares sense - that is, if $\$ 10$ had been used to predict each of the 12 observations in the sample, then the total of the squared errors $S S_{\text {total }}$ would be as small as possible. In our data set, $S S_{\text {total }}$ equals 60 . That figure can be verified by calculating $\sum\left(x_{i}-10\right)^{2}$ for each observation $x_{i}$ of the sample.
+Situation 1.
+
+Without any additional information, the best prediction is the sample mean $\$ 10$. This prediction is best in the least squares sense - that is, if $\$ 10$ had been used to predict each of the 12 observations in the sample, then the total of the squared errors $S S_{\text {Total }}$ would be as small as possible. In our data set, $S S_{\text {Total }}$ equals 60 . That figure can be verified by calculating $\sum\left(x_{i}-10\right)^{2}$ for each observation $x_{i}$ of the sample.
 
 Situation 2. One-factor ANOVA Model.
+
 If the country of the next sale is known, then two different predictions are possible for the next sales figure:
 
 - The sample mean $\$ 10$.
-- The mean of the sales of the country in which the next sale will occur. (In this case, $\$ 8$ if the next sale will occur in Country A, $\$ 10$ in Country B, or $\$ 12$ in Country C.) This prediction ignores the information present in the sales figures from the other two countries.
+- The mean of the sales of the country in which the next sale will occur. (In this case, $\$ 8$ if the next sale will occur in Country A, $\$ 10$ in Country B, or $\$ 12$ in Country C.) This prediction **ignores** the information present in the sales figures from the other two countries.
 
 
-## The Null Hypothesis for One-Factor ANOVA
+**The Null Hypothesis for One-Factor ANOVA**
 
 We have discussed the prediction possibilities for one-factor ANOVA models. Now, we will learn how to test the statistical significance of a one-factor ANOVA model.
 Let's suppose that we want to predict the next sales figure, and that we know the country in which this sale will occur. Without any statistical testing, we can always by default use the sample mean $\$ 10$ to predict the next sale. The default prediction, the sample mean, doesn't use any information about the country (column) in which the sale will occur.
-
-## The Null Hypothesis for One-Factor ANOVA
 
 However, if instead we use the mean of the observations in only one column (the column that corresponds to the particular country in which we know the next sale will occur), then we have to test the null hypothesis
 
@@ -112,18 +220,19 @@ $$
 H_{0}: \mu_{C O L 1}, \mu_{C O L 2}, \mu_{C O L 3}, \text { are equal }
 $$
 
-and reject it in favor of the alternative hypothesis
-$H_{a}: \mu_{C O L 1}, \mu_{C O L 2}, \mu_{C O L 3}$, are NOT all equal
+and reject it in favor of the alternative hypothesis\
 
-## The Null Hypothesis for One-Factor ANOVA
+$$
+H_{a}: \mu_{C O L 1}, \mu_{C O L 2}, \mu_{C O L 3}, \text { are NOT all equal }
+$$
 
 If the null hypothesis is rejected, then we can be statistically confident that the column means are not all equal, and therefore that the individual column means (i. e., $\$ 8, \$ 10, \$ 12$ ) can be used to predict the amount of the next sale. If the next sale was going to occur in Country A , then the prediction would be $\$ 8$. If the next sale was going to occur in Country B, then the prediction would be $\$ 10$. If the next sale was going to occur in Country C , then the prediction would be $\$ 12$.
 
-## The One-Factor ANOVA F Test
+**The One-Factor ANOVA F Test**
 
 To test the null hypothesis stated above, we have to calculate an F-statistic. If $F_{*}>F_{(c-1, n-c), \alpha}$, then reject $H_{0}$, and use the sample column means to predict future observations. Otherwise, do not reject $H_{0}$ and use the overall sample mean to predict future observations.
 
-## ANOVA Table
+**ANOVA Table**
 
 To see how this $F_{*}$ is calculated, see the ANOVA Table below.
 
@@ -131,11 +240,12 @@ To see how this $F_{*}$ is calculated, see the ANOVA Table below.
 | :---: | :---: | :---: | :---: | :---: |
 | Treatments | $\mathrm{c}-1$ | SST | $\frac{\text { SST }}{c-1}$ | $F=\frac{\text { MST }}{\text { MSE }}$ |
 | Error | $\mathrm{n}-\mathrm{c}$ | SSE | $\frac{\text { SSE }}{n-c}$ |  |
-| Total | $\mathrm{n}-1$ | SSTOTAL |  |  |
+| Total | $\mathrm{n}-1$ | $\mathrm{SS}_{\mathrm{Total}}$
+ |  |  |
 
-## Calculation of SStotal
+**Calculation of $\mathrm{SS}_{\mathrm{Total}}$**
 
-If no model is used, then the predictions for each of the 12 observations will be 10 . If these predictions are used, the squared error of these 12 predictions is given in the table below.
+If **no** model is used, then the predictions for each of the 12 observations will be 10 . If these predictions are used, the squared error of these 12 predictions is given in the table below.
 
 | Country A | Country B | Country C |
 | :---: | :---: | :---: |
@@ -146,7 +256,7 @@ If no model is used, then the predictions for each of the 12 observations will b
 
 Prediction Errors Squared when NO Factor is used $($ Total $)=60$.
 
-## Calculation of SSE
+**Calculation of SSE**
 
 If the column model is used, then the 12 observations would have the following 12 predictions, where $\$ 8$ is the average for the first column, $\$ 10$ is the average for the second column, and $\$ 12$ is the average for the third column.
 
@@ -157,7 +267,7 @@ If the column model is used, then the 12 observations would have the following 1
 | 8 | 10 | 12 |
 | 8 | 10 | 12 |
 
-## Calculation of SSE
+**Calculation of SSE**
 
 Using the above 12 predictions, the errors squared are shown in the table below.
 
@@ -170,7 +280,7 @@ Using the above 12 predictions, the errors squared are shown in the table below.
 
 Errors Squared when the Column Factor is used $($ Total $)=28$.
 
-## Calculation of SST
+**Calculation of SST**
 
 The units explained by the column model are calculated by finding the square of each prediction change when moving from NO model to the column model. The following table presents the square of each prediction change:
 
@@ -183,7 +293,7 @@ The units explained by the column model are calculated by finding the square of 
 
 Table of the Square of the Prediction Change when Moving from NO Model to the Column Model $($ Total $)=32$.
 
-## ANOVA Table
+**ANOVA Table**
 
 The ANOVA Table for the column factor can now be filled in as shown below:
 
@@ -195,11 +305,11 @@ The ANOVA Table for the column factor can now be filled in as shown below:
 
 So for this one-factor ANOVA model, $F_{*}=5.1428$.
 
-## Conclusion
+**Conclusion**
 
 If the null hypothesis is true, then the F-statistic should be a value from the $F_{2,9}$ distribution. Referring to the table that contains the upper 0.05 cut-off points of F distributions, we see that $F_{(2,9), 0.05}=4.256$. Since 5.1428 is greater than 4.256 , this tells us that the F -statistic is in the upper 0.05 of the $F_{2,9}$ distribution. Therefore we reject the null hypothesis at the 0.05 significance level, and we conclude that the country means are not all the same. Thus, the prediction for the next sale in a known country is the mean of all the previous sales in that country.
 
-```
+```r
 # R Code;
 salesA=c(6,10,7,9);
 salesB=c (10, 8,12,10);
@@ -209,7 +319,7 @@ country=c(rep(1,4),rep(2,4),rep(3,4));
 oneway.test(sales~country,var.equal=TRUE);
 ```
 
-```
+```r
 ##
 ## One-way analysis of means
 ##
@@ -218,7 +328,7 @@ oneway.test(sales~country,var.equal=TRUE);
 ## 0.0324
 ```
 
-```
+```r
 # R Code;
 # Another way: using lm;
 salesA=c(6,10,7,9);
@@ -229,7 +339,7 @@ country=c(rep(1,4),rep(2,4),rep(3,4));
 anova(lm(sales~factor(country)));
 ```
 
-```
+```r
 ## Analysis of Variance Table
 ##
 ## Response: sales
@@ -244,10 +354,10 @@ anova(lm(sales~factor(country)));
 Officially, to use the predictions from an ANOVA model, three assumptions about the populations from which the sample was taken must be satisfied:
 
 1. Each population has a Normal distribution.
-2. Each population has the same standard deviation $\sigma$.
+2. Each population has the **same** standard deviation $\sigma$.
 3. The observations are mutually independent of one another.
 
-## Formulas
+**Formulas**
 
 Sum of Squares for Treatments (a.k.a. between-treatments variation or Explained)
 
@@ -261,41 +371,46 @@ $$
 S S E=\sum_{j=1}^{k} \sum_{i=1}^{n_{j}}\left(x_{i j}-\bar{x}_{j}\right)^{2}=\left(n_{1}-1\right) s_{1}^{2}+\ldots+\left(n_{k}-1\right) s_{k}^{2}
 $$
 
-## Formulas
-
-## Mean Square for Treatments
+**Mean Square for Treatments**
 
 $$
 M S T=\frac{S S T}{k-1}
 $$
 
-Mean Square for Error
+**Mean Square for Error**
 
 $$
 M S E=\frac{S S E}{n-k}
 $$
 
-## Formulas
 
-## Test Statistic
+**Test Statistic**
 
 $$
 F=\frac{M S T}{M S E}
 $$
 
-## Exercise
+Exercise
 
 A statistics practitioner calculated the following statistics:
 
-| Statistic | 1 | Treatment | 2 |
-| :---: | :---: | :---: | :---: |
-| n | 5 | 5 | 3 |
-| $\bar{x}$ | 10 | 15 | 20 |
-| $s^{2}$ | 50 | 50 | 50 |
+\[
+\begin{array}{|c|c|c|c|}
+\hline
+\textbf{Statistic} & \textbf{1} & \textbf{2} & \textbf{3} \\
+\hline
+n & 5 & 5 & 5 \\
+\hline
+\bar{x} & 10 & 15 & 20 \\
+\hline
+s^2 & 50 & 50 & 50 \\
+\hline
+\end{array}
+\]
 
 Complete the ANOVA table.
 
-## Solution
+Solution
 
 $$
 \begin{aligned}
@@ -305,7 +420,7 @@ $$
 \end{aligned}
 $$
 
-## ANOVA Table
+ANOVA Table
 
 | Source of Variation | Degrees of Freedom (df) | Sum of Square (SS) | Mean Sum of Squares (MSS) | F Ratio |
 | :--- | :--- | :--- | :--- | :--- |
@@ -313,19 +428,28 @@ $$
 | Error | 12 | 600 | $\frac{600}{12}=50$ |  |
 | Total | 14 | 850 |  |  |
 
-## Exercise
+Exercise
 
 A statistics practitioner calculated the following statistics:
 
-| Statistic | 1 | Treatment |  |
-| :---: | :---: | :---: | :---: |
-| n | 4 | 4 | 3 |
-| $\bar{x}$ | 20 | 22 | 25 |
-| $s^{2}$ | 10 | 10 | 10 |
+\[
+\begin{array}{|c|c|c|c|}
+\hline
+\textbf{Statistic} & \textbf{1} & \textbf{2} & \textbf{3} \\
+\hline
+n & 4 & 4 & 4 \\
+\hline
+\bar{x} & 20 & 22 & 25 \\
+\hline
+s^2 & 10 & 10 & 10 \\
+\hline
+\end{array}
+\]
+
 
 Complete the ANOVA table.
 
-## Solution
+Solution
 
 $$
 \begin{aligned}
@@ -335,7 +459,7 @@ $$
 \end{aligned}
 $$
 
-## ANOVA Table
+ANOVA Table
 
 | Source of Variation | Degrees of Freedom (df) | Sum of Square (SS) | Mean Sum of Squares (MSS) | F Ratio |
 | :--- | :--- | :--- | :--- | :--- |
@@ -343,7 +467,7 @@ $$
 | Error | 9 | 90 | $\frac{90}{9}=10$ |  |
 | Total | 11 | 140.67 |  |  |
 
-## Exercise
+Exercise
 
 A consumer organization was concerned about the differences between the advertised sizes of containers and the actual amount of product. In a preliminary study, six packages of three different brands of margarine that are supposed to contain 500 ml were measured. The differences from 500 ml are listed here. Do these data provide sufficient evidence to conclude that differences exist between the three brands? Use $\alpha=0.05$.
 
@@ -358,157 +482,231 @@ A consumer organization was concerned about the differences between the advertis
 
 Exercise on 3 bounds
 
-| consider <br> $\alpha=0.05$ | Brand 1 | Brand 2 | Brand 3 |
-| :--- | :--- | :--- | :--- |
-|  | $x_{1 / 2}=1$ | $x_{21}=2$ | $x_{3 /}=1$ |
-|  | $x_{12}=3$ | $x_{22}=2$ | $x_{32}=2$ |
-|  | 3 | 4 | 4 |
-|  | 0 | 3 | 2 |
-|  | 1 | 0 | 3 |
-|  | $x_{16} 0$ | $x_{26}$ | $x_{36}=4$ |
-|  | $n_{1}=6$ | $n_{2}=6$ | $n_{3}=6$ |
+Consider  
+$\alpha = 0.05$
 
-Overall Sample size: $n=n_{1}+n_{2}+n_{3}=18$
-Sample means
-Group 1 : $\bar{x}_{1}=\frac{1}{n_{1}} \sum_{j=1}^{n_{1}} x_{1 j}=\frac{1}{6}(1+3 \ldots+0)=1,33$
-Group 2 : $\bar{x}_{2}=\frac{1}{n_{2}} \sum_{j=1}^{n} x_{2 j}=\frac{1}{6}(2+2 \ldots+4)=2,50$
-Group 3: $\bar{x}_{3}=\frac{1}{n_{3}} \sum_{j=1}^{n_{1}} x_{3 j}=\frac{1}{6}(1+2 \ldots+4)=2.67$
-Overall mean
-(1)
-(3)
+| Brand 1       | Brand 2       | Brand 3       |
+|:-------------:|:-------------:|:-------------:|
+| $x_{11}=1$    | $x_{21}=2$    | $x_{31}=1$    |
+| $x_{12}=3$    | $x_{22}=2$    | $x_{32}=2$    |
+| 3             | 4             | 4             |
+| 0             | 3             | 2             |
+| 1             | 0             | 3             |
+| $x_{16}=0$    | $x_{26}=4$    | $x_{36}=4$    |
+| $n_1=6$       | $n_2=6$       | $n_3=6$       |
 
-$$
-\begin{aligned}
-\bar{x} & =\frac{\sum_{i=1}^{k} \sum_{j=1}^{n i} x_{i j}=\frac{1+3+\ldots+0+2+2+\ldots+4+\sqrt{1+2+\ldots+4}}{18}}{n} \\
-& =\frac{1}{n} \sum_{i=1}^{k} n_{i} \bar{x}_{i}=\frac{1}{18}[(86) 01,33)+(6)(2.5)+(6)(2.67) \\
-& =2.17
-\end{aligned}
-$$
 
-| Brand 1 | Brand 2 | Brand 3 |
-| :--- | :---: | :---: |
-| $x_{11}=1$ | $x_{21}=2$ | $x_{31}=1$ |
-| $x_{12}=3$ | $x_{22}=2$ | $x_{32}=2$ |
-| 3 | 4 | 4 |
-| 0 | 3 | 2 |
-| 1 | 0 | 3 |
-| $x_{16}$ | 0 | $x_{26}$ |
+
+Overall Sample Size
+
+\[
+n = n_1 + n_2 + n_3 = 18
+\]
+
+Sample Means
+
+**Group 1:**
+\[
+\bar{X}_1 = \frac{1}{n_1} \sum_{j=1}^{n_1} x_{1j} = \frac{1}{6}(1 + 3 + \dots + 0) = 1.33
+\]
+
+**Group 2:**
+\[
+\bar{X}_2 = \frac{1}{n_2} \sum_{j=1}^{n_2} x_{2j} = \frac{1}{6}(2 + 2 + \dots + 4) = 2.50
+\]
+
+**Group 3:**
+\[
+\bar{X}_3 = \frac{1}{n_3} \sum_{j=1}^{n_3} x_{3j} = \frac{1}{6}(1 + 2 + \dots + 4) = 2.67
+\]
+
+Overall Mean
+
+\[
+\bar{X} = \frac{1}{n} \sum_{i=1}^{k} \sum_{j=1}^{n_i} x_{ij} = \frac{1 + 3 + \dots + 0 + 2 + 2 + \dots + 4 + 1 + 2 + \dots + 4}{18}
+\]
+
+\[
+= \frac{1}{n} \sum_{i=1}^{k} n_i \bar{X}_i = \frac{1}{18} \left[ (6)(1.33) + (6)(2.5) + (6)(2.67) \right]
+\]
+
+\[
+= 2.17
+\]
+
+
+| Brand 1         | Brand 2         | Brand 3         |
+|:---------------:|:---------------:|:---------------:|
+| $x_{11} = 1$    | $x_{21} = 2$    | $x_{31} = 1$    |
+| $x_{12} = 3$    | $x_{22} = 2$    | $x_{32} = 2$    |
+| 3               | 4               | 4               |
+| 0               | 3               | 2               |
+| 1               | 0               | 3               |
+| $x_{16} = 0$    | $x_{26} = 4$    | $x_{36} = 4$    |
+| $n_1 = 6$       | $n_2 = 6$       | $n_3 = 6$       |
+| $\bar{x}_1 = 1.33$ | $\bar{x}_2 = 2.50$ | $\bar{x}_3 = 2.67$ |
+
+
 
 Sample Variances
-Group 1: SI ${ }_{1}^{2}=\frac{1}{n_{1}-1} \sum_{j=1}^{n_{1}}\left(x_{i j}-\bar{x}_{1}\right)^{2}$
 
-$$
-\begin{aligned}
-& =\frac{1}{6-1}\left[(1-1,33)^{2}+\ldots+(0-1,33)^{2}\right] \\
-& =1,87
-\end{aligned}
-$$
+**Group 1:**
 
-Grap 2! $S_{2}{ }^{2}=$ 1
+\[
+S_1^2 = \frac{1}{n_1 - 1} \sum_{j=1}^{n_1} (x_{1j} - \bar{x}_1)^2
+\]
 
-$$
-=2,30
-$$
+\[
+= \frac{1}{6 - 1} \left[ (1 - 1.33)^2 + \dots + (0 - 1.33)^2 \right]
+\]
 
-Group $3: S_{3}^{2}=$
+\[
+= 1.87
+\]
 
-$$
-=1,47
-$$
+---
 
-$$
-\begin{array}{lll}
-\hline \text { Brand } 1 & \text { Brand } 2 & \text { Brand } 3 \\
-\hline x_{11}=1 & x_{21}=2 & x_{31}=1 \\
-x_{12}=3 & x_{22}=2 & x_{32}=2 \\
-3 & 4 & 4 \\
-0 & 3 & 2 \\
-1 & 0 & 3 \\
-x_{16} & 0 & x_{26} \\
-\hline n_{1}=6 & 4 & x_{36}=4 \\
-\bar{x}_{1}=1,33 & \bar{x}_{2}=6 & n_{3}=6 \\
-S_{1}^{2}=1,80 & S_{2}^{2}=2,30 & \bar{x}_{3}=2,67 \\
-S_{3}^{2}=1,47
+**Group 2:**
+
+\[
+S_2^2 = \dots = 2.30
+\]
+
+---
+
+**Group 3:**
+
+\[
+S_3^2 = \dots = 1.47
+\]
+
+
+| Brand 1          | Brand 2          | Brand 3          |
+|:----------------:|:----------------:|:----------------:|
+| $x_{11} = 1$     | $x_{21} = 2$     | $x_{31} = 1$     |
+| $x_{12} = 3$     | $x_{22} = 2$     | $x_{32} = 2$     |
+| 3                | 4                | 4                |
+| 0                | 3                | 2                |
+| 1                | 0                | 3                |
+| $x_{16} = 0$     | $x_{26} = 4$     | $x_{36} = 4$     |
+| $n_1 = 6$        | $n_2 = 6$        | $n_3 = 6$        |
+| $\bar{x}_1 = 1.33$ | $\bar{x}_2 = 2.50$ | $\bar{x}_3 = 2.67$ |
+| $S_1^2 = 1.87$   | $S_2^2 = 2.30$   | $S_3^2 = 1.47$   |
+
+Overall mean:  
+\[
+\bar{x} = 2.17, \quad n = 18
+\]
+
+Within (Error)
+
+\[
+SSE = \sum_{i=1}^{3} (n_i - 1) S_i^2 = (6 - 1)(1.87) + (6 - 1)(2.30) + (6 - 1)(1.47)
+\]
+
+\[
+= \boxed{28.20}
+\]
+
+---
+
+Between (Treatment effect)
+
+\[
+SS_{\text{Tot}} = \sum_{i=1}^{3} n_i (\bar{x}_i - \bar{x})^2 = 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2
+\]
+
+\[
+= \boxed{6.39}
+\]
+
+ANOVA Table
+
+\[
+MS = \frac{SS}{df}
+\]
+
+\[
+\begin{array}{|l|c|c|c|c|}
+\hline
+\textbf{Source} & \textbf{Degrees of Freedom} & \textbf{Sum of Squares (SS)} & \textbf{Mean Square (MS)} & \textbf{F-Stat} \\
+\hline
+\text{Treatment} & 3 - 1 = 2 & 6.39 & \frac{6.39}{2} = 3.195 & F^* = \frac{3.195}{1.875} = 1.70 \\
+\text{Error}     & 18 - 3 = 15 & 28.20 & \frac{28.20}{15} = 1.88 & \times \\
+\text{Total}     & 18 - 1 = 17 & 34.59 & \times & \\
+\hline
 \end{array}
-$$
+\]
 
-overall near $\bar{x}=2.17, \quad n=18$
-within
-
-$$
-\begin{aligned}
-S S E & =\sum_{i=1}^{n_{i}}\left(n_{i}-1\right) s_{i}^{2}=(6-1) \cdot(1.87)+(6-1) \cdot(2.30)+(6-1)(1.47) \\
-& =28.20
-\end{aligned}
-$$
-
-Between it rt affect)
-
-$$
-\begin{aligned}
-& \delta \delta \operatorname{tot}=\sum_{r=1}^{n} n_{i}\left(\bar{x}_{i}-\bar{x}\right)^{2}=6(1,33-2,17)^{2}+6(2,50-2,17)^{2} \\
-&+6(2,67-2,17)^{2}
-\end{aligned}
-$$
-
-$$
-=6,39
-$$
-
-| ANOVA Table | MS $=\frac{\delta S}{d f}$ |  |  |  |
-| :--- | :---: | :---: | :---: | :---: |
-| Source | $d f$ <br> degrees of <br> Freedom | $S S$ of <br> Squares | Mean <br> Squere | $F$-Stat |
-| Treatment | $K-1$ | $S S T r t$ | $M S T r=\frac{\delta S T r t}{K-1}$ | $F^{*}=\frac{M S T r}{M S E}$ |
-| Error | $\cap-K$ | $S S G$ | $M S E=\frac{\delta S E}{n-K}$ | $X$ |
-| Total | $\cap-1$ | $S S T o t a l$ | $X$ | $X$ |
 
 Hypothesis Test
-$H_{0}: \mu_{1}=\mu_{2} \ldots .=\mu_{k} \quad \xrightarrow{\text { all }}$ means are equal)
-tHai. At least one $\mu_{j}, j=1, \ldots, k$ fat least one mean different) is different Lat least one treatment has a different effect
-![](https://cdn.mathpix.com/cropped/2025_07_03_0e611eebd5aab7c4aee1g-42.jpg?height=1405&width=2748&top_left_y=0&top_left_x=1)
 
-Hypothesis Test
-$H_{0}: \mu_{1}=\mu_{2}=\mu_{3} \quad \rightarrow$ all treatments equally affective
-tHai: At least one $\mu_{j}, j=1, \ldots, 3$ fat least one mean different) is different Lat least one treatment has a different effect
+\[
+\begin{aligned}
+H_0\!: &\quad \mu_1 = \mu_2 = \mu_3 \\
+&\quad \text{(all means are equal} \rightarrow \text{ all treatments equally effective)} \\
+\\
+H_a\!: &\quad \text{At least one } \mu_j,\ j = 1, \dots, 3\ \text{ is different} \\
+&\quad \text{(} \rightarrow \text{ at least one treatment has a different effect)}
+\end{aligned}
+\]
 
-Test stat
 
-$$
-F^{\hbar}=\frac{M S T_{r} t}{M S E}=\frac{S S T_{r} t / k-1}{S S E / n-k}=1.70 \sim F_{(2,15)}
-$$
+Test Statistic
 
-Fat num $=2$ and denom $=15 \mathrm{df}$
-![](https://cdn.mathpix.com/cropped/2025_07_03_0e611eebd5aab7c4aee1g-43.jpg?height=944&width=1892&top_left_y=938&top_left_x=587)
-2.70 (table)
+\[
+F^* = \frac{MS_{\text{Tr}}}{MSE} = \frac{SS_{\text{Tr}}/(k-1)}{SSE/(n-k)} = 1.70 \sim F_{(2,15)}
+\]
 
-$$
-\begin{array}{r}
-\text { p-ralue }>0,100>0,05 \\
-(\alpha)
-\end{array}
-$$
+F distribution with numerator df = 2 and denominator df = 15.
 
-Insufficient evidence to reject $H_{0}: \mu_{1}=\mu_{2}=\mu_{3}$ The analysis from AMOUA Suggests all 3 groups have same mean.
+\[
+\text{p-value} > 0.100 > 0.05 \quad (\alpha)
+\]
 
-Suppose he rejected Ho. Which mean (or means) are different?
+Conclusion of ANOVA
 
-$$
-\mu_{1}, \mu_{2}, \mu_{3}
-$$
+There is **insufficient evidence to reject**  
+\[
+H_0: \mu_1 = \mu_2 = \mu_3
+\]
 
-pairmise comparisons
-$M_{1}, M_{2}$
-$\mu_{1}, \mu_{3}$
-$\binom{k}{2}$
-$\mu_{2}, \mu_{3}$
+The analysis from ANOVA suggests that all 3 groups have the same mean.
+
+
+
+What if $H_0$ had been rejected?
+
+Suppose we rejected $H_0$.  
+Which mean (or means) are different?
+
+\[
+\mu_1,\ \mu_2,\ \mu_3
+\]
+
+Pairwise Comparisons
+
+We would compare the means in **pairs**:
+
+- $\mu_1$ vs. $\mu_2$  
+- $\mu_1$ vs. $\mu_3$  
+- $\mu_2$ vs. $\mu_3$
+
+Number of comparisons:  
+\[
+\binom{k}{2}
+\]
+
+Solution
 
 Step 1. State Hypotheses.
+
 $\mu_{i}=$ population mean for differences from 500 ml (brand $i$, where
 $i=1,2,3$ ).
-$H_{0}: \mu_{1}=\mu_{2}=\mu_{3}$
-$H_{a}$ : At least two means differ.
 
-## Solution
+$H_{0}: \mu_{1}=\mu_{2}=\mu_{3}$
+
+$H_{a}$ : At least two means differ.
 
 Step 2. Compute test statistic.
 
@@ -517,23 +715,18 @@ Step 2. Compute test statistic.
 | Mean | 1.33 | 2.50 | 2.67 |
 | Variance | 1.87 | 2.30 | 1.47 |
 
-Grand mean $=\overline{\bar{x}}=2.17$.
-$S S T=6(1.33-2.17)^{2}+6(2.50-2.17)^{2}+6(2.67-2.17)^{2}=$ $6.387 \approx 6.39$
-SSE $=(6-1)(1.87)+(6-1)(2.30)+(6-1)(1.47)=28.20$
+Grand mean = \( \bar{x} = 2.17 \).
 
-## Solution
+\[
+SST = 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2 = 6.387 \approx 6.39
+\]
 
-Grand mean $=\overline{\bar{x}}=2.17$.
+\[
+SSE = (6 - 1)(1.87) + (6 - 1)(2.30) + (6 - 1)(1.47) = 28.20
+\]
 
-$$
-\begin{aligned}
-& S S T=6(1.33-2.17)^{2}+6(2.50-2.17)^{2}+6(2.67-2.17)^{2}= \\
-& 6.387 \approx 6.39 \\
-& S S E=(6-1)(1.87)+(6-1)(2.30)+(6-1)(1.47)=28.20
-\end{aligned}
-$$
 
-## ANOVA Table
+ ANOVA Table
 
 | Source of Variation | Degrees of Freedom (df) | Sum of Square (SS) | Mean Sum of Squares (MSS) | F Ratio |
 | :--- | :--- | :--- | :--- | :--- |
@@ -554,11 +747,11 @@ $$
 F>F_{0.05,2,15}=3.682
 $$
 
-## Step 4. Conclusion.
+Step 4. Conclusion.
 
-We found the value of the test statistic to be $F=1.70$. Since $F=1.70<F_{0.05,2,15}=3.682$, we can't reject $H_{0}$. Thus, there is not evidence to infer that the average differences differ between the three brands.
+We found the value of the test statistic to be $F=1.70$. Since $F=1.70<F_{0.05,2,15}=3.682$, we can't reject $H_{0}$. Thus, there is **not** evidence to infer that the average differences differ between the three brands.
 
-```
+```r
 # R Code;
 brand1=c(1,3,3,0,1,0);
 brand2=c (2,2,4,3,0,4);
@@ -568,39 +761,41 @@ brand=c(rep(1,6),rep(2,6),rep(3,6));
 oneway.test(differences~brand,var.equal=TRUE);
 ```
 
-```
+```r
 ##
 ## One-way analysis of means
 ##
 ## data: differences and brand
 ## F = 1.6864, num df = 2, denom df = 15, p-value
 ## = 0.2185
+##
 ```
 
 Margarine example
+
+```r
 > brand = as.factor(brand)
-> anova_model = aov(differences~brand)
+> anova_model = aov(differences ~ brand)
 > anova(anova_model)
-Analysis of Variance Table
-Response: differences
+```
+
 
 |  | Df | Sum Sq | Mean Sq | $F$ value |
 | :--- | ---: | ---: | ---: | :---: |
 | brand | 2 | 6.3333 | 3.1667 | 1.6864 |
 | Residuals | 15 | 28.1667 | 1.8778 | 0.2185 |
-| Resrur |  |  |  |  |
 
-Totals
-a nut given by $R$
 
-## Exercise
+
+
+Exercise
 
 The friendly folks a the Internal Revenue Service (IRS) in the United States and Canada Revenue Agency (CRA) are always looking for ways to improve the wording and format of its tax return forms. Three new forms have been developed recently. To determine which, if any, are superior to the current form, 120 individuals were asked to participate in an experiment. Each of the three new forms and the currently used form were filled out by 30 different people. The amount of time (in minutes) taken by each person to complete the task was recorded.
 What conclusions can be drawn from these data?
 
-## R Code
+R Code
 
-```
+```r
 #Step 1. Entering data;
 # importing data;
 # url of tax return forms;
@@ -612,19 +807,20 @@ forms_data[1:4, ];
 ```
 
 
-## R Code
+R Code
 
-|  |  |  |  |  |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| \#\# | Form1 | Form2 | Form3 | Form4 |  |
-| \#\# 1 | 23 | 88 | 116 | 103 |  |
-| \#\# 2 | 59 | 114 | 123 | 122 |  |
-| \#\# 3 | 68 | 81 | 64 | 105 |  |
-| \#\# 4 | 122 | 41 | 136 | 73 |  |
-
-## R Code
-
+```r
+## [1] "Form1" "Form2" "Form3" "Form4"
+##   Form1 Form2 Form3 Form4
+## 1    23    88   116   103
+## 2    59   114   123   122
+## 3    68    81    64   105
+## 4   122    41   136    73
 ```
+
+R Code
+
+```r
 #Step 2. ANOVA;
 time1=forms_data$Form1;
 time2=forms_data$Form2;
@@ -636,10 +832,9 @@ forms=c(rep(1,30),rep(2,30),rep(3,30),rep(4,30));
 oneway.test(times~forms,var.equal=TRUE)
 ```
 
+R Code
 
-## R Code
-
-```
+```r
 ## [1] 30
 ##
 ## One-way analysis of means
@@ -649,50 +844,53 @@ oneway.test(times~forms,var.equal=TRUE)
 ## = 0.03632
 ```
 
-
-## Assumptions of ANOVA
+Assumptions of ANOVA
 
 Model
 
-| observalurs |
-| :--- |
-| of a surv |
-| are assigned |
-| the same | \$\left\{\begin{array}{l}Y_{i j}=\underbrace{\mu+T_{i}}+\varepsilon_{i j} <br>
+\[
+Y_{ij} = \mu + \tau_i + \epsilon_{ij} \quad \text{where} \quad \epsilon_{ij} \sim \mathcal{N}(0, \sigma^2)
+\]
 
-Y_{i j}=\mu_{i}+\varepsilon_{i j},\end{array} \varepsilon_{i j} \sim N\left(0, \sigma^{2}\right)\right.\$ your mean
+or equivalently,
 
-## Assumptions
+\[
+Y_{ij} = \mu_i + \epsilon_{ij} \quad \text{with} \quad \epsilon_{ij} \sim \mathcal{N}(0, \sigma^2)
+\]
 
-I'Obser vutions are independent
-![](https://cdn.mathpix.com/cropped/2025_07_03_0e611eebd5aab7c4aee1g-59.jpg?height=367&width=730&top_left_y=570&top_left_x=1391)
+*Observations of a group are assigned the same group mean.*
 
-3
-Error terms (residuals) are Normal
-3
-All groups have the same population variance
+**Assumptions**
 
-$$
-\sigma_{1}^{2}=\sigma_{2}^{2}=\ldots=\sigma_{k}^{2}=\sigma^{2}
-$$
+1.Observations are independent
 
-Estimated with the MSE
+2.Error terms (residuals) are Normal
 
-$$
-\begin{aligned}
-\sigma_{2} & =\text { MdSE } \\
-& \text { from ArovA }
-\end{aligned}
-$$
+3.All groups have the same population variance
 
-## Multiple Comparisons
+\[
+\sigma_1^2 = \sigma_2^2 = \cdots = \sigma_k^2 = \sigma^2
+\]
 
-## Example
+This common variance is estimated using the **Mean Squared Error (MSE)** from ANOVA:
+
+\[
+\hat{\sigma}^2 = \text{MSE}
+\]
+
+
+
+
+**Multiple Comparisons**
+
+Example
 
 Because of foreign competition, North American automobile manufacturers have become more concerned with quality. One aspect of quality is the cost of repairing damage caused by accidents. A manufacturer is considering several new types of bumpers. To test how well they react to low-speed collisions, 10 bumpers of each of four different types were installed on mid-size cars, which were then driven into a wall at 5 miles per hour. The cost of repairing the damage in each case was assessed. The data are shown below.
-a. Is there sufficient evidence at the $5 \%$ significance level to infer that the bumpers differ in their reactions to low-speed collisions? b. If differences exist, which bumpers differ? Apply Fisher's LSD method with the Bonferroni adjustment.
 
-## Data
+a. Is there sufficient evidence at the $5 \%$ significance level to infer that the bumpers differ in their reactions to low-speed collisions?
+
+b. If differences exist, which bumpers differ? Apply Fisher's LSD method with the Bonferroni adjustment.
+
 
 | Bumper 1 | Bumper 2 | Bumper 3 | Bumper 4 |
 | :--- | :--- | :--- | :--- |
@@ -706,11 +904,8 @@ a. Is there sufficient evidence at the $5 \%$ significance level to infer that t
 | 548 | 505 | 460 | 318 |
 | 196 | 375 | 494 | 412 |
 | 444 | 438 | 637 | 499 |
-| $\bar{x}=380$ | - | ᄀ | ר |
-| $S_{1}^{2}=16924.22$ | こ | - | - |
-| $n_{1}=10$ | - |  |  |
 
-```
+```r
 cost_bumper1 = c(610, 354, 234, 399, 278, 358, 379, 548, 196, 444)
 cost_bumper2 = c(404, 663, 521, 518, 499, 374, 562, 505, 375, 438)
 cost_bumper3 = c(599, 426, 429, 621, 426, 414, 332, 460, 494, 637)
@@ -725,7 +920,7 @@ bumper_data = rbind(
 bumper_data
 ```
 
-```
+```r
 library(mosaic)
 result = do.call(rbind, lapply(list(cost_bumper1, cost_bumper2,
     cost_bumper3, cost_bumper4), fav_stats))
@@ -735,99 +930,114 @@ result
 
 |  | min | Q1 | median | Q3 | max | mean | sd | n | missing |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Bumper | 196 | 297.00 | 368.5 | 432.75 | 610 | 380.0 | 130.09313 | 10 | 0 |
-| Bumper | 374 | 412.50 | 502.0 | 520.25 | 663 | 485.9 | 90.53968 | 10 | 0 |
-| Bumper | 332 | 426.00 | 444.5 | 572.75 | 637 | 483.8 | 102.10866 | 10 | 0 |
-| Bumper | 181 | 278.25 | 340.5 | 410.25 | 538 | 348.2 | 118.52688 | 10 | 0 |
+| Bumper 1 | 196 | 297.00 | 368.5 | 432.75 | 610 | 380.0 | 130.09313 | 10 | 0 |
+| Bumper 2 | 374 | 412.50 | 502.0 | 520.25 | 663 | 485.9 | 90.53968 | 10 | 0 |
+| Bumper 3 | 332 | 426.00 | 444.5 | 572.75 | 637 | 483.8 | 102.10866 | 10 | 0 |
+| Bumper 4 | 181 | 278.25 | 340.5 | 410.25 | 538 | 348.2 | 118.52688 | 10 | 0 |
 
-```
+```r
     # Create anova model
     bumper_model = aov(cost ~ type, data = bumper_data)
     # Get ANOVA table
     anova(bumper_model)
-    Analysis of Variance Table
-```
-
-![](https://cdn.mathpix.com/cropped/2025_07_03_0e611eebd5aab7c4aee1g-65.jpg?height=208&width=829&top_left_y=470&top_left_x=0)
-
-```
-Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
 Bumper Example
-$H_{0}: \mu_{1}=\mu_{2}=\mu_{3}=\mu_{4}$
-Hal At least one $\mu_{i}, i=1, \ldots 4$ is different
-Test stat
+
+Hypotheses
+
+Let:
+
+- $H_0$: $\mu_1 = \mu_2 = \mu_3 = \mu_4$  
+- $H_a$: At least one $\mu_i,\ i = 1, \dots, 4$ is different
+
+Test Statistic
+
+$F = 4.0563 \sim F_{(3,36)}$
+
+$p$-value = 0.01395 $<\ 0.05$ (α)
+
+Sufficient evidence to reject $H_0$ and conclude that at least one group of bumpers has a different mean repair cost.
+
+
+Which group/groups are different?
+
+Perform **pairwise comparisons**  
+(i.e., create pairwise confidence intervals)
+
+
+For this example:
+
+We perform the following comparisons:
+
+1. $\mu_1 - \mu_2$  
+2. $\mu_1 - \mu_3$  
+3. $\mu_1 - \mu_4$  
+4. $\mu_2 - \mu_3$  
+5. $\mu_2 - \mu_4$  
+6. $\mu_3 - \mu_4$  
+
+We compute $\binom{K}{2}$ comparisons, where $K = 4$ (the number of groups):
 
 $$
-\begin{aligned}
-& F=4.0563 \sim F_{(3036)} \\
-& p \text {-value }=0.01395<0.05 \\
-& (\alpha)
-\end{aligned}
+\binom{4}{2} = 6
 $$
 
-Sufficient Evidence to reject $H_{0}$ and conclude at least one soup of bumpers has a different meas repair cost.
-$\rightarrow$ which group / groups cure different?
-perform pairwise comparisons
-le. Create pairwise confidence intervals)
-For this example
 
-$$
-\begin{aligned}
-& 1 \mu_{1}-\mu_{2} \\
-& 2 \mu_{1}-\mu_{3} \\
-& 3 \mu_{1}-\mu_{4} \\
-& 4 \mu_{2}-\mu_{3} \\
-& 5 \mu_{2}-\mu_{4} \\
-& 6 \mu_{3}-\mu_{4}
-\end{aligned}
-$$
-
-## Pairwise confidence Intervals
-
-For each pair of groups $i$ and $j$, $i=1, \ldots, k ; \quad j=1, \ldots, k ; \quad i \neq j$
+**Pairwise confidence Intervals**
 
 Fisher's LSD
 
-$$
-\left.\left(\bar{x}_{i}-\bar{x}_{j}\right) \pm t_{(n}=k, \phi / 2\right) \cdot \sqrt{\text { MSE }\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}
-$$
+\[
+(\bar{x}_i - \bar{x}_j) \pm t_{(n - k,\ \alpha/2)} \cdot \sqrt{MSE \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}
+\]
+
 
 Bonferroni
 
-$$
-\left.\overline{\left(\bar{x}_{i}-\bar{x}_{j}\right)} \pm t_{(n-k,} \phi / 2 m\right) \cdot \sqrt{\text { MSE }\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}
-$$
+\[
+(\bar{x}_i - \bar{x}_j) \pm t_{(n - k,\ \alpha / (2m))} \cdot \sqrt{MSE \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}
+\]
 
-$m=\binom{k}{2}$ \# pairwise comparisons
-[Note: not conducting pairwise hypothesis tests]
-Fisher's is easier to calculate, has mere statistical power, homer Bunferroni maintains experiment wit error rate
+<span style="color:red">\( m = \binom{k}{2} \) &nbsp;&nbsp;&nbsp;&nbsp; # pairwise comparisons</span>
 
-Fisher: $\alpha_{e}=1-(1-\alpha)^{m}$
-Bonferroni: $\alpha_{e}=1-\left(1-\frac{\alpha}{m}\right)^{m}$
+
+
+**Note:** _not_ conducting pairwise hypothesis tests
+
+
+
+Fisher's is easier to calculate, has more statistical power; however, Bonferroni maintains experiment-wise error rate.
+
+- **Fisher:** \( \alpha_E = 1 - (1 - \alpha)^m \)
+- **Bonferroni:** \( \alpha_E = 1 - \left( 1 - \frac{\alpha}{m} \right)^m \)
+
+
 
 Fisher
 
-| $m=1$, | $の=0,05$ | $1-(1-\infty)^{1}=0,05$ |
-| :--- | :--- | :--- |
-| $m=2$, | $の=0,05$ | $1-(1-\infty)^{2}>0,05$ |
-| $m=3$ | $\alpha=0,05$ | $1-(1-\infty)^{3}>1-(1-\infty)^{2}$ |
+- \( m = 1, \quad \alpha = 0.05 \quad \Rightarrow \quad 1 - (1 - \alpha)^1 = 0.05 \)
+- \( m = 2, \quad \alpha = 0.05 \quad \Rightarrow \quad 1 - (1 - \alpha)^2 \geq 0.05 \)
+- \( m = 3, \quad \alpha = 0.05 \quad \Rightarrow \quad 1 - (1 - \alpha)^3 \geq 1 - (1 - \alpha)^2 \)
+- \( \cdots \)
 
-$n \uparrow$ error rate $\uparrow$
+As \( m \uparrow \), error rate \( \uparrow \)
 
-Bonles roni
-as $m p \quad d e=\left(1-\frac{\alpha}{m}\right)^{m}$ remains almust constart
 
-## Solution a)
+Bonferroni
+
+As \( m \uparrow \),  
+\[
+\alpha_E = \left( 1 - \frac{\alpha}{m} \right)^m
+\]  
+remains _almost constant_
+
+
+Solution a)
 
 The test statistic is $F_{*}=4.06$ and the $P-$ value $=0.0139$. There is enough statistical evidence to infer that there are differences between some of the bumpers. The question is now, Which bumpers differ?
 
-## Fisher's Least Significant Difference Method
-
-![](https://cdn.mathpix.com/cropped/2025_07_03_0e611eebd5aab7c4aee1g-70.jpg?height=661&width=1185&top_left_y=94&top_left_x=51)
-
-## Fisher's Least Significant Difference Method
+Fisher's Least Significant Difference Method
 
 The confidence interval estimator is
 
@@ -835,7 +1045,7 @@ $$
 \left(\bar{x}_{i}-\bar{x}_{j}\right) \pm t_{\alpha / 2} \sqrt{M S E\left(\frac{1}{n_{i}}+\frac{1}{n_{j}}\right)}
 $$
 
-## Least Significant Difference (definition)
+Least Significant Difference (definition)
 
 We define the least significant difference LSD as
 
@@ -864,17 +1074,19 @@ $$
 \alpha_{E} \leq C \alpha
 $$
 
-which means that if we want the probability of making at least one Type I error to be no more than $\alpha_{E}$, we simply specify $\alpha=\frac{\alpha_{E}}{C}$. The resulting procedure is called the Bonferroni adjustment.
+which means that if we want the probability of making at least one Type I error to be no more than $\alpha_{E}$, we simply specify $\alpha=\frac{\alpha_{E}}{C}$. The resulting procedure is called the **Bonferroni adjustment**.
 
-## Solution b)
+Solution b)
 
 Let's use our example to illustrate Fisher's LSD method and the Bonferroni adjustment. The four sample means and standard deviations are
 $\bar{y}_{1}=380$ and $s_{1}=130.0931$
+
 $\bar{y}_{2}=485.9$ and $s_{2}=90.5396$
+
 $\bar{y}_{3}=483.8$ and $s_{3}=102.1086$
+
 $\bar{y}_{4}=348.2$ and $s_{4}=118.5268$
 
-## Solution b)
 
 The pairwise absolute differences are
 
@@ -889,20 +1101,31 @@ $$
 \end{aligned}
 $$
 
-## Solution b)
 
-We have that $M S E=12,399$ and $\nu=n-k=40-4=36$.
-If we perform the LSD procedure with the Bonferroni adjustment, the number of pairwise comparisons is 6 . We set $\alpha=0.05 / 6=0.0083$. Thus $t_{\alpha / 2, n-k}=t_{0.00415,36}=2.7935$ (using R ) and
-qt (0.00415,36)
-\#\# [1] -2.793555
-$\operatorname{LSD}=t_{\alpha / 2} \sqrt{\operatorname{MSE}\left(\frac{1}{n_{i}}+\frac{1}{n_{j}}\right)} \approx 2.7935 \sqrt{12399\left(\frac{1}{10}+\frac{1}{10}\right)}=139.109$
+We have that \( MSE = 12,\!399 \) and \( \nu = n - k = 40 - 4 = 36 \).  
+If we perform the LSD procedure with the Bonferroni adjustment, the number of pairwise comparisons is 6. We set \( \alpha = 0.05 / 6 = 0.0083 \). Thus
+\[
+t_{\alpha/2,\, n-k} = t_{0.00415, 36} = 2.7935 \quad \text{(using R)}
+\]
+
+```r
+qt(0.00415, 36)
+## [1] -2.793555
+```
+
+\[
+LSD = t_{\alpha/2} \sqrt{ MSE \left( \frac{1}{n_i} + \frac{1}{n_j} \right) } 
+\approx 2.7935 \cdot \sqrt{ 12399 \left( \frac{1}{10} + \frac{1}{10} \right) } 
+= 139.109
+\]
+
 
 Now no pair of means differ because all the absolute values of the differences between sample means are less than 139.1095.
 The drawback to the LSD procedure is that we increase the probability of at least one Type I error. The Bonferroni adjustment corrects this problem.
 
-## Bumper example
+Bumper example
 
-```
+```r
 library(mosaic)
 result = do.call(rbind, lapply(list(cost_bumper1, cost_bumper2,
     cost_bumper3, cost_bumper4), fav_stats))
@@ -917,120 +1140,168 @@ result
 |  | Bumper 3 | 332 | 426.00 | 444.5 | 572.75 | 637 | 483.8 | 102.10866 | 10 | 0 |
 |  | Bumper 4 | 181 | 278.25 | 340.5 | 410.25 | 538 | 348.2 | 118.52688 | 10 | 0 |
 
-For the bumper example, calculate a $95 \%$ pairwise CI for the difference between Bumper (1) and Bumper (2) using LSD and Bonferroni Fisher's LSD $\quad\left(\mu_{1}-\mu_{2}\right)$
-l-の $=0.98 \quad k=4 \quad$ つ $=40$ $\alpha=0.05$
-$\left(\bar{x}_{1}-\bar{x}_{2}\right) \pm t_{r n-k, \alpha / 2} \cdot \sqrt{\text { MSE }\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)}$ from ANOUA $==\underbrace{(380-485.9) \pm t_{(36,0.025)}}_{1} \cdot \sqrt{123999\left(\frac{1}{10}+\frac{1}{10}\right)}$
+We want to calculate a 95% pairwise confidence interval for the difference between **Bumper 1** and **Bumper 2** using Fisher's LSD and Bonferroni.
 
-$$
-=2,028 \quad \frac{B}{q q t(1-0,025,36)}
-$$
+We test: \( \mu_1 - \mu_2 \)
 
-$=-105.9 \pm 100.9942$
-$=\underset{\text { (-ie) }}{21-206.894},-4,9058) \quad \mu_{1}-\mu_{2} \neq 0$
+Fisher's LSD Formula:
 
-Fishers LSD suggests $\mu_{2}>\mu_{1}$
+\[
+(\bar{X}_1 - \bar{X}_2) \pm t_{(n - k,\ \alpha/2)} \cdot \sqrt{ MSE \left( \frac{1}{n_1} + \frac{1}{n_2} \right) }
+\]
 
-Bonferroni $\left(\mu_{1}-\mu_{2}\right)$ 曲pairmise compurisons
+Plug in:
 
-$$
-\begin{array}{cc}
-\begin{array}{cc}
-1-\alpha=0.95 & n=40 \\
-\alpha=0.05 & k=4
-\end{array} & n=\binom{k}{2}=\binom{4}{2}=6 \\
-\left(\bar{x}_{i}-\bar{x}_{i}\right) \pm t_{(n-k, 9 / 2 m)} & \sqrt{\text { MSE }\left(\frac{1}{n_{1}}+\frac{1}{n_{2}}\right)} \\
-=(380-485.9) & 0.004167 \\
-& \pm t_{(36,} \overbrace{0.05 /(2 \times 6)}) \sqrt{12399\left(\frac{1}{10}+\frac{1}{10}\right)}
-\end{array}
-$$
+\[
+(380 - 485.9) \pm t_{(36,\ 0.025)} \cdot \sqrt{12399 \left( \frac{1}{10} + \frac{1}{10} \right)}
+\]
 
-$$
-2,79197
-$$
+From R:
 
-$$
-\frac{B}{2 q+(1-0,004162,36)}
-$$
+```r
+qt(1 - 0.025, 36)
+## [1] 2.028
+```
 
-$$
-\begin{aligned}
-& =-105,9 \pm 139,0338, \quad \mu_{1}-\mu_{2} \\
-& =\left(\begin{array}{ccc}
--244,9335, & 33,13347
-\end{array}\right) \quad \frac{0}{-244}
-\end{aligned}
-$$
+\[
+= -105.9 \pm 2.028 \cdot \sqrt{12399 \cdot \left( \frac{1}{10} + \frac{1}{10} \right)}
+\]
 
-Borferroni informs us it is plansible fer $\mu_{1}=\mu_{2}$
+\[
+= -105.9 \pm 100.9942
+\]
+
+\[
+= (-206.894,\ -4.9058)
+\]
+
+
+
+Since the entire interval is **negative**, that is:  
+\[
+\mu_1 - \mu_2 \leq 0
+\]
+
+Conclusion: 
+Fisher’s LSD suggests \( \mu_2 > \mu_1 \)
+
+Bonferroni Formula:
+
+\[
+(\bar{X}_i - \bar{X}_j) \pm t_{(n - k,\ \alpha/(2m))} \cdot \sqrt{ MSE \left( \frac{1}{n_1} + \frac{1}{n_2} \right) }
+\]
+
+Plug in:
+
+\[
+(380 - 485.9) \pm t_{(36,\ \alpha/2m)} \cdot \sqrt{12399 \left( \frac{1}{10} + \frac{1}{10} \right)}
+\]
+
+Where:
+
+\[
+\alpha/2m = \frac{0.05}{2 \times 6} = 0.004167
+\]
+
+From R:
+
+```r
+qt(1 - 0.004167, 36)
+## [1] 2.79197
+```
+
+\[
+= -105.9 \pm 2.79197 \cdot \sqrt{12399 \left( \frac{1}{10} + \frac{1}{10} \right)}
+= -105.9 \pm 139.0338
+\]
+
+\[
+= (-244.9335,\ 33.13347)
+\]
+
+
+Since the interval contains **zero**, that is:
+
+\[
+\mu_1 - \mu_2 \in (-244,\ 33)
+\]
+
+Conclusion: 
+Bonferroni informs us it is **plausible** that \( \mu_1 = \mu_2 \)
+
+Using `DescTools::PostHocTest()` for Fisher's LSD
+
+We perform Fisher’s LSD post-hoc test using the `DescTools` package:
+
+```r
 library(DescTools)
 PostHocTest(bumper_model, method = "lsd")
+```
 
-Posthoc multiple comparisons of means : Fisher LSD $95 \%$ family-wise confidence level
-\$type
+This returns the following multiple comparisons of means:
 
-|  |  | diff | lwr.ci | upr.ci | pval |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Bumper | 1 | 105.9 | 4.905342 | 206.89466 | 0.0404 |
-| - | 1 | 103.8 | 2.805342 | 204.79466 | 0.0443 |
-| Bumper | 1 | -31.8 | -132.794658 | 69.19466 | 0.5271 |
-| Bumper | 2 | -2.1 | -103.094658 | 98.89466 | 0.9666 |
-| - Bumper | 2 | -137.7 | -238.694658 | -36.70534 | 0.0089 |
-| ${ }^{\text {- }}$ Bumper | 3 | -135.6 | -236.594658 | -34.60534 | 0.0099 |
+95% Family-wise Confidence Level – Fisher LSD
 
-Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+| Comparison        | diff   | lwr.ci   | upr.ci   | p-value | 
+|------------------|--------|----------|----------|---------|
+| Bumper 2 - Bumper 1 | 105.9  | 4.9053   | 206.8947 | 0.0404  | 
+| Bumper 3 - Bumper 1 | 103.8  | 2.8053   | 204.7947 | 0.0443  | 
+| Bumper 4 - Bumper 1 | -31.8  | -132.7947| 69.1946  | 0.5271  |        
+| Bumper 3 - Bumper 2 | -2.1   | -103.0947| 98.8946  | 0.9666  |        
+| Bumper 4 - Bumper 2 | -137.7 | -238.6947| -36.7054 | 0.0089  | 
+| Bumper 4 - Bumper 3 | -135.6 | -236.5947| -34.6053 | 0.0099  | 
+
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Using `DescTools::PostHocTest()` for Bonferroni Correction
+
+We perform a Bonferroni-adjusted post-hoc test using the `DescTools` package:
+
+```r
 library(DescTools)
 PostHocTest(bumper_model, method = "bonferroni")
+```
 
-Posthoc multiple comparisons of means : Bonferroni $95 \%$ family-wise confidence level
-\$type
+This returns the following multiple comparisons of means:
 
-|  | diff | lwr.ci | upr.ci | pval |
-| :--- | :--- | :--- | :--- | :--- |
-| Bumper 2-Bumper 1 | 105.9 | -33.13411 | 244.934113 | 0.2423 |
-| Bumper 3-Bumper 1 | 103.8 | -35.23411 | 242.834113 | 0.2657 |
-| Bumper 4-Bumper 1 | -31.8 | -170.83411 | 107.234113 | 1.0000 |
-| Bumper 3-Bumper 2 | -2.1 | -141.13411 | 136.934113 | 1.0000 |
-| Bumper 4-Bumper 2 | -137.7 | -276.73411 | 1.334113 | 0.0535 |
-| Bumper 4-Bumper | -135.6 | -274.63411 | 3.434113 | 0.0595 |
+95% Family-wise Confidence Level – Bonferroni
 
-Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+| Comparison        | diff   | lwr.ci     | upr.ci     | p-value |
+|------------------|--------|------------|------------|---------|
+| Bumper 2 - Bumper 1 | 105.9  | -33.1341   | 244.9341   | 0.2423  |        
+| Bumper 3 - Bumper 1 | 103.8  | -35.2341   | 242.8341   | 0.2657  |        
+| Bumper 4 - Bumper 1 | -31.8  | -170.8341  | 107.2341   | 1.0000  |        
+| Bumper 3 - Bumper 2 | -2.1   | -141.1341  | 136.9341   | 1.0000  |        
+| Bumper 4 - Bumper 2 | -137.7 | -276.7341  | 1.3341     | 0.0535  |        
+| Bumper 4 - Bumper 3 | -135.6 | -274.6341  | 3.4341     | 0.0595  | 
 
-## Bonferroni
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Control fer
-exper iment wise error
-$\alpha_{e}=1-\left(1-\frac{\alpha}{m}\right)^{m}$
+**Bonferroni vs. LSD Comparison**
 
-Suitable when control of Type I
-error is required
-higher rijk of Type II error
-lover power
-$\alpha_{e}=1-(1-\alpha)^{m}$
+| **Bonferroni** | **LSD** |
+|----------------|---------|
+| Controls for experiment-wise error | Does **not** control for experiment-wise error |
+| \( \alpha_E = 1 - (1 - \frac{\alpha}{m})^m \) | \( \alpha_E = 1 - (1 - \alpha)^m \) |
+| Suitable when control of Type I error is required | Suitable when control of Type I error is **not** a strict concern |
+| Higher risk of Type II error | Lower risk of Type II error |
+| Lower power | Higher power |
 
-Suitable when control of Type I error is not a strict concern
-
-Lower risk of Type II error higher power
-
-## Example
+Example
 
 An apple juice manufacturer has developed a new product - a liquid concentrate that, when mixed with water, produces 1 liter of apple juice. The product has several attractive features. First, it is more convenient that canned apple juice. Second, because the apple juice that is sold in cans is actually made from concentrate, the quality of the new product is at least as high as canned apple juice. Third, the cost of the new product is slightly lower than canned apple juice. The marketing manager has to decide how to market the new product. She can create advertising that emphasizes convenience, quality, or price.
 
-## Example
-
 To facilitate a decision, she conducts an experiment. In three different cities that are similar in size and demographic makeup, she launches the product with advertising stressing the convenience of the liquid concentrate in one city. In the second city, the advertisements emphasize the quality of the product. Advertising that highlights the relatively low cost of the liquid concentrate is used in the third city. The number of packages sold weekly is recorded for the 20 weeks following the beginning of the campaign.
-
-## Example
 
 These data are available at:
 
-```
+```r
 ad_url =
 "https://mcs.utm.utoronto.ca/ ~nosedal/data/ad-strategies.t
 ```
 
 The marketing manager wants to know if differences in sales exist between the three advertising strategies.
-
-## Example
 
 To illustrate Fisher's LSD method and the Bonferroni adjustment, consider the dataset described above and assume we tested to determine whether population means differ using a $5 \%$ significance level. The three sample means are: $577.55,653.0$, and 608.65 .
 The pair-wise absolute differences are
@@ -1043,17 +1314,28 @@ $$
 \end{aligned}
 $$
 
-## Example
-
 If we conduct the LSD procedure with $\alpha=0.05$ we find $\left|t_{\alpha / 2, n-k}\right|=\left|t_{0.025,57}\right|=|-2.0024655|=2.0024655$
-qt (0.025,57)
-\#\# [1] -2. 002465
-$L S D=t_{\alpha / 2} \sqrt{M S E\left(\frac{1}{n_{i}}+\frac{1}{n_{j}}\right)} \approx 2.002 \sqrt{8894\left(\frac{1}{20}+\frac{1}{20}\right)}=59.71$
 
-## Example
+```r
+qt(0.025, 57)
+## [1] -2.002465
+```
+$$
+\text{LSD} = t_{\alpha / 2} \cdot \sqrt{MSE \left( \frac{1}{n_i} + \frac{1}{n_j} \right)} 
+\approx 2.002 \cdot \sqrt{8894 \left( \frac{1}{20} + \frac{1}{20} \right)} = 59.71
+$$
+We can see that only one pair of sample means differ by more than 59.71.  
+That is, \( |\bar{x}_1 - \bar{x}_2| = 75.45 \), and the other two differences are less than LSD.  
+We conclude that only \( \mu_1 \) and \( \mu_2 \) differ.
 
-We can see that only one pair of sample means differ by more than 59.71. That is, $\left|\bar{x}_{1}-\bar{x}_{2}\right|=75.45$, and the other two differences are less than LSD. We conclude that only $\mu_{1}$ and $\mu_{2}$ differ.
-If we perform the LSD procedure with the Bonferroni adjustment, the number of pairwise comparisons is 3 (calculated as $C=k(k-1) / 2=3(2) / 2$. We set $\alpha=0.05 / 3=0.0167$. Thus, $t_{\alpha / 2, n-k}=t_{0.0083,57}=-2.4682794$ and
+If we perform the LSD procedure with the Bonferroni adjustment,  
+the number of pairwise comparisons is 3 (calculated as  \( C = \frac{k(k - 1)}{2} = \frac{3(2)}{2} \)).  
+We set \( \alpha = 0.05 / 3 = 0.0167 \). Thus,  
+\[
+t_{\alpha/2,\, n-k} = t_{0.0083,\, 57} = -2.4682794
+\]
+and
+
 
 $$
 t_{\alpha / 2} \sqrt{M S E\left(\frac{1}{n_{i}}+\frac{1}{n_{j}}\right)} \approx 2.467 \sqrt{8894\left(\frac{1}{20}+\frac{1}{20}\right)}=73.54
