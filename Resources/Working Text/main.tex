@@ -8,11 +8,19 @@
 \usepackage{titleref}
 %\usepackage{maple2e}
 
+
+\usepackage{tikz, pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{placeins}
+
+
 \usepackage{needspace}
 \usepackage{xcolor}
 \usepackage{etoolbox}
 \usepackage{xcolor}
 \usepackage{sectsty}
+\usepackage{caption}
+
 \sectionfont{\color{blue!70}}
 
 \usepackage{inputenc}
@@ -37,7 +45,7 @@
     colframe=blue!40!black,
     coltitle=black,
     colbacktitle=blue!10!white, % <- lightens title bar
-    fonttitle=\bfseries,
+    fonttitle=\bfseries,\usetikzlibrary{decorations.pathmorphing}
     boxrule=0.5pt,
     arc=2mm,
     leftrule=0pt,
@@ -681,7 +689,6 @@
 
 %\makeindex
 \begin{document}
-
 %\BgThispage
 % Some content
 %\clearpage
@@ -704,7 +711,7 @@
 {\nbtitlestretch\huge
 STATISTICS WITH APPLIED PROBABILITY\\
 \hfill\\
-Custom eBook for STA258}
+Custom E-Book for STA258}
 
 %\nbvspace[1]
 %\normalsize
@@ -800,7 +807,7 @@ CANADA
 
 
 \title{\bf Statistics with Applied Probability\\
-Custom eBook for STA258\\
+Custom E-Book for STA258\\
 \hfill\\}
 
 \author{
@@ -870,9 +877,9 @@ First edition:  & August 2025 \\
 %\vfill
 \hfill
 
-Mudalige, M.; Alili, N.; Xu, B.\\
+Mudalige, M.; Alili, N.; Su, B.\\
 %\hspace*{1em} Me, myself, and I / Jubobs. -- \\
-\hspace*{1em} University of Guelph Bookstore Press\\
+%\hspace*{1em} University of Toronto Press\\
 %\hspace*{2em} p. \hspace*{2em} cm. \\
 %\hspace*{2em} Includes illustrations, bibliographical references and index. \\
 %\hspace*{2em} ISBN \\
@@ -923,10 +930,15 @@ Mississauga, Ontario, Canada \\
 \input{Section6/section6.tex}
 \input{Section7/section7.tex}
 \input{Section8/section8.tex}
+\input{Section9/section9.tex}
 \input{Section10/section10.tex}
+\input{Section11/section11.tex}
 \input{Section12/section12.tex}
-\input{Section14.2/section14.2.tex}
+\input{Section13/section13.tex}
+\input{Section14/section14.tex}
 \input{Section15/section15.tex}
+\input{Section16/section16.tex}
+
 \pagebreak
 
 

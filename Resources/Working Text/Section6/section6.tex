@@ -60,7 +60,8 @@ A confidence interval is a plausible range of values that captures a parameter w
 
 \vspace{1em}
 
-\begin{center}
+\begin{figure}[h]
+\centering
 \begin{tikzpicture}
     \draw[thick] (-5,0) -- (5,0);
     \draw[thick] (-4.5,0.2) -- (-4.5,-0.2); % lower bd
@@ -72,7 +73,9 @@ A confidence interval is a plausible range of values that captures a parameter w
     \node[blue] at (0,1) {parameter is somewhere in here};
     \draw[blue, thick, decorate, decoration={snake}] (-4.5,0.1) -- (4.5,0.1);
 \end{tikzpicture}
-\end{center}
+\vspace{-0.5em} % adjust this negative space to reduce space
+\caption{Parameter location within the interval.}
+\end{figure}
 
 \vspace{2em}
 Suppose we are interested in the average mark for \texttt{STA258} for the current semester. We are 100\% confident that the average mark is between 0 and 100; however, this is not useful information as we already know that the average mark must lie between 0 and 100. Using the marks of previous years, we can construct a 95\% interval for the average mark. If it is determined that the average mark lies within 70\% and 80\%, this is much more meaningful as we can state with a high degree of certainty that the average mark is going to lie within a substantially narrow range.
@@ -216,12 +219,11 @@ Once we observe our sample:
 
 Not all CIs contain the true value of the parameter. This can be illustrated by plotting many intervals simultaneously and observing.
 
----
 
 \vspace{2em}
-\textcolor{gray}{\textbf{R Output:}}
-
-\begin{lstlisting}[language=R]
+\textbf{R Output:}
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+\begin{verbatim}
 ## Step 1. Generate random samples;
 set.seed(2017)
 m = 50;       # m = number of samples;
@@ -231,35 +233,37 @@ sigma.i = 5;  # sigma.i = std. dev. of obs;
 
 mu.total = n * mu.i;          # mean of Total;
 sigma.total = sqrt(n) * sigma.i;  # std. dev. of Total;
-\end{lstlisting}
+\end{verbatim}
+\end{tcolorbox}
 
 \vspace{1em}
-\textcolor{gray}{\textbf{R Output:}}
-
-\begin{lstlisting}[language=R]
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+\begin{verbatim}
 ## Step 2. Construct CIs;
 xbar = rnorm(m, mu.total, sigma.total) / n;
 SE = sigma.i / sqrt(n);
 
 alpha = 0.10;
 z.star = qnorm(1 - alpha / 2);
-\end{lstlisting}
+\end{verbatim}
+\end{tcolorbox}
 
 \vspace{1em}
-\textcolor{gray}{\textbf{R Output:}}
-
-\begin{lstlisting}[language=R]
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+\begin{verbatim}
 ## Step 3. Graph CIs;
 matplot(rbind(xbar - z.star * SE, xbar + z.star * SE),
         rbind(1:m, 1:m),
         type = "l", lty = 1,
-        xlab = " ", ylab = " ");
+        xlab = " ", lab = " ");
 abline(v = 0, lty = 2);
-\end{lstlisting}
+\end{verbatim}
+\end{tcolorbox}
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{Section6/images/confidence_intervals.pdf}
+\captionsetup{skip=-5pt}
   \caption{Simulated 95\% confidence intervals for the population mean. Red “X” marks indicate intervals that do not contain the true mean (\( \mu = 0 \)).}
 \end{figure}
 
@@ -276,19 +280,21 @@ Draw an SRS (Simple Random Sample) of size $n$ from a Normal population having u
 
 The critical value $z_{\ast}$ is illustrated in a Figure below and depends on $C$.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{Section6/images/normal_confidence_curve.pdf}
-  \caption{The central area under the standard normal curve with confidence level \( C \).}
+\vspace{-0.7em} % Adjust this negative space to decrease gap; you can change -0.7em to a suitable value
+\captionsetup{skip=0pt} % remove vertical space above caption
+ \caption{The central area under the standard normal curve with confidence level \( C \).}
 \end{figure}
 
 \section*{Large Sample CI for $\mu$ (Normal data)}
-
+When we have a large sample from a Normal distribution, the confidence interval for the population mean \(\mu\) can be approximated by the formula:
 \[
 \bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
 \]
 
-Valid if:
+This formula is valid under the following assumptions:
 \begin{itemize}
   \item $n$ large
   \item random sample from a Normal distribution
@@ -303,7 +309,7 @@ Some definitions:
 
 
 \section*{One Sample CI on the Population Mean $\mu$}
-
+To construct a confidence interval for the population mean, we rely on several important assumptions:
 \begin{itemize}
   \item When population standard deviation $\sigma$ is \textbf{known}
   \item Formula: $\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$

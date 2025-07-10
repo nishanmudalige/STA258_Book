@@ -131,14 +131,26 @@ P\left( \left| \frac{X_1 + X_2 + \cdots + X_n}{n} - 3 \right| \geq \epsilon \rig
 \bar{X}_n \xrightarrow{P} 3
 \]
 \end{example}
-\begin{figure}[H]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.72\textwidth]{Section5/images/simulation_plot.pdf}
   \caption{Simulation of running sample mean of Bernoulli(\(p = 0.5\)) trials over time.}
 \end{figure}
 
-{\color{gray} \textbf{R Simulation Code (Single Sample Path)}}
-
+\noindent\textbf{R Simulation Code (Single Sample Path):}
+\begin{tcolorbox}[
+    colback=gray!10,
+    colframe=black!45,
+    arc=2mm,
+    enhanced,
+    breakable,
+    width=\textwidth,
+    boxsep=0pt,
+    left=4pt,    % Optional: slight left indent
+    right=8pt,   % ✅ Adds extra space on the right
+    top=2pt,
+    bottom=2pt
+]
 \begin{verbatim}
 n = 10
 trial = seq(1, n, by = 1)
@@ -148,17 +160,30 @@ plot(trial, cumsum(sample)/trial, type = "l", ylim = c(0,1), col = "blue")
 points(trial, cumsum(sample)/trial, col = "red")
 abline(h = 0.5, lty = 2, col = "black")
 \end{verbatim}
+\end{tcolorbox}
 
-\begin{figure}[H]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.72\textwidth]{Section5/images/simulation_multi.pdf}
   \caption{Simulation of 10 running sample means of Bernoulli(\(p = 0.5\)) trials converging over 100 trials.}
 \end{figure}
 
 
-{\color{gray} \textbf{R Simulation Code (Multiple Sample Paths)}}
-
-
+\noindent\textbf{R Simulation Code (Multiple Sample Paths):}
+\begin{tcolorbox}[
+    colback=gray!10,
+    colframe=black!45,
+    arc=2mm,
+    enhanced,
+    breakable,
+    width=1.05\textwidth,
+    enlarge left by=-1.5em,
+    boxsep=0pt,
+    left=6pt,   % <-- increased from 2pt to 6pt
+    right=0pt,
+    top=2pt,
+    bottom=2pt
+]
 \begin{verbatim}
 n = 100
 trial = seq(1, 100, by = 1)
@@ -185,7 +210,7 @@ lines(trial, cumsum(sample7)/trial, col = colors[7])
 lines(trial, cumsum(sample8)/trial, col = colors[8])
 abline(h = 0.5, lty = 2, col = "black")
 \end{verbatim}
-
+\end{tcolorbox}
 
 \subsection*{Empirical Probability Insight}
 

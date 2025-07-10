@@ -75,6 +75,7 @@ When the standard deviation of a statistic is estimated from data, the result is
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{section7/images/density_curves.pdf}
+ \vspace{-2em} % Tweak until tight but not overlapping
   \caption{Comparison of the standard normal distribution and t-distributions with 2 and 9 degrees of freedom.}
   \label{fig:density-curves}
 \end{figure}
@@ -109,9 +110,9 @@ Given:
 \]
 
 \vspace{1em}
-\textbf{R Code:}
+\noindent\textbf{R code:}
 
-Students can verify the result in R using:
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
 
 \begin{verbatim}
 # Step 1: Entering the data
@@ -120,10 +121,12 @@ nitrogen <- c(63.4, 65.0, 64.4, 63.3, 54.8, 64.5, 60.8, 49.1, 51.0)
 # Step 2: Constructing the 90% confidence interval
 t.test(nitrogen, conf.level = 0.90)
 \end{verbatim}
+\end{tcolorbox}
 
 \vspace{1em}
-\textbf{R Output:}
+\noindent\textbf{R output:}
 
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
 \begin{verbatim}
 One Sample t-test
 
@@ -136,6 +139,7 @@ sample estimates:
 mean of x 
   59.58889 
 \end{verbatim}
+\end{tcolorbox}
 
 \end{example}
 \begin{example}[Digital Camera Storage]
@@ -198,8 +202,9 @@ We are 95\% confident that the mean number of images stored on digital cameras i
 
 ---
 
-\textbf{R Code:}
+\noindent\textbf{R code:}
 
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
 \begin{verbatim}
 # Step 1: Entering data
 dataset <- c(25, 6, 22, 26, 31, 18, 13, 20, 14, 2)
@@ -207,9 +212,11 @@ dataset <- c(25, 6, 22, 26, 31, 18, 13, 20, 14, 2)
 # Step 2: Finding 95% confidence interval
 t.test(dataset, conf.level = 0.95)
 \end{verbatim}
+\end{tcolorbox}
 
-\textbf{R Output:}
+\noindent\textbf{R output:}
 
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
 \begin{verbatim}
 One Sample t-test
 
@@ -222,6 +229,7 @@ sample estimates:
 mean of x 
      17.7 
 \end{verbatim}
+\end{tcolorbox}
 \end{example}
 \begin{example}[Electric Insulators]
 
@@ -230,23 +238,24 @@ A manufacturing company produces electric insulators. If the insulators break wh
 The following dataset consists of force values (in pounds) recorded for a random sample of 30 insulators:
 
 \begin{center}
-\small
-\texttt{1870, 1728, 1656, 1610, 1634, 1784, 1522, 1696, 1592, 1662,}\\
-\texttt{1866, 1764, 1734, 1662, 1734, 1774, 1550, 1756, 1762, 1866,}\\
-\texttt{1820, 1744, 1788, 1688, 1810, 1752, 1680, 1810, 1652, 1736}
+\noindent\ttfamily
+1870, 1728, 1656, 1610, 1634, 1784, 1522, 1696, 1592, 1662, 1866, 1764, 1734, 1662, 1734, 1774, 1550, 1756, 1762, 1866, 1820, 1744, 1788, 1688, 1810, 1752, 1680, 1810, 1652, 1736
 \end{center}
 
 Construct a \textbf{95\% confidence interval} for the population mean force required to break the insulators.
 
 
----
 
  \textbf{Solution:}
 
 We want a confidence interval for the population mean \(\mu\), where \(\mu =\) mean force required to break electric insulators. The population standard deviation is unknown, so we use a \textit{one-sample} t-interval.
 
 \vspace{1em}
-\textbf{R Code:}
+\noindent\textbf{R code:}
+
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+
+
 
 \begin{verbatim}
 # Step 1. Entering data;
@@ -257,9 +266,14 @@ dataset <- c(1870, 1728, 1656, 1610, 1634, 1784, 1522, 1696, 1592, 1662,
 # Step 2. Finding CI;
 t.test(dataset, conf.level = 0.95)
 \end{verbatim}
+\end{tcolorbox}
 
 \vspace{1em}
-\textbf{R Output:}
+\noindent\textbf{R output:}
+
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+
+
 
 \begin{verbatim}
 One Sample t-test
@@ -273,6 +287,7 @@ sample estimates:
 mean of x 
    1723.4 
 \end{verbatim}
+\end{tcolorbox}
 
 \vspace{1em}
 \textbf{Interpretation:}
@@ -300,7 +315,9 @@ We use a one-sample confidence interval for the population mean additional tax c
 
 \textbf{Step 1: Import the data from \texttt{taxes.txt}}
 
-\begin{lstlisting}[language=R]
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+\begin{verbatim}
+
 # url of taxes;
 url <- "https://mcs.utm.utoronto.ca/~nosedal/data/taxes.txt"
 taxes_data <- read.table(url, header = TRUE)
@@ -311,19 +328,21 @@ head(taxes_data)
 
 # isolate the tax values
 taxes <- taxes_data$Taxes
-\end{lstlisting}
+\end{verbatim}
+\end{tcolorbox}
 
 \vspace{1em}
 \textbf{Step 2: Plot the data}
 
 \textit{Histogram:}
-
-\begin{lstlisting}[language=R]
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+\begin{verbatim}
 hist(taxes,
      main = "Histogram for our example",
      xlab = "taxes", ylab = "frequency",
      col = "blue")
-\end{lstlisting}
+\end{verbatim}
+\end{tcolorbox}
 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{Section7/images/tax_histogram.pdf}
@@ -331,11 +350,13 @@ hist(taxes,
 
 \textit{Boxplot:}
 
-\begin{lstlisting}[language=R]
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+\begin{verbatim}
 boxplot(taxes,
         main = "Additional Income Tax",
         col = "blue")
-\end{lstlisting}
+\end{verbatim}
+\end{tcolorbox}
 
 \begin{center}
 \includegraphics[width=0.5\textwidth]{Section7/images/tax_boxplot.pdf}
@@ -343,10 +364,13 @@ boxplot(taxes,
 
 \textit{Q-Q Plot:}
 
-\begin{lstlisting}[language=R]
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+
+\begin{verbatim}
 qqnorm(taxes, col = "blue", pch = 19)
 qqline(taxes)
-\end{lstlisting}
+\end{verbatim}
+\end{tcolorbox}
 
 \begin{center}
 \includegraphics[width=0.55\textwidth]{Section7/images/tax_qqplot.pdf}
@@ -355,9 +379,12 @@ qqline(taxes)
 \vspace{1em}
 \textbf{Step 3: Construct 95\% CI}
 
-\begin{lstlisting}[language=R]
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+
+\begin{verbatim}
 t.test(taxes, conf.level = 0.95)
-\end{lstlisting}
+\end{verbatim}
+\end{tcolorbox}
 
 \vspace{0.5em}
 \textbf{Interpretation:} Based on the t-test, we are 95\% confident that the average additional tax collected lies within the interval calculated from the sample.
@@ -368,6 +395,9 @@ t.test(taxes, conf.level = 0.95)
   \item Observations are independent.
   \item The population is approximately Normal, or the sample size is large enough (justified by the histogram, boxplot, and Q-Q plot).
 \end{itemize}
+
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+
 
 \begin{verbatim}
 ## 
@@ -382,6 +412,7 @@ t.test(taxes, conf.level = 0.95)
 ##  mean of x 
 ##    9527.326 
 \end{verbatim}
+\end{tcolorbox}
 
 \bigskip
 

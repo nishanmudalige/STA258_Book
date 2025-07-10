@@ -147,42 +147,27 @@ and the variance of \( X \) is
 \vspace{1,0em}  \\
 Let \( X \) be a Bernoulli random variable with the probability of a success as \( p \). Then
 
-\[
-E[X] = \mu = \sum_{i=1}^{n} x_i \cdot P(X = x_i)
-\]
-\[
-= 0 \cdot P(X = 0) + 1 \cdot P(X = 1)
-\]
-\[
-= 0 \cdot (1 - p) + 1 \cdot p
-\]
-\[
-= p
-\]
-
+\begin{align*}
+E[X] = \mu & = \sum_{i=1}^{n} x_i \cdot P(X = x_i) \\
+&= 0 \cdot P(X = 0) + 1 \cdot P(X = 1) \\
+&= 0 \cdot (1 - p) + 1 \cdot p \\
+&= p
+\end{align*}
 Similarly, the variance of \( X \) can be computed:
 
-\[
-V(X) = \sigma^2 = \sum_{i=1}^{k} (x_i - \mu)^2 \cdot P(X = x_i)
-\]
-\[
-= (0 - p)^2 \cdot P(X = 0) + (1 - p)^2 \cdot P(X = 1)
-\]
-\[
-= p^2 (1 - p) + (1 - p)^2 p
-\]
-\[
-= p(1 - p)
-\]
+\begin{align*}
+V(X) = \sigma^2 & = \sum_{i=1}^{k} (x_i - \mu)^2 \cdot P(X = x_i) \\
+&= (0 - p)^2 \cdot P(X = 0) + (1 - p)^2 \cdot P(X = 1) \\
+&= p^2 (1 - p) + (1 - p)^2 p \\
+&= p(1 - p)
+\end{align*}
 
 The standard deviation is
 
-\[
-\sigma = \sqrt{\sigma^2}
-\]
-\[
-= \sqrt{p(1 - p)}
-\]
+\begin{align*}
+\sigma & = \sqrt{\sigma^2} \\
+            & = \sqrt{p(1 - p)}
+\end{align*}
 
 
 
@@ -274,18 +259,17 @@ E(X) = \mu = np
 
 \subsection{Visualizing the PMF of Binomial Distributions}
 
-\noindent\textcolor{gray!40}{\textbf{R code:}}
+\noindent\textbf{R code:}
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
+\begin{verbatim}
+## Pmf of Binomial with n=10 and p=1/6.
 
-\vspace{0.5em}
+x <- seq(0, 10, by=1)
+y <- dbinom(x, 10, 1/6)
 
-{\ttfamily
-\textcolor{violet!70!black}{\#\# Pmf of Binomial with n=10 and p=1/6.} \\
-
-x \textcolor{red}{$\leftarrow$} \textcolor{red}{seq}(\textcolor{magenta}{0}, \textcolor{magenta}{10}, \textcolor{green!50!black}{by}=\textcolor{magenta}{1}); \\
-y \textcolor{red}{$\leftarrow$} \textcolor{red}{dbinom}(x, \textcolor{magenta}{10}, \textcolor{magenta}{1}\textcolor{black}{/}\textcolor{magenta}{6}); \\
-
-\textcolor{red}{plot}(x, y, \textcolor{green!50!black}{type}= \textcolor{blue}{"p"}, \textcolor{green!50!black}{col}=\textcolor{blue}{"blue"}, \textcolor{green!50!black}{pch}=\textcolor{magenta}{19});
-}\\
+plot(x, y, type="p", col="blue", pch=19)
+\end{verbatim}
+\end{tcolorbox}
 
 
 \textbf{Probability Mass Functions (PMFs) for increasing \(n\):}
@@ -298,24 +282,32 @@ The following plots display the probability mass functions (PMFs) for a binomial
 \begin{figure}[h!]
   \centering
  \includegraphics[width=0.8\textwidth]{Section4/images/pmf_plot.pdf}
+ \vspace{-10pt} % ⬅️ reduces space between figure and caption
+\captionsetup{skip=0pt} % Decreases space between figure and caption
  \caption{PMF of Binomial distribution with \(n = 10\) and \(p = \frac{1}{6}\).}
 \end{figure}
 
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{Section4/images/pmf_n50.pdf}
+  \vspace{-10pt} % ⬅️ reduces space between figure and caption
+  \captionsetup{skip=0pt} % Decreases space between figure and caption
   \caption{PMF of Binomial distribution with \(n = 50\) and \(p = \frac{1}{6}\).}
 \end{figure}
 
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{Section4/images/pmf_n100.pdf}
+  \vspace{-10pt} % ⬅️ reduces space between figure and caption
+\captionsetup{skip=0pt} % Decreases space between figure and caption
   \caption{PMF of Binomial distribution with \(n = 100\) and \(p = \frac{1}{6}\).}
 \end{figure}
 
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{Section4/images/pmf_n300.pdf}
+  \vspace{-10pt} % ⬅️ reduces space between figure and caption
+\captionsetup{skip=0pt} % Decreases space between figure and caption
   \caption{PMF of Binomial distribution with \(n = 300\) and \(p = \frac{1}{6}\).}
 \end{figure}
 % 🔁 Force figures to be placed before moving on
@@ -343,6 +335,8 @@ Then:
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.9\textwidth]{Section4/images/binomial_normal.pdf}
+  \vspace{-10pt} % ⬅️ reduces space between figure and caption
+  \captionsetup{skip=0pt} % Decreases space between figure and caption
   \caption{Binomial distribution with \(n = 300\), \(p = \frac{1}{6}\) and its Normal approximation.}
 \end{figure}
 
@@ -471,35 +465,27 @@ In the last election, a state representative received 52\% of the votes cast. On
 \vspace{1em}
 \subsubsection*{Solution 1 (using Normal Approximation)}
 
+We want to determine the probability that the sample proportion is greater than $50\%$. In other words, we want to find $P(\hat{p} > 0.50)$.
+
 We want to determine the probability that the sample proportion is greater than 50\%. In other words, we want to find $P(\hat{p} > 0.50)$.
 
-We know that the sample proportion $\hat{p}$ is roughly Normally distributed with mean $p = 0.52$ and standard deviation
-\[
-\sqrt{p(1 - p)/n} = \sqrt{(0.52)(0.48)/300} = 0.0288.
-\]
-Thus, we calculate
-\[
-P(\hat{p} > 0.50) = P\left( \frac{\hat{p} - p}{\sqrt{p(1-p)/n}} > \frac{0.50 - 0.52}{0.0288} \right)
-\]
-\[
-= P(Z > -0.69) = 1 - P(Z < -0.69) \quad \text{(Z is symmetric)}
-\]
-\[
-= P(Z > -0.69) = 1 - P(Z > 0.69)
-\]
-\[
-= 1 - 0.2451 = 0.7549.
-\]
+Thus, we calculate 
+\begin{align*}
+P(\hat{p} > 0.50) & = P\left( \frac{\hat{p} - p}{\sqrt{p(1-p)/n}} > \frac{0.50 - 0.52}{0.0288} \right) \\
+&= P(Z > -0.69) = 1 - P(Z < -0.69) \quad \text{(Z is symmetric)} \\
+&= P(Z > -0.69) = 1 - P(Z > 0.69) \\
+&= 1 - 0.2451 = 0.7549.
+\end{align*}
 
-If we assume that the level of support remains at 52\%, the probability that more than half the sample of 300 people would vote for the representative is 0.7549.
-\paragraph*{R code (Normal approximation)}
-
-Just type in the following:
-
+If we assume that the level of support remains at 52\%, the probability that more than half the sample of 300 people would vote for the representative is 0.7549.\par
+\vspace{0.5em}
+\noindent\textbf{R code (Normal Approximation):}
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
 \begin{verbatim}
 1 - pnorm(0.50, mean = 0.52, sd = 0.0288)
 ## [1] 0.7562982
 \end{verbatim}
+\end{tcolorbox}
 
 Recall that, \texttt{pnorm} will give you the area to the left of 0.50, for a Normal distribution with mean 0.52 and standard deviation 0.0288.
 \subsubsection*{Solution 2 (using Binomial)}
@@ -516,15 +502,14 @@ P(\hat{p} > 0.50) &= P\left(\frac{\sum_{i=1}^{n} x_i}{n} > 0.50\right) \\
 &= 1 - F_Y(150)
 \end{align*}
 
-\paragraph*{R code (using Binomial distribution )}
-
-Just type in the following:
-
+\vspace{0.5em}
+\noindent\textbf{R code (using Binomial distribution):}
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
 \begin{verbatim}
 1- pbinom(150, size = 300, prob = 0.52);
 ## [1] 0.7375949
 \end{verbatim}
-
+\end{tcolorbox}
 Recall that, \texttt{pbinom} will give you the CDF at 150, for a Binomial distribution with $n = 300$ and $p = 0.52$.
 
 \subsection*{Solution 3 (using continuity correction)}
@@ -543,49 +528,38 @@ P(\hat{p} > 0.50) &= P\left( \frac{\sum_{i=1}^{n} x_i}{n} > 0.50 \right) \\
 &= 1 - P(\hat{p} \leq 0.5017) \\
 &= 1 - P\left( Z \leq -0.6354 \right) \quad \text{(Why?)}
 \end{align*}
-\paragraph*{R code (Normal approximation with continuity correction)}
-
-Just type in the following:
-
+\noindent\textbf{R code (Normal approximation with continuity correction):}
+\begin{tcolorbox}[colback=gray!10, colframe=black!45, arc=2mm]
 \begin{verbatim}
 1 - pnorm(0.5017, mean = 0.52, sd = 0.0288)
 ## [1] 0.7374216
 \end{verbatim}
+\end{tcolorbox}
 
 Recall that, \texttt{pnorm} will give you the area to the left of 0.5017, for a Normal distribution with mean 0.52 and standard deviation 0.0288.
 \end{example}
+
+\section{Normal Approximation to Binomial}
+
+Let $X = \sum_{i=1}^{n} Y_i$ where $Y_1, Y_2, \ldots, Y_n$ are iid Bernoulli random variables. Note that $X = n\hat{p}$.
+
+\begin{enumerate}
+    \item $n\hat{p}$ is approximately Normally distributed provided that $np \geq 10$ and $n(1 - p) \geq 10$.
+
+    \item Another criterion is that the Normal approximation is adequate if
+    \[
+    n > 9 \left( \frac{\text{larger of $p$ and $q$}}{\text{smaller of $p$ and $q$}} \right)
+    \]
+
+    \item The expected value: $E(\hat{p}) = np$.
+
+    \item The variance: $V(\hat{p}) = np(1 - p) = npq$.
+\end{enumerate}
+
+
 \section{Continuity Correction}
 The normal distribution is continuous, while the binomial distribution is discrete. When we approximate a binomial probability using the normal distribution, this mismatch can lead to inaccuracy—especially near the boundaries of discrete values. A continuity correction improves the approximation by adjusting for this difference. In this section, we explore how and why this correction is applied. \\
-\vspace{0.5em} \\
-Suppose that $Y$ has a Binomial distribution with $n = 20$ and $p = 0.4$. We will find the exact probabilities that $Y \leq y$ and compare these to the corresponding values found by using two Normal approximations. One of them, when $X$ is Normally distributed with $\mu_X = np$ and $\sigma_X = \sqrt{np(1 - p)}$.
-\vspace{1em}
-The other one, $W$, a shifted version of $X$.
-
-\vspace{1em}
-
-For example,
-\[
-P(Y \leq 8) = 0.5955987
-\]
-
-As previously stated, we can think of $Y$ as having approximately the same distribution as $X$.
-\[
-P(Y \leq 8) \approx P(X \leq 8)
-= P\left[ \frac{X - np}{\sqrt{np(1 - p)}} \leq \frac{8 - 8}{\sqrt{20(0.4)(0.6)}} \right]
-= P(Z \leq 0) = 0.5
-\]
-
-\vspace{1em}
-
-\[
-P(Y \leq 8) \approx P(W \leq 8.5)
-= P\left[ \frac{W - np}{\sqrt{np(1 - p)}} \leq \frac{8.5 - 8}{\sqrt{20(0.4)(0.6)}} \right]
-= P(Z \leq 0.2282) = 0.5902615
-\]
-
-\subsection*{Formula Sheet: Continuity Correction}
-
-% Images from slides 37 and 38 will be inserted here.
+\subsection*{Continuity Correction Table}
 
 %\begin{table}[h!]
 %\centering
@@ -631,6 +605,33 @@ $\displaystyle P(a \leq X \leq b)$   & $\displaystyle P(a - 0.5 \leq X \leq b + 
 \end{tabular}
 \end{center}
 
+\vspace{0.5em} 
+Suppose that $Y$ has a Binomial distribution with $n = 20$ and $p = 0.4$. We will find the exact probabilities that $Y \leq y$ and compare these to the corresponding values found by using two Normal approximations. One of them, when $X$ is Normally distributed with $\mu_X = np$ and $\sigma_X = \sqrt{np(1 - p)}$.
+\vspace{1em}
+The other one, $W$, a shifted version of $X$.
+
+\vspace{1em}
+
+For example,
+\[
+P(Y \leq 8) = 0.5955987
+\]
+
+As previously stated, we can think of $Y$ as having approximately the same distribution as $X$.
+\[
+P(Y \leq 8) \approx P(X \leq 8)
+= P\left[ \frac{X - np}{\sqrt{np(1 - p)}} \leq \frac{8 - 8}{\sqrt{20(0.4)(0.6)}} \right]
+= P(Z \leq 0) = 0.5
+\]
+
+\vspace{1em}
+
+\[
+P(Y \leq 8) \approx P(W \leq 8.5)
+= P\left[ \frac{W - np}{\sqrt{np(1 - p)}} \leq \frac{8.5 - 8}{\sqrt{20(0.4)(0.6)}} \right]
+= P(Z \leq 0.2282) = 0.5902615
+\]
+
 \vspace{1em}
 
 \begin{example}
@@ -669,28 +670,6 @@ P(X = 40) \approx 0.0242
 \]
 \end{example}
 
-\
-\vspace{1em}
-\begin{frame}{Normal Approximation to Binomial}
-
-Let $X = \sum_{i=1}^{n} Y_i$ where $Y_1, Y_2, \ldots, Y_n$ are iid Bernoulli random variables. Note that $X = n\hat{p}$.
-
-\begin{enumerate}
-    \item $n\hat{p}$ is approximately Normally distributed provided that $np \geq 10$ and $n(1 - p) \geq 10$.
-
-    \item Another criterion is that the Normal approximation is adequate if
-    \[
-    n > 9 \left( \frac{\text{larger of $p$ and $q$}}{\text{smaller of $p$ and $q$}} \right)
-    \]
-
-    \item The expected value: $E(\hat{p}) = np$.
-
-    \item The variance: $V(\hat{p}) = np(1 - p) = npq$.
-\end{enumerate}
-
-\end{frame}
-
-\vspace{1\baselineskip}  % Adds vertical space after the frame
 
 
 
