@@ -220,6 +220,140 @@ function is true:
 
 ### Introduction to the Chi-Square distribution
 
+Before we introduce the chi-Square square distribution, we recall the gamma distribution.
+
+::: {.definition name="Gamma distribution" #GammaFunction}
+A random variable \(X\) is said to follow a **Gamma distribution** with shape parameter \(\alpha > 0\) and scale parameter \(\beta > 0\) (denoted \(X \sim \mathrm{Gamma}(\alpha,\beta)\)) if its probability density function is
+\[
+f_{X}(x; \alpha, \beta)
+\;=\;
+\begin{cases}
+\dfrac{1}{\Gamma(\alpha)\,\beta^{\alpha}}\,x^{\alpha - 1}\,e^{-x/\beta}, 
+& x > 0, \\[1em]
+0, 
+& \text{otherwise},
+\end{cases}
+\]
+where 
+\(\Gamma(\alpha) = \displaystyle\int_{0}^{\infty} t^{\alpha - 1} e^{-t}\,dt\)
+is the Gamma function.
+:::
+
+
+The Chi-square random variable follows a Chi-square distribution with $k$ degrees of freedom if it is defined as the sum of the squares of $k$ independent standard normal random variables.
+
+::: {.definition name="Chi-square random variable" #ChiSquareRV}
+A chi-square random variable with \(k\) degrees of freedom is defined as the sum of the squares of \(k\) independent standard normal random variables.  Formally, if
+\[
+Z_{1}, Z_{2}, \dots, Z_{k} \;\overset{\mathrm{iid}}{\sim}\; N(0,1),
+\]
+then
+\[
+X \;=\;\sum_{i=1}^{k} Z_{i}^{2}
+\]
+follows a chi-square distribution with \(k\) degrees of freedom, denoted $X \sim \chi^{2}_{k}$ and has the probability density function 
+\[
+f_{X}(x; k)
+\;=\;
+\begin{cases}
+\dfrac{1}{2^{\,k/2}\,\Gamma\!\bigl(\tfrac{k}{2}\bigr)}\,x^{\,\tfrac{k}{2}-1}\,e^{-x/2}, 
+& x > 0, \\[1em]
+0, 
+& \text{otherwise}.
+\end{cases}
+\]
+Where \(\Gamma(\cdot)\) is the Gamma function in Definition \@ref(def:GammaFunction).
+:::
+
+The definition of a chi-square random variable can be proven using moment generating functions.
+
+::: {.remark}
+The Chi-square distribution is also a special case of the gamma distribution,
+however we will not be covering the gamma distribution in this course.
+:::
+
+
+The shape of the chi-square distribution is determined by its degrees of freedom.
+Some examples of chi-square distributions are shown in Figure \@ref(fig:ChiSqExample).
+
+```{r ChiSqExample, fig.cap="Some examples of chi-square distrubution curves with different degrees of freedom", echo=FALSE, fig.align='center', warning=FALSE}
+# 1) Define your parameters for chi-square dfs
+df1   <- 2; df2   <- 5; df3   <- 10
+col1  <- "#00BA38"; lab1 <- expression(chi[2]^2)
+col2  <- "#F8766D"; lab2 <- expression(chi[5]^2)
+col3  <- "#619CFF"; lab3 <- expression(chi[10]^2)
+
+# 2) Base plot with no default grid or axes
+p <- ggplot(data.frame(x = c(0, 30)), aes(x = x)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid   = element_blank(),
+    axis.line    = element_blank(),
+    axis.ticks   = element_blank(),
+    axis.text    = element_blank(),
+    axis.title   = element_text(face = "bold")
+  ) +
+  labs(x = expression(x), y = "Density") +
+  # arrow-tipped axes
+  geom_segment(aes(x = 0, y = 0, xend = 30, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE) +
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 0.18),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE)
+
+# 3) Shade & draw χ²(df=2)
+p <- p +
+  stat_function(fun = dchisq, args = list(df = df1),
+                geom = "area", fill = col1, alpha = 0.61, n = 801) +
+  stat_function(fun = dchisq, args = list(df = df1),
+                colour = col1, size = 1.2, n = 801) +
+  annotate("text",
+           x       = df1,
+           y       = dchisq(df1, df1) * 1.05,
+           label   = lab1,
+           parse   = TRUE,
+           colour  = col1,
+           fontface= "bold",
+           vjust   = -0.75,
+           hjust   = -0.5)
+
+# 4) Shade & draw χ²(df=5)
+p <- p +
+  stat_function(fun = dchisq, args = list(df = df2),
+                geom = "area", fill = col2, alpha = 0.61, n = 801) +
+  stat_function(fun = dchisq, args = list(df = df2),
+                colour = col2, size = 1.2, n = 801) +
+  annotate("text",
+           x       = df2,
+           y       = dchisq(df2, df2) * 1.05,
+           label   = lab2,
+           parse   = TRUE,
+           colour  = col2,
+           fontface= "bold",
+           vjust   = -0.75,
+           hjust   = 0.5)
+
+# 5) Shade & draw χ²(df=10)
+p <- p +
+  stat_function(fun = dchisq, args = list(df = df3),
+                geom = "area", fill = col3, alpha = 0.61, n = 801) +
+  stat_function(fun = dchisq, args = list(df = df3),
+                colour = col3, size = 1.2, n = 801) +
+  annotate("text",
+           x       = df3,
+           y       = dchisq(df3, df3) * 1.05,
+           label   = lab3,
+           parse   = TRUE,
+           colour  = col3,
+           fontface= "bold",
+           vjust   = -0.5,
+           hjust   = 0.5)
+
+# 6) Render the plot
+p
+```
+
 ### Introduction to the t-Distribution
 
 ### Introduction to the F-Distribution

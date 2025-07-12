@@ -29,7 +29,7 @@
   
   
 <link rel="prev" href="descriptive-statistics.html"/>
-
+<link rel="next" href="sampling-distributions-related-to-a-normal-population.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -117,6 +117,12 @@
 <li class="chapter" data-level="4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sampling-distributions"><i class="fa fa-check"></i><b>4.2</b> Sampling Distributions</a></li>
 <li class="chapter" data-level="4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>4.3</b> The Central Limit Theorem</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="sampling-distributions-related-to-a-normal-population.html"><a href="sampling-distributions-related-to-a-normal-population.html"><i class="fa fa-check"></i><b>5</b> Sampling Distributions Related to a Normal Population</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="sampling-distributions-related-to-a-normal-population.html"><a href="sampling-distributions-related-to-a-normal-population.html#normal-distribution"><i class="fa fa-check"></i><b>5.1</b> Normal Distribution</a></li>
+<li class="chapter" data-level="5.2" data-path="sampling-distributions-related-to-a-normal-population.html"><a href="sampling-distributions-related-to-a-normal-population.html#gamma-and-chi-square-distribution"><i class="fa fa-check"></i><b>5.2</b> Gamma and Chi-square Distribution</a></li>
+<li class="chapter" data-level="5.3" data-path="sampling-distributions-related-to-a-normal-population.html"><a href="sampling-distributions-related-to-a-normal-population.html#students-t-distribution-and-f-distribution"><i class="fa fa-check"></i><b>5.3</b> Student’s t-Distribution and F-Distribution</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -197,6 +203,59 @@ Figure 4.2: An illustration of the empirical rule.
 </div>
 <div id="introduction-to-the-chi-square-distribution" class="section level3 hasAnchor" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Introduction to the Chi-Square distribution<a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before we introduce the chi-Square square distribution, we recall the gamma distribution.</p>
+<div class="definition">
+<p><span id="def:GammaFunction" class="definition"><strong>Definition 4.3  (Gamma distribution) </strong></span>A random variable <span class="math inline">\(X\)</span> is said to follow a <strong>Gamma distribution</strong> with shape parameter <span class="math inline">\(\alpha &gt; 0\)</span> and scale parameter <span class="math inline">\(\beta &gt; 0\)</span> (denoted <span class="math inline">\(X \sim \mathrm{Gamma}(\alpha,\beta)\)</span>) if its probability density function is
+<span class="math display">\[
+f_{X}(x; \alpha, \beta)
+\;=\;
+\begin{cases}
+\dfrac{1}{\Gamma(\alpha)\,\beta^{\alpha}}\,x^{\alpha - 1}\,e^{-x/\beta},
+&amp; x &gt; 0, \\[1em]
+0,
+&amp; \text{otherwise},
+\end{cases}
+\]</span>
+where
+<span class="math inline">\(\Gamma(\alpha) = \displaystyle\int_{0}^{\infty} t^{\alpha - 1} e^{-t}\,dt\)</span>
+is the Gamma function.</p>
+</div>
+<p>The Chi-square random variable follows a Chi-square distribution with <span class="math inline">\(k\)</span> degrees of freedom if it is defined as the sum of the squares of <span class="math inline">\(k\)</span> independent standard normal random variables.</p>
+<div class="definition">
+<p><span id="def:ChiSquareRV" class="definition"><strong>Definition 4.4  (Chi-square random variable) </strong></span>A chi-square random variable with <span class="math inline">\(k\)</span> degrees of freedom is defined as the sum of the squares of <span class="math inline">\(k\)</span> independent standard normal random variables. Formally, if
+<span class="math display">\[
+Z_{1}, Z_{2}, \dots, Z_{k} \;\overset{\mathrm{iid}}{\sim}\; N(0,1),
+\]</span>
+then
+<span class="math display">\[
+X \;=\;\sum_{i=1}^{k} Z_{i}^{2}
+\]</span>
+follows a chi-square distribution with <span class="math inline">\(k\)</span> degrees of freedom, denoted <span class="math inline">\(X \sim \chi^{2}_{k}\)</span> and has the probability density function
+<span class="math display">\[
+f_{X}(x; k)
+\;=\;
+\begin{cases}
+\dfrac{1}{2^{\,k/2}\,\Gamma\!\bigl(\tfrac{k}{2}\bigr)}\,x^{\,\tfrac{k}{2}-1}\,e^{-x/2},
+&amp; x &gt; 0, \\[1em]
+0,
+&amp; \text{otherwise}.
+\end{cases}
+\]</span>
+Where <span class="math inline">\(\Gamma(\cdot)\)</span> is the Gamma function in Definition <a href="foundations-of-inference.html#def:GammaFunction">4.3</a>.</p>
+</div>
+<p>The definition of a chi-square random variable can be proven using moment generating functions.</p>
+<div class="remark">
+<p><span id="unlabeled-div-19" class="remark"><em>Remark</em>. </span>The Chi-square distribution is also a special case of the gamma distribution,
+however we will not be covering the gamma distribution in this course.</p>
+</div>
+<p>The shape of the chi-square distribution is determined by its degrees of freedom.
+Some examples of chi-square distributions are shown in Figure <a href="foundations-of-inference.html#fig:ChiSqExample">4.3</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ChiSqExample"></span>
+<img src="Book_Files/figure-html/ChiSqExample-1.png" alt="Some examples of chi-square distrubution curves with different degrees of freedom" width="672" />
+<p class="caption">
+Figure 4.3: Some examples of chi-square distrubution curves with different degrees of freedom
+</p>
+</div>
 </div>
 <div id="introduction-to-the-t-distribution" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Introduction to the t-Distribution<a href="foundations-of-inference.html#introduction-to-the-t-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -221,8 +280,8 @@ Figure 4.2: An illustration of the empirical rule.
           </div>
         </div>
       </div>
-<a href="descriptive-statistics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sampling-distributions-related-to-a-normal-population.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
