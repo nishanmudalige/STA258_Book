@@ -187,6 +187,61 @@ We also may have data that is bimodal, which means that there are two distinct p
 *Right* skewed data is is also referred to as *positively* skewed and *left* skewed data is is also referred to as *negatively* skewed.
 :::
 
+Figures \@ref{fig:LeftSkewDensity} \@ref{fig:RightSkewDensity} and \@ref{fig:SymmDensity} illustrate the three types of skewness.
+
+```{r LeftSkewDensity,fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a left (negative) skewed distribution.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}
+  \draw[thick, ->] (-1,0) -- (8,0) node[right] {$x$};
+  \draw[thick, ->] (0,-0.2) -- (0,4) node[above] {$y$};
+
+  \draw[thick, blue, smooth, samples=100, domain=0.5:7.5] 
+    plot (\x, {3.5*exp(-0.6*(\x - 5)^2) + 0.6*exp(-0.3*(7 - \x))});
+  
+  \node at (2.4,1.2) {Long tail};
+  \draw[->, thick] (2.8,0.9) -- (1.2,0.3);
+
+  \node at (5.75,5) {Peak};
+  \draw[->, thick] (5.5,4.5) -- (5.0,3.95);
+\end{tikzpicture}
+```
+
+
+```{r RightSkewDensity, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a right (positive) skewed distribution.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}
+  \draw[thick, ->] (-1,0) -- (8,0) node[right] {$x$};
+  \draw[thick, ->] (0,-0.2) -- (0,4) node[above] {$y$};
+
+  \draw[thick, blue, smooth, samples=100, domain=0.5:7.5] 
+    plot (\x, {3.5*exp(-0.6*(\x - 3)^2) + 0.6*exp(-0.3*(\x - 2))});
+
+  \node at (2,4.5) {Peak};
+  \draw[->, thick] (2.5,4.5) -- (3,4.1);
+
+  \node at (6.7,0.9) {Long tail};
+  \draw[->, thick] (6.5,0.6) -- (7.2,0.4);
+\end{tikzpicture}
+```
+
+
+```{r SymmDensity, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of symmetric distribution. Area under this curve on the left hand side of $\\mu = 0$ is same as the area on the right hand side under the curve.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[xscale=1.5, yscale=6]
+  \draw[->, thick] (-3.2,0) -- (3.2,0) node[right] {$x$};
+  \draw[->, thick] (0,0) -- (0,0.45) node[above] {$y$};
+
+  \draw[domain=-3:3, smooth, variable=\x, blue, thick] 
+    plot ({\x}, {1/sqrt(2*pi) * exp(-0.5*\x*\x)});
+
+  \draw[dashed] (0,0) -- (0,{1/sqrt(2*pi)});
+  \node[below] at (0,0) {$\mu = 0$};
+\end{tikzpicture}
+```
+
+
+
+
 <!-- ::: {#note:skewnote .note name="Skewness Note"} -->
 <!-- **Note:** *Right* skewed data is is also referred to as *positively* skewed and *left* skewed data is is also referred to as *negatively* skewed. -->
 <!-- ::: -->
@@ -496,6 +551,4 @@ distribution.
   \node[align=center] at (7, 0.3) {\small median $=$ mean};
 \end{tikzpicture}
 ```
-
-
 
