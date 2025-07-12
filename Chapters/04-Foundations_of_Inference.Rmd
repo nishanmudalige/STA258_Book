@@ -356,10 +356,249 @@ p
 
 ### Introduction to the t-Distribution
 
+::: {.definition name="Student’s \(t\) Distribution" #TDist}
+A **Student’s \(t\) random variable** with \(\nu\) degrees of freedom is defined as the ratio of a standard normal variate and the square root of a scaled chi-square variate.  Formally, if
+\[
+Z \;\overset{\mathrm{iid}}{\sim}\; N(0,1)
+\quad\text{and}\quad
+U \;\overset{\mathrm{iid}}{\sim}\; \chi^{2}_{\nu}
+\]
+are independent, then
+\[
+T \;=\;\frac{Z}{\sqrt{\,U / \nu\,}}
+\]
+follows a Student’s \(t\) distribution with \(\nu\) degrees of freedom, denoted
+\[
+T \sim t_{\nu},
+\]
+and has the probability density function
+\[
+f_{T}(t; \nu)
+\;=\;
+\frac{\Gamma\!\bigl(\tfrac{\nu+1}{2}\bigr)}{\sqrt{\pi\,\nu}\,\Gamma\!\bigl(\tfrac{\nu}{2}\bigr)}
+\Bigl(1 + \tfrac{t^{2}}{\nu}\Bigr)^{-\tfrac{\nu+1}{2}},
+\quad
+-\infty < t < \infty.
+\]
+Here \(\Gamma(\cdot)\) is the Gamma function as in Definition \@ref(def:GammaFunction).
+:::
+
+The t-distribution resembles the normal distribution but with heavier tails.
+
+```{r t-densities, echo=FALSE, fig.align='center', fig.cap='Three $t$ Distributions with Different Degrees of Freedom', out.width='90%', warning=FALSE}
+library(ggplot2)
+library(grid)   # for unit()
+
+## 1) Degrees of freedom, colours, labels ------------------------------------
+df1  <-  2;  col1 <- "#00BA38"; lab1 <- expression(t[2])
+df2  <-  5;  col2 <- "#F8766D"; lab2 <- expression(t[5])
+df3  <- 10;  col3 <- "#619CFF"; lab3 <- expression(t[10])
+
+## 2) Base plot (no default grid or axes) ------------------------------------
+p <- ggplot(data.frame(x = c(-6,  6)), aes(x = x)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid   = element_blank(),
+    axis.line    = element_blank(),
+    axis.ticks   = element_blank(),
+    axis.text    = element_blank(),
+    axis.title   = element_text(face = "bold")
+  ) +
+  labs(x = expression(x), y = "Density") +
+  # arrow-tipped axes
+  geom_segment(aes(x = -6, y = 0, xend =  6, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE) +
+  geom_segment(aes(x =  0, y = 0, xend =  0, yend = 0.40),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE)
+
+## 3) Shade & draw t(df = 2) --------------------------------------------------
+p <- p +
+  stat_function(fun = dt, args = list(df = df1),
+                geom = "area", fill = col1, alpha = 0.61, n = 801) +
+  stat_function(fun = dt, args = list(df = df1),
+                colour = col1, size = 1.2, n = 801) +
+  annotate("text",
+           x       = 0,
+           y       = dt(0, df1) * 1.05,
+           label   = lab1,      # t[2]
+           parse   = TRUE,
+           colour  = col1,
+           fontface = "bold",
+           hjust   = 0.5) +
+  annotate("text",
+           x       = 2.5,       # a little to the right of the curve
+           y       = dt(2.5, df1),
+           label   = "df = 2",
+           colour  = col1,
+           fontface = "bold",
+           hjust   = 0)         # left-aligned for readability
+
+## 4) Shade & draw t(df = 5) --------------------------------------------------
+p <- p +
+  stat_function(fun = dt, args = list(df = df2),
+                geom = "area", fill = col2, alpha = 0.34, n = 801) +
+  stat_function(fun = dt, args = list(df = df2),
+                colour = col2, size = 1.2, n = 801) +
+  annotate("text",
+           x       = 0,
+           y       = dt(0, df2) * 1.05,
+           label   = lab2,      # t[5]
+           parse   = TRUE,
+           colour  = col2,
+           fontface = "bold",
+           hjust   = 0.5,
+           vjust   = -0.35) +
+  annotate("text",
+           x       = 3,
+           y       = dt(3, df2),
+           label   = "df = 5",
+           colour  = col2,
+           fontface = "bold",
+           hjust   = 0)
+
+## 5) Shade & draw t(df = 10) -------------------------------------------------
+p <- p +
+  stat_function(fun = dt, args = list(df = df3),
+                geom = "area", fill = col3, alpha = 0.25, n = 801) +
+  stat_function(fun = dt, args = list(df = df3),
+                colour = col3, size = 1.2, n = 801) +
+  annotate("text",
+           x       = 0,
+           y       = dt(0, df3) * 1.05,
+           label   = lab3,      # t[10]
+           parse   = TRUE,
+           colour  = col3,
+           fontface = "bold",
+           hjust   = 0.5,
+           vjust   = -0.70) +
+  annotate("text",
+           x       = 3.5,
+           y       = dt(3.5, df3),
+           label   = "df = 10",
+           colour  = col3,
+           fontface = "bold",
+           hjust   = 0)
+
+## 6) Render the combined plot -----------------------------------------------
+print(p)
+```
+
 ### Introduction to the F-Distribution
+
+::: {.definition name="Beta function" #BetaFunction}
+The **Beta function**, also called the Euler integral of the first kind, is defined for complex numbers \(\;z_{1}, z_{2}\) with \(\Re(z_{1}), \Re(z_{2})>0\) by the integral
+$$
+B(z_{1}, z_{2})
+=
+\int_{0}^{1} t^{\,z_{1}-1}\,(1 - t)^{\,z_{2}-1}\,\mathrm{d}t.
+$$
+
+<!-- It is symmetric in its arguments, i.e. -->
+<!-- $$ -->
+<!-- B(z_{1}, z_{2}) = B(z_{2}, z_{1}), -->
+<!-- $$ -->
+<!-- and satisfies the relationship with the Gamma function: -->
+<!-- $$ -->
+<!-- B(z_{1}, z_{2}) -->
+<!-- = -->
+<!-- \frac{\Gamma(z_{1})\,\Gamma(z_{2})}{\Gamma(z_{1} + z_{2})}. -->
+<!-- $$ -->
+:::
+
+
+::: {.definition name="F random variable" #dist}
+An \(F\) random variable with \(\nu_{1}\) and \(\nu_{2}\) degrees of freedom is defined as the ratio of two independent chi-square variates, each divided by its degrees of freedom.  Formally, if  
+$$
+U \;\overset{\mathrm{iid}}{\sim}\;\chi^{2}_{\nu_{1}}
+\quad\text{and}\quad
+V \;\overset{\mathrm{iid}}{\sim}\;\chi^{2}_{\nu_{2}}
+$$
+are independent, then
+$$
+F \;=\;\frac{\,U / \nu_{1}\,}{\,V / \nu_{2}\,}
+$$
+follows an \(F\) distribution with \(\nu_{1}\) and \(\nu_{2}\) degrees of freedom, denoted
+$$
+F \sim F_{\nu_{1},\nu_{2}},
+$$
+and has probability density function
+$$
+f_{F}(x; \nu_{1}, \nu_{2})
+=
+\begin{cases}
+\displaystyle
+\frac{\bigl(\tfrac{\nu_{1}}{\nu_{2}}\bigr)^{\!\nu_{1}/2}
+      \,x^{\,\tfrac{\nu_{1}}{2}-1}}
+     {B\!\bigl(\tfrac{\nu_{1}}{2},\,\tfrac{\nu_{2}}{2}\bigr)}
+\,
+\Bigl(1 + \tfrac{\nu_{1}}{\nu_{2}}\,x\Bigr)^{-\tfrac{\nu_{1}+\nu_{2}}{2}},
+& x > 0 \\[1em]
+0,
+& \text{otherwise}.
+\end{cases}
+$$
+where $B(\cdot,\cdot)$ is the Beta function (see Definition \@ref(def:BetaFunction)).
+:::
+
+
+<!-- Both student's t-distribution and F-distribution are highly used in -->
+<!-- inferential statistics, until confidence interval, testing hypothesis -->
+<!-- and ANOVA analysis, these two distributions will come to play a lot. At -->
+<!-- this point, just guarantee that you know how to obtain those -->
+<!-- distribution from random given information is sufficient. -->
+
 
 ### Arithmetics of RV's
 
 ## Sampling Distributions
 
+
+::: {.definition name="Sampling distribution" #SamplingDist}
+The **sampling distribution** of a statistic is the probability distribution of that statistic computed from all possible random samples of a given size drawn from the same population.
+:::
+
+In other words, if you repeatedly draw samples of size \(n\) and compute the statistic (e.g.\ the sample mean \(\bar X\)), then the values of \(\bar X\) across those samples form a distribution—its sampling distribution.  
+
+
+
+
 ## The Central Limit Theorem
+
+The central limit theorem (CLT) explains why the distribution of a properly
+standardized sample mean becomes approximately normal as the sample size
+grows—even when the underlying population is not normal.  
+
+Suppose \(X_1,X_2,\dots,X_n\) are independent and identically distributed
+(i.i.d.) with finite mean \(\mu\) and variance \(\sigma^{2}\). Define the sample mean \(\bar X_n = \tfrac{1}{n}\sum_{i=1}^{n} X_i\). The Centrel Limit Theorem tells us that the random fluctuation of \(\bar X_n\) around the
+population mean \(\mu\) (after appropriate scaling) behaves more and more like
+a standard normal variable as \(n\) increases.
+
+::: {.theorem name="Central Limit Theorem" #CLT}
+Let \(X_{1},X_{2},\dots,X_{n}\) be i.i.d.\ random variables with  
+\(E[X_i]=\mu\) and \(\operatorname{Var}(X_i)=\sigma^{2}<\infty\).
+Then, as \(n\to\infty\),
+
+$$
+\frac{\sqrt{n}\,(\bar X_{n}-\mu)}{\sigma}
+\;\xrightarrow{d}\;
+N(0,1),
+$$
+
+<!-- i.e.\ for every real \(z\), -->
+
+<!-- $$ -->
+<!-- \lim_{n\to\infty} -->
+<!-- P\!\Bigl(\frac{\sqrt{n}(\bar X_{n}-\mu)}{\sigma}\le z\Bigr) -->
+<!-- = -->
+<!-- \Phi(z), -->
+<!-- $$ -->
+<!-- where \(\Phi(\cdot)\) is the standard normal cumulative distribution function. -->
+:::
+
+A practical consequence is that for large \(n\) we can use normal‐based
+confidence intervals and hypothesis tests for \(\mu\) even when the parent
+distribution of the data is unknown or skewed; the accuracy of this normal
+approximation improves as the sample size grows.
+

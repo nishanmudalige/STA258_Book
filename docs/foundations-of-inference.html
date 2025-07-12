@@ -29,7 +29,7 @@
   
   
 <link rel="prev" href="descriptive-statistics.html"/>
-<link rel="next" href="sampling-distributions-related-to-a-normal-population.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -116,12 +116,6 @@
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sampling-distributions"><i class="fa fa-check"></i><b>4.2</b> Sampling Distributions</a></li>
 <li class="chapter" data-level="4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>4.3</b> The Central Limit Theorem</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="sampling-distributions-related-to-a-normal-population.html"><a href="sampling-distributions-related-to-a-normal-population.html"><i class="fa fa-check"></i><b>5</b> Sampling Distributions Related to a Normal Population</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="sampling-distributions-related-to-a-normal-population.html"><a href="sampling-distributions-related-to-a-normal-population.html#normal-distribution"><i class="fa fa-check"></i><b>5.1</b> Normal Distribution</a></li>
-<li class="chapter" data-level="5.2" data-path="sampling-distributions-related-to-a-normal-population.html"><a href="sampling-distributions-related-to-a-normal-population.html#gamma-and-chi-square-distribution"><i class="fa fa-check"></i><b>5.2</b> Gamma and Chi-square Distribution</a></li>
-<li class="chapter" data-level="5.3" data-path="sampling-distributions-related-to-a-normal-population.html"><a href="sampling-distributions-related-to-a-normal-population.html#students-t-distribution-and-f-distribution"><i class="fa fa-check"></i><b>5.3</b> Student’s t-Distribution and F-Distribution</a></li>
 </ul></li>
 </ul>
 
@@ -259,9 +253,98 @@ Figure 4.3: Some examples of chi-square distrubution curves with different degre
 </div>
 <div id="introduction-to-the-t-distribution" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Introduction to the t-Distribution<a href="foundations-of-inference.html#introduction-to-the-t-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:TDist" class="definition"><strong>Definition 4.5  (Student’s (t) Distribution) </strong></span>A <strong>Student’s <span class="math inline">\(t\)</span> random variable</strong> with <span class="math inline">\(\nu\)</span> degrees of freedom is defined as the ratio of a standard normal variate and the square root of a scaled chi-square variate. Formally, if
+<span class="math display">\[
+Z \;\overset{\mathrm{iid}}{\sim}\; N(0,1)
+\quad\text{and}\quad
+U \;\overset{\mathrm{iid}}{\sim}\; \chi^{2}_{\nu}
+\]</span>
+are independent, then
+<span class="math display">\[
+T \;=\;\frac{Z}{\sqrt{\,U / \nu\,}}
+\]</span>
+follows a Student’s <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(\nu\)</span> degrees of freedom, denoted
+<span class="math display">\[
+T \sim t_{\nu},
+\]</span>
+and has the probability density function
+<span class="math display">\[
+f_{T}(t; \nu)
+\;=\;
+\frac{\Gamma\!\bigl(\tfrac{\nu+1}{2}\bigr)}{\sqrt{\pi\,\nu}\,\Gamma\!\bigl(\tfrac{\nu}{2}\bigr)}
+\Bigl(1 + \tfrac{t^{2}}{\nu}\Bigr)^{-\tfrac{\nu+1}{2}},
+\quad
+-\infty &lt; t &lt; \infty.
+\]</span>
+Here <span class="math inline">\(\Gamma(\cdot)\)</span> is the Gamma function as in Definition <a href="foundations-of-inference.html#def:GammaFunction">4.3</a>.</p>
+</div>
+<p>The t-distribution resembles the normal distribution but with heavier tails.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:t-densities"></span>
+<img src="Book_Files/figure-html/t-densities-1.png" alt="Three $t$ Distributions with Different Degrees of Freedom" width="90%" />
+<p class="caption">
+Figure 4.4: Three <span class="math inline">\(t\)</span> Distributions with Different Degrees of Freedom
+</p>
+</div>
 </div>
 <div id="introduction-to-the-f-distribution" class="section level3 hasAnchor" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Introduction to the F-Distribution<a href="foundations-of-inference.html#introduction-to-the-f-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:BetaFunction" class="definition"><strong>Definition 4.6  (Beta function) </strong></span>The <strong>Beta function</strong>, also called the Euler integral of the first kind, is defined for complex numbers <span class="math inline">\(\;z_{1}, z_{2}\)</span> with <span class="math inline">\(\Re(z_{1}), \Re(z_{2})&gt;0\)</span> by the integral
+<span class="math display">\[
+B(z_{1}, z_{2})
+=
+\int_{0}^{1} t^{\,z_{1}-1}\,(1 - t)^{\,z_{2}-1}\,\mathrm{d}t.
+\]</span></p>
+<!-- It is symmetric in its arguments, i.e. -->
+<!-- $$ -->
+<!-- B(z_{1}, z_{2}) = B(z_{2}, z_{1}), -->
+<!-- $$ -->
+<!-- and satisfies the relationship with the Gamma function: -->
+<!-- $$ -->
+<!-- B(z_{1}, z_{2}) -->
+<!-- = -->
+<!-- \frac{\Gamma(z_{1})\,\Gamma(z_{2})}{\Gamma(z_{1} + z_{2})}. -->
+<!-- $$ -->
+</div>
+<div class="definition">
+<p><span id="def:dist" class="definition"><strong>Definition 4.7  (F random variable) </strong></span>An <span class="math inline">\(F\)</span> random variable with <span class="math inline">\(\nu_{1}\)</span> and <span class="math inline">\(\nu_{2}\)</span> degrees of freedom is defined as the ratio of two independent chi-square variates, each divided by its degrees of freedom. Formally, if<br />
+<span class="math display">\[
+U \;\overset{\mathrm{iid}}{\sim}\;\chi^{2}_{\nu_{1}}
+\quad\text{and}\quad
+V \;\overset{\mathrm{iid}}{\sim}\;\chi^{2}_{\nu_{2}}
+\]</span>
+are independent, then
+<span class="math display">\[
+F \;=\;\frac{\,U / \nu_{1}\,}{\,V / \nu_{2}\,}
+\]</span>
+follows an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(\nu_{1}\)</span> and <span class="math inline">\(\nu_{2}\)</span> degrees of freedom, denoted
+<span class="math display">\[
+F \sim F_{\nu_{1},\nu_{2}},
+\]</span>
+and has probability density function
+<span class="math display">\[
+f_{F}(x; \nu_{1}, \nu_{2})
+=
+\begin{cases}
+\displaystyle
+\frac{\bigl(\tfrac{\nu_{1}}{\nu_{2}}\bigr)^{\!\nu_{1}/2}
+      \,x^{\,\tfrac{\nu_{1}}{2}-1}}
+     {B\!\bigl(\tfrac{\nu_{1}}{2},\,\tfrac{\nu_{2}}{2}\bigr)}
+\,
+\Bigl(1 + \tfrac{\nu_{1}}{\nu_{2}}\,x\Bigr)^{-\tfrac{\nu_{1}+\nu_{2}}{2}},
+&amp; x &gt; 0 \\[1em]
+0,
+&amp; \text{otherwise}.
+\end{cases}
+\]</span>
+where <span class="math inline">\(B(\cdot,\cdot)\)</span> is the Beta function (see Definition <a href="foundations-of-inference.html#def:BetaFunction">4.6</a>).</p>
+</div>
+<!-- Both student's t-distribution and F-distribution are highly used in -->
+<!-- inferential statistics, until confidence interval, testing hypothesis -->
+<!-- and ANOVA analysis, these two distributions will come to play a lot. At -->
+<!-- this point, just guarantee that you know how to obtain those -->
+<!-- distribution from random given information is sufficient. -->
 </div>
 <div id="arithmetics-of-rvs" class="section level3 hasAnchor" number="4.1.5">
 <h3><span class="header-section-number">4.1.5</span> Arithmetics of RV’s<a href="foundations-of-inference.html#arithmetics-of-rvs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -269,9 +352,42 @@ Figure 4.3: Some examples of chi-square distrubution curves with different degre
 </div>
 <div id="sampling-distributions" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Sampling Distributions<a href="foundations-of-inference.html#sampling-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:SamplingDist" class="definition"><strong>Definition 4.8  (Sampling distribution) </strong></span>The <strong>sampling distribution</strong> of a statistic is the probability distribution of that statistic computed from all possible random samples of a given size drawn from the same population.</p>
+</div>
+<p>In other words, if you repeatedly draw samples of size <span class="math inline">\(n\)</span> and compute the statistic (e.g. the sample mean <span class="math inline">\(\bar X\)</span>), then the values of <span class="math inline">\(\bar X\)</span> across those samples form a distribution—its sampling distribution.</p>
 </div>
 <div id="the-central-limit-theorem" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> The Central Limit Theorem<a href="foundations-of-inference.html#the-central-limit-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The central limit theorem (CLT) explains why the distribution of a properly
+standardized sample mean becomes approximately normal as the sample size
+grows—even when the underlying population is not normal.</p>
+<p>Suppose <span class="math inline">\(X_1,X_2,\dots,X_n\)</span> are independent and identically distributed
+(i.i.d.) with finite mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^{2}\)</span>. Define the sample mean <span class="math inline">\(\bar X_n = \tfrac{1}{n}\sum_{i=1}^{n} X_i\)</span>. The Centrel Limit Theorem tells us that the random fluctuation of <span class="math inline">\(\bar X_n\)</span> around the
+population mean <span class="math inline">\(\mu\)</span> (after appropriate scaling) behaves more and more like
+a standard normal variable as <span class="math inline">\(n\)</span> increases.</p>
+<div class="theorem">
+<p><span id="thm:CLT" class="theorem"><strong>Theorem 4.1  (Central Limit Theorem) </strong></span>Let <span class="math inline">\(X_{1},X_{2},\dots,X_{n}\)</span> be i.i.d. random variables with<br />
+<span class="math inline">\(E[X_i]=\mu\)</span> and <span class="math inline">\(\operatorname{Var}(X_i)=\sigma^{2}&lt;\infty\)</span>.
+Then, as <span class="math inline">\(n\to\infty\)</span>,</p>
+<p><span class="math display">\[
+\frac{\sqrt{n}\,(\bar X_{n}-\mu)}{\sigma}
+\;\xrightarrow{d}\;
+N(0,1),
+\]</span></p>
+<!-- i.e.\ for every real \(z\), -->
+<!-- $$ -->
+<!-- \lim_{n\to\infty} -->
+<!-- P\!\Bigl(\frac{\sqrt{n}(\bar X_{n}-\mu)}{\sigma}\le z\Bigr) -->
+<!-- = -->
+<!-- \Phi(z), -->
+<!-- $$ -->
+<!-- where \(\Phi(\cdot)\) is the standard normal cumulative distribution function. -->
+</div>
+<p>A practical consequence is that for large <span class="math inline">\(n\)</span> we can use normal‐based
+confidence intervals and hypothesis tests for <span class="math inline">\(\mu\)</span> even when the parent
+distribution of the data is unknown or skewed; the accuracy of this normal
+approximation improves as the sample size grows.</p>
 
 </div>
 </div>
@@ -280,8 +396,8 @@ Figure 4.3: Some examples of chi-square distrubution curves with different degre
           </div>
         </div>
       </div>
-<a href="descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-distributions-related-to-a-normal-population.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="descriptive-statistics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
