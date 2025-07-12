@@ -582,7 +582,7 @@ f_plot <- ggplot(f_data, aes(x = x, y = density, group = group)) +
            parse  = TRUE,
            colour = colA,
            vjust  = -10, 
-           hjust  = 1.6) +
+           hjust  = 2.0) +
   
   # F(5,10)
   geom_area(data = subset(f_data, group == "5,10"),
@@ -595,8 +595,8 @@ f_plot <- ggplot(f_data, aes(x = x, y = density, group = group)) +
            label  = labB,
            parse  = TRUE,
            colour = colB,
-           vjust = -0.5,
-           hjust  = 0.75) +
+           vjust  = -0.5,
+           hjust  = 1.0) +
   
   # F(10,20)
   geom_area(data = subset(f_data, group == "10,20"),
@@ -609,7 +609,7 @@ f_plot <- ggplot(f_data, aes(x = x, y = density, group = group)) +
            label  = labC,
            parse  = TRUE,
            colour = colC,
-           hjust  = -2.75) +
+           hjust  = -3.75) +
   
   # Arrow‐tipped axes
   geom_segment(aes(x = 0, y = 0, xend = 5, yend = 0),
