@@ -298,7 +298,7 @@ p <- ggplot(data.frame(x = c(0, 30)), aes(x = x)) +
   geom_segment(aes(x = 0, y = 0, xend = 30, yend = 0),
                arrow = arrow(length = unit(0.2, "cm")),
                inherit.aes = FALSE) +
-  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 0.18),
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 0.55),
                arrow = arrow(length = unit(0.2, "cm")),
                inherit.aes = FALSE)
 
@@ -543,6 +543,103 @@ where $B(\cdot,\cdot)$ is the Beta function (see Definition \@ref(def:BetaFuncti
 :::
 
 
+```{r f-densities, echo=FALSE, fig.align='center', fig.cap='F-Distribution', out.width='90%', warning=FALSE}
+library(ggplot2)
+library(grid)   # for arrow()
+
+# 1) Parameters for the three F distributions
+nu1a <-  2; nu2a <-  5; colA <- "#00BA38"; labA <- expression(bold(F[2][", "][5]))
+nu1b <-  5; nu2b <- 10; colB <- "#F8766D"; labB <- expression(bold(F[5][", "][10]))
+nu1c <- 10; nu2c <- 30; colC <- "#619CFF"; labC <- expression(bold(F[10][", "][30]))
+
+# 2) Common x‐axis values
+x_vals <- seq(0, 5, length.out = 1000)
+
+# 3) Compute densities
+f_dens_a <- df(x_vals, df1 = nu1a, df2 = nu2a)
+f_dens_b <- df(x_vals, df1 = nu1b, df2 = nu2b)
+f_dens_c <- df(x_vals, df1 = nu1c, df2 = nu2c)
+
+# 4) Single data frame with grouping
+f_data <- data.frame(
+  x       = rep(x_vals, 3),
+  density = c(f_dens_a, f_dens_b, f_dens_c),
+  group   = factor(rep(c("2,5", "5,10", "10,20"), each = length(x_vals)))
+)
+
+# 5) Base ggplot
+f_plot <- ggplot(f_data, aes(x = x, y = density, group = group)) +
+  
+  # F(2,5)
+  geom_area(data = subset(f_data, group == "2,5"),
+            fill = colA, alpha = 0.61) +
+  geom_line(data = subset(f_data, group == "2,5"),
+            colour = colA, size = 1.2) +
+  annotate("text",
+           x      = nu1a/(nu2a-2),
+           y      = df(nu1a/(nu2a-2), df1 = nu1a, df2 = nu2a)*1.05,
+           label  = labA,
+           parse  = TRUE,
+           colour = colA,
+           vjust  = -10, 
+           hjust  = 1.6) +
+  
+  # F(5,10)
+  geom_area(data = subset(f_data, group == "5,10"),
+            fill = colB, alpha = 0.61) +
+  geom_line(data = subset(f_data, group == "5,10"),
+            colour = colB, size = 1.2) +
+  annotate("text",
+           x      = nu1b/(nu2b-2),
+           y      = df(nu1b/(nu2b-2), df1 = nu1b, df2 = nu2b)*1.05,
+           label  = labB,
+           parse  = TRUE,
+           colour = colB,
+           vjust = -0.5,
+           hjust  = 0.75) +
+  
+  # F(10,20)
+  geom_area(data = subset(f_data, group == "10,20"),
+            fill = colC, alpha = 0.61) +
+  geom_line(data = subset(f_data, group == "10,20"),
+            colour = colC, size = 1.2) +
+  annotate("text",
+           x      = nu1c/(nu2c-2),
+           y      = df(nu1c/(nu2c-2), df1 = nu1c, df2 = nu2c)*1.05,
+           label  = labC,
+           parse  = TRUE,
+           colour = colC,
+           hjust  = -2.75) +
+  
+  # Arrow‐tipped axes
+  geom_segment(aes(x = 0, y = 0, xend = 5, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE) +
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = max(f_dens_a, f_dens_b, f_dens_c)*1.1),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE) +
+  
+  # Axis labels
+  labs(x = "x", y = "Density") +
+  
+  # Clean theme: only axes, no grid/box/ticks/text
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid     = element_blank(),
+    panel.border   = element_blank(),
+    axis.ticks     = element_blank(),
+    axis.text      = element_blank(),
+    axis.title.x   = element_text(face = "plain"),
+    axis.title.y   = element_text(face = "bold"),
+    axis.line      = element_blank()
+  )
+
+# 6) Render
+print(f_plot)
+```
+
+
+
 <!-- Both student's t-distribution and F-distribution are highly used in -->
 <!-- inferential statistics, until confidence interval, testing hypothesis -->
 <!-- and ANOVA analysis, these two distributions will come to play a lot. At -->
@@ -556,7 +653,7 @@ where $B(\cdot,\cdot)$ is the Beta function (see Definition \@ref(def:BetaFuncti
 
 
 ::: {.definition name="Sampling distribution" #SamplingDist}
-The **sampling distribution** of a statistic is the probability distribution of that statistic computed from all possible random samples of a given size drawn from the same population.
+The sampling distribution of a statistic is the probability distribution of that statistic computed from all possible random samples of a given size drawn from the same population.
 :::
 
 In other words, if you repeatedly draw samples of size \(n\) and compute the statistic (e.g.\ the sample mean \(\bar X\)), then the values of \(\bar X\) across those samples form a distribution—its sampling distribution.  
@@ -582,8 +679,8 @@ Then, as \(n\to\infty\),
 
 $$
 \frac{\sqrt{n}\,(\bar X_{n}-\mu)}{\sigma}
-\;\xrightarrow{d}\;
-N(0,1),
+\;\longrightarrow{d}\;
+N(0,1).
 $$
 
 <!-- i.e.\ for every real \(z\), -->
