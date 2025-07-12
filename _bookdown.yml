@@ -1,6 +1,31 @@
 book_filename: "Book"
+
+output:
+  # use Bookdown’s enhanced HTML format, not plain rmarkdown
+  bookdown::html_document2:
+    css: ["style.css", "box.css"]
+    toc: true
+    toc_depth: 3
+
 delete_merged_file: true
+
 language:
   ui:
     chapter_name: "Chapter "
-output_dir: "docs" #for github pages to find it
+  # not needed here; numbering comes from theorem block
+
+# register both your custom Note and your new Remark environment
+theorem:
+  definition: ["Note", "Notes"]
+  remark:     ["Remark", "Remarks"]
+
+output_dir: "docs"
+
+rmd_files:
+  - "index.Rmd"
+  - "Chapters/01-Introduction.Rmd"
+  - "Chapters/02-An_Introduction_to_R.Rmd"
+  - "Chapters/03-Descriptive_Statistics.Rmd"
+  - "Chapters/04-Foundations_of_Inference.Rmd"
+              
+

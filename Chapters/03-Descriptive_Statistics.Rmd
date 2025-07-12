@@ -1,0 +1,501 @@
+# Descriptive Statistics
+
+## Representing Data
+
+Data comes to us in the form of \textit{observations} (i.e. measurements) which we write symbolically as a lower case letter along with a subscript. For example, suppose we have taken a total of $n$ observations. We have observation 1, observation 2, observation 3, $\ldots$, observation $n-1$ and observation $n$. By letting $x$ represent an observation, all $n$ observations can be represented as:
+
+$$x_1,~x_2,~ \ldots ,~ x_n$$ 
+
+where $x_i$ is an individual observation, and the index $i=1, \ldots , n$. Here $n$ is referred to as the \textit{sample size}. We can also represent this data in condensed form as:
+
+$$x_i:\ i=1, \ldots , n$$
+
+or in tabular form as:
+
+::: {#smalltbl .smalltbl}
+| Index       | 1     | 2     | $\ldots$  | $n$   |
+| :---------- | :-:   | :-:   | :-:       | :-:   |
+| Observation | $x_1$ | $x_2$ | $\ldots$  | $x_2$ |
+:::
+
+
+
+## Numerical Measures 
+
+The most common numerical measures of central tendency are the mean, median, and mode. These measures summarize a set of data by identifying the central point within that data.
+
+The \textit{mean} (or more precisely the arithmetic mean) of a data set is obtained by adding up all of the observations and dividing by the sample size (number of observations). The mean is the typical average that we are all familiar with. 
+We use the symbol $\bar{x}$ to represent the sample mean.
+
+
+### Mean
+
+::: {.definition name="Mean" #Mean}
+Let $x_{1}, ~x_{2}, ~x_{3}, ~\ldots , ~x_{n}$ represent a sample of $n$ observations.
+The sample mean is defined as:
+	$$\bar{x} = \frac{ \displaystyle\sum_{i = 1}^{n} x_{i} }{n} = \frac{ x_{1} + x_{2} + \dots + x _{n} }{n}$$
+:::
+
+### Median
+
+::: {.definition name="Median" #Median}
+The median is the middle value of a data set when the observations are arranged in ascending order.
+:::
+
+The calculation of the median depends on whether the sample size is odd or even.
+If the sample size is odd, the median is the middle observation. If the sample size is even, the median is the average of the two middle observations.
+
+Consider $n$ ordered observations $x_{(1)},x_{(2)},~\cdots~,x_{(n)}$.
+
+- If $n$ is odd
+    $$\text{Median} = \text{observation} \> \left( \frac{n + 1}{2} \right) $$
+- If $n$ is even,
+    $$\text{Median} = \text{average of observation} ~ \left(\frac{n}{2} \right) ~\text{and observation} ~ \left( \frac{n}{2} + 1 \right)$$
+    
+### Mode
+
+::: {.definition name="Mode" #Mode}
+The mode is the most frequently occurring observation in a data set.
+:::
+
+We are als interested in how the data is spread out or dispersed.
+The most common numerical measures of the dispersion are the range, variance, and standard deviation. These measures summarize a set of data by identifying the spread or variability within that data.
+
+
+### Variance
+
+::: {.definition name="Variance" #Var}
+The sample variance is the average squared deviation of each observation from the sample mean.
+
+Let $x_{1}, ~x_{2}, ~x_{3}, ~\ldots , ~x_{n}$ represent a sample of $n$ observations.
+The sample Variance is defined as:
+	$$s^{2} = \frac{ \displaystyle\sum_{i=1}^{n} (x_{i} - \bar{x})^{2} }{n - 1}  = \frac{ (x_{1} - \bar{x})^{2} +  (x_{2} - \bar{x})^{2} + \ldots + (x_{n} - \bar{x})^{2} }{n-1}$$
+where $\bar{x}$ is the sample mean in Definition \@ref(def:Mean).
+:::
+
+
+In the Definition \@ref(def:Var), we divide by $n-1$ instead of $n$ since we are estimating the
+value of the population variance using sample data, and this calculation already includes utilizing
+the sample mean $\bar{x}$ which itself is an estimate of the population mean $\mu$. 
+This division by $n-1$ is known as Bessel's correction.
+
+Another reason for dividing by $n-1$ is because the sample variance is an unbiased estimator of the population variance, which is a topic covered in [STA260](https://utm.calendar.utoronto.ca/course/sta260h5) and beyond the scope of this course.
+
+In the calculation of the sample variance, notice each term is squared, which means that the variance is always a non-negative number. 
+When this occurs, the units of the variance are the square of the units of the original data.
+To return to the original units, we take the square root of the variance to obtain the standard deviation.
+
+
+### Standard Deviation
+
+::: {.definition name="Standard Deviation" #StDev}
+Let $x_{1}, x_{2}, ~x_{3}, ~\ldots , ~x_{n}$ represent a sample of $n$ observations.
+The sample standard deviation is defined as:
+$$s = + \sqrt{s^{2}}$$
+where $s^{2}$ is the sample variance in Definition \@ref(def:Var).
+:::
+
+
+When we analyze data we typically describe the data in terms of the mean and standard deviation
+as the units are the same. However, the calculation of the sample variance is an important
+intermediate step.
+
+One of the measures of central tendency and dispersion on their own will not give as a complete picture
+of the data, however when analyzed collectively, we are able to get a better overall understanding of the data.
+
+
+### Range
+
+The range is the difference between the largest and smallest observations in a data set. 
+
+::: {.definition name="Standard Deviation" #StDev}
+Let $x_{1}, ~x_{2}, ~x_{3}, ~\ldots , ~x_{n}$ represent a sample of $n$ observations.
+The range is 
+$$\text{Range} = \max(x_{1}, x_{2}, ~x_{3}, ~\ldots , ~x_{n}) - \min(x_{1}, x_{2}, ~x_{3}, ~\ldots , ~x_{n}) $$
+:::
+
+### Percentiles
+
+::: {.definition name="Percentile" #Percentile}
+In an ordered data set, the $p^{th}$ percentile is the value such that $p\%$ of all observations lie below it.
+:::
+
+Percentiles are a value that are relative to the rest of the data.
+
+::: {.example}
+A class writes a difficult test and a student obtained a mark of 70\% on this test.
+Although 72\% is a B-, since the test was difficult, this may be a good score. 
+In fact, the student who scored 72\% is in the $90^{th}$ percentile for this test. 
+This means that they scored better than 90\% of the rest of the class.
+:::
+
+
+### Quartiles
+
+Quartiles are special cases of percentiles.
+
+::: {.definition name="Quartiles" #Quartiles}
+In an ordered data set, quartiles are three values which divide the data into four groups such that each group consists of one fourth of the data. There three quartiles are the:
+
+-	First Quartile (Q$_{1}$)	:	A value such that 25\% (i.e. a quarter) of all observations lie below it.
+-	Second Quartile (Q$_{2}$)	:	A value such that 50\% (i.e. two quarters) of all observations lie below it.
+-	Third Quartile (Q$_{3}$)	:	A value such that 75\% (i.e. three quarters) of all observations lie below it.
+:::
+
+
+::: {.remark}
+The second quartile ($Q_2$) in Definition \@ref(def:Quartiles) is the same as the *median* in Definition \@ref(def:Median)
+:::
+
+<!-- ::: {#note:skewnote .note name="Skewness Note"} -->
+<!-- **Note:** The second quartile ($Q_2$) in Definition \@ref(def:Quartiles) is the same as the *median* in Definition \@ref(def:Median). -->
+<!-- ::: -->
+
+We work with quartiles since they are provide an intutitive way to partition data into quarters, and quartiles are also used in graphical summaries discussed in Section \@ref(sec:GraphicalTechniques).
+
+A measure of dispersion involving quartiles is the inter-quartils range (IQR).
+
+::: {.definition name="Interquartile Range" #IQR}
+The interquartile range (IQR) is the difference between the third quartile and the first quartile.
+$$\text{IQR} = Q_{1} - Q_{3}$$
+where $Q_{1}$ and $Q_{3}$ are the first and third quartiles respectively in Definition \@ref(def:Quartiles).
+:::
+
+## Grapchical Techniques {#sec:GraphicalTechniques} 
+
+Raw values on their own can be difficult to interpret, especially with very large data sets. 
+Graphical representations can be very useful for representing information. 
+When implemented correctly, graphical plots can provide more intuitive and direct method to interpret information being analyzed.
+
+We begin this section by introducing a term to describe the shape of a distribution of data.
+
+::: {.definition name="Skewness" }
+Skewness refers to such a measure of symmetry or lack of symmetry in the distribution of data.
+:::
+
+We can describe data as being left skewed, right skewed or symmetric. If the data is
+described as symmetric, this implies that most observations are concentrated around the
+mean and tail off fairly evenly on both sides of the mean. If the data is described as right
+skewed, this implies that more observations are concentrated on smaller
+values and we observe a longer tail to the right side of the mean. If the data is described
+as left skewed, this implies that more observations are concentrated on
+large values and we observe a longer tail to the left side of the mean. 
+We also may have data that is bimodal, which means that there are two distinct peaks in the distribution of the data.
+
+
+::: {.remark}
+*Right* skewed data is is also referred to as *positively* skewed and *left* skewed data is is also referred to as *negatively* skewed.
+:::
+
+<!-- ::: {#note:skewnote .note name="Skewness Note"} -->
+<!-- **Note:** *Right* skewed data is is also referred to as *positively* skewed and *left* skewed data is is also referred to as *negatively* skewed. -->
+<!-- ::: -->
+
+Data sets can have points in it which may be unusual or unexpected. 
+These terms are called *outliers*.
+
+::: {.definition name="Outlier" }
+An outlier is an unusual data point which appears to lies outside the overall pattern of the
+rest of the data.
+:::
+
+In other words, an outlier falls outside the range in which we would expect to see “typical”
+data values. Outliers may be present in data for a variety of reasons such as transcription
+error, measurement error, or we may have just measured a rare and unusual observation. In
+any case it is not a good practice to simply ignore outliers. All outliers should be investigated
+before deciding whether the observation should be included in data analysis or discarded.
+
+
+### Histograms
+
+Histograms and boxplots are useful tools which can allow us to visually determine
+the skewness of a distribution. By noting skewness, we get even more information about
+our data. Note however that we may not always be able to determine skewness by visually
+observing a histogram. A histogram is similar to a bar chart with the distinction that his-
+tograms can only be created for quantitative data.
+
+The width of the bars does not have any numerical meaning for bar charts, however bar
+width matters for histograms. They are an important factor in the creation of histograms.
+Interval width selection (or bin size selection) is an advanced topic that can be studied ex-
+tensively and there are several rules available to select interval widths. However for the scope
+of this course we will keep things simple and allow the reader to intuitively choose bin size.
+After constructing a histogram, we can change the interval widths until we feel that we have
+a picture that is a good representation of our data.
+
+A histogram is constructed by dividing the range of the data into intervals (or bins) and counting how many observations fall into each interval. The intervals are usually of equal width, but this is not a requirement. 
+
+| Class Interval       | Frequency | Relative Freq.           |        | Cumulative Freq.             | Cumulative Relative Freq.    |
+|----------------------|:---------:|--------------------------|--------|------------------------------|------------------------------|
+| $[a_{1}, b_{1})$     | $f_{1}$   | $r_{1} = f_{1} / F$      |        | $f_{1}$                      | $r_{1}$                      |
+| $[a_{2}, b_{2})$     | $f_{2}$   | $r_{2} = f_{2} / F$      |        | $f_{1} + f_{2}$              | $r_{1} + r_{2}$              |
+| $[a_{3}, b_{3})$     | $f_{3}$   | $r_{3} = f_{3} / F$      |        | $f_{1} + f_{2} + f_{3}$      | $r_{1} + r_{2} + r_{3}$      |
+| $\vdots$             | $\vdots$  | $\vdots$                 |        | $\vdots$                     | $\vdots$                     |
+| $[a_{m}, b_{m}]$     | $f_{m}$   | $r_{m} = f_{m} / F$      |        | $f_{1} + \ldots + f_{m} = F$ | $r_{1} + \ldots + r_{m} = 1$ |
+|                      | $F = \displaystyle\sum_{i=1}^{m} f_{i}$    | $1$ | |                      |                              |
+
+
+The histogram is then created by plotting the intervals on the $x$-axis and the frequency or relative frequency of observations in each interval on the $y$-axis.
+When frequency is plotted on the $y$-axis, the histogram is referred to as a frequency histogram and
+when relative frequency is plotted on the $y$-axis, the histogram is referred to as a relative frequency histogram.
+
+
+::: {.remark}
+When we use the term *histogram*, we often refer to a frequency histogram unless otherwise specified.
+:::
+
+<!-- ::: {#note:histnote .note name="Note"} -->
+<!-- **Note:** When we use the term *histogram*, we often refer to a frequency histogram unless otherwise specified. -->
+<!-- ::: -->
+
+An example of a histogram is shown in Figure \@ref(fig:HistExample).
+
+
+```{r HistExample, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a histogram.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}
+  \draw[->] (0,0) -- (7.5,0) node[right] {Value};
+  \draw[->] (0,0) -- (0,5.5) node[above] {Frequency};
+
+  \filldraw[fill=blue!30] (0.5,0) rectangle (1.5,2);
+  \filldraw[fill=blue!30] (1.5,0) rectangle (2.5,3.5);
+  \filldraw[fill=blue!30] (2.5,0) rectangle (3.5,5);
+  \filldraw[fill=blue!30] (3.5,0) rectangle (4.5,4);
+  \filldraw[fill=blue!30] (4.5,0) rectangle (5.5,2.5);
+  \filldraw[fill=blue!30] (5.5,0) rectangle (6.5,1);
+
+  \foreach \x/\label in {1/10, 2/20, 3/30, 4/40, 5/50, 6/60} {
+    \draw (\x,0) -- (\x,-0.2);
+    \node[below] at (\x, -0.2) {\label};
+  }
+
+  \foreach \y in {1,...,5} {
+    \draw (0,\y) -- (-0.15,\y);
+    \node[left] at (-0.2,\y) {\y};
+  }
+\end{tikzpicture}
+```
+
+
+
+Figures @ref(fig:HistExampleLeft), @ref(fig:HistExampleRight), and @ref(fig:HistExampleSymm) illustrate the concept of skewness in histograms. The histograms show how the distribution of data can be skewed to the left, skewed to the right, or symmetric.
+
+
+```{r HistExampleLeft, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a histogram to have a left (or negative) skew probability distribution.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[xscale=1.2, yscale=1]
+  \draw[->] (0,0) -- (7.5,0) node[right] {Value};
+  \draw[->] (0,0) -- (0,5.5) node[above] {Frequency};
+  \filldraw[fill=blue!30] (0.5,0) rectangle (1.5,1);
+  \filldraw[fill=blue!30] (1.5,0) rectangle (2.5,2);
+  \filldraw[fill=blue!30] (2.5,0) rectangle (3.5,3);
+  \filldraw[fill=blue!30] (3.5,0) rectangle (4.5,4.2);
+  \filldraw[fill=blue!30] (4.5,0) rectangle (5.5,4.7);
+  \filldraw[fill=blue!30] (5.5,0) rectangle (6.5,4.9);
+  \foreach \x/\label in {1/10, 2/20, 3/30, 4/40, 5/50, 6/60} {
+    \draw (\x,0) -- (\x,-0.15);
+    \node[below] at (\x,-0.3) {\label};
+  }
+  \foreach \y in {1,...,5} {
+    \draw (0,\y) -- (-0.1,\y);
+    \node[left] at (-0.3,\y) {\y};
+  }
+  \draw[thick, red, smooth, samples=100, domain=0.7:6.3] 
+    plot (\x, {5*exp(-0.3*(6.5 - \x)^2) + 0.5*exp(-0.3*(\x - 1.5))});
+\end{tikzpicture}
+```
+
+
+```{r HistExampleRight, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a histogram to have a right (or positive) skew probability distribution.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[xscale=1.2, yscale=1]
+  \draw[->] (0,0) -- (7.5,0) node[right] {Value};
+  \draw[->] (0,0) -- (0,5.5) node[above] {Frequency};
+
+  \filldraw[fill=blue!30] (0.5,0) rectangle (1.5,4.9);
+  \filldraw[fill=blue!30] (1.5,0) rectangle (2.5,4.5);
+  \filldraw[fill=blue!30] (2.5,0) rectangle (3.5,3.8);
+  \filldraw[fill=blue!30] (3.5,0) rectangle (4.5,2.8);
+  \filldraw[fill=blue!30] (4.5,0) rectangle (5.5,1.8);
+  \filldraw[fill=blue!30] (5.5,0) rectangle (6.5,1);
+
+  \foreach \x/\label in {1/10, 2/20, 3/30, 4/40, 5/50, 6/60} {
+    \draw (\x,0) -- (\x,-0.15);
+    \node[below] at (\x,-0.3) {\label};
+  }
+
+  \foreach \y in {1,...,5} {
+    \draw (0,\y) -- (-0.1,\y);
+    \node[left] at (-0.3,\y) {\y};
+  }
+
+  \draw[thick, red, smooth, samples=100, domain=0.7:6.3] 
+    plot (\x, {5*exp(-0.3*(\x - 1.5)^2) + 0.5*exp(-0.3*(6.5 - \x))});
+\end{tikzpicture}
+```
+
+
+```{r HistExampleSymm, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a histogram to have a symmetric probability distribution.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[xscale=1.2, yscale=1]
+  \draw[->] (0,0) -- (7.5,0) node[right] {Value};
+  \draw[->] (0,0) -- (0,5.5) node[above] {Frequency};
+  \filldraw[fill=blue!30] (0.5,0) rectangle (1.5,2.5);
+  \filldraw[fill=blue!30] (1.5,0) rectangle (2.5,4);
+  \filldraw[fill=blue!30] (2.5,0) rectangle (3.5,5);
+  \filldraw[fill=blue!30] (3.5,0) rectangle (4.5,4);
+  \filldraw[fill=blue!30] (4.5,0) rectangle (5.5,2.5);
+  \foreach \x/\label in {1/10, 2/20, 3/30, 4/40, 5/50} {
+    \draw (\x,0) -- (\x,-0.15);
+    \node[below] at (\x,-0.3) {\label};
+  }
+  \foreach \y in {1,...,5} {
+    \draw (0,\y) -- (-0.1,\y);
+    \node[left] at (-0.3,\y) {\y};
+  }
+  \draw[thick, red, smooth, samples=100, domain=0.7:5.3]
+    plot (\x, {5*exp(-0.5*(\x - 3)^2)});
+\end{tikzpicture}
+```
+
+
+### Boxplots
+
+Boxplots are another visual aid we can use to present and interpret data. They are one
+of the most simple graphical techniques to analyze visually and are therefore usually relatively immediate to interpret. 
+Boxplots are also known as *box-and-whisker* plots since they consists of figures resembling boxes along with a series of
+lines which we refer to as whiskers. The whiskers represent the quartiles as well as special
+values which we refer to as the *lower whisker* and the *upper whisker*.
+
+::: {.definition name="Upper and Lower Whiskers" #UpperLowerWhiskers}
+Let $Q_{1}$, $Q_{3}$ and $IQR$ represent the first quartile, third quartile and 
+interquartile range respectively as defined in \@ref(def:Quartiles) and \@ref(def:IQR) respectively.
+Then,
+\[ \text{Lower Whisker} ~ = ~ Q_{1} - 1.5 \times IQR \]
+\[ \text{Upper Whisker} ~ = ~ Q_{3} + 1.5 \times IQR \]
+:::
+
+The box in a boxplot is divided into two parts, the lower and upper quartiles. The lower quartile is represented by the bottom of the box and the upper quartile is represented by the top of the box. The line inside the box represents the median of the data set.
+Box plots can be used to to get a sense of a data set.
+
+```{r fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of an annotated box-plot with whiskers and potential outliers.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[x=1cm, y=1cm]
+
+  % Define values
+  \def\lowOutlier{0.5}
+  \def\lowWhisker{1.2}
+  \def\Qone{2}
+  \def\Qtwo{3}
+  \def\Qthree{4}
+  \def\highWhisker{4.8}
+  \def\highOutlier{5.4}
+  \def\xbox{2}
+
+  % Axis lines
+  \draw[->, thick] (1, 0.2) -- (1, 6) node[above] {};
+  \draw[->, thick] (0.2, 1) -- (6.5, 1) node[right] {};
+
+  % Box
+  \draw[thick] (\xbox, \Qone) rectangle (\xbox+1, \Qthree);
+  \draw[line width=2pt] (\xbox, \Qtwo) -- (\xbox+1, \Qtwo); 
+
+  % Whiskers
+  \draw[thick] (\xbox+0.5, \Qthree) -- (\xbox+0.5, \highWhisker);
+  \draw[thick] (\xbox+0.5, \Qone) -- (\xbox+0.5, \lowWhisker);
+  \draw[thick] (\xbox+0.3, \highWhisker) -- (\xbox+0.7, \highWhisker);
+  \draw[thick] (\xbox+0.3, \lowWhisker) -- (\xbox+0.7, \lowWhisker);
+
+  % Outliers
+  \foreach \y in {5.2, 5.4} {
+    \fill (\xbox+0.5, \y) circle (1pt);
+  }
+  \foreach \y in {0.7, 0.5} {
+    \fill (\xbox+0.5, \y) circle (1pt);
+  }
+
+  % Dotted reference lines
+  \draw[dotted, thick] (0.8, \Qone) -- (6.5, \Qone);
+  \draw[dotted, thick] (0.8, \Qtwo) -- (6.5, \Qtwo);
+  \draw[dotted, thick] (0.8, \Qthree) -- (6.5, \Qthree);
+
+  % Quartile labels
+  \node[left] at (0.8, \Qone) {Q1};
+  \node[left] at (0.8, \Qtwo) {Q2};
+  \node[left] at (0.8, \Qthree) {Q3};
+
+  % Annotations for whiskers
+  \draw[->, thick] (5.4, \highWhisker + 0.1) -- (\xbox + 0.5, \highWhisker)
+    node[anchor=west, xshift=3cm, align=left] {upper whisker $= Q3 + 1.5(\text{IQR})$};
+
+  \draw[->, thick] (5.4, \lowWhisker + 0.1) -- (\xbox + 0.5, \lowWhisker)
+    node[anchor=west, xshift=3cm, align=left] {lower whisker $= Q1 - 1.5(\text{IQR})$};
+
+  % Arrows to outliers
+  \draw[->, thick] (1.3, 5.6) -- (\xbox + 0.5, 5.4);
+  \node[align=right] at (0.2, 5.8) {potential\\outliers};
+
+  \draw[->, thick] (1.3, 0.3) -- (\xbox + 0.5, 0.5);
+  \node[align=right] at (0.2, 0.1) {potential\\outliers};
+\end{tikzpicture}
+```
+
+
+Boxplots can also efficiently be used to compare multiple distributions and highlight skewness, spread, and outliers from each of them.
+If the median cuts the box with upper area smaller than lower area,
+then we say that box-plot with left skew probability distribution. Or,
+if the median cuts the box with upper area larger than lower area,
+then we say that box-plot with right skew probability distribution.
+Otherwise, if the median cuts the box with upper area equal to
+lower area, then we say that box-plot with symmetric probability
+distribution.
+
+
+```{r fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Box-plots showing negative skew, positive skew, and symmetry.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[x=1.3cm, y=1cm]
+
+  % Boxplot function: center x, yQ1, yQ2, yQ3
+  \newcommand{\boxplot}[4]{
+    % Axis
+    \draw[->, thick] (#1 - 1, 1) -- (#1 - 1, 6);
+    \draw[->, thick] (#1 - 1.2, 1) -- (#1 + 1.2, 1);
+
+    % Dotted Q2 guide
+    \draw[dotted, thick] (#1 - 1.1, #3) -- (#1 + 1.1, #3);
+
+    % Box
+    \draw[thick] (#1 - 0.5, #2) rectangle (#1 + 0.5, #4);
+
+    % Median
+    \draw[line width=2pt] (#1 - 0.5, #3) -- (#1 + 0.5, #3);
+
+    % Whiskers
+    \draw[thick] (#1, #4) -- (#1, #4 + 0.8);
+    \draw[thick] (#1 - 0.2, #4 + 0.8) -- (#1 + 0.2, #4 + 0.8);
+
+    \draw[thick] (#1, #2) -- (#1, #2 - 0.8);
+    \draw[thick] (#1 - 0.2, #2 - 0.8) -- (#1 + 0.2, #2 - 0.8);
+
+    % Q2 Label
+    \node[left] at (#1 - 1.1, #3) {\textbf{Q2}};
+  }
+
+  % Plot 1: Negative skew
+  \boxplot{1}{2.2}{3.9}{4.6}
+  \node[above] at (1, 5.9) {Left (negative) skew};
+  \node[align=center] at (1, 0.3) {\small median $>$ mean\\(towards top of data)};
+
+  % Plot 2: Positive skew
+  \boxplot{4}{2.1}{2.5}{3.5}
+  \node[above] at (4, 5.9) {Right (positive) skew};
+  \node[align=center] at (4, 0.3) {\small median $<$ mean\\(towards bottom of data)};
+
+  % Plot 3: Symmetric
+  \boxplot{7}{2}{3}{4}
+  \node[above] at (7, 5.9) {Symmetric};
+  \node[align=center] at (7, 0.3) {\small median $=$ mean};
+\end{tikzpicture}
+```
+
+
+

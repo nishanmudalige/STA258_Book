@@ -1,0 +1,198 @@
+# Introduction
+
+<!-- :::: {.blackbox data-latex=""} -->
+<!-- ::: {.center data-latex=""} -->
+<!-- **NOTICE!** -->
+<!-- ::: -->
+
+<!-- Thank you for noticing this **new notice**! Your noticing it has -->
+<!-- been noted, and _will be reported to the authorities_! -->
+<!-- :::: -->
+
+<!-- Examples of Definition, Theorem, Example environment -->
+
+<!--
+See Definition \@ref(def:MyDefinition) below.
+
+::: {.definition name="Sample Definition" #MyDefinition}
+This is the content of my definition.
+:::
+
+See Theorem \@ref(thm:MyTheorem) below.
+
+::: {.theorem name="Sample Theorem" #MyTheorem}
+This is the content of my theorem.
+:::
+
+See Example \@ref(exm:MyExample) below
+
+::: {.example name="My Example Title" #MyExample}
+This is the content of my example.
+:::
+-->
+
+## Foundations {#sec:foundations}
+
+Intuitively, statistics can be considered the science of uncertainty.
+Formally,
+
+::: {.definition name="Statistics"}
+Statistics is the science of collecting, classifying, summarizing, analyzing and interpreting
+data.
+:::
+
+In statistics, researchers are often interested in characteristics of a large group of interest. They often observe behaviours, patterns, trends etc. to give a conclusion for  the group. To make the conclusions, researchers require data to support them.
+
+::: {.definition name="Population" #Pop}
+A population is a set of similar observations which is of
+interest for some experimental questions. It can be a set of existing
+objects such as all people in Canada, or hypothetical group of existing
+objects such as the set of all possible hands in a game of poker.
+:::
+
+A population can be a set of existing objects such as all people in Canada, or hypothetical group of existing objects such as the set of all possible hands in a game of poker.
+Populations are often large.
+Some more examples are given below.
+
+::: {.example}
+- All students at the University of Toronto
+- All residents of Mississauga
+:::
+
+Data collection from every object in a population is often not feasible to perform. 
+Researchers often select a finite number of observations to study.
+
+::: {.definition name="Sample" #Sample}
+A sample refers to a subset from population.
+:::
+
+::: {.example}
+- A random sample of 50 students at the University of Toronto.
+- A random sample of 100 residents of Mississauga.
+:::
+
+::: {.definition name="Unit" #Unit}
+The objects within a sample for which data are collected.
+:::
+
+::: {.example}
+- In a sample of 10 students, a unit would be one of the students in this sample.
+:::
+
+There are characteristics of a population and sample which are of interest to us.
+
+::: {.definition name="Parameter" #Parameter}
+A parameter is a numerical quantity of a population which summarizes a
+characteristic of the population.
+:::
+
+Some examples of parameters are introduced in this section.
+These terms will be discussed in more detail in later chapters.
+
+::: {.example #ExParam}
+- Population mean $\mu$
+- Population standard deviation $\sigma$
+- Population proportion $p$
+:::
+
+The true value of a parameter is usually unknown since it is extremely difficult to take
+measurements on every unit in a population.
+Therefore we often use measurements from a sample to estimate the value of a parameter.
+
+::: {.definition name="Statistic" #Statistic}
+A statistic is a numerical quantity of a sample which summarizes a
+characteristic of the sample.
+:::
+
+Since we have control over a sample, the numerical values of statistics
+are often calculated and known.
+
+Some examples of statistics are given below and similar to the parameters 
+in \@ref(exm:ExParam), these terms will also be discussed in more detail in later chapters.
+
+::: {.example}
+- Sample mean $\bar{x}$
+- Sample standard deviation $s$
+- Sample proportion $\hat{p}$
+:::
+
+Statistics can be broken down into two broad categories: descriptive statistics and inferential statistics which are given in definitions \@ref(def:DescStats) and \@ref(def:InfStats) below.
+
+::: {.definition name="Descriptive Statistics" #DescStats}
+Descriptive statistics are numerical and graphical methods used to analyze, interpret, and
+represent data.
+:::
+
+::: {.definition name="Inferential Statistics" #InfStats}
+Inferential statistics use information from a sample to make generalizations about a larger
+population.
+:::
+
+## Types of data
+
+Data can be classified into two main categories: quantitative and qualitative data.
+
+::: {.definition name="Quantitative data"}
+Data which can be measured numerically.
+:::
+
+::: {.example}
+- Height
+- weight 
+- Age
+- Temperature
+:::
+
+::: {.definition name="Qualitative data"}
+Data which can not be measured numerically. Qualitative data falls into categories instead.
+:::
+
+::: {.example}
+- Favourite colour out of red, green, blue
+- Favourite flavour of ice-cream out of chocolate, vanilla, strawberry
+:::
+
+
+
+
+## Introduction to Inferential statistics
+
+As discussed in Section \@ref(sec:foundations), 
+we mentioned that the numerical values of parameters are usually unknown,
+however the numerical values of statistics are calculated and known.
+
+The picture below shows the relationship between parameters from a population and statistics fomr a sample.
+
+
+```{r fig.align='center', echo=FALSE, engine='tikz', out.width='55%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Illustration of parameters in a population and statistics in a sample'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[scale=1]
+
+\definecolor{darkblue}{HTML}{4477b2}
+\definecolor{lightblue}{HTML}{9cb8d9}
+
+\draw[fill=darkblue, opacity=0.8] (1,3)
+ellipse (3 and 1);
+
+\node[draw=none] at (1,3.25) {Population};
+\node[draw=none] at (1,2.60) {$\mu, ~\sigma, ~p$};
+
+\draw[->] (1,2) .. controls (+1.25,1.4) .. (1, 0.75);
+\node[draw=none] at (2.50, 1.45) {Draw units};
+
+\draw[fill=lightblue, opacity=0.8] (1,0)
+ellipse (2 and 0.7);
+\node[draw=none] at (1.00, 0.15) {Sample};
+\node[draw=none] at (1,-0.40) {$\bar{x}, ~s, ~\hat{p}$};
+
+\end{tikzpicture}
+```
+
+
+The aim of statistical inference is to produce estimators of the population parameters and examine how accurate these estimators are in terms of a probability statement.
+We also quantify our confidence that the statistic is representative of the parameter and use statistics to test hypotheses about the population parameters.
+Inference is discussed in more detail in Section \@ref(sec:inference).
+
+
+
+
