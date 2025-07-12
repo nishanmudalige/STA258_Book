@@ -106,7 +106,16 @@
 </ul></li>
 <li class="chapter" data-level="4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html"><i class="fa fa-check"></i><b>4</b> Foundations of Inference</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:inference"><i class="fa fa-check"></i><b>4.1</b> Introduction to Important Statistical Distributions</a></li>
+<li class="chapter" data-level="4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:inference"><i class="fa fa-check"></i><b>4.1</b> Some Important Statistical Distributions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-normal-distribution"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to the Normal Distribution</a></li>
+<li class="chapter" data-level="4.1.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution"><i class="fa fa-check"></i><b>4.1.2</b> Introduction to the Chi-Square distribution</a></li>
+<li class="chapter" data-level="4.1.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-t-distribution"><i class="fa fa-check"></i><b>4.1.3</b> Introduction to the t-Distribution</a></li>
+<li class="chapter" data-level="4.1.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-f-distribution"><i class="fa fa-check"></i><b>4.1.4</b> Introduction to the F-Distribution</a></li>
+<li class="chapter" data-level="4.1.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#arithmetics-of-rvs"><i class="fa fa-check"></i><b>4.1.5</b> Arithmetics of RV’s</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sampling-distributions"><i class="fa fa-check"></i><b>4.2</b> Sampling Distributions</a></li>
+<li class="chapter" data-level="4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>4.3</b> The Central Limit Theorem</a></li>
 </ul></li>
 </ul>
 
@@ -134,7 +143,76 @@ for a population thus we collect data from a sample and calculate statistics to 
 parameters of interest. We then quantify our confidence that the statistic is representative
 of the parameter.</p>
 <div id="sec:inference" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Introduction to Important Statistical Distributions<a href="foundations-of-inference.html#sec:inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">4.1</span> Some Important Statistical Distributions<a href="foundations-of-inference.html#sec:inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-the-normal-distribution" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Introduction to the Normal Distribution<a href="foundations-of-inference.html#introduction-to-the-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In probability theory and statistics, the normal distribution is one of the most
+important distribution used to model many populations and processes which occur in reality.</p>
+<div class="definition">
+<p><span id="def:NormalDist" class="definition"><strong>Definition 4.1  (Normal distribution) </strong></span>Let <span class="math inline">\(X\)</span> be a random variable with mean <span class="math inline">\(-\infty &lt; \mu &lt; +\infty\)</span> and variance <span class="math inline">\(\sigma^2 &gt; 0\)</span>.
+We say that <span class="math inline">\(X\)</span> folowes a normal distribution if the probability density function of <span class="math inline">\(X\)</span> is:
+<span class="math display">\[f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} \cdot e^{-\displaystyle\frac{(x - \mu)^2}{2\sigma^2}}, \text{ for $-\infty &lt; x &lt; \infty$.}\]</span></p>
+</div>
+<div class="remark">
+<p><span id="unlabeled-div-16" class="remark"><em>Remark</em>. </span>The normal distribution is also called Gaussian distribution since it was
+discovered Johann Carl Friedrich Gauss in 1809.
+Gauss is one of the most influential and important mathematicians in history.</p>
+</div>
+<p>The normal distribution is symmetric about its mean <span class="math inline">\(\mu\)</span> and has a bell-shaped curve.
+It is completely characterized by two parameters which are the the mean <span class="math inline">\(\mu\)</span> and the standard deviation <span class="math inline">\(\sigma\)</span>.
+Some examples are shown in Figure <a href="foundations-of-inference.html#fig:NormalExample">4.1</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:NormalExample"></span>
+<img src="Book_Files/figure-html/NormalExample-1.png" alt="Some examples of normal distrubution curves with different means and variances" width="672" />
+<p class="caption">
+Figure 4.1: Some examples of normal distrubution curves with different means and variances
+</p>
+</div>
+<p>A special case of normal distribution is standard normal distribution which is explained in Definition <a href="foundations-of-inference.html#def:StandardNormalDist">4.2</a>.</p>
+<div class="definition">
+<p><span id="def:StandardNormalDist" class="definition"><strong>Definition 4.2  (Standard normal distribution) </strong></span>Let <span class="math inline">\(Z \sim N( \mu = 0, \sigma^2 = 1)\)</span>, then <span class="math inline">\(Z\)</span> has
+probability density function as:
+<span class="math display">\[f(y) = \frac{1}{\sqrt{2\pi}} \cdot e^{-\displaystyle\frac{z^2}{2}}.\]</span>
+which is called the standard normal distribution.</p>
+</div>
+<div class="remark">
+<p><span id="unlabeled-div-17" class="remark"><em>Remark</em>. </span>Standard normal random variables are often denoted by <span class="math inline">\(Z\)</span>.</p>
+</div>
+<p>A useful property of the normal distribution is that it is symmetric about its mean <span class="math inline">\(\mu\)</span>.</p>
+<div class="remark">
+<p><span id="unlabeled-div-18" class="remark"><em>Remark</em>. </span>For any symmetric (bell-shaped) curve, let <span class="math inline">\(\mu\)</span> be its mean and
+<span class="math inline">\(\sigma\)</span> be its standard deviation, the following probability set
+function is true:</p>
+<ul>
+<li><p><span class="math inline">\(1.\)</span> <span class="math inline">\(P(\mu - \sigma &lt; X &lt; \mu + \sigma) = 68.27\%;\)</span></p></li>
+<li><p><span class="math inline">\(2.\)</span> <span class="math inline">\(P(\mu - 2\sigma &lt; X &lt; \mu + 2\sigma) = 95.45\%;\)</span></p></li>
+<li><p><span class="math inline">\(3.\)</span> <span class="math inline">\(P(\mu - 3\sigma &lt; X &lt; \mu + 3\sigma) = 99.73\%.\)</span></p></li>
+</ul>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-5-1.png" alt="An illustration of the empirical rule." width="90%" />
+<p class="caption">
+Figure 4.2: An illustration of the empirical rule.
+</p>
+</div>
+</div>
+<div id="introduction-to-the-chi-square-distribution" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Introduction to the Chi-Square distribution<a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="introduction-to-the-t-distribution" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Introduction to the t-Distribution<a href="foundations-of-inference.html#introduction-to-the-t-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="introduction-to-the-f-distribution" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Introduction to the F-Distribution<a href="foundations-of-inference.html#introduction-to-the-f-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="arithmetics-of-rvs" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> Arithmetics of RV’s<a href="foundations-of-inference.html#arithmetics-of-rvs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="sampling-distributions" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Sampling Distributions<a href="foundations-of-inference.html#sampling-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="the-central-limit-theorem" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> The Central Limit Theorem<a href="foundations-of-inference.html#the-central-limit-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
