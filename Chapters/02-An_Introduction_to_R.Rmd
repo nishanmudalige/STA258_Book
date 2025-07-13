@@ -1,3 +1,55 @@
 # An Introduction to R
 
-Content by Nurlana and Bryan goes here
+## Introduction to R
+
+R is used for data manipulation, statistics, and graphics. It is made
+of: operations ($+$,$-$, $<$) which is for calculations on vectors,
+arrays and matrices; a huge collection of functions; facilities for
+making unlimited types quality graphs; user contributed packages (sets
+of related functions); the ability to interface with procedures written
+in C, C+, or FORTRAN and to write additional primitives. R is also an
+open-source computing package which has seen a huge growth in popularity
+in the last few years (Please use this website:
+https://cran.r-project.org, to download R).\
+**What is R-studio?**
+
+RStudio is a relatively new editor specially targeted at R. RStudio is
+cross-platform, free and open-source software (Please use:
+https://www.rstudio.com, to download Rstudio).\
+**Make a Histogram Using R-studio**
+
+This is just a demonstration of how to start and use R-studio.
+
+1. First of all, we need to know which dataset are we going to make into
+a histogram. In this case, as an example, we are going to use the
+waiting time in faithful in R-studio.
+
+2. For any dataset, use the code: names(faithful) to get it. (inside the
+parentheses, type the names of variables you want in faithful dataset)
+
+3. Then, we proceed with the code: hist(faithful\$waiting) to get a
+basic plot.
+
+::: tcolorbox
+    # names of variables in faithful dataset;
+    names(faithful)
+
+    ## Basic plot;
+    hist(faithful$waiting)
+:::
+
+4. Furthermore, we can also get more information. For example, by keep
+proceeding with the code: hist(faithful\$waiting,plot=FALSE)\$breaks,
+R-studio will show you all the breaking points between histogram cells.
+
+::: tcolorbox
+    # breakpoints between histogram cells;
+    hist(faithful$waiting,plot=FALSE)$breaks
+
+    ## [1] 40 45 50 55 60 65 70 75 80 85 90 95
+    ## [13] 100
+
+    hist(faithful$waiting,plot=FALSE)$counts
+
+    ## [1] 4 22 33 24 14 10 27 54 55 23 5 1
+:::
