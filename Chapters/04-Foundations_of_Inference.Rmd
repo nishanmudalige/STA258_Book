@@ -16,7 +16,7 @@ same throughout all of statistics.
 
 ## Some Important Statistical Distributions {#sec:inference}
 
-### Introduction to the Normal Distribution
+### Introduction to the Normal Distribution {#sec:IntroNormalDist}
 
 In probability theory and statistics, the normal distribution is one of the most
 important distribution used to model many populations and processes which occur in reality.
@@ -177,7 +177,7 @@ Standard normal random variables are often denoted by $Z$.
 A useful property of the normal distribution is that it is symmetric about its mean $\mu$.
 
 ::: {.remark}
-For any symmetric (bell-shaped) curve, let $\mu$ be its mean and
+The Empirical Rule informs us that for any symmetric (bell-shaped) curve, let $\mu$ be its mean and
 $\sigma$ be its standard deviation, the following probability set
 function is true:
 
@@ -187,6 +187,15 @@ function is true:
 
 - $3.$ $P(\mu - 3\sigma < X < \mu + 3\sigma) = 99.73\%.$
 :::
+
+
+::: {.remark}
+A consequence of the Empirical Rule from \@ref(sec:IntroNormalDist) is that for a sample drawn from a population that is 
+approximately normal, we can approximate the standard deviation using:
+
+$$\hat{\sigma} \approx \frac{\text{Sample Range}}{4}.$$
+:::
+
 
 ```{r fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of the empirical rule.'}
 \usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
