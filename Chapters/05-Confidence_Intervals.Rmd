@@ -162,11 +162,11 @@ p +
 
 
 
-# One Sample Confidence Intervals
+## One Sample Confidence Intervals
 
-## On a Population Mean
+### On a Population Mean
 
-### When $\sigma$ is Known
+#### When $\sigma$ is Known
 
 When we know the population standard deviation $\sigma$, we can
 construct a confidence interval for $\mu$ in the following manner.
@@ -365,7 +365,7 @@ interval gets smaller as
 <!-- ########## ########## ########## -->
 <!-- ########## ########## ########## -->
 
-### When $\sigma$ is Not known
+#### When $\sigma$ is Not known
 
 ::: definition
 Let $\mu$ be the population mean. When the population standard deviation
@@ -808,7 +808,7 @@ extremely non-Normal, and in fact, may be Normal.
 <!-- ########## ########## ########## -->
 
 
-## On a Population Proportion
+### On a Population Proportion
 
 Previously, we have introduced two types of confidence interval based on
 known and unknown variance. Moreover, confidence intervals are also
@@ -960,11 +960,11 @@ become easier:
 <!-- ########## ########## ########## -->
 
 
-## On a Population Variance
+### On a Population Variance
 
 ** Needs to be completed **
 
-## Assumptions
+### Assumptions
 
 ** Needs to be completed **
 
@@ -979,7 +979,7 @@ become easier:
 <!-- ########## ########## ########## -->
 
 
-# Two Sample Confidence Intervals
+## Two Sample Confidence Intervals
 
 We have discussed three distinct types of one sample confidence
 interval. Now, let's keep moving forward to see how confidence interval
@@ -989,7 +989,7 @@ a certain percentage of confidence. For two samples, the aim is
 comparing with sample has a relatively larger or smaller population mean
 or proportion with a certain percentage of confidence.
 
-## On a Difference of Means
+### On a Difference of Means
 
 Suppose we are interested in the final mark of MAT135 from the same
 semester but with different campuses at the University of Toronto (let's
@@ -1007,7 +1007,7 @@ approximate which population has a higher mean (or average).
 Similar to one-sample confidence intervals on 
 a mean, we examine various cases of two-sample confidence intervals on a difference means.
 
-### When $\sigma_1$ and $\sigma_2$ are Known
+#### When $\sigma_1$ and $\sigma_2$ are Known
 
 ::: definition
 Suppose we are given the population variance for both two independent
@@ -1027,7 +1027,7 @@ population variance ($\sigma^2$) from both groups are rare to know.
 
 <!-- ########## ########## ########## -->
 
-### When $\sigma_1$ and $\sigma_2$ are Not Known
+#### When $\sigma_1$ and $\sigma_2$ are Not Known
 
 In practice, we usually do not have the information about population variance.
 The situations in this section are a lot more realistic.
@@ -1107,7 +1107,95 @@ assumption is not required by the Central Limit Theorem.\
 Two Groups)**
 
 
-## On Paired Data
+
+
+### On a Difference of Proportions
+
+Furthermore, two sample confidence intervals can approximate the
+proportion as well. Suppose we are interested in the proportion of
+left-handed students in UTSG and UTM, and we are asked to find the
+campus that has a relatively larger proportion of left-handed students.
+To begin with this task, it is impossible to complete it directly by
+calculation, due to its complexity and high workload. We can use select
+two independent groups (one group from each campus), then apply two
+sample confidence interval to approximate which campus has a larger
+proportion.
+
+::: definition
+Draw an SRS of size $n_1$ from a population having proportion $p_1$ of
+successes and draw an independent SRS of size $n_2$ from another
+population having proportion $p_2$ of successes. When $n_1$ and $n_2$
+are large, an approximate level C confidence interval for $p_1 - p_2$ is
+given by:
+$$(\hat{p}_1 - \hat{p}_2)  \pm z_{\alpha/2} \cdot \sqrt{ \frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}.$$
+Now, $n_1$ and $n_2$ are sample size of selected random sample from each
+population; $\hat{p}_1$ and $\hat{p}_2$ are the proportion of success of
+each selected random sample respectively.
+:::
+
+
+### Assumptions
+
+- 1\. Randomization Condition: The data in each group should be drawn
+  independently and at random from a population or generated b y a
+  completely randomized designed experiment.
+
+- 2\. The $10\%$ Condition: If the data are sampled without replacement,
+  the sample should not exceed $10\%$ of the population. If samples are
+  bigger than $10\%$ of the target population, random draws are no
+  longer approximately independent.
+
+- 3\. Independent Groups Assumption: The two groups we are comparing
+  must be independent from each other.
+
+- 4\. Sample size requirement: both selected sample size must greater
+  than $70$.
+  
+
+
+### On a Ratio of Variances
+
+Confidence interval is a strong technique in inferential statistics, we
+have discussed its application on population mean, proportion and
+dependent data. Now, let's move on to variance.\
+One simple method involves just looking at two sample variances.
+Logically, if two population variances are equal, then the two sample
+variances should be very similar. When the two sample variances are
+reasonably close, you can be reasonably conﬁdent that the homogeneity
+assumption is satisﬁed and proceed with, for example, Student
+t-interval. However, when one sample variance is three or four times
+larger than the other, then there is reason for a concern. The common
+statistical procedure for comparing population variances $\sigma_1^2$
+and $\sigma_2^2$ makes an inference about the ratio of
+$(\sigma_1^2)/(\sigma_2^2)$.\
+To make an inference about the ratio of $(\sigma_1^2)/(\sigma_2^2)$ we
+collect sample data and use the ratio of the sample variances
+$(\sigma_1^2)/(\sigma_2^2)$.
+
+At this point, let's derive the confidence interval. We know that:
+$\frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} \sim F_{n_1-1, n_2 -1}$.
+Then, we can construct our confidence interval as:
+$$P[F_{n_1-1, n_2 -1; 1-\alpha/2} < \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} < F_{n_1-1, n_2 -1; \alpha/2}]  = 1 -\alpha.$$
+Now, the reference distribution of this confidence interval is
+F-distribution with $n_1 - 1$ and $n_2 -1$ degrees of freedom, leaving
+areas of $1 - \alpha/2$ and $\alpha/2$, respectively, to the right.
+Rearranging gives us:
+$$P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; \alpha/2}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}}] = 1 -\alpha.$$
+Using the face that
+$F_{n_1-1,n_2-1; 1 - \alpha/2} = \frac{1}{F_{n_2-1,n_1-1; \alpha/2}}$,
+we have:
+$$P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2-1, \alpha/2}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot F_{n_2-1, n_1 - 1, \alpha/2}] = 1- \alpha.$$
+
+
+### Assumptions
+
+**Need to complete**
+
+
+
+
+
+## Confidence Intervals on Paired Data
 
 It may appear that two sample confidence interval only works on two
 independent samples, however what about two dependent samples? Suppose
@@ -1171,86 +1259,3 @@ measurements.
 ### Assumptions
 
 **Need to complete**
-
-
-
-## Two Sample Confidence Interval on Proportions
-
-Furthermore, two sample confidence intervals can approximate the
-proportion as well. Suppose we are interested in the proportion of
-left-handed students in UTSG and UTM, and we are asked to find the
-campus that has a relatively larger proportion of left-handed students.
-To begin with this task, it is impossible to complete it directly by
-calculation, due to its complexity and high workload. We can use select
-two independent groups (one group from each campus), then apply two
-sample confidence interval to approximate which campus has a larger
-proportion.
-
-::: definition
-Draw an SRS of size $n_1$ from a population having proportion $p_1$ of
-successes and draw an independent SRS of size $n_2$ from another
-population having proportion $p_2$ of successes. When $n_1$ and $n_2$
-are large, an approximate level C confidence interval for $p_1 - p_2$ is
-given by:
-$$(\hat{p}_1 - \hat{p}_2)  \pm z_{\alpha/2} \cdot \sqrt{ \frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}.$$
-Now, $n_1$ and $n_2$ are sample size of selected random sample from each
-population; $\hat{p}_1$ and $\hat{p}_2$ are the proportion of success of
-each selected random sample respectively.
-:::
-
-
-### Assumptions
-
-- 1\. Randomization Condition: The data in each group should be drawn
-  independently and at random from a population or generated b y a
-  completely randomized designed experiment.
-
-- 2\. The $10\%$ Condition: If the data are sampled without replacement,
-  the sample should not exceed $10\%$ of the population. If samples are
-  bigger than $10\%$ of the target population, random draws are no
-  longer approximately independent.
-
-- 3\. Independent Groups Assumption: The two groups we are comparing
-  must be independent from each other.
-
-- 4\. Sample size requirement: both selected sample size must greater
-  than $70$.
-
-## Two Sample Confidence Interval on Variances
-
-Confidence interval is a strong technique in inferential statistics, we
-have discussed its application on population mean, proportion and
-dependent data. Now, let's move on to variance.\
-One simple method involves just looking at two sample variances.
-Logically, if two population variances are equal, then the two sample
-variances should be very similar. When the two sample variances are
-reasonably close, you can be reasonably conﬁdent that the homogeneity
-assumption is satisﬁed and proceed with, for example, Student
-t-interval. However, when one sample variance is three or four times
-larger than the other, then there is reason for a concern. The common
-statistical procedure for comparing population variances $\sigma_1^2$
-and $\sigma_2^2$ makes an inference about the ratio of
-$(\sigma_1^2)/(\sigma_2^2)$.\
-To make an inference about the ratio of $(\sigma_1^2)/(\sigma_2^2)$ we
-collect sample data and use the ratio of the sample variances
-$(\sigma_1^2)/(\sigma_2^2)$.
-
-At this point, let's derive the confidence interval. We know that:
-$\frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} \sim F_{n_1-1, n_2 -1}$.
-Then, we can construct our confidence interval as:
-$$P[F_{n_1-1, n_2 -1; 1-\alpha/2} < \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} < F_{n_1-1, n_2 -1; \alpha/2}]  = 1 -\alpha.$$
-Now, the reference distribution of this confidence interval is
-F-distribution with $n_1 - 1$ and $n_2 -1$ degrees of freedom, leaving
-areas of $1 - \alpha/2$ and $\alpha/2$, respectively, to the right.
-Rearranging gives us:
-$$P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; \alpha/2}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}}] = 1 -\alpha.$$
-Using the face that
-$F_{n_1-1,n_2-1; 1 - \alpha/2} = \frac{1}{F_{n_2-1,n_1-1; \alpha/2}}$,
-we have:
-$$P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2-1, \alpha/2}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot F_{n_2-1, n_1 - 1, \alpha/2}] = 1- \alpha.$$
-
-
-### Assumptions
-
-**Need to complete**
-
