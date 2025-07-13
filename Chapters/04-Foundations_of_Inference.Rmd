@@ -7,6 +7,13 @@ for a population thus we collect data from a sample and calculate statistics to 
 parameters of interest. We then quantify our confidence that the statistic is representative
 of the parameter.
 
+Statistical inference is concerned primarily with understanding the
+quality of parameter estimates. For example, a classic inferential
+question is, "How sure are we that the estimated mean, $\bar{x}$, is
+near the true population mean, $\mu$?" While the equations and details
+change depending on the setting, the foundations for inference are the
+same throughout all of statistics. 
+
 ## Some Important Statistical Distributions {#sec:inference}
 
 ### Introduction to the Normal Distribution
@@ -925,7 +932,7 @@ ggplot(df_long, aes(x = trial, y = running_mean, color = series)) +
     abline(h = 0.5, lty = 2, col = "black")
 :::
 
-### Empirical Probability Insight {#empirical-probability-insight .unnumbered}
+### Empirical Probability Insight {.unlisted .unnumbered #empirical-probability-insight}
 
 The Law of Large Numbers gives us empirical probabilities. Consider
 tossing a fair coin. Define the random variable $X$ as:

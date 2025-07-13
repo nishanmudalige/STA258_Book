@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Confidence Intervals | Book.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Confidence Intervals | Book.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Confidence Intervals | Book.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="foundations-of-inference.html"/>
+<link rel="next" href="one-sample-confidence-intervals.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>STA258: Statistics with Applied Probability</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="introduction-and-overview.html"><a href="introduction-and-overview.html"><i class="fa fa-check"></i>Introduction and Overview</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#sec:foundations"><i class="fa fa-check"></i><b>1.1</b> Foundations</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#types-of-data"><i class="fa fa-check"></i><b>1.2</b> Types of data</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#introduction-to-inferential-statistics"><i class="fa fa-check"></i><b>1.3</b> Introduction to Inferential statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> An Introduction to R</a></li>
+<li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive Statistics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#representing-data"><i class="fa fa-check"></i><b>3.1</b> Representing Data</a></li>
+<li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-measures"><i class="fa fa-check"></i><b>3.2</b> Numerical Measures</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>3.2.1</b> Mean</a></li>
+<li class="chapter" data-level="3.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>3.2.2</b> Median</a></li>
+<li class="chapter" data-level="3.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>3.2.3</b> Mode</a></li>
+<li class="chapter" data-level="3.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>3.2.4</b> Variance</a></li>
+<li class="chapter" data-level="3.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>3.2.5</b> Standard Deviation</a></li>
+<li class="chapter" data-level="3.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>3.2.6</b> Range</a></li>
+<li class="chapter" data-level="3.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#percentiles"><i class="fa fa-check"></i><b>3.2.7</b> Percentiles</a></li>
+<li class="chapter" data-level="3.2.8" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quartiles"><i class="fa fa-check"></i><b>3.2.8</b> Quartiles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sec:GraphicalTechniques"><i class="fa fa-check"></i><b>3.3</b> Grapchical Techniques</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>3.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#boxplots"><i class="fa fa-check"></i><b>3.3.2</b> Boxplots</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html"><i class="fa fa-check"></i><b>4</b> Foundations of Inference</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:inference"><i class="fa fa-check"></i><b>4.1</b> Some Important Statistical Distributions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-normal-distribution"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to the Normal Distribution</a></li>
+<li class="chapter" data-level="4.1.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution"><i class="fa fa-check"></i><b>4.1.2</b> Introduction to the Chi-Square distribution</a></li>
+<li class="chapter" data-level="4.1.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-t-distribution"><i class="fa fa-check"></i><b>4.1.3</b> Introduction to the t-Distribution</a></li>
+<li class="chapter" data-level="4.1.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-f-distribution"><i class="fa fa-check"></i><b>4.1.4</b> Introduction to the F-Distribution</a></li>
+<li class="chapter" data-level="4.1.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#arithmetics-of-rvs"><i class="fa fa-check"></i><b>4.1.5</b> Arithmetics of RV’s</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sampling-distributions"><i class="fa fa-check"></i><b>4.2</b> Sampling Distributions</a></li>
+<li class="chapter" data-level="4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>4.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="4.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#law-of-large-numbers"><i class="fa fa-check"></i><b>4.4</b> Law of Large Numbers</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#convergence-in-probability"><i class="fa fa-check"></i><b>4.4.1</b> Convergence in Probability</a></li>
+<li class="chapter" data-level="4.4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#weak-law-of-large-numbers-wlln"><i class="fa fa-check"></i><b>4.4.2</b> Weak Law of Large Numbers (WLLN)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#interpretation"><i class="fa fa-check"></i><b>5.2</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="one-sample-confidence-intervals.html"><a href="one-sample-confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> One Sample Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="one-sample-confidence-intervals.html"><a href="one-sample-confidence-intervals.html#on-a-population-mean"><i class="fa fa-check"></i><b>6.1</b> On a Population Mean</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="one-sample-confidence-intervals.html"><a href="one-sample-confidence-intervals.html#when-sigma-is-known"><i class="fa fa-check"></i><b>6.1.1</b> When <span class="math inline">\(\sigma\)</span> is Known</a></li>
+<li class="chapter" data-level="6.1.2" data-path="one-sample-confidence-intervals.html"><a href="one-sample-confidence-intervals.html#when-sigma-is-not-known"><i class="fa fa-check"></i><b>6.1.2</b> When <span class="math inline">\(\sigma\)</span> is Not known</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="one-sample-confidence-intervals.html"><a href="one-sample-confidence-intervals.html#on-a-population-proportion"><i class="fa fa-check"></i><b>6.2</b> On a Population Proportion</a></li>
+<li class="chapter" data-level="6.3" data-path="one-sample-confidence-intervals.html"><a href="one-sample-confidence-intervals.html#on-a-population-variance"><i class="fa fa-check"></i><b>6.3</b> On a Population Variance</a></li>
+<li class="chapter" data-level="6.4" data-path="one-sample-confidence-intervals.html"><a href="one-sample-confidence-intervals.html#assumptions"><i class="fa fa-check"></i><b>6.4</b> Assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="two-sample-confidence-intervals.html"><a href="two-sample-confidence-intervals.html"><i class="fa fa-check"></i><b>7</b> Two Sample Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="two-sample-confidence-intervals.html"><a href="two-sample-confidence-intervals.html#on-a-difference-of-means"><i class="fa fa-check"></i><b>7.1</b> On a Difference of Means</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="two-sample-confidence-intervals.html"><a href="two-sample-confidence-intervals.html#when-sigma_1-and-sigma_2-are-known"><i class="fa fa-check"></i><b>7.1.1</b> When <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> are Known</a></li>
+<li class="chapter" data-level="7.1.2" data-path="two-sample-confidence-intervals.html"><a href="two-sample-confidence-intervals.html#when-sigma_1-and-sigma_2-are-not-known"><i class="fa fa-check"></i><b>7.1.2</b> When <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> are Not Known</a></li>
+<li class="chapter" data-level="7.1.3" data-path="two-sample-confidence-intervals.html"><a href="two-sample-confidence-intervals.html#assumptions-1"><i class="fa fa-check"></i><b>7.1.3</b> Assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="two-sample-confidence-intervals.html"><a href="two-sample-confidence-intervals.html#on-paired-data"><i class="fa fa-check"></i><b>7.2</b> On Paired Data</a></li>
+<li class="chapter" data-level="7.3" data-path="two-sample-confidence-intervals.html"><a href="two-sample-confidence-intervals.html#two-sample-confidence-interval-on-proportions"><i class="fa fa-check"></i><b>7.3</b> Two Sample Confidence Interval on Proportions</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="two-sample-confidence-intervals.html"><a href="two-sample-confidence-intervals.html#assumptions-2"><i class="fa fa-check"></i><b>7.3.1</b> Assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="two-sample-confidence-intervals.html"><a href="two-sample-confidence-intervals.html#two-sample-confidence-interval-on-variances"><i class="fa fa-check"></i><b>7.4</b> Two Sample Confidence Interval on Variances</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="confidence-intervals" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Confidence Intervals<a href="confidence-intervals.html#confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-1" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Introduction<a href="confidence-intervals.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Confidence intervals are a fundamental concept in statistics that allow us to make inferences about a population based on a sample. They provide a range of values, derived from the sample data, that is likely to contain the true population parameter with a specified level of confidence.</p>
+<p>We will start by introducing point estimates which are used to estimate population parameters and then move on to interval estimates which utilzie point estimates to calculate them.</p>
+<div class="definition" Name="Point Estimate">
+<p><span id="def:PointEstim" class="definition"><strong>Definition 5.1  </strong></span>A point estimate is a single numerical value computed from sample data that serves as the best guess of an unknown population parameter.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-26" class="example"><strong>Example 5.1  </strong></span></p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span> is a point estimate of <span class="math inline">\(\mu\)</span></li>
+<li><span class="math inline">\(s^2\)</span> is a point estimate of <span class="math inline">\(\sigma^2\)</span></li>
+<li><span class="math inline">\(s\)</span> is a point estimate of <span class="math inline">\(\sigma\)</span></li>
+</ul>
+</div>
+<p>Recall in Section <a href="foundations-of-inference.html#sec:inference">4.1</a> where we introduced statistics inference,
+we discussed that we the values of statistics which are calculated and known
+to make conclusions on parameters which are unknown and quantify the degree of
+certainty of statements
+made.</p>
+<p>When we calculate a statistic, it will not be exactly equal to the parameter it is estimating.
+For example, the sample mean <span class="math inline">\(\bar{x}\)</span> is not exactly equal to the population mean <span class="math inline">\(\mu\)</span>.
+We can get an idea about the value of a parameter using an
+<em>interval estimate</em> which gives a <em>range of real numbers</em> around the statistic
+which we believe contains it.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-27" class="definition"><strong>Definition 5.2  </strong></span>A confidence interval is a plausible range of values that captures a
+parameter with a quantified degree of confidence.</p>
+</div>
+<p>In this course, all confidence intervals have the same basic skeleton:</p>
+<p><span class="math display">\[\text{estimator} \pm
+\underbrace{
+\left(
+\text{value from a reference distribution}
+\right)
+\times
+\left(
+\text{standard error of estimate}
+\right)
+}_{\textit{margin of error}}\]</span></p>
+<p>The <em>standard error of the estimator</em> is the standard deviation of the
+the <em>sampling distribution</em> of the estimator.</p>
+<p>The value from the reference distribution in the skeleton above will be
+either a value from the standard normal distribution the Student
+<em>t</em>-distribution, ot the chi-square distribution.
+The margin of error (<em>MOE</em>) can be considered as the
+distance around our estimator in which the true value of the parameter
+of interest will be found, with a specified level of confidence.</p>
+</div>
+<div id="interpretation" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Interpretation<a href="confidence-intervals.html#interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We use very specific language when we interpret a confidence interval.</p>
+<div class="tcolorbox">
+<p><em>Suppose we construct a <span class="math inline">\(C\%\)</span> confidence interval for some parameter
+such that <span class="math inline">\(C\)</span> is between 0 and 100. In repeated sampling, we are <span class="math inline">\(C\%\)</span>
+confident that approximately <span class="math inline">\(C\%\)</span> of the intervals will capture the
+true value of the parameter.</em></p>
+</div>
+<p>By this we mean that if we constructed several <span class="math inline">\(C\%\)</span> confidence
+intervals using different samples (with or without replacing the units),
+then we should expect approximately <span class="math inline">\(C\%\)</span> of these intervals to capture
+the parameter of interest. For example suppose we construct 1000 95%
+confidence intervals for the population mean <span class="math inline">\(\mu\)</span>. We would expect
+approximately 95% of these 1000 intervals
+(i.e. <span class="math inline">\(95\% \times 1000 = 950\)</span>) to actually capture <span class="math inline">\(\mu\)</span>.</p>
+<p>A more intuitive but equivalent interpretation is to state that we are
+<span class="math inline">\(C\)</span>% confident that our target parameter is inside the interval
+constructed.</p>
+<div class="remark">
+<p><span id="unlabeled-div-28" class="remark"><em>Remark</em>. </span>It is <strong>incorrect</strong> to state that there is a <span class="math inline">\(C\%\)</span> probability that the
+interval we constructed contains the parameter of interest. We assume
+that the value of a parameter is fixed. Therefore when we construct a
+confidence interval, the interval either contains the parameter or it
+does not.</p>
+</div>
+<p>Not all confidence intervals contain the true value of the parameter. This can be
+illustrated by plotting many intervals simultaneously and observing.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-8-1.png" alt="Simulated 95% confidence intervals for the population mean" width="672" />
+<p class="caption">
+Figure 5.1: Simulated 95% confidence intervals for the population mean
+</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="foundations-of-inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="one-sample-confidence-intervals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
