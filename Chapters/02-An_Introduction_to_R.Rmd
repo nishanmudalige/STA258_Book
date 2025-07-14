@@ -1,55 +1,112 @@
 # An Introduction to R
 
-## Introduction to R
+## The Statistical Computing Language
 
-R is used for data manipulation, statistics, and graphics. It is made
-of: operations ($+$,$-$, $<$) which is for calculations on vectors,
-arrays and matrices; a huge collection of functions; facilities for
-making unlimited types quality graphs; user contributed packages (sets
-of related functions); the ability to interface with procedures written
-in C, C+, or FORTRAN and to write additional primitives. R is also an
-open-source computing package which has seen a huge growth in popularity
-in the last few years (Please use this website:
-https://cran.r-project.org, to download R).\
-**What is R-studio?**
+R is used for data manipulation, statistics, and graphics. It supports a wide range of operations (`+`, `-`, `<`, etc.), which are used to perform calculations on vectors, arrays, and matrices. R also includes a huge collection of built-in functions, tools for generating high-quality graphs, and a wide array of user-contributed packages (organized into sets of related functions called libraries).
 
-RStudio is a relatively new editor specially targeted at R. RStudio is
-cross-platform, free and open-source software (Please use:
-https://www.rstudio.com, to download Rstudio).\
-**Make a Histogram Using R-studio**
+R can interface with procedures written in C, C++, FORTRAN, and other languages, making it extensible for advanced users. It is open-source and freely available from [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org), and has seen a rapid rise in popularity in recent years.
 
-This is just a demonstration of how to start and use R-studio.
+Unlike point-and-click software tools, R allows users to write scripts that document each step of their analysis. This promotes reproducibility, version control, and transparency — all of which are essential in modern data science and academic research. With R, analyses can be automated, customized, and repeated on new datasets with minimal effort.
 
-1. First of all, we need to know which dataset are we going to make into
-a histogram. In this case, as an example, we are going to use the
-waiting time in faithful in R-studio.
 
-2. For any dataset, use the code: names(faithful) to get it. (inside the
-parentheses, type the names of variables you want in faithful dataset)
+## Installing R and RStudio
 
-3. Then, we proceed with the code: hist(faithful\$waiting) to get a
-basic plot.
+Before we can begin working with R code, we need to install both the R programming language itself and an interface to work in — such as RStudio.
 
-::: tcolorbox
-    # names of variables in faithful dataset;
-    names(faithful)
+---
 
-    ## Basic plot;
-    hist(faithful$waiting)
-:::
+### Installing R
 
-4. Furthermore, we can also get more information. For example, by keep
-proceeding with the code: hist(faithful\$waiting,plot=FALSE)\$breaks,
-R-studio will show you all the breaking points between histogram cells.
+To install R, follow the steps below:
 
-::: tcolorbox
-    # breakpoints between histogram cells;
-    hist(faithful$waiting,plot=FALSE)$breaks
+1. Visit the official R project website: [https://cran.r-project.org](https://cran.r-project.org)
 
-    ## [1] 40 45 50 55 60 65 70 75 80 85 90 95
-    ## [13] 100
+2. Choose your operating system:
+   - **Windows**: Click “Download R for Windows” → then “base” → then click the `.exe` installer link.
+   - **macOS**: Click “Download R for macOS” and choose the `.pkg` file appropriate for your version.
+   - **Linux**: Click “Download R for Linux” and follow distribution-specific instructions.
 
-    hist(faithful$waiting,plot=FALSE)$counts
+3. Run the downloaded installer and proceed with the default installation settings.
 
-    ## [1] 4 22 33 24 14 10 27 54 55 23 5 1
-:::
+Once installed, R can be accessed directly from a terminal or used through an IDE like RStudio.
+
+---
+
+### Installing RStudio
+
+**RStudio** is a popular integrated development environment (IDE) designed specifically for R. It provides a user-friendly interface that includes:
+
+- A script editor
+- An R console
+- An environment viewer
+- A file browser
+- A plots pane and help tab
+
+RStudio simplifies the workflow of writing and testing code, inspecting data, and generating reports.
+
+To install RStudio:
+
+1. Go to [https://posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop)
+
+2. Download the free version of **RStudio Desktop** for your operating system.
+
+3. Run the installer. Once launched, RStudio will automatically detect your R installation.
+
+---
+
+### What Is Posit and Positron?
+
+RStudio is now maintained by [Posit](https://posit.co), a company that also supports tools like **Shiny**, **Quarto**, and **R Markdown**. 
+
+Posit also develops **Positron**, a lightweight web-based interface for working with R and Python notebooks in a more modern, cloud-integrated environment. While not required for this course, Positron may become relevant in future workflows involving collaborative or browser-based coding.
+
+---
+
+After completing this setup, you're ready to begin writing and executing R code using RStudio.
+
+
+
+### Make a Histogram Using RStudio
+
+We will use the `faithful` dataset, which is included with R. It contains two numeric variables. For this demonstration, we will generate a histogram of one of those variables.
+
+Follow the steps below:
+
+1. First, decide which dataset you want to use. In this case, we use the built-in `faithful` dataset.
+
+2. To view the variable names in any dataset, use the `names()` function. This will display all available columns:
+
+```r
+# Display variable names in the dataset
+names(faithful)
+```
+
+3. To create a histogram of one variable:
+
+```r
+# Create a basic histogram
+hist(faithful$waiting)
+```
+
+This will produce a simple histogram showing the distribution of values in the selected column.
+
+4. You can also access the numeric components of the histogram using the `plot = FALSE` argument. This prevents the histogram from being drawn and instead returns a list of values used in the plot:
+
+```r
+# View the histogram breakpoints
+hist(faithful$waiting, plot = FALSE)$breaks
+
+# View the counts in each interval
+hist(faithful$waiting, plot = FALSE)$counts
+```
+
+These functions return numeric vectors. The first shows where each interval begins and ends, and the second shows how many values fall within each interval.
+
+Example output:
+
+```
+[1]  40  45  50  55  60  65  70  75  80  85  90  95 100
+[1]   4  22  33  24  14  10  27  54  55  23   5   1
+```
+
+These tools allow you to not only create visual summaries, but also work with the underlying values programmatically — which is useful for analysis, customization, or reporting.
