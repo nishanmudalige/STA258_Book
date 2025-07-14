@@ -483,6 +483,59 @@ work with the underlying values programmatically — which is useful for
 analysis, customization, or reporting.</p>
 </div>
 </div>
+<div id="an-introduction-to-programming-in-r" class="section level2">
+<h2>An Introduction to programming in R</h2>
+<div id="using-basic-functions-in-r" class="section level3">
+<h3>Using Basic Functions in R</h3>
+<p>R provides many built-in functions that allow you to perform
+calculations, transformations, or extract summary statistics from data.
+Here are some commonly used basic functions:</p>
+<pre class="r"><code>x &lt;- c(10, 3, 8, 25, 7)
+
+# Find the maximum and minimum values
+max(x)
+min(x)
+
+# Sort the vector
+sort(x)     # ascending order
+sort(x, decreasing = TRUE)  # descending order
+
+# Find the order (ranks) of elements
+order(x)</code></pre>
+<p>These functions work on vectors, and many of them are also applicable
+to data frames or matrices when used with additional arguments.</p>
+<hr />
+</div>
+<div id="installing-and-loading-packages" class="section level3">
+<h3>Installing and Loading Packages</h3>
+<p>R has a large ecosystem of additional packages that provide
+specialized functions. Before you can use a package, you typically need
+to:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Install the package</strong> (only once):</li>
+</ol>
+<pre class="r"><code>install.packages(&quot;ggplot2&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Load the package into your R session</strong>:</li>
+</ol>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<p>Once loaded, you can use functions from that package — for example,
+<code>ggplot()</code> from the <strong>ggplot2</strong> package.</p>
+<blockquote>
+<p>Tip: You only need to install a package once, but you must load it
+with <code>library()</code> every time you restart RStudio.</p>
+</blockquote>
+<p>You can search for packages or view installed ones using:</p>
+<pre class="r"><code># View all installed packages
+installed.packages()
+
+# Search for packages by keyword
+help.search(&quot;regression&quot;)</code></pre>
+<p>R packages are stored in CRAN (Comprehensive R Archive Network),
+which you accessed when installing R. There are also GitHub-hosted
+packages for advanced users.</p>
+</div>
+</div>
 </div>
 
 

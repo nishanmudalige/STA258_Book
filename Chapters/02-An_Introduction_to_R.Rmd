@@ -110,3 +110,60 @@ Example output:
 ```
 
 These tools allow you to not only create visual summaries, but also work with the underlying values programmatically — which is useful for analysis, customization, or reporting.
+
+## An Introduction to programming in R
+
+### Using Basic Functions in R
+
+R provides many built-in functions that allow you to perform calculations, transformations, or extract summary statistics from data. Here are some commonly used basic functions:
+
+```r
+x <- c(10, 3, 8, 25, 7)
+
+# Find the maximum and minimum values
+max(x)
+min(x)
+
+# Sort the vector
+sort(x)     # ascending order
+sort(x, decreasing = TRUE)  # descending order
+
+# Find the order (ranks) of elements
+order(x)
+```
+
+These functions work on vectors, and many of them are also applicable to data frames or matrices when used with additional arguments.
+
+---
+
+### Installing and Loading Packages
+
+R has a large ecosystem of additional packages that provide specialized functions. Before you can use a package, you typically need to:
+
+1. **Install the package** (only once):
+
+```r
+install.packages("ggplot2")
+```
+
+2. **Load the package into your R session**:
+
+```r
+library(ggplot2)
+```
+
+Once loaded, you can use functions from that package — for example, `ggplot()` from the **ggplot2** package.
+
+> Tip: You only need to install a package once, but you must load it with `library()` every time you restart RStudio.
+
+You can search for packages or view installed ones using:
+
+```r
+# View all installed packages
+installed.packages()
+
+# Search for packages by keyword
+help.search("regression")
+```
+
+R packages are stored in CRAN (Comprehensive R Archive Network), which you accessed when installing R. There are also GitHub-hosted packages for advanced users.
