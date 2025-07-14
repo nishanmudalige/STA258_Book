@@ -155,6 +155,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#what-is-posit-and-positron"><i class="fa fa-check"></i><b>2.2.3</b> What Is Posit and Positron?</a></li>
 <li class="chapter" data-level="2.2.4" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#make-a-histogram-using-rstudio"><i class="fa fa-check"></i><b>2.2.4</b> Make a Histogram Using RStudio</a></li>
 </ul></li>
+<li class="chapter" data-level="2.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#an-introduction-to-programming-in-r"><i class="fa fa-check"></i><b>2.3</b> An Introduction to programming in R</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#using-basic-functions-in-r"><i class="fa fa-check"></i><b>2.3.1</b> Using Basic Functions in R</a></li>
+<li class="chapter" data-level="2.3.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>2.3.2</b> Installing and Loading Packages</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive Statistics</a>
 <ul>
@@ -318,6 +323,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1]  40  45  50  55  60  65  70  75  80  85  90  95 100
 [1]   4  22  33  24  14  10  27  54  55  23   5   1</code></pre>
 <p>These tools allow you to not only create visual summaries, but also work with the underlying values programmatically — which is useful for analysis, customization, or reporting.</p>
+</div>
+</div>
+<div id="an-introduction-to-programming-in-r" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> An Introduction to programming in R<a href="an-introduction-to-r.html#an-introduction-to-programming-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="using-basic-functions-in-r" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Using Basic Functions in R<a href="an-introduction-to-r.html#using-basic-functions-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R provides many built-in functions that allow you to perform calculations, transformations, or extract summary statistics from data. Here are some commonly used basic functions:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="an-introduction-to-r.html#cb5-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">25</span>, <span class="dv">7</span>)</span>
+<span id="cb5-2"><a href="an-introduction-to-r.html#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="an-introduction-to-r.html#cb5-3" tabindex="-1"></a><span class="co"># Find the maximum and minimum values</span></span>
+<span id="cb5-4"><a href="an-introduction-to-r.html#cb5-4" tabindex="-1"></a><span class="fu">max</span>(x)</span>
+<span id="cb5-5"><a href="an-introduction-to-r.html#cb5-5" tabindex="-1"></a><span class="fu">min</span>(x)</span>
+<span id="cb5-6"><a href="an-introduction-to-r.html#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="an-introduction-to-r.html#cb5-7" tabindex="-1"></a><span class="co"># Sort the vector</span></span>
+<span id="cb5-8"><a href="an-introduction-to-r.html#cb5-8" tabindex="-1"></a><span class="fu">sort</span>(x)     <span class="co"># ascending order</span></span>
+<span id="cb5-9"><a href="an-introduction-to-r.html#cb5-9" tabindex="-1"></a><span class="fu">sort</span>(x, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)  <span class="co"># descending order</span></span>
+<span id="cb5-10"><a href="an-introduction-to-r.html#cb5-10" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="an-introduction-to-r.html#cb5-11" tabindex="-1"></a><span class="co"># Find the order (ranks) of elements</span></span>
+<span id="cb5-12"><a href="an-introduction-to-r.html#cb5-12" tabindex="-1"></a><span class="fu">order</span>(x)</span></code></pre></div>
+<p>These functions work on vectors, and many of them are also applicable to data frames or matrices when used with additional arguments.</p>
+<hr />
+</div>
+<div id="installing-and-loading-packages" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Installing and Loading Packages<a href="an-introduction-to-r.html#installing-and-loading-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R has a large ecosystem of additional packages that provide specialized functions. Before you can use a package, you typically need to:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Install the package</strong> (only once):</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="an-introduction-to-r.html#cb6-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Load the package into your R session</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="an-introduction-to-r.html#cb7-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>Once loaded, you can use functions from that package — for example, <code>ggplot()</code> from the <strong>ggplot2</strong> package.</p>
+<blockquote>
+<p>Tip: You only need to install a package once, but you must load it with <code>library()</code> every time you restart RStudio.</p>
+</blockquote>
+<p>You can search for packages or view installed ones using:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="an-introduction-to-r.html#cb8-1" tabindex="-1"></a><span class="co"># View all installed packages</span></span>
+<span id="cb8-2"><a href="an-introduction-to-r.html#cb8-2" tabindex="-1"></a><span class="fu">installed.packages</span>()</span>
+<span id="cb8-3"><a href="an-introduction-to-r.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="an-introduction-to-r.html#cb8-4" tabindex="-1"></a><span class="co"># Search for packages by keyword</span></span>
+<span id="cb8-5"><a href="an-introduction-to-r.html#cb8-5" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;regression&quot;</span>)</span></code></pre></div>
+<p>R packages are stored in CRAN (Comprehensive R Archive Network), which you accessed when installing R. There are also GitHub-hosted packages for advanced users.</p>
 
 </div>
 </div>
