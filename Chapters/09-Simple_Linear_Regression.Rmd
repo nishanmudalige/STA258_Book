@@ -13,7 +13,7 @@ coordinate system to draw each data point and use simple linear
 regression to find a function which perfectly describes the relationship
 between height and time.
 
-<center>
+
 ```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope which tells you the rate of change, $b$ is the intercept which may have a special meaning depending on the case.'}
 \usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
 \begin{tikzpicture}[->, thick]
@@ -34,7 +34,7 @@ between height and time.
   \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$y = mx+ b$};
 \end{tikzpicture}
 ```
-</center>
+
 
 Now, you may wonder the accuracy of this model. In statistics, we do
 have parameters that approximate the slope and intercept of the function
@@ -48,7 +48,7 @@ we will discuss it later.
 ### Measures of Linear Relationship
 
 Before we formally introduce simple linear regression, there are some
-measures of SLR that should be discussed.\
+measures of SLR that should be discussed.
 **Covariance (Sample Covariance)**
 
 In probability theory and statistics, covariance is a measure of the
@@ -71,24 +71,25 @@ same answer.
 
 The covariance is a measures of how two variables move together.
 
-- If covariance of two random variables is greater than $0$
+- If covariance of two random variables is greater than $0$,
   ($cov(x,y) > 0$), then the two random variables show the same trend.
   That is: if one random variable is increasing, then the other one is
   also increasing; while if one random variable is decreasing, then the
   other one is also decreasing.
 
-- If covariance of two random variables is less than $0$
+- If covariance of two random variables is less than $0$,
   ($cov(x,y) < 0$), then the two random variables show the opposite
   trend. That is: if one random variable is increasing, then the other
   one is decreasing; while if one random variable is decreasing, then
   the other one is increasing.
 
-- If covariance of two random variables is equal to $0$
+- If covariance of two random variables is equal to $0$,
   ($cov(x,y) = 0$), then we say that there is no relationship
   (systematically linear) between the two random variables.
 
 Note that covariance is not standardized, so it can be difficult to
-interpret directly.\
+interpret directly.
+
 **Coefficient of Correlation**
 
 In statistics, correlation or dependence is any statistical
@@ -315,9 +316,9 @@ where the predictors $x_{ij}$ are assumed fixed and the error terms $\varepsilon
 
 \bigskip
 
-\noindent Given a sample of $n$ observations, the least‑squares estimates of the coefficients $\beta_0,\dots,\beta_p$ are those values $\hat\beta_0,\dots,\hat\beta_p$ which minimize the residual sum of squares,
+\noindent Given a sample of $n$ observations, the least‑squares estimates of the coefficients $\beta_0,\dots,\beta_p$ are those values $\hat\beta_0,\dots,\hat\beta_p$ which minimize the sum of square errors (SSE),
 \[
-    \mathrm{RSS}(\beta_0,\dots,\beta_p)
+    \mathrm{SSE}
     \;=\;
     \sum_{i=1}^n \bigl(y_i - \hat y_i\bigr)^2
     \;=\;
@@ -366,81 +367,19 @@ costs and the number of tools that he made that day. These data are
 listed next. Determine the fixed and variable electricity costs using
 the Least Squares Method.
 
-::: center
-<figure>
-<table>
-<tbody>
-<tr>
-<td style="text-align: center;">Day</td>
-<td style="text-align: center;">Number of tools (<span
-class="math inline"><em>X</em></span>)</td>
-<td style="text-align: center;">Electricity costs (<span
-class="math inline"><em>Y</em></span>)</td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">1</span></td>
-<td style="text-align: center;"><span class="math inline">7</span></td>
-<td style="text-align: center;"><span
-class="math inline">23.80</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">2</span></td>
-<td style="text-align: center;"><span class="math inline">3</span></td>
-<td style="text-align: center;"><span
-class="math inline">11.89</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">3</span></td>
-<td style="text-align: center;"><span class="math inline">2</span></td>
-<td style="text-align: center;"><span
-class="math inline">15.89</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">4</span></td>
-<td style="text-align: center;"><span class="math inline">5</span></td>
-<td style="text-align: center;"><span
-class="math inline">26.11</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">5</span></td>
-<td style="text-align: center;"><span class="math inline">8</span></td>
-<td style="text-align: center;"><span
-class="math inline">31.79</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">6</span></td>
-<td style="text-align: center;"><span class="math inline">11</span></td>
-<td style="text-align: center;"><span
-class="math inline">39.93</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">7</span></td>
-<td style="text-align: center;"><span class="math inline">5</span></td>
-<td style="text-align: center;"><span
-class="math inline">12.27</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">8</span></td>
-<td style="text-align: center;"><span class="math inline">15</span></td>
-<td style="text-align: center;"><span
-class="math inline">40.06</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">9</span></td>
-<td style="text-align: center;"><span class="math inline">3</span></td>
-<td style="text-align: center;"><span
-class="math inline">21.38</span></td>
-</tr>
-<tr>
-<td style="text-align: center;"><span class="math inline">10</span></td>
-<td style="text-align: center;"><span class="math inline">6</span></td>
-<td style="text-align: center;"><span
-class="math inline">18.65</span></td>
-</tr>
-</tbody>
-</table>
-<figcaption>Data of example 15.2</figcaption>
-</figure>
+::: {.smalltl}
+| Day | Number of tools (X) | Electricity costs (Y) |
+|:---:|:-------------------:|:---------------------:|
+|  1  |          7          |         23.80         |
+|  2  |          3          |         11.89         |
+|  3  |          2          |         15.89         |
+|  4  |          5          |         26.11         |
+|  5  |          8          |         31.79         |
+|  6  |         11          |         39.93         |
+|  7  |          5          |         12.27         |
+|  8  |         15          |         40.06         |
+|  9  |          3          |         21.38         |
+| 10  |          6          |         18.65         |
 :::
 
 Solution:

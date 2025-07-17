@@ -301,14 +301,12 @@ are interested a people’s height within 10 months. Then, we use
 coordinate system to draw each data point and use simple linear
 regression to find a function which perfectly describes the relationship
 between height and time.</p>
-<center>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
 <img src="Book_Files/figure-html/unnamed-chunk-32-1.png" alt="An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope which tells you the rate of change, $b$ is the intercept which may have a special meaning depending on the case." width="90%" />
 <p class="caption">
 Figure 9.1: An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case <span class="math inline">\(m\)</span> is the slope which tells you the rate of change, <span class="math inline">\(b\)</span> is the intercept which may have a special meaning depending on the case.
 </p>
 </div>
-</center>
 <p>Now, you may wonder the accuracy of this model. In statistics, we do
 have parameters that approximate the slope and intercept of the function
 <span class="math inline">\(y = mx + b\)</span>. The model we are going to use is:
@@ -320,7 +318,7 @@ we will discuss it later.</p>
 <div id="measures-of-linear-relationship" class="section level3 hasAnchor" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Measures of Linear Relationship<a href="simple-linear-regression.html#measures-of-linear-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before we formally introduce simple linear regression, there are some
-measures of SLR that should be discussed.<br />
+measures of SLR that should be discussed.
 <strong>Covariance (Sample Covariance)</strong></p>
 <p>In probability theory and statistics, covariance is a measure of the
 joint variability of two random variables. The covariance sign shows the
@@ -340,23 +338,23 @@ same answer.</p>
 </div>
 <p>The covariance is a measures of how two variables move together.</p>
 <ul>
-<li><p>If covariance of two random variables is greater than <span class="math inline">\(0\)</span>
+<li><p>If covariance of two random variables is greater than <span class="math inline">\(0\)</span>,
 (<span class="math inline">\(cov(x,y) &gt; 0\)</span>), then the two random variables show the same trend.
 That is: if one random variable is increasing, then the other one is
 also increasing; while if one random variable is decreasing, then the
 other one is also decreasing.</p></li>
-<li><p>If covariance of two random variables is less than <span class="math inline">\(0\)</span>
+<li><p>If covariance of two random variables is less than <span class="math inline">\(0\)</span>,
 (<span class="math inline">\(cov(x,y) &lt; 0\)</span>), then the two random variables show the opposite
 trend. That is: if one random variable is increasing, then the other
 one is decreasing; while if one random variable is decreasing, then
 the other one is increasing.</p></li>
-<li><p>If covariance of two random variables is equal to <span class="math inline">\(0\)</span>
+<li><p>If covariance of two random variables is equal to <span class="math inline">\(0\)</span>,
 (<span class="math inline">\(cov(x,y) = 0\)</span>), then we say that there is no relationship
 (systematically linear) between the two random variables.</p></li>
 </ul>
 <p>Note that covariance is not standardized, so it can be difficult to
-interpret directly.<br />
-<strong>Coefficient of Correlation</strong></p>
+interpret directly.</p>
+<p><strong>Coefficient of Correlation</strong></p>
 <p>In statistics, correlation or dependence is any statistical
 relationship, whether causal or not, between two random variables or
 bivariate data. It helps us understand whether and how changes in one
@@ -524,9 +522,9 @@ cor(X,Y);</code></pre>
     \quad \varepsilon_i \sim N(0, \sigma^2),
 \]</span>
 where the predictors <span class="math inline">\(x_{ij}\)</span> are assumed fixed and the error terms <span class="math inline">\(\varepsilon_i\)</span> are independent Gaussian noise.</p>
-<p>Given a sample of <span class="math inline">\(n\)</span> observations, the least‑squares estimates of the coefficients <span class="math inline">\(\beta_0,\dots,\beta_p\)</span> are those values <span class="math inline">\(\hat\beta_0,\dots,\hat\beta_p\)</span> which minimize the residual sum of squares,
+<p>Given a sample of <span class="math inline">\(n\)</span> observations, the least‑squares estimates of the coefficients <span class="math inline">\(\beta_0,\dots,\beta_p\)</span> are those values <span class="math inline">\(\hat\beta_0,\dots,\hat\beta_p\)</span> which minimize the sum of square errors (SSE),
 <span class="math display">\[
-    \mathrm{RSS}(\beta_0,\dots,\beta_p)
+    \mathrm{SSE}
     \;=\;
     \sum_{i=1}^n \bigl(y_i - \hat y_i\bigr)^2
     \;=\;
@@ -569,137 +567,68 @@ operate his machines and lights. He keeps track of his daily electricity
 costs and the number of tools that he made that day. These data are
 listed next. Determine the fixed and variable electricity costs using
 the Least Squares Method.</p>
-<div class="center">
-<figure>
+<div class="smalltl">
 <table>
+<thead>
+<tr class="header">
+<th align="center">Day</th>
+<th align="center">Number of tools (X)</th>
+<th align="center">Electricity costs (Y)</th>
+</tr>
+</thead>
 <tbody>
-<tr>
-<td style="text-align: center;">
-Day
-</td>
-<td style="text-align: center;">
-Number of tools (<span class="math inline"><em>X</em></span>)
-</td>
-<td style="text-align: center;">
-Electricity costs (<span class="math inline"><em>Y</em></span>)
-</td>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">7</td>
+<td align="center">23.80</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">1</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">7</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">23.80</span>
-</td>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">11.89</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">2</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">3</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">11.89</span>
-</td>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">15.89</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">3</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">2</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">15.89</span>
-</td>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">26.11</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">4</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">5</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">26.11</span>
-</td>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">8</td>
+<td align="center">31.79</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">5</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">8</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">31.79</span>
-</td>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">11</td>
+<td align="center">39.93</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">6</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">11</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">39.93</span>
-</td>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">5</td>
+<td align="center">12.27</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">7</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">5</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">12.27</span>
-</td>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">15</td>
+<td align="center">40.06</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">8</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">15</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">40.06</span>
-</td>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">3</td>
+<td align="center">21.38</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">9</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">3</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">21.38</span>
-</td>
-</tr>
-<tr>
-<td style="text-align: center;">
-<span class="math inline">10</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">6</span>
-</td>
-<td style="text-align: center;">
-<span class="math inline">18.65</span>
-</td>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">6</td>
+<td align="center">18.65</td>
 </tr>
 </tbody>
 </table>
-<figcaption>
-Data of example 15.2
-</figcaption>
-</figure>
 </div>
 <p>Solution:</p>
 <p>Step 1: Entering Data;</p>
