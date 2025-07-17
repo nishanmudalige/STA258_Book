@@ -133,7 +133,7 @@
 <li class="chapter" data-level="5.4.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-difference-of-proportions"><i class="fa fa-check"></i><b>5.4.2</b> On a Difference of Proportions</a></li>
 <li class="chapter" data-level="5.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-ratio-of-variances"><i class="fa fa-check"></i><b>5.4.3</b> On a Ratio of Variances</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-intervals-on-paired-data"><i class="fa fa-check"></i><b>5.5</b> Confidence Intervals on Paired Data</a></li>
+<li class="chapter" data-level="5.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sec:CIsOnPaired"><i class="fa fa-check"></i><b>5.5</b> Confidence Intervals on Paired Data</a></li>
 <li class="chapter" data-level="5.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sample-size-selection-using-confidence-intervals"><i class="fa fa-check"></i><b>5.6</b> Sample Size Selection using Confidence Intervals</a>
 <ul>
 <li class="chapter" data-level="5.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#secSampleSizeCIMean"><i class="fa fa-check"></i><b>5.6.1</b> Calculating Sample Size for a Confidence Interval on a Mean</a></li>
@@ -972,7 +972,6 @@ confirming the bracketing result.</p>
 </ul>
 <p>We calculate the one-sample <span class="math inline">\(z\)</span>-statistic:</p>
 <p><span class="math display">\[z^* = \dfrac{\hat{p} - p_0}{\sqrt{\dfrac{p_0(1 - p_0)}{n}}}\]</span></p>
-<p>The Reference distribution is the standard normal (<span class="math inline">\(Z\)</span>) distribution.</p>
 <p>In terms of a variable <span class="math inline">\(Z\)</span> having the standard normal distribution, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <ul>
@@ -1716,6 +1715,180 @@ is equivalent to setting <span class="math inline">\(\Theta_0 = 0\)</span> and w
 </div>
 <div id="hypothesis-tests-on-paired-data" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Hypothesis Tests on Paired Data<a href="hypothesis-tests.html#hypothesis-tests-on-paired-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When observations in sample 1 matches with an observation in sample 2.
+Observations in sample 1 are, usually, highly, correlated with
+observations in sample 2, these data are often called matched pairs. For
+each pair (the same cases), we form: Difference = observation in sample
+2 - observation in sample 1. Thus, we have one single sample of
+differences scores. For example, in longitudinal studies: Pre- and
+post-survey of attitudes towards statistics (Same student is measured
+twice: Time 1 (pre) and Time 2 (post). We measure change in the
+attitudes: Post - Pre (for each student). Often these types of studies
+are called, repeated measures.<br />
+Paired Data Condition: the data must be quantitative and paired.<br />
+Independence Assumption:</p>
+<ul>
+<li><p>If the data are paired, recall the measurements are not independent since 2 measurements are taken on each unit.
+However, since each unit is sampled independently, the differences must be independent of each other.</p></li>
+<li><p>The pairs should be a random sample.</p></li>
+<li><p>In experimental design, the order of the two treatments may be
+randomly assigned, or the treatments ma y be randomly assigned to one
+member of each pair.</p></li>
+<li><p>In a before-and-after study, we may believe that the observed
+differences are representative sample of a population of interest. If
+there is any doubt, we need to include a control group to be able to
+draw conclusions.</p></li>
+<li><p>If samples are bigger than 10 % of the target population, we need to
+acknowledge this and note in our report. When we sample from a ﬁnite
+population, we should be careful not to sample more than 10 % of that
+population. Sampling too large a fraction of the population calls the
+independence assumption into question.</p></li>
+</ul>
+<p>Recall Section <a href="confidence-intervals.html#sec:CIsOnPaired">5.5</a> where we covered confidence intervals on paired data,
+we introduced the table below:</p>
+<div id="direct" class="smalltbl">
+<table>
+<colgroup>
+<col width="13%" />
+<col width="26%" />
+<col width="26%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Sample Units</th>
+<th align="center">Measurement 1 (<span class="math inline">\(M_{1}\)</span>)</th>
+<th align="center">Measurement 2 (<span class="math inline">\(M_{2}\)</span>)</th>
+<th align="center">Difference (<span class="math inline">\(M_{2}-M_{1}\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center"><span class="math inline">\(x_{11}\)</span></td>
+<td align="center"><span class="math inline">\(x_{12}\)</span></td>
+<td align="center"><span class="math inline">\(x_{d1} = x_{12} - x_{11}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center"><span class="math inline">\(x_{21}\)</span></td>
+<td align="center"><span class="math inline">\(x_{22}\)</span></td>
+<td align="center"><span class="math inline">\(x_{d2} = x_{22} - x_{21}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center"><span class="math inline">\(x_{31}\)</span></td>
+<td align="center"><span class="math inline">\(x_{32}\)</span></td>
+<td align="center"><span class="math inline">\(x_{d3} = x_{32} - x_{31}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+<td align="center"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">n</td>
+<td align="center"><span class="math inline">\(x_{n1}\)</span></td>
+<td align="center"><span class="math inline">\(x_{n2}\)</span></td>
+<td align="center"><span class="math inline">\(x_{dn} = x_{n2} - x_{n1}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>From that table, we can get <span class="math inline">\(\bar{x}_{d}\)</span>, which is the mean, variance and
+standard deviation of the difference. We need these values to continue
+our analysis.</p>
+<p>To test <span class="math inline">\(H_0 : \mu_d = \mu_0\)</span>, our options for the null and alternative hypotheses are:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \mu_d = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d &gt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu_d = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d &lt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu_d - \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d \neq \mu_0\)</span></p></li>
+</ul>
+<p>We calculate the one-sample <span class="math inline">\(z\)</span>-statistic:</p>
+<p><span class="math display">\[t^* = \dfrac{\bar{x}_{d} - \mu_d}{s_{d} / \sqrt{n}} \sim t_{n-1}\]</span>
+In terms of a variable <span class="math inline">\(T\)</span> which follows the <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
+p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
+<ul>
+<li><p><span class="math inline">\(H_a: \mu &gt; \mu_0\)</span> is <span class="math inline">\(P(T &gt; t^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu &lt; \mu_0\)</span> is <span class="math inline">\(P(T &lt; t^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |t^{*}|)\)</span></p></li>
+</ul>
+<div class="example">
+<p><span id="exm:unlabeled-div-73" class="example"><strong>Example 6.16  </strong></span>In an effort to determine whether a new type of fertilizer is more
+effective than the type currently in use, researchers took 12 two-acre
+plots of land scattered throughout the county. Each plot was divided
+into two equal-size sub plots, one of which was treated with the new
+fertilizer. Wheat was planted, and the crop yields were measured.</p>
+<div class="center">
+<table>
+<thead>
+<tr class="header">
+<th align="left">Plot</th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">6</th>
+<th align="right">7</th>
+<th align="right">8</th>
+<th align="right">9</th>
+<th align="right">10</th>
+<th align="right">11</th>
+<th align="right">12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Current</td>
+<td align="right">56</td>
+<td align="right">45</td>
+<td align="right">68</td>
+<td align="right">72</td>
+<td align="right">61</td>
+<td align="right">69</td>
+<td align="right">57</td>
+<td align="right">55</td>
+<td align="right">60</td>
+<td align="right">72</td>
+<td align="right">75</td>
+<td align="right">66</td>
+</tr>
+<tr class="even">
+<td align="left">New</td>
+<td align="right">60</td>
+<td align="right">49</td>
+<td align="right">66</td>
+<td align="right">73</td>
+<td align="right">59</td>
+<td align="right">67</td>
+<td align="right">61</td>
+<td align="right">60</td>
+<td align="right">58</td>
+<td align="right">75</td>
+<td align="right">72</td>
+<td align="right">68</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Can we conclude at the 5% signiﬁcance level that the new fertilizer is
+more eﬀective than the current one?</p>
+<p><strong>Solution:</strong></p>
+<p>You can verify that the mean and standard deviation of the twelve
+difference measurements are <span class="math inline">\(\bar{x}_{d} = new - current = 1\)</span> and
+<span class="math inline">\(s_d = 3.0151\)</span>.</p>
+<p><strong>Step 1: State Hypothesis</strong></p>
+<p><span class="math inline">\(H_0: \mu_d = 0\)</span> and <span class="math inline">\(H_a: \mu_d&gt;0\)</span></p>
+<p><strong>Step 2: Find test statistics</strong></p>
+<p><span class="math inline">\(t^{*} = \displaystyle\frac{\bar{x}_{d} - 0}{s_d/\sqrt{n}} = \frac{1}{3.0151/\sqrt{12}} = 1.1489\)</span></p>
+<p><strong>Step 3: Compute p-value</strong></p>
+<p>Using t-distribution table with df <span class="math inline">\(=11\)</span>, then <span class="math inline">\(0.10 &lt; p-value &lt; 0.15\)</span>.</p>
+<p><strong>Step 4: Conclusion</strong></p>
+<p>Since p-value <span class="math inline">\(&gt; \alpha = 0.05\)</span>, we can’t reject <span class="math inline">\(H_0\)</span>. There is not
+enough evidence to infer that the new fertilizer is better.</p>
+</div>
 <div id="assumptions-8" class="section level4 hasAnchor" number="6.4.0.1">
 <h4><span class="header-section-number">6.4.0.1</span> Assumptions<a href="hypothesis-tests.html#assumptions-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Need to complete</strong></p>
