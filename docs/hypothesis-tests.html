@@ -605,7 +605,7 @@ our options for the null and alternative hypotheses are:</p>
 <!--     <td class="alt" style="text-align: left !important;">$H_a: \mu \neq \mu_0$</td> -->
 <!--   </tr> -->
 <!-- </table> -->
-<p>We calculate the one-sample <span class="math inline">\(z\)</span>-statistic:</p>
+<p>We calculate the <span class="math inline">\(z\)</span>-statistic:</p>
 <p><span class="math display">\[z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \sim N(0,1)\]</span></p>
 <p>The reference distribution is the standard normal distribution.</p>
 <p>In terms of a variable <span class="math inline">\(Z\)</span> having the standard normal distribution, the
@@ -905,7 +905,7 @@ our options for the null and alternative hypotheses are:</p>
 <li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span></p></li>
 <li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu \neq \mu_0\)</span></p></li>
 </ul>
-<p>We calculate the one-sample <span class="math inline">\(t\)</span>-statistic:</p>
+<p>We calculate the <span class="math inline">\(t\)</span>-statistic:</p>
 <p><span class="math display">\[t^{*} = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}\]</span></p>
 <p>In terms of a variable <span class="math inline">\(T\)</span> which follows a <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
@@ -1052,7 +1052,7 @@ confirming the bracketing result.</p>
 <li><p><span class="math inline">\(H_0: p = p_0\)</span> vs. <span class="math inline">\(H_a: p &lt; p_0\)</span></p></li>
 <li><p><span class="math inline">\(H_0: p - p_0\)</span> vs. <span class="math inline">\(H_a: p \neq p_0\)</span></p></li>
 </ul>
-<p>We calculate the one-sample <span class="math inline">\(z\)</span>-statistic:</p>
+<p>We calculate the <span class="math inline">\(z\)</span>-statistic:</p>
 <p><span class="math display">\[z^* = \dfrac{\hat{p} - p_0}{\sqrt{\dfrac{p_0(1 - p_0)}{n}}}\]</span></p>
 <p>In terms of a variable <span class="math inline">\(Z\)</span> having the standard normal distribution, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
@@ -1536,7 +1536,7 @@ observations are independent.</p>
 <li><p><span class="math inline">\(H_0: \sigma^2 = \sigma^2_0\)</span> vs. <span class="math inline">\(H_a: \sigma^2 &lt; \mu_0\)</span></p></li>
 <li><p><span class="math inline">\(H_0: \sigma^2 = \sigma^2_0\)</span> vs. <span class="math inline">\(H_a: \sigma^2 \neq \mu_0\)</span></p></li>
 </ul>
-<p>We calculate the one-sample <span class="math inline">\(\chi^2\)</span>-statistic:</p>
+<p>We calculate the <span class="math inline">\(\chi^2\)</span>-statistic:</p>
 <p><span class="math display">\[\chi^2_* = \frac{(n - 1)s^2}{\sigma_0^2} \sim \chi^2_{n - 1}\]</span></p>
 <p>In terms of a variable <span class="math inline">\(\chi^2_{n-1}\)</span> which follows a <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
@@ -1783,8 +1783,109 @@ is equivalent to setting <span class="math inline">\(\Theta_0 = 0\)</span> and w
 </div>
 <div id="on-a-difference-of-proportions-1" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> On a Difference of Proportions<a href="hypothesis-tests.html#on-a-difference-of-proportions-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can use hypothesis test to compare proportions from two
+independent groups as well.</p>
+<p>To test <span class="math inline">\(H_0 : p_1 - p_2 = p_0\)</span>, our options for the null and alternative hypotheses are:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: p_1 - p_2 = p_0\)</span> vs. <span class="math inline">\(H_a: p_1 - p_2 &gt; p_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: p_1 - p_2 = p_0\)</span> vs. <span class="math inline">\(H_a: p_1 - p_2 &lt; p_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: p_1 - p_2 = p_0\)</span> vs. <span class="math inline">\(H_a: p_1 - p_2 \neq p_0\)</span></p></li>
+</ul>
+<p>We calculate the <span class="math inline">\(z\)</span>-statistic:</p>
+<p><span class="math display">\[z_* = \frac{\hat{p_1}-\hat{p_2}}{\sqrt{\hat{p}(1-\hat{p})\left(\displaystyle\frac{1}{n_1}+ \frac{1}{n_2}\right)}} \sim N(0,1).\]</span></p>
+<p>where</p>
+<p><span class="math display">\[\hat{p} = \frac{x_1 + x_2}{n_1+n_2}\]</span></p>
+<p>and <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> represent sample sizes of each group.</p>
+<p>In terms of a variable <span class="math inline">\(Z\)</span> which follows a standard normal distribution,
+the p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
+<ul>
+<li><p><span class="math inline">\(H_a: p_1 - p_2 &gt; p_0\)</span> is <span class="math inline">\(P(Z &gt; z^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: p_1 - p_2 &lt; p_0\)</span> is <span class="math inline">\(P(Z &lt; z^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: p_1 - p_2 \neq p_0\)</span> is <span class="math inline">\(2P(Z &gt; |z^{*}|)\)</span></p></li>
+</ul>
+<div class="example">
+<p><span id="exm:unlabeled-div-73" class="example"><strong>Example 6.16  </strong></span>Nicotine patches are often used to help smokers quit. Does giving
+medicine to fight depression help? A randomized double-blind experiment
+assigned 244 smokers who wanted to stop to receive nicotine patches and
+another 245 to receive both a patch and the anti-depression drug
+bupropion. Results: After a y ear, 40 subjects in the nicotine patch
+group had abstained from smoking, as had 87 in the patch-plus-drug
+group. How significant is the evidence that the medicine increases the
+success rate? State hypotheses, calculate a test statistic, use Table 6
+to give its P-value, and state y our conclusion. (Use <span class="math inline">\(\alpha = 0.01\)</span>)<br />
+Solution:</p>
+<p><strong>Step 1: State Hypothesis</strong></p>
+<p><span class="math inline">\(H_0: p_1 = p_2\)</span> and <span class="math inline">\(H_a: p_1 &lt; p_2\)</span></p>
+<p><strong>Step 2: Find test statistics</strong></p>
+<p><span class="math inline">\(\hat{p_1} = \frac{40}{244} = 0.1639\)</span> and
+<span class="math inline">\(\hat{p_2} = \frac{87}{245} = 0.3551\)</span>. Then
+<span class="math inline">\(\hat{p} = \frac{40+87}{244+245} = 0.2597\)</span>.</p>
+<p>Now,
+<span class="math inline">\(z_* = \frac{\hat{p_1} - \hat{p_2}}{\sqrt{\hat{p}(1-\hat{p})(\frac{1}{n_1} + \frac{1}{n_2})}} = -4.82\)</span></p>
+<p><strong>Step 3: Compute p-value</strong></p>
+<p>P-value <span class="math inline">\(= P(Z &lt; z_*) = P(Z &lt; -4.82) &lt; 0.0003\)</span></p>
+<p><strong>Step 4: Conclusion</strong></p>
+<p>Since p-value <span class="math inline">\(&lt; 0.0003 &lt; \alpha = 0.01\)</span>, we reject the null hypothesis
+that <span class="math inline">\(p_1 = p_2\)</span>. The data provide very strong evidence that bupropion
+increases success rate.</p>
+<p><strong>R-code:</strong></p>
+<p>Input</p>
+<div class="tcolorbox">
+<pre><code>successes=c(87, 40);
+
+totals=c(245, 244);
+
+prop.test(successes, totals, alternative=&quot;greater&quot;,correct=FALSE);</code></pre>
+</div>
+<p>Output</p>
+<div class="tcolorbox">
+<pre><code>## 
+## 2-sample test for equality of proportions without 
+## continuity correction 
+## 
+## data: x and n
+## X-squared = 23.237, df = 1, p-value = 7.161e-07
+## alternative hypothesis: greater 
+## 95 percent confidence interval: 
+## 0.1275385 1.0000000 
+## sample estimates:
+##    prop 1    prop 2 
+## 0.3551020 0.1639344</code></pre>
+</div>
+</div>
 <div id="assumptions-6" class="section level4 hasAnchor" number="6.3.2.1">
 <h4><span class="header-section-number">6.3.2.1</span> Assumptions<a href="hypothesis-tests.html#assumptions-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>Independent Response Assumption: Within each group , we need
+independent responses from the cases. We cannot check that for certain,
+but randomization provides evidence of independence. So, we need to
+check the following:</p>
+<ul>
+<li><p>Randomization Condition: The data in each group should be drawn
+independently and at random from a population or generated by a
+completely randomized designed experiment.</p></li>
+<li><p>The 10 % Condition: If the data are sampled without replacement, the
+sample should not exceed 10 % of the population. If samples are bigger
+than 10 % of the target population, random draws are no longer
+approximately independent.</p></li>
+<li><p>Independent Groups Assumption: The two groups we are comparing must be
+independent from each other.</p></li>
+</ul></li>
+<li><p>Sample Size Condition Each of the groups must be big enough. As
+with individual proportions, we need larger group s to estimate
+proportions that are near 0% and 100%. We check the success / failure
+condition for each group.</p>
+<ul>
+<li>Success / Failure Condition: Both groups are big enough that at least
+10 successes and at least 10 failures have been observed in each group
+or will be expected in each (when testing hypothesis).</li>
+</ul></li>
+</ul>
+<!-- Two-sided significance tests (later we will discuss this concept) -->
+<!-- are robust against violations of this condition. In this case, we can -->
+<!-- conduct significance tests with smaller sample sizes. In practice, the -->
+<!-- two-sided significance test works well if there are at least five -->
+<!-- successes and five failures in each sample. -->
 </div>
 </div>
 <div id="on-a-ratio-of-variances-1" class="section level3 hasAnchor" number="6.3.3">
@@ -1807,7 +1908,7 @@ common statistical procedure for comparing population variances
 <li><p><span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs. <span class="math inline">\(H_a: \sigma_1^2 &lt; \sigma_2^2\)</span></p></li>
 <li><p><span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs. <span class="math inline">\(H_a: \sigma_1^2 \neq \sigma_2^2\)</span></p></li>
 </ul>
-<p>We calculate the one-sample <span class="math inline">\(z\)</span>-statistic:</p>
+<p>We calculate the <span class="math inline">\(F\)</span>-statistic:</p>
 <p><span class="math display">\[F^{*} = \frac{s_1^2}{s_2^2} \sim F_{n_1-1,n_2-1}.\]</span></p>
 <p>In terms of a variable <span class="math inline">\(F\)</span> which follows an <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(n_1-1\)</span> and <span class="math inline">\(n_2-1\)</span> degrees of freedom, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
@@ -1931,7 +2032,7 @@ our analysis.</p>
 <li><p><span class="math inline">\(H_0: \mu_d = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d &lt; \mu_0\)</span></p></li>
 <li><p><span class="math inline">\(H_0: \mu_d - \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d \neq \mu_0\)</span></p></li>
 </ul>
-<p>We calculate the one-sample <span class="math inline">\(t\)</span>-statistic:</p>
+<p>We calculate the <span class="math inline">\(t\)</span>-statistic:</p>
 <p><span class="math display">\[t^* = \dfrac{\bar{x}_{d} - \mu_d}{s_{d} / \sqrt{n}} \sim t_{n-1}\]</span>
 In terms of a variable <span class="math inline">\(T\)</span> which follows a <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
@@ -1941,7 +2042,7 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |t^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-73" class="example"><strong>Example 6.16  </strong></span>In an effort to determine whether a new type of fertilizer is more
+<p><span id="exm:unlabeled-div-74" class="example"><strong>Example 6.17  </strong></span>In an effort to determine whether a new type of fertilizer is more
 effective than the type currently in use, researchers took 12 two-acre
 plots of land scattered throughout the county. Each plot was divided
 into two equal-size sub plots, one of which was treated with the new
