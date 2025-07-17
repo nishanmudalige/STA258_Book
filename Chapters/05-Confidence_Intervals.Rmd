@@ -1169,19 +1169,25 @@ t-interval. However, when one sample variance is three or four times
 larger than the other, then there is reason for a concern. The common
 statistical procedure for comparing population variances $\sigma_1^2$
 and $\sigma_2^2$ makes an inference about the ratio of
-$(\sigma_1^2)/(\sigma_2^2)$.\
+$(\sigma_1^2)/(\sigma_2^2)$.
+
 To make an inference about the ratio of $(\sigma_1^2)/(\sigma_2^2)$ we
 collect sample data and use the ratio of the sample variances
+
 $(\sigma_1^2)/(\sigma_2^2)$.
 
 At this point, let's derive the confidence interval. We know that:
 $\frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} \sim F_{n_1-1, n_2 -1}$.
+
 Then, we can construct our confidence interval as:
+
 $$P[F_{n_1-1, n_2 -1; 1-\alpha/2} < \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} < F_{n_1-1, n_2 -1; \alpha/2}]  = 1 -\alpha.$$
 Now, the reference distribution of this confidence interval is
 F-distribution with $n_1 - 1$ and $n_2 -1$ degrees of freedom, leaving
 areas of $1 - \alpha/2$ and $\alpha/2$, respectively, to the right.
+
 Rearranging gives us:
+
 $$P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; \alpha/2}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}}] = 1 -\alpha.$$
 Using the face that
 $F_{n_1-1,n_2-1; 1 - \alpha/2} = \frac{1}{F_{n_2-1,n_1-1; \alpha/2}}$,

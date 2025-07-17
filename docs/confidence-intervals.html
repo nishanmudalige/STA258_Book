@@ -1148,19 +1148,19 @@ t-interval. However, when one sample variance is three or four times
 larger than the other, then there is reason for a concern. The common
 statistical procedure for comparing population variances <span class="math inline">\(\sigma_1^2\)</span>
 and <span class="math inline">\(\sigma_2^2\)</span> makes an inference about the ratio of
-<span class="math inline">\((\sigma_1^2)/(\sigma_2^2)\)</span>.<br />
-To make an inference about the ratio of <span class="math inline">\((\sigma_1^2)/(\sigma_2^2)\)</span> we
-collect sample data and use the ratio of the sample variances
 <span class="math inline">\((\sigma_1^2)/(\sigma_2^2)\)</span>.</p>
+<p>To make an inference about the ratio of <span class="math inline">\((\sigma_1^2)/(\sigma_2^2)\)</span> we
+collect sample data and use the ratio of the sample variances</p>
+<p><span class="math inline">\((\sigma_1^2)/(\sigma_2^2)\)</span>.</p>
 <p>At this point, let’s derive the confidence interval. We know that:
-<span class="math inline">\(\frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} \sim F_{n_1-1, n_2 -1}\)</span>.
-Then, we can construct our confidence interval as:
-<span class="math display">\[P[F_{n_1-1, n_2 -1; 1-\alpha/2} &lt; \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} &lt; F_{n_1-1, n_2 -1; \alpha/2}]  = 1 -\alpha.\]</span>
+<span class="math inline">\(\frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} \sim F_{n_1-1, n_2 -1}\)</span>.</p>
+<p>Then, we can construct our confidence interval as:</p>
+<p><span class="math display">\[P[F_{n_1-1, n_2 -1; 1-\alpha/2} &lt; \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} &lt; F_{n_1-1, n_2 -1; \alpha/2}]  = 1 -\alpha.\]</span>
 Now, the reference distribution of this confidence interval is
 F-distribution with <span class="math inline">\(n_1 - 1\)</span> and <span class="math inline">\(n_2 -1\)</span> degrees of freedom, leaving
-areas of <span class="math inline">\(1 - \alpha/2\)</span> and <span class="math inline">\(\alpha/2\)</span>, respectively, to the right.
-Rearranging gives us:
-<span class="math display">\[P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; \alpha/2}} &lt; \frac{\sigma_1^2}{\sigma_2^2} &lt; \frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}}] = 1 -\alpha.\]</span>
+areas of <span class="math inline">\(1 - \alpha/2\)</span> and <span class="math inline">\(\alpha/2\)</span>, respectively, to the right.</p>
+<p>Rearranging gives us:</p>
+<p><span class="math display">\[P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; \alpha/2}} &lt; \frac{\sigma_1^2}{\sigma_2^2} &lt; \frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}}] = 1 -\alpha.\]</span>
 Using the face that
 <span class="math inline">\(F_{n_1-1,n_2-1; 1 - \alpha/2} = \frac{1}{F_{n_2-1,n_1-1; \alpha/2}}\)</span>,
 we have:

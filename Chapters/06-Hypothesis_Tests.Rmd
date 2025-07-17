@@ -1045,8 +1045,10 @@ our options for the null and alternative hypotheses are:
 - $H_0: \mu = \mu_0$ vs. $H_a: \mu \neq \mu_0$
 
 We calculate the one-sample $t$-statistic:
+
 $$t^{*} = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}$$
-In terms of a variable $T$ which follows the $t$-distribution at $n-1$ degrees of freedom, the
+
+In terms of a variable $T$ which follows a $t$-distribution at $n-1$ degrees of freedom, the
 p-value for a test of $H_0$ against:
 
 - $H_a: \mu > \mu_0$ is $P(T > t^{*})$
@@ -1892,7 +1894,7 @@ We calculate the one-sample $\chi^2$-statistic:
 
 $$\chi^2_* = \frac{(n - 1)s^2}{\sigma_0^2} \sim \chi^2_{n - 1}$$
 
-In terms of a variable $\chi^2_{n-1}$ which follows the $t$-distribution at $n-1$ degrees of freedom, the
+In terms of a variable $\chi^2_{n-1}$ which follows a $t$-distribution at $n-1$ degrees of freedom, the
 p-value for a test of $H_0$ against:
 
 - $H_a: \sigma^2 > \sigma_0$ is $P(\chi^2 > \chi^2_*)$
@@ -2178,7 +2180,80 @@ is equivalent to setting $\Theta_0 = 0$ and writing the null hypothesis as
 
 #### Assumptions
 
+
+
+
+
+
+
+
+
+
 ### On a Ratio of Variances
+
+Let's begin this type of hypothesis test with a case. The question is:
+how do you know whether the homogeneity of variance assumption is
+satisﬁed? One simple method involves just looking at two sample
+variances. Logically, if two population variances are equal, then the
+two sample variances should be very similar. When the two sample
+variances are reasonably close, you can be reasonably conﬁdent that the
+homogeneity assumption is satisﬁed and proceed with, for example,
+Student t-interval. However, when one sample variance is three or four
+times larger than the other, then there is reason for a concern. The
+common statistical procedure for comparing population variances
+$\sigma_1^2$ and $\sigma_2^2$ makes an inference about the ratio of
+$\sigma_1^2$/$\sigma_2^2$.
+
+
+To test $H_0 : \mu_d = \mu_0$, our options for the null and alternative hypotheses are:
+
+- $H_0: \sigma_1^2 = \sigma_2^2$ vs. $H_a: \sigma_1^2 > \sigma_2^2$
+
+- $H_0: \sigma_1^2 = \sigma_2^2$ vs. $H_a: \sigma_1^2 < \sigma_2^2$
+
+- $H_0: \sigma_1^2 = \sigma_2^2$ vs. $H_a: \sigma_1^2 \neq \sigma_2^2$
+
+
+We calculate the one-sample $z$-statistic:
+
+$$F^{*} = \frac{s_1^2}{s_2^2} \sim F_{n_1-1,n_2-1}.$$
+
+In terms of a variable $F$ which follows an $F$-distribution with $n_1-1$ and $n_2-1$ degrees of freedom, the
+p-value for a test of $H_0$ against:
+
+- $H_a: \sigma_1^2 > \sigma_2^2$ is $P(F > F^{*})$
+
+- $H_a: \sigma_1^2 < \sigma_2^2$ is $P(F < F^{*})$
+
+- $H_a: \sigma_1^2 \neq \sigma_2^2$ is $2P(F > |F^{*}|)$
+
+
+
+<!-- **Step 1: Stating the Structure of Testing Hypothesis** -->
+
+
+<!-- **Step 2: Computing Test Statistics** -->
+
+<!-- ::: definition -->
+<!-- The test statistics of two sample hypothesis test on variances is given -->
+<!-- by: $$F_* = \frac{s_1^2}{s_2^2} \sim F_{n_1-1,n_2-1}.$$ -->
+<!-- ::: -->
+
+<!-- **Decision Rules** -->
+
+<!-- - $H_0: \sigma_1^2 = \sigma_2^2$ and $H_a:\sigma_1^2 \neq \sigma_2^2$. -->
+<!--   If $F^* > F_{n_1-1,n_2-1,\alpha/2}$ or -->
+<!--   $F^* < F_{n_1-1,n_2-1,1 - \alpha/2}$, then we reject $H_0$. Otherwise, -->
+<!--   we do not reject it. -->
+
+<!-- - $H_0: \sigma_1^2 = \sigma_2^2$ and $H_a: \sigma_1^2 > \sigma_2^2$. If -->
+<!--   $F^*> F_{n_1-1,n_2-1,\alpha}$ or $P(F_{n_1-1,n_2-1} > F^*)$ is too -->
+<!--   small, then we reject $H_0$. Otherwise, we do not reject it. -->
+
+<!-- - $H_0: \sigma_1^2 = \sigma_2^2$ and $H_a: \sigma_1^2 < \sigma_2^2$. if -->
+<!--   $F^* < F_{n_1-1,n_2-1,1-\alpha}$ or $P(F_{n_1-1,n_2-1} < F^*)$ is too -->
+<!--   small, then we reject $H_0$. Otherwise, we do not reject it. -->
+
 
 #### Assumptions
 
@@ -2258,10 +2333,10 @@ To test $H_0 : \mu_d = \mu_0$, our options for the null and alternative hypothes
 - $H_0: \mu_d - \mu_0$ vs. $H_a: \mu_d \neq \mu_0$
 
 
-We calculate the one-sample $z$-statistic:
+We calculate the one-sample $t$-statistic:
 
 $$t^* = \dfrac{\bar{x}_{d} - \mu_d}{s_{d} / \sqrt{n}} \sim t_{n-1}$$
-In terms of a variable $T$ which follows the $t$-distribution at $n-1$ degrees of freedom, the
+In terms of a variable $T$ which follows a $t$-distribution at $n-1$ degrees of freedom, the
 p-value for a test of $H_0$ against:
 
 - $H_a: \mu > \mu_0$ is $P(T > t^{*})$

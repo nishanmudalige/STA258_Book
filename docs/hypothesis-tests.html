@@ -905,9 +905,9 @@ our options for the null and alternative hypotheses are:</p>
 <li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span></p></li>
 <li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu \neq \mu_0\)</span></p></li>
 </ul>
-<p>We calculate the one-sample <span class="math inline">\(t\)</span>-statistic:
-<span class="math display">\[t^{*} = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}\]</span>
-In terms of a variable <span class="math inline">\(T\)</span> which follows the <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
+<p>We calculate the one-sample <span class="math inline">\(t\)</span>-statistic:</p>
+<p><span class="math display">\[t^{*} = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}\]</span></p>
+<p>In terms of a variable <span class="math inline">\(T\)</span> which follows a <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <ul>
 <li><p><span class="math inline">\(H_a: \mu &gt; \mu_0\)</span> is <span class="math inline">\(P(T &gt; t^{*})\)</span></p></li>
@@ -1538,7 +1538,7 @@ observations are independent.</p>
 </ul>
 <p>We calculate the one-sample <span class="math inline">\(\chi^2\)</span>-statistic:</p>
 <p><span class="math display">\[\chi^2_* = \frac{(n - 1)s^2}{\sigma_0^2} \sim \chi^2_{n - 1}\]</span></p>
-<p>In terms of a variable <span class="math inline">\(\chi^2_{n-1}\)</span> which follows the <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
+<p>In terms of a variable <span class="math inline">\(\chi^2_{n-1}\)</span> which follows a <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <ul>
 <li><p><span class="math inline">\(H_a: \sigma^2 &gt; \sigma_0\)</span> is <span class="math inline">\(P(\chi^2 &gt; \chi^2_*)\)</span></p></li>
@@ -1789,6 +1789,50 @@ is equivalent to setting <span class="math inline">\(\Theta_0 = 0\)</span> and w
 </div>
 <div id="on-a-ratio-of-variances-1" class="section level3 hasAnchor" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> On a Ratio of Variances<a href="hypothesis-tests.html#on-a-ratio-of-variances-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s begin this type of hypothesis test with a case. The question is:
+how do you know whether the homogeneity of variance assumption is
+satisﬁed? One simple method involves just looking at two sample
+variances. Logically, if two population variances are equal, then the
+two sample variances should be very similar. When the two sample
+variances are reasonably close, you can be reasonably conﬁdent that the
+homogeneity assumption is satisﬁed and proceed with, for example,
+Student t-interval. However, when one sample variance is three or four
+times larger than the other, then there is reason for a concern. The
+common statistical procedure for comparing population variances
+<span class="math inline">\(\sigma_1^2\)</span> and <span class="math inline">\(\sigma_2^2\)</span> makes an inference about the ratio of
+<span class="math inline">\(\sigma_1^2\)</span>/<span class="math inline">\(\sigma_2^2\)</span>.</p>
+<p>To test <span class="math inline">\(H_0 : \mu_d = \mu_0\)</span>, our options for the null and alternative hypotheses are:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs. <span class="math inline">\(H_a: \sigma_1^2 &gt; \sigma_2^2\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs. <span class="math inline">\(H_a: \sigma_1^2 &lt; \sigma_2^2\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs. <span class="math inline">\(H_a: \sigma_1^2 \neq \sigma_2^2\)</span></p></li>
+</ul>
+<p>We calculate the one-sample <span class="math inline">\(z\)</span>-statistic:</p>
+<p><span class="math display">\[F^{*} = \frac{s_1^2}{s_2^2} \sim F_{n_1-1,n_2-1}.\]</span></p>
+<p>In terms of a variable <span class="math inline">\(F\)</span> which follows an <span class="math inline">\(F\)</span>-distribution with <span class="math inline">\(n_1-1\)</span> and <span class="math inline">\(n_2-1\)</span> degrees of freedom, the
+p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
+<ul>
+<li><p><span class="math inline">\(H_a: \sigma_1^2 &gt; \sigma_2^2\)</span> is <span class="math inline">\(P(F &gt; F^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \sigma_1^2 &lt; \sigma_2^2\)</span> is <span class="math inline">\(P(F &lt; F^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \sigma_1^2 \neq \sigma_2^2\)</span> is <span class="math inline">\(2P(F &gt; |F^{*}|)\)</span></p></li>
+</ul>
+<!-- **Step 1: Stating the Structure of Testing Hypothesis** -->
+<!-- **Step 2: Computing Test Statistics** -->
+<!-- ::: definition -->
+<!-- The test statistics of two sample hypothesis test on variances is given -->
+<!-- by: $$F_* = \frac{s_1^2}{s_2^2} \sim F_{n_1-1,n_2-1}.$$ -->
+<!-- ::: -->
+<!-- **Decision Rules** -->
+<!-- - $H_0: \sigma_1^2 = \sigma_2^2$ and $H_a:\sigma_1^2 \neq \sigma_2^2$. -->
+<!--   If $F^* > F_{n_1-1,n_2-1,\alpha/2}$ or -->
+<!--   $F^* < F_{n_1-1,n_2-1,1 - \alpha/2}$, then we reject $H_0$. Otherwise, -->
+<!--   we do not reject it. -->
+<!-- - $H_0: \sigma_1^2 = \sigma_2^2$ and $H_a: \sigma_1^2 > \sigma_2^2$. If -->
+<!--   $F^*> F_{n_1-1,n_2-1,\alpha}$ or $P(F_{n_1-1,n_2-1} > F^*)$ is too -->
+<!--   small, then we reject $H_0$. Otherwise, we do not reject it. -->
+<!-- - $H_0: \sigma_1^2 = \sigma_2^2$ and $H_a: \sigma_1^2 < \sigma_2^2$. if -->
+<!--   $F^* < F_{n_1-1,n_2-1,1-\alpha}$ or $P(F_{n_1-1,n_2-1} < F^*)$ is too -->
+<!--   small, then we reject $H_0$. Otherwise, we do not reject it. -->
 <div id="assumptions-7" class="section level4 hasAnchor" number="6.3.3.1">
 <h4><span class="header-section-number">6.3.3.1</span> Assumptions<a href="hypothesis-tests.html#assumptions-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Need to complete</strong></p>
@@ -1887,9 +1931,9 @@ our analysis.</p>
 <li><p><span class="math inline">\(H_0: \mu_d = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d &lt; \mu_0\)</span></p></li>
 <li><p><span class="math inline">\(H_0: \mu_d - \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d \neq \mu_0\)</span></p></li>
 </ul>
-<p>We calculate the one-sample <span class="math inline">\(z\)</span>-statistic:</p>
+<p>We calculate the one-sample <span class="math inline">\(t\)</span>-statistic:</p>
 <p><span class="math display">\[t^* = \dfrac{\bar{x}_{d} - \mu_d}{s_{d} / \sqrt{n}} \sim t_{n-1}\]</span>
-In terms of a variable <span class="math inline">\(T\)</span> which follows the <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
+In terms of a variable <span class="math inline">\(T\)</span> which follows a <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <ul>
 <li><p><span class="math inline">\(H_a: \mu &gt; \mu_0\)</span> is <span class="math inline">\(P(T &gt; t^{*})\)</span></p></li>
