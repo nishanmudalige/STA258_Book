@@ -1021,3 +1021,213 @@ interval, we again reject $H_0 : \mu = 15$.
 
 
 
+
+
+
+
+
+
+#### When $\sigma$ is Not Known
+
+To test $H_0 : \mu = \mu_0$, in the situation where the population standard deviation $\sigma$ is not known,
+our options for the null and alternative hypotheses are:
+
+- $H_0: \mu = \mu_0$ vs. $H_a: \mu > \mu_0$
+
+- $H_0: \mu = \mu_0$ vs. $H_a: \mu < \mu_0$
+
+- $H_0: \mu = \mu_0$ vs. $H_a: \mu \neq \mu_0$
+
+We calculate the one-sample $t$-statistic:
+$$t^{*} = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}$$
+In terms of a variable $T$ which follows the $t$-distribution at $n-1$ degrees of freedom, the
+p-value for a test of $H_0$ against:
+
+- $H_a: \mu > \mu_0$ is $P(T > t^{*})$
+
+- $H_a: \mu < \mu_0$ is $P(T < t^{*})$
+
+- $H_a: \mu \ne \mu_0$ is $2P(T > |t^{*}|)$
+
+
+::: example
+Researchers studied the physiological effects of laughter. They measured
+heart rates (in beats per minute) of **$n = 25$** subjects (ages 18--34)
+while they laughed. They obtained:
+$$\bar{x} = 73.5, \quad s = 6, \quad \alpha = 0.05$$ It is well known
+that the resting heart rate is 71 bpm. Is there evidence that the mean
+heart rate during laughter exceeds 71 bpm?
+
+**Step 1: State the hypotheses.** $$\begin{aligned}
+H_0 &: \mu = 71 \\
+H_a &: \mu > 71
+\end{aligned}$$
+
+**Step 2: Check assumptions.**
+
+- The sample is an independent random sample of individuals aged 18--34.
+
+- The population of heart rates during laughter is normally distributed.
+
+**Step 3: Compute the test statistic.**
+
+Since $\sigma$ is unknown, we use the $t$ statistic:
+$$t^\ast = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{73.5 - 71}{6 / \sqrt{25}} = 2.083$$
+
+Reference distribution: $t$ distribution with $n - 1 = 25 - 1 = 24$
+degrees of freedom.
+
+**Step 4: Determine the p-value.**
+
+Using the $t$ distribution with 24 df: $$0.01 < \text{p-value} < 0.025$$
+
+**Step 5: Make a conclusion.**
+
+Since $\text{p-value} < \alpha = 0.05$, we reject $H_0$.
+
+*There is sufficient evidence at the 5% level of significance to reject
+the null that the mean is 71 bpm in favor of the alternative that the
+mean is greater than 71 bpm for people who are laughing.*
+:::
+
+::::: example
+A researcher is asked to test the hypothesis that the average price of a
+2-star (CAA rating) motel room has decreased since last year. Last year,
+a study showed that the prices were Normally distributed with a mean of
+\$89.50.
+
+A random sample of twelve 2-star motels produced the following room
+prices:
+
+$$\text{\$85.00, 92.50, 87.50, 89.90, 90.00, 82.50, 87.50, 90.00, 85.00, 89.00, 91.50, 87.50}$$
+
+At the 5% level of significance, can we conclude that the mean price has
+decreased?
+
+**Solution:**
+
+Let $\mu$ be the true average price of a 2-star motel room.
+
+1.  **State hypotheses.** $$\begin{aligned}
+    H_0 &: \mu = 89.5 \\
+    H_a &: \mu < 89.5
+    \end{aligned}$$
+
+2.  **Compute test statistic.**
+    $$t^\ast = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{88.1583 - 89.5}{2.9203 / \sqrt{12}} = -1.5915$$
+
+3.  **Find the p-value.**\
+    With $df = 11$, the p-value (from the $t$-distribution table) is
+    between 0.05 and 0.10.
+
+4.  **Conclusion.**\
+    Since the p-value $> 0.05$, we **fail to reject** $H_0$.\
+    There is not sufficient evidence to conclude that the average price
+    of 2-star motels has decreased this year.
+
+**R code (One Sample t-test)**
+
+::: tcolorbox
+    # Step 1. Entering data;
+    prices=c(85.00, 92.50, 87.50, 89.90, 90.00, 82.50,
+             87.50, 90.00, 85.00, 89.00, 91.50, 87.50);
+
+    # Step 2. Hypothesis test;
+    t.test(prices, alternative="less", mu=89.5);
+:::
+
+**R output**
+
+::: tcolorbox
+    ## 
+    ##  One Sample t-test
+    ## 
+    ## data:  prices
+    ## t = -1.5915, df = 11, p-value = 0.0699
+    ## alternative hypothesis: true mean is less than 89.5
+    ## 95 percent confidence interval:
+    ##  -Inf 89.67229
+    ## sample estimates:
+    ## mean of x 
+    ##  88.15833 
+:::
+:::::
+
+::: tcolorbox
+Draw an SRS of size $n$ from a large population having unknown mean
+$\mu$.
+
+To *test the hypothesis* $H_0 : \mu = \mu_0$, compute the *one-sample
+$t$ statistic* $$t^\ast = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}$$
+
+In terms of a variable $T$ having the $t_{n - 1}$ distribution, the
+p-value for a test of $H_0$ against
+
+$$\begin{aligned}
+H_a : \mu > \mu_0 &\quad \text{is} \quad P(T \ge t^\ast) \\
+H_a : \mu < \mu_0 &\quad \text{is} \quad P(T \le t^\ast) \\
+H_a : \mu \ne \mu_0 &\quad \text{is} \quad 2P(T \ge |t^\ast|)
+\end{aligned}$$
+
+These p-values are exact if the population distribution is Normal and
+are approximately correct for large $n$ in other cases.
+:::
+
+:::: example
+We are conducting a two-sided one-sample $t$-test for the hypotheses:
+$$\begin{aligned}
+H_0 &: \mu = 64 \\
+H_a &: \mu \ne 64
+\end{aligned}$$
+
+based on a sample of $n = 15$ observations, with test statistic
+$t^* = 2.12$.
+
+**a) Degrees of freedom:**
+
+$$df = n - 1 = 15 - 1 = 14$$
+
+**b) Critical values and p-value bounds:**
+
+From the $t$-distribution table for $df = 14$:
+
+- $t = 1.761$ corresponds to a two-tailed probability of 0.10
+
+- $t = 2.145$ corresponds to a two-tailed probability of 0.05
+
+Since $t^* = 2.12$ falls between these values, the two-sided p-value
+satisfies: $$0.05 < \text{p-value} < 0.10$$
+
+**c) Significance:**
+
+- At the 10% level: **Yes**, since the p-value $< 0.10$
+
+- At the 5% level: **No**, since the p-value $> 0.05$
+
+**d) Exact two-sided p-value using R:**
+
+::: tcolorbox
+    # Compute exact two-sided p-value for t* = 2.12 with df = 14
+    2 * (1 - pt(2.12, df = 14))
+
+    ## [1] 0.05235683
+:::
+
+Thus, the exact two-sided p-value is approximately **0.0524**,
+confirming the bracketing result.
+::::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

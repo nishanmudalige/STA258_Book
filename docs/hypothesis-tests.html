@@ -799,6 +799,153 @@ interval, we again reject <span class="math inline">\(H_0 : \mu = 15\)</span>.</
 <!-- $H_0 : \mu = \mu_0$ exactly when the value $\mu_0$ falls outside a level -->
 <!-- $1 - \alpha$ confidence interval for $\mu$.* -->
 <!-- ::: -->
+</div>
+<div id="when-sigma-is-not-known-2" class="section level4 hasAnchor" number="6.2.1.2">
+<h4><span class="header-section-number">6.2.1.2</span> When <span class="math inline">\(\sigma\)</span> is Not Known<a href="hypothesis-tests.html#when-sigma-is-not-known-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To test <span class="math inline">\(H_0 : \mu = \mu_0\)</span>, in the situation where the population standard deviation <span class="math inline">\(\sigma\)</span> is not known,
+our options for the null and alternative hypotheses are:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu &gt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu \neq \mu_0\)</span></p></li>
+</ul>
+<p>We calculate the one-sample <span class="math inline">\(t\)</span>-statistic:
+<span class="math display">\[t^{*} = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \sim t_{n-1}\]</span>
+In terms of a variable <span class="math inline">\(T\)</span> which follows the <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
+p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
+<ul>
+<li><p><span class="math inline">\(H_a: \mu &gt; \mu_0\)</span> is <span class="math inline">\(P(T &gt; t^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu &lt; \mu_0\)</span> is <span class="math inline">\(P(T &lt; t^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |t^{*}|)\)</span></p></li>
+</ul>
+<div class="example">
+<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 6.7  </strong></span>Researchers studied the physiological effects of laughter. They measured
+heart rates (in beats per minute) of <strong><span class="math inline">\(n = 25\)</span></strong> subjects (ages 18–34)
+while they laughed. They obtained:
+<span class="math display">\[\bar{x} = 73.5, \quad s = 6, \quad \alpha = 0.05\]</span> It is well known
+that the resting heart rate is 71 bpm. Is there evidence that the mean
+heart rate during laughter exceeds 71 bpm?</p>
+<p><strong>Step 1: State the hypotheses.</strong> <span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu = 71 \\
+H_a &amp;: \mu &gt; 71
+\end{aligned}\]</span></p>
+<p><strong>Step 2: Check assumptions.</strong></p>
+<ul>
+<li><p>The sample is an independent random sample of individuals aged 18–34.</p></li>
+<li><p>The population of heart rates during laughter is normally distributed.</p></li>
+</ul>
+<p><strong>Step 3: Compute the test statistic.</strong></p>
+<p>Since <span class="math inline">\(\sigma\)</span> is unknown, we use the <span class="math inline">\(t\)</span> statistic:
+<span class="math display">\[t^\ast = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{73.5 - 71}{6 / \sqrt{25}} = 2.083\]</span></p>
+<p>Reference distribution: <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 1 = 25 - 1 = 24\)</span>
+degrees of freedom.</p>
+<p><strong>Step 4: Determine the p-value.</strong></p>
+<p>Using the <span class="math inline">\(t\)</span> distribution with 24 df: <span class="math display">\[0.01 &lt; \text{p-value} &lt; 0.025\]</span></p>
+<p><strong>Step 5: Make a conclusion.</strong></p>
+<p>Since <span class="math inline">\(\text{p-value} &lt; \alpha = 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>.</p>
+<p><em>There is sufficient evidence at the 5% level of significance to reject
+the null that the mean is 71 bpm in favor of the alternative that the
+mean is greater than 71 bpm for people who are laughing.</em></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-62" class="example"><strong>Example 6.8  </strong></span>A researcher is asked to test the hypothesis that the average price of a
+2-star (CAA rating) motel room has decreased since last year. Last year,
+a study showed that the prices were Normally distributed with a mean of
+$89.50.</p>
+<p>A random sample of twelve 2-star motels produced the following room
+prices:</p>
+<p><span class="math display">\[\text{\$85.00, 92.50, 87.50, 89.90, 90.00, 82.50, 87.50, 90.00, 85.00, 89.00, 91.50, 87.50}\]</span></p>
+<p>At the 5% level of significance, can we conclude that the mean price has
+decreased?</p>
+<p><strong>Solution:</strong></p>
+<p>Let <span class="math inline">\(\mu\)</span> be the true average price of a 2-star motel room.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>State hypotheses.</strong> <span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu = 89.5 \\
+H_a &amp;: \mu &lt; 89.5
+\end{aligned}\]</span></p></li>
+<li><p><strong>Compute test statistic.</strong>
+<span class="math display">\[t^\ast = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{88.1583 - 89.5}{2.9203 / \sqrt{12}} = -1.5915\]</span></p></li>
+<li><p><strong>Find the p-value.</strong><br />
+With <span class="math inline">\(df = 11\)</span>, the p-value (from the <span class="math inline">\(t\)</span>-distribution table) is
+between 0.05 and 0.10.</p></li>
+<li><p><strong>Conclusion.</strong><br />
+Since the p-value <span class="math inline">\(&gt; 0.05\)</span>, we <strong>fail to reject</strong> <span class="math inline">\(H_0\)</span>.<br />
+There is not sufficient evidence to conclude that the average price
+of 2-star motels has decreased this year.</p></li>
+</ol>
+<p><strong>R code (One Sample t-test)</strong></p>
+<div class="tcolorbox">
+<pre><code># Step 1. Entering data;
+prices=c(85.00, 92.50, 87.50, 89.90, 90.00, 82.50,
+         87.50, 90.00, 85.00, 89.00, 91.50, 87.50);
+
+# Step 2. Hypothesis test;
+t.test(prices, alternative=&quot;less&quot;, mu=89.5);</code></pre>
+</div>
+<p><strong>R output</strong></p>
+<div class="tcolorbox">
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  prices
+## t = -1.5915, df = 11, p-value = 0.0699
+## alternative hypothesis: true mean is less than 89.5
+## 95 percent confidence interval:
+##  -Inf 89.67229
+## sample estimates:
+## mean of x 
+##  88.15833 </code></pre>
+</div>
+</div>
+<div class="tcolorbox">
+<p>Draw an SRS of size <span class="math inline">\(n\)</span> from a large population having unknown mean
+<span class="math inline">\(\mu\)</span>.</p>
+<p>To <em>test the hypothesis</em> <span class="math inline">\(H_0 : \mu = \mu_0\)</span>, compute the <em>one-sample
+<span class="math inline">\(t\)</span> statistic</em> <span class="math display">\[t^\ast = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}\]</span></p>
+<p>In terms of a variable <span class="math inline">\(T\)</span> having the <span class="math inline">\(t_{n - 1}\)</span> distribution, the
+p-value for a test of <span class="math inline">\(H_0\)</span> against</p>
+<p><span class="math display">\[\begin{aligned}
+H_a : \mu &gt; \mu_0 &amp;\quad \text{is} \quad P(T \ge t^\ast) \\
+H_a : \mu &lt; \mu_0 &amp;\quad \text{is} \quad P(T \le t^\ast) \\
+H_a : \mu \ne \mu_0 &amp;\quad \text{is} \quad 2P(T \ge |t^\ast|)
+\end{aligned}\]</span></p>
+<p>These p-values are exact if the population distribution is Normal and
+are approximately correct for large <span class="math inline">\(n\)</span> in other cases.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-63" class="example"><strong>Example 6.9  </strong></span>We are conducting a two-sided one-sample <span class="math inline">\(t\)</span>-test for the hypotheses:
+<span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu = 64 \\
+H_a &amp;: \mu \ne 64
+\end{aligned}\]</span></p>
+<p>based on a sample of <span class="math inline">\(n = 15\)</span> observations, with test statistic
+<span class="math inline">\(t^* = 2.12\)</span>.</p>
+<p><strong>a) Degrees of freedom:</strong></p>
+<p><span class="math display">\[df = n - 1 = 15 - 1 = 14\]</span></p>
+<p><strong>b) Critical values and p-value bounds:</strong></p>
+<p>From the <span class="math inline">\(t\)</span>-distribution table for <span class="math inline">\(df = 14\)</span>:</p>
+<ul>
+<li><p><span class="math inline">\(t = 1.761\)</span> corresponds to a two-tailed probability of 0.10</p></li>
+<li><p><span class="math inline">\(t = 2.145\)</span> corresponds to a two-tailed probability of 0.05</p></li>
+</ul>
+<p>Since <span class="math inline">\(t^* = 2.12\)</span> falls between these values, the two-sided p-value
+satisfies: <span class="math display">\[0.05 &lt; \text{p-value} &lt; 0.10\]</span></p>
+<p><strong>c) Significance:</strong></p>
+<ul>
+<li><p>At the 10% level: <strong>Yes</strong>, since the p-value <span class="math inline">\(&lt; 0.10\)</span></p></li>
+<li><p>At the 5% level: <strong>No</strong>, since the p-value <span class="math inline">\(&gt; 0.05\)</span></p></li>
+</ul>
+<p><strong>d) Exact two-sided p-value using R:</strong></p>
+<div class="tcolorbox">
+<pre><code># Compute exact two-sided p-value for t* = 2.12 with df = 14
+2 * (1 - pt(2.12, df = 14))
+
+## [1] 0.05235683</code></pre>
+</div>
+<p>Thus, the exact two-sided p-value is approximately <strong>0.0524</strong>,
+confirming the bracketing result.</p>
+</div>
 
 </div>
 </div>
