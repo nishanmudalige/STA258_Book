@@ -1846,3 +1846,213 @@ whether union efforts to organize have increased union membership.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+### On a Population Variance
+
+In many practical situations, we are interested in testing whether the
+variability in a population (i.e., its variance) has changed. This is
+especially important in quality control, finance, and experimental
+science. When we have data from a single normal population and want to
+test a claim about the population variance, we use the chi-squared
+($\chi^2$) test for one variance. This method assumes that the
+underlying population is normally distributed and the sample
+observations are independent.
+
+<!-- **Hypothesis Tests for One Variance** -->
+
+<!-- - Data from a single normal population; independent observations -->
+
+<!-- - Variance unknown -->
+
+<!-- - Large or small sample -->
+
+To test $H_0 : \sigma^2 = \sigma^2_0$, our options for the null and alternative hypotheses are:
+
+- $H_0: \sigma^2 = \sigma^2_0$ vs. $H_a: \sigma^2 > \mu_0$
+
+- $H_0: \sigma^2 = \sigma^2_0$ vs. $H_a: \sigma^2 < \mu_0$
+
+- $H_0: \sigma^2 = \sigma^2_0$ vs. $H_a: \sigma^2 \neq \mu_0$
+
+We calculate the one-sample $\chi^2$-statistic:
+
+$$\chi^2_* = \frac{(n - 1)s^2}{\sigma_0^2} \sim \chi^2_{n - 1}$$
+
+In terms of a variable $\chi^2_{n-1}$ which follows the $t$-distribution at $n-1$ degrees of freedom, the
+p-value for a test of $H_0$ against:
+
+- $H_a: \sigma^2 > \sigma_0$ is $P(\chi^2 > \chi^2_*)$
+
+- $H_a: \sigma^2 < \sigma_0$ is $P(\chi^2 < \chi^2_*)$
+
+- $H_a: \sigma^2 \ne \sigma_0$ is $2P(\chi^2 > |\chi^2_*|)$
+
+
+
+
+<!-- **Hypothesis Test**\ -->
+<!-- $$\begin{aligned} -->
+<!-- H_0 &: \sigma^2 = \sigma_0^2 \\ -->
+<!-- H_a &: \sigma^2 \ne \sigma_0^2 \quad \text{(or } \sigma^2 > \sigma_0^2 \text{ or } \sigma^2 < \sigma_0^2\text{)} -->
+<!-- \end{aligned}$$ Assume $H_0$ is true, then: -->
+
+<!-- $$\text{Test statistic:} \quad \chi^2_* = \frac{(n - 1)s^2}{\sigma_0^2} \sim \chi^2_{n - 1}$$ -->
+
+<!-- ::: tcolorbox -->
+<!-- **Decision rules:** -->
+
+<!-- $H_a : \sigma^2 \ne \sigma_0^2$.\ -->
+<!-- Reject $H_0$ if $\chi^2_* > \chi^2_{n-1;\alpha/2}$ or if -->
+<!-- $\chi^2_* < \chi^2_{n-1;1-\alpha/2}$. -->
+
+<!-- $H_a : \sigma^2 > \sigma_0^2$.\ -->
+<!-- Reject $H_0$ if $\chi^2_* > \chi^2_{n-1;\alpha}$ or if -->
+<!-- $P[\chi^2_{n-1} > \chi^2_*]$ is too small. -->
+
+<!-- $H_a : \sigma^2 < \sigma_0^2$.\ -->
+<!-- Reject $H_0$ if $\chi^2_* < \chi^2_{n-1;1-\alpha}$ or if -->
+<!-- $P[\chi^2_{n-1} < \chi^2_*]$ is too small. -->
+
+
+::: {.remark}
+This test is robust to departures from Normality.
+:::
+
+:::: {.example}
+A company produces metal pipes of a standard length, and claims that the
+standard deviation of the length is at most 1.2 cm. One of its clients
+decides to test this claim by taking a sample of 25 pipes and checking
+their lengths. They found that the standard deviation of the sample is
+1.5 cm. Does this undermine the company's claim? Use $\alpha = 0.05$.\
+*Note: Assume length is Normally distributed.*
+
+**Solution**
+
+$$\begin{aligned}
+H_0 &: \sigma^2 \leq 1.2^2 \\
+H_a &: \sigma^2 > 1.2^2
+\end{aligned}$$
+
+$$\chi^2_* = \frac{(n-1)s^2}{\sigma^2} = \frac{(25-1) \cdot 1.5^2}{1.2^2} = 37.5$$
+
+$$\text{P-value} = P[\chi^2_{24} > 37.5] \approx 0.0389$$
+
+**R Code**
+
+::: tcolorbox
+    1 - pchisq(37.5, df = 24);
+    ## [1] 0.0389818
+:::
+
+**Conclusion**\
+We reject $H_0 : \sigma^2 \leq 1.2^2$. We have evidence to indicate that
+the variance of the length of metal pipes is more than $1.2^2$.
+::::
+
+<!-- ::: tcolorbox -->
+<!-- **Assumptions:** $Y_1, Y_2, \ldots, Y_n$ constitute a random sample from -->
+<!-- a Normal distribution with $E(Y_i) = \mu$ and $V(Y_i) = \sigma^2$. -->
+
+<!-- **Hypotheses:** -->
+
+<!-- \[ -->
+<!-- \begin{aligned} -->
+<!-- & H_0 : \sigma^2 = \sigma_0^2 \\ -->
+<!-- & H_a : -->
+<!-- \begin{cases} -->
+<!-- \sigma^2 > \sigma_0^2 & \text{(upper-tailed alternative)} \\ -->
+<!-- \sigma^2 < \sigma_0^2 & \text{(lower-tailed alternative)} \\ -->
+<!-- \sigma^2 \ne \sigma_0^2 & \text{(two-tailed alternative)} -->
+<!-- \end{cases} -->
+<!-- \end{aligned} -->
+<!-- \] -->
+
+<!-- **Test statistic:** -->
+<!-- \[ -->
+<!-- \chi^2 = \frac{(n - 1)S^2}{\sigma_0^2} -->
+<!-- \] -->
+
+<!-- **Rejection Region:** -->
+
+<!-- \[ -->
+<!-- \begin{aligned} -->
+<!-- & \chi^2 > \chi^2_\alpha && \text{(upper-tailed RR)} \\ -->
+<!-- & \chi^2 < \chi^2_{1-\alpha} && \text{(lower-tailed RR)} \\ -->
+<!-- & \chi^2 > \chi^2_{\alpha/2} \quad \text{or} \quad \chi^2 < \chi^2_{1-\alpha/2} && \text{(two-tailed RR)} -->
+<!-- \end{aligned} -->
+<!-- \] -->
+
+
+<!-- ::: -->
+
+::: example
+A manufacturer of car batteries claims that the life of his batteries is
+approximately Normally distributed with a standard deviation equal to
+0.9 year. If a random sample of 10 of these batteries has a standard
+deviation of 1.2 years, do you think that $\sigma > 0.9$ year? Use a
+0.05 level of significance.
+
+**Step 1. State hypotheses.** $$\begin{aligned}
+H_0 &: \sigma^2 = 0.81 \\
+H_a &: \sigma^2 > 0.81
+\end{aligned}$$
+
+**Step 2. Compute test statistic.**\
+$S^2 = 1.44$, $n = 10$, and $$\chi^2 = \frac{(9)(1.44)}{0.81} = 16$$
+
+**Step 3. Find Rejection Region.**\
+From the chi-squared table, the null hypothesis is rejected when
+$\chi^2 > 16.919$, where $\nu = 9$ degrees of freedom.
+
+```{r fig.cap="Right-tailed chi-squared distribution with critical value at 16.919", echo=FALSE, fig.align='center', out.width='70%'}
+# Parameters
+df <- 9
+alpha <- 0.05
+x_crit <- qchisq(1 - alpha, df = df)
+
+# Data
+x <- seq(0, 30, length.out = 500)
+y <- dchisq(x, df = df)
+
+# Plot empty frame
+plot(x, y, type = "n", xlab = "", ylab = "", axes = FALSE, main = "")
+
+# Draw plain axes (no arrows)
+segments(0, 0, 30, 0, lwd = 1.5)  # X-axis
+segments(0, 0, 0, 0.1, lwd = 1.5) # Y-axis
+
+# Draw density curve
+lines(x, y, col = "black", lwd = 2)
+
+# Shade rejection region
+x_fill <- seq(x_crit, 30, length.out = 200)
+y_fill <- dchisq(x_fill, df = df)
+polygon(c(x_fill, rev(x_fill)), c(y_fill, rep(0, length(y_fill))),
+        col = "blue", border = NA)
+
+# Critical line
+abline(v = x_crit, col = "blue", lwd = 2)
+
+# Adjust label: lower position
+text(x_crit, -0.01, "16.919", cex = 1, col = "black", xpd = TRUE)
+
+# Alpha label, kept shifted right
+text(x_crit + 4, 0.015, expression(alpha == 0.05), col = "blue", cex = 1.2)
+```
+
+
+**Step 4. Conclusion.**\
+The $\chi^2$ statistic is not significant at the 0.05 level. We conclude
+that there is insufficient evidence to claim that $\sigma > 0.9$ year.
+:::
+

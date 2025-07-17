@@ -147,6 +147,7 @@
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-mean-1"><i class="fa fa-check"></i><b>6.2.1</b> On a Population Mean</a></li>
 <li class="chapter" data-level="6.2.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-proportion-1"><i class="fa fa-check"></i><b>6.2.2</b> On a Population Proportion</a></li>
+<li class="chapter" data-level="6.2.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-variance-1"><i class="fa fa-check"></i><b>6.2.3</b> On a Population Variance</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1420,6 +1421,132 @@ has been an increase in union membership.</p></li>
 ##        p 
 ##    0.13 </code></pre>
 </div>
+</div>
+</div>
+<div id="on-a-population-variance-1" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> On a Population Variance<a href="hypothesis-tests.html#on-a-population-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In many practical situations, we are interested in testing whether the
+variability in a population (i.e., its variance) has changed. This is
+especially important in quality control, finance, and experimental
+science. When we have data from a single normal population and want to
+test a claim about the population variance, we use the chi-squared
+(<span class="math inline">\(\chi^2\)</span>) test for one variance. This method assumes that the
+underlying population is normally distributed and the sample
+observations are independent.</p>
+<!-- **Hypothesis Tests for One Variance** -->
+<!-- - Data from a single normal population; independent observations -->
+<!-- - Variance unknown -->
+<!-- - Large or small sample -->
+<p>To test <span class="math inline">\(H_0 : \sigma^2 = \sigma^2_0\)</span>, our options for the null and alternative hypotheses are:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \sigma^2 = \sigma^2_0\)</span> vs. <span class="math inline">\(H_a: \sigma^2 &gt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \sigma^2 = \sigma^2_0\)</span> vs. <span class="math inline">\(H_a: \sigma^2 &lt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \sigma^2 = \sigma^2_0\)</span> vs. <span class="math inline">\(H_a: \sigma^2 \neq \mu_0\)</span></p></li>
+</ul>
+<p>We calculate the one-sample <span class="math inline">\(\chi^2\)</span>-statistic:</p>
+<p><span class="math display">\[\chi^2_* = \frac{(n - 1)s^2}{\sigma_0^2} \sim \chi^2_{n - 1}\]</span></p>
+<p>In terms of a variable <span class="math inline">\(\chi^2_{n-1}\)</span> which follows the <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
+p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
+<ul>
+<li><p><span class="math inline">\(H_a: \sigma^2 &gt; \sigma_0\)</span> is <span class="math inline">\(P(\chi^2 &gt; \chi^2_*)\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \sigma^2 &lt; \sigma_0\)</span> is <span class="math inline">\(P(\chi^2 &lt; \chi^2_*)\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \sigma^2 \ne \sigma_0\)</span> is <span class="math inline">\(2P(\chi^2 &gt; |\chi^2_*|)\)</span></p></li>
+</ul>
+<!-- **Hypothesis Test**\ -->
+<!-- $$\begin{aligned} -->
+<!-- H_0 &: \sigma^2 = \sigma_0^2 \\ -->
+<!-- H_a &: \sigma^2 \ne \sigma_0^2 \quad \text{(or } \sigma^2 > \sigma_0^2 \text{ or } \sigma^2 < \sigma_0^2\text{)} -->
+<!-- \end{aligned}$$ Assume $H_0$ is true, then: -->
+<!-- $$\text{Test statistic:} \quad \chi^2_* = \frac{(n - 1)s^2}{\sigma_0^2} \sim \chi^2_{n - 1}$$ -->
+<!-- ::: tcolorbox -->
+<!-- **Decision rules:** -->
+<!-- $H_a : \sigma^2 \ne \sigma_0^2$.\ -->
+<!-- Reject $H_0$ if $\chi^2_* > \chi^2_{n-1;\alpha/2}$ or if -->
+<!-- $\chi^2_* < \chi^2_{n-1;1-\alpha/2}$. -->
+<!-- $H_a : \sigma^2 > \sigma_0^2$.\ -->
+<!-- Reject $H_0$ if $\chi^2_* > \chi^2_{n-1;\alpha}$ or if -->
+<!-- $P[\chi^2_{n-1} > \chi^2_*]$ is too small. -->
+<!-- $H_a : \sigma^2 < \sigma_0^2$.\ -->
+<!-- Reject $H_0$ if $\chi^2_* < \chi^2_{n-1;1-\alpha}$ or if -->
+<!-- $P[\chi^2_{n-1} < \chi^2_*]$ is too small. -->
+<div class="remark">
+<p><span id="unlabeled-div-68" class="remark"><em>Remark</em>. </span>This test is robust to departures from Normality.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-69" class="example"><strong>Example 6.14  </strong></span>A company produces metal pipes of a standard length, and claims that the
+standard deviation of the length is at most 1.2 cm. One of its clients
+decides to test this claim by taking a sample of 25 pipes and checking
+their lengths. They found that the standard deviation of the sample is
+1.5 cm. Does this undermine the company’s claim? Use <span class="math inline">\(\alpha = 0.05\)</span>.<br />
+<em>Note: Assume length is Normally distributed.</em></p>
+<p><strong>Solution</strong></p>
+<p><span class="math display">\[\begin{aligned}
+H_0 &amp;: \sigma^2 \leq 1.2^2 \\
+H_a &amp;: \sigma^2 &gt; 1.2^2
+\end{aligned}\]</span></p>
+<p><span class="math display">\[\chi^2_* = \frac{(n-1)s^2}{\sigma^2} = \frac{(25-1) \cdot 1.5^2}{1.2^2} = 37.5\]</span></p>
+<p><span class="math display">\[\text{P-value} = P[\chi^2_{24} &gt; 37.5] \approx 0.0389\]</span></p>
+<p><strong>R Code</strong></p>
+<div class="tcolorbox">
+<pre><code>1 - pchisq(37.5, df = 24);
+## [1] 0.0389818</code></pre>
+</div>
+<p><strong>Conclusion</strong><br />
+We reject <span class="math inline">\(H_0 : \sigma^2 \leq 1.2^2\)</span>. We have evidence to indicate that
+the variance of the length of metal pipes is more than <span class="math inline">\(1.2^2\)</span>.</p>
+</div>
+<!-- ::: tcolorbox -->
+<!-- **Assumptions:** $Y_1, Y_2, \ldots, Y_n$ constitute a random sample from -->
+<!-- a Normal distribution with $E(Y_i) = \mu$ and $V(Y_i) = \sigma^2$. -->
+<!-- **Hypotheses:** -->
+<!-- \[ -->
+<!-- \begin{aligned} -->
+<!-- & H_0 : \sigma^2 = \sigma_0^2 \\ -->
+<!-- & H_a : -->
+<!-- \begin{cases} -->
+<!-- \sigma^2 > \sigma_0^2 & \text{(upper-tailed alternative)} \\ -->
+<!-- \sigma^2 < \sigma_0^2 & \text{(lower-tailed alternative)} \\ -->
+<!-- \sigma^2 \ne \sigma_0^2 & \text{(two-tailed alternative)} -->
+<!-- \end{cases} -->
+<!-- \end{aligned} -->
+<!-- \] -->
+<!-- **Test statistic:** -->
+<!-- \[ -->
+<!-- \chi^2 = \frac{(n - 1)S^2}{\sigma_0^2} -->
+<!-- \] -->
+<!-- **Rejection Region:** -->
+<!-- \[ -->
+<!-- \begin{aligned} -->
+<!-- & \chi^2 > \chi^2_\alpha && \text{(upper-tailed RR)} \\ -->
+<!-- & \chi^2 < \chi^2_{1-\alpha} && \text{(lower-tailed RR)} \\ -->
+<!-- & \chi^2 > \chi^2_{\alpha/2} \quad \text{or} \quad \chi^2 < \chi^2_{1-\alpha/2} && \text{(two-tailed RR)} -->
+<!-- \end{aligned} -->
+<!-- \] -->
+<!-- ::: -->
+<div class="example">
+<p><span id="exm:unlabeled-div-70" class="example"><strong>Example 6.15  </strong></span>A manufacturer of car batteries claims that the life of his batteries is
+approximately Normally distributed with a standard deviation equal to
+0.9 year. If a random sample of 10 of these batteries has a standard
+deviation of 1.2 years, do you think that <span class="math inline">\(\sigma &gt; 0.9\)</span> year? Use a
+0.05 level of significance.</p>
+<p><strong>Step 1. State hypotheses.</strong> <span class="math display">\[\begin{aligned}
+H_0 &amp;: \sigma^2 = 0.81 \\
+H_a &amp;: \sigma^2 &gt; 0.81
+\end{aligned}\]</span></p>
+<p><strong>Step 2. Compute test statistic.</strong><br />
+<span class="math inline">\(S^2 = 1.44\)</span>, <span class="math inline">\(n = 10\)</span>, and <span class="math display">\[\chi^2 = \frac{(9)(1.44)}{0.81} = 16\]</span></p>
+<p><strong>Step 3. Find Rejection Region.</strong><br />
+From the chi-squared table, the null hypothesis is rejected when
+<span class="math inline">\(\chi^2 &gt; 16.919\)</span>, where <span class="math inline">\(\nu = 9\)</span> degrees of freedom.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-20-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
+<p class="caption">
+Figure 6.6: Right-tailed chi-squared distribution with critical value at 16.919
+</p>
+</div>
+<p><strong>Step 4. Conclusion.</strong><br />
+The <span class="math inline">\(\chi^2\)</span> statistic is not significant at the 0.05 level. We conclude
+that there is insufficient evidence to claim that <span class="math inline">\(\sigma &gt; 0.9\)</span> year.</p>
 </div>
 
 </div>
