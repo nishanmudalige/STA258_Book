@@ -1765,8 +1765,20 @@ is equivalent to setting <span class="math inline">\(\Theta_0 = 0\)</span> and w
 </div>
 <div id="on-a-difference-of-means-1" class="section level3 hasAnchor" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> On a Difference of Means<a href="hypothesis-tests.html#on-a-difference-of-means-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In this section, our parameter of interest is <span class="math inline">\(\mu_1 - \mu_2\)</span>
+where <span class="math inline">\(\mu_1\)</span> is the mean from one population and
+<span class="math inline">\(\mu_2\)</span> is the mean from another population.</p>
 <div id="when-sigma_1-and-sigma_2-are-known-1" class="section level4 hasAnchor" number="6.3.1.1">
 <h4><span class="header-section-number">6.3.1.1</span> When <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> are Known<a href="hypothesis-tests.html#when-sigma_1-and-sigma_2-are-known-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To test <span class="math inline">\(H_0 : \mu_1 - \mu_2 = \mu_0\)</span>, when population variances are unknown and assumed equal,
+our options for the null and alternative hypotheses are:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 &gt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 &lt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 \neq \mu_0\)</span></p></li>
+</ul>
+<p>We calculate the <span class="math inline">\(z\)</span>-statistic:
+<span class="math display">\[z = \frac{\bar{x}_1 - \bar{x}_2 - \mu_0}{\sqrt{\displaystyle\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}\]</span></p>
 </div>
 <div id="when-sigma_1-and-sigma_2-are-not-known-1" class="section level4 hasAnchor" number="6.3.1.2">
 <h4><span class="header-section-number">6.3.1.2</span> When <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> are Not Known<a href="hypothesis-tests.html#when-sigma_1-and-sigma_2-are-not-known-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1781,7 +1793,7 @@ our options for the null and alternative hypotheses are:</p>
 <li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 \neq \mu_0\)</span></p></li>
 </ul>
 <p>We calculate the <span class="math inline">\(t\)</span>-statistic:</p>
-<p><span class="math display">\[t = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{s_p \sqrt{\displaystyle\frac{1}{n_1} + \frac{1}{n_2}}} \sim t_{n_1 + n_2 - 2}\]</span>
+<p><span class="math display">\[z = \frac{\bar{x}_1 - \bar{x}_2 - \mu_0}{\sqrt{\displaystyle\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \sim t_{\min(n_1 - 1, \, n_2 - 1)}\]</span>
 where the pooled standard deviation is defined as:
 <span class="math display">\[s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}\]</span></p>
 <p>In terms of a variable <span class="math inline">\(T\)</span> which follows a standard normal distribution,

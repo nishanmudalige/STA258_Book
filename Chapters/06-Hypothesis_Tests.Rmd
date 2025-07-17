@@ -2166,15 +2166,30 @@ is equivalent to setting $\Theta_0 = 0$ and writing the null hypothesis as
 
 ### On a Difference of Means
 
+In this section, our parameter of interest is $\mu_1 - \mu_2$
+where $\mu_1$ is the mean from one population and 
+$\mu_2$ is the mean from another population.
+
+
 
 #### When $\sigma_1$ and $\sigma_2$ are Known
 
+To test $H_0 : \mu_1 - \mu_2 = \mu_0$, when population variances are unknown and assumed equal, 
+our options for the null and alternative hypotheses are:
+
+- $H_0: \mu_1 - \mu_2 = \mu_0$ vs. $H_a: \mu_1 - \mu_2 > \mu_0$
+
+- $H_0: \mu_1 - \mu_2 = \mu_0$ vs. $H_a: \mu_1 - \mu_2 < \mu_0$
+
+- $H_0: \mu_1 - \mu_2 = \mu_0$ vs. $H_a: \mu_1 - \mu_2 \neq \mu_0$
+
+We calculate the $z$-statistic:
+$$z = \frac{\bar{x}_1 - \bar{x}_2 - \mu_0}{\sqrt{\displaystyle\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}}$$
+
+
+
 
 #### When $\sigma_1$ and $\sigma_2$ are Not Known
-
-
-
-
 
 
 #### When $\sigma_1 = \sigma_2$
@@ -2190,7 +2205,7 @@ our options for the null and alternative hypotheses are:
 
 We calculate the $t$-statistic:
 
-$$t = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{s_p \sqrt{\displaystyle\frac{1}{n_1} + \frac{1}{n_2}}} \sim t_{n_1 + n_2 - 2}$$
+$$z = \frac{\bar{x}_1 - \bar{x}_2 - \mu_0}{\sqrt{\displaystyle\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \sim t_{\min(n_1 - 1, \, n_2 - 1)}$$
 where the pooled standard deviation is defined as:
 $$s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}$$
 
