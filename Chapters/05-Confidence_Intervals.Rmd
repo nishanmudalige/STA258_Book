@@ -1082,12 +1082,25 @@ We now examine the case where we assume the standard deviation of both populatio
 Suppose that our chosen two independent samples with unequal and unknown
 population variance, then the confidence interval for $\mu_1 - \mu_2$ is
 given by:
-$$(\bar{x}_1 - \bar{x}_2)  \pm t_{df; \alpha/2} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}, \text{ where: $df = min(n_1-1, n_2-1)$.}$$
-Moreover, $s_1^2$ and $s_2^2$ are sample variance of the two chosen
+$$(\bar{x}_1 - \bar{x}_2)  \pm t_{df; \alpha/2} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$$
+where $df = \min(n_1-1, n_2-1)$ and $s_1^2$ and $s_2^2$ are sample variance of the two chosen
 groups; and $n_1$, $n_2$ are the sample size of the two chosen groups
 respectively.
 :::
 
+
+::: {.remark}
+Note a more accurate approximation of the degrees of freedom is given by
+$$df = \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}
+{
+\left( \frac{1}{n_1 - 1} \left( \frac{s_1^2}{n_1} \right)^2 \right)
++
+\left( \frac{1}{n_2 - 1} \left( \frac{s_2^2}{n_2} \right)^2 \right)
+}$$
+
+This approximation is accurate when both sample sizes $n_1$ and $n_2$
+are 5 or larger.
+:::
 
 
 #### Assumptions
@@ -1104,9 +1117,10 @@ conditions that guarantee the validity two sample confidence interval:
   $n_2 < 30$), then the smaller sample must be from a normal population;
 
 Note that if both $n_1 \ge 30$ and $n_2 \ge 30$, then normality
-assumption is not required by the Central Limit Theorem.\
-**Example (Comparing Two Population Means Managerial Success Indexes for
-Two Groups)**
+assumption is not required by the Central Limit Theorem.
+
+<!-- **Example (Comparing Two Population Means Managerial Success Indexes for -->
+<!-- Two Groups)** -->
 
 
 
@@ -1216,7 +1230,7 @@ different strategy.
 
 We may have situations 
 
-::: {#smalltbl .smalltbl #direct}
+::: {.smalltbl}
 | Sample Units | Measurement 1 (\(M_{1}\)) | Measurement 2 (\(M_{2}\)) | Difference (\(M_{2}-M_{1}\))    |
 |:------------:|:-------------------------:|:-------------------------:|:-------------------------------:|
 |            1 | \(x_{11}\)               | \(x_{12}\)               | \(x_{d1} = x_{12} - x_{11}\)      |

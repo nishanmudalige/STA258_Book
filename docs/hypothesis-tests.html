@@ -235,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-means-1"><i class="fa fa-check"></i><b>6.3.1</b> On a Difference of Means</a></li>
 <li class="chapter" data-level="6.3.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-proportions-1"><i class="fa fa-check"></i><b>6.3.2</b> On a Difference of Proportions</a></li>
-<li class="chapter" data-level="6.3.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-ratio-of-variances-1"><i class="fa fa-check"></i><b>6.3.3</b> On a Ratio of Variances</a></li>
+<li class="chapter" data-level="6.3.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:RatioVars"><i class="fa fa-check"></i><b>6.3.3</b> On a Ratio of Variances</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-on-paired-data"><i class="fa fa-check"></i><b>6.4</b> Hypothesis Tests on Paired Data</a></li>
 </ul></li>
@@ -262,14 +262,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.1</span> Introduction<a href="hypothesis-tests.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A hypothesis test is a statistical method used to make inferences about a population based on sample data. It involves formulating a null hypothesis and an alternative hypothesis, calculating a test statistic, and determining the likelihood of observing the data under the null hypothesis. Each of these terms will be explained in more detail below.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-50" class="definition"><strong>Definition 6.1  </strong></span>An inferential procedure to determine whether there is sufficient
+<p><span id="def:unlabeled-div-51" class="definition"><strong>Definition 6.1  </strong></span>An inferential procedure to determine whether there is sufficient
 evidence to suggest a condition for a population parameter using
 statistics from a sample.</p>
 </div>
 <p>The main goal of hypothesis testing is to assess the strength of evidence against a null hypothesis, which is a statement of no effect or no difference. The alternative hypothesis represents the research hypothesis or the condition we are interested in testing.</p>
 <p>One of the steps in hypothesis testing is to calculate a p-value, which quantifies the evidence against the null hypothesis. The p-value is the probability of observing a test statistic at least as extreme as the one calculated from the sample data, assuming that the null hypothesis is true.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-51" class="definition"><strong>Definition 6.2  </strong></span>The p-value of a hypothesis test is the probability of observing a test statistic at least as extreme as the one calculated in step 3, assuming that the null hypothesis is true by pure chance alone.</p>
+<p><span id="def:unlabeled-div-52" class="definition"><strong>Definition 6.2  </strong></span>The p-value of a hypothesis test is the probability of observing a test statistic at least as extreme as the one calculated in step 3, assuming that the null hypothesis is true by pure chance alone.</p>
 </div>
 <p>The procedure to conduct any hypothesis often follows a standard sequence of steps.</p>
 <div id="steps" class="section level5 unnumbered unlisted hasAnchor">
@@ -308,7 +308,7 @@ the study, and variability.</p>
 </tr>
 </table>
 <div class="remark">
-<p><span id="unlabeled-div-52" class="remark"><em>Remark</em>. </span>Note that <span class="math inline">\(\Theta\)</span> can represent a combination of parameters,
+<p><span id="unlabeled-div-53" class="remark"><em>Remark</em>. </span>Note that <span class="math inline">\(\Theta\)</span> can represent a combination of parameters,
 such as <span class="math inline">\(\Theta = \Theta_1 - \Theta_2\)</span>
 or <span class="math inline">\(\Theta = \Theta_1 / \Theta_2\)</span>.</p>
 </div>
@@ -411,11 +411,11 @@ vs.
 </tr>
 </table>
 <div class="remark">
-<p><span id="unlabeled-div-53" class="remark"><em>Remark</em>. </span>The first two hypothesis tests above are referred to as one-sided or one-tailed tests.
+<p><span id="unlabeled-div-54" class="remark"><em>Remark</em>. </span>The first two hypothesis tests above are referred to as one-sided or one-tailed tests.
 and the third hypothesis test is referred to as a two-sided or two-tailed test.</p>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-54" class="remark"><em>Remark</em>. </span>The one-sided hypothesis test
+<p><span id="unlabeled-div-55" class="remark"><em>Remark</em>. </span>The one-sided hypothesis test
 <span class="math display">\[\begin{array}{lcl}
 H_0: \Theta = \Theta_0 &amp; \quad  &amp; H_a: \Theta &gt; \Theta_0\\
 \end{array}\]</span>
@@ -435,7 +435,7 @@ H_0: \Theta \geq \Theta_0 &amp; \quad  &amp; H_a: \Theta &lt; \Theta_0\\
 <p><strong>Step 3: Calculate an appropriate test statistic</strong></p>
 <p>Depends on the hypothesis test conducted and the information available.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-55" class="definition"><strong>Definition 6.3  </strong></span><span class="math display">\[\text{test statistic} = \frac{\text{(a statistic)} - \text{(hypothesized value of parameters under } H_0 \text{)}}{\text{standard error of statistic}}\]</span></p>
+<p><span id="def:unlabeled-div-56" class="definition"><strong>Definition 6.3  </strong></span><span class="math display">\[\text{test statistic} = \frac{\text{(a statistic)} - \text{(hypothesized value of parameters under } H_0 \text{)}}{\text{standard error of statistic}}\]</span></p>
 </div>
 <p>The test statistic follows a reference distribution.
 Common distributions which thetest statistic follows are the standard normal distrubution, <span class="math inline">\(t\)</span>-distribution,
@@ -616,7 +616,7 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(Z &gt; |z^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-56" class="example"><strong>Example 6.1  </strong></span>Deer are a common sight on the UTM campus. Suppose an ecologist is
+<p><span id="exm:unlabeled-div-57" class="example"><strong>Example 6.1  </strong></span>Deer are a common sight on the UTM campus. Suppose an ecologist is
 interested in the average mass of adult white-tailed does (female deer)
 around the Mississauga campus to determine whether they are healthy for
 the upcoming winter. The ecologist captures a sample of 36 adult females
@@ -688,7 +688,7 @@ the null hypothesis. We conclude that the average mass of does this
 winter is significantly less than 45 kg.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-57" class="example"><strong>Example 6.2  </strong></span>Diet colas use artificial sweeteners to avoid sugar. These sweeteners
+<p><span id="exm:unlabeled-div-58" class="example"><strong>Example 6.2  </strong></span>Diet colas use artificial sweeteners to avoid sugar. These sweeteners
 gradually lose their sweetness over time. Manufacturers therefore test
 new colas for loss of sweetness before marketing them. Trained tasters
 sip the cola along with drinks of standard sweetness and score the cola
@@ -771,7 +771,7 @@ p_value
 </div>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-58" class="example"><strong>Example 6.3  </strong></span>The National Center for Health Statistics reports that the systolic
+<p><span id="exm:unlabeled-div-59" class="example"><strong>Example 6.3  </strong></span>The National Center for Health Statistics reports that the systolic
 blood pressure for males 35 to 44 years of age has mean 128 and standard
 deviation 15.</p>
 <p>The medical director of a large company looks at the medical records of
@@ -811,7 +811,7 @@ differ from other men.</p></li>
 <!-- or your computer can do Steps 2 and 3 by following a recipe. -->
 <!-- ::: -->
 <div class="example">
-<p><span id="exm:unlabeled-div-59" class="example"><strong>Example 6.4  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-60" class="example"><strong>Example 6.4  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: \mu = 20 \\
 H_a &amp;: \mu &lt; 20
@@ -834,7 +834,7 @@ Since the p-value <span class="math inline">\(= 0.0169 &lt; \alpha = 0.05\)</spa
 </ol>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-60" class="example"><strong>Example 6.5  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 6.5  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: \mu = 25 \\
 H_a &amp;: \mu &gt; 25
@@ -859,7 +859,7 @@ We conclude that we don’t have enough evidence to claim that
 </ol>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 6.6  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-62" class="example"><strong>Example 6.6  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: \mu = 15 \\
 H_a &amp;: \mu \ne 15
@@ -915,7 +915,7 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |t^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-62" class="example"><strong>Example 6.7  </strong></span>Researchers studied the physiological effects of laughter. They measured
+<p><span id="exm:unlabeled-div-63" class="example"><strong>Example 6.7  </strong></span>Researchers studied the physiological effects of laughter. They measured
 heart rates (in beats per minute) of <strong><span class="math inline">\(n = 25\)</span></strong> subjects (ages 18–34)
 while they laughed. They obtained:
 <span class="math display">\[\bar{x} = 73.5, \quad s = 6, \quad \alpha = 0.05\]</span> It is well known
@@ -944,7 +944,7 @@ the null that the mean is 71 bpm in favor of the alternative that the
 mean is greater than 71 bpm for people who are laughing.</em></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-63" class="example"><strong>Example 6.8  </strong></span>A researcher is asked to test the hypothesis that the average price of a
+<p><span id="exm:unlabeled-div-64" class="example"><strong>Example 6.8  </strong></span>A researcher is asked to test the hypothesis that the average price of a
 2-star (CAA rating) motel room has decreased since last year. Last year,
 a study showed that the prices were Normally distributed with a mean of
 $89.50.</p>
@@ -1010,7 +1010,7 @@ H_a : \mu \ne \mu_0 &amp;\quad \text{is} \quad 2P(T \ge |t^\ast|)
 are approximately correct for large <span class="math inline">\(n\)</span> in other cases.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-64" class="example"><strong>Example 6.9  </strong></span>We are conducting a two-sided one-sample <span class="math inline">\(t\)</span>-test for the hypotheses:
+<p><span id="exm:unlabeled-div-65" class="example"><strong>Example 6.9  </strong></span>We are conducting a two-sided one-sample <span class="math inline">\(t\)</span>-test for the hypotheses:
 <span class="math display">\[\begin{aligned}
 H_0 &amp;: \mu = 64 \\
 H_a &amp;: \mu \ne 64
@@ -1341,7 +1341,7 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <!-- 4.  Find the p-value of the test-statistic. -->
 <!-- 5.  State (if any) a conclusion. -->
 <div class="example">
-<p><span id="exm:unlabeled-div-65" class="example"><strong>Example 6.10  </strong></span><strong>Example of Hypothesis Testing for a Proportion</strong></p>
+<p><span id="exm:unlabeled-div-66" class="example"><strong>Example 6.10  </strong></span><strong>Example of Hypothesis Testing for a Proportion</strong></p>
 <p>In 1980s, it was generally believed that congenital abnormalities affect
 5% of the nation’s children. Some people believe that the increase in
 the number of chemicals in the environment in recent years has led to an
@@ -1426,7 +1426,7 @@ abnormalities.</p>
 </div>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-66" class="example"><strong>Example 6.11  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-67" class="example"><strong>Example 6.11  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: p = 0.75 \\
 H_a &amp;: p &lt; 0.75
@@ -1453,7 +1453,7 @@ P-value <span class="math inline">\(&gt; \alpha = 0.05\)</span>, do not reject <
 P-value <span class="math inline">\(&lt; \alpha = 0.05\)</span>, reject <span class="math inline">\(H_0\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-67" class="example"><strong>Example 6.12  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-68" class="example"><strong>Example 6.12  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: p = 0.20 \\
 H_a &amp;: p \ne 0.20
@@ -1475,7 +1475,7 @@ conclusion?</p></li>
 </ul>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-68" class="example"><strong>Example 6.13  </strong></span>A study found that, in 2005, 12.5% of U.S. workers belonged to unions.
+<p><span id="exm:unlabeled-div-69" class="example"><strong>Example 6.13  </strong></span>A study found that, in 2005, 12.5% of U.S. workers belonged to unions.
 Suppose a sample of 400 U.S. workers is collected in 2006 to determine
 whether union efforts to organize have increased union membership.</p>
 <ul>
@@ -1563,10 +1563,10 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <!-- Reject $H_0$ if $\chi^2_* < \chi^2_{n-1;1-\alpha}$ or if -->
 <!-- $P[\chi^2_{n-1} < \chi^2_*]$ is too small. -->
 <div class="remark">
-<p><span id="unlabeled-div-69" class="remark"><em>Remark</em>. </span>This test is robust to departures from Normality.</p>
+<p><span id="unlabeled-div-70" class="remark"><em>Remark</em>. </span>This test is not robust to departures from Normality.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-70" class="example"><strong>Example 6.14  </strong></span>A company produces metal pipes of a standard length, and claims that the
+<p><span id="exm:unlabeled-div-71" class="example"><strong>Example 6.14  </strong></span>A company produces metal pipes of a standard length, and claims that the
 standard deviation of the length is at most 1.2 cm. One of its clients
 decides to test this claim by taking a sample of 25 pipes and checking
 their lengths. They found that the standard deviation of the sample is
@@ -1617,7 +1617,7 @@ the variance of the length of metal pipes is more than <span class="math inline"
 <!-- \] -->
 <!-- ::: -->
 <div class="example">
-<p><span id="exm:unlabeled-div-71" class="example"><strong>Example 6.15  </strong></span>A manufacturer of car batteries claims that the life of his batteries is
+<p><span id="exm:unlabeled-div-72" class="example"><strong>Example 6.15  </strong></span>A manufacturer of car batteries claims that the life of his batteries is
 approximately Normally distributed with a standard deviation equal to
 0.9 year. If a random sample of 10 of these batteries has a standard
 deviation of 1.2 years, do you think that <span class="math inline">\(\sigma &gt; 0.9\)</span> year? Use a
@@ -1744,7 +1744,7 @@ vs.
 </tr>
 </table>
 <div class="remark">
-<p><span id="unlabeled-div-72" class="remark"><em>Remark</em>. </span></p>
+<p><span id="unlabeled-div-73" class="remark"><em>Remark</em>. </span></p>
 A very common test is to determine whether <span class="math inline">\(\Theta_1 = \Theta_2\)</span>.
 Therefore, testing
 <table class="hypothesis-table">
@@ -1773,9 +1773,549 @@ is equivalent to setting <span class="math inline">\(\Theta_0 = 0\)</span> and w
 </div>
 <div id="when-sigma_1-sigma_2-1" class="section level4 hasAnchor" number="6.3.1.3">
 <h4><span class="header-section-number">6.3.1.3</span> When <span class="math inline">\(\sigma_1 = \sigma_2\)</span><a href="hypothesis-tests.html#when-sigma_1-sigma_2-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To test <span class="math inline">\(H_0 : \mu_1 - \mu_2 = \mu_0\)</span>, when population variances are unknown and assumed equal,
+our options for the null and alternative hypotheses are:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 &gt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 &lt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 \neq \mu_0\)</span></p></li>
+</ul>
+<p>We calculate the <span class="math inline">\(t\)</span>-statistic:</p>
+<p><span class="math display">\[t = \frac{(\bar{x}_1 - \bar{x}_2) - 0}{s_p \sqrt{\displaystyle\frac{1}{n_1} + \frac{1}{n_2}}} \sim t_{n_1 + n_2 - 2}\]</span>
+where the pooled standard deviation is defined as:
+<span class="math display">\[s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}\]</span></p>
+<p>In terms of a variable <span class="math inline">\(T\)</span> which follows a standard normal distribution,
+the p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
+<ul>
+<li><p><span class="math inline">\(H_a: \mu_1 - \mu_2 &gt; \mu_0\)</span> is <span class="math inline">\(P(T &gt; z^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu_1 - \mu_2 &lt; \mu_0\)</span> is <span class="math inline">\(P(T &lt; z^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu_1 - \mu_2 \neq \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |z^{*}|)\)</span></p></li>
+</ul>
+<div class="example">
+<p><span id="exm:unlabeled-div-74" class="example"><strong>Example 6.16  </strong></span>Comparing Two Population Means Managerial Success Indexes for Two Groups
+(With Equal Variances Assumed)</p>
+<p>Behavioural researchers have developed an index designed to measure
+managerial success. The index (measured on a 100-point scale) is based
+on the manager’s length of time in the organization and their level
+within the term; the higher the index, the more successful the manager.
+Suppose a researcher wants to compare the average index for the two
+groups of managers at a large manufacturing plant. Managers in group 1
+engage in <strong>high volume of interactions</strong> with people outside the
+managers’ work unit (such interaction include phone and face-to-face
+meetings with customers and suppliers, outside meetings, and public
+relation work). Managers in group 2 <strong>rarely interact</strong> with people
+outside their work unit. Independent random samples of 12 and 15
+managers are selected from groups 1 and 2, respectively, and success
+index of each is recorded.</p>
+<p><strong>Response variable:</strong> Managerial Success Indexes (quantitative,
+continuous, 0–100 scale)</p>
+<p><strong>Explanatory variable:</strong> Type of group (nominal categorical: <em>Group 1 =
+interaction with outsiders</em>, <em>Group 2 = fewer interactions</em>)</p>
+<p><strong>R Code</strong></p>
+<div class="tcolorbox">
+<pre><code># Importing data file into R
+success = read.csv(file = &quot;success.csv&quot;, header = TRUE);
+
+# Getting names of variables
+names(success);
+
+# Seeing first few observations
+head(success);
+
+# Attaching data file
+attach(success);</code></pre>
+</div>
+<p><strong>R Code</strong></p>
+<div class="tcolorbox">
+<pre><code>## [1] &quot;Success_Index&quot; &quot;Group&quot;
+##   Success_Index Group
+## 1            65     1
+## 2            66     1
+## 3            58     1
+## 4            70     1
+## 5            78     1
+## 6            53     1</code></pre>
+</div>
+<p><strong>R code (Descriptive Statistics)</strong></p>
+<div class="tcolorbox">
+<pre><code># loading library mosaic
+library(mosaic)
+
+favstats(Success_Index ~ Group)</code></pre>
+</div>
+<p><strong>R Code (Descriptive Statistics)</strong></p>
+<div class="tcolorbox">
+<pre><code>## .group min   Q1 median   Q3 max     mean       sd  n
+##       1  53 62.25  65.50 69.25  78 65.33333 6.610368 12
+##       2  34 42.50  50.00 54.50  68 49.46667 9.334014 15</code></pre>
+</div>
+<p><strong>R Code (Descriptive Statistics)</strong></p>
+<div class="tcolorbox">
+<pre><code>summary(Success_Index[Group == 1]);
+length(Success_Index[Group == 1]);
+sd(Success_Index[Group == 1]);
+
+summary(Success_Index[Group == 2]);
+length(Success_Index[Group == 2]);
+sd(Success_Index[Group == 2]);</code></pre>
+</div>
+<p>Note: Group 1 = “interaction with outsiders” and Group 2 = “fewer
+interactions”.</p>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>##  Min.  1st Qu.  Median    Mean  3rd Qu.    Max. 
+##  53.00   62.25   65.50   65.33   69.25   78.00 
+## [1] 12
+## [1] 6.610368
+
+##  Min.  1st Qu.  Median    Mean  3rd Qu.    Max. 
+##  34.00   42.50   50.00   49.47   54.50   68.00 
+## [1] 15
+## [1] 9.334014</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (Group 1: “interaction with outsiders”):</strong></p>
+<div class="tcolorbox">
+<pre><code>stem(Success_Index[Group == 1]);</code></pre>
+</div>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>## 
+##  The decimal point is 1 digit(s) to the right of the |
+## 
+##  5 | 38
+##  6 | 0335689
+##  7 | 018</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (Group 2: “fewer interactions”):</strong></p>
+<div class="tcolorbox">
+<pre><code>stem(Success_Index[Group == 2]);</code></pre>
+</div>
+<p><strong>R Output</strong></p>
+<div class="tcolorbox">
+<pre><code>## 
+##  The decimal point is 1 digit(s) to the right of the |
+## 
+##  3 | 46
+##  4 | 22368
+##  5 | 023367
+##  6 | 28</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (Group 1: “interaction with outsiders”):</strong></p>
+<div class="tcolorbox">
+<pre><code>qqnorm(Success_Index[Group == 1]);
+qqline(Success_Index[Group == 1]);</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-21-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
+<p class="caption">
+Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
+</p>
+</div>
+<p><strong>Nearly Normal Condition (Group 2: “fewer interactions”):</strong></p>
+<div class="tcolorbox">
+<pre><code>qqnorm(Success_Index[Group == 2]);
+qqline(Success_Index[Group == 2]);</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-22-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
+<p class="caption">
+Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
+</p>
+</div>
+</div>
+<p><strong>Nearly Normal Condition:</strong></p>
+<div class="tcolorbox">
+<pre><code>boxplot(Success_Index ~ Group, col = c(&quot;red&quot;, &quot;blue&quot;))</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-23-1.png" alt="Boxplot of Success Index by Group" width="60%" />
+<p class="caption">
+Figure 6.9: Boxplot of Success Index by Group
+</p>
+</div>
+<p><span id="fig:boxplot-success" label="fig:boxplot-success"></span>
+:::</p>
+<p><strong>Boxplot with <code>ggplot2</code>:</strong></p>
+<div class="tcolorbox">
+<pre><code># loading library;
+library(ggplot2);
+
+# converting a numeric variable into factor (categorical data)
+group &lt;- factor(Group);
+
+# bp: just a name (not code) to store boxplots;
+bp &lt;- ggplot(success,
+             aes(x = group, y = Success_Index, fill = group));
+
+our.labs &lt;- c(&quot;Interaction with Outsiders&quot;, &quot;Fewer Interactions&quot;);
+
+bp +
+  geom_boxplot() +
+  scale_x_discrete(labels = our.labs);</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-24-1.png" alt="Boxplot of Success Index by Group using ggplot2" width="60%" />
+<p class="caption">
+Figure 6.10: Boxplot of Success Index by Group using ggplot2
+</p>
+</div>
+<p><strong>Checking the Assumptions and Conditions</strong></p>
+<p><strong>Independent Group Assumption:</strong> The success index in group 1 is
+unrelated to the success index in group 2.</p>
+<p><strong>Randomization Condition:</strong> The 27 managers were randomly and
+independently selected (12 for group 1, and 15 for group 2).</p>
+<p><strong>Nearly Normal Condition:</strong> The two boxplots of success indexes do not
+show skewness; the two stemplots/histograms of success indexes are
+unimodal, fairly symmetric and approximately bell-shaped. Q–Q plots
+also suggest the normality assumption is reasonable.</p>
+<p><strong>Equal Variances Assumption:</strong> The two boxplots of success indexes
+appear to have the same spread; thus, the samples appear to have come
+from populations with approximately the same variance.</p>
+<p>Since the conditions are satisfied, it is appropriate to construct a <span class="math inline">\(t\)</span>
+confidence interval with<br />
+<span class="math inline">\(df = 12 + 15 - 2 = 25\)</span>.<br />
+<strong>From the data, the following statistics were calculated:</strong></p>
+<p><span class="math display">\[\begin{aligned}
+n_1 &amp;= 12 &amp;\quad n_2 &amp;= 15 \\
+\bar{x}_1 &amp;= 65.33 &amp;\quad \bar{x}_2 &amp;= 49.47 \\
+s_1^2 &amp;= 6.61^2 &amp;\quad s_2^2 &amp;= 9.33^2
+\end{aligned}\]</span></p>
+<p><strong>The pooled variance estimator is:</strong></p>
+<p><span class="math display">\[s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}
+= \frac{(12 - 1)(6.61^2) + (15 - 1)(9.33^2)}{12 + 15 - 2}
+= 67.97\]</span></p>
+<p><strong>The number of degrees of freedom is:</strong>
+<span class="math display">\[\nu = n_1 + n_2 - 2 = 12 + 15 - 2 = 25\]</span></p>
 </div>
 <div id="when-sigma_1-neq-sigma_2-1" class="section level4 hasAnchor" number="6.3.1.4">
 <h4><span class="header-section-number">6.3.1.4</span> When <span class="math inline">\(\sigma_1 \neq \sigma_2\)</span><a href="hypothesis-tests.html#when-sigma_1-neq-sigma_2-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>To test <span class="math inline">\(H_0 : \mu_1 - \mu_2 = \mu_0\)</span>, when population variances are unknown and assumed different,
+our options for the null and alternative hypotheses are:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 &gt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 &lt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu_1 - \mu_2 = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_1 - \mu_2 \neq \mu_0\)</span></p></li>
+</ul>
+<p>We calculate the <span class="math inline">\(t\)</span>-statistic:</p>
+<p><span class="math display">\[t^* = \frac{\bar{x}_1 - \bar{x}_2 - \mu_0}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} \sim t_{\min(n_1 -1, n_2 -1)}\]</span></p>
+<p>In terms of a variable <span class="math inline">\(T\)</span> which follows a standard normal distribution,
+the p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
+<ul>
+<li><p><span class="math inline">\(H_a: \mu_1 - \mu_2 &gt; \mu_0\)</span> is <span class="math inline">\(P(T &gt; z^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu_1 - \mu_2 &lt; \mu_0\)</span> is <span class="math inline">\(P(T &lt; z^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu_1 - \mu_2 \neq \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |z^{*}|)\)</span></p></li>
+</ul>
+<div class="remark">
+<p><span id="unlabeled-div-75" class="remark"><em>Remark</em>. </span>Note a more accurate approximation of the degrees of freedom is given by
+<span class="math display">\[df = \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}
+{
+\left( \frac{1}{n_1 - 1} \left( \frac{s_1^2}{n_1} \right)^2 \right)
++
+\left( \frac{1}{n_2 - 1} \left( \frac{s_2^2}{n_2} \right)^2 \right)
+}\]</span></p>
+<p>This approximation is accurate when both sample sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>
+are 5 or larger.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-76" class="example"><strong>Example 6.17  </strong></span>“Conservationists have despaired over destruction of tropical rain
+forest by logging, clearing, and burning”. These words begin a report on
+a statistical study of the effects of logging in Borneo. Here are data
+on the number of tree species in 12 unlogged forest plots and 9 similar
+plots logged 8 years earlier:</p>
+<p>Unlogged: 22 18 22 20 15 21 13 13 19 13 19 15<br />
+Logged : 17 4 18 14 18 15 15 10 12</p>
+<p>Does logging significantly reduce the mean number of species in a plot
+after 8 years? State the hypotheses and do a t test. Is the result
+significant at the 5% level?<br />
+<strong>Solution:</strong><br />
+1. State hypotheses. <span class="math inline">\(H_0: \mu_1 = \mu_2\)</span> vs. <span class="math inline">\(H_a: \mu_1 &gt; \mu_2\)</span>,
+where <span class="math inline">\(\mu_1\)</span> is the mean number of species in unlogged plots and
+<span class="math inline">\(\mu_2\)</span> is the mean number of species in plots logged 8 years earlier.</p>
+<p>2. Test statistic.
+<span class="math display">\[t^* \;=\;\frac{\bar x_1 - \bar x_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}
+\;=\;2.1140\]</span>
+<span class="math display">\[(\bar x_1 = 17.5,\;\bar x_2 = 13.6666,\;s_1 = 3.5290,\;s_2 = 4.5,\;n_1 = 12,\;n_2 = 9)\]</span></p>
+<p>3. P-value. Using Table, we have <span class="math inline">\(df = 8\)</span>, and
+<span class="math inline">\(0.025 &lt; \text{P-value} &lt; 0.05\)</span>.</p>
+<p>4. Conclusion. Since P-value <span class="math inline">\(&lt; 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is strong
+evidence that the mean number of species in unlogged plots is greater
+than that for logged plots 8 years after logging.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-77" class="example"><strong>Example 6.18  </strong></span>A company that sells educational materials reports statistical studies
+to convince customers that its materials improve learning. One new
+product supplies “directed reading activities” for classroom use. These
+activities should improve the reading ability of elementary school
+pupils.</p>
+<p>A consultant arranges for a third-grade class of 21 students to take
+part in these activities for an eight-week period. A control classroom
+of 23 third-graders follows the same curriculum without the activities.
+At the end of the eight weeks, all students are given a Degree of
+Reading Power (DRP) test, which measures the aspects of reading ability
+that the treatment is designed to improve. The data appear in the
+following table.</p>
+<div class="smalltbl">
+<table style="width:83%;">
+<colgroup>
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th colspan="4" align="center"><strong>Treatment</strong></th>
+<th colspan="4" align="center"><strong>Control</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">24</td>
+<td align="center">61</td>
+<td align="center">59</td>
+<td align="center">46</td>
+<td align="center">42</td>
+<td align="center">33</td>
+<td align="center">46</td>
+<td align="center">37</td>
+</tr>
+<tr class="even">
+<td align="center">43</td>
+<td align="center">44</td>
+<td align="center">52</td>
+<td align="center">43</td>
+<td align="center">43</td>
+<td align="center">41</td>
+<td align="center">10</td>
+<td align="center">42</td>
+</tr>
+<tr class="odd">
+<td align="center">58</td>
+<td align="center">67</td>
+<td align="center">62</td>
+<td align="center">57</td>
+<td align="center">55</td>
+<td align="center">19</td>
+<td align="center">17</td>
+<td align="center">55</td>
+</tr>
+<tr class="even">
+<td align="center">71</td>
+<td align="center">49</td>
+<td align="center">54</td>
+<td align="center"></td>
+<td align="center">26</td>
+<td align="center">54</td>
+<td align="center">60</td>
+<td align="center">28</td>
+</tr>
+<tr class="odd">
+<td align="center">43</td>
+<td align="center">53</td>
+<td align="center">57</td>
+<td align="center"></td>
+<td align="center">62</td>
+<td align="center">20</td>
+<td align="center">53</td>
+<td align="center">48</td>
+</tr>
+<tr class="even">
+<td align="center">49</td>
+<td align="center">56</td>
+<td align="center">33</td>
+<td align="center"></td>
+<td align="center">37</td>
+<td align="center">85</td>
+<td align="center">42</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Because we hope to show that the treatment (Group 1) is better than the
+control (Group 2), the hypotheses are:</p>
+<p><span class="math display">\[H_0 : \mu_1 = \mu_2\]</span> <span class="math display">\[H_a : \mu_1 &gt; \mu_2\]</span></p>
+<div class="tcolorbox">
+<pre><code># Step 1. Entering data
+treatment = c(24, 61, 59, 46, 43, 44, 52, 43, 58, 67, 62, 57, 
+              71, 49, 54, 43, 53, 57, 49, 56, 33);
+control = c(42, 33, 46, 37, 43, 41, 10, 42, 55, 19, 17, 55, 
+            26, 54, 60, 28, 62, 20, 53, 48, 37, 85, 42);</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (treatment):</strong></p>
+<div class="tcolorbox">
+<pre><code># Making stemplot;
+
+stem(treatment);</code></pre>
+</div>
+<div class="tcolorbox">
+<pre><code>##
+## The decimal point is 1 digit(s) to the right of the |
+##
+## 2 | 4
+## 3 | 3
+## 4 | 3334699
+## 5 | 23467789
+## 6 | 127
+## 7 | 1</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (control):</strong></p>
+<div class="tcolorbox">
+<pre><code># Making stemplot;
+
+stem(control);</code></pre>
+</div>
+<div class="tcolorbox">
+<pre><code>##
+## The decimal point is 1 digit(s) to the right of the |
+##
+## 0 | 079
+## 2 | 068377
+## 4 | 12223683455
+## 6 | 02
+## 8 | 5</code></pre>
+</div>
+<p><strong>Nearly Normal Condition (treatment):</strong></p>
+<div class="tcolorbox">
+<pre><code># Making Q-Q plot;
+qqnorm(treatment, pch=19, col=&quot;red&quot;, main=&quot;Treatment&quot;);
+qqline(treatment, lty=2);</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-25-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
+<p class="caption">
+Figure 6.11: Q-Q Plot for Treatment Group
+</p>
+</div>
+<p><strong>Nearly Normal Condition (control):</strong></p>
+<div class="tcolorbox">
+<pre><code># Making Q-Q plot;
+qqnorm(treatment, pch=19, col=&quot;red&quot;, main=&quot;Control&quot;);
+qqline(control, lty=2);</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-26-1.png" alt="Q-Q Plot for Control Group" width="60%" />
+<p class="caption">
+Figure 6.12: Q-Q Plot for Control Group
+</p>
+</div>
+<p>Stemplots suggest that there is a mild outlier in the control group but
+no deviation from Normality serious enough to prevent us from using t
+procedures. Normal Q-Q plots for both groups confirm that both are
+roughly Normal. The summary statistics are:</p>
+<div class="tcolorbox">
+<pre><code>summary(treatment);
+
+## Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 24.00   44.00   53.00   51.48   58.00   71.00
+
+summary(control);
+
+## Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 10.00   30.50   42.00   41.52   53.50   85.00</code></pre>
+</div>
+<div class="tcolorbox">
+<pre><code># Step 1. Entering data;
+
+treatment = c(24, 61, 59, 46, 43, 44, 52, 43, 58, 67, 62, 57, 
+              71, 49, 54, 43, 53, 57, 49, 56, 33);
+              
+control = c(42, 33, 46, 37, 43, 41, 10, 42, 55, 19, 17, 55, 
+            26, 54, 60, 28, 62, 20, 53, 48, 37, 85, 42);
+
+# Step 2. Hypothesis Test
+
+t.test(treatment, control, alternative=&quot;greater&quot;)</code></pre>
+</div>
+<p><strong>Hypothesis Test (using R)</strong></p>
+<div class="tcolorbox">
+<pre><code>##
+##  Welch Two Sample t-test
+## 
+## data:  treatment and control
+## t = 2.3106, df = 37.855, p-value = 0.01305
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  2.333784      Inf
+## sample estimates:
+## mean of x mean of y 
+##    51.47619 41.52174 </code></pre>
+</div>
+<p><strong>Hypothesis Test (using table)</strong></p>
+<div class="tcolorbox">
+<pre><code>round (mean(treatment) ,2);
+
+##[1] 51.48
+
+round (sd(treatment) ,2);
+
+##[1] 11.01
+
+round (mean(control) ,2);
+
+##[1] 41.52
+
+round (sd(control) ,2);
+
+##[1] 17.15</code></pre>
+</div>
+<p>Test statistic.<br />
+<span class="math display">\[t^* = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} = 2.31\]</span>
+<span class="math display">\[\quad
+(\bar{x}_1 = 51.48, \, \bar{x}_2 = 41.52, \, s_1 = 11.01, \, s_2 = 17.15,
+\quad n_1 = 21 \text{ and } n_2 = 23)\]</span></p>
+<p>The conservative approach uses the <em>t</em>(20) distribution. The P-value for
+the one-sided test is <span class="math display">\[\text{P-value} = P\bigl(T \geq 2.31 \bigr)\]</span>
+Comparing <span class="math inline">\(t = 2.31\)</span> with the entries in Table 5 for 20 degrees of
+freedom, we see that <span class="math display">\[0.01 &lt; \text{P-value} &lt; 0.025.\]</span></p>
+<p>Since our P-value is “small”, we reject the null hypothesis (Note that
+we would reject <span class="math inline">\(H_0\)</span> at the 2.5% significance level). The data strongly
+suggest that directed reading activity improves the DRP score.</p>
+<p>The design of the DRP study is not ideal. Random assignment of students
+was not possible in a school environment, so existing third-grade
+classes were used. The effect of the reading programs is therefore
+confounded with any other differences between the two classes. The
+classes were chosen to be as similar as possible in variables such as
+the social and economic status of the students. Pretesting showed that
+the two classes were on the average quite similar in reading ability at
+the beginning of the experiment. To avoid the effect of two different
+teachers, the same teacher taught reading in both classes during the
+eight-week period of the experiment. We can therefore be somewhat
+confident that our two-sample procedure is detecting the effect of the
+treatment and not some other difference between the classes.</p>
+</div>
+<!-- ::: nt -->
+<!-- **Why do we use hypothesis tests?** -->
+<!-- To conduct tests on parameters and to quantify the degree of certainty -->
+<!-- with probability. -->
+<!-- The smaller the p-value, the stronger the evidence against $H_0$ -->
+<!-- (provided assumptions are met). -->
+<!-- ::: -->
+<!-- **Understanding Significance Levels** -->
+<!-- Suppose you have the following limited information: -->
+<!-- - A test was statistically significant at the 5% level. -->
+<!-- We **cannot** make this conclusion for certain. That is, -->
+<!-- $$p\text{-value} < 0.05 \quad \not\Rightarrow \quad p\text{-value} < 0.01.$$ -->
+<!-- - A test was statistically significant at the 1% level. -->
+<!-- Yes! Because $$p\text{-value} < 0.01 < 0.05.$$ -->
+<div class="remark">
+<p><span id="unlabeled-div-78" class="remark"><em>Remark</em>. </span><strong>The Fold Rule</strong></p>
+<p>A rule which can be used to quickly determine whether population
+variances are equal or unequal using sample variances.</p>
+<p>If <span class="math display">\[\frac{\max(s_1, s_2)}{\min(s_1, s_2)} &lt; \sqrt{2}
+\quad \text{then we can consider } \sigma_1^2 = \sigma_2^2\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\frac{\max(s_1^2, s_2^2)}{\min(s_1^2, s_2^2)} &lt; 2
+\quad \text{then we can consider } \sigma_1^2 = \sigma_2^2\]</span></p>
+<p>This is quick and simple technique.
+It is only a rule and not as strong as conducting the hypothesis tests for equality of varianges</p>
+<p><span class="math display">\[H_0: \sigma_1^2 = \sigma_2^2 \quad \text{vs} \quad H_a: \sigma_1^2 \neq \sigma_2^2\]</span>
+which was covered in Section <a href="hypothesis-tests.html#sec:RatioVars">6.3.3</a></p>
+</div>
 </div>
 <div id="assumptions-5" class="section level4 hasAnchor" number="6.3.1.5">
 <h4><span class="header-section-number">6.3.1.5</span> Assumptions<a href="hypothesis-tests.html#assumptions-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1792,7 +2332,7 @@ independent groups as well.</p>
 <li><p><span class="math inline">\(H_0: p_1 - p_2 = p_0\)</span> vs. <span class="math inline">\(H_a: p_1 - p_2 \neq p_0\)</span></p></li>
 </ul>
 <p>We calculate the <span class="math inline">\(z\)</span>-statistic:</p>
-<p><span class="math display">\[z_* = \frac{\hat{p_1}-\hat{p_2}}{\sqrt{\hat{p}(1-\hat{p})\left(\displaystyle\frac{1}{n_1}+ \frac{1}{n_2}\right)}} \sim N(0,1).\]</span></p>
+<p><span class="math display">\[z_* = \frac{\hat{p_1} - \hat{p_2} - p_0}{\sqrt{\hat{p}(1-\hat{p})\left(\displaystyle\frac{1}{n_1}+ \frac{1}{n_2}\right)}} \sim N(0,1).\]</span></p>
 <p>where</p>
 <p><span class="math display">\[\hat{p} = \frac{x_1 + x_2}{n_1+n_2}\]</span></p>
 <p>and <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> represent sample sizes of each group.</p>
@@ -1804,7 +2344,7 @@ the p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: p_1 - p_2 \neq p_0\)</span> is <span class="math inline">\(2P(Z &gt; |z^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-73" class="example"><strong>Example 6.16  </strong></span>Nicotine patches are often used to help smokers quit. Does giving
+<p><span id="exm:unlabeled-div-79" class="example"><strong>Example 6.19  </strong></span>Nicotine patches are often used to help smokers quit. Does giving
 medicine to fight depression help? A randomized double-blind experiment
 assigned 244 smokers who wanted to stop to receive nicotine patches and
 another 245 to receive both a patch and the anti-depression drug
@@ -1888,8 +2428,8 @@ or will be expected in each (when testing hypothesis).</li>
 <!-- successes and five failures in each sample. -->
 </div>
 </div>
-<div id="on-a-ratio-of-variances-1" class="section level3 hasAnchor" number="6.3.3">
-<h3><span class="header-section-number">6.3.3</span> On a Ratio of Variances<a href="hypothesis-tests.html#on-a-ratio-of-variances-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sec:RatioVars" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> On a Ratio of Variances<a href="hypothesis-tests.html#sec:RatioVars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s begin this type of hypothesis test with a case. The question is:
 how do you know whether the homogeneity of variance assumption is
 satisﬁed? One simple method involves just looking at two sample
@@ -2030,10 +2570,10 @@ our analysis.</p>
 <ul>
 <li><p><span class="math inline">\(H_0: \mu_d = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d &gt; \mu_0\)</span></p></li>
 <li><p><span class="math inline">\(H_0: \mu_d = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d &lt; \mu_0\)</span></p></li>
-<li><p><span class="math inline">\(H_0: \mu_d - \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d \neq \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu_d = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu_d \neq \mu_0\)</span></p></li>
 </ul>
 <p>We calculate the <span class="math inline">\(t\)</span>-statistic:</p>
-<p><span class="math display">\[t^* = \dfrac{\bar{x}_{d} - \mu_d}{s_{d} / \sqrt{n}} \sim t_{n-1}\]</span>
+<p><span class="math display">\[t^* = \dfrac{\bar{x}_{d} - \mu_0}{s_{d} / \sqrt{n}} \sim t_{n-1}\]</span>
 In terms of a variable <span class="math inline">\(T\)</span> which follows a <span class="math inline">\(t\)</span>-distribution at <span class="math inline">\(n-1\)</span> degrees of freedom, the
 p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <ul>
@@ -2042,7 +2582,7 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |t^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-74" class="example"><strong>Example 6.17  </strong></span>In an effort to determine whether a new type of fertilizer is more
+<p><span id="exm:unlabeled-div-80" class="example"><strong>Example 6.20  </strong></span>In an effort to determine whether a new type of fertilizer is more
 effective than the type currently in use, researchers took 12 two-acre
 plots of land scattered throughout the county. Each plot was divided
 into two equal-size sub plots, one of which was treated with the new
