@@ -1,117 +1,344 @@
 /* style.css */
-.definition {
-  background-color: #c1e6f7;
-  border-radius: 0;
-  padding-top:    0.5em;
-  padding-right:  0.5em;
-  padding-left:   0.25em;
-  padding-bottom: 0.1em;  /* reduced bottom padding */
-  margin: 0.5em 0em 0.5em 0em;
+
+/* Inserting more space above and/or below  heading levels */
+
+/* 1) H1 – chapter titles: big gap above, moderate below */
+.book .book-body .page-wrapper .page-inner section.normal h1 {
+  margin-top:    1em !important;  /* lots of space before chapter titles */  /* :contentReference[oaicite:0]{index=0} */
+  margin-bottom: 1em !important;/* a bit of space after */               /* :contentReference[oaicite:1]{index=1} */
+}
+
+/* 2) H2 – major section headings */
+.book .book-body .page-wrapper .page-inner section.normal h2 {
+  margin-top:    1em !important;/* slightly less than H1 */               /* :contentReference[oaicite:2]{index=2} */
+  margin-bottom: 1em !important;/* keep some gap below */                /* :contentReference[oaicite:3]{index=3} */
+}
+
+/* 3) H3 – subsections */
+.book .book-body .page-wrapper .page-inner section.normal h3 {
+  margin-top:    2.5em !important;  /* moderate space above */                /* :contentReference[oaicite:4]{index=4} */
+  margin-bottom: 1.5em !important;  /* moderate space below */                /* :contentReference[oaicite:5]{index=5} */
+}
+
+/* 4) H4 – sub‑subsections */
+.book .book-body .page-wrapper .page-inner section.normal h4 {
+  margin-top:    2.5em !important;/* small space above */                   /* :contentReference[oaicite:6]{index=6} */
+  margin-bottom: 1.5em !important;/* small space below */                   /* :contentReference[oaicite:7]{index=7} */
+}
+
+/* 5) H5 – deepest level */
+.book .book-body .page-wrapper .page-inner section.normal h5 {
+  margin-top:    2.5em !important;  /* minimal space above */                   /* :contentReference[oaicite:8]{index=8} */
+  margin-bottom: 1.5em !important;/* minimal space below */                   /* :contentReference[oaicite:9]{index=9} */
 }
 
 
-.example {
-  background-color: #EBEBEB;
-  border-radius: 0;
-  padding-top:    0.5em;
-  padding-right:  0.5em;
-  padding-left:   0.25em;
-  padding-bottom: 0.1em;  /* reduced bottom padding */
-  margin: 0.5em 0em 0.5em 0em;
+
+
+/* 1) Increase the root font size to 112.5% of default (16px → 18px) */
+html {
+  font-size: 70%; /* 1rem now equals 18px instead of 16px */ 
 }
 
+/* 1) font */
+@import url("https://fonts.googleapis.com/css2?family=Aptos:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Muli:400,400i,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Palatino&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-roman.css"); 
 
-.remark {
-  background-color: #bff6db;
-  border-radius: 0;
-  padding-top:    0.5em;
-  padding-right:  0.5em;
-  padding-left:   0.25em;
-  padding-bottom: 0.1em;  /* reduced bottom padding */
-  margin: 0.5em 0em 0.5em 0em;
+/* 
+.book,
+.book.font-family-0,
+.book.font-family-1 {
+  font-family: 'Latin Modern Roman', serif !important;  
+}
+*/
+
+/* 
+.book,
+.book.font-family-0 {
+  
+  font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif !important;
 }
 
+.book.font-family-1 {
+  font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif !important;
+}
+*/
 
-.theorem {
-  background-color: #efbbff;
-  border-radius: 0;
-  padding-top:    0.5em;
-  padding-right:  0.5em;
-  padding-left:   0.25em;
-  padding-bottom: 0.1em;  /* reduced bottom padding */
-  margin: 0.5em 0em 0.5em 0em;
+/* .book.font-family-1 {
+  font-family: 'Muli', sans-serif;
+ }
+ */
+ 
+/* .book {
+  font-family: "Aptos", sans-serif !important;
 }
 
-/* Does nothing*/
-.remark .caption {
+.book.font-family-0 {  
+  font-family: "Aptos", serif !important;
+}
+.book.font-family-1 {  
+  font-family: "Aptos", sans-serif !important;
+} 
+*/
+
+
+
+/* 3) Theorem, Definition, Example, Remark boxes */
+.definition, .example, .remark, .theorem {
+  border-radius: 0;
+  padding: 0.5em 0.5em 0.1em 0.25em;
+  margin: 0.5em 0;
+}
+
+.definition { background-color: #c1e6f7; }
+.example    { background-color: #EBEBEB; }
+.remark     { background-color: #bff6db; }
+.theorem    { background-color: #efbbff; }
+
+/* Bold captions */
+.definition .caption,
+.example .caption,
+.remark .caption,
+.theorem .caption {
   font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
 
-/* for changing alignment of a single cell in a table*/
-.align-right {
-  text-align: right;
-  display: block;
-}
-.align-left {
-  text-align: left;
-  display: block;
-}
-.align-center {
-  text-align: center;
-  display: block;       /* ensure the div fills the cell */
-}
-
-body {
-  counter-reset: note;
-}
-
-/* each .note increments it */
+/* 4) Note environment */
+body { counter-reset: note; }
 .note {
   counter-increment: note;
   margin: 1em 0;
   padding: 0.75em 1em;
   background: #bff6db;
-  /* background: #f9f9f9; */
-  border-left: 0px solid #6c757d;
 }
-
-/* print the label */
 .note::before {
-  content: "Note " counter(note) (attr(name) ? ": " attr(name) : "");
+  content: "Note " counter(note) ": " attr(name);
   font-weight: bold;
   display: block;
   margin-bottom: 0.5em;
 }
 
-
-
-
-
-
-/* table which wraps to text */
+/* 5) Small tables */
 .smalltbl table {
-  display: inline-block !important;  /* shrink to content */
-  width: auto            !important; /* don’t stretch to container */
-  table-layout: auto     !important; /* let cells size to content */
-  margin: 0.5em auto;              /* center it, plus some vertical space */
-  white-space: nowrap;            /* prevent unwanted wrapping */
+  display: inline-block !important;
+  width: auto !important;
+  table-layout: auto !important;
+  margin: 0.5em auto;
+  white-space: nowrap;
+}
+.smalltbl { text-align: center; }
+
+
+
+
+
+/* 1) Base table reset and fixed layout */
+.definition-table {
+  width: 100%;                           /* full width of container */ 
+  border-collapse: collapse;            /* collapse cell borders */ :contentReference[oaicite:0]{index=0}
+  table-layout: fixed;                  /* allow fixed column widths */ :contentReference[oaicite:1]{index=1}
+  margin: 1em 0;
 }
 
-/* center the table */
-/* your wrapper, already around the markdown table */
-.smalltbl {
-  text-align: center;       /* center children inline-level elements */
+/* 2) General cell styling */
+.definition-table td {
+  padding: 0.5em 0;                     /* vertical padding */
+  vertical-align: top;                  /* align multi‑line text at top */ :contentReference[oaicite:2]{index=2}
+}
+
+/* 3) First column: hypothesis term */
+.definition-table td:nth-child(1) {
+  width: 32%;                           /* reserve 30% for term */ :contentReference[oaicite:3]{index=3}
+  white-space: nowrap;                  /* prevent term from breaking */ :contentReference[oaicite:4]{index=4}
+  font-weight: normal;
+  text-align: left;
+}
+
+/* 4) Separator column: the “:” */
+.definition-table td:nth-child(2) {
+  width: 3%;                            /* just enough for colon */ :contentReference[oaicite:5]{index=5}
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* 5) Definition column: auto‑wrap long text */
+.definition-table td:nth-child(3) {
+  width: 69%;                           /* remaining space */ 
+  text-align: left;
+  word-break: break-word;               /* break long words if needed */ :contentReference[oaicite:6]{index=6}
+  overflow-wrap: anywhere;              /* allow wrap anywhere to avoid overflow */ :contentReference[oaicite:7]{index=7}
+}
+
+/* Remove all alternate‑row shading */
+.definition-table tr:nth-child(even),
+.definition-table tr:nth-child(odd) {
+  background-color: transparent !important;
 }
 
 
 
-/*
-.definition .caption::before {
-  content: "Definition ";
-  font-weight: bold;             /* make "Definition"" stand out * /
-}
-*/
 
+
+
+
+
+/* Hypothesis comparison table */
+.param-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-family: inherit;
+}
+
+.param-table pd {
+  padding: 0.5em;
+  vertical-align: middle;
+}
+
+/* Horizontal rules between rows */
+.param-table pd + tr pd {
+  border-top: 1px solid #ddd;
+}
+
+/* Column widths and text alignment */
+.param-table pd.term {
+  width: 45%;
+  text-align: right;
+  padding-right: 1em;
+}
+
+.param-table pd.sep {
+  width: 10%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.param-table pd.alt {
+  width: 45%;
+  text-align: left;
+  padding-left: 1em;
+}
+
+
+/* Remove all alternate‑row shading */
+.param-table tr:nth-child(even),
+.param-table tr:nth-child(odd) {
+  background-color: transparent !important;
+}
+
+.param-table pd {
+  background: transparent !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Hypothesis comparison table */
+.hypothesis-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-family: inherit;
+}
+
+.hypothesis-table td {
+  padding: 0.5em;
+  vertical-align: middle;
+}
+
+/* Horizontal rules between rows */
+.hypothesis-table tr + tr td {
+  border-top: 1px solid #ddd;
+}
+
+/* Column widths and text alignment */
+.hypothesis-table td.term {
+  width: 45%;
+  text-align: right;
+  padding-right: 1em;
+}
+
+.hypothesis-table td.sep {
+  width: 10%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hypothesis-table td.alt {
+  width: 45%;
+  text-align: left;
+  padding-left: 1em;
+}
+
+
+/* Remove all alternate‑row shading */
+.hypothesis-table tr:nth-child(even),
+.hypothesis-table tr:nth-child(odd) {
+  background-color: transparent !important;
+}
+
+.hypothesis-table td {
+  background: transparent !important;
+}
+
+
+/* style.css */
+
+/* 1) Collapse any inherited borders into one model and remove table border */
+.hypothesis-table {
+  border-collapse: collapse;       /* collapse all cell borders into one */ :contentReference[oaicite:0]{index=0}
+  border: none !important;         /* remove any outer border on the table */ :contentReference[oaicite:1]{index=1}
+}
+
+/* 2) Remove every cell’s border (both horizontal and vertical) */
+.hypothesis-table th,
+.hypothesis-table td {
+  border: none !important;         /* wipe out any border on TH or TD */ :contentReference[oaicite:2]{index=2}
+  padding: 0.5em 1em;              /* add back comfortable padding */ 
+}
+
+/* 3) Also ensure TRs themselves don’t introduce lines */
+.hypothesis-table tr {
+  border: none !important;         /* some CSS frameworks add border on TR */ :contentReference[oaicite:3]{index=3}
+}
+
+/* 4) (Optional) If your theme adds a border-top on every row after the first, remove it */
+.hypothesis-table tr + tr {
+  border-top: none !important;     /* no “divider” on subsequent rows */ :contentReference[oaicite:4]{index=4}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 6) Utility alignments */
+.align-right  { text-align: right;  display: block; }
+.align-left   { text-align: left;   display: block; }
+.align-center { text-align: center; display: block; }
+
+/* 7) Info boxes */
 .blackbox {
   padding: 1em;
   background: black;
@@ -119,11 +346,6 @@ body {
   border: 2px solid orange;
   border-radius: 10px;
 }
-.center {
-  text-align: center;
-}
-
-
 .infobox {
   padding: 1em 1em 1em 4em;
   margin-bottom: 10px;
@@ -131,79 +353,30 @@ body {
   border: 2px solid orange;
   border-radius: 10px;
 }
-.caution {
-  background-image: url("../images/caution.png");
-}
-.important {
-  background-image: url("../images/important.png");
-}
-.note {
-  background-image: url("../images/note.png");
-}
-.tip {
-  background-image: url("../images/tip.png");
-}
-.warning {
-  background-image: url("../images/warning.png");
-}
+.infobox.caution   { background-image: url("../images/caution.png"); }
+.infobox.important { background-image: url("../images/important.png"); }
+.infobox.note      { background-image: url("../images/note.png"); }
+.infobox.tip       { background-image: url("../images/tip.png"); }
+.infobox.warning   { background-image: url("../images/warning.png"); }
 
-.figure {
-  text-align: center;
-}
+/* 8) Figures & Captions */
+.figure { text-align: center; }
 p.caption {
   color: #777;
   margin-top: 10px;
   text-align: left;
 }
-p code {
-  white-space: inherit;
-}
-pre {
-  word-break: normal;
+
+/* 9) Code blocks */
+pre, pre code {
   word-wrap: normal;
-}
-pre code {
+  word-break: normal;
   white-space: inherit;
 }
-.flushright {
-  text-align: right;
-}
-pre.numberSource code > span > a:first-child::before {
-  left: -0.3em;
-}
-.header-section-number {
-  padding-right: .2em;
-  font-weight: 500;
-}
-.level1 .header-section-number {
-  display: inline-block;
-  border-bottom: 3px solid;
-}
-.level1 h1 {
-  border-bottom: 1px solid;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
-}
-h1.title {
-  font-weight: 700;
-}
-.book .book-body .page-wrapper .page-inner section.normal strong {
-  font-weight: 600;
-}
-.book .book-body .page-wrapper .page-inner section.normal pre a {
-  color: inherit;
-}
 
-
-
-.blackbox {
-  padding: 1em;
-  background: black;
-  color: white;
-  border: 2px solid orange;
-  border-radius: 10px;
-}
-.center {
-  text-align: center;
-}
+/* 10) Header styling */
+.header-section-number { padding-right: 0.2em; font-weight: 500; }
+.level1 .header-section-number { display: inline-block; border-bottom: 3px solid; }
+.level1 h1 { border-bottom: 1px solid; }
+h1.title { font-weight: 700; }
+h1,h2,h3,h4,h5,h6 { font-weight: bold; }
