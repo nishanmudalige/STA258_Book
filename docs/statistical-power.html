@@ -29,7 +29,7 @@
   
   
 <link rel="prev" href="hypothesis-tests.html"/>
-
+<link rel="next" href="analysis-of-variance.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -242,9 +242,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>7</b> Statistical Power</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="statistical-power.html"><a href="statistical-power.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="statistical-power.html"><a href="statistical-power.html#type-i-and-ii-errors"><i class="fa fa-check"></i><b>7.2</b> Type I and II Errors</a></li>
-<li class="chapter" data-level="7.3" data-path="statistical-power.html"><a href="statistical-power.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>7.3</b> Type I and Type II Errors</a></li>
-<li class="chapter" data-level="7.4" data-path="statistical-power.html"><a href="statistical-power.html#using-power-to-determine-sample-size"><i class="fa fa-check"></i><b>7.4</b> Using Power to Determine Sample Size</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-power.html"><a href="statistical-power.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>7.2</b> Type I and Type II Errors</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-power.html"><a href="statistical-power.html#using-power-to-determine-sample-size"><i class="fa fa-check"></i><b>7.3</b> Using Power to Determine Sample Size</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Variance</a></li>
+<li class="chapter" data-level="9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>9</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#linear-model"><i class="fa fa-check"></i><b>9.1</b> Linear Model</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#measures-of-linear-relationship"><i class="fa fa-check"></i><b>9.1.1</b> Measures of Linear Relationship</a></li>
+<li class="chapter" data-level="9.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#least-squares-method"><i class="fa fa-check"></i><b>9.1.2</b> Least Squares Method</a></li>
+<li class="chapter" data-level="9.1.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-regression-model-parameters"><i class="fa fa-check"></i><b>9.1.3</b> Estimating Regression Model Parameters</a></li>
+<li class="chapter" data-level="9.1.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sst-sse-and-ssr"><i class="fa fa-check"></i><b>9.1.4</b> SST, SSE and SSR</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#inference-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2</b> Inference for Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-variance-in-linear-regression"><i class="fa fa-check"></i><b>9.2.1</b> Estimating Variance in Linear Regression</a></li>
+<li class="chapter" data-level="9.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-and-hypothesis-tests"><i class="fa fa-check"></i><b>9.2.2</b> Confidence Intervals and Hypothesis Tests</a></li>
+<li class="chapter" data-level="9.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#anova-table-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2.3</b> ANOVA Table for Simple Linear Regression</a></li>
+<li class="chapter" data-level="9.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>9.2.4</b> Residual Plots</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -296,8 +313,8 @@ detect</span>)</p></li>
 (<span style="color: blue">lower variability, higher power</span>)</p></li>
 </ul>
 </div>
-<div id="type-i-and-ii-errors" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Type I and II Errors<a href="statistical-power.html#type-i-and-ii-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="type-i-and-type-ii-errors" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Type I and Type II Errors<a href="statistical-power.html#type-i-and-type-ii-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It is possible to make an incorrect conclusion on a hypothesis test.<br />
 <strong>Type I:</strong> Incorrectly reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is true in reality.<br />
 <strong>Type II:</strong> Incorrectly fail to reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is false in
@@ -392,9 +409,6 @@ Figure 7.3: Power curve for a one-sided test with points at <span class="math in
 </p>
 </div>
 </div>
-</div>
-<div id="type-i-and-type-ii-errors" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> Type I and Type II Errors<a href="statistical-power.html#type-i-and-type-ii-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If we reject <span class="math inline">\(H_0\)</span> when in fact <span class="math inline">\(H_0\)</span> is true, this is a <strong>Type I
 error.</strong><br />
 If we fail to reject <span class="math inline">\(H_0\)</span> when in fact <span class="math inline">\(H_a\)</span> is true, this is a <strong>Type
@@ -483,8 +497,8 @@ that the alternative <span class="math inline">\(\mu = 299\)</span> is true.</st
 \end{aligned}\]</span></p>
 </div>
 </div>
-<div id="using-power-to-determine-sample-size" class="section level2 hasAnchor" number="7.4">
-<h2><span class="header-section-number">7.4</span> Using Power to Determine Sample Size<a href="statistical-power.html#using-power-to-determine-sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="using-power-to-determine-sample-size" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Using Power to Determine Sample Size<a href="statistical-power.html#using-power-to-determine-sample-size" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When designing a study, one of the most important decisions is how large
 a sample to collect. If the sample size is too small, even meaningful
 effects may go undetected due to low statistical power. On the other
@@ -711,8 +725,8 @@ require different strengths of evidence.</p>
           </div>
         </div>
       </div>
-<a href="hypothesis-tests.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="hypothesis-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis-of-variance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,0 +1,1833 @@
+# Simple Linear Regression
+
+## Linear Model
+
+In statistics, simple linear regression (SLR) is a linear regression
+model with a single explanatory variable. In other words, we use linear
+functions to illustrate the relationship of variables (ie. time and
+one's height). The goal of simple linear regression is to find the
+best-fitting straight line, known as the regression line, that predicts
+the dependent variable based on the independent variable. For example we
+are interested a people's height within 10 months. Then, we use
+coordinate system to draw each data point and use simple linear
+regression to find a function which perfectly describes the relationship
+between height and time.
+
+<center>
+```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope which tells you the rate of change, $b$ is the intercept which may have a special meaning depending on the case.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[->, thick]
+  % Draw x and y axes
+  \draw[->] (-1,0) -- (7,0) node[right] {Time (month)};
+  \draw[->] (0,-1) -- (0,5) node[above] {Height (m)};
+  
+  \filldraw[blue] (0.5, 0.75) circle (2pt);
+  \filldraw[blue] (1.5, 1.75) circle (2pt);
+  \filldraw[blue] (1, 1.25) circle (2pt);
+  \filldraw[blue] (2, 2.1) circle (2pt);
+  \filldraw[blue] (2.5, 2.4) circle (2pt);
+  \filldraw[blue] (3, 2.8) circle (2pt);
+  \filldraw[blue] (3.5, 3.1) circle (2pt);
+  \filldraw[blue] (4, 3.7) circle (2pt);
+  \filldraw[blue] (4.5, 3.95) circle (2pt);
+  \filldraw[blue] (5, 4.1) circle (2pt);
+  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$y = mx+ b$};
+\end{tikzpicture}
+```
+</center>
+
+Now, you may wonder the accuracy of this model. In statistics, we do
+have parameters that approximate the slope and intercept of the function
+$y = mx + b$. The model we are going to use is:
+$\hat{y} = \hat{\beta_1}x + \hat{\beta_0} + \varepsilon$. From this model,
+the slope and the intercept are $\hat{\beta_1}$, $\hat{\beta_{0}}$
+respectively ($\hat{\beta_1}$ and $\hat{\beta_{0}}$ are unbiased
+estimators). Moreover, the $\varepsilon$-term is called error term, which
+we will discuss it later.
+
+### Measures of Linear Relationship
+
+Before we formally introduce simple linear regression, there are some
+measures of SLR that should be discussed.\
+**Covariance (Sample Covariance)**
+
+In probability theory and statistics, covariance is a measure of the
+joint variability of two random variables. The covariance sign shows the
+direction of the linear relationship between two variables. If higher
+values of one variable tend to occur with higher values of the other
+(and lower with lower), the covariance is positive, meaning the
+variables move in the same direction. If higher values of one variable
+tend to occur with lower values of the other, the covariance is
+negative, meaning they move in opposite directions. The size (magnitude)
+of the covariance reflects how much the two variables vary together,
+based on the variances they share.
+
+::: definition
+The sample covariance for 2 variables $X$ and $Y$ is:
+$$S_{xy} = \frac{1}{n-1} \cdot \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) = \frac{\sum_{i = 1}^{n}x_i \cdot y_i}{n -1} - \frac{n\bar{x}\bar{y}}{n-1}.$$
+These are the two ways to compute covariance. Both will give you the
+same answer.
+:::
+
+The covariance is a measures of how two variables move together.
+
+- If covariance of two random variables is greater than $0$
+  ($cov(x,y) > 0$), then the two random variables show the same trend.
+  That is: if one random variable is increasing, then the other one is
+  also increasing; while if one random variable is decreasing, then the
+  other one is also decreasing.
+
+- If covariance of two random variables is less than $0$
+  ($cov(x,y) < 0$), then the two random variables show the opposite
+  trend. That is: if one random variable is increasing, then the other
+  one is decreasing; while if one random variable is decreasing, then
+  the other one is increasing.
+
+- If covariance of two random variables is equal to $0$
+  ($cov(x,y) = 0$), then we say that there is no relationship
+  (systematically linear) between the two random variables.
+
+Note that covariance is not standardized, so it can be difficult to
+interpret directly.\
+**Coefficient of Correlation**
+
+In statistics, correlation or dependence is any statistical
+relationship, whether causal or not, between two random variables or
+bivariate data. It helps us understand whether and how changes in one
+variable are associated with changes in another. A positive correlation
+means that as one variable increases, the other tends to increase as
+well, while a negative correlation means that one variable tends to
+decrease as the other increases. The degree of correlation is usually
+expressed with a correlation coefficient, which ranges from $-1$ to
+$+1$.
+
+::: definition
+The coefficient of correlation is given by:
+$$r_{xy} = \frac{S_{xy}}{S_x \cdot S_y}.$$ Now, $r_{xy} =$ sample
+correlation coefficient, $S_{xy} =$ sample covariance, $S_{x} =$ sample
+standard deviation of $x$, $S_{y} =$ sample standard deviation of $y$.
+Also, remember that the range of coefficient of correlation is between
+$-1$ and $+1$: $r_{xy} \in [-1, +1]$.
+:::
+
+The correlation r measures the strength and direction of the linear
+association between two quantitative variables $x$ and $y$. Although you
+calculate a correlation for any scatter plot, $r$ measures only
+straight-line relationships. In short, coefficient of correlation is a
+measure of the strength of the linear relationship between two random
+variables.
+
+- If $r_{xy} \approx +1$, then we say that the two random variables have
+  a strong positive correlation. (See figure 15.2)
+  
+<center>
+```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of strong positive correlation ($r_{xy} \\approx +1$).'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[->, thick]
+  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
+  \filldraw[blue] (0.5, 0.5) circle (2pt);
+  \filldraw[blue] (1, 1) circle (2pt);
+  \filldraw[blue] (1.5, 1.5) circle (2pt);
+  \filldraw[blue] (2, 2) circle (2pt);
+  \filldraw[blue] (2.5, 2.5) circle (2pt);
+  \filldraw[blue] (3, 3) circle (2pt);
+  \filldraw[blue] (3.5, 3.5) circle (2pt);
+  \filldraw[blue] (4, 4) circle (2pt);
+  \filldraw[blue] (4.5, 4.5) circle (2pt);
+  \filldraw[blue] (5, 5) circle (2pt);
+  \filldraw[red] (0.5,1) circle (2pt);
+  \filldraw[red] (1,1.5) circle (2pt);
+  \filldraw[red] (1.5,2) circle (2pt);
+  \filldraw[red] (2,2.5) circle (2pt);
+  \filldraw[red] (2.5,3) circle (2pt);
+  \filldraw[red] (3,3.5) circle (2pt);
+  \filldraw[red] (3.5,4) circle (2pt);
+  \filldraw[red] (4,4.5) circle (2pt);
+  \filldraw[red] (4.5,5) circle (2pt);
+  \filldraw[red] (5,5.5) circle (2pt);
+\end{tikzpicture}
+```
+</center>
+
+- If $r_{xy} \approx -1$, then we say that the two random variables have
+  a strong negative correlation. (See figure 15.3)
+
+<center>
+```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of strong negative correlation ($r_{xy} \\approx -1$).'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[->, thick]
+  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
+  \filldraw[blue] (0.5,5) circle (2pt);
+  \filldraw[blue] (1,4.5) circle (2pt);
+  \filldraw[blue] (1.5,4) circle (2pt);
+  \filldraw[blue] (2,3.5) circle (2pt);
+  \filldraw[blue] (2.5,3) circle (2pt);
+  \filldraw[blue] (3,2.5) circle (2pt);
+  \filldraw[blue] (3.5,2) circle (2pt);
+  \filldraw[blue] (4,1.5) circle (2pt);
+  \filldraw[blue] (4.5,1) circle (2pt);
+  \filldraw[blue] (5,0.5) circle (2pt);
+  \filldraw[red] (0.5,4.5) circle (2pt);
+  \filldraw[red] (1,4) circle (2pt);
+  \filldraw[red] (1.5,3.5) circle (2pt);
+  \filldraw[red] (2,3) circle (2pt);
+  \filldraw[red] (2.5,2.5) circle (2pt);
+  \filldraw[red] (3,2) circle (2pt);
+  \filldraw[red] (3.5,1.5) circle (2pt);
+  \filldraw[red] (4,1) circle (2pt);
+  \filldraw[red] (4.5,0.5) circle (2pt);
+  \filldraw[red] (5,0) circle (2pt);
+\end{tikzpicture}
+```
+</center>
+  <figcaption>An illustration of strong negative correlation (<span
+  class="math inline"><em>r</em><sub><em>x</em><em>y</em></sub> ≈ −1</span>).</figcaption>
+  </figure>
+
+- If $r_{xy} \approx 0$, then we say that there is essentially no
+  correlation between the two random variables. Note that if
+  $r \approx 0$, then it suggests a linear relationship doesn't exist
+  but other relationship may exist. (See figure 15.4)
+  
+<center>  
+```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of no correlation ($r_{xy} \\approx 0$).'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[->, thick]
+  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
+  \draw[black, thick, domain=0:6] plot (\x, {3});
+  \filldraw[blue] (0.5, 2.7) circle (2pt);
+  \filldraw[red]  (1,   1.5) circle (2pt);
+  \filldraw[blue] (1.5, 4.1) circle (2pt);
+  \filldraw[red]  (2.3, 2.0) circle (2pt);
+  \filldraw[blue] (3.1, 0.8) circle (2pt);
+  \filldraw[red]  (4.0, 3.5) circle (2pt);
+  \filldraw[blue] (4.5, 1.2) circle (2pt);
+  \filldraw[red]  (5.2, 4.3) circle (2pt);
+  \filldraw[blue] (6.0, 2.5) circle (2pt);
+\end{tikzpicture}
+```
+</center>
+  <figcaption>An illustration of no correlation (<span
+  class="math inline"><em>r</em><sub><em>x</em><em>y</em></sub> ≈ 0</span>).</figcaption>
+  </figure>
+
+Note that correlation doesn't imply causation:
+
+- $cor(x,y) \approx +1$ doesn't necessarily imply on increase in $x$
+  causes increase in $y$.
+
+- $cor(x,y) \approx -1$ doesn't necessarily imply on increase in $x$
+  causes decrease in $y$.
+
+**Properties of Covariance and Correlation**
+
+These two values are symmetric:
+
+- $cov(x,y) = cov(y,x)$;
+
+- $cor(x,y) = cor(y,x)$.
+
+::::::::: example
+Five observations taken for two variables follow.
+
+::: {.smalltbl}
+| \(x_i\) | \(y_i\) |
+|:-------:|:-------:|
+|    4    |   50    |
+|    6    |   50    |
+|   11    |   40    |
+|    3    |   60    |
+|   16    |   30    |
+:::
+
+Compute the sample covariance.
+
+Compute and interpret the sample correlation coefficient.
+
+**Solution:**
+
+Step 1: Compute $\bar{x}$ and $\bar{y}$; $\bar{x} = 8$ and
+$\bar{y} = 46$ (check this by yourself).
+
+Step 2: Find $s_x$ and $s_y$.
+
+$$s_x^2 = \frac{1}{5-1} \cdot \sum_{i = 1}^{5}(x_i - \bar{x})^2 = 29.5 \text{ and } s_y^2 = \frac{1}{5-1} \cdot \sum_{i=1}^{5}(y_i - \bar{y})^2 = 130$$
+Then: $s_x = 5.4313$ and $s_y = 11.4017$.
+
+Step 3: Find $s_{xy}$ and $r$.
+
+$$\sum_{i=1}^{5}x_i \cdot y_i = 1600, \text{ then } s_{xy} = \frac{1600}{5-1} - \frac{5\cdot8\cdot46}{5-1} = -60 \text{ and } r_{xy} = \frac{s_{xy}}{s_x \cdot s_y} = 0.9688.$$
+
+**R code**
+
+Step 1: Entering data;
+
+::: tcolorbox
+    X=c(4,6,11,3,16); 
+
+    Y=c(50,50,40,60,30);
+:::
+
+Step 2: Finding means;
+
+::: tcolorbox
+    mean(X);
+
+    mean(Y);
+:::
+
+Step 3: Finding variances;
+
+::: tcolorbox
+    var(X);
+
+    var(Y);
+:::
+
+Step 4: Finding standard deviations;
+
+::: tcolorbox
+    sd(X);
+
+    sd(Y):
+:::
+
+Step 5: Finding covariance and correlation;
+
+::: tcolorbox
+    cov(X,Y);
+
+    cor(X,Y);
+:::
+:::::::::
+
+### Least Squares Method
+
+\noindent The method of least squares is a foundational optimization technique in regression analysis.  Its goal is to determine the parameters of a candidate model that make the model’s predictions as close as possible to the observed data.  Concretely, in the linear setting, we posit that each observation $(x_{i1}, \dots, x_{ip}, y_i)$ satisfies
+\[
+    y_i \;=\; \beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip} + \varepsilon_i,
+    \quad \varepsilon_i \sim N(0, \sigma^2),
+\]
+where the predictors $x_{ij}$ are assumed fixed and the error terms $\varepsilon_i$ are independent Gaussian noise.
+
+\bigskip
+
+\noindent Given a sample of $n$ observations, the least‑squares estimates of the coefficients $\beta_0,\dots,\beta_p$ are those values $\hat\beta_0,\dots,\hat\beta_p$ which minimize the residual sum of squares,
+\[
+    \mathrm{RSS}(\beta_0,\dots,\beta_p)
+    \;=\;
+    \sum_{i=1}^n \bigl(y_i - \hat y_i\bigr)^2
+    \;=\;
+    \sum_{i=1}^n \bigl(y_i - (\beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip})\bigr)^2.
+\]
+The resulting fitted values take the form
+\[
+    \hat y_i
+    \;=\;
+    \hat\beta_0 + \hat\beta_1\,x_{i1} + \cdots + \hat\beta_p\,x_{ip}.
+\]
+Here, $\hat\beta_0$ serves as the intercept, while each $\hat\beta_j$ for $j=1,\dots,p$ quantifies the change in the expected response for a one‑unit increase in the corresponding predictor.
+
+\bigskip
+
+\noindent In this course, we will concentrate on the simplest nontrivial case of a single predictor, writing
+\[
+    \hat y \;=\; b_0 + b_1\,x,
+\]
+where $b_0$ and $b_1$ denote the intercept and slope of the fitted line, respectively.  By taking partial derivatives of the residual sum of squares with respect to $b_0$ and $b_1$ and setting them to zero, one obtains the classical normal equations.  Their solution yields the familiar closed‑form formulas
+\[
+    b_1 \;=\; r\,\frac{s_y}{s_x},
+    \qquad
+    b_0 \;=\; \bar y \;-\; b_1\,\bar x,
+\]
+where $r$ is the sample correlation between $x$ and $y$, and $s_x$, $s_y$ denote their sample standard deviations.
+
+
+::: {.remark}
+- The distinction between explanatory and response variables is
+  essential in Least Squares Method.
+
+- The least-squares line (trendline) always passes through the point
+  ($\bar{x}$, $\bar{y}$) on the graph of $y$ against $x$.
+
+- The square of the correlation, $r^2$, is the fraction of the variation
+  in the values of $y$ that is explained by the variation in $x$.
+:::
+
+:::: example
+A tool die maker operates out of a small shop making specialized tools.
+He is considering increasing the size of his business and needs to know
+more about his costs. One such cost is electricity, which he needs to
+operate his machines and lights. He keeps track of his daily electricity
+costs and the number of tools that he made that day. These data are
+listed next. Determine the fixed and variable electricity costs using
+the Least Squares Method.
+
+::: center
+<figure>
+<table>
+<tbody>
+<tr>
+<td style="text-align: center;">Day</td>
+<td style="text-align: center;">Number of tools (<span
+class="math inline"><em>X</em></span>)</td>
+<td style="text-align: center;">Electricity costs (<span
+class="math inline"><em>Y</em></span>)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">1</span></td>
+<td style="text-align: center;"><span class="math inline">7</span></td>
+<td style="text-align: center;"><span
+class="math inline">23.80</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">2</span></td>
+<td style="text-align: center;"><span class="math inline">3</span></td>
+<td style="text-align: center;"><span
+class="math inline">11.89</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">3</span></td>
+<td style="text-align: center;"><span class="math inline">2</span></td>
+<td style="text-align: center;"><span
+class="math inline">15.89</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">4</span></td>
+<td style="text-align: center;"><span class="math inline">5</span></td>
+<td style="text-align: center;"><span
+class="math inline">26.11</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">5</span></td>
+<td style="text-align: center;"><span class="math inline">8</span></td>
+<td style="text-align: center;"><span
+class="math inline">31.79</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">6</span></td>
+<td style="text-align: center;"><span class="math inline">11</span></td>
+<td style="text-align: center;"><span
+class="math inline">39.93</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">7</span></td>
+<td style="text-align: center;"><span class="math inline">5</span></td>
+<td style="text-align: center;"><span
+class="math inline">12.27</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">8</span></td>
+<td style="text-align: center;"><span class="math inline">15</span></td>
+<td style="text-align: center;"><span
+class="math inline">40.06</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">9</span></td>
+<td style="text-align: center;"><span class="math inline">3</span></td>
+<td style="text-align: center;"><span
+class="math inline">21.38</span></td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="math inline">10</span></td>
+<td style="text-align: center;"><span class="math inline">6</span></td>
+<td style="text-align: center;"><span
+class="math inline">18.65</span></td>
+</tr>
+</tbody>
+</table>
+<figcaption>Data of example 15.2</figcaption>
+</figure>
+:::
+
+Solution:
+
+Step 1: Entering Data;
+
+::: tcolorbox
+    tools=c(7,3,2,5,8,11,5,15,3,6);
+
+    cost=c(23.80,11.89,15.98,26.11,31.79, 39.93,12.27,40.06,21.38,18.65);
+:::
+
+Step 2: Finding Slope;
+
+::: tcolorbox
+    Sx=sd(tools); 
+
+    Sy=sd(cost); 
+
+    r=cor(tools,cost); 
+
+    b1=r*(Sy/Sx); 
+
+    b1;
+     
+    ## [1] 2.245882
+:::
+
+Step 3: Finding $y$-intercept;
+
+::: tcolorbox
+    x.bar=mean(tools); 
+
+    y.bar=mean(cost);
+
+    b0=y.bar - b1*x.bar;
+
+    b0; 
+
+    ## [1] 9.587765
+:::
+
+We can also use R-code to draw a graph:
+
+::: tcolorbox
+    plot(tools,cost,pch=19);
+
+    abline(least.squares$coeff,col="red");
+
+    # pch=19 tells R to draw solid circles; 
+
+    # abline tells R to add trendline;
+:::
+
+Interpretation:
+
+The slope measures the marginal rate of change in the dependent
+variable. In this example, the slope is $2.25$, which means that in this
+sample, for each one-unit increase in the number of tools, the marginal
+increase in the electricity cost is $\$ 2.25$ per tool.
+
+The $y$-intercept is $9.57$; that is, the line strikes the $y$-axis at
+$9.57$. However, when $x = 0$, we are producing no tools and hence the
+estimated ﬁxed cost of electricity is $\$9.57$ per day .
+::::
+
+### Estimating Regression Model Parameters
+
+The regression line which we are going to use is:
+$E(Y) = \beta_0 + \beta_1 \cdot x$. This is fitted to the data points
+$(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ by finding the line that is
+closest to the data in some sense. There are many ways in which
+closeness can be defined, but the method most generally used is to
+consider the vertical deviations between the line and the data points:
+$y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq n$.\
+The fitted line is chosen to be the line that minimizes the sum of the
+squares of these vertical deviations
+$$Q = \sum_{i=1}^{n} [y_i - (\beta_0 + \beta_1 \cdot x_i)]^2$$ and this
+is referred to as the least squares fit. (The quantity $Q$ is also
+called the **sum of squares for error**, SSE.)\
+The parameter estimates $\hat{\beta_0}$ and $\hat{\beta_1}$ are
+therefore the values that minimize the quantity $Q$. They are found
+taking partial derivatives of $Q$ with respect to $\hat{\beta_0}$ and
+$\hat{\beta_1}$ and setting the resulting expressions equal to $0$.
+
+```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[thick]
+  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
+  \filldraw[blue] (0.5, 1.0) circle (2pt);
+  \filldraw[blue] (1.5, 1.4) circle (2pt);
+  \filldraw[blue] (1, 1.5) circle (2pt);
+  \filldraw[blue] (2, 2.4) circle (2pt);
+  \filldraw[blue] (2.5, 2.1) circle (2pt);
+  \filldraw[blue] (3, 2.7) circle (2pt);
+  \filldraw[blue] (3.5, 3.3) circle (2pt);
+  \filldraw[blue] (4, 3.4) circle (2pt);
+  \filldraw[blue] (4.5, 4.2) circle (2pt);
+  \filldraw[blue] (5, 3.7) circle (2pt);
+  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
+  \foreach \x/\y in {
+    0.5/1.0,
+    1.5/1.4,
+    1/1.5,
+    2/2.4,
+    2.5/2.1,
+    3/2.7,
+    3.5/3.3,
+    4/3.4,
+    4.5/4.2,
+    5/3.7
+  } {
+    \draw[black] (\x,\y) -- (\x,{0.8*\x + 0.35});
+  }
+\end{tikzpicture}
+```
+
+
+The following proof is the derive of $\hat{\beta_0}$ and $\hat{\beta_1}$
+for simple linear regression model:
+$\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x + \varepsilon$.
+
+Let $x$ be independent variable and $y$ be dependent variable, then the
+model of simple linear regression is:
+$\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x + \varepsilon$, where
+$\hat{\beta_0}$ represents the $y$-intercept, $\hat{\beta_1}$ represents
+the slope and $\varepsilon$ is the error term that
+$\varepsilon \sim N(0, \sigma^2)$. 
+
+Moreover,
+$$\hat{\beta_0} = \bar{y} - \hat{\beta_1}\cdot \bar{x}$$ 
+and
+$$\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = \frac{\displaystyle\sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y}}{\displaystyle\sum_{i=1}^{n}x_i^2 - n\bar{x}^2}$$.
+
+
+::::: example
+Suppose an appliance store conducts a 5-month experiment to determine
+the effect of advertising on sales revenue. The results are shown in a
+table below. The relationship between sales revenue, $y$, and
+advertising expenditure, $x$, is hypothesized to follow a ﬁrst-order
+linear model, that is, $y = \beta_0 + \beta_1\cdot x + \varepsilon$, where
+$y =$ dependent variable, $x =$ independent variable, $\beta_0$
+y-intercept, $\beta_1 =$ slope of the line and $\varepsilon =$ error
+variable.
+
+::: {.smalltbl}
+| Day | Number of tools (X) | Electricity costs (Y) |
+|:---:|:-------------------:|:---------------------:|
+|  1  |          7          |         23.80         |
+|  2  |          3          |         11.89         |
+|  3  |          2          |         15.89         |
+|  4  |          5          |         26.11         |
+|  5  |          8          |         31.79         |
+|  6  |         11          |         39.93         |
+|  7  |          5          |         12.27         |
+|  8  |         15          |         40.06         |
+|  9  |          3          |         21.38         |
+| 10  |          6          |         18.65         |
+:::
+
+a\) Obtain the least squares estimates of $\beta_0$ and $\beta_1$, and
+state the estimated regression function.
+
+b\) Plot the estimated regression function and the data.
+
+**Solution:**
+
+a\) $\bar{x} = 3$, $\bar{y} = 2$, $S_{xx} = 10$, $S_{xy} = 7$
+
+Then, the slope of the least squares line is
+$\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = 0.7$ and
+$\hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x} = -0.1$. Thus, the least
+squares line is $\hat{y} = -0.1 + 0.7x$.
+
+b\) R-code
+
+::: tcolorbox
+    plot(x, y, main="Scatterplot: Simple Linear Regression",
+    xlab="x", ylab="y", pch=19,col="blue");
+
+    abline(coef(linear.reg), col="red",lty=2);
+:::
+:::::
+
+### SST, SSE and SSR
+
+Early in Section $15.3$, we introduced a value called the sum of
+residual squared (SSE). There are two more values that are important in
+simple linear regression, which are total sum of squares (SST) and sum
+of squares for regression (SSR). We will introduce all these three
+values with figures, so that you may have a better understanding of what
+they measure.\
+**SST (Total Sum of Squares)**
+
+It is defined as the sum over all squared differences between the
+observations and their overall mean $\bar{y}$.
+
+<figure>
+<center>
+```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components).'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[thick]
+  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
+  \filldraw[blue] (0.5, 1.3) circle (2pt);
+  \filldraw[blue] (1.5, 2.1) circle (2pt);
+  \filldraw[blue] (1, 1.6) circle (2pt);
+  \filldraw[blue] (2, 2.7) circle (2pt);
+  \filldraw[blue] (2.5, 2.2) circle (2pt);
+  \filldraw[blue] (3, 2.5) circle (2pt);
+  \filldraw[blue] (3.5, 3.7) circle (2pt);
+  \filldraw[blue] (4, 3.9) circle (2pt);
+  \filldraw[blue] (4.5, 3.4) circle (2pt);
+  \filldraw[blue] (5, 4.2) circle (2pt);
+  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
+  \draw[dashed] (-0.5,2.86) -- (6.5,2.86);
+  \node at (6.8, 2.86) [right] {$\bar{y}$};
+  \foreach \x/\y in {
+    0.5/1.3,
+    1.5/2.1,
+    1/1.6,
+    2/2.7,
+    2.5/2.2,
+    3/2.5,
+    3.5/3.7,
+    4/3.9,
+    4.5/3.4,
+    5/4.2
+  } {
+    \draw[black] (\x,\y) -- (\x,2.86);
+  }
+\end{tikzpicture}
+```
+</center>
+<figcaption>An illustration of Total Sum of Squares (SST). The blue
+points represent height measurements over time, the dashed line is the
+mean height <span class="math inline"><em>ȳ</em></span>, and the solid
+black vertical lines represent the squared deviations from the mean (SST
+components).</figcaption>
+</figure>
+
+::: definition
+For any simple linear regression model, SST (Toal sum of squares)
+measures the sum over all squared differences between the observations
+and their overall mean $\bar{y}$ is given by:
+$$SST = \sum_{i=1}^{n}(y_i - \bar{y})^2.$$
+:::
+
+**SSE (Sum of Residual Squared)**
+
+It is the sum of the squares of residuals (deviations predicted from
+actual empirical values of data). It is a measure of the discrepancy
+between the data and an estimation model, such as a linear regression. A
+small SSE indicates a tight fit of the model to the data.
+
+<figure>
+<center>
+```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \\hat{y}_i$.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[->, thick]
+  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
+  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
+  \filldraw[blue] (0.5, 1.4) circle (2pt);
+  \filldraw[blue] (1.5, 1.1) circle (2pt);
+  \filldraw[blue] (1, 2.1) circle (2pt);
+  \filldraw[blue] (2, 1.9) circle (2pt);
+  \filldraw[blue] (2.5, 3.1) circle (2pt);
+  \filldraw[blue] (3, 2.2) circle (2pt);
+  \filldraw[blue] (3.5, 3.8) circle (2pt);
+  \filldraw[blue] (4, 3.4) circle (2pt);
+  \filldraw[blue] (4.5, 4.5) circle (2pt);
+  \filldraw[blue] (5, 3.6) circle (2pt);
+  \foreach \x/\y in {
+    0.5/1.4, 
+    1.5/1.1,
+    1/2.1,
+    2/1.9,
+    2.5/3.1,
+    3/2.2,
+    3.5/3.8,
+    4/3.4,
+    4.5/4.5,
+    5/3.6
+  }{
+    \draw[black] (\x,\y) -- (\x,{0.8*\x + 0.35});
+  }
+  \draw[dashed] (-0.5,2.7) -- (6.5,2.7);
+  \node at (6.7,2.7) {$\bar{y}$};
+\end{tikzpicture}
+```
+</center>
+
+<figcaption>A simple linear regression illustration with residuals
+shown. Blue points are observed data, red line is the model, dashed line
+is the average of <span class="math inline"><em>y</em></span>, and black
+lines represent residuals <span class="math inline">$y_i -
+\hat{y_i}$</span>.</figcaption>
+</figure>
+
+::: definition
+For any simple linear regression model, SSE (Sum of residual squared)
+measures the distance between observed data and estimated data, which is
+given by: $$SSE = \sum_{i=1}^{n} (y_i - \hat{y_i})^2.$$
+:::
+
+Note that SSE (sum of residual squared) is an explained variation.\
+**SSR (Sum Square Regression)**
+
+It measures the distance between estimated value (estimated dependent
+data) and the mean of dependent data ($\bar{y}$).
+
+<figure>
+<center>
+```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap="An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\\bar{y}$, and the solid black lines illustrate the deviation of the model\'s predictions from this mean."}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[->, thick]
+  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
+
+  \filldraw[blue] (0.5, 1.2) circle (2pt);
+  \filldraw[blue] (1.5, 2.1) circle (2pt);
+  \filldraw[blue] (1, 1.6) circle (2pt);
+  \filldraw[blue] (2, 2.5) circle (2pt);
+  \filldraw[blue] (2.5, 2.9) circle (2pt);
+  \filldraw[blue] (3, 3.3) circle (2pt);
+  \filldraw[blue] (3.5, 3.7) circle (2pt);
+  \filldraw[blue] (4, 4.2) circle (2pt);
+  \filldraw[blue] (4.5, 4.4) circle (2pt);
+  \filldraw[blue] (5, 4.7) circle (2pt);
+
+  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) 
+    node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
+
+  \draw[dashed] (0,3) -- (6,3) node[right] {$\bar{y}$};
+
+  \foreach \x in {0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5} {
+    \draw[black] (\x, {0.8*\x + 0.35}) -- (\x, 3);
+  }
+\end{tikzpicture}
+```
+</center>
+<figcaption>An illustration of simple linear regression. The blue points
+represent monthly height measurements with added variability. The red
+line is the fitted simple linear regression model. The dashed line shows
+the mean of the dependent variable, <span
+class="math inline"><em>ȳ</em></span>, and the solid black lines
+illustrate the deviation of the model’s predictions from this
+mean.</figcaption>
+</figure>
+
+::: definition
+For any simple linear regression, the distance between the mean of
+dependent value and estimated dependent value is called sum square
+regression (SSR), which is given by
+$$SSR = \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2.$$
+:::
+
+Note that sum square regression (SSR) is an explained variation.\
+**Summery**
+
+Now, let's zoom in to see SST, SSE and SSR. Note that the relationship
+of these measures is that total deviation is equal to unexplained
+deviation (error) plus explained deviation (regression), that is:
+$(y_i - \bar{y}) = (y_i - \hat{y_i}) + (\hat{y_i} - \bar{y})$.\
+We square all three deviations for each one of our data points, and sum
+over all $n$ points. Here, cross terms drop out, and we are left with
+the following equation:
+$$\sum_{i=1}^{n}(y_i - \bar{y})^2 = \sum_{i=1}^{n} (y_i - \hat{y_i})^2 + \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2,$$
+SST = SSE + SSR.
+
+Total sum of squares = Sum of squares for error + Sum of squares for
+regression.
+
+<figure>
+<center>
+```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Visual representation of regression variability. \\textbf{SST} (green) is total variability from the mean, \\textbf{SSR} (pink) is explained variability, and \\textbf{SSE} (orange curly brace) is the residual (unexplained) variability between the observed value $y_i$ and the prediction $\\hat{y}_i$.'}
+\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
+\begin{tikzpicture}[->, thick]
+  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
+  \filldraw[blue] (2, 4) circle (2pt) node[above right] {Observed $y_i$};
+  \draw[gray, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
+  \draw[dashed] (0,3) -- (6,3) node[right] {$\bar{y}$};
+  \coordinate (xhat) at (2, 1.95);
+  \filldraw[red] (xhat) circle (2pt) node[below right] {$\hat{y}_i$};
+  \draw[pink, thick] (xhat) -- (2, 3) node[midway, right] {\footnotesize SSR};
+  \draw[green, thick] (2, 4) -- (2, 3) node[midway, right] {\footnotesize SST};
+  \draw[thick, orange, |-|] (1.9, 1.95) -- (1.9, 4) node[midway, left=4pt, yshift=6pt] {\footnotesize SSE};
+\end{tikzpicture}
+```
+</center>
+<figcaption> Visual representation of regression variability.
+<strong>SST</strong> (green) is total variability from the mean,
+<strong>SSR</strong> (pink) is explained variability, and
+<strong>SSE</strong> (orange curly brace) is the residual (unexplained)
+variability between the observed value <span
+class="math inline"><em>y</em><sub><em>i</em></sub></span> and the
+prediction <span
+class="math inline"><em>ŷ</em><sub><em>i</em></sub></span>.</figcaption>
+</figure>
+
+**Coefficient of Determination ($r^2$)**
+
+Moreover, we can use SST, SSE and SSR to calculate another value which
+is important in simple linear regression, that is coefficient of
+determination. It is proportion of variability in $y$ which is explained
+by $x$.
+
+::: definition
+We define the coefficient of determination as the sum of squares due to
+the regression divided by the total sum of squares.
+$$r^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}.$$ The coefficient of
+determination can be interpreted as the proportion of the variation in
+$Y$ that is explained by the regression relationship of $Y$ with $X$ (or
+the proportion of the total corrected sum of squares explained by the
+regression). Note that: $0 \leq r^2 \leq 1.$
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Inference for Simple Linear Regression
+
+In previous chapters, we focused on estimating regression parameters and
+interpreting the fitted line. In this chapter, we take a step further by
+conducting formal inference on the slope and intercept of a simple
+linear regression model. We examine the distribution of errors, assess
+variability, and introduce the idea of using hypothesis tests and
+confidence intervals to evaluate whether the linear relationship
+observed in the data is statistically significant.
+
+We begin by introducing the regression model and exploring the
+assumptions necessary to perform inference on the coefficients,
+particularly the slope.
+
+$$Y = \beta_0 + \beta_1 X + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2)$$
+
+Can perform inference on $\beta_0$ and $\beta_1$, however we are usually
+more interested in $\beta_1$.\
+What does the error term $\varepsilon \sim \mathcal{N}(0, \sigma^2)$
+mean?\
+**At each** value of $X$, the errors are distributed normally with a
+mean of zero and a constant variance.
+
+
+
+Can verify with residual plots (assumptions).
+
+We estimate $\sigma^2$ with a value we call $S^2$ and use $S^2$ for
+inference.
+
+### Estimating Variance in Linear Regression {#estimating-variance-in-linear-regression}
+
+$$Y = \beta_0 + \beta_1 X + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2)$$
+
+**Estimate $\sigma^2$ with $S^2$**:
+
+$$S^2 = \frac{\sum_{i=1}^n e_i^2}{n - 2}
+= \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n - 2}
+= \frac{SSE}{n - 2}$$
+
+[*notice similarity*]{style="color: red"}
+
+$$S_x^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}
+\quad {\text{(sample variance, }\bar{x} \text{ estimated)}}$$
+
+$$S = +\sqrt{S^2}
+\quad {\text{(estimate of standard deviation)}} \\$$
+
+**In calculating $S^2$, why do we divide by $n-2$?**
+
+Since we estimate 2 unknown parameters in the model (both $\beta_0$ and
+$\beta_1$), which are used in the calculation of $S^2$.
+
+::: tcolorbox
+We have data on an explanatory variable $x$ and a response variable $y$
+for $n$ individuals. From the data, calculate the means $\bar{x}$ and
+$\bar{y}$ and the standard deviations $S_x$ and $S_y$ of the two
+variables, and their correlation $r$. The least-squares regression line
+is the line:
+
+$$\hat{y} = b_0 + b_1 x$$
+
+with *slope*
+
+$$b_1 = r \frac{S_y}{S_x}$$
+
+and *intercept*
+
+$$b_0 = \bar{y} - b_1 \bar{x}$$
+:::
+
+::: definition
+The **least-squares regression line** of $y$ on $x$ is the line that
+makes the sum of the squares of the vertical distances of the data
+points from the line as small as possible.
+:::
+
+::: example
+Suppose an appliance store conducts a 5-month experiment to determine
+the effect of advertising on sales revenue. The results are shown in a
+table below. The relationship between sales revenue, $y$, and
+advertising expenditure, $x$, is hypothesized to follow a first-order
+linear model, that is,
+
+$$y = \beta_0 + \beta_1 x + \varepsilon$$
+
+where
+
+$$\begin{aligned}
+y & = \text{dependent variable} \\
+x & = \text{independent variable} \\
+\beta_0 & = \text{$y$-intercept} \\
+\beta_1 & = \text{slope of the line} \\
+\varepsilon & = \text{error variable}
+\end{aligned}$$
+
+| Month | Expenditure $x$ (hundreds) | Revenue $y$ (thousands) |
+|-------|-----------------------------|--------------------------|
+| 1     | 1                           | 1                        |
+| 2     | 2                           | 1                        |
+| 3     | 3                           | 2                        |
+| 4     | 4                           | 2                        |
+| 5     | 5                           | 4                        |
+
+
+
+The question is this: How can we best use the information in the sample
+of five observations in our table to estimate the unknown $y$-intercept
+$\beta_0$ and slope $\beta_1$?
+
+We are given:
+$$\bar{x} = 3, \quad \bar{y} = 2, \quad S_x = 1.5811, \quad S_y = 1.2247, \quad S_{xy} = 1.75$$
+
+Then, the slope of the least squares line is
+
+$$b_1 = r \frac{S_y}{S_x} = (0.9037) \left( \frac{1.2247}{1.5811} \right) = 0.7$$
+
+and
+
+$$b_0 = \bar{y} - b_1 \bar{x} = 2 - (0.7)(3) = -0.1$$
+
+The least squares line is thus:
+
+$$\hat{y} = -0.1 + 0.7x$$
+:::
+
+### Confidence Intervals and Hypothesis Tests 
+
+We have $n$ observations on an explanatory variable $x$ and a response
+variable $y$. Our goal is to study or predict the behavior of $y$ for
+given values of $x$.
+
+- For any fixed value of $x$, the response $y$ varies according to a
+  Normal distribution. Repeated measures $y$ are independent of each
+  other.
+
+- The mean response $\mu_y$ has a straight-line relationship with $x$:
+  $\mu_y = \beta_0 + \beta_1 x$. The slope $\beta_1$ and intercept
+  $\beta_0$ are **unknown** parameters.
+
+- The standard deviation of $y$ (call it $\sigma$) is the same for all
+  values of $x$. The value of $\sigma$ is **unknown**. The regression
+  model has three parameters, $\beta_0$, $\beta_1$, and $\sigma$.
+
+Thus, if $$\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i$$ is the
+predicted value of the $i$th $y$ value, then the deviation of the
+observed value $y_i$ from $\hat{y}_i$ is the difference
+$y_i - \hat{y}_i$ and the sum of squares of deviations to be minimized
+is
+
+$$SSE = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} [y_i - (\hat{\beta}_0 + \hat{\beta}_1 x_i)]^2.$$
+
+The quantity *SSE* is also called the **sum of squares for error**.
+$$\begin{aligned}
+\text{Fitted Value:} \quad & \hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i \\
+\text{Residual:} \quad & \hat{\varepsilon}_i = y_i - \hat{y}_i
+\end{aligned}$$
+
+The **regression standard error** is
+
+$$s = \sqrt{\frac{1}{n - 2} \sum \text{residual}^2} 
+= \sqrt{\frac{1}{n - 2} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} 
+= \sqrt{\frac{SSE}{n - 2}}$$
+
+Use $s$ to estimate the **unknown** $\sigma$ in the regression model.\
+The standard error of $\hat{\beta}_1$ is the standard deviation of the
+sampling distribution of $\hat{\beta}_1$ (estimate of slope $\beta_1$):
+
+$$SE(\hat{\beta}_1) = \frac{s}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2}} 
+= \frac{s}{\sqrt{(n - 1) s_x^2}}$$
+
+**Confidence Interval for the Slope**
+
+$$\hat{\beta}_1 \pm t_{(n-2, \, \alpha/2)} \cdot SE(\hat{\beta}_1)
+\quad = \quad 
+\hat{\beta}_1 \pm t_{(n-2, \, \alpha/2)} \cdot \frac{s}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2}}$$
+
+:::: example
+Revisit the example on advertising and sales and construct a 95%
+confidence interval on the slope. Provide an interpretation of the CI.
+
+From earlier: $$\hat{y} = -0.1 + 0.7x$$
+
+::: center
+   **$x$**   **$y$**   **$\hat{y}$**   **$y - \hat{y}$**   **$(y - \hat{y})^2$**   **$(x - \bar{x})^2$**
+  --------- --------- --------------- ------------------- ----------------------- -----------------------
+      1         1           0.6               0.4                  0.16                      4
+      2         1           1.3              -0.3                  0.09                      1
+      3         2           2.0               0.0                  0.00                      0
+      4         2           2.7              -0.7                  0.49                      1
+      5         4           3.4               0.6                  0.36                      4
+:::
+
+We are given:
+$$\sum x_i = 15, \quad \bar{x} = \frac{15}{5} = 3, \quad SSE = 1.10, \quad \sum (x_i - \bar{x})^2 = 10$$
+
+**Step 1: Estimate variance and standard deviation**
+$$s^2 = \frac{SSE}{n-2} = \frac{1.10}{5 - 2} = 0.3667
+\quad \Rightarrow \quad
+s = \sqrt{0.3667} = 0.6055$$
+
+**Step 2: Compute standard error of $\hat{\beta}_1$**
+$$SE(\hat{\beta}_1) = \frac{s}{\sqrt{\sum (x_i - \bar{x})^2}} 
+= \frac{0.6055}{\sqrt{10}} = 0.1914$$
+
+**Step 3: Determine critical $t$-value**
+
+$$n - 2 = 3, \quad \alpha = 0.05, \quad \alpha/2 = 0.025
+\Rightarrow \quad
+t_{(3, 0.025)} = 3.182$$
+
+**Step 4: Construct CI for the slope**
+$$\hat{\beta}_1 \pm t_{(n-2, \alpha/2)} \cdot SE(\hat{\beta}_1)
+= 0.7 \pm 3.182 \cdot 0.1914 = 0.7 \pm 0.6092$$
+
+$$\Rightarrow \text{CI: } (0.0908, \; 1.3092)$$
+
+**Interpretation:** We are 95% confident the slope ($\beta_1$) for this
+model lies between 0.0908 and 1.3092.
+::::
+
+<!-- ### Interpreting Confidence Intervals for $\beta_1$ {#interpreting-confidence-intervals-for-beta_1 .unnumbered} -->
+
+::: center
+  ----------------- ----------------------------------------------------------
+    **Suppose CI:** $(-, -)$
+                    Suggests $\beta_1$ has a **negative** sign.
+                    Suggests negative correlation, potentially good model.
+                    
+    **Suppose CI:** $(+, +)$
+                    Suggests $\beta_1$ has a **positive** sign.
+                    Suggests positive correlation, potentially good model.
+                    
+    **Suppose CI:** $(-, +)$
+                    $\beta_1 = 0$ is plausible.
+                    Suggests **no linear relationship** between $x$ and $y$.
+  ----------------- ----------------------------------------------------------
+:::
+
+In cases where the CI does not contain zero, we can infer the sign of
+the slope (just not the steepness).\
+The **regression standard error** is
+
+$$s = \sqrt{\frac{1}{n - 2} \sum_{i=1}^n (y_i - \hat{y}_i)^2} = \sqrt{\frac{SSE}{n - 2}} = \sqrt{\frac{1.1}{3}} = 0.6055$$
+
+Use $s$ to estimate the **unknown** $\sigma$ in the regression model.\
+A level $C$ confidence interval for the slope $\beta_1$ of the true
+regression line is
+
+$$b_1 \pm t^* SE_{b_1}$$
+
+In this formula, the standard error of the least-squares slope $b$ is
+
+$$SE_{b_1} = \frac{s}{\sqrt{\sum (x_i - \bar{x})^2}} = \frac{s}{\sqrt{(n - 1) S_x^2}}$$
+
+and $t^*$ is the critical value for the $t(n - 2)$ density curve with
+area $C$ between $-t^*$ and $t^*$.
+
+::: tcolorbox
+**Hypotheses:** $$\begin{aligned}
+H_0\!: \beta_1 = 0 \quad & \text{vs.} \quad H_a\!: \beta_1 > 0 \\
+H_0\!: \beta_1 = 0 \quad & \text{vs.} \quad H_a\!: \beta_1 < 0 \\
+H_0\!: \beta_1 = 0 \quad & \text{vs.} \quad H_a\!: \beta_1 \neq 0 \quad \text{\textit{(most common)}}
+\end{aligned}$$
+
+**Test Statistic:**
+$$t = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} = \frac{\hat{\beta}_1}{\dfrac{s}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2}}}$$
+
+**Reference distribution:** $t$ distribution with $n - 2$ degrees of
+freedom.
+
+*Note:* A test statistic always follows the form:
+$$\text{test stat} = \frac{\text{statistic} - \text{hypothesized value}}{\text{SE(statistic)}}$$
+:::
+
+::: example
+For the advertising example, perform a two-sided hypothesis test on the
+slope.
+
+**Hypotheses:** $$H_0\!: \beta_1 = 0 
+\qquad 
+H_a\!: \beta_1 \neq 0$$
+
+**Test Statistic:**
+$$t^* = \frac{\hat{\beta}_1 - 0}{\dfrac{s}{\sqrt{\sum (x_i - \bar{x})^2}}}
+= \frac{0.7 - 0}{0.6055 / \sqrt{10}} = 3.6558$$
+
+**Reference Distribution:** $t$ distribution with $n - 2 = 5 - 2 = 3$
+degrees of freedom.
+
+**Decision Rule:**
+
+Using a two-tailed test:
+$$\text{p-value} = 2 \cdot P(T_3 > 3.6558) < 0.01 \Rightarrow \text{p-value} < 0.05$$
+
+**Conclusion:** Since $p$-value $< 0.05$, we reject $H_0$ and conclude
+$H_a\!: \beta_1 \neq 0$.
+
+*Interpretation:* The slope should be included in the model. There is
+significant evidence of a linear relationship between advertising and
+sales revenue.\
+For the advertising-sales example, a 95% Confidence Interval for the
+slope $\beta_1$ is
+$$0.7 \pm 3.182 \left( \frac{0.6055}{\sqrt{10}} \right)$$
+$$0.7 \pm 0.6092$$
+
+Thus, we estimate with 95% confidence that the interval from 0.0908 and
+1.3092 includes the parameter $\beta_1$.
+:::
+
+We can also test hypotheses about the slope $\beta_1$. The most common
+hypothesis is
+
+$$H_0 : \beta_1 = 0.$$
+
+A regression line with slope 0 is horizontal. That is, the mean of $y$
+does not change at all when $x$ changes. So this $H_0$ says that there
+is no true linear relationship between $x$ and $y$.
+
+::: tcolorbox
+To test the hypothesis $H_0 : \beta_1 = 0$, compute the $t$ statistic
+$$t = \frac{b_1}{SE_{b_1}}.$$
+
+In terms of a random variable $T$ having the $t(n - 2)$ distribution,
+the P-value for a test of $H_0$ against: $$\begin{aligned}
+H_a : \beta_1 \ne 0 & \quad \text{is } 2P(T > |t|). \\
+H_a : \beta_1 > 0 & \quad \text{is } P(T > t). \\
+H_a : \beta_1 < 0 & \quad \text{is } P(T < t).
+\end{aligned}$$
+:::
+
+::::: example
+$$\alpha = 0.05$$
+
+1.  $H_0: \beta_1 = 0 \quad \text{vs} \quad H_a: \beta_1 > 0$
+
+2.  $t^* = \frac{b_1}{SE_{b_1}} = \frac{0.7}{0.1914} = 3.6572$
+
+3.  $P\text{-value} = P(T > t) = P(T > 3.6572) \quad \text{d.f.} = n - 2 = 5 - 2 = 3.$\
+    Using t-distribution table, $0.01 < P\text{ value} < 0.025$
+
+4.  Since $P\text{-value} < \alpha = 0.05$, we reject $H_0$.
+
+Our example (different $H_a$) $$\alpha = 0.05$$
+
+1.  $H_0: \beta_1 = 0 \quad \text{vs} \quad H_a: \beta_1 \neq 0$
+
+2.  $t^* = \frac{b_1}{SE_{b_1}} = \frac{0.7}{0.1914} = 3.6572$
+
+3.  $P\text{-value} = 2P(T > |t|) = 2P(T > 3.6572) \quad \text{d.f.} = n - 2 = 5 - 2 = 3.$\
+    Using Table 3, $0.02 < P\text{ value} < 0.05$
+
+4.  Since $P\text{-value} < \alpha = 0.05$, we reject $H_0$.
+
+**R code**
+
+::: tcolorbox
+    x = c(1, 2, 3, 4, 5);
+    y = c(1, 1, 2, 2, 4);
+    mod = lm(y~x);
+    summary(mod);
+:::
+
+**R Output**
+
+::: tcolorbox
+    ## 
+    ## Call:
+    ## lm(formula = y~x)
+    ## 
+    ## Residuals:
+    ##       1        2        3        4        5 
+    ##  4.000e-01 -3.000e-01 -3.886e-16 -7.000e-01  6.000e-01 
+    ## 
+    ## Coefficients:
+    ##             Estimate Std. Error t value Pr(>|t|)   
+    ## (Intercept)  -0.1000     0.6351  -0.157  0.8849    
+    ## x             0.7000     0.1915   3.656  0.0354 *  
+    ## ---
+    ## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    ## 
+    ## Residual standard error: 0.6055 on 3 degrees of freedom
+:::
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x = -0.10 + 0.70x$$
+$$SE(\hat{\beta}_1) = 0.1915$$
+
+By default, R conducts the following test for each coefficient:
+
+$$\begin{aligned}
+    H_0&: \beta_j = 0 \\
+    H_a&: \beta_j \ne 0 \quad \text{(two sided)}
+\end{aligned}$$
+
+Test statistic: $$t^* = \frac{\hat{\beta}_j - 0}{SE(\hat{\beta}_j)}$$
+
+For advertising and sales data: $$\begin{aligned}
+    H_0&: \beta_1 = 0 \\
+    H_a&: \beta_1 \ne 0
+\end{aligned}$$
+
+$$t^* = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} = \frac{0.70}{0.1915} = 3.656$$
+:::::
+
+::: nt
+**Review**
+
+$$\begin{aligned}
+y &= \beta_0 + \beta_1 x + \varepsilon, \quad \varepsilon \sim N(0, \sigma^2) \\
+\hat{y} &= \hat{\beta}_0 + \hat{\beta}_1 x \\
+\hat{\beta}_1 &= \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} = \frac{s_{xy}}{s_{xx}} \\
+\hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x} \\
+\end{aligned}$$
+
+**r:** coefficient of correlation (strength)\
+**r$^2$:** coefficient of determination (% variability)
+
+$$\begin{aligned}
+s^2 &= \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n - 2} = \frac{SSE}{n - 2} \\
+s &= \sqrt{s^2} \\
+SE(\hat{\beta}_1) &= \frac{s}{\sqrt{s_{xx}}} \\
+CI &: \hat{\beta}_1 \pm t_{n - 2, \alpha/2} \cdot SE(\hat{\beta}_1) \\
+\end{aligned}$$ Hypothesis test: $$\begin{aligned}
+H_0 &: \beta_1 = 0 \\
+\text{Test stat:}\quad t &= \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)}
+\end{aligned}$$
+:::
+
+We square all three deviations for each one of our data points, and sum
+over all $n$ points. Here, cross terms drop out, and we are left with
+the following equation:
+
+$$\sum_{i=1}^{n}(y_i - \bar{y})^2 = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \sum_{i=1}^{n}(\hat{y}_i - \bar{y})^2$$
+
+$$\text{SST} = \text{SSE} + \text{SSR}$$
+
+Total sum of squares = Sum of squares for error + Sum of squares for
+regression.\
+$$\begin{aligned}
+SSE &= \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \\
+    &= \sum_{i=1}^{n} (y_i - \bar{y})^2 - \hat{\beta}_1 \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) \\
+    &= S_{YY} - \hat{\beta}_1 S_{XY}
+\end{aligned}$$
+
+Notice that this provides an easier computational method of finding
+SSE.\
+**R output (Additional example)**
+
+::: tcolorbox
+    > summary(model);
+
+    Call:
+    lm(formula = camrys$Price ~ Odometer, data = camrys)
+
+    Residuals:
+         Min       1Q   Median       3Q      Max 
+    -0.68679 -0.27263  0.00521  0.23210  0.70071 
+
+    Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+    (Intercept)  17.248727   0.182093   94.72   <2e-16 ***
+    Odometer     -0.066861   0.004975  -13.44   <2e-16 ***
+    ---
+    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+    Residual standard error: 0.3265 on 98 degrees of freedom
+    Multiple R-squared:  0.6483,    Adjusted R-squared:  0.6447 
+    F-statistic: 180.6 on 1 and 98 DF,  p-value: < 2.2e-16
+:::
+
+### ANOVA Table for Simple Linear Regression
+
+Analysis of Variance (ANOVA) is a statistical method used to assess
+whether variation in a response variable can be explained by predictor
+variables in a regression model. It summarizes sources of variation
+using sums of squares, degrees of freedom, and mean squares in a
+structured table format.
+
+  **Source of Variation**    **Sum of Squares**   **Degrees of Freedom**        **Mean Square**                **Computed F**
+  ------------------------- -------------------- ------------------------ ---------------------------- ------------------------------
+  Regression                        SSR                     1                         SSR               $\dfrac{SSR}{SSE / (n - 2)}$
+  Error                             SSE                  $n - 2$           $s^2 = \dfrac{SSE}{n - 2}$  
+  Total                             SST                  $n - 1$                                       
+
+For the general multivariate regression model: $$\begin{aligned}
+    Y &= \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \varepsilon, \\
+      &\quad \varepsilon \sim N(0, \sigma^2)
+\end{aligned}$$ with $p$ predictors.\
+ANOVA can be used for testing: $$\begin{aligned}
+    H_0&: \beta_1 = \beta_2 = \cdots = \beta_p = 0 \\
+    H_a&: \text{At least one } \beta_j \ne 0, \quad j = 1, \ldots, p
+\end{aligned}$$
+
+**Test Statistic:** $$\begin{aligned}
+    F &= \dfrac{MSR}{MSE} = \dfrac{SSR/p}{SSE / (n - p - 1)} \sim F(p, n - p - 1)
+\end{aligned}$$
+
+**Reference distribution:** $F$ with numerator df = $p$, denominator df
+= $n - p - 1$
+
+::::: example
+We fitted a simple linear regression model using:
+
+::: tcolorbox
+    x = c(1,2,3,4,5);
+    y = c(1,1,2,2,4);
+    mod = lm(y~x);
+    anova(mod);
+:::
+
+The ANOVA output was:
+
+::: tcolorbox
+    ## Analysis of Variance Table
+    ##
+    ## Response: y
+    ##             Df  Sum Sq Mean Sq F value   Pr(>F)
+    ## x            1     4.9    4.9000  13.364  0.03535 *
+    ## Residuals    3     1.1    0.3667
+    ## ---
+    ## Signif. codes:
+    ## 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+:::
+
+**Interpretation:**
+
+- The regression model includes one predictor $x$, so the degrees of
+  freedom for regression is 1.
+
+- The sum of squares for regression is $SSR = 4.9$, and for residuals
+  $SSE = 1.1$.
+
+- Mean squares are calculated as:
+  $$MSR = \frac{SSR}{1} = 4.9, \quad MSE = \frac{SSE}{n - 2} = \frac{1.1}{3} = 0.3667$$
+
+- The F-statistic is:
+  $$F = \frac{MSR}{MSE} = \frac{4.9}{0.3667} \approx 13.364$$
+
+- The p-value is $\approx 0.03535$, indicating that the predictor is
+  significant at the 5% level.
+
+**Conclusion:** Since the p-value is less than 0.05, we reject $H_0$ and
+conclude that $x$ has a statistically significant linear relationship
+with $y$.
+:::::
+
+:::::::::::: example
+We consider data on apartments near UTM, with price (in thousands of
+dollars), area (in 100 square feet), and number of beds and baths.
+
+::: center
+  ----------------- ---------------------- ---------- -----------
+      **Price**            **Area**         **Beds**   **Baths**
+   ($\times 1000$)   ($\times 100$ sq ft)             
+         620                 11.0              2           2
+         590                 6.5               2           1
+         620                 10.0              2           2
+         700                 8.4               2           2
+         680                 8.0               2           2
+         500                 5.7               1           1
+         760                 12.0              2           2
+         800                 14.0              3           1
+         660                 7.3               2           1
+  ----------------- ---------------------- ---------- -----------
+:::
+```{r fig.cap="Plot of Price vs Area for Apartments near UTM",echo=FALSE, fig.align='center', out.width='60%'}
+# Data
+area <- c(5.5, 6.5, 7.5, 8.0, 8.3, 9.8, 11.0, 12.5, 13.8, 10.2)
+price <- c(490, 590, 660, 700, 710, 630, 630, 760, 810, 680)
+
+# Plot
+plot(area, price,
+     pch = 19,                     # solid circle
+     xlab = "Area (sq ft)",
+     ylab = "Price (x$1000)",
+     bty = "l")                    # axis box only on left and bottom
+```
+
+
+   **Price**   **Area**   $(x - \bar{x})$   $(y - \bar{y})$          $(x - \bar{x})(y - \bar{y})$                 $(x - \bar{x})^2$
+  ----------- ---------- ----------------- ----------------- --------------------------------------------- --------------------------------
+      620        11.0           1.8              -38.9                          -70.02                                   3.24
+      590        6.5           -2.7              -68.9                          186.03                                   7.29
+      620        10.0           0.8              -38.9                          -31.12                                   0.64
+      700        8.4           -0.8              41.1                           -32.88                                   0.64
+      680        8.0           -1.2              21.1                           -25.32                                   1.44
+      500        5.7           -3.5             -158.9                          556.15                                  12.25
+      760        12.0           2.8              101.1                          283.08                                   7.84
+      800        14.0           4.8              141.1                          677.28                                  23.04
+      660        7.3           -1.9               1.1                            -2.09                                   3.61
+    **Sum**      82.9                                         $\sum (x - \bar{x})(y - \bar{y}) = 1541.11$   $\sum (x - \bar{x})^2 = 60.00$
+
+  : Deviation table for computing $\hat{\beta}_1$ and $\hat{\beta}_0$
+
+The sample means are:
+$$\bar{y} = \frac{\sum y}{n} = \frac{5930}{9} = 658.89, \qquad
+\bar{x} = \frac{\sum x}{n} = \frac{82.9}{9} = 9.21$$
+
+#### Finding the Regression Coefficients {#finding-the-regression-coefficients .unnumbered}
+
+To compute the least squares regression line, we calculate the slope and
+intercept using the formulas:
+
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{1541.11}{60} = 25.69$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} = 658.89 - (25.69)(9.21) = 422.28$$
+
+#### Equation of the Regression Line {#equation-of-the-regression-line .unnumbered}
+
+Using the values above, we write the estimated regression equation as:
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x = 422.28 + 25.69x$$
+
+This equation gives the predicted apartment price (in \$1000s) based on
+area (in 100 sq ft).
+
+#### Interpretation of Coefficients {#interpretation-of-coefficients .unnumbered}
+
+The slope $\hat{\beta}_1 = 25.69$ means that for every additional 100 sq
+ft in area, we expect the apartment price to increase by approximately
+\$25,690 on average.\
+The intercept $\hat{\beta}_0 = 422.28$ suggests the predicted price when
+the area is zero. While this has no practical interpretation in this
+context, it is a necessary component of the regression model.
+
+#### Interpolation and Extrapolation {#interpolation-and-extrapolation .unnumbered}
+
+To estimate the price of an apartment with an area of 800 sq ft (i.e.,
+$x = 8$), we compute:
+
+$$\hat{y} = 422.28 + 25.69(8) = 627.8 \quad (\$1000)$$
+
+Since 8 is within the range of observed values, this is an example of
+**interpolation.**
+
+For an apartment with 2,500 sq ft ($x = 25$):
+
+$$\hat{y} = 422.28 + 25.69(25) = 1064.53 \quad (\$1000)$$
+
+This is an example of **extrapolation**, and such predictions should be
+treated with caution since they lie outside the data range.\
+We can create a simple linear regression model in R using the `lm`
+command:
+
+**R code**
+
+::: tcolorbox
+    lm(y ~ x, data = data_source)
+:::
+
+The data is available in the `apt_around_utm.csv` file.
+
+**R code**
+
+::: tcolorbox
+    apt = read.csv(file.choose())
+    # apt = read.csv("~/PATH_TO_FILE/apt_around_utm.csv")
+
+    apt_model = lm(price ~ area, data = apt)
+:::
+
+**R output**
+
+::: tcolorbox
+    > apt_model
+
+    Call:
+    lm(formula = price ~ area, data = apt)
+
+    Coefficients:
+    (Intercept)       area  
+         422.26       25.69  
+:::
+
+We can compute the residuals and the sum of squared errors (SSE) using
+the table below:
+
+::: center
+   $y$   $x$    $\hat{y}$   $y - \hat{y}$   $(y - \hat{y})^2$  
+  ----- ------ ----------- --------------- ------------------- --
+   620   11.0    704.85        -84.85            7198.73       
+   590   6.5     589.24         0.76              0.58         
+   620   10.0    679.16        -59.16            3499.36       
+   700   8.4     638.05         61.95            3837.62       
+   680   8.0     627.78         52.22            2727.4        
+   500   5.7     568.69        -68.69            4718.13       
+   760   12.0    730.54         29.46            868.17        
+   800   14.0    781.92         18.08            327.06        
+   660   7.3     609.79         50.21            2520.79       
+:::
+
+Recall our fitted regression model: $$\hat{y} = 25.69x + 422.26$$
+
+$$\text{SSE} = \sum (y_i - \hat{y}_i)^2 = 25,\!697.83$$
+
+We now conduct a hypothesis test on the slope $\beta_1$ at the 5%
+significance level.
+
+**Step 1: Hypotheses**
+$$H_0: \beta_1 = 0 \quad \text{vs.} \quad H_a: \beta_1 \ne 0$$
+
+**Step 2: Test statistic**
+$$s^2 = \frac{SSE}{n - 2} = \frac{25,\!697.83}{7} = 3670.26$$
+$$s = \sqrt{3670.26} = 60.58$$
+$$SE(\hat{\beta}_1) = \frac{s}{\sqrt{S_{xx}}} = \frac{60.58}{\sqrt{60}} = 7.82$$
+$$t = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} = \frac{25.69}{7.82} = 3.284$$
+
+**Step 3: Conclusion** Using $t$-distribution with 7 degrees of freedom:
+
+$$0.005 < p\text{-value} < 0.01$$
+
+Since $p$-value $< 0.05$, we reject $H_0$ and conclude that there is
+sufficient evidence that $\beta_1 \ne 0$.This suggests there is a
+statistically significant relationship between price and area for
+apartments near UTM.
+
+**Final Check: Total Sum of Squares**
+
+::: center
+   $y$   $x$    $\hat{y}$   $(y - \hat{y})^2$   $(y - \bar{y})^2$   $(\hat{y} - \bar{y})^2$  
+  ----- ------ ----------- ------------------- ------------------- ------------------------- --
+   620   11.0    704.85          7198.73             2112.00                1512.35          
+   590   6.5     589.24           0.58               4850.88                4745.68          
+   620   10.0    679.16          3499.36             410.73                 1512.35          
+   700   8.4     638.05          3837.62             434.20                 1690.12          
+   680   8.0     627.78          2727.4              968.04                 445.68           
+   500   5.7     568.69          4718.13             8136.08                2524.68          
+   760   12.0    730.54          868.17              5133.21               10223.46          
+   800   14.0    781.92          327.06              1513.47               19912.35          
+   660   7.3     609.79          2520.79             2410.45                 1.23            
+:::
+
+$$SSE + SSR = SST = 25,\!697.83 + 39,\!591.06 = 65,\!288.90$$ This
+confirms the ANOVA identity: Total = Explained + Residual
+
+We previously estimated the model:
+
+$$\hat{y} = 25.69x + 422.26$$
+
+**Coefficient of Determination and Correlation**
+
+$$r^2 = \frac{SSR}{SST} = \frac{39591.06}{65288.90} = 0.6063 = 60.63\%$$
+
+Interpretation: Approximately 60.63% of the variability in price is
+explained by the regression model.
+
+$$r = \pm \sqrt{r^2} = \pm \sqrt{0.6063} = \pm 0.779$$
+
+Since $\hat{\beta}_1 > 0$, we choose the positive root:
+
+$$r = 0.779$$
+
+Interpretation: There is a strong positive correlation between apartment
+area and price.
+
+**R code**
+
+::: tcolorbox
+    model = lm(y~x, data = data\_source) 
+    summary(model)
+:::
+
+**R code**
+
+::: tcolorbox
+    apt\_model = lm(price ~ area, data = apt)
+    summary(apt\_model)
+:::
+
+**R code**
+
+::: tcolorbox
+    Call:
+    lm(formula = price ~ area, data = apt)
+
+    Coefficients:
+                Estimate Std. Error t value Pr(>|t|)
+    (Intercept)  422.256   74.834     5.643  0.00078 ***
+    area         25.690    7.823      3.284  0.01341 *
+
+    Residual standard error: 60.59 on 7 degrees of freedom
+    Multiple R-squared: 0.6064,    Adjusted R-squared: 0.5502 
+    F-statistic: 10.78 on 1 and 7 DF,  p-value: 0.01341
+:::
+
+**Two-sided Test for Slope Coefficient**
+
+By default, R performs a two-sided test:
+$$H_0: \beta_1 = 0 \quad \text{vs.} \quad H_a: \beta_1 \neq 0$$
+
+Test statistic:
+$$t^* = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} = \frac{25.690 - 0}{7.823} = 3.284$$
+
+$$t^* \sim t_{(n - 2)}  \quad \text{with } df = 9 - 2 = 7$$
+
+**p-value** is the total shaded area in both tails. From R output:
+$$\text{p-value} = 0.01341$$
+::::::::::::
+
+::: definition
+- **Interpolation** is calculating predicted values of $y$ using our
+  linear model while working within the range of $x$ in which data was
+  available to construct our model.
+
+- **Extrapolation** is calculating predicted values of $y$ using our
+  linear model outside the range of $x$ used to obtain the linear model.
+
+- Interpolation is usually safe if we have a good linear model.
+
+- Extrapolation must be performed carefully since extrapolations that
+  are done without any foresight can be very inaccurate.
+:::
+
+### Residual Plots
+
+Residual plots are used to verify assumptions related to the error terms
+in a regression model.
+
+$$Y = \beta_0 + \beta_1 X + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2)$$
+
+The assumption $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ implies:
+
+- Mean of errors is 0
+
+- Constant variance of errors (homoscedasticity)
+
+We plot the residuals: $$e_i = y_i - \hat{y}_i$$ against the fitted
+values $\hat{y}_i$ to assess these assumptions.
+
+<!-- ### What to Look for in a Good Residual Plot {#what-to-look-for-in-a-good-residual-plot .unnumbered} -->
+
+If the assumption $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ is
+satisfied, the residual plot should have the following features:
+
+1.  **Random scattering:** No obvious pattern in residuals.
+
+    - A pattern (e.g., curve) may indicate a non-linear relationship.
+
+    - Random scattering also suggests independence of errors.
+
+2.  **Constant variance:** Residuals should fall within a horizontal
+    band, roughly half above and half below zero.
+
+    - Suggests constant variance (homoscedasticity).
+
+3.  **No influential points or clustering:** The plot should not show
+    isolated influential observations or clustering.
+
+<!-- # ```{r residual-stack, fig.width=6, fig.height=16, dev="png", out.width="100%", fig.align="center", message=FALSE, warning=FALSE} -->
+
+```{r fig.cap="Examples of residual plots which satisfy assumpations and which violate assumptions", echo=FALSE, warning=FALSE, fig.align="center", out.width='70%', fig.width=6, fig.height=16}
+# Load libraries
+library(ggplot2)
+library(patchwork)
+
+# Common theme for all plots
+theme_clean <- theme_minimal(base_size = 12)
+
+# 1. Satisfies Assumptions
+set.seed(1)
+x1 <- 1:30
+y1 <- 3 + 0.5 * x1 + rnorm(30, 0, 1)
+model1 <- lm(y1 ~ x1)
+df1 <- data.frame(Fitted = fitted(model1), Residuals = resid(model1))
+
+p1 <- ggplot(df1, aes(Fitted, Residuals)) +
+  geom_point(color = "orange", size = 2) +
+  geom_hline(yintercept = 0, color = "black") +
+  labs(
+    title = "Satisfies Assumptions",
+    x     = "Fitted Values",
+    y     = "Residuals"
+  ) +
+  theme_clean
+
+# 2. Non-linear Pattern
+x2 <- seq(-2, 2, length.out = 30)
+y2 <- x2^2 + rnorm(30, 0, 0.3)
+model2 <- lm(y2 ~ x2)
+df2 <- data.frame(Fitted = fitted(model2), Residuals = resid(model2))
+
+p2 <- ggplot(df2, aes(Fitted, Residuals)) +
+  geom_point(color = "orange", size = 2) +
+  geom_hline(yintercept = 0, color = "black") +
+  labs(
+    title = "Non-linear Pattern",
+    x     = "Fitted Values",
+    y     = "Residuals"
+  ) +
+  theme_clean
+
+# 3. Non-constant Variance
+x3 <- 1:30
+y3 <- 2 + 0.2 * x3 + rnorm(30, 0, sd = x3 / 10)
+model3 <- lm(y3 ~ x3)
+df3 <- data.frame(Fitted = fitted(model3), Residuals = resid(model3))
+
+p3 <- ggplot(df3, aes(Fitted, Residuals)) +
+  geom_point(color = "orange", size = 2) +
+  geom_hline(yintercept = 0, color = "black") +
+  labs(
+    title = "Non-constant Variance",
+    x     = "Fitted Values",
+    y     = "Residuals"
+  ) +
+  theme_clean
+
+# 4. Clustering
+x4 <- c(rnorm(15, 3, 0.2), rnorm(15, 5, 0.2))
+y4 <- 2 + 0.5 * x4 + rnorm(30, 0, 1)
+model4 <- lm(y4 ~ x4)
+df4 <- data.frame(Fitted = fitted(model4), Residuals = resid(model4))
+
+p4 <- ggplot(df4, aes(Fitted, Residuals)) +
+  geom_point(color = "orange", size = 2) +
+  geom_hline(yintercept = 0, color = "black") +
+  labs(
+    title = "Clustering",
+    x     = "Fitted Values",
+    y     = "Residuals"
+  ) +
+  theme_clean
+
+# Stack all four plots vertically
+final_plot <- p1 / p2 / p3 / p4 +
+  plot_layout(ncol = 1)  # one column
+
+# Render the combined plot
+print(final_plot)
+```
+
+
+::: tcolorbox
+The model is: $Y = \beta_0 + \beta_1 X + \varepsilon$, where
+$\varepsilon \sim \mathcal{N}(0, \sigma^2)$
+
+- The relationship between $X$ and $Y$ is linear.
+
+- Residuals:
+
+  - are independent
+
+  - have constant variance
+
+  - are normally distributed
+
+  These assumptions can be verified using residual plots.
+:::
+
+::: center
+:::
+
