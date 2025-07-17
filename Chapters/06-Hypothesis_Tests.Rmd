@@ -1227,6 +1227,621 @@ confirming the bracketing result.
 
 
 
+### On a Population Proportion
+
+To test $H_0 : p = p_0$, our options for the null and alternative hypotheses are:
+
+- $H_0: p = p_0$ vs. $H_a: p > p_0$
+
+- $H_0: p = p_0$ vs. $H_a: p < p_0$
+
+- $H_0: p - p_0$ vs. $H_a: p \neq p_0$
+
+
+We calculate the one-sample $z$-statistic:
+
+$$z^* = \dfrac{\hat{p} - p_0}{\sqrt{\dfrac{p_0(1 - p_0)}{n}}}$$
+
+The Reference distribution is the standard normal ($Z$) distribution.
+
+In terms of a variable $Z$ having the standard normal distribution, the
+p-value for a test of $H_0$ against:
+
+- $H_a: p > \mu_0$ is $P(Z > z^{*})$
+
+- $H_a: p < \mu_0$ is $P(Z < z^{*})$
+
+- $H_a: p \neq \mu_0$ is $2P(Z > |z^{*}|)$
+
+
+<!-- ::: example -->
+<!-- A YouTuber goes to her nearest Tim Hortons and buys 100 empty cups. -->
+<!-- After rolling up the rims, she ends up with 12 winning cups out of the -->
+<!-- 100 she bought, all of them were food prizes. -->
+
+<!-- If the probability of winning a food prize is supposed to be -->
+<!-- $\frac{1}{6}$, does she have evidence to claim that the probability of -->
+<!-- winning a food prize is less than $\frac{1}{6}$? -->
+<!-- ::: -->
+
+<!-- ::: definition -->
+<!-- The **sample space** $\mathbf{S}$ of a random phenomenon is the set of -->
+<!-- all possible outcomes. -->
+
+<!-- An **event** is an outcome or a set of outcomes of a random phenomenon. -->
+<!-- That is, an event is a subset of the sample space. -->
+
+<!-- A **probability model** is a mathematical description of a random -->
+<!-- phenomenon consisting of two parts: a sample space $S$ and a way of -->
+<!-- assigning probabilities to events. -->
+<!-- ::: -->
+
+<!-- Rolling a fair die (random phenomenon). There are 6 possible outcomes -->
+<!-- when we roll a die.\ -->
+<!-- The sample space for rolling a die and counting the pips is -->
+
+<!-- $$S = \{1,\, 2,\, 3,\, 4,\, 5,\, 6\}$$ -->
+
+<!-- "Roll a 6" is an event that contains one of these 6 outcomes. -->
+
+<!-- ::: definition -->
+<!-- A random variable $X$ has a **discrete uniform distribution** if each of -->
+<!-- the $n$ values in its range, say, $x_1, x_2, \ldots, x_n$, has equal -->
+<!-- probability. Then, $$f(x_i) = \frac{1}{n}$$ -->
+<!-- ::: -->
+
+<!-- **R code:** -->
+
+<!-- ::: tcolorbox -->
+<!--     # Define a die with values 1 through 6 -->
+<!--     die <- c(1, 2, 3, 4, 5, 6) -->
+
+<!--     # Roll the die once -->
+<!--     sample(die, 1, replace = TRUE) -->
+<!--     ## [1] 2 -->
+
+<!--     # Roll the die six times -->
+<!--     sample(die, 6, replace = TRUE) -->
+<!--     ## [1] 1 3 2 6 3 1 -->
+<!-- ::: -->
+
+<!-- ```{r fig.cap="Plot of frequencies from 60 simulations of a fair six-sided die", echo=FALSE, fig.align='center', out.width='70%'} -->
+<!-- # Simulate rolling a fair die 60 times -->
+<!-- set.seed(123) -->
+<!-- rolls <- sample(1:6, size = 60, replace = TRUE) -->
+
+<!-- # Tabulate frequencies -->
+<!-- counts <- table(rolls) -->
+
+<!-- # Base plot: vertical lines (type = "h") -->
+<!-- plot(counts, -->
+<!--      type = "h", -->
+<!--      col = "blue", -->
+<!--      lwd = 3, -->
+<!--      ylim = c(0, max(counts) + 2), -->
+<!--      ylab = "Frequency", -->
+<!--      xlab = "rolls", -->
+<!--      main = "60 simulations", -->
+<!--      xaxt = "n") -->
+<!-- axis(1, at = 1:6) -->
+
+<!-- # Add blue bullets on top of bars -->
+<!-- points(1:6, as.numeric(counts), col = "blue", pch = 19, cex = 1.5) -->
+<!-- ``` -->
+
+
+<!-- ::: definition -->
+<!-- A **random variable** is a variable whose value is a numerical outcome -->
+<!-- of a random phenomenon. -->
+
+<!-- The **probability distribution** of a random variable $X$ tells us what -->
+<!-- values $X$ can take and how to assign probabilities to those values. -->
+<!-- ::: -->
+
+<!-- ::: nt -->
+<!-- The Binomial setting -->
+
+<!-- - There are a fixed number $n$ of observations. -->
+
+<!-- - The $n$ observations are all **independent**. That is, knowing the -->
+<!--   result of one observation tells you nothing about the other -->
+<!--   observations. -->
+
+<!-- - Each observation falls into one of just two categories, which for -->
+<!--   convenience we call "success" and "failure". -->
+
+<!-- - The probability of a success, call it $p$, is the same for each -->
+<!--   observation. -->
+<!-- ::: -->
+
+<!-- A random variable $Y$ is said to have a **binomial distribution** based -->
+<!-- on $n$ trials with success probability $p$ if and only if -->
+<!-- $$p(y) = \frac{n!}{y!(n - y)!} \, p^y (1 - p)^{n - y}, \quad y = 0, 1, 2, \ldots, n \quad \text{and} \quad 0 \leq p \leq 1.$$ -->
+
+<!-- ::: example -->
+<!-- Think of rolling a die $n$ times as an example of the binomial setting. -->
+<!-- Each roll gives either a six or a number different from six. Knowing the -->
+<!-- outcome of one roll doesn't tell us anything about other rolls, so the -->
+<!-- $n$ rolls are independent. -->
+
+<!-- If we call six a success, then $p$ is the probability of a six and -->
+<!-- remains the same as long as we roll the same die. The number of sixes we -->
+<!-- count is a random variable $X$. The distribution of $X$ is called a -->
+<!-- **binomial distribution**. -->
+<!-- ::: -->
+
+<!-- **R code (Binomial Simulations and PMF)** -->
+
+<!-- ::: tcolorbox -->
+<!--     ## Simulation: Binomial with n = 10 and p = 1/6. -->
+<!--     rbinom(1, size = 10, prob = 1/6); -->
+<!--     ## [1] 3 -->
+
+<!--     rbinom(1, size = 10, prob = 1/6); -->
+<!--     ## [1] 1 -->
+
+<!--     rbinom(1, size = 10, prob = 1/6); -->
+<!--     ## [1] 0 -->
+
+<!--     ## Pmf: Binomial with n = 10 and p = 1/6. -->
+<!--     x <- seq(0, 10, by = 1); -->
+<!--     y <- dbinom(x, 10, 1/6); -->
+<!--     plot(x, y, type = "p", col = "blue", pch = 19); -->
+<!-- ::: -->
+
+<!-- ```{r fig.cap="PMF of the Binomial distribution with \\( n = 10 \\) and \\( p = \\frac{1}{6} \\)", echo=FALSE, fig.align='center', out.width='70%'} -->
+<!-- # Define x values from 0 to 10 -->
+<!-- x <- 0:10 -->
+
+<!-- # Binomial PMF: n = 10, p = 1/6 -->
+<!-- y <- dbinom(x, size = 10, prob = 1/6) -->
+
+<!-- # Plot PMF -->
+<!-- plot(x, y, -->
+<!--      type = "p",        # Points -->
+<!--      pch = 19,          # Solid circle -->
+<!--      col = "blue",      # Blue color -->
+<!--      xlab = "x", -->
+<!--      ylab = "y", -->
+<!--      main = "Probability Mass Function when n = 10 and p = 1/6") -->
+
+<!-- # Add vertical dashed red line at x = 1 -->
+<!-- abline(v = 1, col = "red", lty = 2) -->
+<!-- ``` -->
+
+<!-- ```{r fig.cap="PMF of the Binomial distribution with \\( n = 100 \\) and \\( p = \\frac{1}{6} \\)", echo=FALSE, fig.align='center', out.width='70%'} -->
+<!-- # Define x values from 0 to 100 -->
+<!-- x <- 0:100 -->
+
+<!-- # Compute PMF values -->
+<!-- y <- dbinom(x, size = 100, prob = 1/6) -->
+
+<!-- # Plot the PMF -->
+<!-- plot(x, y, -->
+<!--      type = "p",           # Points -->
+<!--      pch = 19,             # Solid circles -->
+<!--      col = "blue",         # Blue color -->
+<!--      xlab = "x", -->
+<!--      ylab = "y", -->
+<!--      main = "Pmf when n = 100 and p = 1/6") -->
+
+<!-- # Add vertical dashed line at expected value (mean) -->
+<!-- abline(v = 100 * (1/6), col = "red", lty = 2) -->
+
+<!-- # Close the PDF device -->
+<!-- ``` -->
+
+
+<!-- **R code (PMF values for selected $x$ values)** -->
+
+<!-- ::: tcolorbox -->
+<!--     dbinom(c(15, 16, 17, 18), size = 100, prob = 1/6); -->
+<!--     ## [1] 0.10023663 0.10650142 0.10524847 0.09706247 -->
+<!-- ::: -->
+
+<!-- ```{r fig.cap="Distribution of successes from 2000 simulated YouTubers with \\( n = 100 \\), \\( p = \\frac{1}{6} \\)", echo=FALSE, fig.align='center', out.width='70%'} -->
+<!-- # Simulate 1000 binomial observations with n = 30, p = 1/6 -->
+<!-- set.seed(123)  # for reproducibility -->
+<!-- sim_data <- rbinom(1000, size = 30, prob = 1/6) -->
+
+<!-- # Create barplot of frequencies -->
+<!-- counts <- table(sim_data) -->
+<!-- plot(counts, -->
+<!--      type = "h", -->
+<!--      col = "blue", -->
+<!--      lwd = 3, -->
+<!--      ylab = "", -->
+<!--      xlab = "", -->
+<!--      main = "") -->
+<!-- ``` -->
+
+
+<!-- **R code (A few values from our simulation)** -->
+
+<!-- ::: tcolorbox -->
+<!--     ## vec.prop -->
+<!--     ##  6  7  8  9 10 11 12  -->
+<!--     ##  7  3  8 24 46 72 106  -->
+<!--     ## [1] 266 -->
+<!--     ## [1] 0.133 -->
+<!-- ::: -->
+
+<!-- It turns out that our p-value for this simulation is:\ -->
+<!-- 0.133 -->
+
+<!-- ```{r fig.cap="Simulation vs Theoretical pmf", echo=FALSE, fig.align='center', out.width='70%'} -->
+<!-- # Simulate 2000 observations from Binomial(n=10, p=0.5) -->
+<!-- set.seed(123) -->
+<!-- sim <- rbinom(2000, size = 10, prob = 0.5) -->
+
+<!-- # Frequency table -->
+<!-- tab <- table(sim) -->
+<!-- x_vals <- as.numeric(names(tab)) -->
+<!-- y_vals <- as.numeric(tab) -->
+
+<!-- # Plot vertical blue lines -->
+<!-- plot(x_vals, y_vals, -->
+<!--      type = "h", -->
+<!--      col = "blue", -->
+<!--      lwd = 2, -->
+<!--      ylim = c(0, max(y_vals) + 20), -->
+<!--      xlab = "", -->
+<!--      ylab = "", -->
+<!--      main = "") -->
+
+<!-- # Add red dots at top of lines (perfectly aligned) -->
+<!-- points(x_vals, y_vals, -->
+<!--        col = "red", -->
+<!--        pch = 19, -->
+<!--        cex = 1.1) -->
+<!-- ``` -->
+
+
+<!-- ::: tcolorbox -->
+<!-- Draw an SRS of size $n$ from a large population that contains proportion -->
+<!-- $p$ of "successes". Let $\hat{p}$ be the **sample proportion** of -->
+<!-- successes, -->
+
+<!-- $$\hat{p} = \frac{\text{number of successes in the sample}}{n}$$ -->
+
+<!-- Then: -->
+
+<!-- - The **mean** of the sampling distribution of $\hat{p}$ is $p$. -->
+
+<!-- - The **standard deviation** of the sampling distribution is -->
+<!--   $$\sqrt{\frac{p(1 - p)}{n}}.$$ -->
+
+<!-- - As the sample size increases, the sampling distribution of $\hat{p}$ -->
+<!--   becomes **approximately Normal**. That is, for large $n$, $\hat{p}$ -->
+<!--   has approximately the $$N\left(p, \sqrt{\frac{p(1 - p)}{n}}\right)$$ -->
+<!--   distribution. -->
+<!-- ::: -->
+
+<!-- ```{r fig.cap=" Binomial with Normal Approximation", echo=FALSE, fig.align='center', out.width='70%'} -->
+<!-- # Parameters -->
+<!-- n <- 100 -->
+<!-- p <- 1/6 -->
+
+<!-- # PMF values -->
+<!-- x <- 0:n -->
+<!-- binom_probs <- dbinom(x, size = n, prob = p) -->
+
+<!-- # Normal approximation -->
+<!-- mu <- n * p -->
+<!-- sigma <- sqrt(n * p * (1 - p)) -->
+<!-- normal_curve <- dnorm(x, mean = mu, sd = sigma) -->
+
+<!-- # Plot binomial PMF (blue points with outline) -->
+<!-- plot(x, binom_probs, -->
+<!--      type = "p", -->
+<!--      pch = 21, -->
+<!--      bg = "blue", -->
+<!--      col = "darkblue", -->
+<!--      cex = 1.2, -->
+<!--      ylim = c(0, max(binom_probs) + 0.01), -->
+<!--      xlab = "", -->
+<!--      ylab = "") -->
+
+<!-- # Overlay normal approximation (red line) -->
+<!-- lines(x, normal_curve, col = "red", lwd = 1) -->
+
+<!-- # Add legend -->
+<!-- legend("topright", legend = "Normal\napproximation", -->
+<!--        col = "red", lwd = 1, bty = "n") -->
+<!-- ``` -->
+
+
+<!-- ::: tcolorbox -->
+<!-- To *test the hypothesis* $H_0 : p = p_0$, compute the $z^{*}$ -->
+<!-- statistic: -->
+<!-- $$z^{*} = \frac{\hat{p} - p_0}{\sqrt{\dfrac{p_0(1 - p_0)}{n}}}$$ -->
+
+<!-- In terms of a variable $Z$ having the standard Normal distribution, the -->
+<!-- approximate p-value for a test of $H_0$ against: -->
+
+<!-- $$\begin{aligned} -->
+<!-- H_a &: p > p_0 \quad \text{is} \quad P(Z > z^{*}) \\ -->
+<!-- H_a &: p < p_0 \quad \text{is} \quad P(Z < z^{*}) \\ -->
+<!-- H_a &: p \ne p_0 \quad \text{is} \quad 2P(Z > |z^{*}|) \\ -->
+<!-- \end{aligned}$$ -->
+<!-- ::: -->
+
+<!-- ## Introduction to Hypothesis Testing (Significance Test) {#introduction-to-hypothesis-testing-significance-test .unnumbered .unlisted} -->
+
+<!-- Consider the following problem: In 1980s, it was generally believed that -->
+<!-- congenital abnormalities affect 5% of the nation's children. Some people -->
+<!-- believe that the increase in the number of chemicals in the environment -->
+<!-- in recent years has led to an increase in the incidence of -->
+<!-- abnormalities. A recent study examined 384 children and found that 46 of -->
+<!-- them showed signs of abnormality. Is this strong evidence that the risk -->
+<!-- has increased? -->
+
+<!-- - The above statement serves as a hypothesis, moreover it is a Research -->
+<!--   Hypothesis. -->
+
+<!-- A hypothesis is: -->
+
+<!-- - a statement about a population. -->
+
+<!-- - a prediction that a parameter describing some characteristics of a -->
+<!--   variable (e.g., true proportion, $p$) takes a particular numerical -->
+<!--   value or falls in a certain range of values. -->
+
+<!-- For conducting a Significance Test: -->
+
+<!-- - Researchers (you) use data to summarize the evidence about a -->
+<!--   hypothesis. -->
+
+<!-- - With data, you can compare the point estimates of parameters to the -->
+<!--   values predicted by the hypothesis. -->
+
+<!-- **Important Ideas about Hypothesis Testing** -->
+
+<!-- - All the hypothesis tests boil down to the same question: "Is an -->
+<!--   observed difference or pattern too large to be attributed to chance?" -->
+
+<!-- - We measure "how large" by putting our sample results in the context of -->
+<!--   a sampling distribution model (e.g., Normal model, $t$ distribution). -->
+
+<!-- To plan a statistical hypothesis test, specify the model you will use to -->
+<!-- test the null hypothesis and the parameter of interest. -->
+
+<!-- - All models require assumptions, so you will need to state them and -->
+<!--   check any corresponding conditions. -->
+
+<!-- - For example, if the conditions are satisfied, we can model the -->
+<!--   sampling distribution of the proportion with a Normal model. -->
+<!--   Otherwise, we cannot proceed with the test (we need to stop and -->
+<!--   reconsider). -->
+
+<!-- ## Steps in conducting Hypothesis Testing {#steps-in-conducting-hypothesis-testing .unnumbered .unlisted} -->
+
+<!-- 1.  State the null and the alternative hypothesis. -->
+
+<!-- 2.  Check the necessary assumptions. -->
+
+<!-- 3.  Identify the test-statistic. Find the value of the test-statistic. -->
+
+<!-- 4.  Find the p-value of the test-statistic. -->
+
+<!-- 5.  State (if any) a conclusion. -->
+
+:::: example
+**Example of Hypothesis Testing for a Proportion**
+
+In 1980s, it was generally believed that congenital abnormalities affect
+5% of the nation's children. Some people believe that the increase in
+the number of chemicals in the environment in recent years has led to an
+increase in the incidence of abnormalities. A recent study examined 384
+children and found that 46 of them showed signs of abnormality. Is this
+strong evidence that the risk has increased?
+
+**Step 1. Set up the null and alternative hypothesis:**
+
+- The null hypothesis is the current belief: $H_0 : p = p_0$
+
+In our example it would have a form: $H_0 : p = 0.05$
+
+- The Alternative hypothesis is what the researcher(s) want to
+  prove: $H_a : p > p_0$
+
+In our example it would have a form: $H_a : p > 0.05$
+
+This means a one-sided test.
+
+- The goal here is to provide evidence against $H_0$ (e.g., suggest
+  $H_a$).
+
+You want to conclude $H_a$.\
+Try a Proof by Contradiction: Assume $H_0$ is true ...and hope your data
+contradicts it.
+
+**Step 2. Check the Necessary Assumptions:**
+
+- **Independence Assumption:** There is no reason to think that one
+  child having genetic abnormalities would affect the probability that
+  other children have them.
+
+- **Randomization Condition:** This sample may not be random, but
+  genetic abnormalities are plausibly independent. The sample is
+  probably representative of all children, with regards to genetic
+  abnormalities.
+
+- **10% Condition:** The sample of 384 children is less than 10% of all
+  children.
+
+- **Success/Failure Condition:** $np = (384)(0.05) = 19.2$ and\
+  $n(1 - p) = (384)(0.95) = 364.8$ are both greater than 10, so the
+  sample is large enough.
+
+**Step 3. Identify the test-statistics. Find the value of the
+test-statistic:**
+
+Since the conditions are met, assume $H_0$ is true:\
+The sampling distribution of $\hat{p}$ becomes **approximately Normal**.
+That is, for large $n$, $\hat{p}$ has approximately the
+$$N\left(p_0, \sqrt{\frac{p_0(1 - p_0)}{n}}\right)$$ distribution.
+
+$$z^{*} = \frac{\hat{p} - p_0}{\sqrt{\dfrac{p_0(1 - p_0)}{n}}}
+= \frac{0.1198 - 0.05}{\sqrt{\dfrac{(0.05)(0.95)}{384}}}
+\approx 6.28$$
+
+Recall that $$\hat{p} = \frac{46}{384} = 0.1198.$$
+
+The value of $z^\ast$ is approximately 6.28, meaning that the observed
+proportion of children with genetic abnormalities is over 6 standard
+deviations above the hypothesized proportion ($p_0 = 0.05$).
+
+**Step 4.** Find the p-value of the test-statistic.\
+The p-value = $P(Z > 6.28) \approx 0.000$ [(better to report
+$p\text{-value} < 0.0001$)]{.nodecor}\
+*Note:* We find the area above $Z = 6.28$ since $H_a : p > 0.05$.\
+**Meaning of this p-value:**\
+If 5% of children have genetic abnormalities, the chance of observing 46
+children with genetic abnormalities in a random sample of 384 children
+is almost 0.
+
+**Step 5.** Give (if any) a conclusion.\
+p-value is less than 0.0001, which is less than $\alpha = 0.05$; We
+reject $H_0 : p = 0.05$, and conclude $H_a : p > 0.05$. Our result is
+statistically significant at $\alpha = 0.05$.\
+There is very strong evidence that more than 5% of children have genetic
+abnormalities.
+
+**R code (1-sample proportion test)**
+
+::: tcolorbox
+    prop.test(x=46, n = 384 ,p=0.05,alternative="greater", correct=FALSE);
+
+    ##
+    ## 1-sample proportions test without continuity correction
+    ##
+    ## data:  46 out of 384, null probability 0.05
+    ## X-squared = 39.377, df = 1, p-value = 1.747e-10
+    ## alternative hypothesis: true p is greater than 0.05
+    ## 95 percent confidence interval:
+    ##  0.09516097 1.00000000
+    ## sample estimates:
+    ##        p 
+    ## 0.1197917 
+:::
+::::
+
+::: example
+Consider the following hypothesis test:
+
+$$\begin{aligned}
+H_0 &: p = 0.75 \\
+H_a &: p < 0.75
+\end{aligned}$$
+
+A sample of 300 items was selected. Compute the p-value and state your
+conclusion for each of the following sample results. Use
+$\alpha = 0.05$.
+
+1. $\hat{p} = 0.68$
+
+2. $\hat{p} = 0.72$
+
+3. $\hat{p} = 0.70$
+
+**Solution 1.**
+
+$$z_* = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0)/n}} = \frac{0.68 - 0.75}{\sqrt{0.75(1 - 0.75)/300}} = -2.80$$
+
+Using Normal table, P-value $= P(Z < z_*) = P(Z < -2.80) = 0.0026$\
+P-value $< \alpha = 0.05$, reject $H_0$.
+
+**Solution 2.**
+
+$$z_* = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0)/n}} = \frac{0.72 - 0.75}{\sqrt{0.75(1 - 0.75)/300}} = -1.20$$
+
+Using Normal table, P-value $= P(Z < z_*) = P(Z < -1.20) = 0.1151$\
+P-value $> \alpha = 0.05$, do not reject $H_0$.
+
+**Solution 3.**
+
+$$z_* = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0)/n}} = \frac{0.70 - 0.75}{\sqrt{0.75(1 - 0.75)/300}} = -2.00$$
+
+Using Normal table, P-value $= P(Z < z_*) = P(Z < -2.00) = 0.0228$\
+P-value $< \alpha = 0.05$, reject $H_0$.
+:::
+
+::: example
+Consider the following hypothesis test:
+
+$$\begin{aligned}
+H_0 &: p = 0.20 \\
+H_a &: p \ne 0.20
+\end{aligned}$$
+
+A sample of 400 provided a sample proportion $\hat{p} = 0.175$.
+
+- Compute the value of the test statistic.
+
+- What is the p-value?
+
+- At the $\alpha = 0.05$, what is your conclusion?
+
+- What is the rejection rule using the critical value? What is your
+  conclusion?
+
+**Solution**
+
+- $$z_* = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0)/n}} = \frac{0.175 - 0.20}{\sqrt{(0.20)(0.80)/400}} = -1.25$$
+
+- Using Normal table, P-value =
+  $$2P(Z > |z_*|) = 2P(Z > |-1.25|) = 2P(Z > 1.25) = 2(0.1056) = 0.2112$$
+
+- P-value $> \alpha = 0.05$, we CAN'T reject $H_0$.
+:::
+
+:::: example
+A study found that, in 2005, 12.5% of U.S. workers belonged to unions.
+Suppose a sample of 400 U.S. workers is collected in 2006 to determine
+whether union efforts to organize have increased union membership.
+
+- Formulate the hypotheses that can be used to determine whether union
+  membership increased in 2006.
+
+- If the sample results show that 52 of the workers belonged to unions,
+  what is the p-value for your hypothesis test?
+
+- At $\alpha = 0.05$, what is your conclusion?
+
+**Solution**
+
+- $$\begin{aligned}
+  H_0 &: p = 0.125 \\
+  H_a &: p > 0.125
+  \end{aligned}$$
+
+- $$\hat{p} = \frac{52}{400} = 0.13$$
+  $$z_* = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0)/n}} = \frac{0.13 - 0.125}{\sqrt{(0.125)(0.875)/400}} = 0.30$$
+  Using Normal table, P-value =
+  $$P(Z > z_*) = P(Z > 0.30) = 1 - 0.6179 = 0.3821$$
+
+- P-value $> 0.05$, do not reject $H_0$. We cannot conclude that there
+  has been an increase in union membership.
+
+**R code**
+
+::: tcolorbox
+    prop.test(52, 400, p=0.125, alternative="greater", correct=FALSE);
+
+    ##
+    ## 1-sample proportions test without continuity correction
+    ##
+    ## data:  52 out of 400, null probability 0.125
+    ## X-squared = 0.091429, df = 1, p-value = 0.3812
+    ## alternative hypothesis: true p is greater than 0.125
+    ## 95 percent confidence interval:
+    ##  0.1048085 1.0000000
+    ## sample estimates:
+    ##        p 
+    ##    0.13 
+:::
+::::
 
 
 
