@@ -1,3 +1,351 @@
 # An Introduction to R
 
-Content by Nurlana and Bryan goes here
+## The Statistical Computing Language
+
+R is used for data manipulation, statistics, and graphics. It supports a wide range of operations (`+`, `-`, `<`, etc.), which are used to perform calculations on vectors, arrays, and matrices. R also includes a huge collection of built-in functions, tools for generating high-quality graphs, and a wide array of user-contributed packages (organized into sets of related functions called libraries).
+
+R can interface with procedures written in C, C++, FORTRAN, and other languages, making it extensible for advanced users. It is open-source and freely available from [CRAN (The Comprehensive R Archive Network)](https://cran.r-project.org), and has seen a rapid rise in popularity in recent years.
+
+Unlike point-and-click software tools, R allows users to write scripts that document each step of their analysis. This promotes reproducibility, version control, and transparency — all of which are essential in modern data science and academic research. With R, analyses can be automated, customized, and repeated on new datasets with minimal effort.
+
+
+## Installing R and RStudio
+
+Before we can begin working with R code, we need to install both the R programming language itself and an interface to work in — such as RStudio.
+
+---
+
+### Installing R
+
+To install R, follow the steps below:
+
+1. Visit the official R project website: [https://cran.r-project.org](https://cran.r-project.org)
+
+2. Choose your operating system:
+   - **Windows**: Click “Download R for Windows” → then “base” → then click the `.exe` installer link.
+   - **macOS**: Click “Download R for macOS” and choose the `.pkg` file appropriate for your version.
+   - **Linux**: Click “Download R for Linux” and follow distribution-specific instructions.
+
+3. Run the downloaded installer and proceed with the default installation settings.
+
+Once installed, R can be accessed directly from a terminal or used through an IDE like RStudio.
+
+---
+
+### Installing RStudio
+
+**RStudio** is a popular integrated development environment (IDE) designed specifically for R. It provides a user-friendly interface that includes:
+
+- A script editor
+- An R console
+- An environment viewer
+- A file browser
+- A plots pane and help tab
+
+RStudio simplifies the workflow of writing and testing code, inspecting data, and generating reports.
+
+To install RStudio:
+
+1. Go to [https://posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop)
+
+2. Download the free version of **RStudio Desktop** for your operating system.
+
+3. Run the installer. Once launched, RStudio will automatically detect your R installation.
+
+---
+
+### What Is Posit and Positron?
+
+RStudio is now maintained by [Posit](https://posit.co), a company that also supports tools like **Shiny**, **Quarto**, and **R Markdown**. 
+
+Posit also develops **Positron**, a lightweight web-based interface for working with R and Python notebooks in a more modern, cloud-integrated environment. While not required for this course, Positron may become relevant in future workflows involving collaborative or browser-based coding.
+
+---
+
+After completing this setup, you're ready to begin writing and executing R code using RStudio.
+
+## An Introduction to programming in R
+
+People use R for programming because it is specifically designed for data analysis, statistics, and visualization. It offers a rich ecosystem of packages and built-in functions that make complex statistical tasks straightforward. R is especially popular in academia and research due to its open-source nature, strong support for reproducible reporting, and seamless integration with tools like R Markdown and Shiny. Its syntax is well-suited for working with data, making it a powerful and efficient language for data scientists, statisticians, and researchers.
+
+### R as a Powerful Calculator
+
+R is a powerful language for numerical and statistical computing, and it supports a wide range of mathematical operations out of the box. You can perform basic arithmetic such as addition, subtraction, multiplication, and division, as well as more advanced operations like exponentiation, logarithms, and trigonometric functions. These operations work seamlessly with individual numbers, vectors, and matrices. R also provides built-in functions to compute summary statistics like mean, standard deviation, and variance, making it ideal for data analysis and scientific computing. In the following section, we will explore how to use these operations with simple examples.
+
+Firstly, let's begin with basic arithmetic:
+
+1. 2 + 3, addition → 5;
+
+2. 4 - 1, subtraction → 3;
+
+3. 6 * 2, multiplication → 12;
+
+4. 8 / 2, division → 4;
+
+5. 5^2, exponentiation → 25;
+
+6. 9 %% 4, modulo (remainder) → 1;
+
+7. 9 %/% 4, integer division → 2.
+
+Then, it's going to be vector operations:
+
+1. x <- c(1, 2, 3), assigning a vector variable on x;
+
+2. y <- c(4, 5, 6), assigning a vector variable on y;
+
+3. x + y, element-wise addition → 5 7 9;
+
+4. x * y, element-wise multiplication → 4 10 18;
+
+5. x^2, square each element → 1 4 9.
+
+We are able to do math functions as well:
+
+1. sqrt(16), square root → 4;
+
+2. log(10), satural log → ~2.3;
+
+3. log10(100), log base 10 → 2;
+
+4. exp(1), e^1 → ~2.718;
+
+5. abs(-5), absolute value → 5;
+
+6. round(3.1415, 2), round to 2 decimals → 3.14;
+
+7. sin(pi / 2) → 1;
+
+8. cos(0) → 1;
+
+9. tan(pi / 4) → 1.
+
+Finally, there are some useful summery functions in R:
+
+1. mean(x), average;
+
+2. sum(x), total;
+
+3. min(x), minimum;
+
+4. max(x), maximum;
+
+5. sd(x), standard deviation;
+
+6. var(x), variance.
+
+### Basic R Data Structures
+
+The primary data structures in R are vectors, lists, matrices, arrays, factors, and data frames.
+
+**Vectors**
+
+In R, vectors are the fundamental building blocks for data storage and manipulation. A vector is a one-dimensional sequence that contains elements of the same type, such as numbers, characters, or logical values. They are widely used in R for performing calculations, storing results, and processing data efficiently. Vectors support a variety of operations including indexing, filtering, and element-wise arithmetic, making them essential for both basic programming tasks and advanced statistical analysis. Understanding how to create and work with vectors is a crucial first step in learning R programming.
+
+For example:
+
+```r
+Assigning a variable be a vector
+v <- c(1, 2, 3, 4, 5)
+```
+
+**Lists**
+
+In R, a list is a flexible data structure that can store elements of different types and sizes, such as numbers, strings, vectors, or even other lists. Unlike vectors, which require all elements to be of the same type, lists allow you to group together a variety of data types in a single object. This makes lists especially useful for organizing complex or mixed data, returning multiple results from functions, and building structured objects like data frames. Understanding how to create, access, and manipulate lists is essential for working effectively with more advanced R data structures.
+
+For example:
+
+```r
+Creating a list contains some random elements
+my_list <- list(name = "Alice", age = 25, scores = c(90, 85, 88), passed = TRUE)
+
+Accessing code:
+my_list$name         # Access by name
+my_list[[2]]         # Access by index
+my_list[["scores"]]  # Another way to access 'scores'
+
+Modifying an element of the list:
+my_list$age <- 26
+my_list$new_field <- "Added!"
+```
+
+**Matrices**
+
+In R, a matrix is a two-dimensional data structure that stores elements of the same type, typically numeric or logical values. Matrices are widely used in mathematical computations, especially in linear algebra, statistics, and data analysis. They are essentially vectors with a specified number of rows and columns, and support a wide range of operations such as addition, multiplication, transposition, and inversion. R provides straightforward functions to create, access, and manipulate matrices, making them a fundamental tool for performing structured data analysis and mathematical modeling.
+
+For example:
+
+```r
+# Create a 3x2 matrix filled by column (default)
+m <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 3, ncol = 2)
+
+Accessing elements in the matrix above:
+m[1, 2]     # Element in row 1, column 2
+m[ , 1]     # All rows of column 1
+m[2, ]      # All columns of row 2
+
+Basic matrices operations:
+t(m)        # Transpose
+m %*% t(m)  # Matrix multiplication
+det(m)      # Determinant (square matrix only)
+solve(m)    # Inverse (if square and invertible)
+```
+
+**Arrays**
+
+In R, an array is a multi-dimensional data structure that stores elements of the same type, such as numeric or logical values. Unlike matrices, which are limited to two dimensions, arrays can have two or more dimensions, making them suitable for representing more complex data like multiple matrices or higher-dimensional datasets. Arrays are useful in simulations, image processing, and situations where data varies across multiple levels, such as time, location, or category. Understanding how to create and work with arrays allows you to efficiently manage and analyze structured data in higher dimensions.
+
+For example:
+
+```r
+# Create a 3D array (2 rows × 3 columns × 2 layers)
+a <- array(1:12, dim = c(2, 3, 2))
+
+Accessing elements in the array above:
+a[1, 2, 1]     # Element at row 1, column 2, layer 1
+a[ , , 2]      # All rows and columns in layer 2
+```
+
+**Factors**
+
+In R, a factor is a data structure used to represent categorical variables, such as labels or groupings. Unlike regular character vectors, factors store both the unique values (called levels) and their underlying integer codes, making them more efficient and meaningful for statistical modeling and data analysis. Factors are especially useful when working with data that falls into fixed categories, like gender, education level, or survey responses. They are automatically treated as categorical variables in functions like linear models, making them an essential tool in R for handling qualitative data.
+
+For example:
+
+```r
+Creating a factor
+gender <- factor(c("Male", "Female", "Female", "Male"))
+
+Check levels
+levels(gender)
+# [1] "Female" "Male"
+```
+
+**Data Frames**
+
+In R, a data frame is a fundamental data structure used for storing tabular data. It organizes data into rows and columns, where each column can hold a different type of variable—such as numbers, strings, or logical values—but all columns must have the same number of rows. Data frames are ideal for handling datasets in statistical analysis, machine learning, and data visualization. They closely resemble tables in spreadsheets or databases, making them intuitive and practical for real-world data manipulation. Mastering data frames is essential for effective data analysis in R.
+
+For example:
+
+```r
+Creating a data frame:
+df <- data.frame(name = c("Alice", "Bob", "Charlie"), age = c(25, 30, 28), passed = c(TRUE, FALSE, TRUE))
+
+Accessing data from the data frame above:
+df$name        # Access 'name' column
+df[1, ]        # First row
+df[ ,2]        # Second column
+df[2, 3]       # Row 2, column 3
+
+Adding a new column or row:
+df$score <- c(90, 85, 88)  # Add new column
+df <- rbind(df, data.frame(name="David", age=27, passed=TRUE, score=92))  # Add new row
+
+Some useful functions:
+str(df)        # Structure of the data frame
+summary(df)    # Summary stats
+nrow(df)       # Number of rows
+ncol(df)       # Number of columns
+```
+
+
+### Using Basic Functions in R
+
+R provides many built-in functions that allow you to perform calculations, transformations, or extract summary statistics from data. Here are some commonly used basic functions:
+
+```r
+x <- c(10, 3, 8, 25, 7)
+
+# Find the maximum and minimum values
+max(x)
+min(x)
+
+# Sort the vector
+sort(x)     # ascending order
+sort(x, decreasing = TRUE)  # descending order
+
+# Find the order (ranks) of elements
+order(x)
+```
+
+These functions work on vectors, and many of them are also applicable to data frames or matrices when used with additional arguments.
+
+### Make a Histogram Using RStudio
+
+We will use the `faithful` dataset, which is included with R. It contains two numeric variables. For this demonstration, we will generate a histogram of one of those variables.
+
+Follow the steps below:
+
+1. First, decide which dataset you want to use. In this case, we use the built-in `faithful` dataset.
+
+2. To view the variable names in any dataset, use the `names()` function. This will display all available columns:
+
+```r
+# Display variable names in the dataset
+names(faithful)
+```
+
+3. To create a histogram of one variable:
+
+```r
+# Create a basic histogram
+hist(faithful$waiting)
+```
+
+This will produce a simple histogram showing the distribution of values in the selected column.
+
+4. You can also access the numeric components of the histogram using the `plot = FALSE` argument. This prevents the histogram from being drawn and instead returns a list of values used in the plot:
+
+```r
+# View the histogram breakpoints
+hist(faithful$waiting, plot = FALSE)$breaks
+
+# View the counts in each interval
+hist(faithful$waiting, plot = FALSE)$counts
+```
+
+These functions return numeric vectors. The first shows where each interval begins and ends, and the second shows how many values fall within each interval.
+
+Example output:
+
+```r
+[1]  40  45  50  55  60  65  70  75  80  85  90  95 100
+[1]   4  22  33  24  14  10  27  54  55  23   5   1
+```
+
+These tools allow you to not only create visual summaries, but also work with the underlying values programmatically — which is useful for analysis, customization, or reporting.
+
+---
+
+### Installing and Loading Packages
+
+R has a large ecosystem of additional packages that provide specialized functions. Before you can use a package, you typically need to:
+
+1. **Install the package** (only once):
+
+```r
+install.packages("ggplot2")
+```
+
+2. **Load the package into your R session**:
+
+```r
+library(ggplot2)
+```
+
+Once loaded, you can use functions from that package — for example, `ggplot()` from the **ggplot2** package.
+
+> Tip: You only need to install a package once, but you must load it with `library()` every time you restart RStudio.
+
+You can search for packages or view installed ones using:
+
+```r
+# View all installed packages
+installed.packages()
+
+# Search for packages by keyword
+help.search("regression")
+```
+
+R packages are stored in CRAN (Comprehensive R Archive Network), which you accessed when installing R. There are also GitHub-hosted packages for advanced users.
+
