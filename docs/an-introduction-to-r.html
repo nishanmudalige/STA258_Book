@@ -153,12 +153,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-r"><i class="fa fa-check"></i><b>2.2.1</b> Installing R</a></li>
 <li class="chapter" data-level="2.2.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Installing RStudio</a></li>
 <li class="chapter" data-level="2.2.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#what-is-posit-and-positron"><i class="fa fa-check"></i><b>2.2.3</b> What Is Posit and Positron?</a></li>
-<li class="chapter" data-level="2.2.4" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#make-a-histogram-using-rstudio"><i class="fa fa-check"></i><b>2.2.4</b> Make a Histogram Using RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#an-introduction-to-programming-in-r"><i class="fa fa-check"></i><b>2.3</b> An Introduction to programming in R</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#using-basic-functions-in-r"><i class="fa fa-check"></i><b>2.3.1</b> Using Basic Functions in R</a></li>
-<li class="chapter" data-level="2.3.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>2.3.2</b> Installing and Loading Packages</a></li>
+<li class="chapter" data-level="2.3.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#r-as-a-powerful-calculator"><i class="fa fa-check"></i><b>2.3.1</b> R as a Powerful Calculator</a></li>
+<li class="chapter" data-level="2.3.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#basic-r-data-structures"><i class="fa fa-check"></i><b>2.3.2</b> Basic R Data Structures</a></li>
+<li class="chapter" data-level="2.3.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#using-basic-functions-in-r"><i class="fa fa-check"></i><b>2.3.3</b> Using Basic Functions in R</a></li>
+<li class="chapter" data-level="2.3.4" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#make-a-histogram-using-rstudio"><i class="fa fa-check"></i><b>2.3.4</b> Make a Histogram Using RStudio</a></li>
+<li class="chapter" data-level="2.3.5" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>2.3.5</b> Installing and Loading Packages</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive Statistics</a>
@@ -294,78 +296,200 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <p>After completing this setup, you’re ready to begin writing and executing R code using RStudio.</p>
 </div>
-<div id="make-a-histogram-using-rstudio" class="section level3 hasAnchor" number="2.2.4">
-<h3><span class="header-section-number">2.2.4</span> Make a Histogram Using RStudio<a href="an-introduction-to-r.html#make-a-histogram-using-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="an-introduction-to-programming-in-r" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> An Introduction to programming in R<a href="an-introduction-to-r.html#an-introduction-to-programming-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>People use R for programming because it is specifically designed for data analysis, statistics, and visualization. It offers a rich ecosystem of packages and built-in functions that make complex statistical tasks straightforward. R is especially popular in academia and research due to its open-source nature, strong support for reproducible reporting, and seamless integration with tools like R Markdown and Shiny. Its syntax is well-suited for working with data, making it a powerful and efficient language for data scientists, statisticians, and researchers.</p>
+<div id="r-as-a-powerful-calculator" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> R as a Powerful Calculator<a href="an-introduction-to-r.html#r-as-a-powerful-calculator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R is a powerful language for numerical and statistical computing, and it supports a wide range of mathematical operations out of the box. You can perform basic arithmetic such as addition, subtraction, multiplication, and division, as well as more advanced operations like exponentiation, logarithms, and trigonometric functions. These operations work seamlessly with individual numbers, vectors, and matrices. R also provides built-in functions to compute summary statistics like mean, standard deviation, and variance, making it ideal for data analysis and scientific computing. In the following section, we will explore how to use these operations with simple examples.</p>
+<p>Firstly, let’s begin with basic arithmetic:</p>
+<ol style="list-style-type: decimal">
+<li><p>2 + 3, addition → 5;</p></li>
+<li><p>4 - 1, subtraction → 3;</p></li>
+<li><p>6 * 2, multiplication → 12;</p></li>
+<li><p>8 / 2, division → 4;</p></li>
+<li><p>5^2, exponentiation → 25;</p></li>
+<li><p>9 %% 4, modulo (remainder) → 1;</p></li>
+<li><p>9 %/% 4, integer division → 2.</p></li>
+</ol>
+<p>Then, it’s going to be vector operations:</p>
+<ol style="list-style-type: decimal">
+<li><p>x &lt;- c(1, 2, 3), assigning a vector variable on x;</p></li>
+<li><p>y &lt;- c(4, 5, 6), assigning a vector variable on y;</p></li>
+<li><p>x + y, element-wise addition → 5 7 9;</p></li>
+<li><p>x * y, element-wise multiplication → 4 10 18;</p></li>
+<li><p>x^2, square each element → 1 4 9.</p></li>
+</ol>
+<p>We are able to do math functions as well:</p>
+<ol style="list-style-type: decimal">
+<li><p>sqrt(16), square root → 4;</p></li>
+<li><p>log(10), satural log → ~2.3;</p></li>
+<li><p>log10(100), log base 10 → 2;</p></li>
+<li><p>exp(1), e^1 → ~2.718;</p></li>
+<li><p>abs(-5), absolute value → 5;</p></li>
+<li><p>round(3.1415, 2), round to 2 decimals → 3.14;</p></li>
+<li><p>sin(pi / 2) → 1;</p></li>
+<li><p>cos(0) → 1;</p></li>
+<li><p>tan(pi / 4) → 1.</p></li>
+</ol>
+<p>Finally, there are some useful summery functions in R:</p>
+<ol style="list-style-type: decimal">
+<li><p>mean(x), average;</p></li>
+<li><p>sum(x), total;</p></li>
+<li><p>min(x), minimum;</p></li>
+<li><p>max(x), maximum;</p></li>
+<li><p>sd(x), standard deviation;</p></li>
+<li><p>var(x), variance.</p></li>
+</ol>
+</div>
+<div id="basic-r-data-structures" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Basic R Data Structures<a href="an-introduction-to-r.html#basic-r-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The primary data structures in R are vectors, lists, matrices, arrays, factors, and data frames.</p>
+<p><strong>Vectors</strong></p>
+<p>In R, vectors are the fundamental building blocks for data storage and manipulation. A vector is a one-dimensional sequence that contains elements of the same type, such as numbers, characters, or logical values. They are widely used in R for performing calculations, storing results, and processing data efficiently. Vectors support a variety of operations including indexing, filtering, and element-wise arithmetic, making them essential for both basic programming tasks and advanced statistical analysis. Understanding how to create and work with vectors is a crucial first step in learning R programming.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="an-introduction-to-r.html#cb1-1" tabindex="-1"></a>Assigning a variable be a vector</span>
+<span id="cb1-2"><a href="an-introduction-to-r.html#cb1-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
+<p><strong>Lists</strong></p>
+<p>In R, a list is a flexible data structure that can store elements of different types and sizes, such as numbers, strings, vectors, or even other lists. Unlike vectors, which require all elements to be of the same type, lists allow you to group together a variety of data types in a single object. This makes lists especially useful for organizing complex or mixed data, returning multiple results from functions, and building structured objects like data frames. Understanding how to create, access, and manipulate lists is essential for working effectively with more advanced R data structures.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="an-introduction-to-r.html#cb2-1" tabindex="-1"></a>Creating a list contains some random elements</span>
+<span id="cb2-2"><a href="an-introduction-to-r.html#cb2-2" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">&quot;Alice&quot;</span>, <span class="at">age =</span> <span class="dv">25</span>, <span class="at">scores =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>), <span class="at">passed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-3"><a href="an-introduction-to-r.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="an-introduction-to-r.html#cb2-4" tabindex="-1"></a>Accessing code<span class="sc">:</span></span>
+<span id="cb2-5"><a href="an-introduction-to-r.html#cb2-5" tabindex="-1"></a>my_list<span class="sc">$</span>name         <span class="co"># Access by name</span></span>
+<span id="cb2-6"><a href="an-introduction-to-r.html#cb2-6" tabindex="-1"></a>my_list[[<span class="dv">2</span>]]         <span class="co"># Access by index</span></span>
+<span id="cb2-7"><a href="an-introduction-to-r.html#cb2-7" tabindex="-1"></a>my_list[[<span class="st">&quot;scores&quot;</span>]]  <span class="co"># Another way to access &#39;scores&#39;</span></span>
+<span id="cb2-8"><a href="an-introduction-to-r.html#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="an-introduction-to-r.html#cb2-9" tabindex="-1"></a>Modifying an element of the list<span class="sc">:</span></span>
+<span id="cb2-10"><a href="an-introduction-to-r.html#cb2-10" tabindex="-1"></a>my_list<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="dv">26</span></span>
+<span id="cb2-11"><a href="an-introduction-to-r.html#cb2-11" tabindex="-1"></a>my_list<span class="sc">$</span>new_field <span class="ot">&lt;-</span> <span class="st">&quot;Added!&quot;</span></span></code></pre></div>
+<p><strong>Matrices</strong></p>
+<p>In R, a matrix is a two-dimensional data structure that stores elements of the same type, typically numeric or logical values. Matrices are widely used in mathematical computations, especially in linear algebra, statistics, and data analysis. They are essentially vectors with a specified number of rows and columns, and support a wide range of operations such as addition, multiplication, transposition, and inversion. R provides straightforward functions to create, access, and manipulate matrices, making them a fundamental tool for performing structured data analysis and mathematical modeling.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="an-introduction-to-r.html#cb3-1" tabindex="-1"></a><span class="co"># Create a 3x2 matrix filled by column (default)</span></span>
+<span id="cb3-2"><a href="an-introduction-to-r.html#cb3-2" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="an-introduction-to-r.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="an-introduction-to-r.html#cb3-4" tabindex="-1"></a>Accessing elements <span class="cf">in</span> the matrix above<span class="sc">:</span></span>
+<span id="cb3-5"><a href="an-introduction-to-r.html#cb3-5" tabindex="-1"></a>m[<span class="dv">1</span>, <span class="dv">2</span>]     <span class="co"># Element in row 1, column 2</span></span>
+<span id="cb3-6"><a href="an-introduction-to-r.html#cb3-6" tabindex="-1"></a>m[ , <span class="dv">1</span>]     <span class="co"># All rows of column 1</span></span>
+<span id="cb3-7"><a href="an-introduction-to-r.html#cb3-7" tabindex="-1"></a>m[<span class="dv">2</span>, ]      <span class="co"># All columns of row 2</span></span>
+<span id="cb3-8"><a href="an-introduction-to-r.html#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="an-introduction-to-r.html#cb3-9" tabindex="-1"></a>Basic matrices operations<span class="sc">:</span></span>
+<span id="cb3-10"><a href="an-introduction-to-r.html#cb3-10" tabindex="-1"></a><span class="fu">t</span>(m)        <span class="co"># Transpose</span></span>
+<span id="cb3-11"><a href="an-introduction-to-r.html#cb3-11" tabindex="-1"></a>m <span class="sc">%*%</span> <span class="fu">t</span>(m)  <span class="co"># Matrix multiplication</span></span>
+<span id="cb3-12"><a href="an-introduction-to-r.html#cb3-12" tabindex="-1"></a><span class="fu">det</span>(m)      <span class="co"># Determinant (square matrix only)</span></span>
+<span id="cb3-13"><a href="an-introduction-to-r.html#cb3-13" tabindex="-1"></a><span class="fu">solve</span>(m)    <span class="co"># Inverse (if square and invertible)</span></span></code></pre></div>
+<p><strong>Arrays</strong></p>
+<p>In R, an array is a multi-dimensional data structure that stores elements of the same type, such as numeric or logical values. Unlike matrices, which are limited to two dimensions, arrays can have two or more dimensions, making them suitable for representing more complex data like multiple matrices or higher-dimensional datasets. Arrays are useful in simulations, image processing, and situations where data varies across multiple levels, such as time, location, or category. Understanding how to create and work with arrays allows you to efficiently manage and analyze structured data in higher dimensions.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="an-introduction-to-r.html#cb4-1" tabindex="-1"></a><span class="co"># Create a 3D array (2 rows × 3 columns × 2 layers)</span></span>
+<span id="cb4-2"><a href="an-introduction-to-r.html#cb4-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb4-3"><a href="an-introduction-to-r.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="an-introduction-to-r.html#cb4-4" tabindex="-1"></a>Accessing elements <span class="cf">in</span> the array above<span class="sc">:</span></span>
+<span id="cb4-5"><a href="an-introduction-to-r.html#cb4-5" tabindex="-1"></a>a[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>]     <span class="co"># Element at row 1, column 2, layer 1</span></span>
+<span id="cb4-6"><a href="an-introduction-to-r.html#cb4-6" tabindex="-1"></a>a[ , , <span class="dv">2</span>]      <span class="co"># All rows and columns in layer 2</span></span></code></pre></div>
+<p><strong>Factors</strong></p>
+<p>In R, a factor is a data structure used to represent categorical variables, such as labels or groupings. Unlike regular character vectors, factors store both the unique values (called levels) and their underlying integer codes, making them more efficient and meaningful for statistical modeling and data analysis. Factors are especially useful when working with data that falls into fixed categories, like gender, education level, or survey responses. They are automatically treated as categorical variables in functions like linear models, making them an essential tool in R for handling qualitative data.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="an-introduction-to-r.html#cb5-1" tabindex="-1"></a>Creating a factor</span>
+<span id="cb5-2"><a href="an-introduction-to-r.html#cb5-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>))</span>
+<span id="cb5-3"><a href="an-introduction-to-r.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="an-introduction-to-r.html#cb5-4" tabindex="-1"></a>Check levels</span>
+<span id="cb5-5"><a href="an-introduction-to-r.html#cb5-5" tabindex="-1"></a><span class="fu">levels</span>(gender)</span>
+<span id="cb5-6"><a href="an-introduction-to-r.html#cb5-6" tabindex="-1"></a><span class="co"># [1] &quot;Female&quot; &quot;Male&quot;</span></span></code></pre></div>
+<p><strong>Data Frames</strong></p>
+<p>In R, a data frame is a fundamental data structure used for storing tabular data. It organizes data into rows and columns, where each column can hold a different type of variable—such as numbers, strings, or logical values—but all columns must have the same number of rows. Data frames are ideal for handling datasets in statistical analysis, machine learning, and data visualization. They closely resemble tables in spreadsheets or databases, making them intuitive and practical for real-world data manipulation. Mastering data frames is essential for effective data analysis in R.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="an-introduction-to-r.html#cb6-1" tabindex="-1"></a>Creating a data frame<span class="sc">:</span></span>
+<span id="cb6-2"><a href="an-introduction-to-r.html#cb6-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>), <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">28</span>), <span class="at">passed =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb6-3"><a href="an-introduction-to-r.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="an-introduction-to-r.html#cb6-4" tabindex="-1"></a>Accessing data from the data frame above<span class="sc">:</span></span>
+<span id="cb6-5"><a href="an-introduction-to-r.html#cb6-5" tabindex="-1"></a>df<span class="sc">$</span>name        <span class="co"># Access &#39;name&#39; column</span></span>
+<span id="cb6-6"><a href="an-introduction-to-r.html#cb6-6" tabindex="-1"></a>df[<span class="dv">1</span>, ]        <span class="co"># First row</span></span>
+<span id="cb6-7"><a href="an-introduction-to-r.html#cb6-7" tabindex="-1"></a>df[ ,<span class="dv">2</span>]        <span class="co"># Second column</span></span>
+<span id="cb6-8"><a href="an-introduction-to-r.html#cb6-8" tabindex="-1"></a>df[<span class="dv">2</span>, <span class="dv">3</span>]       <span class="co"># Row 2, column 3</span></span>
+<span id="cb6-9"><a href="an-introduction-to-r.html#cb6-9" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="an-introduction-to-r.html#cb6-10" tabindex="-1"></a>Adding a new column or row<span class="sc">:</span></span>
+<span id="cb6-11"><a href="an-introduction-to-r.html#cb6-11" tabindex="-1"></a>df<span class="sc">$</span>score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>)  <span class="co"># Add new column</span></span>
+<span id="cb6-12"><a href="an-introduction-to-r.html#cb6-12" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, <span class="fu">data.frame</span>(<span class="at">name=</span><span class="st">&quot;David&quot;</span>, <span class="at">age=</span><span class="dv">27</span>, <span class="at">passed=</span><span class="cn">TRUE</span>, <span class="at">score=</span><span class="dv">92</span>))  <span class="co"># Add new row</span></span>
+<span id="cb6-13"><a href="an-introduction-to-r.html#cb6-13" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="an-introduction-to-r.html#cb6-14" tabindex="-1"></a>Some useful functions<span class="sc">:</span></span>
+<span id="cb6-15"><a href="an-introduction-to-r.html#cb6-15" tabindex="-1"></a><span class="fu">str</span>(df)        <span class="co"># Structure of the data frame</span></span>
+<span id="cb6-16"><a href="an-introduction-to-r.html#cb6-16" tabindex="-1"></a><span class="fu">summary</span>(df)    <span class="co"># Summary stats</span></span>
+<span id="cb6-17"><a href="an-introduction-to-r.html#cb6-17" tabindex="-1"></a><span class="fu">nrow</span>(df)       <span class="co"># Number of rows</span></span>
+<span id="cb6-18"><a href="an-introduction-to-r.html#cb6-18" tabindex="-1"></a><span class="fu">ncol</span>(df)       <span class="co"># Number of columns</span></span></code></pre></div>
+</div>
+<div id="using-basic-functions-in-r" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Using Basic Functions in R<a href="an-introduction-to-r.html#using-basic-functions-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R provides many built-in functions that allow you to perform calculations, transformations, or extract summary statistics from data. Here are some commonly used basic functions:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="an-introduction-to-r.html#cb7-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">25</span>, <span class="dv">7</span>)</span>
+<span id="cb7-2"><a href="an-introduction-to-r.html#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="an-introduction-to-r.html#cb7-3" tabindex="-1"></a><span class="co"># Find the maximum and minimum values</span></span>
+<span id="cb7-4"><a href="an-introduction-to-r.html#cb7-4" tabindex="-1"></a><span class="fu">max</span>(x)</span>
+<span id="cb7-5"><a href="an-introduction-to-r.html#cb7-5" tabindex="-1"></a><span class="fu">min</span>(x)</span>
+<span id="cb7-6"><a href="an-introduction-to-r.html#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="an-introduction-to-r.html#cb7-7" tabindex="-1"></a><span class="co"># Sort the vector</span></span>
+<span id="cb7-8"><a href="an-introduction-to-r.html#cb7-8" tabindex="-1"></a><span class="fu">sort</span>(x)     <span class="co"># ascending order</span></span>
+<span id="cb7-9"><a href="an-introduction-to-r.html#cb7-9" tabindex="-1"></a><span class="fu">sort</span>(x, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)  <span class="co"># descending order</span></span>
+<span id="cb7-10"><a href="an-introduction-to-r.html#cb7-10" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="an-introduction-to-r.html#cb7-11" tabindex="-1"></a><span class="co"># Find the order (ranks) of elements</span></span>
+<span id="cb7-12"><a href="an-introduction-to-r.html#cb7-12" tabindex="-1"></a><span class="fu">order</span>(x)</span></code></pre></div>
+<p>These functions work on vectors, and many of them are also applicable to data frames or matrices when used with additional arguments.</p>
+</div>
+<div id="make-a-histogram-using-rstudio" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Make a Histogram Using RStudio<a href="an-introduction-to-r.html#make-a-histogram-using-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will use the <code>faithful</code> dataset, which is included with R. It contains two numeric variables. For this demonstration, we will generate a histogram of one of those variables.</p>
 <p>Follow the steps below:</p>
 <ol style="list-style-type: decimal">
 <li><p>First, decide which dataset you want to use. In this case, we use the built-in <code>faithful</code> dataset.</p></li>
 <li><p>To view the variable names in any dataset, use the <code>names()</code> function. This will display all available columns:</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="an-introduction-to-r.html#cb1-1" tabindex="-1"></a><span class="co"># Display variable names in the dataset</span></span>
-<span id="cb1-2"><a href="an-introduction-to-r.html#cb1-2" tabindex="-1"></a><span class="fu">names</span>(faithful)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="an-introduction-to-r.html#cb8-1" tabindex="-1"></a><span class="co"># Display variable names in the dataset</span></span>
+<span id="cb8-2"><a href="an-introduction-to-r.html#cb8-2" tabindex="-1"></a><span class="fu">names</span>(faithful)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>To create a histogram of one variable:</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="an-introduction-to-r.html#cb2-1" tabindex="-1"></a><span class="co"># Create a basic histogram</span></span>
-<span id="cb2-2"><a href="an-introduction-to-r.html#cb2-2" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="an-introduction-to-r.html#cb9-1" tabindex="-1"></a><span class="co"># Create a basic histogram</span></span>
+<span id="cb9-2"><a href="an-introduction-to-r.html#cb9-2" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting)</span></code></pre></div>
 <p>This will produce a simple histogram showing the distribution of values in the selected column.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>You can also access the numeric components of the histogram using the <code>plot = FALSE</code> argument. This prevents the histogram from being drawn and instead returns a list of values used in the plot:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="an-introduction-to-r.html#cb3-1" tabindex="-1"></a><span class="co"># View the histogram breakpoints</span></span>
-<span id="cb3-2"><a href="an-introduction-to-r.html#cb3-2" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>breaks</span>
-<span id="cb3-3"><a href="an-introduction-to-r.html#cb3-3" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="an-introduction-to-r.html#cb3-4" tabindex="-1"></a><span class="co"># View the counts in each interval</span></span>
-<span id="cb3-5"><a href="an-introduction-to-r.html#cb3-5" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="an-introduction-to-r.html#cb10-1" tabindex="-1"></a><span class="co"># View the histogram breakpoints</span></span>
+<span id="cb10-2"><a href="an-introduction-to-r.html#cb10-2" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>breaks</span>
+<span id="cb10-3"><a href="an-introduction-to-r.html#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="an-introduction-to-r.html#cb10-4" tabindex="-1"></a><span class="co"># View the counts in each interval</span></span>
+<span id="cb10-5"><a href="an-introduction-to-r.html#cb10-5" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span></code></pre></div>
 <p>These functions return numeric vectors. The first shows where each interval begins and ends, and the second shows how many values fall within each interval.</p>
 <p>Example output:</p>
-<pre><code>[1]  40  45  50  55  60  65  70  75  80  85  90  95 100
-[1]   4  22  33  24  14  10  27  54  55  23   5   1</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="an-introduction-to-r.html#cb11-1" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">40</span>  <span class="dv">45</span>  <span class="dv">50</span>  <span class="dv">55</span>  <span class="dv">60</span>  <span class="dv">65</span>  <span class="dv">70</span>  <span class="dv">75</span>  <span class="dv">80</span>  <span class="dv">85</span>  <span class="dv">90</span>  <span class="dv">95</span> <span class="dv">100</span></span>
+<span id="cb11-2"><a href="an-introduction-to-r.html#cb11-2" tabindex="-1"></a>[<span class="dv">1</span>]   <span class="dv">4</span>  <span class="dv">22</span>  <span class="dv">33</span>  <span class="dv">24</span>  <span class="dv">14</span>  <span class="dv">10</span>  <span class="dv">27</span>  <span class="dv">54</span>  <span class="dv">55</span>  <span class="dv">23</span>   <span class="dv">5</span>   <span class="dv">1</span></span></code></pre></div>
 <p>These tools allow you to not only create visual summaries, but also work with the underlying values programmatically — which is useful for analysis, customization, or reporting.</p>
-</div>
-</div>
-<div id="an-introduction-to-programming-in-r" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> An Introduction to programming in R<a href="an-introduction-to-r.html#an-introduction-to-programming-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="using-basic-functions-in-r" class="section level3 hasAnchor" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Using Basic Functions in R<a href="an-introduction-to-r.html#using-basic-functions-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>R provides many built-in functions that allow you to perform calculations, transformations, or extract summary statistics from data. Here are some commonly used basic functions:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="an-introduction-to-r.html#cb5-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">25</span>, <span class="dv">7</span>)</span>
-<span id="cb5-2"><a href="an-introduction-to-r.html#cb5-2" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="an-introduction-to-r.html#cb5-3" tabindex="-1"></a><span class="co"># Find the maximum and minimum values</span></span>
-<span id="cb5-4"><a href="an-introduction-to-r.html#cb5-4" tabindex="-1"></a><span class="fu">max</span>(x)</span>
-<span id="cb5-5"><a href="an-introduction-to-r.html#cb5-5" tabindex="-1"></a><span class="fu">min</span>(x)</span>
-<span id="cb5-6"><a href="an-introduction-to-r.html#cb5-6" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="an-introduction-to-r.html#cb5-7" tabindex="-1"></a><span class="co"># Sort the vector</span></span>
-<span id="cb5-8"><a href="an-introduction-to-r.html#cb5-8" tabindex="-1"></a><span class="fu">sort</span>(x)     <span class="co"># ascending order</span></span>
-<span id="cb5-9"><a href="an-introduction-to-r.html#cb5-9" tabindex="-1"></a><span class="fu">sort</span>(x, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)  <span class="co"># descending order</span></span>
-<span id="cb5-10"><a href="an-introduction-to-r.html#cb5-10" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="an-introduction-to-r.html#cb5-11" tabindex="-1"></a><span class="co"># Find the order (ranks) of elements</span></span>
-<span id="cb5-12"><a href="an-introduction-to-r.html#cb5-12" tabindex="-1"></a><span class="fu">order</span>(x)</span></code></pre></div>
-<p>These functions work on vectors, and many of them are also applicable to data frames or matrices when used with additional arguments.</p>
 <hr />
 </div>
-<div id="installing-and-loading-packages" class="section level3 hasAnchor" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> Installing and Loading Packages<a href="an-introduction-to-r.html#installing-and-loading-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="installing-and-loading-packages" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Installing and Loading Packages<a href="an-introduction-to-r.html#installing-and-loading-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R has a large ecosystem of additional packages that provide specialized functions. Before you can use a package, you typically need to:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Install the package</strong> (only once):</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="an-introduction-to-r.html#cb6-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="an-introduction-to-r.html#cb12-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Load the package into your R session</strong>:</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="an-introduction-to-r.html#cb7-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="an-introduction-to-r.html#cb13-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <p>Once loaded, you can use functions from that package — for example, <code>ggplot()</code> from the <strong>ggplot2</strong> package.</p>
 <blockquote>
 <p>Tip: You only need to install a package once, but you must load it with <code>library()</code> every time you restart RStudio.</p>
 </blockquote>
 <p>You can search for packages or view installed ones using:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="an-introduction-to-r.html#cb8-1" tabindex="-1"></a><span class="co"># View all installed packages</span></span>
-<span id="cb8-2"><a href="an-introduction-to-r.html#cb8-2" tabindex="-1"></a><span class="fu">installed.packages</span>()</span>
-<span id="cb8-3"><a href="an-introduction-to-r.html#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="an-introduction-to-r.html#cb8-4" tabindex="-1"></a><span class="co"># Search for packages by keyword</span></span>
-<span id="cb8-5"><a href="an-introduction-to-r.html#cb8-5" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;regression&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="an-introduction-to-r.html#cb14-1" tabindex="-1"></a><span class="co"># View all installed packages</span></span>
+<span id="cb14-2"><a href="an-introduction-to-r.html#cb14-2" tabindex="-1"></a><span class="fu">installed.packages</span>()</span>
+<span id="cb14-3"><a href="an-introduction-to-r.html#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="an-introduction-to-r.html#cb14-4" tabindex="-1"></a><span class="co"># Search for packages by keyword</span></span>
+<span id="cb14-5"><a href="an-introduction-to-r.html#cb14-5" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;regression&quot;</span>)</span></code></pre></div>
 <p>R packages are stored in CRAN (Comprehensive R Archive Network), which you accessed when installing R. There are also GitHub-hosted packages for advanced users.</p>
 
 </div>
