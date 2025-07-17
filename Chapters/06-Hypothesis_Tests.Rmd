@@ -543,3 +543,481 @@ children are diagnosed with genetic abnormalities now, compared to the
 - When we see a big p-value, all we can say is: we cannot reject $H_0$
   (we fail to reject $H_0$) -- we cannot conclude $H_a$ (We have no
   evidence to support $H_a$).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## One Sample Hypothesis Tests
+
+### On a Population Mean
+
+#### When $\sigma$ is Known
+
+
+<!-- Draw a simple random sample of size $n$ from a Normal population that -->
+<!-- has unknown mean $\mu$ and known standard deviation $\sigma$.  -->
+To test $H_0 : \mu = \mu_0$, in the situation where the population standard deviation $\sigma$ is known,
+our options for the null and alternative hypotheses are:
+
+- $H_0: \mu = \mu_0$ vs. $H_a: \mu > \mu_0$
+
+- $H_0: \mu = \mu_0$ vs. $H_a: \mu < \mu_0$
+
+- $H_0: \mu = \mu_0$ vs. $H_a: \mu \neq \mu_0$
+
+<!-- <table class="hypothesis-table"> -->
+<!--   <tr> -->
+<!--     <td class="term" style="text-align: left !important;">$H_0: \mu = \mu_0$</td> -->
+<!--     <td class="sep" style="text-align: left !important;">vs.</td> -->
+<!--     <td class="alt" style="text-align: left !important;">$H_a: \mu > \mu_0$</td> -->
+<!--   </tr> -->
+<!--   <tr> -->
+<!--     <td class="term" style="text-align: left !important;">$H_0: \mu = \mu_0$</td> -->
+<!--     <td class="sep" style="text-align: left !important;">vs.</td> -->
+<!--     <td class="alt" style="text-align: left !important;">$H_a: \mu < \mu_0$</td> -->
+<!--   </tr> -->
+<!--   <tr> -->
+<!--     <td class="term" style="text-align: left !important;">$H_0: \mu = \mu_0$</td> -->
+<!--     <td class="sep" style="text-align: left !important;">vs.</td> -->
+<!--     <td class="alt" style="text-align: left !important;">$H_a: \mu \neq \mu_0$</td> -->
+<!--   </tr> -->
+<!-- </table> -->
+
+
+We calculate the one-sample $z$-statistic:
+
+$$z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \sim N(0,1)$$
+
+The reference distribution is the standard normal distribution.
+
+In terms of a variable $Z$ having the standard normal distribution, the
+p-value for a test of $H_0$ against:
+
+- $H_a: \mu > \mu_0$ is $P(Z > z^{*})$
+
+- $H_a: \mu < \mu_0$ is $P(Z < z^{*})$
+
+- $H_a: \mu \ne \mu_0$ is $2P(Z > |z^{*}|)$
+
+
+::::: example
+Deer are a common sight on the UTM campus. Suppose an ecologist is
+interested in the average mass of adult white-tailed does (female deer)
+around the Mississauga campus to determine whether they are healthy for
+the upcoming winter. The ecologist captures a sample of 36 adult females
+around the UTM and measures the average mass of this sample to be 42.53
+kg.
+
+From previous studies conducted in the area, the average mass of healthy
+does was reported to be 45 kg. Conduct a hypothesis test at the 5%
+significance level to determine whether the mass of does around UTM has
+decreased. Assume the standard deviation is known to be 5.25 kg.
+
+**1. Level of significance.** $\alpha = 0.05$
+
+**2. State the null and alternative hypotheses.**
+$$H_0: \mu = 45 \qquad H_a: \mu < 45$$
+
+**3. Calculate appropriate test statistic.**
+
+Given: $$n = 36, \quad \bar{x} = 42.53, \quad \sigma = 5.25$$
+
+Since $\sigma$ is known, the test statistic is:
+$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{42.53 - 45}{5.25/\sqrt{36}} = -2.82$$
+
+Reference distribution: standard normal
+
+**4. Calculate p-value**
+
+$$\text{p-value} = P(Z < -2.82) \approx 0.0024$$
+```{r fig.cap="Left-tailed p-value for the test statistic \\( z^* = -2.82 \\)", fig.align='center', echo=FALSE, out.width='70%'}
+library(ggplot2)
+
+# Normal curve data
+x <- seq(-4, 4, length = 1000)
+y <- dnorm(x)
+
+# Shaded left-tail region
+test_stat <- -2.82
+p_x <- seq(-4, test_stat, length = 500)
+p_y <- dnorm(p_x)
+
+# Bracket near pink area
+x_left <- -3.6
+x_right <- test_stat - 0.1
+y_bot <- 0.005
+y_mid <- 0.028
+y_top <- 0.04
+
+# Build plot
+p <- ggplot() +
+  geom_line(aes(x, y), color = "black", linewidth = 1.4) +
+  geom_area(aes(x = p_x, y = p_y), fill = "orchid", alpha = 0.65) +
+  geom_hline(yintercept = 0, color = "black", linewidth = 1.1) +
+
+  # Test statistic line and label
+  geom_segment(aes(x = test_stat, xend = test_stat, y = 0, yend = dnorm(test_stat)), 
+               color = "black", linewidth = 1.2) +
+  annotate("text", x = test_stat, y = -0.02, label = "z* = -2.82", size = 6, fontface = "italic") +
+
+  # Bracket and p-value label
+  geom_segment(aes(x = x_left, xend = x_left, y = y_bot, yend = y_mid), color = "black") +
+  geom_segment(aes(x = x_left, xend = x_right, y = y_mid, yend = y_mid), color = "black") +
+  geom_segment(aes(x = x_right, xend = x_right, y = y_mid, yend = y_bot), color = "black") +
+  annotate("text", x = (x_left + x_right)/2, y = y_top, label = "p-value", size = 5.2) +
+
+  # Hypotheses
+  annotate("text", x = 2.4, y = 0.32, label = "H[0]:~mu==45", parse = TRUE, size = 6.2) +
+  annotate("text", x = 2.4, y = 0.26, label = "H[a]:~mu < 45", parse = TRUE, size = 6.2) +
+
+  # Axes
+  scale_x_continuous(breaks = c(-4, -2, 0, 2, 4), limits = c(-4, 4), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-0.03, 0.42)) +
+
+  theme_minimal() +
+  labs(x = NULL, y = NULL) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  )
+
+p
+```
+
+
+**5. Compare p-value with level of significance $\alpha$ and make a
+conclusion:**
+
+$$0.0024 < 0.05 \Rightarrow \text{p-value} < \alpha$$
+
+There is sufficient evidence at the 5% level of significance to reject
+the null that does this winter weigh the same as in the past and to
+conclude the alternative that does this winter weigh less than 45 kg.
+
+**R code:**
+
+::: tcolorbox
+    # Find test stat
+    z_test_stat = (42.53 - 45) / (5.25 / sqrt(36))
+    z_test_stat
+    [1] -2.822857
+
+    # Find the p-value
+    # Since the alternative is Ha : mu < 45
+    p-value = pnorm(z_test_stat)
+    [1] 0.00237989
+:::
+
+*Note:* The `pnorm()` function in R, by default, returns the cumulative
+probability (area) to the left of the given value.\
+
+**R code: Using BSDA package**
+
+::: tcolorbox
+    # Using the BSDA library. install BSDA if it is not already installed.
+    # install.packages("BSDA")
+    > library(BSDA)
+    > # Conduct the z-test with the zsum.test function
+    > zsum.test(mean.x = 42.53, sigma.x = 5.24, n.x = 36, mu = 45, alternative = "less")
+
+            One-sample z-Test
+
+    data:  Summarized x
+    z = -2.8282, p-value = 0.00234
+    alternative hypothesis: true mean is less than 45
+    95 percent confidence interval:
+     NA 43.96651
+    sample estimates:
+    mean of x 
+        42.53 
+:::
+
+**Interpretation:**
+
+There is sufficient evidence at the 5% level of significance to reject
+the null hypothesis. We conclude that the average mass of does this
+winter is significantly less than 45 kg.
+:::::
+
+
+:::::: example
+Diet colas use artificial sweeteners to avoid sugar. These sweeteners
+gradually lose their sweetness over time. Manufacturers therefore test
+new colas for loss of sweetness before marketing them. Trained tasters
+sip the cola along with drinks of standard sweetness and score the cola
+on a "sweetness score" of 1 to 10. The cola is then stored for a month
+at high temperature to imitate the effect of four months' storage at
+room temperature. Each taster scores the cola again after storage. This
+is a matched pairs experiment. Our data are the differences (score
+before storage minus score after storage) in the tasters' scores. The
+bigger these differences, the bigger the loss of sweetness.
+
+Suppose we know that for any cola, the sweetness loss scores vary from
+taster to taster according to a Normal distribution with standard
+deviation $\sigma = 1$. The mean $\mu$ for all tasters measures loss of
+sweetness.
+
+The following are the sweetness losses for a new cola as measured by 10
+trained tasters:
+
+$$2.0, 0.4, 0.7, 2.0, -0.4, 2.2, -1.3, 1.2, 1.1, 2.3$$
+
+Are these data good evidence that the cola lost sweetness in storage?\
+**Solution**\
+$\mu$ = mean sweetness loss for the population of **all** tasters.\
+**Step 1:** State hypotheses. $$\begin{aligned}
+H_0 &: \mu = 0 \\
+H_a &: \mu > 0
+\end{aligned}$$ **Step 2:** Test statistic:
+$z_\star = \dfrac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \dfrac{1.02 - 0}{1 / \sqrt{10}} = 3.23$\
+**Step 3:** P-value. $P(Z > z_\star) = P(Z > 3.23) = 0.0006$\
+**Step 4:** Conclusion. We would rarely observe a mean as large as 1.02
+if $H_0$ were true. The small p-value provides strong evidence against
+$H_0$, supporting $H_a: \mu > 0$. That is, the mean sweetness loss is
+likely positive.
+
+**R code (Simulation)**
+
+::: tcolorbox
+    # n = sample size;
+    n<-10;
+    mu.zero<-0;
+    sigma<-1;
+    sigma.xbar<-sigma/sqrt(n);
+
+    # x bar = sample mean with 10 obs;
+    x.bar<-rnorm(1,mean=mu.zero,sd=sigma.xbar);
+    x.bar;
+
+    ## [1] 0.3265859
+
+    # z.star = test statistic;
+    z.star<-(x.bar-mu.zero)/sigma.xbar;
+    z.star;
+
+    ## [1] 1.032755
+:::
+
+**R code (10,000 Simulations)**
+
+::: tcolorbox
+    n <- 10;
+    mu.zero <- 0;
+    sigma <- 1;
+    sigma.xbar <- sigma / sqrt(n);
+    # x bar = sample mean with 10 obs;
+    # m = number of simulations;
+    m <- 10000;
+    x.bar <- rnorm(m, mean = mu.zero, sd = sigma.xbar);
+
+    # z.star = test statistic;
+    z.star <- (x.bar - mu.zero) / sigma.xbar;
+    hist(z.star, xlab = "differences", col = "blue");
+:::
+
+
+```{r fig.cap="Histogram of \\( z^\\star \\) values from 10,000 simulations under \\( H_0 \\)", fig.align='center', echo=FALSE}
+n <- 10
+mu.zero <- 0
+sigma <- 1
+sigma.xbar <- sigma / sqrt(n)
+
+# m = number of simulations;
+m <- 10000
+x.bar <- rnorm(m, mean = mu.zero, sd = sigma.xbar)
+
+# z.star = test statistic;
+z.star <- (x.bar - mu.zero) / sigma.xbar
+
+# Create the histogram
+hist(z.star, col = "blue", xlab = "differences", main = "Histogram of z.star")
+```
+
+
+**R code (Empirical p-value)**
+
+::: tcolorbox
+    ## P-value
+
+    p_value <- length(z.star[z.star > 3.23]) / m;
+
+    p_value
+
+    ## [1] 8e-04
+:::
+::::::
+
+
+::: example
+The National Center for Health Statistics reports that the systolic
+blood pressure for males 35 to 44 years of age has mean 128 and standard
+deviation 15.
+
+The medical director of a large company looks at the medical records of
+72 executives in this age group and finds that the mean systolic blood
+pressure in this sample is $\bar{x} = 126.07$. Is this evidence that the
+company's executives have a different mean blood pressure from the
+general population?
+
+Suppose we know that executives' blood pressures follow a Normal
+distribution with standard deviation $\sigma = 15$.
+
+**Solution:** Let $\mu$ be the mean systolic blood pressure of the
+executive population.
+
+1.  **State hypotheses:**\
+    $$\begin{aligned}
+    H_0 &: \mu = 128 \\
+    H_a &: \mu \ne 128
+    \end{aligned}$$
+
+2.  **Test statistic:**\
+    $$z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{126.07 - 128}{15 / \sqrt{72}} = -1.09$$
+
+3.  **P-value:**\
+    $$2P(Z > |z^{*}|) = 2P(Z > 1.09) = 2(1 - 0.8621) = 0.2758$$
+
+4.  **Conclusion:**\
+    More than 27% of the time, a simple random sample of size 72 from
+    the general male population would have a mean blood pressure at
+    least as far from 128 as that of the executive sample. The observed
+    $\bar{x} = 126.07$ is therefore not good evidence that executives
+    differ from other men.
+:::
+
+<!-- ::: tcolorbox -->
+<!-- There are four steps in carrying out a significance test: -->
+
+<!-- 1.  State the hypotheses. -->
+
+<!-- 2.  Calculate the test statistic. -->
+
+<!-- 3.  Find the p-value. -->
+
+<!-- 4.  State your conclusion in the context of your specific setting. -->
+
+<!-- Once you have stated your hypotheses and identified the proper test, you -->
+<!-- or your computer can do Steps 2 and 3 by following a recipe. -->
+<!-- ::: -->
+
+
+::: example
+Consider the following hypothesis test:
+
+$$\begin{aligned}
+H_0 &: \mu = 20 \\
+H_a &: \mu < 20
+\end{aligned}$$
+
+A sample of 50 provided a sample mean of 19.4. The population standard
+deviation is 2.
+
+1.  Compute the value of the test statistic.
+
+2.  What is the p-value?
+
+3.  Using $\alpha = 0.05$, what is your conclusion?
+
+**Solution:**
+
+1.  **Test statistic:**
+    $$z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{19.4 - 20}{2 / \sqrt{50}} = -2.1213$$
+
+2.  **P-value:** $$P(Z < z^{*}) = P(Z < -2.1213) = 0.0169$$
+
+3.  **Conclusion:**\
+    Since the p-value $= 0.0169 < \alpha = 0.05$, we reject
+    $H_0 : \mu = 20$. We conclude that $\mu < 20$.
+:::
+
+::: example
+Consider the following hypothesis test:
+
+$$\begin{aligned}
+H_0 &: \mu = 25 \\
+H_a &: \mu > 25
+\end{aligned}$$
+
+A sample of 40 provided a sample mean of 26.4. The population standard
+deviation is 6.
+
+1.  Compute the value of the test statistic.
+
+2.  What is the p-value?
+
+3.  Using $\alpha = 0.01$, what is your conclusion?
+
+**Solution:**
+
+1.  **Test statistic:**
+    $$z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{26.4 - 25}{6 / \sqrt{40}} = 1.4757$$
+
+2.  **P-value:** $$P(Z > z^{*}) = P(Z > 1.4757) = 0.0700$$
+
+3.  **Conclusion:**\
+    Since the p-value $= 0.0700 > \alpha = 0.01$, we **cannot reject**
+    $H_0 : \mu = 25$.\
+    We conclude that we don't have enough evidence to claim that
+    $\mu > 25$.
+:::
+
+::: example
+Consider the following hypothesis test:
+
+$$\begin{aligned}
+H_0 &: \mu = 15 \\ 
+H_a &: \mu \ne 15
+\end{aligned}$$
+
+A sample of 50 provided a sample mean of 14.15. The population standard
+deviation is 3.
+
+1.  Compute the value of the test statistic.
+
+2.  What is the p-value?
+
+3.  Using $\alpha = 0.05$, what is your conclusion?
+
+**Solution:**
+
+1.  **Test statistic:**
+    $$z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{14.15 - 15}{3 / \sqrt{50}} = -2.0034$$
+
+2.  **P-value:**
+    $$2P(Z > |z^{*}|) = 2P(Z > |{-2.0034}|) = 2P(Z > 2.0034) = 0.0451$$
+
+3.  **Conclusion:**\
+    Since P-value $= 0.0451 < \alpha = 0.05$, we reject
+    $H_0 : \mu = 15$.\
+    We conclude that $\mu \ne 15$.
+
+**Confidence Interval Interpretation:**
+
+The 95% confidence interval for $\mu$ is:
+$$\bar{x} \pm z^{*} \left( \frac{\sigma}{\sqrt{n}} \right)$$
+$$14.15 \pm 1.96 \left( \frac{3}{\sqrt{50}} \right)
+= (13.3184,\ 14.9815)$$
+
+Since the hypothesized value $\mu_0 = 15$ falls **outside** this
+interval, we again reject $H_0 : \mu = 15$.
+:::
+
+<!-- ::: {. remark} -->
+<!-- *A level $\alpha$ two-sided significance test rejects a hypothesis -->
+<!-- $H_0 : \mu = \mu_0$ exactly when the value $\mu_0$ falls outside a level -->
+<!-- $1 - \alpha$ confidence interval for $\mu$.* -->
+<!-- ::: -->
+
+
+

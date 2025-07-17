@@ -143,6 +143,10 @@
 <li class="chapter" data-level="6" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#one-sample-hypothesis-tests"><i class="fa fa-check"></i><b>6.2</b> One Sample Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-mean-1"><i class="fa fa-check"></i><b>6.2.1</b> On a Population Mean</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -471,7 +475,332 @@ null hypothesis models the world, so we have no reason to reject it.</p></li>
 (we fail to reject <span class="math inline">\(H_0\)</span>) – we cannot conclude <span class="math inline">\(H_a\)</span> (We have no
 evidence to support <span class="math inline">\(H_a\)</span>).</p></li>
 </ul>
+</div>
+</div>
+<div id="one-sample-hypothesis-tests" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> One Sample Hypothesis Tests<a href="hypothesis-tests.html#one-sample-hypothesis-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="on-a-population-mean-1" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> On a Population Mean<a href="hypothesis-tests.html#on-a-population-mean-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="when-sigma-is-known-2" class="section level4 hasAnchor" number="6.2.1.1">
+<h4><span class="header-section-number">6.2.1.1</span> When <span class="math inline">\(\sigma\)</span> is Known<a href="hypothesis-tests.html#when-sigma-is-known-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<!-- Draw a simple random sample of size $n$ from a Normal population that -->
+<!-- has unknown mean $\mu$ and known standard deviation $\sigma$.  -->
+<p>To test <span class="math inline">\(H_0 : \mu = \mu_0\)</span>, in the situation where the population standard deviation <span class="math inline">\(\sigma\)</span> is known,
+our options for the null and alternative hypotheses are:</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu &gt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span></p></li>
+<li><p><span class="math inline">\(H_0: \mu = \mu_0\)</span> vs. <span class="math inline">\(H_a: \mu \neq \mu_0\)</span></p></li>
+</ul>
+<!-- <table class="hypothesis-table"> -->
+<!--   <tr> -->
+<!--     <td class="term" style="text-align: left !important;">$H_0: \mu = \mu_0$</td> -->
+<!--     <td class="sep" style="text-align: left !important;">vs.</td> -->
+<!--     <td class="alt" style="text-align: left !important;">$H_a: \mu > \mu_0$</td> -->
+<!--   </tr> -->
+<!--   <tr> -->
+<!--     <td class="term" style="text-align: left !important;">$H_0: \mu = \mu_0$</td> -->
+<!--     <td class="sep" style="text-align: left !important;">vs.</td> -->
+<!--     <td class="alt" style="text-align: left !important;">$H_a: \mu < \mu_0$</td> -->
+<!--   </tr> -->
+<!--   <tr> -->
+<!--     <td class="term" style="text-align: left !important;">$H_0: \mu = \mu_0$</td> -->
+<!--     <td class="sep" style="text-align: left !important;">vs.</td> -->
+<!--     <td class="alt" style="text-align: left !important;">$H_a: \mu \neq \mu_0$</td> -->
+<!--   </tr> -->
+<!-- </table> -->
+<p>We calculate the one-sample <span class="math inline">\(z\)</span>-statistic:</p>
+<p><span class="math display">\[z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \sim N(0,1)\]</span></p>
+<p>The reference distribution is the standard normal distribution.</p>
+<p>In terms of a variable <span class="math inline">\(Z\)</span> having the standard normal distribution, the
+p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
+<ul>
+<li><p><span class="math inline">\(H_a: \mu &gt; \mu_0\)</span> is <span class="math inline">\(P(Z &gt; z^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu &lt; \mu_0\)</span> is <span class="math inline">\(P(Z &lt; z^{*})\)</span></p></li>
+<li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(Z &gt; |z^{*}|)\)</span></p></li>
+</ul>
+<div class="example">
+<p><span id="exm:unlabeled-div-55" class="example"><strong>Example 6.1  </strong></span>Deer are a common sight on the UTM campus. Suppose an ecologist is
+interested in the average mass of adult white-tailed does (female deer)
+around the Mississauga campus to determine whether they are healthy for
+the upcoming winter. The ecologist captures a sample of 36 adult females
+around the UTM and measures the average mass of this sample to be 42.53
+kg.</p>
+<p>From previous studies conducted in the area, the average mass of healthy
+does was reported to be 45 kg. Conduct a hypothesis test at the 5%
+significance level to determine whether the mass of does around UTM has
+decreased. Assume the standard deviation is known to be 5.25 kg.</p>
+<p><strong>1. Level of significance.</strong> <span class="math inline">\(\alpha = 0.05\)</span></p>
+<p><strong>2. State the null and alternative hypotheses.</strong>
+<span class="math display">\[H_0: \mu = 45 \qquad H_a: \mu &lt; 45\]</span></p>
+<p><strong>3. Calculate appropriate test statistic.</strong></p>
+<p>Given: <span class="math display">\[n = 36, \quad \bar{x} = 42.53, \quad \sigma = 5.25\]</span></p>
+<p>Since <span class="math inline">\(\sigma\)</span> is known, the test statistic is:
+<span class="math display">\[z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{42.53 - 45}{5.25/\sqrt{36}} = -2.82\]</span></p>
+<p>Reference distribution: standard normal</p>
+<p><strong>4. Calculate p-value</strong></p>
+<span class="math display">\[\text{p-value} = P(Z &lt; -2.82) \approx 0.0024\]</span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-18-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
+<p class="caption">
+Figure 6.4: Left-tailed p-value for the test statistic <span class="math inline">\(z^* = -2.82\)</span>
+</p>
+</div>
+<p><strong>5. Compare p-value with level of significance <span class="math inline">\(\alpha\)</span> and make a
+conclusion:</strong></p>
+<p><span class="math display">\[0.0024 &lt; 0.05 \Rightarrow \text{p-value} &lt; \alpha\]</span></p>
+<p>There is sufficient evidence at the 5% level of significance to reject
+the null that does this winter weigh the same as in the past and to
+conclude the alternative that does this winter weigh less than 45 kg.</p>
+<p><strong>R code:</strong></p>
+<div class="tcolorbox">
+<pre><code># Find test stat
+z_test_stat = (42.53 - 45) / (5.25 / sqrt(36))
+z_test_stat
+[1] -2.822857
 
+# Find the p-value
+# Since the alternative is Ha : mu &lt; 45
+p-value = pnorm(z_test_stat)
+[1] 0.00237989</code></pre>
+</div>
+<p><em>Note:</em> The <code>pnorm()</code> function in R, by default, returns the cumulative
+probability (area) to the left of the given value.<br />
+</p>
+<p><strong>R code: Using BSDA package</strong></p>
+<div class="tcolorbox">
+<pre><code># Using the BSDA library. install BSDA if it is not already installed.
+# install.packages(&quot;BSDA&quot;)
+&gt; library(BSDA)
+&gt; # Conduct the z-test with the zsum.test function
+&gt; zsum.test(mean.x = 42.53, sigma.x = 5.24, n.x = 36, mu = 45, alternative = &quot;less&quot;)
+
+        One-sample z-Test
+
+data:  Summarized x
+z = -2.8282, p-value = 0.00234
+alternative hypothesis: true mean is less than 45
+95 percent confidence interval:
+ NA 43.96651
+sample estimates:
+mean of x 
+    42.53 </code></pre>
+</div>
+<p><strong>Interpretation:</strong></p>
+<p>There is sufficient evidence at the 5% level of significance to reject
+the null hypothesis. We conclude that the average mass of does this
+winter is significantly less than 45 kg.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-56" class="example"><strong>Example 6.2  </strong></span>Diet colas use artificial sweeteners to avoid sugar. These sweeteners
+gradually lose their sweetness over time. Manufacturers therefore test
+new colas for loss of sweetness before marketing them. Trained tasters
+sip the cola along with drinks of standard sweetness and score the cola
+on a “sweetness score” of 1 to 10. The cola is then stored for a month
+at high temperature to imitate the effect of four months’ storage at
+room temperature. Each taster scores the cola again after storage. This
+is a matched pairs experiment. Our data are the differences (score
+before storage minus score after storage) in the tasters’ scores. The
+bigger these differences, the bigger the loss of sweetness.</p>
+<p>Suppose we know that for any cola, the sweetness loss scores vary from
+taster to taster according to a Normal distribution with standard
+deviation <span class="math inline">\(\sigma = 1\)</span>. The mean <span class="math inline">\(\mu\)</span> for all tasters measures loss of
+sweetness.</p>
+<p>The following are the sweetness losses for a new cola as measured by 10
+trained tasters:</p>
+<p><span class="math display">\[2.0, 0.4, 0.7, 2.0, -0.4, 2.2, -1.3, 1.2, 1.1, 2.3\]</span></p>
+<p>Are these data good evidence that the cola lost sweetness in storage?<br />
+<strong>Solution</strong><br />
+<span class="math inline">\(\mu\)</span> = mean sweetness loss for the population of <strong>all</strong> tasters.<br />
+<strong>Step 1:</strong> State hypotheses. <span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu = 0 \\
+H_a &amp;: \mu &gt; 0
+\end{aligned}\]</span> <strong>Step 2:</strong> Test statistic:
+<span class="math inline">\(z_\star = \dfrac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \dfrac{1.02 - 0}{1 / \sqrt{10}} = 3.23\)</span><br />
+<strong>Step 3:</strong> P-value. <span class="math inline">\(P(Z &gt; z_\star) = P(Z &gt; 3.23) = 0.0006\)</span><br />
+<strong>Step 4:</strong> Conclusion. We would rarely observe a mean as large as 1.02
+if <span class="math inline">\(H_0\)</span> were true. The small p-value provides strong evidence against
+<span class="math inline">\(H_0\)</span>, supporting <span class="math inline">\(H_a: \mu &gt; 0\)</span>. That is, the mean sweetness loss is
+likely positive.</p>
+<p><strong>R code (Simulation)</strong></p>
+<div class="tcolorbox">
+<pre><code># n = sample size;
+n&lt;-10;
+mu.zero&lt;-0;
+sigma&lt;-1;
+sigma.xbar&lt;-sigma/sqrt(n);
+
+# x bar = sample mean with 10 obs;
+x.bar&lt;-rnorm(1,mean=mu.zero,sd=sigma.xbar);
+x.bar;
+
+## [1] 0.3265859
+
+# z.star = test statistic;
+z.star&lt;-(x.bar-mu.zero)/sigma.xbar;
+z.star;
+
+## [1] 1.032755</code></pre>
+</div>
+<p><strong>R code (10,000 Simulations)</strong></p>
+<div class="tcolorbox">
+<pre><code>n &lt;- 10;
+mu.zero &lt;- 0;
+sigma &lt;- 1;
+sigma.xbar &lt;- sigma / sqrt(n);
+# x bar = sample mean with 10 obs;
+# m = number of simulations;
+m &lt;- 10000;
+x.bar &lt;- rnorm(m, mean = mu.zero, sd = sigma.xbar);
+
+# z.star = test statistic;
+z.star &lt;- (x.bar - mu.zero) / sigma.xbar;
+hist(z.star, xlab = &quot;differences&quot;, col = &quot;blue&quot;);</code></pre>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-19-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
+<p class="caption">
+Figure 6.5: Histogram of <span class="math inline">\(z^\star\)</span> values from 10,000 simulations under <span class="math inline">\(H_0\)</span>
+</p>
+</div>
+<p><strong>R code (Empirical p-value)</strong></p>
+<div class="tcolorbox">
+<pre><code>## P-value
+
+p_value &lt;- length(z.star[z.star &gt; 3.23]) / m;
+
+p_value
+
+## [1] 8e-04</code></pre>
+</div>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-57" class="example"><strong>Example 6.3  </strong></span>The National Center for Health Statistics reports that the systolic
+blood pressure for males 35 to 44 years of age has mean 128 and standard
+deviation 15.</p>
+<p>The medical director of a large company looks at the medical records of
+72 executives in this age group and finds that the mean systolic blood
+pressure in this sample is <span class="math inline">\(\bar{x} = 126.07\)</span>. Is this evidence that the
+company’s executives have a different mean blood pressure from the
+general population?</p>
+<p>Suppose we know that executives’ blood pressures follow a Normal
+distribution with standard deviation <span class="math inline">\(\sigma = 15\)</span>.</p>
+<p><strong>Solution:</strong> Let <span class="math inline">\(\mu\)</span> be the mean systolic blood pressure of the
+executive population.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>State hypotheses:</strong><br />
+<span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu = 128 \\
+H_a &amp;: \mu \ne 128
+\end{aligned}\]</span></p></li>
+<li><p><strong>Test statistic:</strong><br />
+<span class="math display">\[z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{126.07 - 128}{15 / \sqrt{72}} = -1.09\]</span></p></li>
+<li><p><strong>P-value:</strong><br />
+<span class="math display">\[2P(Z &gt; |z^{*}|) = 2P(Z &gt; 1.09) = 2(1 - 0.8621) = 0.2758\]</span></p></li>
+<li><p><strong>Conclusion:</strong><br />
+More than 27% of the time, a simple random sample of size 72 from
+the general male population would have a mean blood pressure at
+least as far from 128 as that of the executive sample. The observed
+<span class="math inline">\(\bar{x} = 126.07\)</span> is therefore not good evidence that executives
+differ from other men.</p></li>
+</ol>
+</div>
+<!-- ::: tcolorbox -->
+<!-- There are four steps in carrying out a significance test: -->
+<!-- 1.  State the hypotheses. -->
+<!-- 2.  Calculate the test statistic. -->
+<!-- 3.  Find the p-value. -->
+<!-- 4.  State your conclusion in the context of your specific setting. -->
+<!-- Once you have stated your hypotheses and identified the proper test, you -->
+<!-- or your computer can do Steps 2 and 3 by following a recipe. -->
+<!-- ::: -->
+<div class="example">
+<p><span id="exm:unlabeled-div-58" class="example"><strong>Example 6.4  </strong></span>Consider the following hypothesis test:</p>
+<p><span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu = 20 \\
+H_a &amp;: \mu &lt; 20
+\end{aligned}\]</span></p>
+<p>A sample of 50 provided a sample mean of 19.4. The population standard
+deviation is 2.</p>
+<ol style="list-style-type: decimal">
+<li><p>Compute the value of the test statistic.</p></li>
+<li><p>What is the p-value?</p></li>
+<li><p>Using <span class="math inline">\(\alpha = 0.05\)</span>, what is your conclusion?</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Test statistic:</strong>
+<span class="math display">\[z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{19.4 - 20}{2 / \sqrt{50}} = -2.1213\]</span></p></li>
+<li><p><strong>P-value:</strong> <span class="math display">\[P(Z &lt; z^{*}) = P(Z &lt; -2.1213) = 0.0169\]</span></p></li>
+<li><p><strong>Conclusion:</strong><br />
+Since the p-value <span class="math inline">\(= 0.0169 &lt; \alpha = 0.05\)</span>, we reject
+<span class="math inline">\(H_0 : \mu = 20\)</span>. We conclude that <span class="math inline">\(\mu &lt; 20\)</span>.</p></li>
+</ol>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-59" class="example"><strong>Example 6.5  </strong></span>Consider the following hypothesis test:</p>
+<p><span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu = 25 \\
+H_a &amp;: \mu &gt; 25
+\end{aligned}\]</span></p>
+<p>A sample of 40 provided a sample mean of 26.4. The population standard
+deviation is 6.</p>
+<ol style="list-style-type: decimal">
+<li><p>Compute the value of the test statistic.</p></li>
+<li><p>What is the p-value?</p></li>
+<li><p>Using <span class="math inline">\(\alpha = 0.01\)</span>, what is your conclusion?</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Test statistic:</strong>
+<span class="math display">\[z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{26.4 - 25}{6 / \sqrt{40}} = 1.4757\]</span></p></li>
+<li><p><strong>P-value:</strong> <span class="math display">\[P(Z &gt; z^{*}) = P(Z &gt; 1.4757) = 0.0700\]</span></p></li>
+<li><p><strong>Conclusion:</strong><br />
+Since the p-value <span class="math inline">\(= 0.0700 &gt; \alpha = 0.01\)</span>, we <strong>cannot reject</strong>
+<span class="math inline">\(H_0 : \mu = 25\)</span>.<br />
+We conclude that we don’t have enough evidence to claim that
+<span class="math inline">\(\mu &gt; 25\)</span>.</p></li>
+</ol>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-60" class="example"><strong>Example 6.6  </strong></span>Consider the following hypothesis test:</p>
+<p><span class="math display">\[\begin{aligned}
+H_0 &amp;: \mu = 15 \\
+H_a &amp;: \mu \ne 15
+\end{aligned}\]</span></p>
+<p>A sample of 50 provided a sample mean of 14.15. The population standard
+deviation is 3.</p>
+<ol style="list-style-type: decimal">
+<li><p>Compute the value of the test statistic.</p></li>
+<li><p>What is the p-value?</p></li>
+<li><p>Using <span class="math inline">\(\alpha = 0.05\)</span>, what is your conclusion?</p></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Test statistic:</strong>
+<span class="math display">\[z^{*} = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{14.15 - 15}{3 / \sqrt{50}} = -2.0034\]</span></p></li>
+<li><p><strong>P-value:</strong>
+<span class="math display">\[2P(Z &gt; |z^{*}|) = 2P(Z &gt; |{-2.0034}|) = 2P(Z &gt; 2.0034) = 0.0451\]</span></p></li>
+<li><p><strong>Conclusion:</strong><br />
+Since P-value <span class="math inline">\(= 0.0451 &lt; \alpha = 0.05\)</span>, we reject
+<span class="math inline">\(H_0 : \mu = 15\)</span>.<br />
+We conclude that <span class="math inline">\(\mu \ne 15\)</span>.</p></li>
+</ol>
+<p><strong>Confidence Interval Interpretation:</strong></p>
+<p>The 95% confidence interval for <span class="math inline">\(\mu\)</span> is:
+<span class="math display">\[\bar{x} \pm z^{*} \left( \frac{\sigma}{\sqrt{n}} \right)\]</span>
+<span class="math display">\[14.15 \pm 1.96 \left( \frac{3}{\sqrt{50}} \right)
+= (13.3184,\ 14.9815)\]</span></p>
+<p>Since the hypothesized value <span class="math inline">\(\mu_0 = 15\)</span> falls <strong>outside</strong> this
+interval, we again reject <span class="math inline">\(H_0 : \mu = 15\)</span>.</p>
+</div>
+<!-- ::: {. remark} -->
+<!-- *A level $\alpha$ two-sided significance test rejects a hypothesis -->
+<!-- $H_0 : \mu = \mu_0$ exactly when the value $\mu_0$ falls outside a level -->
+<!-- $1 - \alpha$ confidence interval for $\mu$.* -->
+<!-- ::: -->
+
+</div>
 </div>
 </div>
 </div>
