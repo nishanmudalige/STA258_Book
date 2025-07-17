@@ -64,9 +64,15 @@ We will use the following notation for describing the null and alternative hypot
   <tr>
     <pd class="term">$\Theta_0$</td>
     <pd class="sep"> : </pd>
-    <pd class="alt">Numerical value of the parameter of interest hypothesized under the null hypothesis.</pd>
+    <pd class="alt">Numerical value hypothesized under the null hypothesis.</pd>
   </tr>
 </table>
+
+::: {.remark}
+Note that $\Theta$ can represent a combination of parameters, 
+such as $\Theta = \Theta_1 - \Theta_2$ 
+or $\Theta = \Theta_1 / \Theta_2$.
+:::
 
 <!-- <table class="param-table"> -->
 <!--   <tr> -->
@@ -2055,4 +2061,144 @@ text(x_crit + 4, 0.015, expression(alpha == 0.05), col = "blue", cex = 1.2)
 The $\chi^2$ statistic is not significant at the 0.05 level. We conclude
 that there is insufficient evidence to claim that $\sigma > 0.9$ year.
 :::
+
+
+
+
+
+
+
+
+
+
+
+
+## Two Sample Hypothesis Tests
+
+We now move to examining hypothesis tests on 2 independent samples.
+We will use the notation
+
+<table class="param-table">
+  <tr>
+    <pd class="term">$\Theta_1$</td>
+    <pd class="sep"> : </pd>
+    <pd class="alt">Parameter of interest from Population 1.</pd>
+  </tr>
+</table>
+
+<table class="param-table">
+  <tr>
+    <pd class="term">$\Theta_2$</td>
+    <pd class="sep"> : </pd>
+    <pd class="alt">Parameter of interest from Population 2.</pd>
+  </tr>
+</table>
+
+<table class="param-table">
+  <tr>
+    <pd class="term">$\Theta_0$</td>
+    <pd class="sep"> : </pd>
+    <pd class="alt">Numerical value hypothesized under the null hypothesis.</pd>
+  </tr>
+</table>
+
+
+Hypothesis tests of interest on 2 samples are
+
+
+<table class="hypothesis-table">
+  <tr>
+    <td class="term">$H_0: \Theta_1 - \Theta_2 = \Theta_0$</td>
+    <td class="sep">vs.</td>
+    <td class="alt">$H_a: \Theta_1 - \Theta_2 > \Theta_0$</td>
+  </tr>
+  <tr>
+    <td class="term">$H_0: \Theta_2 - \Theta_2 = \Theta_0$</td>
+    <td class="sep">vs.</td>
+    <td class="alt">$H_a: \Theta_1 - \Theta_2 < \Theta_0$</td>
+  </tr>
+  <tr>
+    <td class="term">$H_0: \Theta_1 - \Theta_2 = \Theta_0$</td>
+    <td class="sep">vs.</td>
+    <td class="alt">$H_a: \Theta_1 - \Theta_2 \neq \Theta_0$</td>
+  </tr>
+</table>
+
+
+Some other potential hypothesis tests of interest on 2 samples are
+
+<table class="hypothesis-table">
+  <tr>
+    <td class="term">$H_0: \displaystyle\frac{\Theta_1}{\Theta_2} = \Theta_0$</td>
+    <td class="sep">vs.</td>
+    <td class="alt">$H_a: \displaystyle\frac{\Theta_1}{\Theta_2} > \Theta_0$</td>
+  </tr>
+  <tr>
+    <td class="term">$H_0: \displaystyle\frac{\Theta_1}{\Theta_2} = \Theta_0$</td>
+    <td class="sep">vs.</td>
+    <td class="alt">$H_a: \displaystyle\frac{\Theta_1}{\Theta_2} < \Theta_0$</td>
+  </tr>
+  <tr>
+    <td class="term">$H_0: \displaystyle\frac{\Theta_1}{\Theta_2} = \Theta_0$</td>
+    <td class="sep">vs.</td>
+    <td class="alt">$H_a: \displaystyle\frac{\Theta_1}{\Theta_2} \neq \Theta_0$</td>
+  </tr>
+</table>
+
+
+::: {.remark}
+A very common test is to determine whether $\Theta_1 = \Theta_2$.
+Therefore, testing
+<table class="hypothesis-table">
+  <tr>
+    <td class="sep">$H_0: \Theta_1 - \Theta_2 = \Theta_0$</td>
+  </tr>
+</table>
+is equivalent to setting $\Theta_0 = 0$ and writing the null hypothesis as
+<table class="hypothesis-table">
+  <tr>
+    <td class="sep">$H_0: \Theta_1 = \Theta_2$</td>
+  </tr>
+</table>
+
+:::
+
+
+### On a Difference of Means
+
+#### When $\sigma_1$ and $\sigma_2$ are Known
+
+#### When $\sigma_1$ and $\sigma_2$ are Not Known
+
+#### When $\sigma_1 = \sigma_2$
+
+#### When $\sigma_1 \neq \sigma_2$
+
+#### Assumptions
+
+### On a Difference of Proportions
+
+#### Assumptions
+
+### On a Ratio of Variances
+
+#### Assumptions
+
+**Need to complete**
+
+
+
+
+
+
+## Hypothesis Tests on Paired Data
+
+#### Assumptions
+
+**Need to complete**
+
+
+
+
+
 
