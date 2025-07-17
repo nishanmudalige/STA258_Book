@@ -105,7 +105,7 @@
 <ul>
 <li class="chapter" data-level="4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:inference"><i class="fa fa-check"></i><b>4.1</b> Some Important Statistical Distributions</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-normal-distribution"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to the Normal Distribution</a></li>
+<li class="chapter" data-level="4.1.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:IntroNormalDist"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to the Normal Distribution</a></li>
 <li class="chapter" data-level="4.1.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution"><i class="fa fa-check"></i><b>4.1.2</b> Introduction to the Chi-Square distribution</a></li>
 <li class="chapter" data-level="4.1.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-t-distribution"><i class="fa fa-check"></i><b>4.1.3</b> Introduction to the t-Distribution</a></li>
 <li class="chapter" data-level="4.1.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-f-distribution"><i class="fa fa-check"></i><b>4.1.4</b> Introduction to the F-Distribution</a></li>
@@ -126,9 +126,6 @@
 <li class="chapter" data-level="5.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.3</b> One Sample Confidence Intervals</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-mean"><i class="fa fa-check"></i><b>5.3.1</b> On a Population Mean</a></li>
-<li class="chapter" data-level="5.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-proportion"><i class="fa fa-check"></i><b>5.3.2</b> On a Population Proportion</a></li>
-<li class="chapter" data-level="5.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-variance"><i class="fa fa-check"></i><b>5.3.3</b> On a Population Variance</a></li>
-<li class="chapter" data-level="5.3.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assumptions"><i class="fa fa-check"></i><b>5.3.4</b> Assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.4</b> Two Sample Confidence Intervals</a>
 <ul>
@@ -137,6 +134,11 @@
 <li class="chapter" data-level="5.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-ratio-of-variances"><i class="fa fa-check"></i><b>5.4.3</b> On a Ratio of Variances</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-intervals-on-paired-data"><i class="fa fa-check"></i><b>5.5</b> Confidence Intervals on Paired Data</a></li>
+<li class="chapter" data-level="5.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sample-size-selection-using-confidence-intervals"><i class="fa fa-check"></i><b>5.6</b> Sample Size Selection using Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#secSampleSizeCIMean"><i class="fa fa-check"></i><b>5.6.1</b> Calculating Sample Size for a Confidence Interval on a Mean</a></li>
+<li class="chapter" data-level="5.6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-sample-size-for-a-confidence-interval-on-a-proportion"><i class="fa fa-check"></i><b>5.6.2</b> Calculating Sample Size for a Confidence Interval on a Proportion</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
 <ul>
@@ -163,7 +165,314 @@
 <h1><span class="header-section-number">Chapter 6</span> Hypothesis Tests<a href="hypothesis-tests.html#hypothesis-tests" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="introduction-2" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Introduction<a href="hypothesis-tests.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A hypothesis test is a statistical method used to make inferences about a population based on sample data. It involves formulating a null hypothesis and an alternative hypothesis, calculating a test statistic, and determining the likelihood of observing the data under the null hypothesis. Each of these terms will be explained in more detail below.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-50" class="definition"><strong>Definition 6.1  </strong></span>An inferential procedure to determine whether there is sufficient
+evidence to suggest a condition for a population parameter using
+statistics from a sample.</p>
+</div>
+<p>The main goal of hypothesis testing is to assess the strength of evidence against a null hypothesis, which is a statement of no effect or no difference. The alternative hypothesis represents the research hypothesis or the condition we are interested in testing.</p>
+<p>One of the steps in hypothesis testing is to calculate a p-value, which quantifies the evidence against the null hypothesis. The p-value is the probability of observing a test statistic at least as extreme as the one calculated from the sample data, assuming that the null hypothesis is true.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-51" class="definition"><strong>Definition 6.2  </strong></span>The p-value of a hypothesis test is the probability of observing a test statistic at least as extreme as the one calculated in step 3, assuming that the null hypothesis is true by pure chance alone.</p>
+</div>
+<p>The procedure to conduct any hypothesis often follows a standard sequence of steps.</p>
+<div id="steps" class="section level5 unnumbered unlisted hasAnchor">
+<h5>Steps<a href="hypothesis-tests.html#steps" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p><strong><span style="color: red">[Reorder and start with checking assumptions first?]</span></strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Decide on a level of significance (<span class="math inline">\(\alpha\)</span>).</p></li>
+<li><p>State the null hypothesis (<span class="math inline">\(H_0\)</span>) and the alternative hypothesis (<span class="math inline">\(H_a\)</span>).</p></li>
+<li><p>Calculate the appropriate test statistic.</p></li>
+<li><p>Use the test statistic and a reference distribution to calculate a
+p-value.</p></li>
+<li><p>Compare p-value to <span class="math inline">\(\alpha\)</span> to make a conclusion.</p></li>
+</ol>
+<p>We will now examine each of the steps above in more detail.</p>
+<p><strong>Step 1: Decide on a Level of Significance (<span class="math inline">\(\alpha\)</span>)</strong></p>
+<p>This is a threshold for decision making which the study or researcher is willing to implement.
+Depends on tolerance for consequences of errors, sample size, nature of
+the study, and variability.</p>
+<p>Some common Common values are <span class="math inline">\(\alpha = 0.10\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>, <span class="math inline">\(\alpha = 0.01\)</span>.</p>
+<p><strong>Step 2: State the Null Hypothesis and the Alternative Hypothesis</strong></p>
+<p>We will use the following notation for describing the null and alternative hypotheses:</p>
+<table class="param-table">
+<tr>
+<pd class="term"><span class="math inline">\(\Theta\)</span>
+</td>
+<pd class="sep"> : </pd>
+<pd class="alt">Parameter of interest.</pd>
+</tr>
+</table>
+<table class="param-table">
+<tr>
+<pd class="term"><span class="math inline">\(\Theta_0\)</span>
+</td>
+<pd class="sep"> : </pd>
+<pd class="alt">Numerical value of the parameter of interest hypothesized under the null hypothesis.</pd>
+</tr>
+</table>
+<!-- <table class="param-table"> -->
+<!--   <tr> -->
+<!--     <pd class="term">$\Theta_0$</pd> -->
+<!--     <pd class="sep"> : </pd> -->
+<!--     <pd class="alt">Numerical value of the parameter of interest hypothesized under the null hypothesis.</pd> -->
+<!--   </tr> -->
+<!-- </table> -->
+<!-- $$\begin{array}{lcl} -->
+<!-- \Theta    & : & \text{parameter of interest}\\ -->
+<!-- \Theta_0  & : & \text{numerical value of the parameter of interest hypothesized under the}\\ -->
+<!--           &   & \text{null hypothesis.} -->
+<!-- \end{array}$$ -->
+<p>A hypothesis test is a comparison between two mutually exclusive hypotheses which are:</p>
+<table class="definition-table">
+<tr>
+<td>
+Null hypothesis <span class="math inline">\((H_0)\)</span>
+</td>
+<td>
+:
+</td>
+<td>
+Represents the current belief or the conservative belief or the status quo. It is a statement of no effect or no difference.
+</td>
+</tr>
+<tr>
+<td>
+Alternative hypothesis <span class="math inline">\((H_a)\)</span>
+</td>
+<td>
+:
+</td>
+<td>
+Represents the research hypothesis, or what you are requested to test or trying to prove.
+</td>
+</tr>
+</table>
+<!-- ::: {.smalltblfit} -->
+<!-- | Null hypothesis        | Represents the current belief or the conservative Represents the current belief or the conservative Represents the current belief or the conservative Represents the current belief or the conservative Represents the current belief or the conservative |  -->
+<!-- | :--------------------- | :----------   |  -->
+<!-- | Alternative hypothesis | $x_1$ | -->
+<!-- ::: -->
+<!-- $$\begin{array}{lcl} -->
+<!-- \text{Null hypothesis} \, (H_0)         & : & \text{Represents the current belief or the conservative}\\ -->
+<!--                                         &   & \text{belief or the status quo. It is a statement of no effect}\\ -->
+<!--                                         &   & \text{or no difference.}\\ -->
+<!-- \text{Alternative hypothesis} \, (H_a)  & : & \text{Represents the research hypothesis, or what you are}\\ -->
+<!--                                         &   & \text{requested to test or trying to prove).} -->
+<!-- \end{array}$$ -->
+<p>Our choices for the null and alternative hypothesis are:</p>
+<!-- $$\begin{array}{lccl} -->
+<!-- H_0: \Theta = \Theta_0 & (\Theta \leq \Theta_0) & \quad & H_a: \Theta > \Theta_0 \quad {\text{one-sided (one-tailed)}} \\ -->
+<!-- H_0: \Theta = \Theta_0 & (\Theta \geq \Theta_0) &       & H_a: \Theta < \Theta_0 \quad {\text{one-sided (one-tailed)}} \\ -->
+<!-- H_0: \Theta = \Theta_0 &                        &       & H_a: \Theta \neq \Theta_0 \quad {\text{two-sided (two-tailed)}} -->
+<!-- \end{array}$$ -->
+<!-- $$\begin{array}{l lcl} -->
+<!-- 1. &  H_0: \Theta = \Theta_0 & \quad  & H_a: \Theta > \Theta_0\\ -->
+<!-- 2. &  H_0: \Theta = \Theta_0 &        & H_a: \Theta < \Theta_0\\ -->
+<!-- 3. &  H_0: \Theta = \Theta_0 &        & H_a: \Theta \neq \Theta_0 -->
+<!-- \end{array}$$ -->
+<!-- - $H_0: \Theta = \Theta_0$ vs. $H_a: \Theta > \Theta_0$ -->
+<!-- - $H_0: \Theta = \Theta_0$ vs. $H_a: \Theta < \Theta_0$ -->
+<!-- - $H_0: \Theta = \Theta_0$ vs. $H_a: \Theta \neq \Theta$ -->
+<table class="hypothesis-table">
+<tr>
+<td class="term">
+<span class="math inline">\(H_0: \Theta = \Theta_0\)</span>
+</td>
+<td class="sep">
+vs.
+</td>
+<td class="alt">
+<span class="math inline">\(H_a: \Theta &gt; \Theta_0\)</span>
+</td>
+</tr>
+<tr>
+<td class="term">
+<span class="math inline">\(H_0: \Theta = \Theta_0\)</span>
+</td>
+<td class="sep">
+vs.
+</td>
+<td class="alt">
+<span class="math inline">\(H_a: \Theta &lt; \Theta_0\)</span>
+</td>
+</tr>
+<tr>
+<td class="term">
+<span class="math inline">\(H_0: \Theta = \Theta_0\)</span>
+</td>
+<td class="sep">
+vs.
+</td>
+<td class="alt">
+<span class="math inline">\(H_a: \Theta \neq \Theta_0\)</span>
+</td>
+</tr>
+</table>
+<div class="remark">
+<p><span id="unlabeled-div-52" class="remark"><em>Remark</em>. </span>The first two hypothesis tests above are referred to as one-sided or one-tailed tests.
+and the third hypothesis test is referred to as a two-sided or two-tailed test.</p>
+</div>
+<div class="remark">
+<p><span id="unlabeled-div-53" class="remark"><em>Remark</em>. </span>The one-sided hypothesis test
+<span class="math display">\[\begin{array}{lcl}
+H_0: \Theta = \Theta_0 &amp; \quad  &amp; H_a: \Theta &gt; \Theta_0\\
+\end{array}\]</span>
+is equivalent to
+<span class="math display">\[\begin{array}{lcl}
+H_0: \Theta \leq \Theta_0 &amp; \quad  &amp; H_a: \Theta &gt; \Theta_0\\
+\end{array}\]</span></p>
+<p>and the other one-sided hypothesis test</p>
+<p><span class="math display">\[\begin{array}{lcl}
+H_0: \Theta = \Theta_0 &amp; \quad  &amp; H_a: \Theta &lt; \Theta_0\\
+\end{array}\]</span>
+is equivalent to
+<span class="math display">\[\begin{array}{lcl}
+H_0: \Theta \geq \Theta_0 &amp; \quad  &amp; H_a: \Theta &lt; \Theta_0\\
+\end{array}\]</span></p>
+</div>
+<p><strong>Step 3: Calculate an appropriate test statistic</strong></p>
+<p>Depends on the hypothesis test conducted and the information available.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-54" class="definition"><strong>Definition 6.3  </strong></span><span class="math display">\[\text{test statistic} = \frac{\text{(a statistic)} - \text{(hypothesized value of parameters under } H_0 \text{)}}{\text{standard error of statistic}}\]</span></p>
+</div>
+<p>The test statistic follows a reference distribution.
+Common distributions which thetest statistic follows are the standard normal distrubution, <span class="math inline">\(t\)</span>-distribution,
+<span class="math inline">\(F\)</span>-distribution and <span class="math inline">\(\chi^2\)</span>-distribution.
+<!-- $Z$, $t$, $F$, $\chi^2$ --></p>
+<p><strong>Step 4: Calculate the p-value</strong></p>
+<!-- It quantifies the evidence against the null hypothesis. -->
+<p>We use the test statistic, reference distribution, and refer back to <span class="math inline">\(H_a\)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-15-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-15-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
+<p class="caption">
+Figure 6.1: Right-tailed test: p-value is the area to the right of the test statistic
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-16-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-16-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
+<p class="caption">
+Figure 6.2: Left-tailed test: p-value is the area to the left of the test statistic
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-17-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
+<p class="caption">
+Figure 6.3: Two-tailed test: p-value is the total area in both tails beyond ±test statistic
+</p>
+</div>
+<p><strong>Step 5: Compare <em>p</em>-value to level of significance <span class="math inline">\(\alpha\)</span> and make a conclusion</strong></p>
+<ul>
+<li><p>If the <em>p</em>-value <span class="math inline">\(&lt; \alpha\)</span>, we say there is sufficient evidence against <span class="math inline">\(H_0\)</span> and the hypothesis test rejects <span class="math inline">\(H_0\)</span>
+in favor of <span class="math inline">\(H_a\)</span>.</p></li>
+<li><p>If the <em>p</em>-value <span class="math inline">\(&gt; \alpha\)</span>, thenwe say there is insufficient evidence against <span class="math inline">\(H_0\)</span> and we do not reject <span class="math inline">\(H_0\)</span>
+(in this situation we can also say fail to reject <span class="math inline">\(H_0\)</span>).</p></li>
+</ul>
+<!-- **Note:** It is not good practice to give conclusions in the context of -->
+<!-- stating we *accept $H_0$* or *accept $H_a$*. -->
+<p><strong>About the p-value of the test statistics</strong></p>
+<ul>
+<li><p>The p-value is a conditional probability.</p></li>
+<li><p>It is not the probability that <span class="math inline">\(H_0\)</span> (null hypothesis: current belief)
+is true.</p></li>
+<li><p>It is: P(observed statistic value — <span class="math inline">\(H_0\)</span>).
+Given <span class="math inline">\(H_0\)</span> (the null hypothesis), because <span class="math inline">\(H_0\)</span> gives the parameter
+values that we need to find required probability.</p></li>
+<li><p>The p-value serves as a measure of the strength of the evidence against
+the null hypothesis (but it should not serve as a hard and fast rule
+for decision).</p></li>
+<li><p>If the p-value = 0.03 (for example) all we can say is that there is 3%
+chance of observing the statistic value we actually observed (or one
+even more inconsistent with the null value).</p></li>
+<li><p>The p-value is the chance (the proportion) of getting a, for instance,
+<span class="math inline">\(\hat{p}\)</span> as far as or further from <span class="math inline">\(H_0\)</span> than the value observed.</p></li>
+<li><p>The p-value is the probability of getting at least something (e.g., sample
+proportion <span class="math inline">\(\hat{p}\)</span>) more extreme (e.g., unusual, unlikely, or rare)
+than what we have already found (our observed value of <span class="math inline">\(\hat{p}\)</span>) that
+provide even stronger evidence against <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>The more extreme the z-score (large in absolute values) are the ones
+that denote farther departure of the observed value (e.g., our
+<span class="math inline">\(\hat{p}\)</span>) from the parameter value (<span class="math inline">\(p_0\)</span>) in <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>In the one-sided test, e.g., <span class="math inline">\(H_a : p &gt; p_0\)</span>, p-value is one-tailed
+probability. This is the probability that sample proportion <span class="math inline">\(\hat{p}\)</span>
+falls at least as far from <span class="math inline">\(p_0\)</span> in one direction as the observed
+value of <span class="math inline">\(\hat{p}\)</span>.</p></li>
+<li><p>In the two-sided test, e.g., <span class="math inline">\(H_a : p \ne p_0\)</span>, p-value is two-tailed
+probability. This is the probability that sample proportion <span class="math inline">\(\hat{p}\)</span>
+falls at least as far from <span class="math inline">\(p_0\)</span> in either direction as the observed
+value of <span class="math inline">\(\hat{p}\)</span>.</p></li>
+</ul>
+<p>The probability, computed assuming that <span class="math inline">\(H_0\)</span> is true, that the test
+statistic would take a value as extreme or more extreme than that
+actually observed is called the <strong>P-value</strong> of the test. The smaller the
+P-value, the stronger the evidence against <span class="math inline">\(H_0\)</span> provided by the data.</p>
+<p>Small P-values are evidence against <span class="math inline">\(H_0\)</span>, because they say that the
+observed result is unlikely to occur when <span class="math inline">\(H_0\)</span> is true. Large P-values
+fail to give evidence against <span class="math inline">\(H_0\)</span>.</p>
+<p><strong>The P-value Scale</strong></p>
+<ul>
+<li><p>If P-value <span class="math inline">\(&lt;\)</span> 0.001, we have very strong evidence against <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>If 0.001 <span class="math inline">\(\leq\)</span> P-value <span class="math inline">\(&lt;\)</span> 0.01, we have strong evidence against
+<span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>If 0.01 <span class="math inline">\(\leq\)</span> P-value <span class="math inline">\(&lt;\)</span> 0.05, we have evidence against <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>If 0.05 <span class="math inline">\(\leq\)</span> P-value <span class="math inline">\(&lt;\)</span> 0.075, we have some evidence against <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>If 0.075 <span class="math inline">\(\leq\)</span> P-value <span class="math inline">\(&lt;\)</span> 0.10, we have slight evidence against
+<span class="math inline">\(H_0\)</span>.</p></li>
+</ul>
+<p><strong>Use p-value Method to Make a Decision (Reject or Fail to Reject
+<span class="math inline">\(H_0\)</span>)</strong></p>
+<p>But how small is small p-value?<br />
+We would need to choose an <span class="math inline">\(\alpha\)</span>-level (significance-level): a number
+such that if:</p>
+<ul>
+<li><p><span class="math inline">\(P\text{–value} \leq \alpha\)</span>-level, we reject <span class="math inline">\(H_0\)</span>; We can conclude
+<span class="math inline">\(H_a\)</span> (we have evidence to support our claim). Often we phrase as a
+statistically significant result at that specified <span class="math inline">\(\alpha\)</span>-level.</p></li>
+<li><p><span class="math inline">\(P\text{–value} &gt; \alpha\)</span>-level, we fail to reject <span class="math inline">\(H_0\)</span>; We cannot
+conclude <span class="math inline">\(H_a\)</span> (we have not enough evidence to support our claim;
+thus, <span class="math inline">\(H_0\)</span> is plausible - We do not accept <span class="math inline">\(H_0\)</span>). Often we phrase as
+the result is not statistically significant at that specified
+<span class="math inline">\(\alpha\)</span>-level.</p></li>
+<li><p>The default <span class="math inline">\(\alpha\)</span>-level (significance-level) is typically
+<span class="math inline">\(\alpha = 0.05\)</span> (but it can be different based on the context of the
+study - it is usually not higher than 0.10).</p></li>
+</ul>
+<p>The p-value in the previous example was extremely small (less than
+0.0001). That is a strong evidence to suggest that more than 5% of
+children have genetic abnormalities. However, it does not say that the
+percentage of sampled children with genetic abnormalities was “a lot
+more than 5%”. That is, the p-value by itself says nothing about how
+much greater the percentage might be. The confidence interval provides
+that information.<br />
+To assess the difference in practical terms, we should also construct a
+confidence interval:</p>
+<p><span class="math display">\[0.1198 \pm (1.96 \times 0.0166)\]</span> <span class="math display">\[0.1198 \pm 0.0324\]</span>
+<span class="math display">\[(0.0874,\ 0.1522)\]</span></p>
+<p>Interpretation: We are 95% Confident that the true percentage of
+children with genetic abnormalities is between 8.74% and 15.22%.<br />
+95% CI for <span class="math inline">\(p\)</span>: (9.1%, 15.6%) – We are 95% confident that the true
+percentage of all children that have genetic abnormalities is between
+approximately 9.1% and 15.6%. Since both values of this CI are more than
+the hypothesized value of <span class="math inline">\(p = 0.05\)</span> (5%), we can further infer that
+this true percentage is more than 5%.<br />
+<strong>Do environmental chemicals cause congenital abnormalities?</strong></p>
+<p>We do not know that environmental chemicals cause genetic abnormalities.
+We merely have evidence that suggests that a greater percentage of
+children are diagnosed with genetic abnormalities now, compared to the
+1980s.</p>
+<p><strong>More About P-values</strong></p>
+<ul>
+<li><p>Big p-values just mean that what we have observed is not surprising.
+It means that the results are in line with our assumption that the
+null hypothesis models the world, so we have no reason to reject it.</p></li>
+<li><p>A big p-value does not prove that the null hypothesis is true.</p></li>
+<li><p>When we see a big p-value, all we can say is: we cannot reject <span class="math inline">\(H_0\)</span>
+(we fail to reject <span class="math inline">\(H_0\)</span>) – we cannot conclude <span class="math inline">\(H_a\)</span> (We have no
+evidence to support <span class="math inline">\(H_a\)</span>).</p></li>
+</ul>
 
+</div>
 </div>
 </div>
             </section>
