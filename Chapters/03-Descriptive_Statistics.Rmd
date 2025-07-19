@@ -187,60 +187,153 @@ We also may have data that is bimodal, which means that there are two distinct p
 *Right* skewed data is is also referred to as *positively* skewed and *left* skewed data is is also referred to as *negatively* skewed.
 :::
 
-Figures \@ref{fig:LeftSkewDensity} \@ref{fig:RightSkewDensity} and \@ref{fig:SymmDensity} illustrate the three types of skewness.
+Figures illustrate the three types of skewness.
 
-```{r LeftSkewDensity,fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a left (negative) skewed distribution.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}
-  \draw[thick, ->] (-1,0) -- (8,0) node[right] {$x$};
-  \draw[thick, ->] (0,-0.2) -- (0,4) node[above] {$y$};
+```{r LeftSkewExample, fig.cap="An illustration of a left (negative) skewed distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+library(grid)  # for unit()
 
-  \draw[thick, blue, smooth, samples=100, domain=0.5:7.5] 
-    plot (\x, {3.5*exp(-0.6*(\x - 5)^2) + 0.6*exp(-0.3*(7 - \x))});
+# Create data for the skewed curve
+x <- seq(0.5, 7.5, length.out = 500)
+y <- 3.5 * exp(-0.6 * (x - 5)^2) + 0.6 * exp(-0.3 * (7 - x))
+data <- data.frame(x, y)
+
+# Plot
+ggplot(data, aes(x, y)) +
+  geom_line(color = "blue", linewidth = 1.2) +
   
-  \node at (2.4,1.2) {Long tail};
-  \draw[->, thick] (2.8,0.9) -- (1.2,0.3);
-
-  \node at (5.75,5) {Peak};
-  \draw[->, thick] (5.5,4.5) -- (5.0,3.95);
-\end{tikzpicture}
+  # Custom x- and y-axes with arrows
+  geom_segment(aes(x = -0.5, xend = 8, y = 0, yend = 0),
+               arrow = arrow(length = unit(0.25, "cm")),
+               color = "black", linewidth = 0.5, inherit.aes = FALSE) +
+  geom_segment(aes(x = 0, xend = 0, y = -0.2, yend = 4.5),
+               arrow = arrow(length = unit(0.25, "cm")),
+               color = "black", linewidth = 0.5, inherit.aes = FALSE) +
+  
+  # Axis labels near arrow tips
+  geom_text(aes(x = 8.2, y = 0, label = "x"), size = 5, inherit.aes = FALSE) +
+  geom_text(aes(x = 0, y = 4.8, label = "y"), size = 5, inherit.aes = FALSE) +
+  
+  # Annotations
+  geom_segment(data = data.frame(x = 2.8, y = 0.9, xend = 1.2, yend = 0.3),
+               aes(x = x, y = y, xend = xend, yend = yend),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.3,
+               inherit.aes = FALSE) +
+  geom_text(data = data.frame(x = 2.4, y = 1.15, label = "Long tail"),
+            aes(x = x, y = y, label = label), size = 5,
+            inherit.aes = FALSE) +
+  
+  geom_segment(data = data.frame(x = 5.5, y = 4.5, xend = 5.0, yend = 3.95),
+               aes(x = x, y = y, xend = xend, yend = yend),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.3,
+               inherit.aes = FALSE) +
+  geom_text(data = data.frame(x = 5.90, y = 4.5, label = "Peak"),
+            aes(x = x, y = y, label = label), size = 5,
+            inherit.aes = FALSE) +
+  
+  coord_cartesian(xlim = c(-1, 8.5), ylim = c(-0.2, 5)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank()
+  )
 ```
 
 
-```{r RightSkewDensity, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a right (positive) skewed distribution.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}
-  \draw[thick, ->] (-1,0) -- (8,0) node[right] {$x$};
-  \draw[thick, ->] (0,-0.2) -- (0,4) node[above] {$y$};
+```{r RightSkewExample, fig.cap="An illustration of a right (positive) skewed distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+library(grid)  # for unit()
 
-  \draw[thick, blue, smooth, samples=100, domain=0.5:7.5] 
-    plot (\x, {3.5*exp(-0.6*(\x - 3)^2) + 0.6*exp(-0.3*(\x - 2))});
+# Create data for the skewed curve
+x <- seq(0.5, 7.5, length.out = 500)
+y <- 3.5 * exp(-0.6 * (x - 3)^2) + 0.6 * exp(-0.3 * (x - 2))
+data <- data.frame(x, y)
 
-  \node at (2,4.5) {Peak};
-  \draw[->, thick] (2.5,4.5) -- (3,4.1);
-
-  \node at (6.7,0.9) {Long tail};
-  \draw[->, thick] (6.5,0.6) -- (7.2,0.4);
-\end{tikzpicture}
+ggplot(data, aes(x, y)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  
+  # Axes with arrows
+  geom_segment(aes(x = -1, xend = 8, y = 0, yend = 0),
+               arrow = arrow(length = unit(0.25, "cm")),
+               color = "black", linewidth = 0.5, inherit.aes = FALSE) +
+  geom_segment(aes(x = 0, xend = 0, y = -0.2, yend = 4),
+               arrow = arrow(length = unit(0.25, "cm")),
+               color = "black", linewidth = 0.5, inherit.aes = FALSE) +
+  
+  # Axis labels
+  geom_text(aes(x = 8.2, y = 0, label = "x"), size = 5, inherit.aes = FALSE) +
+  geom_text(aes(x = 0, y = 4.2, label = "y"), size = 5, inherit.aes = FALSE) +
+  
+  # Annotations
+  geom_segment(data = data.frame(x = 2.5, y = 4.5, xend = 3, yend = 4.1),
+               aes(x = x, y = y, xend = xend, yend = yend),
+               arrow = arrow(length = unit(0.2, "cm")),
+               linewidth = 0.3, inherit.aes = FALSE) +
+  geom_text(data = data.frame(x = 2, y = 4.5, label = "Peak"),
+            aes(x = x, y = y, label = label),
+            size = 5, inherit.aes = FALSE) +
+  
+  geom_segment(data = data.frame(x = 6.5, y = 0.6, xend = 7.2, yend = 0.4),
+               aes(x = x, y = y, xend = xend, yend = yend),
+               arrow = arrow(length = unit(0.2, "cm")),
+               linewidth = 0.3, inherit.aes = FALSE) +
+  geom_text(data = data.frame(x = 6.7, y = 0.9, label = "Long tail"),
+            aes(x = x, y = y, label = label),
+            size = 5, inherit.aes = FALSE) +
+  
+  coord_cartesian(xlim = c(-1, 8.5), ylim = c(-0.2, 5)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank()
+  )
 ```
 
 
-```{r SymmDensity, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of symmetric distribution. Area under this curve on the left hand side of $\\mu = 0$ is same as the area on the right hand side under the curve.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[xscale=1.5, yscale=6]
-  \draw[->, thick] (-3.2,0) -- (3.2,0) node[right] {$x$};
-  \draw[->, thick] (0,0) -- (0,0.45) node[above] {$y$};
+```{r SymmetryExample, fig.cap="An illustration of symmetric distribution. Area under this curve on the left hand side of $\\mu = 0$ is same as the area on the right hand side under the curve.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+library(grid)
 
-  \draw[domain=-3:3, smooth, variable=\x, blue, thick] 
-    plot ({\x}, {1/sqrt(2*pi) * exp(-0.5*\x*\x)});
+# Standard normal curve
+x <- seq(-3, 3, length.out = 500)
+y <- dnorm(x)
+data <- data.frame(x, y)
 
-  \draw[dashed] (0,0) -- (0,{1/sqrt(2*pi)});
-  \node[below] at (0,0) {$\mu = 0$};
-\end{tikzpicture}
+ggplot(data, aes(x, y)) +
+  geom_line(color = "blue", linewidth = 1.2) +
+  
+  # Axes with arrows
+  geom_segment(aes(x = -3.2, xend = 3.2, y = 0, yend = 0),
+               arrow = arrow(length = unit(0.25, "cm")),
+               color = "black", linewidth = 0.6, inherit.aes = FALSE) +
+  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 0.45),
+               arrow = arrow(length = unit(0.25, "cm")),
+               color = "black", linewidth = 0.6, inherit.aes = FALSE) +
+  
+  # Dashed line from peak to x-axis
+  geom_segment(aes(x = 0, xend = 0, y = 0, yend = dnorm(0)),
+               linetype = "dashed", color = "black", inherit.aes = FALSE) +
+  
+  # Axis labels
+  geom_text(aes(x = 3.3, y = 0, label = "x"), size = 5, inherit.aes = FALSE) +
+  geom_text(aes(x = 0, y = 0.47, label = "y"), size = 5, inherit.aes = FALSE) +
+  
+  # Label for mu = 0
+  geom_text(aes(x = 0, y = -0.015, label = "μ = 0"), size = 5, inherit.aes = FALSE) +
+  
+  coord_cartesian(xlim = c(-3.2, 3.5), ylim = c(-0.02, 0.5)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank()
+  )
 ```
-
-
-
 
 <!-- ::: {#note:skewnote .note name="Skewness Note"} -->
 <!-- **Note:** *Right* skewed data is is also referred to as *positively* skewed and *left* skewed data is is also referred to as *negatively* skewed. -->
@@ -302,116 +395,208 @@ When we use the term *histogram*, we often refer to a frequency histogram unless
 <!-- **Note:** When we use the term *histogram*, we often refer to a frequency histogram unless otherwise specified. -->
 <!-- ::: -->
 
-An example of a histogram is shown in Figure \@ref(fig:HistExample).
+An example of a histogram is shown in Figure.
 
+```{r HistogramExample, fig.cap="An illustration of a histogram.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
 
-```{r HistExample, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a histogram.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}
-  \draw[->] (0,0) -- (7.5,0) node[right] {Value};
-  \draw[->] (0,0) -- (0,5.5) node[above] {Frequency};
+# Data for bars
+df <- data.frame(
+  xmin = c(0.5, 1.5, 2.5, 3.5, 4.5, 5.5),
+  xmax = c(1.5, 2.5, 3.5, 4.5, 5.5, 6.5),
+  ymax = c(2, 3.5, 5, 4, 2.5, 1)
+)
+df$xmid <- (df$xmin + df$xmax) / 2
+df$xlabel <- c("10", "20", "30", "40", "50", "60")
 
-  \filldraw[fill=blue!30] (0.5,0) rectangle (1.5,2);
-  \filldraw[fill=blue!30] (1.5,0) rectangle (2.5,3.5);
-  \filldraw[fill=blue!30] (2.5,0) rectangle (3.5,5);
-  \filldraw[fill=blue!30] (3.5,0) rectangle (4.5,4);
-  \filldraw[fill=blue!30] (4.5,0) rectangle (5.5,2.5);
-  \filldraw[fill=blue!30] (5.5,0) rectangle (6.5,1);
-
-  \foreach \x/\label in {1/10, 2/20, 3/30, 4/40, 5/50, 6/60} {
-    \draw (\x,0) -- (\x,-0.2);
-    \node[below] at (\x, -0.2) {\label};
-  }
-
-  \foreach \y in {1,...,5} {
-    \draw (0,\y) -- (-0.15,\y);
-    \node[left] at (-0.2,\y) {\y};
-  }
-\end{tikzpicture}
+# Plot
+ggplot(df) +
+  # Bars
+  geom_rect(aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
+            fill = "blue", alpha = 0.3, color = "black") +
+  
+  # X-axis ticks and labels
+  geom_segment(data = df, aes(x = xmid, xend = xmid, y = 0, yend = -0.15)) +
+  geom_text(data = df, aes(x = xmid, y = -0.3, label = xlabel), size = 4) +
+  
+  # Y-axis ticks and labels
+  geom_segment(data = data.frame(y = 1:5),
+               aes(x = 0, xend = -0.15, y = y, yend = y)) +
+  geom_text(data = data.frame(y = 1:5),
+            aes(x = -0.3, y = y, label = y), size = 4, hjust = 1) +
+  
+  # Axis arrows
+  geom_segment(aes(x = 0, xend = 7.5, y = 0, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
+  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 5.5),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
+  
+  # Axis titles
+  annotate("text", x = 7.0, y = -0.3, label = "Value", hjust = 0, size = 5) +
+  annotate("text", x = -0.75, y = 5.6, label = "Frequency", angle = 90, hjust = 1, size = 5) +
+  
+  # Layout
+  coord_cartesian(xlim = c(-0.8, 7.7), ylim = c(-0.5, 6)) +
+  theme_void()
 ```
-
-
 
 Figures @ref(fig:HistExampleLeft), @ref(fig:HistExampleRight), and @ref(fig:HistExampleSymm) illustrate the concept of skewness in histograms. The histograms show how the distribution of data can be skewed to the left, skewed to the right, or symmetric.
 
+```{r HistogramWithLeftExample, fig.cap="An illustration of a histogram to have a left (or negative) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
 
-```{r HistExampleLeft, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a histogram to have a left (or negative) skew probability distribution.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[xscale=1.2, yscale=1]
-  \draw[->] (0,0) -- (7.5,0) node[right] {Value};
-  \draw[->] (0,0) -- (0,5.5) node[above] {Frequency};
-  \filldraw[fill=blue!30] (0.5,0) rectangle (1.5,1);
-  \filldraw[fill=blue!30] (1.5,0) rectangle (2.5,2);
-  \filldraw[fill=blue!30] (2.5,0) rectangle (3.5,3);
-  \filldraw[fill=blue!30] (3.5,0) rectangle (4.5,4.2);
-  \filldraw[fill=blue!30] (4.5,0) rectangle (5.5,4.7);
-  \filldraw[fill=blue!30] (5.5,0) rectangle (6.5,4.9);
-  \foreach \x/\label in {1/10, 2/20, 3/30, 4/40, 5/50, 6/60} {
-    \draw (\x,0) -- (\x,-0.15);
-    \node[below] at (\x,-0.3) {\label};
-  }
-  \foreach \y in {1,...,5} {
-    \draw (0,\y) -- (-0.1,\y);
-    \node[left] at (-0.3,\y) {\y};
-  }
-  \draw[thick, red, smooth, samples=100, domain=0.7:6.3] 
-    plot (\x, {5*exp(-0.3*(6.5 - \x)^2) + 0.5*exp(-0.3*(\x - 1.5))});
-\end{tikzpicture}
+# Bar data
+df <- data.frame(
+  xmin = c(0.5, 1.5, 2.5, 3.5, 4.5, 5.5),
+  xmax = c(1.5, 2.5, 3.5, 4.5, 5.5, 6.5),
+  ymax = c(1, 2, 3, 4.2, 4.7, 4.9)
+)
+df$xmid <- (df$xmin + df$xmax) / 2
+df$xlabel <- c("10", "20", "30", "40", "50", "60")
+
+# Curve function
+curve_df <- data.frame(x = seq(0.7, 6.3, length.out = 200))
+curve_df$y <- with(curve_df, 5 * exp(-0.3 * (6.5 - x)^2) + 0.5 * exp(-0.3 * (x - 1.5)))
+
+# Y ticks
+yticks <- data.frame(y = 1:5)
+
+# Plot
+ggplot() +
+  # Histogram bars
+  geom_rect(data = df,
+            aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
+            fill = "blue", alpha = 0.3, color = "black") +
+  
+  # Red curve
+  geom_line(data = curve_df, aes(x = x, y = y), color = "red", linewidth = 1) +
+  
+  # X ticks and labels
+  geom_segment(data = df, aes(x = xmid, xend = xmid, y = 0, yend = -0.1)) +
+  geom_text(data = df, aes(x = xmid, y = -0.25, label = xlabel), size = 4) +
+  
+  # Y ticks and labels
+  geom_segment(data = yticks, aes(x = 0, xend = -0.1, y = y, yend = y)) +
+  geom_text(data = yticks, aes(x = -0.25, y = y, label = y), size = 4, hjust = 1) +
+  
+  # Axis arrows
+  geom_segment(aes(x = 0, xend = 7.5, y = 0, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
+  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 5.5),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
+  
+  # Axis titles
+  annotate("text", x = 7.0, y = -0.3, label = "Value", hjust = 0, size = 5) +
+  annotate("text", x = -0.75, y = 5.6, label = "Frequency", angle = 90, hjust = 1, size = 5) +
+  
+  # Final styling
+  coord_cartesian(xlim = c(-0.7, 7.7), ylim = c(-0.5, 6)) +
+  theme_void()
 ```
 
+```{r HistogramWithRightExample, fig.cap="An illustration of a histogram to have a right (or positive) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
 
-```{r HistExampleRight, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a histogram to have a right (or positive) skew probability distribution.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[xscale=1.2, yscale=1]
-  \draw[->] (0,0) -- (7.5,0) node[right] {Value};
-  \draw[->] (0,0) -- (0,5.5) node[above] {Frequency};
+# Bar data
+df <- data.frame(
+  xmin = c(0.5, 1.5, 2.5, 3.5, 4.5, 5.5),
+  xmax = c(1.5, 2.5, 3.5, 4.5, 5.5, 6.5),
+  ymax = c(4.9, 4.5, 3.8, 2.8, 1.8, 1)
+)
+df$xmid <- (df$xmin + df$xmax) / 2
+df$xlabel <- c("10", "20", "30", "40", "50", "60")
 
-  \filldraw[fill=blue!30] (0.5,0) rectangle (1.5,4.9);
-  \filldraw[fill=blue!30] (1.5,0) rectangle (2.5,4.5);
-  \filldraw[fill=blue!30] (2.5,0) rectangle (3.5,3.8);
-  \filldraw[fill=blue!30] (3.5,0) rectangle (4.5,2.8);
-  \filldraw[fill=blue!30] (4.5,0) rectangle (5.5,1.8);
-  \filldraw[fill=blue!30] (5.5,0) rectangle (6.5,1);
+# Curve
+curve_df <- data.frame(x = seq(0.7, 6.3, length.out = 200))
+curve_df$y <- with(curve_df, 5 * exp(-0.3 * (x - 1.5)^2) + 0.5 * exp(-0.3 * (6.5 - x)))
 
-  \foreach \x/\label in {1/10, 2/20, 3/30, 4/40, 5/50, 6/60} {
-    \draw (\x,0) -- (\x,-0.15);
-    \node[below] at (\x,-0.3) {\label};
-  }
+# Y-axis tick data
+yticks <- data.frame(y = 1:5)
 
-  \foreach \y in {1,...,5} {
-    \draw (0,\y) -- (-0.1,\y);
-    \node[left] at (-0.3,\y) {\y};
-  }
-
-  \draw[thick, red, smooth, samples=100, domain=0.7:6.3] 
-    plot (\x, {5*exp(-0.3*(\x - 1.5)^2) + 0.5*exp(-0.3*(6.5 - \x))});
-\end{tikzpicture}
+# Plot
+ggplot() +
+  # Histogram bars
+  geom_rect(data = df,
+            aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
+            fill = "blue", alpha = 0.3, color = "black") +
+  
+  # Red curve
+  geom_line(data = curve_df, aes(x = x, y = y), color = "red", linewidth = 1) +
+  
+  # X-axis ticks and labels
+  geom_segment(data = df, aes(x = xmid, xend = xmid, y = 0, yend = -0.1)) +
+  geom_text(data = df, aes(x = xmid, y = -0.25, label = xlabel), size = 4) +
+  
+  # Y-axis ticks and labels
+  geom_segment(data = yticks, aes(x = 0, xend = -0.1, y = y, yend = y)) +
+  geom_text(data = yticks, aes(x = -0.25, y = y, label = y), size = 4, hjust = 1) +
+  
+  # Axes with arrows
+  geom_segment(aes(x = 0, xend = 7.5, y = 0, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
+  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 5.5),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
+  
+  # Axis titles
+  annotate("text", x = 7.0, y = -0.3, label = "Value", hjust = 0, size = 5) +
+  annotate("text", x = -0.75, y = 5.6, label = "Frequency", angle = 90, hjust = 1, size = 5) +
+  
+  # Final layout
+  coord_cartesian(xlim = c(-0.7, 7.7), ylim = c(-0.5, 6)) +
+  theme_void()
 ```
 
+```{r HistogramWithSymmetryExample, fig.cap="An illustration of a histogram to have a symmetric probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
 
-```{r HistExampleSymm, fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a histogram to have a symmetric probability distribution.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[xscale=1.2, yscale=1]
-  \draw[->] (0,0) -- (7.5,0) node[right] {Value};
-  \draw[->] (0,0) -- (0,5.5) node[above] {Frequency};
-  \filldraw[fill=blue!30] (0.5,0) rectangle (1.5,2.5);
-  \filldraw[fill=blue!30] (1.5,0) rectangle (2.5,4);
-  \filldraw[fill=blue!30] (2.5,0) rectangle (3.5,5);
-  \filldraw[fill=blue!30] (3.5,0) rectangle (4.5,4);
-  \filldraw[fill=blue!30] (4.5,0) rectangle (5.5,2.5);
-  \foreach \x/\label in {1/10, 2/20, 3/30, 4/40, 5/50} {
-    \draw (\x,0) -- (\x,-0.15);
-    \node[below] at (\x,-0.3) {\label};
-  }
-  \foreach \y in {1,...,5} {
-    \draw (0,\y) -- (-0.1,\y);
-    \node[left] at (-0.3,\y) {\y};
-  }
-  \draw[thick, red, smooth, samples=100, domain=0.7:5.3]
-    plot (\x, {5*exp(-0.5*(\x - 3)^2)});
-\end{tikzpicture}
+# Bar data (symmetric around center)
+df <- data.frame(
+  xmin = c(0.5, 1.5, 2.5, 3.5, 4.5),
+  xmax = c(1.5, 2.5, 3.5, 4.5, 5.5),
+  ymax = c(2.5, 4, 5, 4, 2.5)
+)
+df$xmid <- (df$xmin + df$xmax) / 2
+df$xlabel <- c("10", "20", "30", "40", "50")
+
+# Red curve: f(x) = 5 * exp(-0.5 * (x - 3)^2)
+curve_df <- data.frame(x = seq(0.7, 5.3, length.out = 200))
+curve_df$y <- with(curve_df, 5 * exp(-0.5 * (x - 3)^2))
+
+# Y ticks
+yticks <- data.frame(y = 1:5)
+
+# ggplot
+ggplot() +
+  # Bars
+  geom_rect(data = df,
+            aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
+            fill = "blue", alpha = 0.3, color = "black") +
+  
+  # Red curve
+  geom_line(data = curve_df, aes(x = x, y = y), color = "red", linewidth = 1) +
+  
+  # X-axis ticks and labels
+  geom_segment(data = df, aes(x = xmid, xend = xmid, y = 0, yend = -0.1)) +
+  geom_text(data = df, aes(x = xmid, y = -0.25, label = xlabel), size = 4) +
+  
+  # Y-axis ticks and labels
+  geom_segment(data = yticks, aes(x = 0, xend = -0.1, y = y, yend = y)) +
+  geom_text(data = yticks, aes(x = -0.25, y = y, label = y), size = 4, hjust = 1) +
+  
+  # Axis arrows
+  geom_segment(aes(x = 0, xend = 7.5, y = 0, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
+  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 5.5),
+               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
+  
+  # Axis labels
+  annotate("text", x = 7.0, y = -0.3, label = "Value", hjust = 0, size = 5) +
+  annotate("text", x = -0.75, y = 5.6, label = "Frequency", angle = 90, hjust = 1, size = 5) +
+  
+  # Final layout
+  coord_cartesian(xlim = c(-0.7, 7.7), ylim = c(-0.5, 6)) +
+  theme_void()
 ```
-
 
 ### Boxplots
 
@@ -432,68 +617,84 @@ Then,
 The box in a boxplot is divided into two parts, the lower and upper quartiles. The lower quartile is represented by the bottom of the box and the upper quartile is represented by the top of the box. The line inside the box represents the median of the data set.
 Box plots can be used to to get a sense of a data set.
 
-```{r fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of an annotated box-plot with whiskers and potential outliers.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[x=1cm, y=1cm]
+```{r BoxplotExample, fig.cap="An illustration of an annotated box-plot with whiskers and potential outliers.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+library(grid)  # for arrow unit()
 
-  % Define values
-  \def\lowOutlier{0.5}
-  \def\lowWhisker{1.2}
-  \def\Qone{2}
-  \def\Qtwo{3}
-  \def\Qthree{4}
-  \def\highWhisker{4.8}
-  \def\highOutlier{5.4}
-  \def\xbox{2}
+# Quartile and whisker values
+Q1 <- 2; Q2 <- 3; Q3 <- 4
+low_whisker <- 1.2; high_whisker <- 4.8
+outliers <- c(0.5, 0.7, 5.2, 5.4)
+xbox <- 2  # x-position of the box (shifted right)
 
-  % Axis lines
-  \draw[->, thick] (1, 0.2) -- (1, 6) node[above] {};
-  \draw[->, thick] (0.2, 1) -- (6.5, 1) node[right] {};
+# Data
+box_data <- data.frame(
+  x = xbox,
+  ymin = low_whisker,
+  lower = Q1,
+  middle = Q2,
+  upper = Q3,
+  ymax = high_whisker
+)
 
-  % Box
-  \draw[thick] (\xbox, \Qone) rectangle (\xbox+1, \Qthree);
-  \draw[line width=2pt] (\xbox, \Qtwo) -- (\xbox+1, \Qtwo); 
+outlier_data <- data.frame(
+  x = xbox,
+  y = outliers
+)
 
-  % Whiskers
-  \draw[thick] (\xbox+0.5, \Qthree) -- (\xbox+0.5, \highWhisker);
-  \draw[thick] (\xbox+0.5, \Qone) -- (\xbox+0.5, \lowWhisker);
-  \draw[thick] (\xbox+0.3, \highWhisker) -- (\xbox+0.7, \highWhisker);
-  \draw[thick] (\xbox+0.3, \lowWhisker) -- (\xbox+0.7, \lowWhisker);
+quartile_lines <- data.frame(
+  y = c(Q1, Q2, Q3),
+  label = c("Q1", "Q2", "Q3")
+)
 
-  % Outliers
-  \foreach \y in {5.2, 5.4} {
-    \fill (\xbox+0.5, \y) circle (1pt);
-  }
-  \foreach \y in {0.7, 0.5} {
-    \fill (\xbox+0.5, \y) circle (1pt);
-  }
-
-  % Dotted reference lines
-  \draw[dotted, thick] (0.8, \Qone) -- (6.5, \Qone);
-  \draw[dotted, thick] (0.8, \Qtwo) -- (6.5, \Qtwo);
-  \draw[dotted, thick] (0.8, \Qthree) -- (6.5, \Qthree);
-
-  % Quartile labels
-  \node[left] at (0.8, \Qone) {Q1};
-  \node[left] at (0.8, \Qtwo) {Q2};
-  \node[left] at (0.8, \Qthree) {Q3};
-
-  % Annotations for whiskers
-  \draw[->, thick] (5.4, \highWhisker + 0.1) -- (\xbox + 0.5, \highWhisker)
-    node[anchor=west, xshift=3cm, align=left] {upper whisker $= Q3 + 1.5(\text{IQR})$};
-
-  \draw[->, thick] (5.4, \lowWhisker + 0.1) -- (\xbox + 0.5, \lowWhisker)
-    node[anchor=west, xshift=3cm, align=left] {lower whisker $= Q1 - 1.5(\text{IQR})$};
-
-  % Arrows to outliers
-  \draw[->, thick] (1.3, 5.6) -- (\xbox + 0.5, 5.4);
-  \node[align=right] at (0.2, 5.8) {potential\\outliers};
-
-  \draw[->, thick] (1.3, 0.3) -- (\xbox + 0.5, 0.5);
-  \node[align=right] at (0.2, 0.1) {potential\\outliers};
-\end{tikzpicture}
+# Plot
+ggplot() +
+  # Boxplot at x = 2
+  geom_boxplot(data = box_data,
+               aes(x = x, ymin = ymin, lower = lower, middle = middle,
+                   upper = upper, ymax = ymax),
+               stat = "identity", width = 0.5, fill = "white", color = "black", fatten = 3) +
+  
+  # Outliers
+  geom_point(data = outlier_data, aes(x = x, y = y), size = 2) +
+  
+  # Dotted reference lines
+  geom_hline(data = quartile_lines, aes(yintercept = y), linetype = "dotted") +
+  geom_text(data = quartile_lines, aes(x = 0.8, y = y, label = label), hjust = 1, size = 5) +
+  
+  # Whisker annotations
+  annotate("segment", x = xbox + 1.4, xend = xbox, y = high_whisker + 0.15, yend = high_whisker,
+           arrow = arrow(length = unit(0.2, "cm")), size = 1) +
+  annotate("text", x = xbox + 1.4, y = high_whisker + 0.25,
+           label = "upper whisker = Q3 + 1.5(IQR)", hjust = 0, size = 4) +
+  
+  annotate("segment", x = xbox + 1.4, xend = xbox, y = low_whisker - 0.15, yend = low_whisker,
+           arrow = arrow(length = unit(0.2, "cm")), size = 1) +
+  annotate("text", x = xbox + 1.4, y = low_whisker - 0.35,
+           label = "lower whisker = Q1 - 1.5(IQR)", hjust = 0, size = 4) +
+  
+  # Outlier annotations
+  annotate("segment", x = xbox - 0.9, xend = xbox, y = 5.75, yend = 5.4,
+           arrow = arrow(length = unit(0.2, "cm")), size = 1) +
+  annotate("text", x = xbox - 1.7, y = 5.9,
+           label = "potential\noutliers", hjust = 0, size = 4) +
+  
+  annotate("segment", x = xbox - 0.9, xend = xbox, y = 0.25, yend = 0.5,
+           arrow = arrow(length = unit(0.2, "cm")), size = 1) +
+  annotate("text", x = xbox - 1.7, y = 0.1,
+           label = "potential\noutliers", hjust = 0, size = 4) +
+  
+  # Axis arrows (without numeric labels)
+  annotate("segment", x = 1, xend = 1, y = 0.2, yend = 6,
+           arrow = arrow(length = unit(0.2, "cm")), size = 1.2) +
+  annotate("segment", x = 0.2, xend = 6.5, y = 1, yend = 1,
+           arrow = arrow(length = unit(0.2, "cm")), size = 1.2) +
+  
+  # Layout: remove ticks, gridlines, and background
+  coord_cartesian(xlim = c(0.2, 6.7), ylim = c(0, 6)) +
+  theme_void() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank())
 ```
-
 
 Boxplots can also efficiently be used to compare multiple distributions and highlight skewness, spread, and outliers from each of them.
 If the median cuts the box with upper area smaller than lower area,
@@ -503,7 +704,6 @@ then we say that box-plot with right skew probability distribution.
 Otherwise, if the median cuts the box with upper area equal to
 lower area, then we say that box-plot with symmetric probability
 distribution.
-
 
 ```{r fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Box-plots showing negative skew, positive skew, and symmetry.'}
 \usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
