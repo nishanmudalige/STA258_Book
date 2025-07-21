@@ -705,50 +705,132 @@ Otherwise, if the median cuts the box with upper area equal to
 lower area, then we say that box-plot with symmetric probability
 distribution.
 
-```{r fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Box-plots showing negative skew, positive skew, and symmetry.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[x=1.3cm, y=1cm]
+```{r BoxplotNegativeExample, fig.cap="An illustration of an boxplot with left (negative) skewed.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
 
-  % Boxplot function: center x, yQ1, yQ2, yQ3
-  \newcommand{\boxplot}[4]{
-    % Axis
-    \draw[->, thick] (#1 - 1, 1) -- (#1 - 1, 6);
-    \draw[->, thick] (#1 - 1.2, 1) -- (#1 + 1.2, 1);
+# Generate left-skewed data
+set.seed(123)
+x <- rbeta(1000, shape1 = 5, shape2 = 2)
+df <- data.frame(value = x)
 
-    % Dotted Q2 guide
-    \draw[dotted, thick] (#1 - 1.1, #3) -- (#1 + 1.1, #3);
+# Compute mean and median
+mean_val <- mean(df$value)
+median_val <- median(df$value)
 
-    % Box
-    \draw[thick] (#1 - 0.5, #2) rectangle (#1 + 0.5, #4);
+# Vertical offset to separate labels
+label_offset <- 0.03  # you can increase this for more spacing
 
-    % Median
-    \draw[line width=2pt] (#1 - 0.5, #3) -- (#1 + 0.5, #3);
-
-    % Whiskers
-    \draw[thick] (#1, #4) -- (#1, #4 + 0.8);
-    \draw[thick] (#1 - 0.2, #4 + 0.8) -- (#1 + 0.2, #4 + 0.8);
-
-    \draw[thick] (#1, #2) -- (#1, #2 - 0.8);
-    \draw[thick] (#1 - 0.2, #2 - 0.8) -- (#1 + 0.2, #2 - 0.8);
-
-    % Q2 Label
-    \node[left] at (#1 - 1.1, #3) {\textbf{Q2}};
-  }
-
-  % Plot 1: Negative skew
-  \boxplot{1}{2.2}{3.9}{4.6}
-  \node[above] at (1, 5.9) {Left (negative) skew};
-  \node[align=center] at (1, 0.3) {\small median $>$ mean\\(towards top of data)};
-
-  % Plot 2: Positive skew
-  \boxplot{4}{2.1}{2.5}{3.5}
-  \node[above] at (4, 5.9) {Right (positive) skew};
-  \node[align=center] at (4, 0.3) {\small median $<$ mean\\(towards bottom of data)};
-
-  % Plot 3: Symmetric
-  \boxplot{7}{2}{3}{4}
-  \node[above] at (7, 5.9) {Symmetric};
-  \node[align=center] at (7, 0.3) {\small median $=$ mean};
-\end{tikzpicture}
+# Plot
+ggplot(df, aes(x = "", y = value)) +
+  geom_boxplot(fill = "lightblue", width = 0.3, outlier.shape = NA) +
+  
+  # Mean point and dashed lines
+  geom_point(aes(y = mean_val), color = "red", size = 3) +
+  geom_segment(aes(x = 0.85, xend = 1.15, y = median_val, yend = median_val),
+               color = "blue", linetype = "dashed") +
+  geom_segment(aes(x = 0.85, xend = 1.15, y = mean_val, yend = mean_val),
+               color = "red", linetype = "dashed") +
+  
+  # Separated annotations
+  annotate("text", x = 1.25, y = mean_val - label_offset, 
+           label = sprintf("Mean = %.2f", mean_val), 
+           color = "red", hjust = 0, size = 3.8) +
+  annotate("text", x = 1.25, y = median_val + label_offset, 
+           label = sprintf("Median = %.2f", median_val), 
+           color = "blue", hjust = 0, size = 3.8) +
+  
+  # Labels and theme
+  labs(title = "Boxplot: Median > Mean (Left-Skewed)", y = "Value", x = NULL) +
+  scale_y_continuous(expand = expansion(mult = c(0.05, 0.15))) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()
+  ) +
+  coord_cartesian(clip = "off")
 ```
 
+```{r BoxplotpositiveExample, fig.cap="An illustration of an boxplot with right (positive) skewed.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+
+# Generate right-skewed data (mean > median)
+set.seed(456)
+x <- rbeta(1000, shape1 = 2, shape2 = 5)  # right-skewed
+df <- data.frame(value = x)
+
+# Compute summary statistics
+mean_val <- mean(df$value)
+median_val <- median(df$value)
+label_offset <- 0.03  # vertical space between annotations
+
+# Plot
+ggplot(df, aes(x = "", y = value)) +
+  geom_boxplot(fill = "lightblue", width = 0.3, outlier.shape = NA) +
+  
+  # Mean point and dashed lines
+  geom_point(aes(y = mean_val), color = "red", size = 3) +
+  geom_segment(aes(x = 0.85, xend = 1.15, y = median_val, yend = median_val),
+               color = "blue", linetype = "dashed") +
+  geom_segment(aes(x = 0.85, xend = 1.15, y = mean_val, yend = mean_val),
+               color = "red", linetype = "dashed") +
+  
+  # Separated annotations
+  annotate("text", x = 1.25, y = mean_val + label_offset, 
+           label = sprintf("Mean = %.2f", mean_val), 
+           color = "red", hjust = 0, size = 3.8) +
+  annotate("text", x = 1.25, y = median_val - label_offset, 
+           label = sprintf("Median = %.2f", median_val), 
+           color = "blue", hjust = 0, size = 3.8) +
+  
+  # Labels and theme
+  labs(title = "Boxplot: Mean > Median (Right-Skewed)", y = "Value", x = NULL) +
+  scale_y_continuous(expand = expansion(mult = c(0.05, 0.15))) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()
+  ) +
+  coord_cartesian(clip = "off")
+```
+
+```{r BoxplotSymmetryExample, fig.cap="An illustration of an boxplot with symetric skewed.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+
+# Manually construct symmetric data with exact mean == median
+# For example: symmetric around 0.5
+x <- c(0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9)  # odd number: median is middle
+x <- rep(x, times = 10)  # repeat to enlarge data
+df <- data.frame(value = x)
+
+# Compute summary statistics
+mean_val <- mean(df$value)     # exactly 0.5
+median_val <- median(df$value) # exactly 0.5
+label_offset <- 0.02
+
+# Plot
+ggplot(df, aes(x = "", y = value)) +
+  geom_boxplot(fill = "lightblue", width = 0.3, outlier.shape = NA) +
+  
+  # Add mean point and dashed line
+  geom_point(aes(y = mean_val), color = "red", size = 3) +
+  geom_segment(aes(x = 0.85, xend = 1.15, y = median_val, yend = median_val),
+               color = "blue", linetype = "dashed") +
+  
+  # Since mean = median, just annotate once
+  annotate("text", x = 1.25, y = mean_val + label_offset, 
+           label = sprintf("Mean = Median = %.2f", mean_val), 
+           color = "purple", hjust = 0, size = 4) +
+  
+  # Labels and theme
+  labs(title = "Boxplot: Mean = Median (Perfectly Symmetric Data)", 
+       y = "Value", x = NULL) +
+  scale_y_continuous(expand = expansion(mult = c(0.05, 0.15))) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()
+  ) +
+  coord_cartesian(clip = "off")
+```
+
+Note that the choices of mean and median of the three images above are all random. 
