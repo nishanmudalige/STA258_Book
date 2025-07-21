@@ -1,5 +1,9 @@
 # STA258: Statistics with Applied Probability 
 
+[![pages-build-deployment](https://github.com/nishanmudalige/STA258/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/nishanmudalige/STA258/actions/workflows/pages/pages-build-deployment)
+
+---
+
 ![GitHub License](https://img.shields.io/github/license/nishanmudalige/STA258)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/nishanmudalige/STA258)
 ![GitHub contributors](https://img.shields.io/github/contributors/nishanmudalige/STA258)
