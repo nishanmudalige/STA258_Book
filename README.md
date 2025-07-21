@@ -1,12 +1,15 @@
-# STA258: Statistics with Applied Probability 
+# STA258: Statistics with Applied Probability
 
 [![pages-build-deployment](https://github.com/nishanmudalige/STA258/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/nishanmudalige/STA258/actions/workflows/pages/pages-build-deployment)
 ![status](https://img.shields.io/uptimerobot/status/m800993650-eea0832eb8270800e4f0461f)
 ![up-time](https://img.shields.io/uptimerobot/ratio/7/m800993650-eea0832eb8270800e4f0461f)
 
----
 
 ![GitHub License](https://img.shields.io/github/license/nishanmudalige/STA258)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+
+---
+
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/nishanmudalige/STA258)
 ![GitHub contributors](https://img.shields.io/github/contributors/nishanmudalige/STA258)
 ![Number 0f Languages](https://img.shields.io/github/languages/count/nishanmudalige/STA258?color=%23FF69B4)
