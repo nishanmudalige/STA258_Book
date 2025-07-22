@@ -12,7 +12,7 @@ $$x_i:\ i=1, \ldots , n$$
 
 or in tabular form as:
 
-::: {#smalltbl .smalltbl}
+::: {.smalltbl #smalltbl}
 | Index       | 1     | 2     | $\ldots$  | $n$   |
 | :---------- | :-:   | :-:   | :-:       | :-:   |
 | Observation | $x_1$ | $x_2$ | $\ldots$  | $x_2$ |
@@ -277,16 +277,54 @@ of this course we will keep things simple and allow the reader to intuitively ch
 After constructing a histogram, we can change the interval widths until we feel that we have
 a picture that is a good representation of our data.
 
-A histogram is constructed by dividing the range of the data into intervals (or bins) and counting how many observations fall into each interval. The intervals are usually of equal width, but this is not a requirement. 
+A histogram is constructed by dividing the range of the data into intervals (or bins) and counting how many observations fall into each interval. The intervals are usually of equal width, but this is not a requirement.
 
-| Class Interval       | Frequency | Relative Freq.           |        | Cumulative Freq.             | Cumulative Relative Freq.    |
-|----------------------|:---------:|--------------------------|--------|------------------------------|------------------------------|
-| $[a_{1}, b_{1})$     | $f_{1}$   | $r_{1} = f_{1} / F$      |        | $f_{1}$                      | $r_{1}$                      |
-| $[a_{2}, b_{2})$     | $f_{2}$   | $r_{2} = f_{2} / F$      |        | $f_{1} + f_{2}$              | $r_{1} + r_{2}$              |
-| $[a_{3}, b_{3})$     | $f_{3}$   | $r_{3} = f_{3} / F$      |        | $f_{1} + f_{2} + f_{3}$      | $r_{1} + r_{2} + r_{3}$      |
-| $\vdots$             | $\vdots$  | $\vdots$                 |        | $\vdots$                     | $\vdots$                     |
-| $[a_{m}, b_{m}]$     | $f_{m}$   | $r_{m} = f_{m} / F$      |        | $f_{1} + \ldots + f_{m} = F$ | $r_{1} + \ldots + r_{m} = 1$ |
-|                      | $F = \displaystyle\sum_{i=1}^{m} f_{i}$       | $1$ | |                      |                              |
+<!-- ::: {#histconstruct} -->
+<!-- | Class Interval       | Frequency | Relative Freq.           |        | Cumulative Freq.             | Cumulative Relative Freq.    | -->
+<!-- |----------------------|:---------:|--------------------------|--------|------------------------------|------------------------------| -->
+<!-- | $[a_{1}, b_{1})$     | $f_{1}$   | $r_{1} = f_{1} / F$      |        | $f_{1}$                      | $r_{1}$                      | -->
+<!-- | $[a_{2}, b_{2})$     | $f_{2}$   | $r_{2} = f_{2} / F$      |        | $f_{1} + f_{2}$              | $r_{1} + r_{2}$              | -->
+<!-- | $[a_{3}, b_{3})$     | $f_{3}$   | $r_{3} = f_{3} / F$      |        | $f_{1} + f_{2} + f_{3}$      | $r_{1} + r_{2} + r_{3}$      | -->
+<!-- | $\vdots$             | $\vdots$  | $\vdots$                 |        | $\vdots$                     | $\vdots$                     | -->
+<!-- | $[a_{m}, b_{m}]$     | $f_{m}$   | $r_{m} = f_{m} / F$      |        | $f_{1} + \ldots + f_{m} = F$ | $r_{1} + \ldots + r_{m} = 1$ | -->
+<!-- |                      | $F = \displaystyle\sum_{i=1}^{m} f_{i}$       | $1$ | |                      |                              | -->
+<!-- ::: -->
+
+```{r histconstruct, echo=FALSE, results='asis', warning = FALSE}
+library(knitr)
+library(kableExtra)
+class_int = c("$[a_{1}, b_{1})$", 
+              "$[a_{2}, b_{2})$", 
+              "$[a_{3}, b_{3})$",
+              "$\\vdots$",
+              "$[a_{m}, b_{m}]$",
+              "")
+
+Frequency = c("$f_{1}$",
+              "$f_{2}$",
+              "$f_{3}$",
+              "$\\vdots$",
+              "$f_{m}$",
+              "$F = \\displaystyle\\sum_{i=1}^{m} f_{i}$")
+
+Rel_Freq = c("$r_{1} = f_{1} / F$",
+             "$r_{2} = f_{2} / F$",
+             "$r_{3} = f_{3} / F$",
+             "\\vdots",
+             "$r_{m} = f_{m} / F$",
+             "1")
+
+hist_tab = data.frame(class_int, Frequency, Rel_Freq)
+
+colnames(hist_tab) = c("Class Interval", "Frequency", "Relative Freq.")
+
+# hist_tab %>%
+#   knitr::kable(full_width = F, caption = "How a histogram is constructed")
+
+kbl(hist_tab, caption = "How a histogram is constructed") %>%
+  kable_styling(full_width = F, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
 
 
 The histogram is then created by plotting the intervals on the $x$-axis and the frequency or relative frequency of observations in each interval on the $y$-axis.
@@ -411,6 +449,14 @@ Figures @ref(fig:HistExampleLeft), @ref(fig:HistExampleRight), and @ref(fig:Hist
     plot (\x, {5*exp(-0.5*(\x - 3)^2)});
 \end{tikzpicture}
 ```
+
+
+<!-- The bin size in table \@ref(tab:histconstruct) is often chosen to be equal size but it does not necessarily need to be this way. -->
+
+
+<!-- ```{r, echo=FALSE} -->
+<!-- knitr::include_app("https://yihui.shinyapps.io/miniUI/", height = "600px") -->
+<!-- ``` -->
 
 
 ### Boxplots
