@@ -1,5 +1,9 @@
 # STA258: Statistics with Applied Probability
 
+<p align="center"> 
+<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/5dcbb10d831be631fc46257b61e84d4b687b21f1/HexStickers/deer.svg">
+</p>
+
 [![pages-build-deployment](https://github.com/nishanmudalige/STA258/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/nishanmudalige/STA258/actions/workflows/pages/pages-build-deployment)
 ![status](https://img.shields.io/uptimerobot/status/m800993650-eea0832eb8270800e4f0461f)
 ![up-time](https://img.shields.io/uptimerobot/ratio/7/m800993650-eea0832eb8270800e4f0461f)
