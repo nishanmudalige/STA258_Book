@@ -78,7 +78,7 @@ header-includes:
 <!--     (mid.south west) ++(0,-0.3) -- ($(mid.south east)+(0,-0.3)$); -->
 
 <!--   % Bottom line -->
-<!--   % center “MISSISSAUGA” under the university text -->
+<!--   % center "MISSISSAUGA" under the university text -->
 <!--   \node[campus, text=utmblue, font=\rmfamily, scale = 1.5] at ($(mid.south west)!0.35!(mid.south east)+(0,-0.75)$) -->
 <!--     {MISSISSAUGA}; -->
 
@@ -93,7 +93,7 @@ rgl::setupKnitr()
 ```
 
 <center>
-```{r, echo=FALSE, warning=FALSE, fig.align='center'}
+```{r, echo=FALSE, warning=FALSE, webgl=TRUE, out.height="50%", scale="50%"}
 library(rgl); library(png); library(RCurl)
 
 # 1. load & flip
@@ -122,9 +122,9 @@ front <- rotate3d(front, angle=pi/2, x=1, y=0, z=0)
 tex <- matrix(c(0,0, 1,0, 1,1, 0,1), byrow=TRUE, ncol=2)
 
 # 5. draw & embed
-invisible(open3d())                # no “glX 3” printed
+invisible(open3d())                # no "glX 3" printed
 bg3d("white")
-view3d(theta=0, phi=-90)
+view3d(theta=0, phi=-90, zoom=0.675) # smaller values means zoom in
 invisible(quads3d(
   front,
   texture   = img,
