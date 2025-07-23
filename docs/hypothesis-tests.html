@@ -50,8 +50,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -478,20 +476,20 @@ Common distributions which thetest statistic follows are the standard normal dis
 <p><strong>Step 4: Calculate the p-value</strong></p>
 <!-- It quantifies the evidence against the null hypothesis. -->
 <p>We use the test statistic, reference distribution, and refer back to <span class="math inline">\(H_a\)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-15-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-15-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-13-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-13-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.1: Right-tailed test: p-value is the area to the right of the test statistic
 </p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-16-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-16-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-14-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-14-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.2: Left-tailed test: p-value is the area to the left of the test statistic
 </p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-17-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-15-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
 <p class="caption">
 Figure 6.3: Two-tailed test: p-value is the total area in both tails beyond ±test statistic
 </p>
@@ -670,8 +668,8 @@ decreased. Assume the standard deviation is known to be 5.25 kg.</p>
 <p>Reference distribution: standard normal</p>
 <p><strong>4. Calculate p-value</strong></p>
 <span class="math display">\[\text{p-value} = P(Z &lt; -2.82) \approx 0.0024\]</span>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-18-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-16-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
 <p class="caption">
 Figure 6.4: Left-tailed p-value for the test statistic <span class="math inline">\(z^* = -2.82\)</span>
 </p>
@@ -787,8 +785,8 @@ x.bar &lt;- rnorm(m, mean = mu.zero, sd = sigma.xbar);
 z.star &lt;- (x.bar - mu.zero) / sigma.xbar;
 hist(z.star, xlab = &quot;differences&quot;, col = &quot;blue&quot;);</code></pre>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-19-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-17-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
 <p class="caption">
 Figure 6.5: Histogram of <span class="math inline">\(z^\star\)</span> values from 10,000 simulations under <span class="math inline">\(H_0\)</span>
 </p>
@@ -1665,8 +1663,8 @@ H_a &amp;: \sigma^2 &gt; 0.81
 <p><strong>Step 3. Find Rejection Region.</strong><br />
 From the chi-squared table, the null hypothesis is rejected when
 <span class="math inline">\(\chi^2 &gt; 16.919\)</span>, where <span class="math inline">\(\nu = 9\)</span> degrees of freedom.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-20-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-18-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
 <p class="caption">
 Figure 6.6: Right-tailed chi-squared distribution with critical value at 16.919
 </p>
@@ -1951,8 +1949,8 @@ interactions”.</p>
 <pre><code>qqnorm(Success_Index[Group == 1]);
 qqline(Success_Index[Group == 1]);</code></pre>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-21-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-19-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
 <p class="caption">
 Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
 </p>
@@ -1962,8 +1960,8 @@ Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
 <pre><code>qqnorm(Success_Index[Group == 2]);
 qqline(Success_Index[Group == 2]);</code></pre>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-22-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-20-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
 <p class="caption">
 Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
 </p>
@@ -1973,8 +1971,8 @@ Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
 <div class="tcolorbox">
 <pre><code>boxplot(Success_Index ~ Group, col = c(&quot;red&quot;, &quot;blue&quot;))</code></pre>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-23-1.png" alt="Boxplot of Success Index by Group" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-21-1.png" alt="Boxplot of Success Index by Group" width="60%" />
 <p class="caption">
 Figure 6.9: Boxplot of Success Index by Group
 </p>
@@ -1999,8 +1997,8 @@ bp +
   geom_boxplot() +
   scale_x_discrete(labels = our.labs);</code></pre>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-24-1.png" alt="Boxplot of Success Index by Group using ggplot2" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-22-1.png" alt="Boxplot of Success Index by Group using ggplot2" width="60%" />
 <p class="caption">
 Figure 6.10: Boxplot of Success Index by Group using ggplot2
 </p>
@@ -2231,8 +2229,8 @@ stem(control);</code></pre>
 qqnorm(treatment, pch=19, col=&quot;red&quot;, main=&quot;Treatment&quot;);
 qqline(treatment, lty=2);</code></pre>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-25-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-23-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
 <p class="caption">
 Figure 6.11: Q-Q Plot for Treatment Group
 </p>
@@ -2243,8 +2241,8 @@ Figure 6.11: Q-Q Plot for Treatment Group
 qqnorm(treatment, pch=19, col=&quot;red&quot;, main=&quot;Control&quot;);
 qqline(control, lty=2);</code></pre>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-26-1.png" alt="Q-Q Plot for Control Group" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-24-1.png" alt="Q-Q Plot for Control Group" width="60%" />
 <p class="caption">
 Figure 6.12: Q-Q Plot for Control Group
 </p>
