@@ -197,42 +197,98 @@ $$\hat{\sigma} \approx \frac{\text{Sample Range}}{4}.$$
 :::
 
 
-```{r fig.align='center', echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of the empirical rule.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[xscale=1.8, yscale=6]
-  \draw[->, thick] (-3.5,0) -- (3.5,0) node[right] {$x$};
-  \draw[->, thick] (0,0) -- (0,0.45) node[above] {$f(x)$};
+```{r EmpiricalRuleExample, fig.cap="An illustration of the empirical rule.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(grid)
 
-  \draw[domain=-3.2:3.2, smooth, variable=\x, thick, blue] 
-    plot ({\x}, {1/sqrt(2*pi) * exp(-0.5*\x*\x)});
+# 1. Define normal curve segments
+x_vals <- seq(-3.5, 3.5, by = 0.01)
 
-  \fill[green!40, opacity=0.7] 
-    plot[domain=-1:1] (\x, {1/sqrt(2*pi) * exp(-0.5*\x*\x)}) -- (1,0) -- (-1,0) -- cycle;
+dnorm_df <- function(xmin, xmax, label) {
+  tibble(x = seq(xmin, xmax, by = 0.01),
+         y = dnorm(x),
+         region = label)
+}
 
-  \fill[orange!40, opacity=0.7] 
-    plot[domain=-2:-1] (\x, {1/sqrt(2*pi) * exp(-0.5*\x*\x)}) -- (-1,0) -- (-2,0) -- cycle;
-  \fill[orange!40, opacity=0.7] 
-    plot[domain=1:2] (\x, {1/sqrt(2*pi) * exp(-0.5*\x*\x)}) -- (2,0) -- (1,0) -- cycle;
+# Split the curve into precise bands
+df_68   <- dnorm_df(-1, 1,     "68%")
+df_135  <- bind_rows(dnorm_df(-2, -1, "13.5%"), dnorm_df(1, 2, "13.5%"))
+df_235  <- bind_rows(dnorm_df(-3, -2, "2.35%"), dnorm_df(2, 3, "2.35%"))
+df_curve <- dnorm_df(-3.5, 3.5, "outline")
 
-  \fill[cyan!40, opacity=0.7] 
-    plot[domain=-3:-2] (\x, {1/sqrt(2*pi) * exp(-0.5*\x*\x)}) -- (-2,0) -- (-3,0) -- cycle;
-  \fill[cyan!40, opacity=0.7] 
-    plot[domain=2:3] (\x, {1/sqrt(2*pi) * exp(-0.5*\x*\x)}) -- (3,0) -- (2,0) -- cycle;
+# 2. Color mapping
+region_fills <- c(
+  "68%"   = "#b9f6ca",
+  "13.5%" = "#ffdab9",
+  "2.35%" = "#b3e5ff"
+)
 
-  \foreach \x in {-3,-2,-1,0,1,2,3} {
-    \draw[dashed] (\x,0) -- (\x,{1/sqrt(2*pi) * exp(-0.5*\x*\x)});
-    \node[below] at (\x,0) {\x$\sigma$};
-  }
+# 3. Dashed vertical reference lines
+v_lines <- tibble(x = c(-2, -1, 0, 1, 2),
+                  y_top = dnorm(c(-2, -1, 0, 1, 2)))
 
-  \node at (0,0.22) {\textbf{68\%}};
-  \node at (-1.5,0.22) {13.5\%};
-  \node at (1.5,0.22) {13.5\%};
-  \node at (-2.5,0.22) {2.35\%};
-  \node at (2.5,0.22) {2.35\%};
-  \node at (-3.25,0.22) {0.15\%};
-  \node at (3.25,0.22) {0.15\%};
-\end{tikzpicture}
+# 4. Build plot
+p <- ggplot() +
+  
+  # Shaded bands
+  geom_area(data = df_235, aes(x, y), fill = "#b3e5ff", alpha = 0.8) +
+  geom_area(data = df_135, aes(x, y), fill = "#ffdab9", alpha = 0.8) +
+  geom_area(data = df_68,  aes(x, y), fill = "#b9f6ca", alpha = 0.8) +
+  
+  # Curve outline
+  geom_line(data = df_curve, aes(x, y), colour = "blue", linewidth = 1) +
+  
+  # Dashed verticals at ±1σ and ±2σ
+  geom_segment(data = v_lines %>% filter(x != 0),
+               aes(x = x, xend = x, y = 0, yend = y_top),
+               linetype = "dashed") +
+  
+  # y-axis arrow
+  geom_segment(data = tibble(), aes(x = 0, xend = 0, y = 0, yend = dnorm(0)),
+               linewidth = 0.6,
+               arrow = arrow(type = "closed", length = unit(0.25, "cm"))) +
+  
+  # x-axis arrow
+  geom_segment(data = tibble(), aes(x = -3.3, xend = 3.3, y = 0, yend = 0),
+               linewidth = 0.6,
+               arrow = arrow(type = "closed", length = unit(0.25, "cm"))) +
+  
+  # x-axis tick labels
+  scale_x_continuous(
+    breaks = -3:3,
+    labels = parse(text = c("-3*sigma", "-2*sigma", "-1*sigma",
+                            "0*sigma",  "1*sigma",  "2*sigma",  "3*sigma"))
+  ) +
+  
+  # Percentage annotations
+  annotate("text", x =  0.0, y = 0.23, label = "68%",   size = 6, fontface = "bold") +
+  annotate("text", x = -1.65, y = 0.17, label = "13.5%", size = 5) +
+  annotate("text", x =  1.65, y = 0.17, label = "13.5%", size = 5) +
+  annotate("text", x = -2.5, y = 0.11, label = "2.35%", size = 5) +
+  annotate("text", x =  2.5, y = 0.11, label = "2.35%", size = 5) +
+  annotate("text", x = -3.25, y = 0.11, label = "0.15%", size = 5) +
+  annotate("text", x =  3.25, y = 0.11, label = "0.15%", size = 5) +
+  
+  # f(x) label
+  annotate("text", x = 0.1, y = dnorm(0) + 0.025, label = "italic(f(x))",
+           parse = TRUE, hjust = 0) +
+  
+  # Theme (no caption)
+  labs(x = expression(italic(x)), y = NULL) +
+  theme_minimal(base_size = 16) +
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y  = element_blank(),
+    axis.ticks.y = element_blank(),
+    panel.grid   = element_blank(),
+    plot.margin  = margin(15, 15, 15, 15)
+  )
+
+# 5. Display plot
+print(p)
 ```
+
 
 ### Introduction to the Chi-Square distribution
 
@@ -955,5 +1011,4 @@ Then as we sample more and more values of $X$, the sample mean
 $\bar{X}_n$ converges in probability to $P(\text{heads up})$, that is:
 
 $$\bar{X}_n \overset{p}{\longrightarrow} P(\text{heads up}).$$
-
 
