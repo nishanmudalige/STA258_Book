@@ -4,7 +4,7 @@
 <p align="center"> 
 <img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/1128bb1ede9714ff4f0233b65b94a877bfa6dd7f/HexStickers/UTM_Stats.svg"> 
   &thinsp; 
-<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/6b39dbd5ca8d048ac193f49e37a35072186a59de/HexStickers/STA258.svg">
+<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/acb8032bc6144ef080a13e2116d7d02fb2a96f24/Hex%20Badges/STA258.svg">
 </p>
 
 
