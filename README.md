@@ -2,9 +2,9 @@
 
 
 <p align="center"> 
-<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/09988af38cfdeaa43a7e2d9c59b36d3ab73bce3f/Hex%20Badges/UTM_Stats.svg"> 
+<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/14fbd7379265761a203c30ffb1e235954dd068a4/Hex%20Badges/UTM_Stats.svg"> 
   &thinsp; 
-<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/acb8032bc6144ef080a13e2116d7d02fb2a96f24/Hex%20Badges/STA258.svg">
+<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/14fbd7379265761a203c30ffb1e235954dd068a4/Hex%20Badges/STA258.svg>
 </p>
 
 
