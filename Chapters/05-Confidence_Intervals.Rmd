@@ -126,12 +126,12 @@ p = ggplot(ci_df, aes(y = sim)) +
   # 3b) Vertical dashed line from y = 0 to y = num_sims
   geom_segment(aes(x = true_mu, xend = true_mu, y = 0, yend = num_sims + 2),
                linetype     = "dashed",
-               color        = "black",
+               color        = "#000000",
                inherit.aes  = FALSE) +
   # 3c) Mark intervals that miss the true mean with a red "X"
   geom_text(data = filter(ci_df, misses),
             aes(x = upper + 0.3, label = "X"),
-            color = "red", size = 5, hjust = 0) +
+            color = "#F8766D", size = 5, hjust = 0) +
   # 4) Scales and labels
   scale_y_continuous(breaks = 1:num_sims) +
   scale_x_continuous(limits = c(-3, 5)) +
@@ -145,7 +145,12 @@ p = ggplot(ci_df, aes(y = sim)) +
     panel.grid.major.x  = element_blank(),  # remove vertical grid lines
     axis.ticks          = element_blank(),
     axis.text           = element_blank()
-  )
+  ) +
+  
+scale_color_manual(values = rep(c(
+  "#F8766D", "#00BA38", "#619CFF", "#F564E3", "#00BFC4", "#B79F00", "#FF61C3"
+), length.out = 50))
+
 
 p +
   # your existing vline…
@@ -204,7 +209,7 @@ df_shaded <- df %>% filter(z >= -z_star & z <= z_star)
 ggplot(df, aes(x = z, y = density)) +
   geom_line(size = 1.2) +
   geom_ribbon(data = df_shaded, aes(ymin = 0, ymax = density),
-              fill = "gray", alpha = 0.6) +
+              fill = "#BEBEBE", alpha = 0.6) +
   geom_hline(yintercept = 0) +
   scale_x_continuous(breaks = c(-z_star, 0, z_star),
                      labels = c(expression(-z^"*"), "0", expression(z^"*")),
@@ -465,7 +470,8 @@ df <- tibble(
 # Create the plot
 ggplot(df, aes(x = x, y = y, color = dist, linetype = dist)) +
   geom_line(size = 1.2) +
-  scale_color_manual(values = c("black", "blue", "red")) +
+  scale_color_manual(values = c("#F8766D", "#00BA38", "#619CFF")) +
+
   scale_linetype_manual(values = c("solid", "dashed", "dashed")) +
   labs(
     x = "z",
@@ -735,8 +741,8 @@ taxes <- taxes_data$Taxes
 # Step 3: ggplot histogram
 ggplot(taxes_data, aes(x = Taxes)) +
   geom_histogram(
-    fill = "blue",
-    color = "white",
+    fill = "#619CFF",
+    color = "#FFFFFF",
     bins = 30
   ) +
   labs(
@@ -766,7 +772,7 @@ taxes_data <- read.table(url, header = TRUE)
 
 # Step 2: ggplot boxplot
 ggplot(taxes_data, aes(y = Taxes)) +
-  geom_boxplot(fill = "blue", color = "black") +
+  geom_boxplot(fill = "#619CFF", color = "#000000") +
   labs(
     title = " ",
     y = "Taxes",
@@ -793,8 +799,8 @@ taxes_data <- read.table(url, header = TRUE)
 
 # Step 2: Create ggplot-compatible Q-Q data
 ggplot(taxes_data, aes(sample = Taxes)) +
-  stat_qq(color = "blue", size = 2) +         # Equivalent to qqnorm()
-  stat_qq_line(color = "black") +             # Equivalent to qqline()
+  stat_qq(color = "#619CFF", size = 2) +         # Equivalent to qqnorm()
+  stat_qq_line(color = "#000000") +             # Equivalent to qqline()
   labs(
     title = " ",
     x = "Theoretical Quantiles",
