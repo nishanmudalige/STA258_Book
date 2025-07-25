@@ -55,6 +55,15 @@
 <link href="libs/rglwidgetClass-1.3.24/rgl.css" rel="stylesheet" />
 <script src="libs/rglwidgetClass-1.3.24/rglClass.min.js"></script>
 <script src="libs/CanvasMatrix4-1.3.24/CanvasMatrix.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -319,7 +328,7 @@ We say that <span class="math inline">\(X\)</span> folowes a normal distribution
 <span class="math display">\[f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} \cdot e^{-\displaystyle\frac{(x - \mu)^2}{2\sigma^2}}, \text{ for $-\infty &lt; x &lt; \infty$.}\]</span></p>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-16" class="remark"><em>Remark</em>. </span>The normal distribution is also called Gaussian distribution since it was
+<p><span id="unlabeled-div-17" class="remark"><em>Remark</em>. </span>The normal distribution is also called Gaussian distribution since it was
 discovered Johann Carl Friedrich Gauss in 1809.
 Gauss is one of the most influential and important mathematicians in history.</p>
 </div>
@@ -340,11 +349,11 @@ probability density function as:
 which is called the standard normal distribution.</p>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-17" class="remark"><em>Remark</em>. </span>Standard normal random variables are often denoted by <span class="math inline">\(Z\)</span>.</p>
+<p><span id="unlabeled-div-18" class="remark"><em>Remark</em>. </span>Standard normal random variables are often denoted by <span class="math inline">\(Z\)</span>.</p>
 </div>
 <p>A useful property of the normal distribution is that it is symmetric about its mean <span class="math inline">\(\mu\)</span>.</p>
 <div class="remark">
-<p><span id="unlabeled-div-18" class="remark"><em>Remark</em>. </span>The Empirical Rule informs us that for any symmetric (bell-shaped) curve, let <span class="math inline">\(\mu\)</span> be its mean and
+<p><span id="unlabeled-div-19" class="remark"><em>Remark</em>. </span>The Empirical Rule informs us that for any symmetric (bell-shaped) curve, let <span class="math inline">\(\mu\)</span> be its mean and
 <span class="math inline">\(\sigma\)</span> be its standard deviation, the following probability set
 function is true:</p>
 <ul>
@@ -354,7 +363,7 @@ function is true:</p>
 </ul>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-19" class="remark"><em>Remark</em>. </span>A consequence of the Empirical Rule from <a href="foundations-of-inference.html#sec:IntroNormalDist">4.1.1</a> is that for a sample drawn from a population that is
+<p><span id="unlabeled-div-20" class="remark"><em>Remark</em>. </span>A consequence of the Empirical Rule from <a href="foundations-of-inference.html#sec:IntroNormalDist">4.1.1</a> is that for a sample drawn from a population that is
 approximately normal, we can approximate the standard deviation using:</p>
 <p><span class="math display">\[\hat{\sigma} \approx \frac{\text{Sample Range}}{4}.\]</span></p>
 </div>
@@ -409,7 +418,7 @@ Where <span class="math inline">\(\Gamma(\cdot)\)</span> is the Gamma function i
 </div>
 <p>The definition of a chi-square random variable can be proven using moment generating functions.</p>
 <div class="remark">
-<p><span id="unlabeled-div-20" class="remark"><em>Remark</em>. </span>The Chi-square distribution is also a special case of the gamma distribution,
+<p><span id="unlabeled-div-21" class="remark"><em>Remark</em>. </span>The Chi-square distribution is also a special case of the gamma distribution,
 however we will not be covering the gamma distribution in this course.</p>
 </div>
 <p>The shape of the chi-square distribution is determined by its degrees of freedom.
@@ -574,7 +583,7 @@ approximation improves as the sample size grows.</p>
 <div id="convergence-in-probability" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Convergence in Probability<a href="foundations-of-inference.html#convergence-in-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:unlabeled-div-21" class="definition"><strong>Definition 4.9  </strong></span>The sequence of random variables <span class="math inline">\(X_1, X_2, \ldots\)</span> is
+<p><span id="def:unlabeled-div-22" class="definition"><strong>Definition 4.9  </strong></span>The sequence of random variables <span class="math inline">\(X_1, X_2, \ldots\)</span> is
 said to converge in probability to the constant <span class="math inline">\(c\)</span>, if for every
 <span class="math inline">\(\varepsilon &gt; 0\)</span>,
 <span class="math display">\[\lim_{n \to \infty} P\left( |X_n - c| \leq \varepsilon \right) = 1\]</span> or
@@ -582,7 +591,7 @@ equivalently,
 <span class="math display">\[\lim_{n \to \infty} P\left( |X_n - c| &gt; \varepsilon \right) = 0\]</span></p>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-22" class="remark"><em>Remark</em>. </span>If a sequence of random variables <span class="math inline">\(X_n = \{X_1, X_2, \ldots \}\)</span> converges in probability to <span class="math inline">\(c\)</span>, we denote this as <span class="math inline">\(X_n \overset{p}{\longrightarrow} c\)</span>.</p>
+<p><span id="unlabeled-div-23" class="remark"><em>Remark</em>. </span>If a sequence of random variables <span class="math inline">\(X_n = \{X_1, X_2, \ldots \}\)</span> converges in probability to <span class="math inline">\(c\)</span>, we denote this as <span class="math inline">\(X_n \overset{p}{\longrightarrow} c\)</span>.</p>
 </div>
 <p>This concept plays a key role in the Law of Large Numbers, where the
 sample mean of independent and identically distributed random variables
@@ -600,7 +609,7 @@ grows.</p>
 <div id="weak-law-of-large-numbers-wlln" class="section level3 hasAnchor" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Weak Law of Large Numbers (WLLN)<a href="foundations-of-inference.html#weak-law-of-large-numbers-wlln" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="definition">
-<p><span id="def:unlabeled-div-23" class="definition"><strong>Definition 4.10  </strong></span>Let <span class="math inline">\(X_1, X_2, \ldots\)</span> be a sequence of independent and identically
+<p><span id="def:unlabeled-div-24" class="definition"><strong>Definition 4.10  </strong></span>Let <span class="math inline">\(X_1, X_2, \ldots\)</span> be a sequence of independent and identically
 distributed random variables, each having finite mean <span class="math inline">\(E(X_i) = \mu\)</span> and
 variance <span class="math inline">\(\mathrm{Var}(X_i) = \sigma^2\)</span>. Then, for any <span class="math inline">\(\varepsilon &gt; 0\)</span>,
 <span class="math display">\[P\left( \left| \frac{X_1 + X_2 + \cdots + X_n}{n} - \mu \right| \geq \varepsilon \right) \longrightarrow 0 \quad \text{as } n \longrightarrow \infty.\]</span></p>
@@ -630,7 +639,7 @@ distributed (i.i.d.) random variables with
 <p>By the definition of convergence in probability,
 <span class="math display">\[\bar{X}_n \overset{p}{\longrightarrow} \mu.\]</span></p>
 <div class="example">
-<p><span id="exm:unlabeled-div-24" class="example"><strong>Example 4.1  </strong></span>Let <span class="math inline">\(X_i\)</span>, for <span class="math inline">\(i = 1, 2, 3, \ldots\)</span>, be independent Poisson random
+<p><span id="exm:unlabeled-div-25" class="example"><strong>Example 4.1  </strong></span>Let <span class="math inline">\(X_i\)</span>, for <span class="math inline">\(i = 1, 2, 3, \ldots\)</span>, be independent Poisson random
 variables with rate parameter <span class="math inline">\(\lambda = 3\)</span>. Prove that:
 <span class="math display">\[\bar{X}_n \xrightarrow{P} 3\]</span></p>
 <p><strong>Properties of Poisson Distribution:</strong>
@@ -654,7 +663,7 @@ Figure 4.6: Simulation of running sample mean of Bernoulli <span class="math inl
 </div>
 <p><strong>R Simulation Code (Single Sample Path):</strong></p>
 <div class="example">
-<p><span id="exm:unlabeled-div-25" class="example"><strong>Example 4.2  </strong></span></p>
+<p><span id="exm:unlabeled-div-26" class="example"><strong>Example 4.2  </strong></span></p>
 <pre><code>n = 10
 trial = seq(1, n, by = 1)
 sample = rbinom(n, 1, 1/2)
@@ -671,7 +680,7 @@ Figure 4.7: A Simulation of 20 running sample means of Bernoulli <span class="ma
 </div>
 <p><strong>R Simulation Code (Multiple Sample Paths):</strong></p>
 <div class="example">
-<p><span id="exm:unlabeled-div-26" class="example"><strong>Example 4.3  </strong></span></p>
+<p><span id="exm:unlabeled-div-27" class="example"><strong>Example 4.3  </strong></span></p>
 <pre><code>n = 100
 trial = seq(1, 100, by = 1)
 

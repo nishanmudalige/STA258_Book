@@ -55,6 +55,15 @@
 <link href="libs/rglwidgetClass-1.3.24/rgl.css" rel="stylesheet" />
 <script src="libs/rglwidgetClass-1.3.24/rglClass.min.js"></script>
 <script src="libs/CanvasMatrix4-1.3.24/CanvasMatrix.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -299,14 +308,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.1</span> Introduction<a href="hypothesis-tests.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A hypothesis test is a statistical method used to make inferences about a population based on sample data. It involves formulating a null hypothesis and an alternative hypothesis, calculating a test statistic, and determining the likelihood of observing the data under the null hypothesis. Each of these terms will be explained in more detail below.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-51" class="definition"><strong>Definition 6.1  </strong></span>An inferential procedure to determine whether there is sufficient
+<p><span id="def:unlabeled-div-52" class="definition"><strong>Definition 6.1  </strong></span>An inferential procedure to determine whether there is sufficient
 evidence to suggest a condition for a population parameter using
 statistics from a sample.</p>
 </div>
 <p>The main goal of hypothesis testing is to assess the strength of evidence against a null hypothesis, which is a statement of no effect or no difference. The alternative hypothesis represents the research hypothesis or the condition we are interested in testing.</p>
 <p>One of the steps in hypothesis testing is to calculate a p-value, which quantifies the evidence against the null hypothesis. The p-value is the probability of observing a test statistic at least as extreme as the one calculated from the sample data, assuming that the null hypothesis is true.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-52" class="definition"><strong>Definition 6.2  </strong></span>The p-value of a hypothesis test is the probability of observing a test statistic at least as extreme as the one calculated in step 3, assuming that the null hypothesis is true by pure chance alone.</p>
+<p><span id="def:unlabeled-div-53" class="definition"><strong>Definition 6.2  </strong></span>The p-value of a hypothesis test is the probability of observing a test statistic at least as extreme as the one calculated in step 3, assuming that the null hypothesis is true by pure chance alone.</p>
 </div>
 <p>The procedure to conduct any hypothesis often follows a standard sequence of steps.</p>
 <div id="steps" class="section level5 unnumbered unlisted hasAnchor">
@@ -345,7 +354,7 @@ the study, and variability.</p>
 </tr>
 </table>
 <div class="remark">
-<p><span id="unlabeled-div-53" class="remark"><em>Remark</em>. </span>Note that <span class="math inline">\(\Theta\)</span> can represent a combination of parameters,
+<p><span id="unlabeled-div-54" class="remark"><em>Remark</em>. </span>Note that <span class="math inline">\(\Theta\)</span> can represent a combination of parameters,
 such as <span class="math inline">\(\Theta = \Theta_1 - \Theta_2\)</span>
 or <span class="math inline">\(\Theta = \Theta_1 / \Theta_2\)</span>.</p>
 </div>
@@ -448,11 +457,11 @@ vs.
 </tr>
 </table>
 <div class="remark">
-<p><span id="unlabeled-div-54" class="remark"><em>Remark</em>. </span>The first two hypothesis tests above are referred to as one-sided or one-tailed tests.
+<p><span id="unlabeled-div-55" class="remark"><em>Remark</em>. </span>The first two hypothesis tests above are referred to as one-sided or one-tailed tests.
 and the third hypothesis test is referred to as a two-sided or two-tailed test.</p>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-55" class="remark"><em>Remark</em>. </span>The one-sided hypothesis test
+<p><span id="unlabeled-div-56" class="remark"><em>Remark</em>. </span>The one-sided hypothesis test
 <span class="math display">\[\begin{array}{lcl}
 H_0: \Theta = \Theta_0 &amp; \quad  &amp; H_a: \Theta &gt; \Theta_0\\
 \end{array}\]</span>
@@ -472,7 +481,7 @@ H_0: \Theta \geq \Theta_0 &amp; \quad  &amp; H_a: \Theta &lt; \Theta_0\\
 <p><strong>Step 3: Calculate an appropriate test statistic</strong></p>
 <p>Depends on the hypothesis test conducted and the information available.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-56" class="definition"><strong>Definition 6.3  </strong></span><span class="math display">\[\text{test statistic} = \frac{\text{(a statistic)} - \text{(hypothesized value of parameters under } H_0 \text{)}}{\text{standard error of statistic}}\]</span></p>
+<p><span id="def:unlabeled-div-57" class="definition"><strong>Definition 6.3  </strong></span><span class="math display">\[\text{test statistic} = \frac{\text{(a statistic)} - \text{(hypothesized value of parameters under } H_0 \text{)}}{\text{standard error of statistic}}\]</span></p>
 </div>
 <p>The test statistic follows a reference distribution.
 Common distributions which thetest statistic follows are the standard normal distrubution, <span class="math inline">\(t\)</span>-distribution,
@@ -653,7 +662,7 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(Z &gt; |z^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-57" class="example"><strong>Example 6.1  </strong></span>Deer are a common sight on the UTM campus. Suppose an ecologist is
+<p><span id="exm:unlabeled-div-58" class="example"><strong>Example 6.1  </strong></span>Deer are a common sight on the UTM campus. Suppose an ecologist is
 interested in the average mass of adult white-tailed does (female deer)
 around the Mississauga campus to determine whether they are healthy for
 the upcoming winter. The ecologist captures a sample of 36 adult females
@@ -721,7 +730,7 @@ the null hypothesis. We conclude that the average mass of does this
 winter is significantly less than 45 kg.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-58" class="example"><strong>Example 6.2  </strong></span>Diet colas use artificial sweeteners to avoid sugar. These sweeteners
+<p><span id="exm:unlabeled-div-59" class="example"><strong>Example 6.2  </strong></span>Diet colas use artificial sweeteners to avoid sugar. These sweeteners
 gradually lose their sweetness over time. Manufacturers therefore test
 new colas for loss of sweetness before marketing them. Trained tasters
 sip the cola along with drinks of standard sweetness and score the cola
@@ -798,7 +807,7 @@ Figure 6.5: Histogram of <span class="math inline">\(z^\star\)</span> values fro
 <span id="cb35-7"><a href="hypothesis-tests.html#cb35-7" tabindex="-1"></a>    <span class="do">## [1] 8e-04</span></span></code></pre></div>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-59" class="example"><strong>Example 6.3  </strong></span>The National Center for Health Statistics reports that the systolic
+<p><span id="exm:unlabeled-div-60" class="example"><strong>Example 6.3  </strong></span>The National Center for Health Statistics reports that the systolic
 blood pressure for males 35 to 44 years of age has mean 128 and standard
 deviation 15.</p>
 <p>The medical director of a large company looks at the medical records of
@@ -838,7 +847,7 @@ differ from other men.</p></li>
 <!-- or your computer can do Steps 2 and 3 by following a recipe. -->
 <!-- ::: -->
 <div class="example">
-<p><span id="exm:unlabeled-div-60" class="example"><strong>Example 6.4  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 6.4  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: \mu = 20 \\
 H_a &amp;: \mu &lt; 20
@@ -861,7 +870,7 @@ Since the p-value <span class="math inline">\(= 0.0169 &lt; \alpha = 0.05\)</spa
 </ol>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 6.5  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-62" class="example"><strong>Example 6.5  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: \mu = 25 \\
 H_a &amp;: \mu &gt; 25
@@ -886,7 +895,7 @@ We conclude that we don’t have enough evidence to claim that
 </ol>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-62" class="example"><strong>Example 6.6  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-63" class="example"><strong>Example 6.6  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: \mu = 15 \\
 H_a &amp;: \mu \ne 15
@@ -942,7 +951,7 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |t^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-63" class="example"><strong>Example 6.7  </strong></span>Researchers studied the physiological effects of laughter. They measured
+<p><span id="exm:unlabeled-div-64" class="example"><strong>Example 6.7  </strong></span>Researchers studied the physiological effects of laughter. They measured
 heart rates (in beats per minute) of <strong><span class="math inline">\(n = 25\)</span></strong> subjects (ages 18–34)
 while they laughed. They obtained:
 <span class="math display">\[\bar{x} = 73.5, \quad s = 6, \quad \alpha = 0.05\]</span> It is well known
@@ -971,7 +980,7 @@ the null that the mean is 71 bpm in favor of the alternative that the
 mean is greater than 71 bpm for people who are laughing.</em></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-64" class="example"><strong>Example 6.8  </strong></span>A researcher is asked to test the hypothesis that the average price of a
+<p><span id="exm:unlabeled-div-65" class="example"><strong>Example 6.8  </strong></span>A researcher is asked to test the hypothesis that the average price of a
 2-star (CAA rating) motel room has decreased since last year. Last year,
 a study showed that the prices were Normally distributed with a mean of
 $89.50.</p>
@@ -1033,7 +1042,7 @@ H_a : \mu \ne \mu_0 &amp;\quad \text{is} \quad 2P(T \ge |t^\ast|)
 are approximately correct for large <span class="math inline">\(n\)</span> in other cases.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-65" class="example"><strong>Example 6.9  </strong></span>We are conducting a two-sided one-sample <span class="math inline">\(t\)</span>-test for the hypotheses:
+<p><span id="exm:unlabeled-div-66" class="example"><strong>Example 6.9  </strong></span>We are conducting a two-sided one-sample <span class="math inline">\(t\)</span>-test for the hypotheses:
 <span class="math display">\[\begin{aligned}
 H_0 &amp;: \mu = 64 \\
 H_a &amp;: \mu \ne 64
@@ -1362,7 +1371,7 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <!-- 4.  Find the p-value of the test-statistic. -->
 <!-- 5.  State (if any) a conclusion. -->
 <div class="example">
-<p><span id="exm:unlabeled-div-66" class="example"><strong>Example 6.10  </strong></span><strong>Example of Hypothesis Testing for a Proportion</strong></p>
+<p><span id="exm:unlabeled-div-67" class="example"><strong>Example 6.10  </strong></span><strong>Example of Hypothesis Testing for a Proportion</strong></p>
 <p>In 1980s, it was generally believed that congenital abnormalities affect
 5% of the nation’s children. Some people believe that the increase in
 the number of chemicals in the environment in recent years has led to an
@@ -1445,7 +1454,7 @@ abnormalities.</p>
 <span id="cb39-13"><a href="hypothesis-tests.html#cb39-13" tabindex="-1"></a>    <span class="do">## 0.1197917 </span></span></code></pre></div>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-67" class="example"><strong>Example 6.11  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-68" class="example"><strong>Example 6.11  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: p = 0.75 \\
 H_a &amp;: p &lt; 0.75
@@ -1472,7 +1481,7 @@ P-value <span class="math inline">\(&gt; \alpha = 0.05\)</span>, do not reject <
 P-value <span class="math inline">\(&lt; \alpha = 0.05\)</span>, reject <span class="math inline">\(H_0\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-68" class="example"><strong>Example 6.12  </strong></span>Consider the following hypothesis test:</p>
+<p><span id="exm:unlabeled-div-69" class="example"><strong>Example 6.12  </strong></span>Consider the following hypothesis test:</p>
 <p><span class="math display">\[\begin{aligned}
 H_0 &amp;: p = 0.20 \\
 H_a &amp;: p \ne 0.20
@@ -1494,7 +1503,7 @@ conclusion?</p></li>
 </ul>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-69" class="example"><strong>Example 6.13  </strong></span>A study found that, in 2005, 12.5% of U.S. workers belonged to unions.
+<p><span id="exm:unlabeled-div-70" class="example"><strong>Example 6.13  </strong></span>A study found that, in 2005, 12.5% of U.S. workers belonged to unions.
 Suppose a sample of 400 U.S. workers is collected in 2006 to determine
 whether union efforts to organize have increased union membership.</p>
 <ul>
@@ -1580,10 +1589,10 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <!-- Reject $H_0$ if $\chi^2_* < \chi^2_{n-1;1-\alpha}$ or if -->
 <!-- $P[\chi^2_{n-1} < \chi^2_*]$ is too small. -->
 <div class="remark">
-<p><span id="unlabeled-div-70" class="remark"><em>Remark</em>. </span>This test is not robust to departures from Normality.</p>
+<p><span id="unlabeled-div-71" class="remark"><em>Remark</em>. </span>This test is not robust to departures from Normality.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-71" class="example"><strong>Example 6.14  </strong></span>A company produces metal pipes of a standard length, and claims that the
+<p><span id="exm:unlabeled-div-72" class="example"><strong>Example 6.14  </strong></span>A company produces metal pipes of a standard length, and claims that the
 standard deviation of the length is at most 1.2 cm. One of its clients
 decides to test this claim by taking a sample of 25 pipes and checking
 their lengths. They found that the standard deviation of the sample is
@@ -1632,7 +1641,7 @@ the variance of the length of metal pipes is more than <span class="math inline"
 <!-- \] -->
 <!-- ::: -->
 <div class="example">
-<p><span id="exm:unlabeled-div-72" class="example"><strong>Example 6.15  </strong></span>A manufacturer of car batteries claims that the life of his batteries is
+<p><span id="exm:unlabeled-div-73" class="example"><strong>Example 6.15  </strong></span>A manufacturer of car batteries claims that the life of his batteries is
 approximately Normally distributed with a standard deviation equal to
 0.9 year. If a random sample of 10 of these batteries has a standard
 deviation of 1.2 years, do you think that <span class="math inline">\(\sigma &gt; 0.9\)</span> year? Use a
@@ -1759,7 +1768,7 @@ vs.
 </tr>
 </table>
 <div class="remark">
-<p><span id="unlabeled-div-73" class="remark"><em>Remark</em>. </span></p>
+<p><span id="unlabeled-div-74" class="remark"><em>Remark</em>. </span></p>
 A very common test is to determine whether <span class="math inline">\(\Theta_1 = \Theta_2\)</span>.
 Therefore, testing
 <table class="hypothesis-table">
@@ -1819,7 +1828,7 @@ the p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: \mu_1 - \mu_2 \neq \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |z^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-74" class="example"><strong>Example 6.16  </strong></span>Comparing Two Population Means Managerial Success Indexes for Two Groups
+<p><span id="exm:unlabeled-div-75" class="example"><strong>Example 6.16  </strong></span>Comparing Two Population Means Managerial Success Indexes for Two Groups
 (With Equal Variances Assumed)</p>
 <p>Behavioural researchers have developed an index designed to measure
 managerial success. The index (measured on a 100-point scale) is based
@@ -2005,7 +2014,7 @@ the p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: \mu_1 - \mu_2 \neq \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |z^{*}|)\)</span></p></li>
 </ul>
 <div class="remark">
-<p><span id="unlabeled-div-75" class="remark"><em>Remark</em>. </span>Note a more accurate approximation of the degrees of freedom is given by
+<p><span id="unlabeled-div-76" class="remark"><em>Remark</em>. </span>Note a more accurate approximation of the degrees of freedom is given by
 <span class="math display">\[df = \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}
 {
 \left( \frac{1}{n_1 - 1} \left( \frac{s_1^2}{n_1} \right)^2 \right)
@@ -2016,7 +2025,7 @@ the p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 are 5 or larger.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-76" class="example"><strong>Example 6.17  </strong></span>“Conservationists have despaired over destruction of tropical rain
+<p><span id="exm:unlabeled-div-77" class="example"><strong>Example 6.17  </strong></span>“Conservationists have despaired over destruction of tropical rain
 forest by logging, clearing, and burning”. These words begin a report on
 a statistical study of the effects of logging in Borneo. Here are data
 on the number of tree species in 12 unlogged forest plots and 9 similar
@@ -2041,7 +2050,7 @@ evidence that the mean number of species in unlogged plots is greater
 than that for logged plots 8 years after logging.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-77" class="example"><strong>Example 6.18  </strong></span>A company that sells educational materials reports statistical studies
+<p><span id="exm:unlabeled-div-78" class="example"><strong>Example 6.18  </strong></span>A company that sells educational materials reports statistical studies
 to convince customers that its materials improve learning. One new
 product supplies “directed reading activities” for classroom use. These
 activities should improve the reading ability of elementary school
@@ -2280,7 +2289,7 @@ treatment and not some other difference between the classes.</p>
 <!-- - A test was statistically significant at the 1% level. -->
 <!-- Yes! Because $$p\text{-value} < 0.01 < 0.05.$$ -->
 <div class="remark">
-<p><span id="unlabeled-div-78" class="remark"><em>Remark</em>. </span><strong>The Fold Rule</strong></p>
+<p><span id="unlabeled-div-79" class="remark"><em>Remark</em>. </span><strong>The Fold Rule</strong></p>
 <p>A rule which can be used to quickly determine whether population
 variances are equal or unequal using sample variances.</p>
 <p>If <span class="math display">\[\frac{\max(s_1, s_2)}{\min(s_1, s_2)} &lt; \sqrt{2}
@@ -2321,7 +2330,7 @@ the p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: p_1 - p_2 \neq p_0\)</span> is <span class="math inline">\(2P(Z &gt; |z^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-79" class="example"><strong>Example 6.19  </strong></span>Nicotine patches are often used to help smokers quit. Does giving
+<p><span id="exm:unlabeled-div-80" class="example"><strong>Example 6.19  </strong></span>Nicotine patches are often used to help smokers quit. Does giving
 medicine to fight depression help? A randomized double-blind experiment
 assigned 244 smokers who wanted to stop to receive nicotine patches and
 another 245 to receive both a patch and the anti-depression drug
@@ -2563,7 +2572,7 @@ p-value for a test of <span class="math inline">\(H_0\)</span> against:</p>
 <li><p><span class="math inline">\(H_a: \mu \ne \mu_0\)</span> is <span class="math inline">\(2P(T &gt; |t^{*}|)\)</span></p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-80" class="example"><strong>Example 6.20  </strong></span>In an effort to determine whether a new type of fertilizer is more
+<p><span id="exm:unlabeled-div-81" class="example"><strong>Example 6.20  </strong></span>In an effort to determine whether a new type of fertilizer is more
 effective than the type currently in use, researchers took 12 two-acre
 plots of land scattered throughout the county. Each plot was divided
 into two equal-size sub plots, one of which was treated with the new
