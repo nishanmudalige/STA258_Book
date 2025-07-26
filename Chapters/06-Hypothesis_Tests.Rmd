@@ -229,7 +229,7 @@ y_bot <- 0.17
 
 p1 <- ggplot() +
   geom_line(aes(x, y), color = "#000000", size = 1.2) +
-  geom_area(aes(x = p_x, y = p_y), fill = "#87CEEB", alpha = 0.6) +
+  geom_area(aes(x = p_x, y = p_y), fill = "#619CFF", alpha = 0.6) +
   geom_hline(yintercept = 0, color = "#000000", linewidth = 1) +
   geom_segment(aes(x = test_stat, xend = test_stat, y = 0, yend = dnorm(test_stat)),
                color = "#000000", linewidth = 1.3) +
@@ -261,7 +261,7 @@ y_bot <- 0.42
 
 p2 <- ggplot() +
   geom_line(aes(x, y), color = "#000000" , size = 1.2) +
-  geom_area(aes(x = p_x, y = p_y), fill = "#87CEEB", alpha = 0.6) +
+  geom_area(aes(x = p_x, y = p_y), fill = "#619CFF", alpha = 0.6) +
   geom_hline(yintercept = 0, color = "#000000", linewidth = 1) +
   geom_segment(aes(x = test_stat, xend = test_stat, y = 0, yend = dnorm(test_stat)),
                color = "#000000", linewidth = 1.3) +
@@ -297,7 +297,7 @@ y_mid <- 0.155
 y_bot <- 0.14
 p1 <- ggplot() +
   geom_line(aes(x, y), color = "#000000", linewidth = 1.2) +
-  geom_area(aes(x = p_x, y = p_y), fill = "#FFC0CB", alpha = 0.6) +
+  geom_area(aes(x = p_x, y = p_y), fill = "#F8766D", alpha = 0.6) +
   geom_hline(yintercept = 0, color = "#000000", linewidth = 1) +
   geom_segment(aes(x = test_stat, xend = test_stat, y = 0, yend = dnorm(test_stat)), color = "#000000", linewidth = 1.3) +
   geom_segment(aes(x = x_left, xend = x_left, y = y_bot, yend = y_mid), color = "#000000") +
@@ -325,7 +325,7 @@ y_mid <- 0.3989
 y_bot <- 0.39
 p2 <- ggplot() +
   geom_line(aes(x, y), color = "#000000", linewidth = 1.2) +
-  geom_area(aes(x = p_x, y = p_y), fill = "#FFC0CB", alpha = 0.6) +
+  geom_area(aes(x = p_x, y = p_y), fill = "#F8766D", alpha = 0.6) +
   geom_hline(yintercept = 0, color = "#000000", linewidth = 1) +
   geom_segment(aes(x = test_stat, xend = test_stat, y = 0, yend = dnorm(test_stat) * 0.95), color = "#000000", linewidth = 1.3) +
   geom_segment(aes(x = x_left, xend = x_left, y = y_bot, yend = y_mid), color = "#000000") +
@@ -374,8 +374,8 @@ x_r2 <- 3.4
 # Create plot
 p <- ggplot() +
   geom_line(aes(x, y), color = "#000000", linewidth = 1.2) +
-  geom_area(aes(x = p_x_left, y = p_y_left), fill = "#90EE90", alpha = 0.6) +
-  geom_area(aes(x = p_x_right, y = p_y_right), fill = "#90EE90", alpha = 0.6) +
+  geom_area(aes(x = p_x_left, y = p_y_left), fill = "#00BA38", alpha = 0.6) +
+  geom_area(aes(x = p_x_right, y = p_y_right), fill = "#00BA38", alpha = 0.6) +
   geom_hline(yintercept = 0, color = "#000000", linewidth = 1) +
   geom_segment(aes(x = left_stat, xend = left_stat, y = 0, yend = dnorm(left_stat) * 0.95),
                color = "#000000", linewidth = 1.3) +
@@ -668,7 +668,7 @@ y_top <- 0.04
 # Build plot
 p <- ggplot() +
   geom_line(aes(x, y), color = "#000000", linewidth = 1.4) +
-  geom_area(aes(x = p_x, y = p_y), fill = "#DA70D6", alpha = 0.65) +
+  geom_area(aes(x = p_x, y = p_y), fill = "#DC71FA", alpha = 0.65) +
   geom_hline(yintercept = 0, color = "#000000", linewidth = 1.1) +
 
   # Test statistic line and label
@@ -2480,27 +2480,7 @@ ggplot(df, aes(x = Group, y = Success_Index, fill = Group)) +
       scale_x_discrete(labels = our.labs);
 ```
       
-```{r fig.cap="Boxplot of Success Index by Group using ggplot2", echo=FALSE, fig.align='center', out.width='60%'}
-# Load required library
-library(ggplot2)
 
-# Step 1: Manually define data
-group1 <- c(65, 66, 58, 70, 78, 53, 62, 64, 68, 69, 60, 67)
-group2 <- c(34, 40, 45, 46, 50, 42, 44, 48, 54, 49, 52, 53, 55, 60, 68)
-Success_Index <- c(group1, group2)
-Group <- c(rep(1, length(group1)), rep(2, length(group2)))
-
-# Step 2: Convert to data frame and factor
-success <- data.frame(Success_Index, Group)
-success$Group <- factor(success$Group)
-
-# Step 3: Create and print plot
-ggplot(success, aes(x = Group, y = Success_Index, fill = Group)) +
-  geom_boxplot() +
-  scale_x_discrete(labels = c("Interaction with Outsiders", "Fewer Interactions")) +
-  labs(x = "Group", y = "Success Index") +
-  theme_minimal()
-```
 
 
 
