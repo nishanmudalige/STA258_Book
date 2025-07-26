@@ -55,6 +55,15 @@
 <link href="libs/rglwidgetClass-1.3.24/rgl.css" rel="stylesheet" />
 <script src="libs/rglwidgetClass-1.3.24/rglClass.min.js"></script>
 <script src="libs/CanvasMatrix4-1.3.24/CanvasMatrix.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -509,73 +518,96 @@ of this course we will keep things simple and allow the reader to intuitively ch
 After constructing a histogram, we can change the interval widths until we feel that we have
 a picture that is a good representation of our data.</p>
 <p>A histogram is constructed by dividing the range of the data into intervals (or bins) and counting how many observations fall into each interval. The intervals are usually of equal width, but this is not a requirement.</p>
-<table>
-<colgroup>
-<col width="17%" />
-<col width="8%" />
-<col width="20%" />
-<col width="6%" />
-<col width="23%" />
-<col width="23%" />
-</colgroup>
+<!-- | Class Interval       | Frequency | Relative Freq.           |        | Cumulative Freq.             | Cumulative Relative Freq.    | -->
+<!-- |----------------------|:---------:|--------------------------|--------|------------------------------|------------------------------| -->
+<!-- | $[a_{1}, b_{1})$     | $f_{1}$   | $r_{1} = f_{1} / F$      |        | $f_{1}$                      | $r_{1}$                      | -->
+<!-- | $[a_{2}, b_{2})$     | $f_{2}$   | $r_{2} = f_{2} / F$      |        | $f_{1} + f_{2}$              | $r_{1} + r_{2}$              | -->
+<!-- | $[a_{3}, b_{3})$     | $f_{3}$   | $r_{3} = f_{3} / F$      |        | $f_{1} + f_{2} + f_{3}$      | $r_{1} + r_{2} + r_{3}$      | -->
+<!-- | $\vdots$             | $\vdots$  | $\vdots$                 |        | $\vdots$                     | $\vdots$                     | -->
+<!-- | $[a_{m}, b_{m}]$     | $f_{m}$   | $r_{m} = f_{m} / F$      |        | $f_{1} + \ldots + f_{m} = F$ | $r_{1} + \ldots + r_{m} = 1$ | -->
+<!-- |                      | $F = \displaystyle\sum_{i=1}^{m} f_{i}$       | $1$ | |                      |                              | -->
+<table class="table table-striped table-hover table-condensed table-responsive" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:histconstruct">Table 3.1: </span>How a histogram is constructed
+</caption>
 <thead>
-<tr class="header">
-<th>Class Interval</th>
-<th align="center">Frequency</th>
-<th>Relative Freq.</th>
-<th></th>
-<th>Cumulative Freq.</th>
-<th>Cumulative Relative Freq.</th>
+<tr>
+<th style="text-align:left;">
+Class Interval
+</th>
+<th style="text-align:left;">
+Frequency
+</th>
+<th style="text-align:left;">
+Relative Freq.
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><span class="math inline">\([a_{1}, b_{1})\)</span></td>
-<td align="center"><span class="math inline">\(f_{1}\)</span></td>
-<td><span class="math inline">\(r_{1} = f_{1} / F\)</span></td>
-<td></td>
-<td><span class="math inline">\(f_{1}\)</span></td>
-<td><span class="math inline">\(r_{1}\)</span></td>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\([a_{1}, b_{1})\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(f_{1}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(r_{1} = f_{1} / F\)</span>
+</td>
 </tr>
-<tr class="even">
-<td><span class="math inline">\([a_{2}, b_{2})\)</span></td>
-<td align="center"><span class="math inline">\(f_{2}\)</span></td>
-<td><span class="math inline">\(r_{2} = f_{2} / F\)</span></td>
-<td></td>
-<td><span class="math inline">\(f_{1} + f_{2}\)</span></td>
-<td><span class="math inline">\(r_{1} + r_{2}\)</span></td>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\([a_{2}, b_{2})\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(f_{2}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(r_{2} = f_{2} / F\)</span>
+</td>
 </tr>
-<tr class="odd">
-<td><span class="math inline">\([a_{3}, b_{3})\)</span></td>
-<td align="center"><span class="math inline">\(f_{3}\)</span></td>
-<td><span class="math inline">\(r_{3} = f_{3} / F\)</span></td>
-<td></td>
-<td><span class="math inline">\(f_{1} + f_{2} + f_{3}\)</span></td>
-<td><span class="math inline">\(r_{1} + r_{2} + r_{3}\)</span></td>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\([a_{3}, b_{3})\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(f_{3}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(r_{3} = f_{3} / F\)</span>
+</td>
 </tr>
-<tr class="even">
-<td><span class="math inline">\(\vdots\)</span></td>
-<td align="center"><span class="math inline">\(\vdots\)</span></td>
-<td><span class="math inline">\(\vdots\)</span></td>
-<td></td>
-<td><span class="math inline">\(\vdots\)</span></td>
-<td><span class="math inline">\(\vdots\)</span></td>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\vdots\)</span>
+</td>
+<td style="text-align:left;">
+
+</td>
 </tr>
-<tr class="odd">
-<td><span class="math inline">\([a_{m}, b_{m}]\)</span></td>
-<td align="center"><span class="math inline">\(f_{m}\)</span></td>
-<td><span class="math inline">\(r_{m} = f_{m} / F\)</span></td>
-<td></td>
-<td><span class="math inline">\(f_{1} + \ldots + f_{m} = F\)</span></td>
-<td><span class="math inline">\(r_{1} + \ldots + r_{m} = 1\)</span></td>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\([a_{m}, b_{m}]\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(f_{m}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(r_{m} = f_{m} / F\)</span>
+</td>
 </tr>
-<tr class="even">
-<td></td>
-<td align="center"><span class="math inline">\(F = \displaystyle\sum_{i=1}^{m} f_{i}\)</span></td>
-<td><span class="math inline">\(1\)</span></td>
-<td></td>
-<td></td>
-<td></td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(F = \displaystyle\sum_{i=1}^{m} f_{i}\)</span>
+</td>
+<td style="text-align:left;">
+1
+</td>
 </tr>
 </tbody>
 </table>
@@ -583,7 +615,10 @@ a picture that is a good representation of our data.</p>
 When frequency is plotted on the <span class="math inline">\(y\)</span>-axis, the histogram is referred to as a frequency histogram and
 when relative frequency is plotted on the <span class="math inline">\(y\)</span>-axis, the histogram is referred to as a relative frequency histogram.</p>
 <div class="remark">
-<p><span id="unlabeled-div-15" class="remark"><em>Remark</em>. </span>When we use the term <em>histogram</em>, we often refer to a frequency histogram unless otherwise specified.</p>
+<p><span id="unlabeled-div-15" class="remark"><em>Remark</em>. </span>The bin size in table <a href="descriptive-statistics.html#tab:histconstruct">3.1</a> is often chosen to be equal size, however it does not necessarily have to be the case and we can have bin sizes of unequal widths.</p>
+</div>
+<div class="remark">
+<p><span id="unlabeled-div-16" class="remark"><em>Remark</em>. </span>When we use the term <em>histogram</em>, we often refer to a frequency histogram unless otherwise specified.</p>
 </div>
 <!-- ::: {#note:histnote .note name="Note"} -->
 <!-- **Note:** When we use the term *histogram*, we often refer to a frequency histogram unless otherwise specified. -->
@@ -635,8 +670,61 @@ Then,
 </div>
 <p>The box in a boxplot is divided into two parts, the lower and upper quartiles. The lower quartile is represented by the bottom of the box and the upper quartile is represented by the top of the box. The line inside the box represents the median of the data set.
 Box plots can be used to to get a sense of a data set.</p>
+<p>Consider the following summary data</p>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:BoxplotData">Table 3.2: </span>Summary Statistics
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+Min
+</th>
+<th style="text-align:right;">
+1st Qu.
+</th>
+<th style="text-align:right;">
+Median
+</th>
+<th style="text-align:right;">
+Mean
+</th>
+<th style="text-align:right;">
+3rd Qu.
+</th>
+<th style="text-align:right;">
+Max
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+8.782
+</td>
+<td style="text-align:right;">
+9.855
+</td>
+<td style="text-align:right;">
+10.036
+</td>
+<td style="text-align:right;">
+11.521
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+</tbody>
+</table>
+<p>The summary statistics in Table <a href="descriptive-statistics.html#tab:BoxplotData">3.2</a> is represented visually as an interactive boxplot in Figure <a href="descriptive-statistics.html#fig:BoxplotExample">3.8</a>.
+Hover over the boxplot to identify the median, quartiles and whiskers.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:BoxplotExample"></span>
-<img src="Book_Files/figure-html/BoxplotExample-1.png" alt="An illustration of an annotated box-plot with whiskers and potential outliers." width="672" />
+<div class="plotly html-widget html-fill-item" id="htmlwidget-f25d4e1770d66a86dcce" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f25d4e1770d66a86dcce">{"x":{"visdat":{"151441f86b904":["function () ","plotlyVisDat"]},"cur_data":"151441f86b904","attrs":{"151441f86b904":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":{},"type":"box","boxpoints":"none","name":"","hoverinfo":"y","fillcolor":"#619CFF","marker":{"color":"#619CFF"},"line":{"color":"rgba(0,100,200,1)"},"inherit":true},"151441f86b904.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","marker":{"color":"#F8766D","size":8,"line":{"color":"#FF68A1","width":1}},"hoverinfo":"text","hovertext":["potential outlier","potential outlier","potential outlier","potential outlier"],"showlegend":false,"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Interactive Boxplot<br>(Hover over outliers)","yaxis":{"domain":[0,1],"automargin":true,"title":"Values","range":[0,21]},"xaxis":{"domain":[0,1],"automargin":true,"showticklabels":false,"title":null,"range":[0.5,1.5]},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"modeBarButtonsToRemove":["select2d","lasso2d"]},"data":[{"fillcolor":"#619CFF","x":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":[8.8790487068955741,9.53964502103344,13.117416628298248,10.141016782849151,10.258575470321892,13.430129973766562,10.921832411978405,7.4698775307869321,8.6262942962129472,9.108676059800084,12.448163594878924,10.719627654114728,10.801542901188105,10.22136543189024,8.8883177304918508,13.573826273606157,10.995700956458478,6.0667656867407231,11.402711803127371,9.0544171845441319,7.8643525880263097,9.5640501706834105,7.9479911033855206,8.5422175414177204,8.7499214643014867,6.6266133785151737,11.67557408898905,10.30674623567303,7.7237261259761052,12.507629842139853,10.852928442953628,9.4098570340154577,11.790251322090045,11.756266975066085,11.643162163274974,11.377280508200181,11.107835307075177,9.8761765788465574,9.3880746725201671,9.2390579979752339,8.6105860421589746,9.5841654439608028,7.4692072968634715,14.337911930677025,12.415923996609981,7.7537828335933021,9.1942303294018473,9.0666892927535621,11.559930236672635,9.8332618670563416,0.5,1,18,19],"type":"box","boxpoints":"none","name":"","hoverinfo":["y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y","y"],"marker":{"color":"#619CFF","line":{"color":"rgba(31,119,180,1)"}},"line":{"color":"rgba(0,100,200,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[1,1,1,1],"y":[0.5,1,18,19],"type":"scatter","mode":"markers","marker":{"color":"#F8766D","size":8,"line":{"color":"#FF68A1","width":1}},"hoverinfo":["text","text","text","text"],"hovertext":["potential outlier","potential outlier","potential outlier","potential outlier"],"showlegend":false,"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 3.8: An illustration of an annotated box-plot with whiskers and potential outliers.
 </p>
@@ -650,24 +738,26 @@ Otherwise, if the median cuts the box with upper area equal to
 lower area, then we say that box-plot with symmetric probability
 distribution.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:BoxplotNegativeExample"></span>
-<img src="Book_Files/figure-html/BoxplotNegativeExample-1.png" alt="An illustration of an boxplot with left (negative) skewed." width="672" />
+<div class="plotly html-widget html-fill-item" id="htmlwidget-969965edfe9f869aa904" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-969965edfe9f869aa904">{"x":{"visdat":{"15144172fcc56":["function () ","plotlyVisDat"]},"cur_data":"15144172fcc56","attrs":{"15144172fcc56":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":{},"type":"box","boxpoints":"none","name":"","hoverinfo":"skip","fillcolor":"#00C19A","marker":{"color":"#00C19A"},"line":{"color":"rgba(0,100,200,1)"},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Boxplot suggesting left skewed data<br>(Mean < Median)","yaxis":{"domain":[0,1],"automargin":true,"title":"Values","range":[0,31.387204140622714]},"xaxis":{"domain":[0,1],"automargin":true,"showticklabels":false,"title":null,"range":[0.5,1.5]},"shapes":[{"type":"line","xref":"x","yref":"y","x0":0.75700000000000001,"x1":1.2470000000000001,"y0":19.300850496976768,"y1":19.300850496976768,"line":{"dash":"dash","color":"#FF68A1","width":2}}],"annotations":[{"x":1.325,"y":19.300850496976768,"text":"mean","xref":"x","yref":"y","showarrow":false,"font":{"color":"#FF68A1","size":18}},{"x":1.325,"y":21.490402319513297,"text":"median","xref":"x","yref":"y","showarrow":false,"font":{"color":"rgba(0,100,200,1)","size":18}}],"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false,"staticPlot":true},"data":[{"fillcolor":"#00C19A","x":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":[25.371119378698829,24.006849869922625,6.439911885054574,22.434028581795168,22.082913883197556,3.4806486859362913,19.783899105044007,27.363249552636113,25.809994611757684,24.9346859425203,11.718966389352939,20.546294190049242,20.244388500204934,22.195728549851943,25.354220783366987,2,19.490648569739726,28.533821946020648,17.720739523803829,25.041227440177654,26.907106523478195,23.94968661779534,26.801414407491983,25.947002467412911,25.600526591309475,28.138903247959028,16.37358109287312,21.934510448977353,27.07750821595533,11.301663790593985,20.050214155452885,24.302212344993084,15.764950453730886,15.948053617758704,16.540910837177904,13.206442932018302,13.707459040337465,13.383613961168788,16.221844473273716,14.323077270181141],"type":"box","boxpoints":"none","name":"","hoverinfo":["skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip"],"marker":{"color":"#00C19A","line":{"color":"rgba(31,119,180,1)"}},"line":{"color":"rgba(0,100,200,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 3.9: An illustration of an boxplot with left (negative) skewed.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:BoxplotpositiveExample"></span>
-<img src="Book_Files/figure-html/BoxplotpositiveExample-1.png" alt="An illustration of an boxplot with right (positive) skewed." width="672" />
+<div class="plotly html-widget html-fill-item" id="htmlwidget-450f171f14364aa3ebed" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-450f171f14364aa3ebed">{"x":{"visdat":{"1514427cd1bcc":["function () ","plotlyVisDat"]},"cur_data":"1514427cd1bcc","attrs":{"1514427cd1bcc":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":{},"type":"box","boxpoints":"none","name":"","hoverinfo":"skip","fillcolor":"#00C19A","marker":{"color":"#00C19A"},"line":{"color":"rgba(0,100,200,1)"},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Boxplot suggesting right skewed data<br>(Mean > Median)","yaxis":{"domain":[0,1],"automargin":true,"title":"Values","range":[0,19.861173553906379]},"xaxis":{"domain":[0,1],"automargin":true,"showticklabels":false,"title":null,"range":[0.5,1.5]},"shapes":[{"type":"line","xref":"x","yref":"y","x0":0.75700000000000001,"x1":1.2470000000000001,"y0":9.3759125781479842,"y1":9.3759125781479842,"line":{"dash":"dash","color":"#FF68A1","width":2}}],"annotations":[{"x":1.325,"y":9.4259125781479849,"text":"mean","xref":"x","yref":"y","showarrow":false,"font":{"color":"#FF68A1","size":18}},{"x":1.325,"y":7.5595032538828928,"text":"median","xref":"x","yref":"y","showarrow":false,"font":{"color":"rgba(0,100,200,1)","size":18}}],"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false,"staticPlot":true},"data":[{"fillcolor":"#00C19A","x":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":[5.583200491338868,6.585769963626837,16.108613953386946,7.6541975424061279,7.8824901874239126,17.418493618676429,9.3041273519603074,3.9254044193233675,5.2413210432687718,5.9130928236608593,13.626833478424,8.8454828256128941,9.0284953469220142,7.8095032538828928,5.5961531971841358,18.055612321733072,9.4775442667220204,2.7640345938317332,10.492680835139586,5.8334249399882214,4.3322548064969677,6.6260744686618684,4.4237943402153883,5.132302481814377,5.4058427861893916,3.1792755126618695,11.233422903314693,7.9779904697664623,4.182593595422726,13.830930995824813,9.1452270630689121,6.3755110880395538,11.560138342564706,11.462338450771814,11.142766475852911],"type":"box","boxpoints":"none","name":"","hoverinfo":["skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip"],"marker":{"color":"#00C19A","line":{"color":"rgba(31,119,180,1)"}},"line":{"color":"rgba(0,100,200,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 3.10: An illustration of an boxplot with right (positive) skewed.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:BoxplotSymmetryExample"></span>
-<img src="Book_Files/figure-html/BoxplotSymmetryExample-1.png" alt="An illustration of an boxplot with symetric skewed." width="672" />
+<div class="plotly html-widget html-fill-item" id="htmlwidget-fbfc52d82635d988c6e1" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-fbfc52d82635d988c6e1">{"x":{"visdat":{"1514487091c2":["function () ","plotlyVisDat"]},"cur_data":"1514487091c2","attrs":{"1514487091c2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":{},"type":"box","boxpoints":"none","name":"","hoverinfo":"skip","fillcolor":"#00C19A","marker":{"color":"#00C19A"},"line":{"color":"rgba(0,100,200,1)"},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Boxplot suggesting symmetic data<br>(Mean ≈ Median)","yaxis":{"domain":[0,1],"automargin":true,"title":"Values","range":[0,21]},"xaxis":{"domain":[0,1],"automargin":true,"showticklabels":false,"title":null,"range":[0.5,1.5]},"shapes":[{"type":"line","xref":"x","yref":"y","x0":0.75700000000000001,"x1":1.2470000000000001,"y0":10.137614196394281,"y1":10.137614196394281,"line":{"dash":"dash","color":"#FF68A1","width":2}}],"annotations":[{"x":1.325,"y":10.387614196394281,"text":"mean","xref":"x","yref":"y","showarrow":false,"font":{"color":"#FF68A1","size":18}},{"x":1.325,"y":9.4594384459028973,"text":"median","xref":"x","yref":"y","showarrow":false,"font":{"color":"rgba(0,100,200,1)","size":18}}],"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false,"staticPlot":true},"data":[{"fillcolor":"#00C19A","x":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":[7.75809741379115,9.0792900420668801,16.234833256596495,10.282033565698304,10.517150940643784,16.860259947533123,11.843664823956809,4.9397550615738641,7.2525885924258962,8.217352119600168,14.896327189757846,11.439255308229455,11.603085802376208,10.442730863780479,7.7766354609836998,17.147652547212314,11.991401912916958,2.1335313734814472,12.805423606254742,8.1088343690882638,5.7287051760526193,9.1281003413668191,5.8959822067710412,7.084435082835439,7.4998429286029733,3.2532267570303466,13.351148177978098,10.613492471346062,5.4474522519522095,15.015259684279707,11.705856885907254,8.8197140680309154,13.58050264418009,13.51253395013217,13.286324326549948,12.754561016400364,12.215670614150355,9.7523531576931131,8.7761493450403325,8.4781159959504695,7.2211720843179492,9.1683308879216057,4.9384145937269421,18.675823861354051,14.831847993219963,5.5075656671866033,8.3884606588036963,8.1333785855071241,13.119860473345272,9.6665237341126833],"type":"box","boxpoints":"none","name":"","hoverinfo":["skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip","skip"],"marker":{"color":"#00C19A","line":{"color":"rgba(31,119,180,1)"}},"line":{"color":"rgba(0,100,200,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 3.11: An illustration of an boxplot with symetric skewed.
 </p>
 </div>
-<p>Note that the choices of mean and median of the three images above are all random.</p>
 
 </div>
 </div>

@@ -189,105 +189,132 @@ function is true:
 :::
 
 
+
+
+<!--
+```{r EmpiricalRuleExample, fig.cap="An illustration of the empirical rule.", echo=FALSE, fig.align='center', warning=FALSE}
+library(plotly)
+library(plotly)
+
+# Standard normal distribution
+x <- seq(-4, 4, length.out = 1000)
+y <- dnorm(x)
+
+# Shaded segments under curve
+segments <- list(
+  list(start = -4, end = -3, color = "#F066EA"),
+  list(start = -3, end = -2, color = "#7997FF"),
+  list(start = -2, end = -1, color = "#00B0F6"),
+  list(start = -1, end = 1,  color = "#00C0B8"),
+  list(start = 1,  end = 2,  color = "#00B0F6"),
+  list(start = 2,  end = 3,  color = "#7997FF"),
+  list(start = 3,  end = 4,  color = "#F066EA")
+)
+
+# Base plot
+p <- plot_ly(showlegend = FALSE) %>%
+  add_trace(
+    x = x,
+    y = y,
+    type = "scatter",
+    mode = "lines",
+    line = list(color = "black")
+  )
+
+# Add filled segments
+for (s in segments) {
+  xs <- seq(s$start, s$end, length.out = 200)
+  ys <- dnorm(xs)
+  p <- add_trace(
+    p,
+    x = c(xs, rev(xs)),
+    y = c(ys, rep(0, length(ys))),
+    type = "scatter",
+    mode = "none",
+    fill = "toself",
+    fillcolor = s$color,
+    hoverinfo = "skip"
+  )
+}
+
+# Vertical dashed lines ending at the curve
+segment_bounds <- c(-3, -2, -1, 0, 1, 2, 3)
+dashed_lines <- lapply(segment_bounds, function(xpos) {
+  list(
+    type = "line",
+    x0 = xpos, x1 = xpos,
+    y0 = 0, y1 = dnorm(xpos),
+    xref = "x", yref = "y",
+    line = list(color = "black", dash = "dash", width = 1)
+  )
+})
+
+# Annotations
+annotations <- list(
+  list(x = -2.35, y = 0.01, text = "0.15%", font = list(size = 12, color = "black"), showarrow = FALSE),
+  list(x = -1.5, y = 0.05, text = "13.5%", font = list(size = 12, color = "black"), showarrow = FALSE),
+  list(x =  0,   y = 0.1, text = "<b>68%</b>", font = list(size = 16, color = "black"), showarrow = FALSE),
+  list(x =  1.5, y = 0.05, text = "13.5%", font = list(size = 12, color = "black"), showarrow = FALSE),
+  list(x =  2.35, y = 0.01, text = "0.15%", font = list(size = 12, color = "black"), showarrow = FALSE),
+  list(x = -3, y = -0.01, text = "-3σ", font = list(size = 12), showarrow = FALSE),
+  list(x = -2, y = -0.01, text = "-2σ", font = list(size = 12), showarrow = FALSE),
+  list(x = -1, y = -0.01, text = "-1σ", font = list(size = 12), showarrow = FALSE),
+  list(x =  0, y = -0.01, text = "0", font = list(size = 12), showarrow = FALSE),
+  list(x =  1, y = -0.01, text = "1σ", font = list(size = 12), showarrow = FALSE),
+  list(x =  2, y = -0.01, text = "2σ", font = list(size = 12), showarrow = FALSE),
+  list(x =  3, y = -0.01, text = "3σ", font = list(size = 12), showarrow = FALSE),
+  list(x = 0, y = max(y) + 0.01, text = "f(x)", font = list(size = 14), showarrow = FALSE)
+)
+
+# Final layout with lowered title
+p <- layout(
+  p,
+  title = list(
+    text = "Empirical Rule: 68%–95%–99.7%",
+    y = 0.90
+  ),
+  xaxis = list(
+    title = NULL,
+    showticklabels = FALSE,
+    showgrid = FALSE,
+    zeroline = FALSE
+  ),
+  yaxis = list(
+    title = NULL,
+    showticklabels = FALSE,
+    showgrid = FALSE,
+    zeroline = FALSE,
+    range = c(-0.02, max(y) + 0.10)
+  ),
+  shapes = dashed_lines,
+  annotations = annotations
+)
+
+# Interactivity options
+config(p, displayModeBar = TRUE)
+```
+-->
+
+
+The interactive application below illustrates the empirical rule.
+
+
+<center>
+```{r HistEmpRuleApp, echo=FALSE, out.width='100%'}
+knitr::include_app("https://nishan-mudalige.shinyapps.io/Empirical_Rule_Shiny_App/", height = "950")
+```
+</center>
+
+
+
+
 ::: {.remark}
 A consequence of the Empirical Rule from \@ref(sec:IntroNormalDist) is that for a sample drawn from a population that is 
-approximately normal, we can approximate the standard deviation using:
+approximately normal, we can roughly estimate the standard deviation using the _crude_ approximate :
 
 $$\hat{\sigma} \approx \frac{\text{Sample Range}}{4}.$$
 :::
 
-
-```{r EmpiricalRuleExample, fig.cap="An illustration of the empirical rule.", echo=FALSE, fig.align='center', warning=FALSE}
-library(ggplot2)
-library(dplyr)
-library(grid)
-
-# 1. Define normal curve segments
-x_vals <- seq(-3.5, 3.5, by = 0.01)
-
-dnorm_df <- function(xmin, xmax, label) {
-  tibble(x = seq(xmin, xmax, by = 0.01),
-         y = dnorm(x),
-         region = label)
-}
-
-# Split the curve into precise bands
-df_68   <- dnorm_df(-1, 1,     "68%")
-df_135  <- bind_rows(dnorm_df(-2, -1, "13.5%"), dnorm_df(1, 2, "13.5%"))
-df_235  <- bind_rows(dnorm_df(-3, -2, "2.35%"), dnorm_df(2, 3, "2.35%"))
-df_curve <- dnorm_df(-3.5, 3.5, "outline")
-
-# 2. Color mapping
-region_fills <- c(
-  "68%"   = "#b9f6ca",
-  "13.5%" = "#ffdab9",
-  "2.35%" = "#b3e5ff"
-)
-
-# 3. Dashed vertical reference lines
-v_lines <- tibble(x = c(-2, -1, 0, 1, 2),
-                  y_top = dnorm(c(-2, -1, 0, 1, 2)))
-
-# 4. Build plot
-p <- ggplot() +
-  
-  # Shaded bands
-  geom_area(data = df_235, aes(x, y), fill = "#b3e5ff", alpha = 0.8) +
-  geom_area(data = df_135, aes(x, y), fill = "#ffdab9", alpha = 0.8) +
-  geom_area(data = df_68,  aes(x, y), fill = "#b9f6ca", alpha = 0.8) +
-  
-  # Curve outline
-  geom_line(data = df_curve, aes(x, y), colour = "blue", linewidth = 1) +
-  
-  # Dashed verticals at ±1σ and ±2σ
-  geom_segment(data = v_lines %>% filter(x != 0),
-               aes(x = x, xend = x, y = 0, yend = y_top),
-               linetype = "dashed") +
-  
-  # y-axis arrow
-  geom_segment(data = tibble(), aes(x = 0, xend = 0, y = 0, yend = dnorm(0)),
-               linewidth = 0.6,
-               arrow = arrow(type = "closed", length = unit(0.25, "cm"))) +
-  
-  # x-axis arrow
-  geom_segment(data = tibble(), aes(x = -3.3, xend = 3.3, y = 0, yend = 0),
-               linewidth = 0.6,
-               arrow = arrow(type = "closed", length = unit(0.25, "cm"))) +
-  
-  # x-axis tick labels
-  scale_x_continuous(
-    breaks = -3:3,
-    labels = parse(text = c("-3*sigma", "-2*sigma", "-1*sigma",
-                            "0*sigma",  "1*sigma",  "2*sigma",  "3*sigma"))
-  ) +
-  
-  # Percentage annotations
-  annotate("text", x =  0.0, y = 0.23, label = "68%",   size = 6, fontface = "bold") +
-  annotate("text", x = -1.65, y = 0.17, label = "13.5%", size = 5) +
-  annotate("text", x =  1.65, y = 0.17, label = "13.5%", size = 5) +
-  annotate("text", x = -2.5, y = 0.11, label = "2.35%", size = 5) +
-  annotate("text", x =  2.5, y = 0.11, label = "2.35%", size = 5) +
-  annotate("text", x = -3.25, y = 0.11, label = "0.15%", size = 5) +
-  annotate("text", x =  3.25, y = 0.11, label = "0.15%", size = 5) +
-  
-  # f(x) label
-  annotate("text", x = 0.1, y = dnorm(0) + 0.025, label = "italic(f(x))",
-           parse = TRUE, hjust = 0) +
-  
-  # Theme (no caption)
-  labs(x = expression(italic(x)), y = NULL) +
-  theme_minimal(base_size = 16) +
-  theme(
-    axis.title.y = element_blank(),
-    axis.text.y  = element_blank(),
-    axis.ticks.y = element_blank(),
-    panel.grid   = element_blank(),
-    plot.margin  = margin(15, 15, 15, 15)
-  )
-
-# 5. Display plot
-print(p)
-```
 
 
 ### Introduction to the Chi-Square distribution
