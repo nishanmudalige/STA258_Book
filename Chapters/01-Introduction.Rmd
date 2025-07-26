@@ -163,29 +163,128 @@ however the numerical values of statistics are calculated and known.
 
 The picture below shows the relationship between parameters from a population and statistics from a sample.
 
+<!--  include engine='tikz' in block header for tikz images -->
+```{r fig.align='center', echo=FALSE, out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Illustration of parameters in a population and statistics in a sample'}
+library(ggplot2)
+library(latex2exp)
 
-```{r fig.align='center', echo=FALSE, engine='tikz', out.width='55%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Illustration of parameters in a population and statistics in a sample'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[scale=1]
+# ---------- helpers ----------
+ellipse_df <- function(cx, cy, a, b, angle = 0, n = 400) {
+  t <- seq(0, 2*pi, length.out = n)
+  x <- cx + a*cos(t)*cos(angle) - b*sin(t)*sin(angle)
+  y <- cy + a*cos(t)*sin(angle) + b*sin(t)*cos(angle)
+  data.frame(x, y)
+}
 
-\definecolor{darkblue}{HTML}{4477b2}
-\definecolor{lightblue}{HTML}{9cb8d9}
+# Uniform points INSIDE ellipse; exclude ANY of a list of centered rectangles by inequalities
+ellipse_points_excluding_rects <- function(cx, cy, a, b, n, rects) {
+  # rects: data.frame with columns cx, cy, w, h (rectangle centers and sizes)
+  out <- data.frame(x = numeric(0), y = numeric(0))
+  while (nrow(out) < n) {
+    m     <- max(50, ceiling((n - nrow(out)) * 1.5))
+    theta <- runif(m, 0, 2*pi)
+    r     <- sqrt(runif(m))  # sqrt -> uniform in disk
+    x     <- cx + a * r * cos(theta)
+    y     <- cy + b * r * sin(theta)
+    
+    # Exclude points that fall inside ANY rectangle (union of inequalities)
+    keep <- rep(TRUE, length(x))
+    for (i in seq_len(nrow(rects))) {
+      rx  <- rects$cx[i]; ry <- rects$cy[i]
+      w   <- rects$w[i];  h  <- rects$h[i]
+      inside_i <- (x >= rx - w/2) & (x <= rx + w/2) &
+        (y >= ry - h/2) & (y <= ry + h/2)
+      keep <- keep & !inside_i
+    }
+    out <- rbind(out, data.frame(x = x[keep], y = y[keep]))
+  }
+  head(out, n)
+}
 
-\draw[fill=darkblue, opacity=0.8] (1,3)
-ellipse (3 and 1);
+set.seed(314)  # reproducible scatter
 
-\node[draw=none] at (1,3.25) {Population};
-\node[draw=none] at (1,2.60) {$\mu, ~\sigma, ~p$};
+# ---------- layout & sizes ----------
+pop_ctr_y  <-  2.2
+samp_ctr_y <- -2.2
 
-\draw[->] (1,2) .. controls (+1.25,1.4) .. (1, 0.75);
-\node[draw=none] at (2.50, 1.45) {Draw units};
+# Ellipses: Population larger, Sample smaller
+a_pop <- 4.5;  b_pop <- 1.65
+a_smp <- 2.6;  b_smp <- 0.95
 
-\draw[fill=lightblue, opacity=0.8] (1,0)
-ellipse (2 and 0.7);
-\node[draw=none] at (1.00, 0.15) {Sample};
-\node[draw=none] at (1,-0.40) {$\bar{x}, ~s, ~\hat{p}$};
+# --- Small text-only rectangles (tight) ---
+# Choose compact sizes that comfortably fit each line of text.
+# Population
+pop_title_y  <- pop_ctr_y + 0.25   # vertical placement of title
+pop_stats_y  <- pop_ctr_y - 0.25   # vertical placement of stats
+pop_rects <- data.frame(
+  cx = c(0, 0),
+  cy = c(pop_title_y, pop_stats_y),
+  w  = c(2.8, 2.0),    # widths tuned to fit "Population" and "$\\mu,\\sigma,\\ p$"
+  h  = c(0.60, 0.50)   # small heights (just enough for single line)
+)
 
-\end{tikzpicture}
+# Sample
+smp_title_y  <- samp_ctr_y + 0.21
+smp_stats_y  <- samp_ctr_y - 0.21
+smp_rects <- data.frame(
+  cx = c(0, 0),
+  cy = c(smp_title_y, smp_stats_y),
+  w  = c(1.8, 1.5),    # slightly narrower than population
+  h  = c(0.525, 0.52)
+)
+
+# Points (many vs few)
+n_pop <- 2500
+n_smp <- 250
+
+# to get points inside ovals and not on boundaries
+epsilon = 0.06
+epsilon = abs(epsilon)
+
+pts_pop <- ellipse_points_excluding_rects(0, pop_ctr_y,  a_pop - epsilon, b_pop - epsilon, n_pop, pop_rects)
+pts_smp <- ellipse_points_excluding_rects(0, samp_ctr_y, a_smp - epsilon, b_smp - epsilon, n_smp, smp_rects)
+
+# ---------- plot (order required) ----------
+p <- ggplot() +
+  # (1) Ovals, arrow, and "draw"
+  geom_polygon(
+    data = ellipse_df(0, pop_ctr_y, a_pop, b_pop),
+    aes(x, y), fill = "#00A5FF", color = "#004970", linewidth = 0.6
+  ) +
+  geom_polygon(
+    data = ellipse_df(0, samp_ctr_y, a_smp, b_smp),
+    aes(x, y), fill = "#00C1AA", color = "#017858", linewidth = 0.6
+  ) +
+  annotate(
+    "curve",
+    x =  0.05, y = pop_ctr_y - 1.25,
+    xend = 0.00, yend = samp_ctr_y + 0.95,
+    curvature = -0.25, linewidth = 0.5,
+    arrow = arrow(length = grid::unit(0.25, "cm"), type = "closed"),
+    colour = "black"
+  ) +
+  annotate("text", x = 0.90, y = -0.30, label = "draw", size = 5, colour = "black") +
+  
+  # (2) Points inside ellipses but OUTSIDE the small text rectangles
+  geom_point(data = pts_pop, aes(x, y), size = 0.7, color = "#004970") +
+  geom_point(data = pts_smp, aes(x, y), size = 0.75, color = "#017858") +
+  
+  # (3) Text placed inside the empty rectangles (on top; fully opaque; black)
+  annotate("text", x = 0, y = pop_title_y,
+           label = "Population", size = 7, fontface = "bold", colour = "black") +
+  annotate("text", x = 0, y = pop_stats_y,
+           label = latex2exp::TeX("$\\mu,\\ \\sigma,\\ p$"),
+           parse = TRUE, size = 6, colour = "black") +
+  annotate("text", x = 0, y = smp_title_y,
+           label = "Sample", size = 7, fontface = "bold", colour = "black") +
+  annotate("text", x = 0, y = smp_stats_y,
+           label = latex2exp::TeX("$\\bar{x},\\ s,\\ \\hat{p}$"),
+           parse = TRUE, size = 6, colour = "black") +
+  
+  coord_equal(xlim = c(-5, 5), ylim = c(-4.5, 4.5), expand = FALSE) +
+  theme_void()
+
+p
 ```
 
 
