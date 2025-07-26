@@ -164,11 +164,11 @@ however the numerical values of statistics are calculated and known.
 The picture below shows the relationship between parameters from a population and statistics from a sample.
 
 <!--  include engine='tikz' in block header for tikz images -->
-```{r fig.align='center', echo=FALSE, out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Illustration of parameters in a population and statistics in a sample'}
-library(ggplot2)
-library(latex2exp)
+<!-- ```{r fig.align='center', echo=FALSE, out.width='100%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Illustration of parameters in a population and statistics in a sample'} -->
+```{r fig.cap="Illustration of parameters in a population and statistics in a sample", echo=FALSE, fig.align='center', warning=FALSE}
+library(plotly)
 
-# ---------- helpers ----------
+# ---------- helpers (as you defined) ----------
 ellipse_df <- function(cx, cy, a, b, angle = 0, n = 400) {
   t <- seq(0, 2*pi, length.out = n)
   x <- cx + a*cos(t)*cos(angle) - b*sin(t)*sin(angle)
@@ -176,22 +176,18 @@ ellipse_df <- function(cx, cy, a, b, angle = 0, n = 400) {
   data.frame(x, y)
 }
 
-# Uniform points INSIDE ellipse; exclude ANY of a list of centered rectangles by inequalities
 ellipse_points_excluding_rects <- function(cx, cy, a, b, n, rects) {
-  # rects: data.frame with columns cx, cy, w, h (rectangle centers and sizes)
   out <- data.frame(x = numeric(0), y = numeric(0))
   while (nrow(out) < n) {
     m     <- max(50, ceiling((n - nrow(out)) * 1.5))
     theta <- runif(m, 0, 2*pi)
-    r     <- sqrt(runif(m))  # sqrt -> uniform in disk
+    r     <- sqrt(runif(m))
     x     <- cx + a * r * cos(theta)
     y     <- cy + b * r * sin(theta)
-    
-    # Exclude points that fall inside ANY rectangle (union of inequalities)
-    keep <- rep(TRUE, length(x))
+    keep  <- rep(TRUE, m)
     for (i in seq_len(nrow(rects))) {
-      rx  <- rects$cx[i]; ry <- rects$cy[i]
-      w   <- rects$w[i];  h  <- rects$h[i]
+      rx <- rects$cx[i]; ry <- rects$cy[i]
+      w  <- rects$w[i];  h  <- rects$h[i]
       inside_i <- (x >= rx - w/2) & (x <= rx + w/2) &
         (y >= ry - h/2) & (y <= ry + h/2)
       keep <- keep & !inside_i
@@ -201,88 +197,102 @@ ellipse_points_excluding_rects <- function(cx, cy, a, b, n, rects) {
   head(out, n)
 }
 
-set.seed(314)  # reproducible scatter
+# ---------- parameters & data ----------
+set.seed(2)
+pop_ctr_y  <-  2.2;  samp_ctr_y <- -2.2
+a_pop <- 4.5; b_pop <- 1.65
+a_smp <- 2.6; b_smp <- 0.95
 
-# ---------- layout & sizes ----------
-pop_ctr_y  <-  2.2
-samp_ctr_y <- -2.2
-
-# Ellipses: Population larger, Sample smaller
-a_pop <- 4.5;  b_pop <- 1.65
-a_smp <- 2.6;  b_smp <- 0.95
-
-# --- Small text-only rectangles (tight) ---
-# Choose compact sizes that comfortably fit each line of text.
-# Population
-pop_title_y  <- pop_ctr_y + 0.25   # vertical placement of title
-pop_stats_y  <- pop_ctr_y - 0.25   # vertical placement of stats
+pop_title_y <- pop_ctr_y + 0.25
+pop_stats_y <- pop_ctr_y - 0.25
 pop_rects <- data.frame(
-  cx = c(0, 0),
-  cy = c(pop_title_y, pop_stats_y),
-  w  = c(2.8, 2.0),    # widths tuned to fit "Population" and "$\\mu,\\sigma,\\ p$"
-  h  = c(0.60, 0.50)   # small heights (just enough for single line)
+  cx = c(0, 0), cy = c(pop_title_y, pop_stats_y),
+  w  = c(1.6, 1.0), h  = c(0.60, 0.50)
 )
 
-# Sample
-smp_title_y  <- samp_ctr_y + 0.21
-smp_stats_y  <- samp_ctr_y - 0.21
+smp_title_y <- samp_ctr_y + 0.21
+smp_stats_y <- samp_ctr_y - 0.21
 smp_rects <- data.frame(
-  cx = c(0, 0),
-  cy = c(smp_title_y, smp_stats_y),
-  w  = c(1.8, 1.5),    # slightly narrower than population
-  h  = c(0.525, 0.52)
+  cx = c(0,0), cy = c(smp_title_y, smp_stats_y),
+  w  = c(0.95,0.8), h  = c(0.525,0.52)
 )
 
-# Points (many vs few)
-n_pop <- 2500
-n_smp <- 250
+epsilon <- abs(0.06)
+pts_pop <- ellipse_points_excluding_rects(0, pop_ctr_y,  a_pop - epsilon, b_pop - epsilon, 2500, pop_rects)
+pts_smp <- ellipse_points_excluding_rects(0, samp_ctr_y, a_smp - epsilon, b_smp - epsilon,  250, smp_rects)
 
-# to get points inside ovals and not on boundaries
-epsilon = 0.06
-epsilon = abs(epsilon)
+pop_ell <- ellipse_df(0, pop_ctr_y, a_pop, b_pop)
+smp_ell <- ellipse_df(0, samp_ctr_y, a_smp, b_smp)
 
-pts_pop <- ellipse_points_excluding_rects(0, pop_ctr_y,  a_pop - epsilon, b_pop - epsilon, n_pop, pop_rects)
-pts_smp <- ellipse_points_excluding_rects(0, samp_ctr_y, a_smp - epsilon, b_smp - epsilon, n_smp, smp_rects)
-
-# ---------- plot (order required) ----------
-p <- ggplot() +
-  # (1) Ovals, arrow, and "draw"
-  geom_polygon(
-    data = ellipse_df(0, pop_ctr_y, a_pop, b_pop),
-    aes(x, y), fill = "#00A5FF", color = "#004970", linewidth = 0.6
-  ) +
-  geom_polygon(
-    data = ellipse_df(0, samp_ctr_y, a_smp, b_smp),
-    aes(x, y), fill = "#00C1AA", color = "#017858", linewidth = 0.6
-  ) +
-  annotate(
-    "curve",
-    x =  0.05, y = pop_ctr_y - 1.25,
-    xend = 0.00, yend = samp_ctr_y + 0.95,
-    curvature = -0.25, linewidth = 0.5,
-    arrow = arrow(length = grid::unit(0.25, "cm"), type = "closed"),
-    colour = "black"
-  ) +
-  annotate("text", x = 0.90, y = -0.30, label = "draw", size = 5, colour = "black") +
-  
-  # (2) Points inside ellipses but OUTSIDE the small text rectangles
-  geom_point(data = pts_pop, aes(x, y), size = 0.7, color = "#004970") +
-  geom_point(data = pts_smp, aes(x, y), size = 0.75, color = "#017858") +
-  
-  # (3) Text placed inside the empty rectangles (on top; fully opaque; black)
-  annotate("text", x = 0, y = pop_title_y,
-           label = "Population", size = 7, fontface = "bold", colour = "black") +
-  annotate("text", x = 0, y = pop_stats_y,
-           label = latex2exp::TeX("$\\mu,\\ \\sigma,\\ p$"),
-           parse = TRUE, size = 6, colour = "black") +
-  annotate("text", x = 0, y = smp_title_y,
-           label = "Sample", size = 7, fontface = "bold", colour = "black") +
-  annotate("text", x = 0, y = smp_stats_y,
-           label = latex2exp::TeX("$\\bar{x},\\ s,\\ \\hat{p}$"),
-           parse = TRUE, size = 6, colour = "black") +
-  
-  coord_equal(xlim = c(-5, 5), ylim = c(-4.5, 4.5), expand = FALSE) +
-  theme_void()
+# ---------- build plotly figure ----------
+p <- plot_ly() %>%
+  # Population ellipse
+  add_trace(
+    data = pop_ell, x = ~x, y = ~y,
+    type = 'scatter', mode = 'lines',
+    fill = 'toself', fillcolor = '#00A5FF',
+    line = list(color = '#004970', width = 0.6),
+    hoverinfo = 'none', showlegend = FALSE
+  ) %>%
+  # Sample ellipse
+  add_trace(
+    data = smp_ell, x = ~x, y = ~y,
+    type = 'scatter', mode = 'lines',
+    fill = 'toself', fillcolor = '#00C1AA',
+    line = list(color = '#017858', width = 0.6),
+    hoverinfo = 'none', showlegend = FALSE
+  ) %>%
+  # Population points with hover label
+  add_markers(
+    data      = pts_pop, x = ~x, y = ~y,
+    marker    = list(size = 5.2, color = '#004970'),
+    text      = "population unit",
+    hoverinfo = "text",
+    showlegend = FALSE
+  ) %>%
+  # Sample points with hover label
+  add_markers(
+    data      = pts_smp, x = ~x, y = ~y,
+    marker    = list(size = 5.2, color = '#017858'),
+    text      = "sample unit",
+    hoverinfo = "text",
+    showlegend = FALSE
+  ) %>%
+  # Layout with annotations
+  layout(
+    xaxis = list(range = c(-5, 5), showgrid = FALSE, zeroline = FALSE, visible = FALSE),
+    yaxis = list(range = c(-4.5, 4.5), showgrid = FALSE, zeroline = FALSE, visible = FALSE),
+    margin = list(l = 0, r = 0, t = 0, b = 0),
+    annotations = list(
+      # straight arrow
+      list(
+        x   =  0.00, y   = samp_ctr_y + 0.95,
+        ax  =  0.00, ay  = pop_ctr_y - 1.25,
+        xref= 'x',     yref= 'y',
+        axref= 'x',    ayref= 'y',
+        showarrow = TRUE,
+        arrowhead = 2,
+        arrowwidth = 1.5,
+        arrowcolor = 'black',
+        text = ''
+      ),
+      # "draw"
+      list(x = 0.50, y = -0.30, text = "draw", showarrow = FALSE,
+           font = list(size = 16, color = "black")),
+      # Population title & stats (LaTeX)
+      list(x = 0, y = pop_title_y, text = "Population", showarrow = FALSE,
+           font = list(size = 18, color = "black", family="Arial")),
+      list(x = 0, y = pop_stats_y, text = "$$μ,\\ \\sigma,\\ p$$", showarrow = FALSE,
+           font = list(size = 16, color = "black")),
+      # Sample title & stats (LaTeX)
+      list(x = 0, y = smp_title_y, text = "Sample", showarrow = FALSE,
+           font = list(size = 18, color = "black", family="Arial")),
+      list(x = 0, y = smp_stats_y, text = "$$\\bar{x},\\ s,\\ \\hat{p}$$", showarrow = FALSE,
+           font = list(size = 16, color = "black"))
+    )
+  ) %>%
+  # Enable MathJax so that $...$ renders correctly
+  config(mathjax = "cdn")
 
 p
 ```
