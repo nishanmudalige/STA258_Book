@@ -50,6 +50,17 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/mathjax-2.7.5/cdn.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -288,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-3" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Introduction<a href="statistical-power.html#introduction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
-<p><span id="def:unlabeled-div-81" class="definition"><strong>Definition 7.1  </strong></span>The probability that a fixed level <span class="math inline">\(\alpha\)</span> significance test will
+<p><span id="def:unlabeled-div-82" class="definition"><strong>Definition 7.1  </strong></span>The probability that a fixed level <span class="math inline">\(\alpha\)</span> significance test will
 reject <span class="math inline">\(H_0\)</span> when a particular alternative value of the parameter is
 true is called the <strong>power</strong> of the test against that alternative.</p>
 </div>
@@ -361,7 +372,7 @@ reality.<br />
 <p>Let <span class="math inline">\(\beta\)</span> be the probability of a Type II error. Then:</p>
 <p><span class="math display">\[\text{Power} = 1 - \beta = 1 - P(\text{Type II})\]</span></p>
 <div class="example">
-<p><span id="exm:unlabeled-div-82" class="example"><strong>Example 7.1  </strong></span>The cola maker determines that a sweetness loss is too large to accept
+<p><span id="exm:unlabeled-div-83" class="example"><strong>Example 7.1  </strong></span>The cola maker determines that a sweetness loss is too large to accept
 if the mean response for all tasters is <span class="math inline">\(\mu = 1.1\)</span>. Will a 5%
 significance test detect this?</p>
 <p><strong>Hypotheses:</strong> <span class="math display">\[\begin{aligned}
@@ -436,7 +447,7 @@ When <span class="math inline">\(H_0\)</span> is false, a Type II error occurs i
 rejected.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-83" class="example"><strong>Example 7.2  </strong></span>According to Access and Support to Education and Training Survey (2008),
+<p><span id="exm:unlabeled-div-84" class="example"><strong>Example 7.2  </strong></span>According to Access and Support to Education and Training Survey (2008),
 of 4,756 adult Canadians, 1,581 indicated that they worked at a job or
 business at anytime (between July 2007 and June 2008), regardless of the
 number of hours per week.</p>
@@ -447,23 +458,21 @@ H_0\!:&amp;\ p = 0.50 \\
 H_a\!:&amp;\ p &gt; 0.50
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="tcolorbox">
-<pre><code>prop.test(x = 1581, n = 4756, p = 0.50,
-          alternative = &quot;greater&quot;, correct = FALSE)
-
-## 
-##  1-sample proportions test without continuity
-##  correction
-## 
-## data:  1581 out of 4756, null probability 0.5
-## X-squared = 534.24, df = 1, p-value = 1
-## alternative hypothesis: true p is greater than 0.5
-## 95 percent confidence interval:
-##  0.3212845 1.0000000
-## sample estimates:
-##         p 
-## 0.3324222 </code></pre>
-</div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="statistical-power.html#cb70-1" tabindex="-1"></a>    <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">1581</span>, <span class="at">n =</span> <span class="dv">4756</span>, <span class="at">p =</span> <span class="fl">0.50</span>,</span>
+<span id="cb70-2"><a href="statistical-power.html#cb70-2" tabindex="-1"></a>              <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb70-3"><a href="statistical-power.html#cb70-3" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="statistical-power.html#cb70-4" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb70-5"><a href="statistical-power.html#cb70-5" tabindex="-1"></a>    <span class="do">##  1-sample proportions test without continuity</span></span>
+<span id="cb70-6"><a href="statistical-power.html#cb70-6" tabindex="-1"></a>    <span class="do">##  correction</span></span>
+<span id="cb70-7"><a href="statistical-power.html#cb70-7" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb70-8"><a href="statistical-power.html#cb70-8" tabindex="-1"></a>    <span class="do">## data:  1581 out of 4756, null probability 0.5</span></span>
+<span id="cb70-9"><a href="statistical-power.html#cb70-9" tabindex="-1"></a>    <span class="do">## X-squared = 534.24, df = 1, p-value = 1</span></span>
+<span id="cb70-10"><a href="statistical-power.html#cb70-10" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true p is greater than 0.5</span></span>
+<span id="cb70-11"><a href="statistical-power.html#cb70-11" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb70-12"><a href="statistical-power.html#cb70-12" tabindex="-1"></a>    <span class="do">##  0.3212845 1.0000000</span></span>
+<span id="cb70-13"><a href="statistical-power.html#cb70-13" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
+<span id="cb70-14"><a href="statistical-power.html#cb70-14" tabindex="-1"></a>    <span class="do">##         p </span></span>
+<span id="cb70-15"><a href="statistical-power.html#cb70-15" tabindex="-1"></a>    <span class="do">## 0.3324222 </span></span></code></pre></div>
 <p><strong><span class="math inline">\(P\text{-value} &gt; \alpha = 0.05\)</span></strong>; we Fail to Reject <span class="math inline">\(H_0\)</span>.</p>
 <p><strong>This means we could be making a Type II error.</strong>We indicated that
 there is no evidence to conclude that the true proportion of adult
@@ -473,7 +482,7 @@ than 0.50 — this conclusion implies that <span class="math inline">\(H_0: p = 
 but we could be wrong.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-84" class="example"><strong>Example 7.3  </strong></span>Bottles of a popular cola are supposed to contain 300 milliliters (ml)
+<p><span id="exm:unlabeled-div-85" class="example"><strong>Example 7.3  </strong></span>Bottles of a popular cola are supposed to contain 300 milliliters (ml)
 of cola. There is some variation from bottle to bottle because the
 filling machinery is not perfectly precise. The distribution of contents
 is Normal with standard deviation <span class="math inline">\(\sigma = 3\)</span> ml. Will inspecting 6
@@ -515,7 +524,7 @@ specified probability (power), while controlling for Type I error. This
 section introduces how statistical power is used in planning and
 justifying sample sizes before conducting a hypothesis test.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-85" class="example"><strong>Example 7.4  </strong></span>Suppose an experimenter wishes to test <span class="math display">\[\begin{aligned}
+<p><span id="exm:unlabeled-div-86" class="example"><strong>Example 7.4  </strong></span>Suppose an experimenter wishes to test <span class="math display">\[\begin{aligned}
 H_0\!:&amp;\ \mu = 100 \\
 H_a\!:&amp;\ \mu &gt; 100
 \end{aligned}\]</span> at the <span class="math inline">\(\alpha = 0.05\)</span> level of significance and wants
@@ -549,7 +558,7 @@ that the alternative <span class="math inline">\(\mu = 103\)</span> is true.</st
 the hypothesis test will have the desired power of at least 0.60.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-86" class="example"><strong>Example 7.5  </strong></span>A vending machine advertises that it dispenses 225 ml cups of coffee
+<p><span id="exm:unlabeled-div-87" class="example"><strong>Example 7.5  </strong></span>A vending machine advertises that it dispenses 225 ml cups of coffee
 (<span class="math inline">\(\sigma = 7\)</span> ml). You believe the mean volume of coffee per cup is
 something less than 225 ml. You plan to sample 40 cups of coffee from
 this machine to test your hypothesis.</p>
@@ -588,7 +597,7 @@ that the alternative <span class="math inline">\(\mu = 223\)</span> is true.</st
 the hypothesis test will have the desired precision.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-87" class="example"><strong>Example 7.6  </strong></span>A newsletter reports that 90% of adults drink milk. The researchers are
+<p><span id="exm:unlabeled-div-88" class="example"><strong>Example 7.6  </strong></span>A newsletter reports that 90% of adults drink milk. The researchers are
 interested in investigating if fewer than 90% of adults drink milk (at
 <span class="math inline">\(\alpha = 0.05\)</span>). They collect a random sample of 200 adults in a
 certain region.</p>
@@ -603,10 +612,8 @@ milk is really 85%.</p>
 &amp;= P(Z &lt; 0.5980) \approx 0.7250
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="tcolorbox">
-<pre><code>pnorm(0.5980, mean = 0, sd = 1)
-# [1] 0.72508</code></pre>
-</div></li>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="statistical-power.html#cb71-1" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="fl">0.5980</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb71-2"><a href="statistical-power.html#cb71-2" tabindex="-1"></a>    <span class="co"># [1] 0.72508</span></span></code></pre></div></li>
 <li><p>Calculate beta if the percentage of adults who drink milk is really
 85%.</p>
 <p><span class="math display">\[\begin{aligned}
@@ -624,10 +631,8 @@ P\left( \frac{\hat{p} - 0.85}{\sqrt{\frac{0.85(1 - 0.85)}{n}}} &lt; \frac{\hat{p
 \hat{p}^* &amp;= 0.85 + 0.8416 \sqrt{\frac{0.85(1 - 0.85)}{n}}
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="tcolorbox">
-<pre><code>qnorm(0.80, mean = 0, sd = 1)
-# [1] 0.8416212</code></pre>
-</div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="statistical-power.html#cb72-1" tabindex="-1"></a>    <span class="fu">qnorm</span>(<span class="fl">0.80</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb72-2"><a href="statistical-power.html#cb72-2" tabindex="-1"></a>    <span class="co"># [1] 0.8416212</span></span></code></pre></div>
 <p><strong>Step 3: Equating expressions for</strong> <span class="math inline">\(\hat{p}^*\)</span> <span class="math display">\[\begin{aligned}
 0.90 - 1.645 \sqrt{\frac{0.90(1 - 0.90)}{n}} &amp;= 0.85 + 0.8416 \sqrt{\frac{0.85(1 - 0.85)}{n}} \\
 0.05 &amp;= \left(1.645 \sqrt{0.90(0.10)} + 0.8416 \sqrt{0.85(0.15)}\right) \cdot \frac{1}{\sqrt{n}} \\
@@ -636,7 +641,7 @@ P\left( \frac{\hat{p} - 0.85}{\sqrt{\frac{0.85(1 - 0.85)}{n}}} &lt; \frac{\hat{p
 </ol>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-88" class="example"><strong>Example 7.7  </strong></span>A newsletter reports that 90% of adults drink milk. The researchers are
+<p><span id="exm:unlabeled-div-89" class="example"><strong>Example 7.7  </strong></span>A newsletter reports that 90% of adults drink milk. The researchers are
 interested in investigating if less than 90% of adults drink milk (at
 <span class="math inline">\(\alpha = 0.05\)</span>). They collect a <strong>random sample of 100 adults</strong> in a
 certain region.<br />
@@ -659,13 +664,11 @@ P(Z &lt; -1.645) &amp;= 0.05 \quad \text{(Z critical value is -1.645)}
 &amp;= P(Z &lt; 0.0182) \approx 0.5072
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="tcolorbox">
-<pre><code>pnorm(0.0182, mean = 0, sd = 1)
-# [1] 0.5072603</code></pre>
-</div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="statistical-power.html#cb73-1" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="fl">0.0182</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb73-2"><a href="statistical-power.html#cb73-2" tabindex="-1"></a>    <span class="co"># [1] 0.5072603</span></span></code></pre></div>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-89" class="example"><strong>Example 7.8  </strong></span>A newsletter reports that 90% of adults drink milk. The researchers are
+<p><span id="exm:unlabeled-div-90" class="example"><strong>Example 7.8  </strong></span>A newsletter reports that 90% of adults drink milk. The researchers are
 interested in investigating if less than 90% of adults drink milk (at
 <span class="math inline">\(\alpha = 0.05\)</span>). They collect a <strong>random sample of 50 adults</strong> in a
 certain region.<br />
@@ -688,10 +691,8 @@ P(Z &lt; -1.645) &amp;= 0.05 \quad \text{(Z critical value is -1.645)}
 &amp;\approx 0.3475
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="tcolorbox">
-<pre><code>pnorm(-0.3921, mean = 0, sd = 1)
-# [1] 0.3474922</code></pre>
-</div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="statistical-power.html#cb74-1" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">0.3921</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb74-2"><a href="statistical-power.html#cb74-2" tabindex="-1"></a>    <span class="co"># [1] 0.3474922</span></span></code></pre></div>
 </div>
 <p>If we keep <span class="math inline">\(\alpha\)</span> at the same size, larger sample sizes increase the
 power of the test because sampling variability (sampling distributions)

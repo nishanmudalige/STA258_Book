@@ -97,9 +97,9 @@ y_reject <- dnorm(x_reject)
 
 # Plot
 ggplot(data.frame(x, y), aes(x, y)) +
-  geom_line(color = "blue", linewidth = 1.2) +
+  geom_line(color = "#619CFF", linewidth = 1.2) +
   geom_area(data = data.frame(x = x_reject, y = y_reject), 
-            aes(x = x, y = y), fill = "green", alpha = 0.4) +
+            aes(x = x, y = y), fill = "#00BA38", alpha = 0.4) +
   geom_vline(xintercept = 1.645, linetype = "dashed") +
   annotate("text", x = 1.645, y = 0.02, 
            label = expression(z[crit] == 1.645), hjust = -0.1, size = 3.5) +
@@ -154,16 +154,16 @@ y_reject <- dnorm(x_reject, mean = mu_a, sd = sigma)
 y_crit <- dnorm(0.52, mean = mu_a, sd = sigma)
 
 ggplot(df, aes(x)) +
-  geom_line(aes(y = y0), color = "blue", linewidth = 1.2) +
-  geom_line(aes(y = yA), color = "red", linewidth = 1.2) +
+  geom_line(aes(y = y0), color = "#619CFF", linewidth = 1.2) +
+  geom_line(aes(y = yA), color = "#F8766D", linewidth = 1.2) +
   geom_area(data = data.frame(x = x_reject, y = y_reject),
-            aes(x = x, y = y), fill = "green", alpha = 0.4) +
+            aes(x = x, y = y), fill = "#00BA38", alpha = 0.4) +
   geom_vline(xintercept = 0.52, linetype = "dashed") +
   annotate("text", x = 0.52, y = -0.01, label = expression(bar(x)[crit] == 0.520), vjust = 1.2, size = 3.5) +
   labs(x = "", y = "") +
   theme_minimal(base_size = 17) +
-  annotate("text", x = 0.6, y = 0.8 * max(df$y0), label = expression(H[0] * ":  " * mu == 0), color = "blue", size = 4) +
-  annotate("text", x = 1.6, y = 0.8 * max(df$yA), label = expression(H[A] * ":  " * mu == 1.1), color = "red", size = 4)
+  annotate("text", x = 0.6, y = 0.8 * max(df$y0), label = expression(H[0] * ":  " * mu == 0), color = "#619CFF", size = 4) +
+  annotate("text", x = 1.6, y = 0.8 * max(df$yA), label = expression(H[A] * ":  " * mu == 1.1), color = "#F8766D", size = 4)
 ```
 
 :::
@@ -173,26 +173,41 @@ the probability of correctly rejecting $H_0$ increases with the true
 mean $\mu$.
 
 ```{r fig.cap="Power curve for a one-sided test with points at \\( \\mu = 0.52 \\) and \\( \\mu = 1.1 \\)", echo=FALSE, fig.align='center'}
+library(ggplot2)
+library(dplyr)
+
 # Step 1: Define parameters
 n <- 10
 alpha <- 0.05
 mu0 <- 0
 sigma <- 1
-z_crit <- qnorm(1 - alpha)  # = 1.645
-xbar_crit <- mu0 + z_crit * sigma / sqrt(n)  # ≈ 0.520
+z_crit <- qnorm(1 - alpha)
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
 
-# Step 2: Create a sequence of true means
+# Step 2: Sequence of true means
 mu_vals <- seq(0, 3, length.out = 100)
 
-# Step 3: Calculate power for each mu
+# Step 3: Calculate power
 power <- 1 - pnorm((xbar_crit - mu_vals) / (sigma / sqrt(n)))
+df <- data.frame(mu = mu_vals, power = power)
 
-plot(mu_vals, power, type = "l", lty = 2, col = "blue", lwd = 2,
-     ylab = "power", xlab = expression(mu), ylim = c(0, 1))
+# Step 4: Highlight points at mu = 0.52 and 1.1
+highlight_points <- data.frame(
+  mu = c(0.52, 1.1),
+  power = 1 - pnorm((xbar_crit - c(0.52, 1.1)) / (sigma / sqrt(n)))
+)
 
-# Add red points at mu = 0.52 and mu = 1.1
-points(c(0.52, 1.1), 1 - pnorm((xbar_crit - c(0.52, 1.1)) / (sigma / sqrt(n))),
-       pch = 19, col = "red")
+# ggplot version
+ggplot(df, aes(x = mu, y = power)) +
+  geom_line(color = "#619CFF", linewidth = 1.2, linetype = "dashed") +
+  geom_point(data = highlight_points, aes(x = mu, y = power),
+             color = "#F8766D", size = 3) +
+  labs(
+    x = expression(mu),
+    y = "power"
+  ) +
+  scale_y_continuous(limits = c(0, 1)) +
+  theme_minimal(base_size = 14)
 ```
 :::::
 
@@ -239,7 +254,7 @@ H_a\!:&\ p > 0.50
 
 **R Output**
 
-::: tcolorbox
+```r
     prop.test(x = 1581, n = 4756, p = 0.50,
               alternative = "greater", correct = FALSE)
 
@@ -255,7 +270,7 @@ H_a\!:&\ p > 0.50
     ## sample estimates:
     ##         p 
     ## 0.3324222 
-:::
+```
 
 **$P\text{-value} > \alpha = 0.05$**; we Fail to Reject $H_0$.
 
@@ -434,10 +449,10 @@ certain region.
 
     **R Output**
 
-    ::: tcolorbox
+    ```r
         pnorm(0.5980, mean = 0, sd = 1)
         # [1] 0.72508
-    :::
+    ```
 
 2.  Calculate beta if the percentage of adults who drink milk is really
     85%.
@@ -462,10 +477,10 @@ certain region.
 
     **R Output**
 
-    ::: tcolorbox
+    ```r
         qnorm(0.80, mean = 0, sd = 1)
         # [1] 0.8416212
-    :::
+    ```
 
     **Step 3: Equating expressions for** $\hat{p}^*$ $$\begin{aligned}
     0.90 - 1.645 \sqrt{\frac{0.90(1 - 0.90)}{n}} &= 0.85 + 0.8416 \sqrt{\frac{0.85(1 - 0.85)}{n}} \\
@@ -473,6 +488,7 @@ certain region.
     \sqrt{n} &= \frac{0.4935 + 0.3005}{0.05} = 15.87 \Rightarrow n \approx 253
     \end{aligned}$$
 :::
+
 
 :::: example
 A newsletter reports that 90% of adults drink milk. The researchers are
@@ -504,10 +520,10 @@ $$\begin{aligned}
 
 **R Output**
 
-::: tcolorbox
+```r
     pnorm(0.0182, mean = 0, sd = 1)
     # [1] 0.5072603
-:::
+```
 ::::
 
 :::: example
@@ -539,10 +555,10 @@ P(Z < -1.645) &= 0.05 \quad \text{(Z critical value is -1.645)}
 
 **R Output**
 
-::: tcolorbox
+```r
     pnorm(-0.3921, mean = 0, sd = 1)
     # [1] 0.3474922
-:::
+```
 ::::
 
 If we keep $\alpha$ at the same size, larger sample sizes increase the

@@ -162,7 +162,7 @@ f_data <- data.frame(x = x_vals, y = y_vals)
 # Plot
 ggplot(f_data, aes(x, y)) +
   geom_line() +
-  geom_area(data = subset(f_data, x > f_star), aes(x, y), fill = "plum", alpha = 0.5) +
+  geom_area(data = subset(f_data, x > f_star), aes(x, y), fill = "#FF68A1", alpha = 0.5) +
   geom_vline(xintercept = f_star, linetype = "dashed") +
   annotate("text", x = f_star + 1.2, y = max(y_vals) * 0.5, label = "p-value", size = 4) +
   annotate("text", x = f_star, y = -0.01, label = "F*", vjust = 1.5) +
@@ -1140,6 +1140,38 @@ result
 |  | Bumper 3 | 332 | 426.00 | 444.5 | 572.75 | 637 | 483.8 | 102.10866 | 10 | 0 |
 |  | Bumper 4 | 181 | 278.25 | 340.5 | 410.25 | 538 | 348.2 | 118.52688 | 10 | 0 |
 
+<div style="text-align: center;">
+```{r fig.cap="95% Confidence Intervals for Mean Cost by Bumper Group", echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+
+# Create bumper summary manually (or from fav_stats if already available)
+bumper_summary <- data.frame(
+  Bumper = paste("Bumper", 1:4),
+  mean = c(380.0, 485.9, 483.8, 348.2),
+  sd = c(130.09313, 90.53968, 102.10866, 118.52688),
+  n = c(10, 10, 10, 10)
+)
+
+bumper_summary <- bumper_summary %>%
+  mutate(
+    se = sd / sqrt(n),
+    lower = mean - qt(0.975, df = n - 1) * se,
+    upper = mean + qt(0.975, df = n - 1) * se
+  )
+
+ggplot(bumper_summary, aes(x = Bumper, y = mean)) +
+  geom_point(size = 3, color = "#619CFF") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2, color = "#619CFF") +
+  labs(
+    title = "",
+    y = "Mean Repair Cost",
+    x = "Bumper Group"
+  ) +
+  theme_minimal()
+```
+</div>
+
 We want to calculate a 95% pairwise confidence interval for the difference between **Bumper 1** and **Bumper 2** using Fisher's LSD and Bonferroni.
 
 We test: \( \mu_1 - \mu_2 \)
@@ -1229,14 +1261,50 @@ Since the interval contains **zero**, that is:
 Conclusion: 
 Bonferroni informs us it is **plausible** that \( \mu_1 = \mu_2 \)
 
+<div style="text-align: center;">
+
+```{r fig.cap="Comparison of LSD and Bonferroni Confidence Intervals for \\(\\mu_1 - \\mu_2\\). LSD is narrower; Bonferroni adjusts for multiple comparisons.", echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# Values for Bumper 1 vs Bumper 2
+diff <- 380.0 - 485.9
+MSE <- 12399
+n <- 10
+SE <- sqrt(MSE * (1/n + 1/n))
+df <- 36
+m <- 6
+
+t_lsd <- qt(1 - 0.025, df)
+t_bonf <- qt(1 - 0.05 / (2 * m), df)
+
+CI_lsd <- c(diff - t_lsd * SE, diff + t_lsd * SE)
+CI_bonf <- c(diff - t_bonf * SE, diff + t_bonf * SE)
+
+ci_data <- data.frame(
+  Method = c("LSD", "Bonferroni"),
+  lower = c(CI_lsd[1], CI_bonf[1]),
+  upper = c(CI_lsd[2], CI_bonf[2]),
+  center = diff
+)
+
+ggplot(ci_data, aes(x = Method, y = center)) +
+  geom_point(size = 3, color = "#F8766D") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2, color = "#F8766D") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "#000000") +
+  labs(
+    title = "Confidence Interval for μ₁ − μ₂",
+    y = "Difference in Means (μ₁ − μ₂)",
+    x = "Method"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+</div>
+
+
 Using `DescTools::PostHocTest()` for Fisher's LSD
 
 We perform Fisher’s LSD post-hoc test using the `DescTools` package:
-
-```r
-library(DescTools)
-PostHocTest(bumper_model, method = "lsd")
-```
 
 This returns the following multiple comparisons of means:
 
