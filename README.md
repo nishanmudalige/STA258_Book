@@ -2,9 +2,9 @@
 
 
 <p align="center"> 
-<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/14fbd7379265761a203c30ffb1e235954dd068a4/Hex%20Badges/UTM_Stats.svg"> 
+<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/UTM_Stats.svg"> 
   &thinsp; 
-<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/14fbd7379265761a203c30ffb1e235954dd068a4/Hex%20Badges/STA258.svg">
+<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/STA258.svg">
 </p>
 
 
@@ -38,5 +38,5 @@ Visit [https://nishanmudalige.github.io/STA258/](https://nishanmudalige.github.i
 ---
 
 <p align="center"> 
-<img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/bookdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rmarkdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/knitr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/ggplot2.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/pipe.svg"> <!-- <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/dplyr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyverse.svg"> --> <img style="float:left;height:100px;"src="https://raw.githubusercontent.com/nishanmudalige/STA258/c998e6f033f3334199fc1d97d310922f92aa95cd/Hex%20Badges/plotly_no_bg.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/0d7338a2c1da69d79f69c88afcc9bb0534f08a5d/SVG/shiny.svg">
+<img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/bookdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rmarkdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/knitr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/ggplot2.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/pipe.svg"> <!-- <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/dplyr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyverse.svg"> --> <img style="float:left;height:100px;"src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/plotly_no_bg.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/shiny.svg">
 </p>
