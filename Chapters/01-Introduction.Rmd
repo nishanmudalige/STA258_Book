@@ -165,7 +165,7 @@ The picture below shows the relationship between parameters from a population an
 
 <!--  include engine='tikz' in block header for tikz images -->
 <!-- ```{r fig.align='center', echo=FALSE, out.width='100%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap='Illustration of parameters in a population and statistics in a sample'} -->
-```{r fig.cap="Illustration of parameters in a population and statistics in a sample", echo=FALSE, fig.align='center', warning=FALSE}
+```{r fig.cap="Illustration of parameters in a population and statistics in a sample", out.width='90%', echo=FALSE, fig.align='center', warning=FALSE}
 library(plotly)
 
 # ---------- helpers (as you defined) ----------
@@ -199,9 +199,9 @@ ellipse_points_excluding_rects <- function(cx, cy, a, b, n, rects) {
 
 # ---------- parameters & data ----------
 set.seed(2)
-pop_ctr_y  <-  2.2;  samp_ctr_y <- -2.2
-a_pop <- 4.5; b_pop <- 1.65
-a_smp <- 2.6; b_smp <- 0.95
+pop_ctr_y  <-  2.5;  samp_ctr_y <- -2.5
+a_pop <- 4.5; b_pop <- 2.0
+a_smp <- 2.6; b_smp <- 1.25
 
 pop_title_y <- pop_ctr_y + 0.25
 pop_stats_y <- pop_ctr_y - 0.25
@@ -230,7 +230,7 @@ p <- plot_ly() %>%
   add_trace(
     data = pop_ell, x = ~x, y = ~y,
     type = 'scatter', mode = 'lines',
-    fill = 'toself', fillcolor = '#00A5FF',
+    fill = 'toself', fillcolor = '#00ABFD',
     line = list(color = '#004970', width = 0.6),
     hoverinfo = 'none', showlegend = FALSE
   ) %>%
@@ -266,13 +266,13 @@ p <- plot_ly() %>%
     annotations = list(
       # straight arrow
       list(
-        x   =  0.00, y   = samp_ctr_y + 0.95,
-        ax  =  0.00, ay  = pop_ctr_y - 1.25,
+        x   =  0.00, y   = samp_ctr_y + 1.25,
+        ax  =  0.00, ay  = pop_ctr_y - 1.975,
         xref= 'x',     yref= 'y',
         axref= 'x',    ayref= 'y',
         showarrow = TRUE,
         arrowhead = 2,
-        arrowwidth = 1.5,
+        arrowwidth = 2.5,
         arrowcolor = 'black',
         text = ''
       ),
