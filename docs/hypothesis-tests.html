@@ -282,9 +282,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>10</b> Analysis of Categorical Data</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#multinomial-response-model"><i class="fa fa-check"></i><b>10.1</b> Multinomial Response Model</a></li>
-<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#chi-square-distributions"><i class="fa fa-check"></i><b>10.2</b> Chi-Square Distributions</a></li>
-<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.3</b> The Chi-square Test for Goodness of fit</a></li>
-<li class="chapter" data-level="10.4" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.4</b> Sample Size Assumption</a></li>
+<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.2</b> The Chi-square Test for Goodness of fit</a></li>
+<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.3</b> Sample Size Assumption</a></li>
 </ul></li>
 </ul>
 
@@ -1962,12 +1961,6 @@ Figure 6.9: Boxplot of Success Index by Group
 <span id="cb55-13"><a href="hypothesis-tests.html#cb55-13" tabindex="-1"></a>    bp <span class="sc">+</span></span>
 <span id="cb55-14"><a href="hypothesis-tests.html#cb55-14" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb55-15"><a href="hypothesis-tests.html#cb55-15" tabindex="-1"></a>      <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> our.labs);</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-21-1.png" alt="Boxplot of Success Index by Group using ggplot2" width="60%" />
-<p class="caption">
-Figure 6.10: Boxplot of Success Index by Group using ggplot2
-</p>
-</div>
 <p><strong>Checking the Assumptions and Conditions</strong></p>
 <p><strong>Independent Group Assumption:</strong> The success index in group 1 is
 unrelated to the success index in group 2.</p>
@@ -2182,20 +2175,20 @@ control (Group 2), the hypotheses are:</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="hypothesis-tests.html#cb61-1" tabindex="-1"></a>    <span class="co"># Making Q-Q plot;</span></span>
 <span id="cb61-2"><a href="hypothesis-tests.html#cb61-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Treatment&quot;</span>);</span>
 <span id="cb61-3"><a href="hypothesis-tests.html#cb61-3" tabindex="-1"></a>    <span class="fu">qqline</span>(treatment, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-22-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-21-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
 <p class="caption">
-Figure 6.11: Q-Q Plot for Treatment Group
+Figure 6.10: Q-Q Plot for Treatment Group
 </p>
 </div>
 <p><strong>Nearly Normal Condition (control):</strong></p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="hypothesis-tests.html#cb62-1" tabindex="-1"></a>    <span class="co"># Making Q-Q plot;</span></span>
 <span id="cb62-2"><a href="hypothesis-tests.html#cb62-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Control&quot;</span>);</span>
 <span id="cb62-3"><a href="hypothesis-tests.html#cb62-3" tabindex="-1"></a>    <span class="fu">qqline</span>(control, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-23-1.png" alt="Q-Q Plot for Control Group" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-22-1.png" alt="Q-Q Plot for Control Group" width="60%" />
 <p class="caption">
-Figure 6.12: Q-Q Plot for Control Group
+Figure 6.11: Q-Q Plot for Control Group
 </p>
 </div>
 <p>Stemplots suggest that there is a mild outlier in the control group but

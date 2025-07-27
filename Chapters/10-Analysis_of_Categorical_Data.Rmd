@@ -111,11 +111,12 @@ $$
 The test statistic for comparing the observed and expected cell counts (and, consequently, testing $H_{0}: p_{1}=p_{2}=p_{3}=1 / 3$ is the $\mathbf{X}^{\mathbf{2}}$ statistic:
 
 $$
-\begin{gathered}
-X^{2}=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}=\sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
-X^{2}=\frac{(78-100)^{2}}{100}+\frac{(117-100)^{2}}{100}+\frac{(105-100)^{2}}{100} \\
-X^{2}=4.84+2.89+0.25=7.98
-\end{gathered}
+\begin{align}
+\chi^{2} &=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}\\
+  & =\sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
+  &=\frac{(78-100)^{2}}{100}+\frac{(117-100)^{2}}{100}+\frac{(105-100)^{2}}{100} \\
+  &=4.84+2.89+0.25=7.98
+\end{align}
 $$
 
 **Step 3. Finding P-value.**
@@ -127,12 +128,6 @@ To find the P -value, compare $X^{2}$ with critical values from the chi-square d
 If we used $\alpha=0.05$, since our $P-$ value $<\alpha=0.05$, we could reject $H_{0}$ at the $5 \%$ significance level. We would conclude that the three brands of milk are not equally preferred.
 
 ::::: 
-
-## Chi-Square Distributions
-
-The chi-square distributions are a family of distributions that take only positive values and are skewed to the right. A specific chi-square distribution is specified by giving its degrees of freedom.
-Helpful fact: the mean of any chi-square distribution is equal to its degrees of freedom.
-![](https://cdn.mathpix.com/cropped/2025_07_03_23fd2a0e5c12ad427eadg-17.jpg?height=665&width=916&top_left_y=193&top_left_x=95)
 
 ::::: example
 
@@ -190,13 +185,14 @@ $$
 
 The test statistic for comparing the observed and expected cell counts (and, consequently, testing $H_{0}: p_{1}=p_{2}=p_{3}=p_{4}=1 / 4$ is the $\mathbf{X}^{\mathbf{2}}$ statistic:
 
-$$
-\begin{gathered}
-X^{2}=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}=\sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
-X^{2}=\frac{(12-20)^{2}}{20}+\frac{(40-20)^{2}}{20}+\frac{(8-20)^{2}}{20}+\frac{(2-20)^{2}}{20} \\
-X^{2}=64 / 20+400 / 20+144 / 20+0=30.4
-\end{gathered}
-$$
+
+\begin{aligned}
+  \chi^{2} &=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }} \\
+           &= \sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
+           &= \frac{(12-20)^{2}}{20}+\frac{(40-20)^{2}}{20}+\frac{(8-20)^{2}}{20}+\frac{(2-20)^{2}}{20} \\
+           &= 64 / 20+400 / 20+144 / 20+0=30.4
+\end{aligned}
+
 
 **Step 3. Finding P-value.**
 
@@ -272,13 +268,14 @@ $$
 
 **Step 2. Computing test statistic.**
 
-$$
-\begin{gathered}
-X^{2}=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}=\sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
-X^{2}=\frac{(12-15)^{2}}{15}+\frac{(32-30)^{2}}{30}+\frac{(42-45)^{2}}{45}+\frac{(36-30)^{2}}{30}+\frac{(28-30)^{2}}{30} \\
-X^{2}=9 / 15+4 / 30+9 / 45+36 / 30+4 / 30=2.2667
-\end{gathered}
-$$
+
+\begin{aligned}
+\chi^{2} &=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}\\
+        &=\sum_{\text {all cells }} \frac{ \big(n_{i}-E(n_{i}) \big)^{2}}{E\left(n_{i}\right)} \\
+        &=\frac{(12-15)^{2}}{15}+\frac{(32-30)^{2}}{30}+\frac{(42-45)^{2}}{45}+\frac{(36-30)^{2}}{30}+\frac{(28-30)^{2}}{30} \\
+        &=9 / 15+4 / 30+9 / 45+36 / 30+4 / 30=2.2667
+\end{aligned}
+
 
 **Step 3. Finding P-value.**
 
@@ -294,14 +291,21 @@ Since our $P-$ value $>0.25>\alpha=0.01$, we conclude that there is NOT enough e
 
 A categorical variable has $k$ possible outcomes, with probabilities $p_{1}, p_{2}, \ldots, p_{k}$. That is , $p_{i}$ is the probability of the $i$ th outcome. We have $n$ independent observations from this categorical variable. To test the null hypothesis that the probabilities have specified values
 
-$$
-H_{0}: p_{1}=p_{10}, p_{2}=p_{20}, \ldots, p_{k}=p_{k 0}
-$$
 
-use the chi-square statistic
+\begin{aligned}
+H_{0}:& \, p_{1} = p_{hyp_1}, \, 
+           p_{2} = p_{hyp_2}, \,
+           \ldots, \,
+           p_{k} = p_{hyp_2}   \\
+
+H_{a}:& \, \text{at least one of } \, p_{1}, p_{2}, p_{3} \, \text { is different }
+\end{aligned}
+
+
+Use the chi-square statistic
 
 $$
-X^{2}=\sum \frac{(\text { observed count }- \text { expected count })^{2}}{\text { expected count }}
+\chi^{2}=\sum \frac{(\text { observed count }- \text { expected count })^{2}}{\text { expected count }}
 $$
 
 (expected counts are equal to $n p_{i}$ ).

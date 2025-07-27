@@ -433,54 +433,9 @@ When we use the term *histogram*, we often refer to a frequency histogram unless
 <!-- **Note:** When we use the term *histogram*, we often refer to a frequency histogram unless otherwise specified. -->
 <!-- ::: -->
 
-An example of a histogram is shown in Figure.
+Some examples of histograms which also illustrate the concept of skewness are shown in Figures \@ref(fig:HistExampleLeft), \@ref(fig:HistExampleRight), \and @ref(fig:HistExampleSymm). The histograms show how the distribution of data can be skewed to the left, skewed to the right, or approximately symmetric.
 
-```{r HistogramExample, fig.cap="An illustration of a histogram.", echo=FALSE, fig.align='center', warning=FALSE}
-library(ggplot2)
-
-# Data for bars
-df <- data.frame(
-  xmin = c(0.5, 1.5, 2.5, 3.5, 4.5, 5.5),
-  xmax = c(1.5, 2.5, 3.5, 4.5, 5.5, 6.5),
-  ymax = c(2, 3.5, 5, 4, 2.5, 1)
-)
-df$xmid <- (df$xmin + df$xmax) / 2
-df$xlabel <- c("10", "20", "30", "40", "50", "60")
-
-# Plot
-ggplot(df) +
-  # Bars
-  geom_rect(aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
-            fill = "blue", alpha = 0.3, color = "black") +
-  
-  # X-axis ticks and labels
-  geom_segment(data = df, aes(x = xmid, xend = xmid, y = 0, yend = -0.15)) +
-  geom_text(data = df, aes(x = xmid, y = -0.3, label = xlabel), size = 4) +
-  
-  # Y-axis ticks and labels
-  geom_segment(data = data.frame(y = 1:5),
-               aes(x = 0, xend = -0.15, y = y, yend = y)) +
-  geom_text(data = data.frame(y = 1:5),
-            aes(x = -0.3, y = y, label = y), size = 4, hjust = 1) +
-  
-  # Axis arrows
-  geom_segment(aes(x = 0, xend = 7.5, y = 0, yend = 0),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 5.5),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  
-  # Axis titles
-  annotate("text", x = 7.0, y = -0.3, label = "Value", hjust = 0, size = 5) +
-  annotate("text", x = -0.75, y = 5.6, label = "Frequency", angle = 90, hjust = 1, size = 5) +
-  
-  # Layout
-  coord_cartesian(xlim = c(-0.8, 7.7), ylim = c(-0.5, 6)) +
-  theme_void()
-```
-
-Figures @ref(fig:HistExampleLeft), @ref(fig:HistExampleRight), and @ref(fig:HistExampleSymm) illustrate the concept of skewness in histograms. The histograms show how the distribution of data can be skewed to the left, skewed to the right, or symmetric.
-
-```{r HistogramWithLeftExample, fig.cap="An illustration of a histogram to have a left (or negative) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+```{r HistExampleLeft, fig.cap="An illustration of a histogram to have a left (or negative) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
 library(ggplot2)
 
 # Bar data
@@ -532,7 +487,7 @@ ggplot() +
   theme_void()
 ```
 
-```{r HistogramWithRightExample, fig.cap="An illustration of a histogram to have a right (or positive) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+```{r HistExampleRight, fig.cap="An illustration of a histogram to have a right (or positive) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
 library(ggplot2)
 
 # Bar data
@@ -585,7 +540,7 @@ ggplot() +
 ```
 
 
-```{r HistogramWithSymmetryExample, fig.cap="An illustration of a histogram to have a symmetric probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+```{r HistExampleSymm, fig.cap="An illustration of a histogram to have a symmetric probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
 library(ggplot2)
 
 # Bar data (symmetric around center)
@@ -637,8 +592,12 @@ ggplot() +
   theme_void()
 ```
 
+
+The bin widths selected can change the appearance of histograms
+The interactive application below allows us to examine the effect of bin size on a histogram from the [faithful](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/faithful.html) data set which measures the waiting time between eruptions of the Old Faithful geyser in Yellowstone National Park, Wyoming, USA.
+
 <center>
-```{r HistShinyApp, echo=FALSE, out.width='100%'}
+```{r HistShinyApp, echo=FALSE, out.width='100%', warning=FALSE}
 knitr::include_app("https://nishan-mudalige.shinyapps.io/Histogram-Shiny-App/", height = "743")
 ```
 </center>

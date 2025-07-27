@@ -282,9 +282,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>10</b> Analysis of Categorical Data</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#multinomial-response-model"><i class="fa fa-check"></i><b>10.1</b> Multinomial Response Model</a></li>
-<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#chi-square-distributions"><i class="fa fa-check"></i><b>10.2</b> Chi-Square Distributions</a></li>
-<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.3</b> The Chi-square Test for Goodness of fit</a></li>
-<li class="chapter" data-level="10.4" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.4</b> Sample Size Assumption</a></li>
+<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.2</b> The Chi-square Test for Goodness of fit</a></li>
+<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.3</b> Sample Size Assumption</a></li>
 </ul></li>
 </ul>
 
@@ -413,23 +412,18 @@ These expected values are:</p>
 </div>
 <p>The test statistic for comparing the observed and expected cell counts (and, consequently, testing <span class="math inline">\(H_{0}: p_{1}=p_{2}=p_{3}=1 / 3\)</span> is the <span class="math inline">\(\mathbf{X}^{\mathbf{2}}\)</span> statistic:</p>
 <p><span class="math display">\[
-\begin{gathered}
-X^{2}=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}=\sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
-X^{2}=\frac{(78-100)^{2}}{100}+\frac{(117-100)^{2}}{100}+\frac{(105-100)^{2}}{100} \\
-X^{2}=4.84+2.89+0.25=7.98
-\end{gathered}
+\begin{align}
+\chi^{2} &amp;=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}\\
+  &amp; =\sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
+  &amp;=\frac{(78-100)^{2}}{100}+\frac{(117-100)^{2}}{100}+\frac{(105-100)^{2}}{100} \\
+  &amp;=4.84+2.89+0.25=7.98
+\end{align}
 \]</span></p>
 <p><strong>Step 3. Finding P-value.</strong></p>
 <p>To find the P -value, compare <span class="math inline">\(X^{2}\)</span> with critical values from the chi-square distribution with degrees of freedom one fewer than the number of values the brand can take. That’s <span class="math inline">\(3-1=2\)</span> degrees of freedom. From Table D, we see that <span class="math inline">\(X^{2}=7.98\)</span> falls between 0.02 and 0.01 critical values of the chi-square distribution with 2 degrees of freedom. So the P -value of <span class="math inline">\(X^{2}=7.98\)</span> is between 0.01 and 0.02 ( <span class="math inline">\(0.01&lt;P-\)</span> value <span class="math inline">\(&lt;0.02\)</span> ).</p>
 <p><strong>Step 4. Conclusion. </strong></p>
 <p>If we used <span class="math inline">\(\alpha=0.05\)</span>, since our <span class="math inline">\(P-\)</span> value <span class="math inline">\(&lt;\alpha=0.05\)</span>, we could reject <span class="math inline">\(H_{0}\)</span> at the <span class="math inline">\(5 \%\)</span> significance level. We would conclude that the three brands of milk are not equally preferred.</p>
 </div>
-</div>
-<div id="chi-square-distributions" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> Chi-Square Distributions<a href="analysis-of-categorical-data.html#chi-square-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The chi-square distributions are a family of distributions that take only positive values and are skewed to the right. A specific chi-square distribution is specified by giving its degrees of freedom.
-Helpful fact: the mean of any chi-square distribution is equal to its degrees of freedom.
-<img src="https://cdn.mathpix.com/cropped/2025_07_03_23fd2a0e5c12ad427eadg-17.jpg?height=665&amp;width=916&amp;top_left_y=193&amp;top_left_x=95" /></p>
 <div class="example">
 <p><span id="exm:unlabeled-div-110" class="example"><strong>Example 10.2  </strong></span>Raymond Weil is about to come out with a new watch and wants to find out whether people have special preferences of the color of the watchband, or whether all four colors under consideration are equally preferred. A random sample of 80 prospective watch buyers is selected. Each person is shown the watch with four different band colors and asked to state his or her preference. The results (observed counts) are given below.</p>
 <div style="text-align: center">
@@ -500,13 +494,12 @@ These expected values are:</p>
 </div>
 <p><strong>Step 2. Computing test statistic.</strong></p>
 <p>The test statistic for comparing the observed and expected cell counts (and, consequently, testing <span class="math inline">\(H_{0}: p_{1}=p_{2}=p_{3}=p_{4}=1 / 4\)</span> is the <span class="math inline">\(\mathbf{X}^{\mathbf{2}}\)</span> statistic:</p>
-<p><span class="math display">\[
-\begin{gathered}
-X^{2}=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}=\sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
-X^{2}=\frac{(12-20)^{2}}{20}+\frac{(40-20)^{2}}{20}+\frac{(8-20)^{2}}{20}+\frac{(2-20)^{2}}{20} \\
-X^{2}=64 / 20+400 / 20+144 / 20+0=30.4
-\end{gathered}
-\]</span></p>
+<span class="math display">\[\begin{aligned}
+  \chi^{2} &amp;=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }} \\
+           &amp;= \sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
+           &amp;= \frac{(12-20)^{2}}{20}+\frac{(40-20)^{2}}{20}+\frac{(8-20)^{2}}{20}+\frac{(2-20)^{2}}{20} \\
+           &amp;= 64 / 20+400 / 20+144 / 20+0=30.4
+\end{aligned}\]</span>
 <p><strong>Step 3. Finding P-value.</strong></p>
 <p>To find the P -value, compare <span class="math inline">\(X^{2}\)</span> with critical values from the chi-square distribution with degrees of freedom one fewer than the number of values the color can take. That’s <span class="math inline">\(4-1=3\)</span> degrees of freedom. From Table D , we see that <span class="math inline">\(X^{2}=30.4\)</span> is greater than the greatest entry in the <span class="math inline">\(\mathrm{df}=3\)</span> row, which is the critical value for tail area 0.0005 . The P -value is therefore smaller than 0.0005 .</p>
 <p><strong>Step 4. Conclusion.</strong></p>
@@ -592,34 +585,38 @@ These expected values are:</p>
 </table>
 </div>
 <p><strong>Step 2. Computing test statistic.</strong></p>
-<p><span class="math display">\[
-\begin{gathered}
-X^{2}=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}=\sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
-X^{2}=\frac{(12-15)^{2}}{15}+\frac{(32-30)^{2}}{30}+\frac{(42-45)^{2}}{45}+\frac{(36-30)^{2}}{30}+\frac{(28-30)^{2}}{30} \\
-X^{2}=9 / 15+4 / 30+9 / 45+36 / 30+4 / 30=2.2667
-\end{gathered}
-\]</span></p>
+<span class="math display">\[\begin{aligned}
+\chi^{2} &amp;=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }}\\
+        &amp;=\sum_{\text {all cells }} \frac{ \big(n_{i}-E(n_{i}) \big)^{2}}{E\left(n_{i}\right)} \\
+        &amp;=\frac{(12-15)^{2}}{15}+\frac{(32-30)^{2}}{30}+\frac{(42-45)^{2}}{45}+\frac{(36-30)^{2}}{30}+\frac{(28-30)^{2}}{30} \\
+        &amp;=9 / 15+4 / 30+9 / 45+36 / 30+4 / 30=2.2667
+\end{aligned}\]</span>
 <p><strong>Step 3. Finding P-value.</strong></p>
 <p>To find the P -value, compare <span class="math inline">\(X^{2}\)</span> with critical values from the chi-square distribution with degrees of freedom one fewer than the number of “columns”. That’s <span class="math inline">\(5-1=4\)</span> degrees of freedom. From Table D, we see that <span class="math inline">\(X^{2}=2.2667\)</span> is smaller than the smallest entry (5.39) in the <span class="math inline">\(\mathrm{df}=4\)</span> row, which is the critical value for tail area 0.25 . The P -value is therefore greater than 0.25 .</p>
 <p><strong>Step 4. Conclusion.</strong></p>
 <p>Since our <span class="math inline">\(P-\)</span> value <span class="math inline">\(&gt;0.25&gt;\alpha=0.01\)</span>, we conclude that there is NOT enough evidence to reject the null hypothesis <span class="math inline">\(H_{0}\)</span>. There is not enough evidence to infer that at least one <span class="math inline">\(p_{i}\)</span> is not equal to its specified value.</p>
 </div>
 </div>
-<div id="the-chi-square-test-for-goodness-of-fit" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">10.3</span> The Chi-square Test for Goodness of fit<a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-chi-square-test-for-goodness-of-fit" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> The Chi-square Test for Goodness of fit<a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A categorical variable has <span class="math inline">\(k\)</span> possible outcomes, with probabilities <span class="math inline">\(p_{1}, p_{2}, \ldots, p_{k}\)</span>. That is , <span class="math inline">\(p_{i}\)</span> is the probability of the <span class="math inline">\(i\)</span> th outcome. We have <span class="math inline">\(n\)</span> independent observations from this categorical variable. To test the null hypothesis that the probabilities have specified values</p>
+<span class="math display">\[\begin{aligned}
+H_{0}:&amp; \, p_{1} = p_{hyp_1}, \,
+           p_{2} = p_{hyp_2}, \,
+           \ldots, \,
+           p_{k} = p_{hyp_2}   \\
+
+H_{a}:&amp; \, \text{at least one of } \, p_{1}, p_{2}, p_{3} \, \text { is different }
+\end{aligned}\]</span>
+<p>Use the chi-square statistic</p>
 <p><span class="math display">\[
-H_{0}: p_{1}=p_{10}, p_{2}=p_{20}, \ldots, p_{k}=p_{k 0}
-\]</span></p>
-<p>use the chi-square statistic</p>
-<p><span class="math display">\[
-X^{2}=\sum \frac{(\text { observed count }- \text { expected count })^{2}}{\text { expected count }}
+\chi^{2}=\sum \frac{(\text { observed count }- \text { expected count })^{2}}{\text { expected count }}
 \]</span></p>
 <p>(expected counts are equal to <span class="math inline">\(n p_{i}\)</span> ).
 The P -value is the area to the right of <span class="math inline">\(X^{2}\)</span> under the density curve of the chi-square distribution with <span class="math inline">\(k-1\)</span> degrees of freedom.</p>
 </div>
-<div id="sample-size-assumption" class="section level2 hasAnchor" number="10.4">
-<h2><span class="header-section-number">10.4</span> Sample Size Assumption<a href="analysis-of-categorical-data.html#sample-size-assumption" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sample-size-assumption" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Sample Size Assumption<a href="analysis-of-categorical-data.html#sample-size-assumption" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We must have enough data for the methods to work. We usually check the following:
 Expected Cell Frequency Condition: We should expect to see at least five individuals in each cell.
 The expected cell frequency condition sounds like the condition that <span class="math inline">\(n p\)</span> and <span class="math inline">\(n(1-p)\)</span> be at least 10 when we tested proportions, it is similar to that.</p>

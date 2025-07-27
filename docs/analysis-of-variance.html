@@ -282,9 +282,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>10</b> Analysis of Categorical Data</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#multinomial-response-model"><i class="fa fa-check"></i><b>10.1</b> Multinomial Response Model</a></li>
-<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#chi-square-distributions"><i class="fa fa-check"></i><b>10.2</b> Chi-Square Distributions</a></li>
-<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.3</b> The Chi-square Test for Goodness of fit</a></li>
-<li class="chapter" data-level="10.4" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.4</b> Sample Size Assumption</a></li>
+<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.2</b> The Chi-square Test for Goodness of fit</a></li>
+<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.3</b> Sample Size Assumption</a></li>
 </ul></li>
 </ul>
 
@@ -439,8 +438,8 @@ F^* = \frac{\text{MSTr}}{\text{MSE}} = \frac{\text{SSTr} / (k - 1)}{\text{SSE} /
 </ul>
 <hr />
 <p><strong>P-value</strong></p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-28-1.png" alt="F-distribution with shaded p-value area" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-27-1.png" alt="F-distribution with shaded p-value area" width="70%" />
 <p class="caption">
 Figure 8.1: F-distribution with shaded p-value area
 </p>
@@ -1851,6 +1850,14 @@ The drawback to the LSD procedure is that we increase the probability of at leas
 </tr>
 </tbody>
 </table>
+<div style="text-align: center;">
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-28-1.png" alt="95% Confidence Intervals for Mean Cost by Bumper Group" width="672" />
+<p class="caption">
+Figure 8.2: 95% Confidence Intervals for Mean Cost by Bumper Group
+</p>
+</div>
+</div>
 <p>We want to calculate a 95% pairwise confidence interval for the difference between <strong>Bumper 1</strong> and <strong>Bumper 2</strong> using Fisher’s LSD and Bonferroni.</p>
 <p>We test: <span class="math inline">\(\mu_1 - \mu_2\)</span></p>
 <p>Fisher’s LSD Formula:</p>
@@ -1907,10 +1914,16 @@ Fisher’s LSD suggests <span class="math inline">\(\mu_2 &gt; \mu_1\)</span></p
 \]</span></p>
 <p>Conclusion:
 Bonferroni informs us it is <strong>plausible</strong> that <span class="math inline">\(\mu_1 = \mu_2\)</span></p>
+<div style="text-align: center;">
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-29-1.png" alt="Comparison of LSD and Bonferroni Confidence Intervals for \(\mu_1 - \mu_2\). LSD is narrower; Bonferroni adjusts for multiple comparisons." width="672" />
+<p class="caption">
+Figure 8.3: Comparison of LSD and Bonferroni Confidence Intervals for <span class="math inline">\(\mu_1 - \mu_2\)</span>. LSD is narrower; Bonferroni adjusts for multiple comparisons.
+</p>
+</div>
+</div>
 <p>Using <code>DescTools::PostHocTest()</code> for Fisher’s LSD</p>
 <p>We perform Fisher’s LSD post-hoc test using the <code>DescTools</code> package:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="analysis-of-variance.html#cb92-1" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
-<span id="cb92-2"><a href="analysis-of-variance.html#cb92-2" tabindex="-1"></a><span class="fu">PostHocTest</span>(bumper_model, <span class="at">method =</span> <span class="st">&quot;lsd&quot;</span>)</span></code></pre></div>
 <p>This returns the following multiple comparisons of means:</p>
 <p>95% Family-wise Confidence Level – Fisher LSD</p>
 <table>
@@ -1971,8 +1984,8 @@ Bonferroni informs us it is <strong>plausible</strong> that <span class="math in
 <p>Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
 <p>Using <code>DescTools::PostHocTest()</code> for Bonferroni Correction</p>
 <p>We perform a Bonferroni-adjusted post-hoc test using the <code>DescTools</code> package:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="analysis-of-variance.html#cb93-1" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
-<span id="cb93-2"><a href="analysis-of-variance.html#cb93-2" tabindex="-1"></a><span class="fu">PostHocTest</span>(bumper_model, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="analysis-of-variance.html#cb92-1" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
+<span id="cb92-2"><a href="analysis-of-variance.html#cb92-2" tabindex="-1"></a><span class="fu">PostHocTest</span>(bumper_model, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <p>This returns the following multiple comparisons of means:</p>
 <p>95% Family-wise Confidence Level – Bonferroni</p>
 <table>
@@ -2070,8 +2083,8 @@ Bonferroni informs us it is <strong>plausible</strong> that <span class="math in
 <p>An apple juice manufacturer has developed a new product - a liquid concentrate that, when mixed with water, produces 1 liter of apple juice. The product has several attractive features. First, it is more convenient that canned apple juice. Second, because the apple juice that is sold in cans is actually made from concentrate, the quality of the new product is at least as high as canned apple juice. Third, the cost of the new product is slightly lower than canned apple juice. The marketing manager has to decide how to market the new product. She can create advertising that emphasizes convenience, quality, or price.</p>
 <p>To facilitate a decision, she conducts an experiment. In three different cities that are similar in size and demographic makeup, she launches the product with advertising stressing the convenience of the liquid concentrate in one city. In the second city, the advertisements emphasize the quality of the product. Advertising that highlights the relatively low cost of the liquid concentrate is used in the third city. The number of packages sold weekly is recorded for the 20 weeks following the beginning of the campaign.</p>
 <p>These data are available at:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="analysis-of-variance.html#cb94-1" tabindex="-1"></a>ad_url <span class="ot">=</span></span>
-<span id="cb94-2"><a href="analysis-of-variance.html#cb94-2" tabindex="-1"></a><span class="st">&quot;https://mcs.utm.utoronto.ca/ ~nosedal/data/ad-strategies.t</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="analysis-of-variance.html#cb93-1" tabindex="-1"></a>ad_url <span class="ot">=</span></span>
+<span id="cb93-2"><a href="analysis-of-variance.html#cb93-2" tabindex="-1"></a><span class="st">&quot;https://mcs.utm.utoronto.ca/ ~nosedal/data/ad-strategies.t</span></span></code></pre></div>
 <p>The marketing manager wants to know if differences in sales exist between the three advertising strategies.</p>
 <p>To illustrate Fisher’s LSD method and the Bonferroni adjustment, consider the dataset described above and assume we tested to determine whether population means differ using a <span class="math inline">\(5 \%\)</span> significance level. The three sample means are: <span class="math inline">\(577.55,653.0\)</span>, and 608.65 .
 The pair-wise absolute differences are</p>
@@ -2083,8 +2096,8 @@ The pair-wise absolute differences are</p>
 \end{aligned}
 \]</span></p>
 <p>If we conduct the LSD procedure with <span class="math inline">\(\alpha=0.05\)</span> we find <span class="math inline">\(\left|t_{\alpha / 2, n-k}\right|=\left|t_{0.025,57}\right|=|-2.0024655|=2.0024655\)</span></p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="analysis-of-variance.html#cb95-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">57</span>)</span>
-<span id="cb95-2"><a href="analysis-of-variance.html#cb95-2" tabindex="-1"></a><span class="do">## [1] -2.002465</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="analysis-of-variance.html#cb94-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">57</span>)</span>
+<span id="cb94-2"><a href="analysis-of-variance.html#cb94-2" tabindex="-1"></a><span class="do">## [1] -2.002465</span></span></code></pre></div>
 <p><span class="math display">\[
 \text{LSD} = t_{\alpha / 2} \cdot \sqrt{MSE \left( \frac{1}{n_i} + \frac{1}{n_j} \right)}
 \approx 2.002 \cdot \sqrt{8894 \left( \frac{1}{20} + \frac{1}{20} \right)} = 59.71
