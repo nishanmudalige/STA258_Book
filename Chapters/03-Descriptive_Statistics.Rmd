@@ -579,55 +579,54 @@ curve_fig
 **A Symmetric Distributed Histogram and its Approximation:**
 
 ```{r HistogramWithSymmetryExample, fig.cap="An illustration of a histogram to have a symmetric probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
-library(ggplot2)
+library(plotly)
 
-# Bar data (symmetric around center)
-df <- data.frame(
-  xmin = c(0.5, 1.5, 2.5, 3.5, 4.5),
-  xmax = c(1.5, 2.5, 3.5, 4.5, 5.5),
-  ymax = c(2.5, 4, 5, 4, 2.5)
-)
-df$xmid <- (df$xmin + df$xmax) / 2
-df$xlabel <- c("10", "20", "30", "40", "50")
+# Generate symmetric data (e.g., normal distribution)
+set.seed(456)
+x <- rnorm(1000, mean = 0, sd = 1)  # Symmetric data
 
-# Red curve: f(x) = 5 * exp(-0.5 * (x - 3)^2)
-curve_df <- data.frame(x = seq(0.7, 5.3, length.out = 200))
-curve_df$y <- with(curve_df, 5 * exp(-0.5 * (x - 3)^2))
+# Create histogram (density-normalized)
+fig <- plot_ly(
+  x = ~x,
+  type = "histogram",
+  histnorm = "probability density",
+  nbinsx = 40,
+  marker = list(
+    color = "#00A5FF",
+    line = list(color = "white", width = 1)
+  ),
+  opacity = 0.75
+) %>%
+  layout(
+    title = "Symmetric Histogram",
+    xaxis = list(title = "Value"),
+    yaxis = list(title = "Density"),
+    bargap = 0.05
+  )
 
-# Y ticks
-yticks <- data.frame(y = 1:5)
+fig
+```
 
-# ggplot
-ggplot() +
-  # Bars
-  geom_rect(data = df,
-            aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
-            fill = "blue", alpha = 0.3, color = "black") +
-  
-  # Red curve
-  geom_line(data = curve_df, aes(x = x, y = y), color = "red", linewidth = 1) +
-  
-  # X-axis ticks and labels
-  geom_segment(data = df, aes(x = xmid, xend = xmid, y = 0, yend = -0.1)) +
-  geom_text(data = df, aes(x = xmid, y = -0.25, label = xlabel), size = 4) +
-  
-  # Y-axis ticks and labels
-  geom_segment(data = yticks, aes(x = 0, xend = -0.1, y = y, yend = y)) +
-  geom_text(data = yticks, aes(x = -0.25, y = y, label = y), size = 4, hjust = 1) +
-  
-  # Axis arrows
-  geom_segment(aes(x = 0, xend = 7.5, y = 0, yend = 0),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 5.5),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  
-  # Axis labels
-  annotate("text", x = 7.0, y = -0.3, label = "Value", hjust = 0, size = 5) +
-  annotate("text", x = -0.75, y = 5.6, label = "Frequency", angle = 90, hjust = 1, size = 5) +
-  
-  # Final layout
-  coord_cartesian(xlim = c(-0.7, 7.7), ylim = c(-0.5, 6)) +
-  theme_void()
+```{r SymmetricProbabilityDistribution, fig.cap="An approximation of figure 3.8 with a symmetric probability density funciton.", echo=FALSE, fig.align='center', warning=FALSE}
+# Estimate density from the same data
+dens <- density(x)
+
+# Density function as a separate line plot
+curve_fig <- plot_ly(
+  x = ~dens$x,
+  y = ~dens$y,
+  type = "scatter",
+  mode = "lines",
+  line = list(color = "#00A5FF", width = 3),
+  name = "Density"
+) %>%
+  layout(
+    title = "Density Curve of Symmetric Data",
+    xaxis = list(title = "Value"),
+    yaxis = list(title = "Density")
+  )
+
+curve_fig
 ```
 
 <center>
