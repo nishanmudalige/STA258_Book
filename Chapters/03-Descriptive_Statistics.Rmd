@@ -193,10 +193,14 @@ Figures \@ref(fig:LeftSkewExample), \@ref(fig:RightSkewExample) and \@ref(fig:Sy
 library(ggplot2)
 
 # style‑guide colors
-fill_blue   <- "#529EFF"
-line_blue   <- "#1F4E8C"
-median_blue <- "#00C1AA"
-mean_pink   <- "#FF62BC"
+# fill_blue   <- "#529EFF"
+# line_blue   <- "#1F4E8C"
+# median_blue <- "#00C1AA"
+# mean_pink   <- "#FF62BC"
+fill_blue   <- "#00C19A"
+line_blue   <- "#0064c8"
+median_blue <- "#0064c8"
+mean_pink   <- "#FF68A1"
 
 # simulate a true left‑skewed sample (Beta(5,2))
 set.seed(2025)
@@ -279,10 +283,10 @@ ggplot(df, aes(x = x)) +
 library(ggplot2)
 
 # style‑guide colors
-fill_blue   <- "#529EFF"
-line_blue   <- "#1F4E8C"
-median_col  <- "#00C1AA"
-mean_col    <- "#FF62BC"
+fill_blue   <- "#00C19A"
+line_blue   <- "#0064c8"
+median_blue <- "#0064c8"
+mean_pink   <- "#FF68A1"
 
 # simulate right‑skewed data
 set.seed(2025)
@@ -310,8 +314,8 @@ ggplot(df, aes(x = x)) +
     adjust = 2
   ) +
   # median & mean lines
-  geom_vline(xintercept = med_val,  color = median_col, size = 1) +
-  geom_vline(xintercept = mean_val, color = mean_col,   size = 1, linetype = "dashed") +
+  geom_vline(xintercept = med_val,  color = median_blue, size = 1) +
+  geom_vline(xintercept = mean_val, color = mean_pink,   size = 1, linetype = "dashed") +
   # annotations
   annotate("text",
            x      = 0.8, y      = y_tail,
@@ -343,15 +347,16 @@ ggplot(df, aes(x = x)) +
   )
 ```
 
+<!-- rgba(0,100,200,1) #00C19A -->
 
 ```{r SymmetryExample, fig.cap="An illustration of an approcimately symmetric distribution.", echo=FALSE, fig.align='center', warning=FALSE}
 library(ggplot2)
 
 # style‑guide colors
-fill_blue   <- "#529EFF"
-line_blue   <- "#1F4E8C"
-median_blue <- "#00C1AA"
-mean_pink   <- "#FF62BC"
+fill_blue   <- "#00C19A"
+line_blue   <- "#0064c8"
+median_blue <- "#0064c8"
+mean_pink   <- "#FF68A1"
 
 # simulate a symmetric sample (Beta(5,5) is symmetric on [0,1])
 set.seed(2025)
