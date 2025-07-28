@@ -626,17 +626,13 @@ ANOVA Table
 MS = \frac{SS}{df}
 \]
 
-\[
-\begin{array}{|l|c|c|c|c|}
-\hline
-\textbf{Source} & \textbf{Degrees of Freedom} & \textbf{Sum of Squares (SS)} & \textbf{Mean Square (MS)} & \textbf{F-Stat} \\
-\hline
-\text{Treatment} & 3 - 1 = 2 & 6.39 & \frac{6.39}{2} = 3.195 & F^* = \frac{3.195}{1.875} = 1.70 \\
-\text{Error}     & 18 - 3 = 15 & 28.20 & \frac{28.20}{15} = 1.88 & \times \\
-\text{Total}     & 18 - 1 = 17 & 34.59 & \times & \\
-\hline
-\end{array}
-\]
+
+| Source of Variation | Degrees of Freedom (df) | Sum of Squares (SS) | Mean Sum of Squares (MSS)     | F Ratio                         |
+| :------------------ | :---------------------- | :------------------ | :----------------------------- | :------------------------------ |
+| Treatment           | $3 - 1 = 2$             | 6.39                | $\frac{6.39}{2} = 3.195$       | $\frac{3.195}{1.88} = 1.70$     |
+| Error               | $18 - 3 = 15$           | 28.20               | $\frac{28.20}{15} = 1.88$      |                                |
+| Total               | $18 - 1 = 17$           | 34.59               | $\times$                       |                                |
+
 
 
 Hypothesis Test
@@ -1133,12 +1129,13 @@ rownames(result) = paste("Bumper", 1:4)
 result
 ```
 
-|  |  | min | Q1 | median | Q3 | max | mean | sd |  | n missing |
-| :--- | :--- | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| $\rightarrow$ | Bumper 1 | 196 | 297.00 | 368.5 | 432.75 | 610 | 380.0 | 130.09313 | 10 | 0 |
-| $\rightarrow$ | Bumper 2 | 374 | 412.50 | 502.0 | 520.25 | 663 | 485.9 | 90.53968 | 10 | 0 |
-|  | Bumper 3 | 332 | 426.00 | 444.5 | 572.75 | 637 | 483.8 | 102.10866 | 10 | 0 |
-|  | Bumper 4 | 181 | 278.25 | 340.5 | 410.25 | 538 | 348.2 | 118.52688 | 10 | 0 |
+|   |         | min | Q1     | median | Q3     | max | mean  | sd     | n  |
+|---|---------|-----|--------|--------|--------|-----|-------|--------|----|
+| $\rightarrow$ | Bumper 1 | 196 | 297.00 | 368.5  | 432.75 | 610 | 380.0 | 130.09 | 10 |
+| $\rightarrow$ | Bumper 2 | 374 | 412.50 | 502.0  | 520.25 | 663 | 485.9 | 90.54  | 10 |
+|   | Bumper 3 | 332 | 426.00 | 444.5  | 572.75 | 637 | 483.8 | 102.11 | 10 |
+|   | Bumper 4 | 181 | 278.25 | 340.5  | 410.25 | 538 | 348.2 | 118.53 | 10 |
+
 
 <div style="text-align: center;">
 ```{r fig.cap="95% Confidence Intervals for Mean Cost by Bumper Group", echo=FALSE, message=FALSE, warning=FALSE}
@@ -1291,11 +1288,11 @@ ggplot(ci_data, aes(x = Method, y = center)) +
   geom_point(size = 3, color = "#F8766D") +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2, color = "#F8766D") +
   geom_hline(yintercept = 0, linetype = "dashed", color = "#000000") +
-  labs(
-    title = "Confidence Interval for μ₁ − μ₂",
-    y = "Difference in Means (μ₁ − μ₂)",
-    x = "Method"
-  ) +
+labs(
+  title = expression("Confidence Interval for " * mu[1] - mu[2]),
+  y = expression("Difference in Means (" * mu[1] - mu[2] * ")"),
+  x = "Method"
+) +
   theme_minimal(base_size = 12)
 ```
 
