@@ -14,26 +14,29 @@ regression to find a function which perfectly describes the relationship
 between height and time.
 
 
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope which tells you the rate of change, $b$ is the intercept which may have a special meaning depending on the case.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[->, thick]
-  % Draw x and y axes
-  \draw[->] (-1,0) -- (7,0) node[right] {Time (month)};
-  \draw[->] (0,-1) -- (0,5) node[above] {Height (m)};
-  
-  \filldraw[blue] (0.5, 0.75) circle (2pt);
-  \filldraw[blue] (1.5, 1.75) circle (2pt);
-  \filldraw[blue] (1, 1.25) circle (2pt);
-  \filldraw[blue] (2, 2.1) circle (2pt);
-  \filldraw[blue] (2.5, 2.4) circle (2pt);
-  \filldraw[blue] (3, 2.8) circle (2pt);
-  \filldraw[blue] (3.5, 3.1) circle (2pt);
-  \filldraw[blue] (4, 3.7) circle (2pt);
-  \filldraw[blue] (4.5, 3.95) circle (2pt);
-  \filldraw[blue] (5, 4.1) circle (2pt);
-  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$y = mx+ b$};
-\end{tikzpicture}
+
+```{r fig.slr, fig.align='center', fig.cap="An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope, $b$ is the intercept.", echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# Data
+points_df <- data.frame(
+  Time = c(0.5, 1.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5),
+  Height = c(0.75, 1.75, 1.25, 2.1, 2.4, 2.8, 3.1, 3.7, 3.95, 4.1)
+)
+
+line_df <- data.frame(Time = seq(0, 6, length.out = 100))
+line_df$Height <- 0.8 * line_df$Time + 0.35
+
+# Plot
+ggplot() +
+  geom_point(data = points_df, aes(x = Time, y = Height), color = "#619CFF", size = 2) +
+  geom_line(data = line_df, aes(x = Time, y = Height), color = "#F8766D", size = 1) +
+  annotate("text", x = 5.5, y = 4.5, label = "y = mx + b", hjust = 0, color = "#F8766D") +
+  labs(x = "Time (month)", y = "Height (m)") +
+  theme_minimal()
 ```
+
+
 
 
 Now, you may wonder the accuracy of this model. In statistics, we do
@@ -119,101 +122,88 @@ measure of the strength of the linear relationship between two random
 variables.
 
 - If $r_{xy} \approx +1$, then we say that the two random variables have
-  a strong positive correlation. (See figure 15.2)
+  a strong positive correlation. (See figure 9.2)
   
-<center>
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of strong positive correlation ($r_{xy} \\approx +1$).'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[->, thick]
-  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
-  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
-  \filldraw[blue] (0.5, 0.5) circle (2pt);
-  \filldraw[blue] (1, 1) circle (2pt);
-  \filldraw[blue] (1.5, 1.5) circle (2pt);
-  \filldraw[blue] (2, 2) circle (2pt);
-  \filldraw[blue] (2.5, 2.5) circle (2pt);
-  \filldraw[blue] (3, 3) circle (2pt);
-  \filldraw[blue] (3.5, 3.5) circle (2pt);
-  \filldraw[blue] (4, 4) circle (2pt);
-  \filldraw[blue] (4.5, 4.5) circle (2pt);
-  \filldraw[blue] (5, 5) circle (2pt);
-  \filldraw[red] (0.5,1) circle (2pt);
-  \filldraw[red] (1,1.5) circle (2pt);
-  \filldraw[red] (1.5,2) circle (2pt);
-  \filldraw[red] (2,2.5) circle (2pt);
-  \filldraw[red] (2.5,3) circle (2pt);
-  \filldraw[red] (3,3.5) circle (2pt);
-  \filldraw[red] (3.5,4) circle (2pt);
-  \filldraw[red] (4,4.5) circle (2pt);
-  \filldraw[red] (4.5,5) circle (2pt);
-  \filldraw[red] (5,5.5) circle (2pt);
-\end{tikzpicture}
+
+```{r fig.correlation, echo=FALSE, fig.align='center', fig.cap="An illustration of strong positive correlation ($r_{xy} \\approx +1$).", message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# Data for blue points (on y = x)
+blue_df <- data.frame(
+  x = seq(0.5, 5, by = 0.5),
+  y = seq(0.5, 5, by = 0.5)
+)
+
+# Data for red points (also 11 points)
+red_df <- data.frame(
+  x = seq(0.5, 5.5, by = 0.5),
+  y = seq(1, 6, by = 0.5)  # now also 11 values
+)
+
+# Plot
+ggplot() +
+  geom_point(data = blue_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
+  geom_point(data = red_df, aes(x = x, y = y), color = "#F8766D", size = 2) +
+  labs(x = expression(x), y = expression(y)) +
+  theme_minimal()
 ```
-</center>
+
 
 - If $r_{xy} \approx -1$, then we say that the two random variables have
-  a strong negative correlation. (See figure 15.3)
+  a strong negative correlation. (See figure 9.3)
 
-<center>
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of strong negative correlation ($r_{xy} \\approx -1$).'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[->, thick]
-  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
-  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
-  \filldraw[blue] (0.5,5) circle (2pt);
-  \filldraw[blue] (1,4.5) circle (2pt);
-  \filldraw[blue] (1.5,4) circle (2pt);
-  \filldraw[blue] (2,3.5) circle (2pt);
-  \filldraw[blue] (2.5,3) circle (2pt);
-  \filldraw[blue] (3,2.5) circle (2pt);
-  \filldraw[blue] (3.5,2) circle (2pt);
-  \filldraw[blue] (4,1.5) circle (2pt);
-  \filldraw[blue] (4.5,1) circle (2pt);
-  \filldraw[blue] (5,0.5) circle (2pt);
-  \filldraw[red] (0.5,4.5) circle (2pt);
-  \filldraw[red] (1,4) circle (2pt);
-  \filldraw[red] (1.5,3.5) circle (2pt);
-  \filldraw[red] (2,3) circle (2pt);
-  \filldraw[red] (2.5,2.5) circle (2pt);
-  \filldraw[red] (3,2) circle (2pt);
-  \filldraw[red] (3.5,1.5) circle (2pt);
-  \filldraw[red] (4,1) circle (2pt);
-  \filldraw[red] (4.5,0.5) circle (2pt);
-  \filldraw[red] (5,0) circle (2pt);
-\end{tikzpicture}
+
+```{r fig.negative, echo=FALSE, fig.align='center', fig.cap="An illustration of strong negative correlation ($r_{xy} \\approx -1$).", message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# Blue points (strong negative correlation)
+blue_df <- data.frame(
+  x = c(0.5, 1, 1.5, 2.3, 2.5, 3.2, 3.5, 4.1, 4.5, 5),
+  y = c(5, 4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 0.5)
+)
+
+# Red points (slightly off diagonal)
+red_df <- data.frame(
+  x = c(0.5, 1, 1.5, 2.3, 2.5, 3.2, 3.5, 4.1, 4.5, 5),
+  y = c(4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 0.5, 0)
+)
+
+# Plot
+ggplot() +
+  geom_point(data = blue_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
+  geom_point(data = red_df, aes(x = x, y = y), color = "#F8766D", size = 2) +
+  labs(x = expression(x), y = expression(y)) +
+  theme_minimal()
 ```
-</center>
-  <figcaption>An illustration of strong negative correlation (<span
-  class="math inline"><em>r</em><sub><em>x</em><em>y</em></sub> ≈ −1</span>).</figcaption>
-  </figure>
+
 
 - If $r_{xy} \approx 0$, then we say that there is essentially no
   correlation between the two random variables. Note that if
   $r \approx 0$, then it suggests a linear relationship doesn't exist
   but other relationship may exist. (See figure 15.4)
   
-<center>  
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of no correlation ($r_{xy} \\approx 0$).'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[->, thick]
-  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
-  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
-  \draw[black, thick, domain=0:6] plot (\x, {3});
-  \filldraw[blue] (0.5, 2.7) circle (2pt);
-  \filldraw[red]  (1,   1.5) circle (2pt);
-  \filldraw[blue] (1.5, 4.1) circle (2pt);
-  \filldraw[red]  (2.3, 2.0) circle (2pt);
-  \filldraw[blue] (3.1, 0.8) circle (2pt);
-  \filldraw[red]  (4.0, 3.5) circle (2pt);
-  \filldraw[blue] (4.5, 1.2) circle (2pt);
-  \filldraw[red]  (5.2, 4.3) circle (2pt);
-  \filldraw[blue] (6.0, 2.5) circle (2pt);
-\end{tikzpicture}
+ 
+```{r fig.nocorrelation, echo=FALSE, fig.align='center', fig.cap="An illustration of no correlation ($r_{xy} \\approx 0$).", message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# Points from TikZ
+df <- data.frame(
+  x = c(0.5, 1, 1.5, 2.3, 3.1, 4.0, 4.5, 5.2, 6.0),
+  y = c(2.7, 1.5, 4.1, 2.0, 0.8, 3.5, 1.2, 4.3, 2.5),
+  color = c("blue", "red", "blue", "red", "blue", "red", "blue", "red", "blue")
+)
+
+# Plot
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(aes(color = color), size = 2) +
+  geom_hline(yintercept = 1.3, color = "black", linewidth = 1) +
+  scale_color_manual(values = c("blue" = "#619CFF", "red" = "#F8766D")) +
+  labs(x = expression(x), y = expression(y)) +
+  theme_minimal() +
+  theme(legend.position = "none")
 ```
-</center>
-  <figcaption>An illustration of no correlation (<span
-  class="math inline"><em>r</em><sub><em>x</em><em>y</em></sub> ≈ 0</span>).</figcaption>
-  </figure>
+
+
 
 Note that correlation doesn't imply causation:
 
@@ -465,38 +455,48 @@ therefore the values that minimize the quantity $Q$. They are found
 taking partial derivatives of $Q$ with respect to $\hat{\beta_0}$ and
 $\hat{\beta_1}$ and setting the resulting expressions equal to $0$.
 
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[thick]
-  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
-  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
-  \filldraw[blue] (0.5, 1.0) circle (2pt);
-  \filldraw[blue] (1.5, 1.4) circle (2pt);
-  \filldraw[blue] (1, 1.5) circle (2pt);
-  \filldraw[blue] (2, 2.4) circle (2pt);
-  \filldraw[blue] (2.5, 2.1) circle (2pt);
-  \filldraw[blue] (3, 2.7) circle (2pt);
-  \filldraw[blue] (3.5, 3.3) circle (2pt);
-  \filldraw[blue] (4, 3.4) circle (2pt);
-  \filldraw[blue] (4.5, 4.2) circle (2pt);
-  \filldraw[blue] (5, 3.7) circle (2pt);
-  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
-  \foreach \x/\y in {
-    0.5/1.0,
-    1.5/1.4,
-    1/1.5,
-    2/2.4,
-    2.5/2.1,
-    3/2.7,
-    3.5/3.3,
-    4/3.4,
-    4.5/4.2,
-    5/3.7
-  } {
-    \draw[black] (\x,\y) -- (\x,{0.8*\x + 0.35});
-  }
-\end{tikzpicture}
+```{r fig.residuals, echo=FALSE, fig.align='center', fig.cap="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$.", message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# Data points
+x_vals <- c(0.5, 1.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5)
+y_vals <- c(1.0, 1.4, 1.5, 2.4, 2.1, 2.7, 3.3, 3.4, 4.2, 3.7)
+df <- data.frame(x = x_vals, y = y_vals)
+
+# Regression line: y_hat = 0.8x + 0.35
+df$y_hat <- 0.8 * df$x + 0.35
+
+# Residual segments
+residual_segments <- data.frame(
+  x = df$x,
+  xend = df$x,
+  y = df$y,
+  yend = df$y_hat
+)
+
+# Generate regression line for plotting
+line_df <- data.frame(x = seq(0, 6, length.out = 100))
+line_df$y <- 0.8 * line_df$x + 0.35
+
+# Plot
+# Plot
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(color = "#619CFF", size = 2) +  # Blue points
+
+  geom_line(data = line_df, aes(x = x, y = y), color = "#F8766D", size = 1) +  # Red regression line
+
+  geom_segment(data = residual_segments,
+               aes(x = x, xend = xend, y = y, yend = yend),
+               color = "#000", linetype = "solid") +  # Residual lines
+
+  annotate("text", x = 4.5, y = 5.4,
+           label = expression(hat(y) == hat(beta)[0] + hat(beta)[1] * x),
+           color = "#F8766D", size = 5, hjust = 0) +  # Equation label
+
+  labs(x = expression(x), y = expression(y)) +
+  theme_minimal()
 ```
+
 
 
 The following proof is the derive of $\hat{\beta_0}$ and $\hat{\beta_1}$
@@ -578,49 +578,53 @@ they measure.\
 It is defined as the sum over all squared differences between the
 observations and their overall mean $\bar{y}$.
 
-<figure>
-<center>
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components).'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[thick]
-  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
-  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
-  \filldraw[blue] (0.5, 1.3) circle (2pt);
-  \filldraw[blue] (1.5, 2.1) circle (2pt);
-  \filldraw[blue] (1, 1.6) circle (2pt);
-  \filldraw[blue] (2, 2.7) circle (2pt);
-  \filldraw[blue] (2.5, 2.2) circle (2pt);
-  \filldraw[blue] (3, 2.5) circle (2pt);
-  \filldraw[blue] (3.5, 3.7) circle (2pt);
-  \filldraw[blue] (4, 3.9) circle (2pt);
-  \filldraw[blue] (4.5, 3.4) circle (2pt);
-  \filldraw[blue] (5, 4.2) circle (2pt);
-  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
-  \draw[dashed] (-0.5,2.86) -- (6.5,2.86);
-  \node at (6.8, 2.86) [right] {$\bar{y}$};
-  \foreach \x/\y in {
-    0.5/1.3,
-    1.5/2.1,
-    1/1.6,
-    2/2.7,
-    2.5/2.2,
-    3/2.5,
-    3.5/3.7,
-    4/3.9,
-    4.5/3.4,
-    5/4.2
-  } {
-    \draw[black] (\x,\y) -- (\x,2.86);
-  }
-\end{tikzpicture}
+
+
+```{r, echo=FALSE, out.width='90%',fig.align='center',fig.cap= "An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components)."}
+library(ggplot2)
+
+# Observed data
+df <- data.frame(
+  x = c(0.5, 1.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5),
+  y = c(1.3, 2.1, 1.6, 2.7, 2.2, 2.5, 3.7, 3.9, 3.4, 4.2)
+)
+
+# Mean line value
+y_bar <- mean(df$y)
+
+# Regression line points
+reg_line <- data.frame(x = seq(0, 6, length.out = 100))
+reg_line$y <- 0.8 * reg_line$x + 0.35
+
+# Vertical segments from each point to mean
+df$y_bar <- y_bar
+
+# Plot
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(color = "#619CFF", size = 2) +  # Blue points
+  geom_line(data = reg_line, aes(x = x, y = y),
+            color = "#F8766D", size = 1) +  # Red regression line
+  geom_hline(yintercept = y_bar, linetype = "dashed", color = "#000000") +  # Mean line
+  geom_segment(aes(x = x, xend = x, y = y, yend = y_bar),
+               color = "#000000") +  # SST verticals
+
+  # Mean label (bar(y))
+  annotate("text", x = 6.3, y = y_bar, label = "bar(y)",
+           hjust = 0, vjust = -0.5, parse = TRUE) +
+
+  # Regression equation label: hat(y) == hat(beta)[0] + hat(beta)[1]*x
+  annotate("text", x = 4.5, y = 5.4,
+           label = "hat(y)==hat(beta)[0]+hat(beta)[1]*x",
+           parse = TRUE, color = "#F8766D", size = 5, hjust = 0) +
+
+  labs(x = expression(x), y = expression(y)) +
+  theme_minimal()
 ```
-</center>
-<figcaption>An illustration of Total Sum of Squares (SST). The blue
-points represent height measurements over time, the dashed line is the
-mean height <span class="math inline"><em>ȳ</em></span>, and the solid
-black vertical lines represent the squared deviations from the mean (SST
-components).</figcaption>
-</figure>
+
+
+ 
+
+
 
 ::: definition
 For any simple linear regression model, SST (Toal sum of squares)
@@ -636,50 +640,52 @@ actual empirical values of data). It is a measure of the discrepancy
 between the data and an estimation model, such as a linear regression. A
 small SSE indicates a tight fit of the model to the data.
 
-<figure>
-<center>
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \\hat{y}_i$.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[->, thick]
-  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
-  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
-  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
-  \filldraw[blue] (0.5, 1.4) circle (2pt);
-  \filldraw[blue] (1.5, 1.1) circle (2pt);
-  \filldraw[blue] (1, 2.1) circle (2pt);
-  \filldraw[blue] (2, 1.9) circle (2pt);
-  \filldraw[blue] (2.5, 3.1) circle (2pt);
-  \filldraw[blue] (3, 2.2) circle (2pt);
-  \filldraw[blue] (3.5, 3.8) circle (2pt);
-  \filldraw[blue] (4, 3.4) circle (2pt);
-  \filldraw[blue] (4.5, 4.5) circle (2pt);
-  \filldraw[blue] (5, 3.6) circle (2pt);
-  \foreach \x/\y in {
-    0.5/1.4, 
-    1.5/1.1,
-    1/2.1,
-    2/1.9,
-    2.5/3.1,
-    3/2.2,
-    3.5/3.8,
-    4/3.4,
-    4.5/4.5,
-    5/3.6
-  }{
-    \draw[black] (\x,\y) -- (\x,{0.8*\x + 0.35});
-  }
-  \draw[dashed] (-0.5,2.7) -- (6.5,2.7);
-  \node at (6.7,2.7) {$\bar{y}$};
-\end{tikzpicture}
-```
-</center>
 
-<figcaption>A simple linear regression illustration with residuals
-shown. Blue points are observed data, red line is the model, dashed line
-is the average of <span class="math inline"><em>y</em></span>, and black
-lines represent residuals <span class="math inline">$y_i -
-\hat{y_i}$</span>.</figcaption>
-</figure>
+```{r, echo=FALSE, fig.align='center', out.width='90%', fig.cap= "A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \\hat{y}_i$. "}
+library(ggplot2)
+
+# Data points from TikZ
+df <- data.frame(
+  x = c(0.5, 1.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5),
+  y = c(1.4, 1.1, 2.1, 1.9, 3.1, 2.2, 3.8, 3.4, 4.5, 3.6)
+)
+
+# Regression line: y_hat = 0.8x + 0.35
+df$y_hat <- 0.8 * df$x + 0.35
+
+# Residual segments
+residual_df <- data.frame(
+  x = df$x,
+  xend = df$x,
+  y = df$y,
+  yend = df$y_hat
+)
+
+# Regression line curve
+reg_line_df <- data.frame(x = seq(0, 6, length.out = 100))
+reg_line_df$y <- 0.8 * reg_line_df$x + 0.35
+
+# Mean line
+y_bar <- 2.7
+
+# Plot
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(color = "#619CFF", size = 2) +  # Blue points
+  geom_line(data = reg_line_df, aes(x = x, y = y), color = "#F8766D", size = 1) +  # Regression line
+  geom_segment(data = residual_df,
+               aes(x = x, xend = xend, y = y, yend = yend),
+               color = "#000000") +  # Residuals
+  geom_hline(yintercept = y_bar, linetype = "dashed", color = "#000000") +  # Mean line
+  annotate("text", x = 6.7, y = y_bar, label = "bar(y)", parse = TRUE, hjust = 0) +  # Mean label
+  annotate("text", x = 4.5, y = 5.0,
+           label = "hat(y)==hat(beta)[0]+hat(beta)[1]*x", parse = TRUE,
+           color = "#F8766D", size = 5, hjust = 0) +  # Regression equation
+  labs(x = expression(x), y = expression(y)) +
+  theme_minimal()
+```
+
+
+
 
 ::: definition
 For any simple linear regression model, SSE (Sum of residual squared)
@@ -693,44 +699,43 @@ Note that SSE (sum of residual squared) is an explained variation.\
 It measures the distance between estimated value (estimated dependent
 data) and the mean of dependent data ($\bar{y}$).
 
-<figure>
-<center>
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr::is_latex_output()) 'pdf' else 'png', fig.cap="An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\\bar{y}$, and the solid black lines illustrate the deviation of the model\'s predictions from this mean."}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[->, thick]
-  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
-  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
 
-  \filldraw[blue] (0.5, 1.2) circle (2pt);
-  \filldraw[blue] (1.5, 2.1) circle (2pt);
-  \filldraw[blue] (1, 1.6) circle (2pt);
-  \filldraw[blue] (2, 2.5) circle (2pt);
-  \filldraw[blue] (2.5, 2.9) circle (2pt);
-  \filldraw[blue] (3, 3.3) circle (2pt);
-  \filldraw[blue] (3.5, 3.7) circle (2pt);
-  \filldraw[blue] (4, 4.2) circle (2pt);
-  \filldraw[blue] (4.5, 4.4) circle (2pt);
-  \filldraw[blue] (5, 4.7) circle (2pt);
+```{r, echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.cap= "An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean."}
+library(ggplot2)
+library(dplyr)
 
-  \draw[red, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) 
-    node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
+# Create data with both over- and under-predicted points
+df <- data.frame(
+  x = c(0.5, 1.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5),
+  y = c(1.2, 2.1, 1.6, 2.5, 2.9, 3.3, 3.7, 4.2, 4.4, 4.7)
+)
 
-  \draw[dashed] (0,3) -- (6,3) node[right] {$\bar{y}$};
+# Linear model
+model <- lm(y ~ x, data = df)
+df$y_hat <- predict(model)
+# Ensure y_bar is numeric
+y_bar <- mean(df$y)
 
-  \foreach \x in {0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5} {
-    \draw[black] (\x, {0.8*\x + 0.35}) -- (\x, 3);
-  }
-\end{tikzpicture}
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(color = "#619CFF", size = 3) +  # Blue points
+  geom_abline(intercept = coef(model)[1], slope = coef(model)[2],
+              color = "#F8766D", size = 1) +  # Red regression line
+  geom_segment(aes(x = x, xend = x, y = y_hat, yend = y_bar),
+               color = "#000000") +  # SSR residuals
+  geom_hline(yintercept = y_bar, linetype = "dashed", color = "#000000") +  # Mean line
+  annotate("text", x = 5.5, y = y_bar,
+           label = expression(bar(y)),
+           hjust = 0) +  # Mean label
+  annotate("text", x = max(df$x) - 0.2, y = max(df$y) - 0.2,
+           label = expression(hat(y) == hat(beta)[0] + hat(beta)[1]*x),
+           color = "#F8766D", size = 5, hjust = 0) +  # Regression equation
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 14) +
+  coord_cartesian(clip = "off")
 ```
-</center>
-<figcaption>An illustration of simple linear regression. The blue points
-represent monthly height measurements with added variability. The red
-line is the fitted simple linear regression model. The dashed line shows
-the mean of the dependent variable, <span
-class="math inline"><em>ȳ</em></span>, and the solid black lines
-illustrate the deviation of the model’s predictions from this
-mean.</figcaption>
-</figure>
+
+
+
 
 ::: definition
 For any simple linear regression, the distance between the mean of
@@ -740,7 +745,7 @@ $$SSR = \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2.$$
 :::
 
 Note that sum square regression (SSR) is an explained variation.\
-**Summery**
+**Summary**
 
 Now, let's zoom in to see SST, SSE and SSR. Note that the relationship
 of these measures is that total deviation is equal to unexplained
@@ -755,33 +760,75 @@ SST = SSE + SSR.
 Total sum of squares = Sum of squares for error + Sum of squares for
 regression.
 
-<figure>
-<center>
-```{r, echo=FALSE, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='Visual representation of regression variability. \\textbf{SST} (green) is total variability from the mean, \\textbf{SSR} (pink) is explained variability, and \\textbf{SSE} (orange curly brace) is the residual (unexplained) variability between the observed value $y_i$ and the prediction $\\hat{y}_i$.'}
-\usetikzlibrary{decorations.pathmorphing, arrows, shapes, trees, positioning, matrix, calc, backgrounds}
-\begin{tikzpicture}[->, thick]
-  \draw[->] (-1,0) -- (7,0) node[right] {$x$};
-  \draw[->] (0,-1) -- (0,5) node[above] {$y$};
-  \filldraw[blue] (2, 4) circle (2pt) node[above right] {Observed $y_i$};
-  \draw[gray, thick, domain=0:6] plot (\x, {0.8*\x + 0.35}) node[right] {$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 \cdot x$};
-  \draw[dashed] (0,3) -- (6,3) node[right] {$\bar{y}$};
-  \coordinate (xhat) at (2, 1.95);
-  \filldraw[red] (xhat) circle (2pt) node[below right] {$\hat{y}_i$};
-  \draw[pink, thick] (xhat) -- (2, 3) node[midway, right] {\footnotesize SSR};
-  \draw[green, thick] (2, 4) -- (2, 3) node[midway, right] {\footnotesize SST};
-  \draw[thick, orange, |-|] (1.9, 1.95) -- (1.9, 4) node[midway, left=4pt, yshift=6pt] {\footnotesize SSE};
-\end{tikzpicture}
+
+```{r, echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.cap = "Visual representation of regression variability. The blue point represents the observed value $y_i$, the red point shows the predicted value $\\hat{y}_i$, and the dashed line represents the mean $\\bar{y}$. The green arrow illustrates the total variability (SST), the pink arrow shows the explained variability (SSR), and the orange curly bracket represents the residual (unexplained) variability (SSE)."}
+library(ggplot2)
+library(grid)
+
+# Create data
+df <- data.frame(
+  x = c(2),
+  xhat = c(2),
+  y_i = c(4),
+  yhat_i = c(2.95),
+  y_bar = c(3)
+)
+
+# Full ggplot
+ggplot(df, aes(x = x, y = y_i)) +
+  # Axes
+  geom_segment(aes(x = -1, xend = 7, y = 0, yend = 0), 
+               arrow = arrow(length = unit(0.2, "cm")), color = "#000000") +
+  geom_segment(aes(x = 0, xend = 0, y = -1, yend = 5), 
+               arrow = arrow(length = unit(0.2, "cm")), color = "#000000") +
+
+  # Observed y_i
+  geom_point(aes(x = x, y = y_i), color = "#619CFF", size = 3) +
+  annotate("text", x = df$x, y = df$y_i + 0.3, label = "Observed~y[i]", parse = TRUE, hjust = 0) +
+
+  # Predicted yhat_i
+  geom_point(aes(x = xhat, y = yhat_i), color = "#F8766D", size = 3) +
+  annotate("text", x = df$xhat + 0.3, y = df$yhat_i - 0.4, label = "hat(y)[i]", parse = TRUE, hjust = 0) +
+
+  # Regression line
+  stat_function(fun = function(x) 0.8 * x + 0.35, color = "#999999", size = 1) +
+  annotate("text", x = 6.2, y = 5.1, label = "hat(y)==hat(beta)[0] + hat(beta)[1]*x", parse = TRUE, hjust = 0) +
+
+  # Mean line
+  geom_segment(aes(x = -1, xend = 7, y = y_bar, yend = y_bar), 
+               linetype = "dashed", color = "black") +
+  annotate("text", x = 7, y = df$y_bar + 0.1, label = "bar(y)", parse = TRUE, hjust = 1) +
+
+  # SST
+  geom_segment(aes(x = x, xend = x, y = y_i, yend = y_bar), 
+               color = "#00BA38", size = 1,
+               arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
+  annotate("text", x = df$x + 0.3, y = (df$y_i + df$y_bar)/2 + 0.15, 
+           label = "SST", size = 3, color = "#00BA38") +
+
+  # SSR
+  geom_segment(aes(x = xhat, xend = xhat, y = yhat_i, yend = y_bar), 
+               color = "#FF62BC", size = 1,
+               arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
+  annotate("text", x = df$xhat - 0.3, y = (df$yhat_i + df$y_bar)/2 - 0.15, 
+           label = "SSR", size = 3, color = "#FF62BC") +
+
+  # SSE
+  geom_curve(
+    aes(x = xhat - 0.1, y = yhat_i, xend = xhat - 0.1, yend = y_i), 
+    color = "#ED8141", curvature = -0.5,
+    arrow = arrow(type = "closed", length = unit(0.15, "cm"))
+  ) +
+  annotate("text", x = df$xhat - 0.6, y = (df$y_i + df$yhat_i)/2 - 0.05, 
+           label = "SSE", size = 3, color = "#ED8141") +
+
+  # Theme and axis
+  labs(x = "x", y = "y") +
+  xlim(-1, 7) + ylim(-1, 5.5) +
+  theme_minimal(base_size = 14)
 ```
-</center>
-<figcaption> Visual representation of regression variability.
-<strong>SST</strong> (green) is total variability from the mean,
-<strong>SSR</strong> (pink) is explained variability, and
-<strong>SSE</strong> (orange curly brace) is the residual (unexplained)
-variability between the observed value <span
-class="math inline"><em>y</em><sub><em>i</em></sub></span> and the
-prediction <span
-class="math inline"><em>ŷ</em><sub><em>i</em></sub></span>.</figcaption>
-</figure>
+
+
 
 **Coefficient of Determination ($r^2$)**
 
@@ -1384,17 +1431,24 @@ dollars), area (in 100 square feet), and number of beds and baths.
          660                 7.3               2           1
   ----------------- ---------------------- ---------- -----------
 :::
-```{r fig.cap="Plot of Price vs Area for Apartments near UTM",echo=FALSE, fig.align='center', out.width='60%'}
+```{r fig.cap="Plot of Price vs Area for Apartments near UTM",echo=FALSE, fig.align='center', out.width='80%'}
+library(ggplot2)
+
 # Data
 area <- c(5.5, 6.5, 7.5, 8.0, 8.3, 9.8, 11.0, 12.5, 13.8, 10.2)
 price <- c(490, 590, 660, 700, 710, 630, 630, 760, 810, 680)
+df <- data.frame(area, price)
 
 # Plot
-plot(area, price,
-     pch = 19,                     # solid circle
-     xlab = "Area (sq ft)",
-     ylab = "Price (x$1000)",
-     bty = "l")                    # axis box only on left and bottom
+ggplot(df, aes(x = area, y = price)) +
+  geom_point(size = 3, color = "#000000") +
+  labs(
+    x = "Area (sq ft)",
+    y = "Price (x$1000)",
+    title = "Plot of Price vs Area for Apartments near UTM"
+  ) +
+  theme_minimal(base_size = 14)
+
 ```
 
 
@@ -1684,8 +1738,8 @@ model1 <- lm(y1 ~ x1)
 df1 <- data.frame(Fitted = fitted(model1), Residuals = resid(model1))
 
 p1 <- ggplot(df1, aes(Fitted, Residuals)) +
-  geom_point(color = "orange", size = 2) +
-  geom_hline(yintercept = 0, color = "black") +
+  geom_point(color = "#E68613", size = 2) +
+  geom_hline(yintercept = 0, color = "#000000") +
   labs(
     title = "Satisfies Assumptions",
     x     = "Fitted Values",
@@ -1700,8 +1754,8 @@ model2 <- lm(y2 ~ x2)
 df2 <- data.frame(Fitted = fitted(model2), Residuals = resid(model2))
 
 p2 <- ggplot(df2, aes(Fitted, Residuals)) +
-  geom_point(color = "orange", size = 2) +
-  geom_hline(yintercept = 0, color = "black") +
+  geom_point(color = "#E68613", size = 2) +
+  geom_hline(yintercept = 0, color = "#000000") +
   labs(
     title = "Non-linear Pattern",
     x     = "Fitted Values",
@@ -1716,8 +1770,8 @@ model3 <- lm(y3 ~ x3)
 df3 <- data.frame(Fitted = fitted(model3), Residuals = resid(model3))
 
 p3 <- ggplot(df3, aes(Fitted, Residuals)) +
-  geom_point(color = "orange", size = 2) +
-  geom_hline(yintercept = 0, color = "black") +
+  geom_point(color = "#E68613", size = 2) +
+  geom_hline(yintercept = 0, color = "#000000") +
   labs(
     title = "Non-constant Variance",
     x     = "Fitted Values",
@@ -1732,8 +1786,8 @@ model4 <- lm(y4 ~ x4)
 df4 <- data.frame(Fitted = fitted(model4), Residuals = resid(model4))
 
 p4 <- ggplot(df4, aes(Fitted, Residuals)) +
-  geom_point(color = "orange", size = 2) +
-  geom_hline(yintercept = 0, color = "black") +
+  geom_point(color = "#E68613", size = 2) +
+  geom_hline(yintercept = 0, color = "#000000") +
   labs(
     title = "Clustering",
     x     = "Fitted Values",
@@ -1767,6 +1821,4 @@ $\varepsilon \sim \mathcal{N}(0, \sigma^2)$
   These assumptions can be verified using residual plots.
 :::
 
-::: center
-:::
 
