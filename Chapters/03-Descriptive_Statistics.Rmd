@@ -197,7 +197,7 @@ library(ggplot2)
 # line_blue   <- "#1F4E8C"
 # median_blue <- "#00C1AA"
 # mean_pink   <- "#FF62BC"
-fill_blue   <- "#00C19A"
+fill_blue   <- "#619CFF"
 line_blue   <- "#0064c8"
 median_blue <- "#0064c8"
 mean_pink   <- "#FF68A1"
@@ -283,7 +283,7 @@ ggplot(df, aes(x = x)) +
 library(ggplot2)
 
 # style‑guide colors
-fill_blue   <- "#00C19A"
+fill_blue   <- "#619CFF"
 line_blue   <- "#0064c8"
 median_blue <- "#0064c8"
 mean_pink   <- "#FF68A1"
@@ -324,11 +324,11 @@ ggplot(df, aes(x = x)) +
   annotate("text",
            x      = med_val - 0.025, y = y_med - 0.1,
            label  = "median",
-           fontface= "bold", hjust = 1.1, color = median_col) +
+           fontface= "bold", hjust = 1.1, color = median_blue) +
   annotate("text",
            x      = mean_val + 0.025, y = y_mean,
            label  = "mean",
-           fontface= "bold", hjust = -0.1, color = mean_col) +
+           fontface= "bold", hjust = -0.1, color = mean_pink) +
   # exact axis limits, no extra padding
   scale_x_continuous(limits = c(-0.15, 1),   expand = c(0, 0)) +
   scale_y_continuous(limits = c(0, y_max),   expand = c(0, 0)) +
@@ -349,11 +349,11 @@ ggplot(df, aes(x = x)) +
 
 <!-- rgba(0,100,200,1) #00C19A -->
 
-```{r SymmetryExample, fig.cap="An illustration of an approcimately symmetric distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+```{r SymmetryExample, fig.cap="An illustration of an approximately symmetric distribution.", echo=FALSE, fig.align='center', warning=FALSE}
 library(ggplot2)
 
 # style‑guide colors
-fill_blue   <- "#00C19A"
+fill_blue   <- "#619CFF"
 line_blue   <- "#0064c8"
 median_blue <- "#0064c8"
 mean_pink   <- "#FF68A1"
@@ -521,163 +521,192 @@ When we use the term *histogram*, we often refer to a frequency histogram unless
 <!-- **Note:** When we use the term *histogram*, we often refer to a frequency histogram unless otherwise specified. -->
 <!-- ::: -->
 
-Some examples of histograms which also illustrate the concept of skewness are shown in Figures \@ref(fig:HistExampleLeft), \@ref(fig:HistExampleRight), \and @ref(fig:HistExampleSymm). The histograms show how the distribution of data can be skewed to the left, skewed to the right, or approximately symmetric.
+Some examples of histograms which also illustrate the concept of skewness are shown in Figures \@ref(fig:HistExampleLeft), \@ref(fig:HistExampleRight), and \@ref(fig:HistExampleSymm). The histograms show how the distribution of data can be skewed to the left, skewed to the right, or approximately symmetric.
 
 ```{r HistExampleLeft, fig.cap="An illustration of a histogram to have a left (or negative) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
-library(ggplot2)
+library(plotly)
 
-# Bar data
-df <- data.frame(
-  xmin = c(0.5, 1.5, 2.5, 3.5, 4.5, 5.5),
-  xmax = c(1.5, 2.5, 3.5, 4.5, 5.5, 6.5),
-  ymax = c(1, 2, 3, 4.2, 4.7, 4.9)
-)
-df$xmid <- (df$xmin + df$xmax) / 2
-df$xlabel <- c("10", "20", "30", "40", "50", "60")
+set.seed(5)
+x <- rbeta(6000, shape1 = 5, shape2 = 1.5) * 100
 
-# Curve function
-curve_df <- data.frame(x = seq(0.7, 6.3, length.out = 200))
-curve_df$y <- with(curve_df, 5 * exp(-0.3 * (6.5 - x)^2) + 0.5 * exp(-0.3 * (x - 1.5)))
+binwidth <- 5
 
-# Y ticks
-yticks <- data.frame(y = 1:5)
+# 1) Scaled density
+dens     <- density(x, adjust = 1.2)
+y_scaled <- dens$y * length(x) * binwidth
 
-# Plot
-ggplot() +
-  # Histogram bars
-  geom_rect(data = df,
-            aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
-            fill = "blue", alpha = 0.3, color = "black") +
-  
-  # Red curve
-  geom_line(data = curve_df, aes(x = x, y = y), color = "red", linewidth = 1) +
-  
-  # X ticks and labels
-  geom_segment(data = df, aes(x = xmid, xend = xmid, y = 0, yend = -0.1)) +
-  geom_text(data = df, aes(x = xmid, y = -0.25, label = xlabel), size = 4) +
-  
-  # Y ticks and labels
-  geom_segment(data = yticks, aes(x = 0, xend = -0.1, y = y, yend = y)) +
-  geom_text(data = yticks, aes(x = -0.25, y = y, label = y), size = 4, hjust = 1) +
-  
-  # Axis arrows
-  geom_segment(aes(x = 0, xend = 7.5, y = 0, yend = 0),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 5.5),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  
-  # Axis titles
-  annotate("text", x = 7.0, y = -0.3, label = "Value", hjust = 0, size = 5) +
-  annotate("text", x = -0.75, y = 5.6, label = "Frequency", angle = 90, hjust = 1, size = 5) +
-  
-  # Final styling
-  coord_cartesian(xlim = c(-0.7, 7.7), ylim = c(-0.5, 6)) +
-  theme_void()
+# 2) Compute max y (histogram + density)
+hist_data <- hist(x,
+                  breaks = seq(0, 120, by = binwidth),
+                  plot   = FALSE)
+max_y     <- max(max(hist_data$counts), max(y_scaled))
+
+plot_ly() %>%
+  # histogram (always on)
+  add_histogram(
+    x          = x,
+    xbins      = list(size = binwidth),
+    marker     = list(color = "#c6adff", line = list(color = "white", width = 1)),
+    showlegend = FALSE
+  ) %>%
+  # density (start hidden)
+  add_lines(
+    x          = dens$x,
+    y          = y_scaled,
+    line       = list(color = "#0064c8", width = 3),
+    visible    = FALSE,
+    showlegend = FALSE
+  ) %>%
+  layout(
+    title = list(text = "Histogram with Left‑Skewed Data"),
+    xaxis = list(title = "Value", range = c(0, 110)),
+    yaxis = list(title = "Frequency", range = c(0, 900), fixedrange = TRUE),
+    bargap = 0.02,
+    updatemenus = list(
+      list(
+        type      = "buttons",
+        direction = "right",
+        xanchor   = "left",
+        x         = 0.10,
+        y         = 0.70,
+        buttons = list(
+          list(
+            method  = "restyle",
+            args    = list("visible", list(TRUE, FALSE)),
+            args2   = list("visible", list(TRUE, TRUE)),
+            label   = "Show/Hide Density",
+            execute = TRUE      # ← ensures first click toggles on
+          )
+        )
+      )
+    )
+  )
 ```
 
 ```{r HistExampleRight, fig.cap="An illustration of a histogram to have a right (or positive) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
-library(ggplot2)
+library(plotly)
 
-# Bar data
-df <- data.frame(
-  xmin = c(0.5, 1.5, 2.5, 3.5, 4.5, 5.5),
-  xmax = c(1.5, 2.5, 3.5, 4.5, 5.5, 6.5),
-  ymax = c(4.9, 4.5, 3.8, 2.8, 1.8, 1)
-)
-df$xmid <- (df$xmin + df$xmax) / 2
-df$xlabel <- c("10", "20", "30", "40", "50", "60")
+set.seed(5)
+x        <- rbeta(6000, shape1 = 1.5, shape2 = 5) * 100
+binwidth <- 5
 
-# Curve
-curve_df <- data.frame(x = seq(0.7, 6.3, length.out = 200))
-curve_df$y <- with(curve_df, 5 * exp(-0.3 * (x - 1.5)^2) + 0.5 * exp(-0.3 * (6.5 - x)))
+# 1) Compute & scale density
+dens     <- density(x, adjust = 1.2)
+y_scaled <- dens$y * length(x) * binwidth
 
-# Y-axis tick data
-yticks <- data.frame(y = 1:5)
+# 2) Find max y
+hist_data <- hist(x,
+                  breaks = seq(0, 120, by = binwidth),
+                  plot   = FALSE)
+max_y     <- max(max(hist_data$counts), max(y_scaled))
 
-# Plot
-ggplot() +
-  # Histogram bars
-  geom_rect(data = df,
-            aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
-            fill = "blue", alpha = 0.3, color = "black") +
-  
-  # Red curve
-  geom_line(data = curve_df, aes(x = x, y = y), color = "red", linewidth = 1) +
-  
-  # X-axis ticks and labels
-  geom_segment(data = df, aes(x = xmid, xend = xmid, y = 0, yend = -0.1)) +
-  geom_text(data = df, aes(x = xmid, y = -0.25, label = xlabel), size = 4) +
-  
-  # Y-axis ticks and labels
-  geom_segment(data = yticks, aes(x = 0, xend = -0.1, y = y, yend = y)) +
-  geom_text(data = yticks, aes(x = -0.25, y = y, label = y), size = 4, hjust = 1) +
-  
-  # Axes with arrows
-  geom_segment(aes(x = 0, xend = 7.5, y = 0, yend = 0),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 5.5),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  
-  # Axis titles
-  annotate("text", x = 7.0, y = -0.3, label = "Value", hjust = 0, size = 5) +
-  annotate("text", x = -0.75, y = 5.6, label = "Frequency", angle = 90, hjust = 1, size = 5) +
-  
-  # Final layout
-  coord_cartesian(xlim = c(-0.7, 7.7), ylim = c(-0.5, 6)) +
-  theme_void()
+fig <- plot_ly() %>%
+  # histogram with equal-width bins from 0 to 120
+  add_histogram(
+    x          = x,
+    xbins      = list(start = 0, end = 90, size = binwidth),
+    marker     = list(color = "#c6adff", line = list(color = "white", width = 1)),
+    showlegend = FALSE
+  ) %>%
+  # density (starts hidden)
+  add_lines(
+    x          = dens$x,
+    y          = y_scaled,
+    line       = list(color = "#0064c8", width = 3),
+    visible    = FALSE,
+    showlegend = FALSE
+  ) %>%
+  layout(
+    title   = list(text = "Histogram with Right‑Skewed Data"),
+    xaxis   = list(title = "Value", range = c(0, 90)),
+    yaxis   = list(title = "Frequency", range = c(0, 900), fixedrange = TRUE),
+    bargap  = 0.02,
+    updatemenus = list(
+      list(
+        type      = "buttons",
+        direction = "right",
+        xanchor   = "left",
+        x         = 0.80,
+        y         = 0.70,
+        buttons = list(
+          list(
+            method  = "restyle",
+            args    = list("visible", list(TRUE, FALSE)),
+            args2   = list("visible", list(TRUE, TRUE)),
+            label   = "Show/Hide Density",
+            execute = TRUE      # ← ensures first click toggles on
+          )
+        )
+      )
+    )
+  )
+
+fig
 ```
 
 
 ```{r HistExampleSymm, fig.cap="An illustration of a histogram to have a symmetric probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
-library(ggplot2)
+library(plotly)
 
-# Bar data (symmetric around center)
-df <- data.frame(
-  xmin = c(0.5, 1.5, 2.5, 3.5, 4.5),
-  xmax = c(1.5, 2.5, 3.5, 4.5, 5.5),
-  ymax = c(2.5, 4, 5, 4, 2.5)
-)
-df$xmid <- (df$xmin + df$xmax) / 2
-df$xlabel <- c("10", "20", "30", "40", "50")
+set.seed(12)
 
-# Red curve: f(x) = 5 * exp(-0.5 * (x - 3)^2)
-curve_df <- data.frame(x = seq(0.7, 5.3, length.out = 200))
-curve_df$y <- with(curve_df, 5 * exp(-0.5 * (x - 3)^2))
+# Generate approximately symmetric data
+x        <- rnorm(6000, mean = 60, sd = 15)
+binwidth <- 5
 
-# Y ticks
-yticks <- data.frame(y = 1:5)
+# 1) Compute & scale density
+dens     <- density(x, adjust = 1.25)
+y_scaled <- dens$y * length(x) * binwidth
 
-# ggplot
-ggplot() +
-  # Bars
-  geom_rect(data = df,
-            aes(xmin = xmin, xmax = xmax, ymin = 0, ymax = ymax),
-            fill = "blue", alpha = 0.3, color = "black") +
-  
-  # Red curve
-  geom_line(data = curve_df, aes(x = x, y = y), color = "red", linewidth = 1) +
-  
-  # X-axis ticks and labels
-  geom_segment(data = df, aes(x = xmid, xend = xmid, y = 0, yend = -0.1)) +
-  geom_text(data = df, aes(x = xmid, y = -0.25, label = xlabel), size = 4) +
-  
-  # Y-axis ticks and labels
-  geom_segment(data = yticks, aes(x = 0, xend = -0.1, y = y, yend = y)) +
-  geom_text(data = yticks, aes(x = -0.25, y = y, label = y), size = 4, hjust = 1) +
-  
-  # Axis arrows
-  geom_segment(aes(x = 0, xend = 7.5, y = 0, yend = 0),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  geom_segment(aes(x = 0, xend = 0, y = 0, yend = 5.5),
-               arrow = arrow(length = unit(0.2, "cm")), linewidth = 0.5) +
-  
-  # Axis labels
-  annotate("text", x = 7.0, y = -0.3, label = "Value", hjust = 0, size = 5) +
-  annotate("text", x = -0.75, y = 5.6, label = "Frequency", angle = 90, hjust = 1, size = 5) +
-  
-  # Final layout
-  coord_cartesian(xlim = c(-0.7, 7.7), ylim = c(-0.5, 6)) +
-  theme_void()
+# 2) Find the maximum y‑value (histogram + density) for a locked y‑axis
+hist_data <- hist(x,
+                  breaks = seq(0, 120, by = binwidth),
+                  plot   = FALSE)
+max_y     <- max(max(hist_data$counts), max(y_scaled))
+
+# 3) Build the Plotly figure
+fig <- plot_ly() %>%
+  # A: histogram trace (always visible)
+  add_histogram(
+    x          = x,
+    xbins      = list(start = 0, end = 120, size = binwidth),
+    marker     = list(color = "#c6adff", line = list(color = "white", width = 1)),
+    showlegend = FALSE
+  ) %>%
+  # B: density trace (starts hidden)
+  add_lines(
+    x          = dens$x,
+    y          = y_scaled,
+    line       = list(color = "#0064c8", width = 3),
+    visible    = FALSE,
+    showlegend = FALSE
+  ) %>%
+  layout(
+    title   = list(text = "Histogram with Approximaetly Symmetric Data"),
+    xaxis   = list(title = "Value", range = c(0, 120)),
+    yaxis   = list(title = "Frequency", range = c(0, max_y), fixedrange = TRUE),
+    bargap  = 0.02,
+    updatemenus = list(
+      list(
+        type      = "buttons",
+        direction = "right",
+        xanchor   = "left",
+        x         = 0.80,
+        y         = 0.70,
+        buttons = list(
+          list(
+            method  = "restyle",
+            args    = list("visible", list(TRUE, FALSE)),
+            args2   = list("visible", list(TRUE, TRUE)),
+            label   = "Show/Hide Density",
+            execute = TRUE      # ← ensures first click toggles on
+          )
+        )
+      )
+    )
+  )
+
+fig
 ```
 
 
@@ -764,8 +793,8 @@ p <- plot_ly() %>%
     boxpoints = "none",
     name = "",
     hoverinfo = "y",
-    fillcolor = "#619CFF",
-    marker = list(color = "#619CFF"),
+    fillcolor = "#00C19A",
+    marker = list(color = "#00C19A"),
     line = list(color = 'rgba(0,100,200,1)')
   ) %>%
   # Custom outliers
