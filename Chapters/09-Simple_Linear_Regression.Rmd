@@ -13,9 +13,9 @@ coordinate system to draw each data point and use simple linear
 regression to find a function which perfectly describes the relationship
 between height and time.
 
-<div style="text-align: center;">
 
-```{r fig.slr, fig.cap="An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope, $b$ is the intercept.", echo=FALSE, message=FALSE, warning=FALSE}
+
+```{r fig.slr, fig.align='center', fig.cap="An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope, $b$ is the intercept.", echo=FALSE, message=FALSE, warning=FALSE}
 library(ggplot2)
 
 # Data
@@ -124,7 +124,7 @@ variables.
 - If $r_{xy} \approx +1$, then we say that the two random variables have
   a strong positive correlation. (See figure 9.2)
   
-<center>
+
 ```{r fig.correlation, echo=FALSE, fig.align='center', fig.cap="An illustration of strong positive correlation ($r_{xy} \\approx +1$).", message=FALSE, warning=FALSE}
 library(ggplot2)
 
@@ -147,12 +147,12 @@ ggplot() +
   labs(x = expression(x), y = expression(y)) +
   theme_minimal()
 ```
-</center>
+
 
 - If $r_{xy} \approx -1$, then we say that the two random variables have
   a strong negative correlation. (See figure 9.3)
 
-<center>
+
 ```{r fig.negative, echo=FALSE, fig.align='center', fig.cap="An illustration of strong negative correlation ($r_{xy} \\approx -1$).", message=FALSE, warning=FALSE}
 library(ggplot2)
 
@@ -182,7 +182,7 @@ ggplot() +
   $r \approx 0$, then it suggests a linear relationship doesn't exist
   but other relationship may exist. (See figure 15.4)
   
-<center>  
+ 
 ```{r fig.nocorrelation, echo=FALSE, fig.align='center', fig.cap="An illustration of no correlation ($r_{xy} \\approx 0$).", message=FALSE, warning=FALSE}
 library(ggplot2)
 
@@ -203,7 +203,7 @@ ggplot(df, aes(x = x, y = y)) +
   theme(legend.position = "none")
 ```
 
-</center>
+
 
 Note that correlation doesn't imply causation:
 
@@ -624,7 +624,6 @@ ggplot(df, aes(x = x, y = y)) +
 
  
 
-</center>
 
 
 ::: definition
@@ -641,10 +640,8 @@ actual empirical values of data). It is a measure of the discrepancy
 between the data and an estimation model, such as a linear regression. A
 small SSE indicates a tight fit of the model to the data.
 
-<figure>
-<center>
 
-```{r, echo=FALSE, out.width='90%', fig.cap= "A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \\hat{y}_i$. "}
+```{r, echo=FALSE, fig.align='center', out.width='90%', fig.cap= "A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \\hat{y}_i$. "}
 library(ggplot2)
 
 # Data points from TikZ
@@ -688,7 +685,6 @@ ggplot(df, aes(x = x, y = y)) +
 ```
 
 
-</center>
 
 
 ::: definition
@@ -703,9 +699,8 @@ Note that SSE (sum of residual squared) is an explained variation.\
 It measures the distance between estimated value (estimated dependent
 data) and the mean of dependent data ($\bar{y}$).
 
-<figure>
-<center>
-```{r, echo=FALSE, out.width='90%', message=FALSE, warning=FALSE, results='hide', fig.cap= "An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean."}
+
+```{r, echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.cap= "An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean."}
 library(ggplot2)
 library(dplyr)
 
@@ -739,7 +734,7 @@ ggplot(df, aes(x = x, y = y)) +
   coord_cartesian(clip = "off")
 ```
 
-</center>
+
 
 
 ::: definition
@@ -765,9 +760,8 @@ SST = SSE + SSR.
 Total sum of squares = Sum of squares for error + Sum of squares for
 regression.
 
-<figure>
-<center>
-```{r, echo=FALSE, out.width='90%', message=FALSE, warning=FALSE, results='hide', fig.cap = "Visual representation of regression variability. The blue point represents the observed value $y_i$, the red point shows the predicted value $\\hat{y}_i$, and the dashed line represents the mean $\\bar{y}$. The green arrow illustrates the total variability (SST), the pink arrow shows the explained variability (SSR), and the orange curly bracket represents the residual (unexplained) variability (SSE)."}
+
+```{r, echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.cap = "Visual representation of regression variability. The blue point represents the observed value $y_i$, the red point shows the predicted value $\\hat{y}_i$, and the dashed line represents the mean $\\bar{y}$. The green arrow illustrates the total variability (SST), the pink arrow shows the explained variability (SSR), and the orange curly bracket represents the residual (unexplained) variability (SSE)."}
 library(ggplot2)
 library(grid)
 
@@ -833,7 +827,7 @@ ggplot(df, aes(x = x, y = y_i)) +
   xlim(-1, 7) + ylim(-1, 5.5) +
   theme_minimal(base_size = 14)
 ```
-</center>
+
 
 
 **Coefficient of Determination ($r^2$)**
@@ -1827,6 +1821,5 @@ $\varepsilon \sim \mathcal{N}(0, \sigma^2)$
   These assumptions can be verified using residual plots.
 :::
 
-::: center
-:::
+
 
