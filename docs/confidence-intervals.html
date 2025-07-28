@@ -53,8 +53,25 @@
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="libs/rglWebGL-binding-1.3.24/rglWebGL.js"></script>
 <link href="libs/rglwidgetClass-1.3.24/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-1.3.24/rglClass.min.js"></script>
-<script src="libs/CanvasMatrix4-1.3.24/CanvasMatrix.min.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.24/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.24/CanvasMatrix.src.js"></script>
 <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
 <script src="libs/plotly-binding-4.11.0/plotly.js"></script>
 <script src="libs/mathjax-2.7.5/cdn.js"></script>
@@ -68,9 +85,8 @@
 
 
 <style type="text/css">
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -80,7 +96,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -264,26 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Variance</a></li>
 <li class="chapter" data-level="9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>9</b> Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#linear-model"><i class="fa fa-check"></i><b>9.1</b> Linear Model</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#measures-of-linear-relationship"><i class="fa fa-check"></i><b>9.1.1</b> Measures of Linear Relationship</a></li>
-<li class="chapter" data-level="9.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#least-squares-method"><i class="fa fa-check"></i><b>9.1.2</b> Least Squares Method</a></li>
-<li class="chapter" data-level="9.1.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-regression-model-parameters"><i class="fa fa-check"></i><b>9.1.3</b> Estimating Regression Model Parameters</a></li>
-<li class="chapter" data-level="9.1.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sst-sse-and-ssr"><i class="fa fa-check"></i><b>9.1.4</b> SST, SSE and SSR</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#inference-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2</b> Inference for Simple Linear Regression</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-variance-in-linear-regression"><i class="fa fa-check"></i><b>9.2.1</b> Estimating Variance in Linear Regression</a></li>
-<li class="chapter" data-level="9.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-and-hypothesis-tests"><i class="fa fa-check"></i><b>9.2.2</b> Confidence Intervals and Hypothesis Tests</a></li>
-<li class="chapter" data-level="9.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#anova-table-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2.3</b> ANOVA Table for Simple Linear Regression</a></li>
-<li class="chapter" data-level="9.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>9.2.4</b> Residual Plots</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>10</b> Analysis of Categorical Data</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#multinomial-response-model"><i class="fa fa-check"></i><b>10.1</b> Multinomial Response Model</a></li>
-<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.2</b> The Chi-square Test for Goodness of fit</a></li>
-<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.3</b> Sample Size Assumption</a></li>
+<li class="chapter" data-level="9.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#linear-model"><i class="fa fa-check"></i><b>9.1</b> Linear Model</a></li>
 </ul></li>
 </ul>
 
