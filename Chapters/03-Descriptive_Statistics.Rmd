@@ -191,7 +191,6 @@ Figures \@ref(fig:LeftSkewExample), \@ref(fig:RightSkewExample) and \@ref(fig:Sy
 
 ```{r LeftSkewExample, fig.cap="An illustration of a left (negative) skewed distribution.", echo=FALSE, fig.align='center', warning=FALSE}
 library(ggplot2)
-
 # style‑guide colors
 # fill_blue   <- "#529EFF"
 # line_blue   <- "#1F4E8C"
@@ -202,12 +201,12 @@ line_blue   <- "#0064c8"
 median_blue <- "#0064c8"
 mean_pink   <- "#FF68A1"
 
-# simulate a true left‑skewed sample (Beta(5,2))
+# simulate a true left‑skewed sample (Beta(5,1))
 set.seed(2025)
-df <- data.frame(x = rbeta(1000, 5, 2))
+df <- data.frame(x = rbeta(1000, 5, 1))
 
 # density estimate (for annotation positions)
-dens     <- density(df$x, adjust = 2)
+dens     <- density(df$x, adjust = 4)    # smoother density now
 med_val  <- median(df$x)
 mean_val <- mean(df$x) - 0.15
 
@@ -225,7 +224,7 @@ ggplot(df, aes(x = x)) +
     fill   = fill_blue,
     color  = line_blue,
     size   = 1.2,
-    adjust = 2
+    adjust = 4    # increased from 2 for extra smoothness
   ) +
   # median & mean lines
   geom_vline(xintercept = med_val,  color = median_blue, size = 1) +
@@ -236,7 +235,8 @@ ggplot(df, aes(x = x)) +
     x      = 0.2,
     y      = y_tail + 0.1,
     label  = "Left Tail",
-    fontface= "bold",
+    size    = 5,
+    # fontface= "bold",
     hjust   = 0.5,
     vjust   = -1.5
   ) +
@@ -246,8 +246,9 @@ ggplot(df, aes(x = x)) +
     x      = med_val - 0.025,
     y      = y_med - 0.1,
     label  = "median",
-    fontface= "bold",
+    # fontface= "bold",
     hjust   = -0.5,
+    size    = 5,
     color   = median_blue
   ) +
   # mean label to right of line
@@ -256,12 +257,13 @@ ggplot(df, aes(x = x)) +
     x      = mean_val - 0.020,
     y      = y_mean - 0.1,
     label  = "mean",
-    fontface= "bold",
+    size    = 5,
+    # fontface= "bold",
     hjust   = 1.1,
     color   = mean_pink
   ) +
   # exact axis limits, no extra padding
-  scale_x_continuous(limits = c(-0.0, 1.25), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(-0.0, 1.35), expand = c(0, 0)) +
   scale_y_continuous(limits = c(0, y_max), expand = c(0, 0)) +
   # clean theme, no fixed aspect
   theme_minimal(base_size = 14) +
@@ -320,15 +322,23 @@ ggplot(df, aes(x = x)) +
   annotate("text",
            x      = 0.8, y      = y_tail,
            label  = "Right Tail",
-           fontface= "bold", hjust = 0.25, vjust = -1.5) +
+           # fontface= "bold", 
+           size    = 5,
+           hjust = 0.25, 
+           vjust = -1.5) +
   annotate("text",
            x      = med_val - 0.025, y = y_med - 0.1,
            label  = "median",
-           fontface= "bold", hjust = 1.1, color = median_blue) +
+           # fontface= "bold", 
+           hjust = 1.1, 
+           size    = 5,
+           color = median_blue) +
   annotate("text",
            x      = mean_val + 0.025, y = y_mean,
            label  = "mean",
-           fontface= "bold", hjust = -0.1, color = mean_pink) +
+           # fontface= "bold",
+           size    = 5,
+           hjust = -0.1, color = mean_pink) +
   # exact axis limits, no extra padding
   scale_x_continuous(limits = c(-0.15, 1),   expand = c(0, 0)) +
   scale_y_continuous(limits = c(0, y_max),   expand = c(0, 0)) +
@@ -391,7 +401,8 @@ ggplot(df, aes(x = x)) +
     x       = med_val - 0.025,
     y       = y_med - 0.1,
     label   = "median",
-    fontface= "bold",
+    size    = 5,
+    # fontface= "bold",
     hjust   = 1.1,
     color   = median_blue
   ) +
@@ -401,7 +412,8 @@ ggplot(df, aes(x = x)) +
     x       = mean_val + 0.025,
     y       = y_mean - 0.1,
     label   = "mean",
-    fontface= "bold",
+    size    = 5,
+    # fontface= "bold",
     hjust   = -0.1,
     color   = mean_pink
   ) +
