@@ -15,7 +15,7 @@ between height and time.
 
 
 
-```{r fig.slr, fig.align='center', fig.cap="An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope, $b$ is the intercept.", echo=FALSE, message=FALSE, warning=FALSE}
+```{r fig.cap="An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope, $b$ is the intercept.", echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 library(ggplot2)
 
 # Data
@@ -125,25 +125,27 @@ variables.
   a strong positive correlation. (See figure 9.2)
   
 
-```{r fig.correlation, echo=FALSE, fig.align='center', fig.cap="An illustration of strong positive correlation ($r_{xy} \\approx +1$).", message=FALSE, warning=FALSE}
+```{r fig.cap="An illustration of strong positive correlation ($r_{xy} \\approx +1$).", message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
 library(ggplot2)
 
-# Data for blue points (on y = x)
+set.seed(123)  # for reproducibility
+
+# Data for blue points (on y ≈ x with noise)
 blue_df <- data.frame(
   x = seq(0.5, 5, by = 0.5),
-  y = seq(0.5, 5, by = 0.5)
+  y = seq(0.5, 5, by = 0.5) + rnorm(10, mean = 0, sd = 0.1)  # add noise here
 )
 
-# Data for red points (also 11 points)
+# Data for blue points (on y ≈ x + 0.5 with noise)
 red_df <- data.frame(
-  x = seq(0.5, 5.5, by = 0.5),
-  y = seq(1, 6, by = 0.5)  # now also 11 values
+  x = seq(0.5, 5, by = 0.5),
+  y = seq(1, 5.5, by = 0.5) + rnorm(10, mean = 0, sd = 0.1)  # and here
 )
 
 # Plot
 ggplot() +
   geom_point(data = blue_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
-  geom_point(data = red_df, aes(x = x, y = y), color = "#F8766D", size = 2) +
+  geom_point(data = red_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
   labs(x = expression(x), y = expression(y)) +
   theme_minimal()
 ```
@@ -153,25 +155,28 @@ ggplot() +
   a strong negative correlation. (See figure 9.3)
 
 
-```{r fig.negative, echo=FALSE, fig.align='center', fig.cap="An illustration of strong negative correlation ($r_{xy} \\approx -1$).", message=FALSE, warning=FALSE}
+```{r fig.cap="An illustration of strong negative correlation ($r_{xy} \\approx -1$).", message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
 library(ggplot2)
 
-# Blue points (strong negative correlation)
+set.seed(456)  # ensures reproducibility
+
+# Blue points: y decreases with x + noise
+x_vals <- c(0.5, 1, 1.5, 2.3, 2.5, 3.2, 3.5, 4.1, 4.5, 5)
 blue_df <- data.frame(
-  x = c(0.5, 1, 1.5, 2.3, 2.5, 3.2, 3.5, 4.1, 4.5, 5),
-  y = c(5, 4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 0.5)
+  x = x_vals,
+  y = rev(x_vals) + rnorm(10, mean = 0, sd = 0.1)  # reversed x with noise
 )
 
-# Red points (slightly off diagonal)
+# Red points: slightly off the main trend with noise
 red_df <- data.frame(
-  x = c(0.5, 1, 1.5, 2.3, 2.5, 3.2, 3.5, 4.1, 4.5, 5),
-  y = c(4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 0.5, 0)
+  x = x_vals,
+  y = rev(x_vals) + 0.2 + rnorm(10, mean = 0, sd = 0.1)  # slight offset + noise
 )
 
-# Plot
+# Plot (all points in blue)
 ggplot() +
   geom_point(data = blue_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
-  geom_point(data = red_df, aes(x = x, y = y), color = "#F8766D", size = 2) +
+  geom_point(data = red_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
   labs(x = expression(x), y = expression(y)) +
   theme_minimal()
 ```
@@ -183,21 +188,23 @@ ggplot() +
   but other relationship may exist. (See figure 15.4)
   
  
-```{r fig.nocorrelation, echo=FALSE, fig.align='center', fig.cap="An illustration of no correlation ($r_{xy} \\approx 0$).", message=FALSE, warning=FALSE}
+```{r fig.cap="An illustration of no correlation ($r_{xy} \\approx 0$).", message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
 library(ggplot2)
 
-# Points from TikZ
+set.seed(789)
+
+x_vals <- c(0.5, 1, 1.5, 2.3, 3.1, 4.0, 4.5, 5.2, 6.0)
+
 df <- data.frame(
-  x = c(0.5, 1, 1.5, 2.3, 3.1, 4.0, 4.5, 5.2, 6.0),
-  y = c(2.7, 1.5, 4.1, 2.0, 0.8, 3.5, 1.2, 4.3, 2.5),
+  x = x_vals,
+  y = runif(length(x_vals), min = 0.5, max = 5),  # random y
   color = c("blue", "red", "blue", "red", "blue", "red", "blue", "red", "blue")
 )
 
-# Plot
 ggplot(df, aes(x = x, y = y)) +
   geom_point(aes(color = color), size = 2) +
   geom_hline(yintercept = 1.3, color = "black", linewidth = 1) +
-  scale_color_manual(values = c("blue" = "#619CFF", "red" = "#F8766D")) +
+  scale_color_manual(values = c("blue" = "#619CFF", "red" = "#619CFF")) +
   labs(x = expression(x), y = expression(y)) +
   theme_minimal() +
   theme(legend.position = "none")
@@ -455,7 +462,7 @@ therefore the values that minimize the quantity $Q$. They are found
 taking partial derivatives of $Q$ with respect to $\hat{\beta_0}$ and
 $\hat{\beta_1}$ and setting the resulting expressions equal to $0$.
 
-```{r fig.residuals, echo=FALSE, fig.align='center', fig.cap="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$.", message=FALSE, warning=FALSE}
+```{r fig.cap="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$.", message=FALSE, warning=FALSE,echo=FALSE, fig.align='center'}
 library(ggplot2)
 
 # Data points
@@ -580,7 +587,7 @@ observations and their overall mean $\bar{y}$.
 
 
 
-```{r, echo=FALSE, out.width='90%',fig.align='center',fig.cap= "An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components)."}
+```{r fig.cap= "An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components).", echo=FALSE, out.width='90%',fig.align='center'}
 library(ggplot2)
 
 # Observed data
@@ -641,7 +648,7 @@ between the data and an estimation model, such as a linear regression. A
 small SSE indicates a tight fit of the model to the data.
 
 
-```{r, echo=FALSE, fig.align='center', out.width='90%', fig.cap= "A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \\hat{y}_i$. "}
+```{r fig.cap= "A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \\hat{y}_i$.", echo=FALSE, fig.align='center', out.width='90%'}
 library(ggplot2)
 
 # Data points from TikZ
@@ -700,7 +707,7 @@ It measures the distance between estimated value (estimated dependent
 data) and the mean of dependent data ($\bar{y}$).
 
 
-```{r, echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.cap= "An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean."}
+```{r fig.cap= "An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean.", echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide'}
 library(ggplot2)
 library(dplyr)
 
@@ -761,71 +768,7 @@ Total sum of squares = Sum of squares for error + Sum of squares for
 regression.
 
 
-```{r, echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.cap = "Visual representation of regression variability. The blue point represents the observed value $y_i$, the red point shows the predicted value $\\hat{y}_i$, and the dashed line represents the mean $\\bar{y}$. The green arrow illustrates the total variability (SST), the pink arrow shows the explained variability (SSR), and the orange curly bracket represents the residual (unexplained) variability (SSE)."}
-library(ggplot2)
-library(grid)
-
-# Create data
-df <- data.frame(
-  x = c(2),
-  xhat = c(2),
-  y_i = c(4),
-  yhat_i = c(2.95),
-  y_bar = c(3)
-)
-
-# Full ggplot
-ggplot(df, aes(x = x, y = y_i)) +
-  # Axes
-  geom_segment(aes(x = -1, xend = 7, y = 0, yend = 0), 
-               arrow = arrow(length = unit(0.2, "cm")), color = "#000000") +
-  geom_segment(aes(x = 0, xend = 0, y = -1, yend = 5), 
-               arrow = arrow(length = unit(0.2, "cm")), color = "#000000") +
-
-  # Observed y_i
-  geom_point(aes(x = x, y = y_i), color = "#619CFF", size = 3) +
-  annotate("text", x = df$x, y = df$y_i + 0.3, label = "Observed~y[i]", parse = TRUE, hjust = 0) +
-
-  # Predicted yhat_i
-  geom_point(aes(x = xhat, y = yhat_i), color = "#F8766D", size = 3) +
-  annotate("text", x = df$xhat + 0.3, y = df$yhat_i - 0.4, label = "hat(y)[i]", parse = TRUE, hjust = 0) +
-
-  # Regression line
-  stat_function(fun = function(x) 0.8 * x + 0.35, color = "#999999", size = 1) +
-  annotate("text", x = 6.2, y = 5.1, label = "hat(y)==hat(beta)[0] + hat(beta)[1]*x", parse = TRUE, hjust = 0) +
-
-  # Mean line
-  geom_segment(aes(x = -1, xend = 7, y = y_bar, yend = y_bar), 
-               linetype = "dashed", color = "black") +
-  annotate("text", x = 7, y = df$y_bar + 0.1, label = "bar(y)", parse = TRUE, hjust = 1) +
-
-  # SST
-  geom_segment(aes(x = x, xend = x, y = y_i, yend = y_bar), 
-               color = "#00BA38", size = 1,
-               arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
-  annotate("text", x = df$x + 0.3, y = (df$y_i + df$y_bar)/2 + 0.15, 
-           label = "SST", size = 3, color = "#00BA38") +
-
-  # SSR
-  geom_segment(aes(x = xhat, xend = xhat, y = yhat_i, yend = y_bar), 
-               color = "#FF62BC", size = 1,
-               arrow = arrow(type = "closed", length = unit(0.15, "cm"))) +
-  annotate("text", x = df$xhat - 0.3, y = (df$yhat_i + df$y_bar)/2 - 0.15, 
-           label = "SSR", size = 3, color = "#FF62BC") +
-
-  # SSE
-  geom_curve(
-    aes(x = xhat - 0.1, y = yhat_i, xend = xhat - 0.1, yend = y_i), 
-    color = "#ED8141", curvature = -0.5,
-    arrow = arrow(type = "closed", length = unit(0.15, "cm"))
-  ) +
-  annotate("text", x = df$xhat - 0.6, y = (df$y_i + df$yhat_i)/2 - 0.05, 
-           label = "SSE", size = 3, color = "#ED8141") +
-
-  # Theme and axis
-  labs(x = "x", y = "y") +
-  xlim(-1, 7) + ylim(-1, 5.5) +
-  theme_minimal(base_size = 14)
+```{r fig.cap = "Visual representation of regression variability. The blue point represents the observed value $y_i$, the red point shows the predicted value $\\hat{y}_i$, and the dashed line represents the mean $\\bar{y}$. The green arrow illustrates the total variability (SST), the pink arrow shows the explained variability (SSR), and the orange curly bracket represents the residual (unexplained) variability (SSE).", echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide',}
 ```
 
 
