@@ -11,6 +11,7 @@
 [![pages-build-deployment](https://github.com/nishanmudalige/STA258/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/nishanmudalige/STA258/actions/workflows/pages/pages-build-deployment)
 ![status](https://img.shields.io/uptimerobot/status/m800993650-eea0832eb8270800e4f0461f)
 ![up-time](https://img.shields.io/uptimerobot/ratio/7/m800993650-eea0832eb8270800e4f0461f)
+![GitHub branch check runs](https://img.shields.io/github/check-runs/nishanmudalige/STA258/main)
 
 
 ![GitHub License](https://img.shields.io/github/license/nishanmudalige/STA258)
