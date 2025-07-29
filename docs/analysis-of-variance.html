@@ -1212,17 +1212,47 @@ SS_{\text{Tot}} = \sum_{i=1}^{3} n_i (\bar{x}_i - \bar{x})^2 = 6(1.33 - 2.17)^2 
 <p><span class="math display">\[
 MS = \frac{SS}{df}
 \]</span></p>
-<p><span class="math display">\[
-\begin{array}{|l|c|c|c|c|}
-\hline
-\textbf{Source} &amp; \textbf{Degrees of Freedom} &amp; \textbf{Sum of Squares (SS)} &amp; \textbf{Mean Square (MS)} &amp; \textbf{F-Stat} \\
-\hline
-\text{Treatment} &amp; 3 - 1 = 2 &amp; 6.39 &amp; \frac{6.39}{2} = 3.195 &amp; F^* = \frac{3.195}{1.875} = 1.70 \\
-\text{Error}     &amp; 18 - 3 = 15 &amp; 28.20 &amp; \frac{28.20}{15} = 1.88 &amp; \times \\
-\text{Total}     &amp; 18 - 1 = 17 &amp; 34.59 &amp; \times &amp; \\
-\hline
-\end{array}
-\]</span></p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="18%" />
+<col width="15%" />
+<col width="24%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Source of Variation</th>
+<th align="left">Degrees of Freedom (df)</th>
+<th align="left">Sum of Squares (SS)</th>
+<th align="left">Mean Sum of Squares (MSS)</th>
+<th align="left">F Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Treatment</td>
+<td align="left"><span class="math inline">\(3 - 1 = 2\)</span></td>
+<td align="left">6.39</td>
+<td align="left"><span class="math inline">\(\frac{6.39}{2} = 3.195\)</span></td>
+<td align="left"><span class="math inline">\(\frac{3.195}{1.88} = 1.70\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Error</td>
+<td align="left"><span class="math inline">\(18 - 3 = 15\)</span></td>
+<td align="left">28.20</td>
+<td align="left"><span class="math inline">\(\frac{28.20}{15} = 1.88\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="left"><span class="math inline">\(18 - 1 = 17\)</span></td>
+<td align="left">34.59</td>
+<td align="left"><span class="math inline">\(\times\)</span></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
 <p>Hypothesis Test</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -1768,85 +1798,79 @@ The drawback to the LSD procedure is that we increase the probability of at leas
 <span id="cb89-5"><a href="analysis-of-variance.html#cb89-5" tabindex="-1"></a>result</span></code></pre></div>
 <table>
 <colgroup>
-<col width="9%" />
-<col width="9%" />
-<col width="9%" />
-<col width="9%" />
-<col width="9%" />
-<col width="9%" />
-<col width="9%" />
-<col width="9%" />
-<col width="9%" />
-<col width="9%" />
-<col width="9%" />
+<col width="4%" />
+<col width="13%" />
+<col width="7%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="7%" />
+<col width="10%" />
+<col width="12%" />
+<col width="6%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
-<th align="left"></th>
-<th align="left">min</th>
-<th align="right">Q1</th>
-<th align="right">median</th>
-<th align="right">Q3</th>
-<th align="right">max</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right"></th>
-<th align="right">n missing</th>
+<th></th>
+<th></th>
+<th>min</th>
+<th>Q1</th>
+<th>median</th>
+<th>Q3</th>
+<th>max</th>
+<th>mean</th>
+<th>sd</th>
+<th>n</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><span class="math inline">\(\rightarrow\)</span></td>
-<td align="left">Bumper 1</td>
-<td align="left">196</td>
-<td align="right">297.00</td>
-<td align="right">368.5</td>
-<td align="right">432.75</td>
-<td align="right">610</td>
-<td align="right">380.0</td>
-<td align="right">130.09313</td>
-<td align="right">10</td>
-<td align="right">0</td>
+<td><span class="math inline">\(\rightarrow\)</span></td>
+<td>Bumper 1</td>
+<td>196</td>
+<td>297.00</td>
+<td>368.5</td>
+<td>432.75</td>
+<td>610</td>
+<td>380.0</td>
+<td>130.09</td>
+<td>10</td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(\rightarrow\)</span></td>
-<td align="left">Bumper 2</td>
-<td align="left">374</td>
-<td align="right">412.50</td>
-<td align="right">502.0</td>
-<td align="right">520.25</td>
-<td align="right">663</td>
-<td align="right">485.9</td>
-<td align="right">90.53968</td>
-<td align="right">10</td>
-<td align="right">0</td>
+<td><span class="math inline">\(\rightarrow\)</span></td>
+<td>Bumper 2</td>
+<td>374</td>
+<td>412.50</td>
+<td>502.0</td>
+<td>520.25</td>
+<td>663</td>
+<td>485.9</td>
+<td>90.54</td>
+<td>10</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">Bumper 3</td>
-<td align="left">332</td>
-<td align="right">426.00</td>
-<td align="right">444.5</td>
-<td align="right">572.75</td>
-<td align="right">637</td>
-<td align="right">483.8</td>
-<td align="right">102.10866</td>
-<td align="right">10</td>
-<td align="right">0</td>
+<td></td>
+<td>Bumper 3</td>
+<td>332</td>
+<td>426.00</td>
+<td>444.5</td>
+<td>572.75</td>
+<td>637</td>
+<td>483.8</td>
+<td>102.11</td>
+<td>10</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">Bumper 4</td>
-<td align="left">181</td>
-<td align="right">278.25</td>
-<td align="right">340.5</td>
-<td align="right">410.25</td>
-<td align="right">538</td>
-<td align="right">348.2</td>
-<td align="right">118.52688</td>
-<td align="right">10</td>
-<td align="right">0</td>
+<td></td>
+<td>Bumper 4</td>
+<td>181</td>
+<td>278.25</td>
+<td>340.5</td>
+<td>410.25</td>
+<td>538</td>
+<td>348.2</td>
+<td>118.53</td>
+<td>10</td>
 </tr>
 </tbody>
 </table>
