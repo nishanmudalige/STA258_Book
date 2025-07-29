@@ -302,17 +302,38 @@ model with a single explanatory variable. In other words, we use linear
 functions to illustrate the relationship of variables (ie. time and
 one’s height). The goal of simple linear regression is to find the
 best-fitting straight line, known as the regression line, that predicts
-the dependent variable based on the independent variable. For example we
-are interested a people’s height within 10 months. Then, we use
-coordinate system to draw each data point and use simple linear
-regression to find a function which perfectly describes the relationship
-between height and time.</p>
+the dependent variable based on the independent variable.</p>
+<p><strong>Example of Positive Correlation</strong></p>
+<p>Researchers find out that longer sleep plays crucial role in memory consolidation. It helps people to save and solidify new information, making it less likely to be forgotten.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
-<img src="_main_files/figure-html/unnamed-chunk-29-1.png" alt="An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope, $b$ is the intercept." width="672" />
+<div class="plotly html-widget html-fill-item" id="htmlwidget-f9dd010914bb815deda0" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f9dd010914bb815deda0">{"x":{"visdat":{"507979d94365":["function () ","plotlyVisDat"]},"cur_data":"507979d94365","attrs":{"507979d94365":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"507979d94365.1":{"x":{},"y":{},"mode":"lines","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"SLR Line","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","line":{"color":"#F8766D","width":2},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Simple Linear Regression: Total Sleep Duration vs Memory Score","xaxis":{"domain":[0,1],"automargin":true,"title":"Hours of Sleep"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Memory Score"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[4,4.2068965517241379,4.4137931034482758,4.6206896551724137,4.8275862068965516,5.0344827586206895,5.2413793103448274,5.4482758620689653,5.6551724137931032,5.8620689655172411,6.068965517241379,6.2758620689655178,6.4827586206896548,6.6896551724137936,6.8965517241379306,7.1034482758620694,7.3103448275862064,7.5172413793103452,7.7241379310344822,7.931034482758621,8.137931034482758,8.3448275862068968,8.5517241379310356,8.7586206896551726,8.9655172413793096,9.1724137931034484,9.3793103448275872,9.5862068965517242,9.7931034482758612,10],"y":[67.197621767238942,69.883595311204303,79.862507087986998,73.455990232984945,74.784369710287493,83.747738727519845,78.511477581670135,70.916073137312154,74.841597809497898,77.082034977086423,86.465236573404198,83.178379480114401,84.417650356418534,84.001689441794568,81.703552946919274,94.451807063325745,89.040976529077227,77.753121113403537,92.127469162990835,87.291215375153442,85.350536642479568,90.634263357742995,87.628598448118979,90.148647301820176,91.702389867650254,87.428602411805173,101.08548694661056,98.697900071941191,93.274832556319566,106.26907460534963],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[4,4.2068965517241379,4.4137931034482758,4.6206896551724137,4.8275862068965516,5.0344827586206895,5.2413793103448274,5.4482758620689653,5.6551724137931032,5.8620689655172411,6.068965517241379,6.2758620689655178,6.4827586206896548,6.6896551724137936,6.8965517241379306,7.1034482758620694,7.3103448275862064,7.5172413793103452,7.7241379310344822,7.931034482758621,8.137931034482758,8.3448275862068968,8.5517241379310356,8.7586206896551726,8.9655172413793096,9.1724137931034484,9.3793103448275872,9.5862068965517242,9.7931034482758612,10],"y":[71.548142875195325,72.459614485170889,73.371086095146453,74.282557705122002,75.194029315097566,76.10550092507313,77.01697253504868,77.928444145024244,78.839915754999808,79.751387364975358,80.662858974950922,81.574330584926486,82.485802194902035,83.397273804877599,84.308745414853149,85.220217024828713,86.131688634804277,87.043160244779841,87.954631854755391,88.866103464730955,89.777575074706505,90.689046684682069,91.600518294657633,92.511989904633197,93.423461514608746,94.33493312458431,95.246404734559874,96.157876344535424,97.069347954510988,97.980819564486552],"mode":"lines+markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(255,127,14,1)"}},"name":"SLR Line","type":"scatter","line":{"color":"#F8766D","width":2},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Figure 9.1: An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case <span class="math inline">\(m\)</span> is the slope, <span class="math inline">\(b\)</span> is the intercept.
+Figure 9.1: An illustration of simple linear regression model (with positive correlation between total sleep duration and memory score).
 </p>
 </div>
+<p>From figure 9.1 above, you have probably already noticed that as total sleep duration increases (increase in x-axis or independent variable), the memory score also increases (increase in y-axis or dependent variable). If this holds, then we say that there exists a positive correlation between total sleep duration (independent variable) and memory score (dependent variable).</p>
+<p><strong>Example of Negative Correlation</strong></p>
+<p>Now, let’s consider another scenario that you want to drive from Toronto to Vancouver. You are going to arrive in Vancouver with about 42.06 hours, if you drive your car with average speed 100 km/h. Trivially, you will arrive in Vancouver faster (35.05 hours), if you drive your car with average speed 120 km/h.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-aeb060757a5f2ea445fa" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-aeb060757a5f2ea445fa">{"x":{"visdat":{"50792bb6c852":["function () ","plotlyVisDat"]},"cur_data":"50792bb6c852","attrs":{"50792bb6c852":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data Points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"50792bb6c852.1":{"x":{},"y":{},"mode":"lines","marker":{"color":"#619CFF","size":8},"name":"SLR Line","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","line":{"color":"#F8766D","width":2},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"SLR: Car Speed vs Travel Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Average Speed (km/h)"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Travel Time (hours)"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[40,42.068965517241381,44.137931034482762,46.206896551724142,48.275862068965516,50.344827586206897,52.413793103448278,54.482758620689658,56.551724137931032,58.620689655172413,60.689655172413794,62.758620689655174,64.827586206896555,66.896551724137936,68.965517241379317,71.034482758620697,73.103448275862064,75.172413793103459,77.241379310344826,79.310344827586206,81.379310344827587,83.448275862068968,85.517241379310349,87.58620689655173,89.65517241379311,91.724137931034477,93.793103448275872,95.862068965517238,97.931034482758633,100],"y":[2.3879048706895576,2.3310136824312124,2.5773666628298249,2.1782807827625268,2.0972861184607607,2.3293143672396699,2.0000779780399456,1.5824307910533766,1.6309221125481241,1.6167499589211847,1.892543632215165,1.665369358818066,1.6227074816081719,1.516981904013766,1.338831773049185,1.7651496176518777,1.4674946239477347,0.93695179803187023,1.4349140374555942,1.1663112836718046,1.0152488181246648,1.1547521245063574,0.96415394904822938,0.99595403760633883,0.99037676181476386,0.7528869017612918,1.2337338794871402,1.0738400911932022,0.79349937316099073,1.2507629842139854],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data Points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[40,42.068965517241381,44.137931034482762,46.206896551724142,48.275862068965516,50.344827586206897,52.413793103448278,54.482758620689658,56.551724137931032,58.620689655172413,60.689655172413794,62.758620689655174,64.827586206896555,66.896551724137936,68.965517241379317,71.034482758620697,73.103448275862064,75.172413793103459,77.241379310344826,79.310344827586206,81.379310344827587,83.448275862068968,85.517241379310349,87.58620689655173,89.65517241379311,91.724137931034477,93.793103448275872,95.862068965517238,97.931034482758633,100],"y":[2.2929640208745341,2.24003273611619,2.1871014513578459,2.1341701665995019,2.0812388818411578,2.0283075970828137,1.9753763123244699,1.9224450275661256,1.8695137428077817,1.8165824580494376,1.7636511732910936,1.7107198885327495,1.6577886037744054,1.6048573190160611,1.551926034257717,1.4989947494993729,1.4460634647410293,1.3931321799826848,1.3402008952243409,1.2872696104659969,1.2343383257076528,1.1814070409493087,1.1284757561909646,1.0755444714326206,1.0226131866742765,0.96968190191593262,0.91675061715758821,0.86381933239924447,0.81088804764089994,0.7579567628825562],"mode":"lines+markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(255,127,14,1)"}},"name":"SLR Line","type":"scatter","line":{"color":"#F8766D","width":2},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 9.2: An illustration of simple linear regression model (with negative correlation between car speed and total travel time).
+</p>
+</div>
+<p>From figure 9.2 above, you have probably already noticed that as average car speed increases (increase in x-axis or independent variable), the total travel time decreases (decrease in y-axis or dependent variable). If this holds, then we say that there exists a negative correlation between average car speed (independent variable) and total travel time (dependent variable).</p>
+<p><strong>Example of No Correlation</strong></p>
+<p>Finally, let’s consider the relationship between coffee consumption and intelligence. There is no evidence to prove that someone drink coffee will lead to increase or decrease in intelligence.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-eb4d5fd224dc82a52d6e" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-eb4d5fd224dc82a52d6e">{"x":{"visdat":{"5079702cb619":["function () ","plotlyVisDat"]},"cur_data":"5079702cb619","attrs":{"5079702cb619":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Coffee Consumption vs Intelligence (No Correlation)","xaxis":{"domain":[0,1],"automargin":true,"title":"Coffee Consumption (cups/day)"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Intelligence Score"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,0.27586206896551724,0.55172413793103448,0.82758620689655171,1.103448275862069,1.3793103448275863,1.6551724137931034,1.9310344827586206,2.2068965517241379,2.4827586206896552,2.7586206896551726,3.0344827586206895,3.3103448275862069,3.5862068965517242,3.8620689655172411,4.1379310344827589,4.4137931034482758,4.6896551724137927,4.9655172413793105,5.2413793103448274,5.5172413793103452,5.7931034482758621,6.068965517241379,6.3448275862068968,6.6206896551724137,6.8965517241379306,7.1724137931034484,7.4482758620689653,7.7241379310344822,8],"y":[94.395243534477871,97.698225105167197,115.58708314149123,100.70508391424576,101.29287735160946,117.15064986883282,104.60916205989203,87.349387653934656,93.131471481064736,95.543380299000418,112.24081797439462,103.59813827057364,104.00771450594053,101.1068271594512,94.441588652459245,117.86913136803078,104.97850478229239,80.333828433703616,107.01355901563686,95.272085922720663,89.321762940131549,97.820250853417051,89.739955516927608,92.711087707088595,93.749607321507426,83.133066892575869,108.37787044494524,101.53373117836516,88.618630629880528,112.53814921069926],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 9.3: An illustration of simple linear regression model (with no correlation between coffee consumption and intelligence).
+</p>
+</div>
+<p>In this case, if we cannot conclude that an increase in coffee consumption (independent variable) will lead to either an increase or a decrease in intelligence (dependent variable), then we say there is no correlation between coffee consumption (independent variable) and intelligence (dependent variable).</p>
+<p>Also, we are going to discuss more about correlation in the following subsection.</p>
 <p>Now, you may wonder the accuracy of this model. In statistics, we do
 have parameters that approximate the slope and intercept of the function
 <span class="math inline">\(y = mx + b\)</span>. The model we are going to use is:
@@ -388,20 +409,20 @@ variables.</p>
 <li>If <span class="math inline">\(r_{xy} \approx +1\)</span>, then we say that the two random variables have
 a strong positive correlation. (See figure 9.2)</li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
-<img src="_main_files/figure-html/unnamed-chunk-30-1.png" alt="An illustration of strong positive correlation ($r_{xy} \approx +1$)." width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="_main_files/figure-html/unnamed-chunk-32-1.png" alt="An illustration of strong positive correlation ($r_{xy} \approx +1$)." width="672" />
 <p class="caption">
-Figure 9.2: An illustration of strong positive correlation (<span class="math inline">\(r_{xy} \approx +1\)</span>).
+Figure 9.4: An illustration of strong positive correlation (<span class="math inline">\(r_{xy} \approx +1\)</span>).
 </p>
 </div>
 <ul>
 <li>If <span class="math inline">\(r_{xy} \approx -1\)</span>, then we say that the two random variables have
 a strong negative correlation. (See figure 9.3)</li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
-<img src="_main_files/figure-html/unnamed-chunk-31-1.png" alt="An illustration of strong negative correlation ($r_{xy} \approx -1$)." width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
+<img src="_main_files/figure-html/unnamed-chunk-33-1.png" alt="An illustration of strong negative correlation ($r_{xy} \approx -1$)." width="672" />
 <p class="caption">
-Figure 9.3: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx -1\)</span>).
+Figure 9.5: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx -1\)</span>).
 </p>
 </div>
 <ul>
@@ -410,12 +431,19 @@ correlation between the two random variables. Note that if
 <span class="math inline">\(r \approx 0\)</span>, then it suggests a linear relationship doesn’t exist
 but other relationship may exist. (See figure 15.4)</li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
-<img src="_main_files/figure-html/unnamed-chunk-32-1.png" alt="An illustration of no correlation ($r_{xy} \approx 0$)." width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
+<img src="_main_files/figure-html/unnamed-chunk-34-1.png" alt="An illustration of no correlation ($r_{xy} \approx 0$)." width="672" />
 <p class="caption">
-Figure 9.4: An illustration of no correlation (<span class="math inline">\(r_{xy} \approx 0\)</span>).
+Figure 9.6: An illustration of no correlation (<span class="math inline">\(r_{xy} \approx 0\)</span>).
 </p>
 </div>
+<p>We are going to provide an interactive correlation figure (see the one below). The aim of the figure is to give you an illustration about where data locates as correlation changes.</p>
+<center>
+<div style="border: none;">
+<iframe src="https://bryan-su.shinyapps.io/desktop/?showcase=0" width="672" height="743" data-external="1">
+</iframe>
+</div>
+</center>
 <p>Note that correlation doesn’t imply causation:</p>
 <ul>
 <li><p><span class="math inline">\(cor(x,y) \approx +1\)</span> doesn’t necessarily imply on increase in <span class="math inline">\(x\)</span>
@@ -693,10 +721,10 @@ The parameter estimates <span class="math inline">\(\hat{\beta_0}\)</span> and <
 therefore the values that minimize the quantity <span class="math inline">\(Q\)</span>. They are found
 taking partial derivatives of <span class="math inline">\(Q\)</span> with respect to <span class="math inline">\(\hat{\beta_0}\)</span> and
 <span class="math inline">\(\hat{\beta_1}\)</span> and setting the resulting expressions equal to <span class="math inline">\(0\)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
-<img src="_main_files/figure-html/unnamed-chunk-33-1.png" alt="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$." width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<img src="_main_files/figure-html/unnamed-chunk-35-1.png" alt="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$." width="672" />
 <p class="caption">
-Figure 9.5: An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily <span class="math inline">\(0\)</span>.
+Figure 9.7: An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily <span class="math inline">\(0\)</span>.
 </p>
 </div>
 <p>The following proof is the derive of <span class="math inline">\(\hat{\beta_0}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span>
@@ -813,10 +841,10 @@ they measure.<br />
 <strong>SST (Total Sum of Squares)</strong></p>
 <p>It is defined as the sum over all squared differences between the
 observations and their overall mean <span class="math inline">\(\bar{y}\)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
-<img src="_main_files/figure-html/unnamed-chunk-34-1.png" alt="An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components)." width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<img src="_main_files/figure-html/unnamed-chunk-36-1.png" alt="An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components)." width="90%" />
 <p class="caption">
-Figure 9.6: An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height <span class="math inline">\(\bar{y}\)</span>, and the solid black vertical lines represent the squared deviations from the mean (SST components).
+Figure 9.8: An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height <span class="math inline">\(\bar{y}\)</span>, and the solid black vertical lines represent the squared deviations from the mean (SST components).
 </p>
 </div>
 <div class="definition">
@@ -830,10 +858,10 @@ and their overall mean <span class="math inline">\(\bar{y}\)</span> is given by:
 actual empirical values of data). It is a measure of the discrepancy
 between the data and an estimation model, such as a linear regression. A
 small SSE indicates a tight fit of the model to the data.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
-<img src="_main_files/figure-html/unnamed-chunk-35-1.png" alt="A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \hat{y}_i$." width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-37"></span>
+<img src="_main_files/figure-html/unnamed-chunk-37-1.png" alt="A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \hat{y}_i$." width="90%" />
 <p class="caption">
-Figure 9.7: A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of <span class="math inline">\(y\)</span>, and black lines represent residuals <span class="math inline">\(y_i - \hat{y}_i\)</span>.
+Figure 9.9: A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of <span class="math inline">\(y\)</span>, and black lines represent residuals <span class="math inline">\(y_i - \hat{y}_i\)</span>.
 </p>
 </div>
 <div class="definition">
@@ -845,10 +873,10 @@ given by: <span class="math display">\[SSE = \sum_{i=1}^{n} (y_i - \hat{y_i})^2.
 <strong>SSR (Sum Square Regression)</strong></p>
 <p>It measures the distance between estimated value (estimated dependent
 data) and the mean of dependent data (<span class="math inline">\(\bar{y}\)</span>).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
-<img src="_main_files/figure-html/unnamed-chunk-36-1.png" alt="An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean." width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-38"></span>
+<img src="_main_files/figure-html/unnamed-chunk-38-1.png" alt="An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean." width="90%" />
 <p class="caption">
-Figure 9.8: An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, <span class="math inline">\(\bar{y}\)</span>, and the solid black lines illustrate the deviation of the model’s predictions from this mean.
+Figure 9.10: An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, <span class="math inline">\(\bar{y}\)</span>, and the solid black lines illustrate the deviation of the model’s predictions from this mean.
 </p>
 </div>
 <div class="definition">
@@ -1500,10 +1528,10 @@ dollars), area (in 100 square feet), and number of beds and baths.</p>
 </tbody>
 </table>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-38"></span>
-<img src="_main_files/figure-html/unnamed-chunk-38-1.png" alt="Plot of Price vs Area for Apartments near UTM" width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-40"></span>
+<img src="_main_files/figure-html/unnamed-chunk-40-1.png" alt="Plot of Price vs Area for Apartments near UTM" width="80%" />
 <p class="caption">
-Figure 9.9: Plot of Price vs Area for Apartments near UTM
+Figure 9.11: Plot of Price vs Area for Apartments near UTM
 </p>
 </div>
 <table>
@@ -1960,10 +1988,10 @@ band, roughly half above and half below zero.</p>
 isolated influential observations or clustering.</p></li>
 </ol>
 <!-- # ```{r residual-stack, fig.width=6, fig.height=16, dev="png", out.width="100%", fig.align="center", message=FALSE, warning=FALSE} -->
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-39"></span>
-<img src="_main_files/figure-html/unnamed-chunk-39-1.png" alt="Examples of residual plots which satisfy assumpations and which violate assumptions" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-41"></span>
+<img src="_main_files/figure-html/unnamed-chunk-41-1.png" alt="Examples of residual plots which satisfy assumpations and which violate assumptions" width="70%" />
 <p class="caption">
-Figure 9.10: Examples of residual plots which satisfy assumpations and which violate assumptions
+Figure 9.12: Examples of residual plots which satisfy assumpations and which violate assumptions
 </p>
 </div>
 <div class="tcolorbox">
