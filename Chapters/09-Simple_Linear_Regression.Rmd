@@ -21,14 +21,30 @@ $$y_i = \beta_0 + \beta_1 x_{i} \varepsilon_i, \quad \varepsilon_i \sim N(0, \si
 The method of least squares is an optimization technique used to calculate the coefficients $\beta_0, \ldots, \beta_p$ in regression analysis. Its goal is to determine the parameters of a candidate model that make the model’s predictions as close as possible to the observed data
 based on some minimization criteria.
 
-Given a sample of $n$ observations, we consider the sum of the square distances between each observed $y_i$ and corresponding predicted $\hat{y}_i$ which is given by the model.
-This quantity which is minimized is called the Sum of Square Errors (SSE):
+An important definition which is used in evaluating the fit of a model is the following
+
+::: {.definition name="Residual" #Residual}
+A _residual_ ($e_{i}$) is the distance between an observed data point $y_i$ and a fitted value from a regression model $\hat{y}_{i}$.
 $$
-    \mathrm{SSE}
-    \;=\;
-    \sum_{i=1}^n \bigl(y_i - \hat y_i\bigr)^2
-    \;=\;
-    \sum_{i=1}^n \bigl(y_i - (\beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip})\bigr)^2.
+\begin{aligned}
+\text{residual}  & = (\text{observed data point}) - (\text{fitted value})  \\
+e_{i}            & = y_{i} - \hat{y}_{i}
+\end{aligned}
+$$
+:::
+
+The data points $(x_{i1},\dots,x_{ip}, y_{i})$ are observed values.
+To calculate a residual for an observed $y_{i}$, we would plug in the $x_{i1},\dots,x_{ip}$ values for this measurement into the model to evaluate the corresponding $\hat{y}_{i}$. Once we have this value, we can evaluate the residual as the difference  $e_{i} = y_{i} - \hat{y}_{i}$.
+
+
+Given a sample of $n$ observations, we consider the sum of the square distances between each observed $y_i$ and corresponding predicted $\hat{y}_i$ (i.e. the sum of the square residuals) which is given by the model.
+This quantity which we minimize to find the model of best fit is called the Sum of Square Errors (SSE):
+$$
+\begin{align}
+\mathrm{SSE}  &= \sum_{i=1}^n e_{i}^2  \\
+              &= \sum_{i=1}^n \big(y_i - \hat y_i\big)^2  \\
+              &= \sum_{i=1}^n \bigl(y_i - (\beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip})\bigr)^2.
+\end{align}
 $$
 The goal of the least‑squares technique is to find $\beta_0,\dots,\beta_p$ such that the SSE is as small as possible.
 This can formally be written as:
@@ -87,7 +103,7 @@ where $\beta_0$ and $\beta_1$ denote the intercept and slope of the fitted line.
 
 ### Estimating Parameters for the Simple Linear Model
 
-Let $(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ be pairs of points
+Let $(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ be pairs of _observed_ data points
 for independent variable $x$ and dependent variable $y$.
 Suppose we plot these points on coordinate axes (See Figure \@ref(fig:PlotPointsOnly)).
 
@@ -100,17 +116,16 @@ df <- data.frame(
   y = c(3.5, 1.0, 5.0, 1.5, 6.5)
 )
 
-# Plot with only the points
+# Points-only plot: no line, no legend
 p_points <- ggplot(df, aes(x, y)) +
   geom_point(size = 3.2, color = "#619CFF") +
-  # Keep x-axis extent
-  coord_cartesian(xlim = c(-0.75, 6.5)) +
-  # Keep y-axis extent
-  coord_cartesian(ylim = c(-0.5, 7)) +
+  coord_cartesian(xlim = c(-1.0, 5.5), ylim = c(-0.5, 7)) +
   labs(x = "x", y = "y") +
-  theme_minimal(base_size = 16)
+  theme_minimal(base_size = 16) +
+  theme(legend.position = "none")
 
 print(p_points)
+
 ```
 
 Our goal is to find the line of best fit for these points. 
@@ -137,26 +152,44 @@ b1    <- coef(model)[2]
 # Predicted values
 df$yhat <- fitted(model)
 
-# Sample mean of y (used only for the text annotation)
+# Sample mean of y
 ybar  <- mean(df$y)
 
-# Create the plot (no brackets, no labels, no vertical residual lines)
-p_clean <- ggplot(df, aes(x, y)) +
+# --- Bracket placement: put brackets on the LEFT for points ABOVE the line ---
+cap    <- 0.10   # horizontal cap length
+offset <- 0.20   # horizontal offset from the residual line
+
+# sgn = -1 for positive residuals (y > yhat) -> bracket to the LEFT
+# sgn = +1 for negative residuals (y < yhat) -> bracket to the RIGHT
+sgn <- ifelse(df$y > df$yhat, -1, 1)
+
+br <- transform(
+  df,
+  i      = seq_len(nrow(df)),
+  x0     = x + sgn * offset,                # x-location of bracket's vertical bar
+  y0     = pmin(y, yhat),                   # bottom of bracket
+  y1     = pmax(y, yhat),                   # top of bracket
+  ymid   = (pmin(y, yhat) + pmax(y, yhat)) / 2,
+  xlab   = x + sgn * (offset + 0.14),       # label position a bit further from bracket
+  # Labels as e_i = y_i - \hat{y}_i
+  lab    = paste0("e[", seq_len(nrow(df)), "] == y[", seq_len(nrow(df)), "] - hat(y)[", seq_len(nrow(df)), "]")
+)
+
+# Create the plot with ONLY the regression line and points (brackets, residual lines, and e_i legend removed)
+p_sse <- ggplot(df, aes(x, y)) +
   # Observed points
   geom_point(size = 3.2, color = "#619CFF") +
-  # Regression line (kept)
+  # Regression line
   geom_abline(aes(intercept = b0, slope = b1, color = "Regression line"),
               size = 1.3, key_glyph = draw_key_path) +
-  # Annotate regression equation (kept)
-  annotate("text", x = 4.25, y = 4,
+  # Annotate regression equation
+  annotate("text", x = 5.0, y = 4.3,
            label = "hat(y) == hat(beta)[0] + hat(beta)[1]*x",
            parse = TRUE, color = "#F8766D", size = 5) +
-  # Keep x-axis extent
-  coord_cartesian(xlim = c(-0.75, 6.5)) +
-  # Keep y-axis extent
-  coord_cartesian(ylim = c(-0.5, 7)) +
+  # SINGLE coord_cartesian call: set BOTH x and y limits here
+  coord_cartesian(xlim = c(-1.0, 5.5), ylim = c(-0.5, 7)) +
   labs(x = "x", y = "y") +
-  # Legend with only the regression line
+  # Legend: only the regression line remains
   scale_color_manual(
     name   = NULL,
     values = c("Regression line" = "#F8766D"),
@@ -172,10 +205,10 @@ p_clean <- ggplot(df, aes(x, y)) +
   )
 
 # Display the plot
-print(p_clean)
+print(p_sse)
 ```
 
-Recall in Section \@ref(sec:LeastSquaresMethod) thatwe discussed that the technique used to determine the line of best fit is to minimize the sum the squared distances between the observed $y_{i}$'s from our data and the fitter $\hat{y}_{i}$'s which are predicted from the line (See Figure \@ref(fig:PlotPtsLnRes)).
+Recall in Section \@ref(sec:LeastSquaresMethod) that we discussed that the technique used to determine the line of best fit is to minimize the sum the squared distances between the observed $y_{i}$'s from our data and the fitter $\hat{y}_{i}$'s which are predicted from the line (See Figure \@ref(fig:PlotPtsLnRes)).
 
 ```{r PlotPtsLnRes, fig.cap="The distances between each observed $y_i$ and fitted $\\hat{y}_{i}$ from Figure \\@ref(fig:PlotPointsLine).", message=FALSE,warning=FALSE,echo=FALSE,fig.align='center'}
 library(ggplot2)
@@ -213,48 +246,45 @@ br <- transform(
   y1     = pmax(y, yhat),                   # top of bracket
   ymid   = (pmin(y, yhat) + pmax(y, yhat)) / 2,
   xlab   = x + sgn * (offset + 0.14),       # label position a bit further from bracket
-  lab    = paste0("y[", seq_len(nrow(df)), "] - hat(y)[", seq_len(nrow(df)), "]")
+  # Labels as e_i = y_i - \hat{y}_i
+  lab    = paste0("e[", seq_len(nrow(df)), "] == y[", seq_len(nrow(df)), "] - hat(y)[", seq_len(nrow(df)), "]")
 )
 
 # Create the SSE plot with square brackets showing |y_i - yhat_i|
 p_sse <- ggplot(df, aes(x, y)) +
-  # Residuals: yi - ŷi
-  geom_segment(aes(x = x, xend = x, y = yhat, yend = y, color = "yi - yhat"), size = 0.6) +
+  # Residuals: yi - ŷi (map to legend key "e_i")
+  geom_segment(aes(x = x, xend = x, y = yhat, yend = y, color = "e_i"), size = 0.6) +
   # Observed points
   geom_point(size = 3.2, color = "#619CFF") +
   # Regression line
   geom_abline(aes(intercept = b0, slope = b1, color = "Regression line"),
               size = 1.3, key_glyph = draw_key_path) +
-  # (Mean line intentionally removed)
-  # geom_hline(yintercept = ybar, linetype = "dashed", size = 0.6)
   # Square-bracket lines (drawn without mapping -> not added to legend)
   geom_segment(data = br, inherit.aes = FALSE,
                aes(x = x0, xend = x0, y = y0, yend = y1), linewidth = 0.6) +               # vertical bar
   geom_segment(data = br, inherit.aes = FALSE,
-               aes(x = x0 - sgn * cap, xend = x0, y = y0, yend = y0), linewidth = 0.6) +   # lower cap (toward line)
+               aes(x = x0 - sgn * cap, xend = x0, y = y0, yend = y0), linewidth = 0.6) +   # lower cap
   geom_segment(data = br, inherit.aes = FALSE,
-               aes(x = x0 - sgn * cap, xend = x0, y = y1, yend = y1), linewidth = 0.6) +   # upper cap (toward line)
-  # Labels for each residual next to its bracket
+               aes(x = x0 - sgn * cap, xend = x0, y = y1, yend = y1), linewidth = 0.6) +   # upper cap
+  # Labels for each residual next to its bracket (now "e_i = ...")
   geom_text(data = br, inherit.aes = FALSE,
             aes(x = xlab, y = ymid, label = lab),
             parse = TRUE, size = 4, hjust = ifelse(sgn > 0, 0, 1)) +
-  # Annotate regression equation (kept)
-  annotate("text", x = 4.25, y = 4,
+  # Annotate regression equation
+  annotate("text", x = 5.0, y = 4.3,
            label = "hat(y) == hat(beta)[0] + hat(beta)[1]*x",
            parse = TRUE, color = "#F8766D", size = 5) +
-  # Keep x-axis extent
-  coord_cartesian(xlim = c(-0.75, 6.5)) +
-  # Keep y-axis extent
-  coord_cartesian(ylim = c(-0.5, 7)) +
+  # SINGLE coord_cartesian call: set BOTH x and y limits here
+  coord_cartesian(xlim = c(-1.0, 5.5), ylim = c(-0.5, 7)) +
   labs(x = "x", y = "y") +
-  # Manual legend entries for regression and residuals (unchanged)
+  # Legend: update label to e[i] = y[i] - \hat{y}[i]
   scale_color_manual(
     name   = NULL,
     values = c("Regression line" = "#F8766D",
-               "yi - yhat"       = "black"),
-    breaks = c("Regression line", "yi - yhat"),
+               "e_i"             = "black"),
+    breaks = c("Regression line", "e_i"),
     labels = c("Regression line",
-               expression(y[i] - hat(y)[i]))
+               expression(e[i] == y[i] - hat(y)[i]))
   ) +
   theme_minimal(base_size = 16) +
   theme(
@@ -268,21 +298,22 @@ p_sse <- ggplot(df, aes(x, y)) +
 print(p_sse)
 ```
 
-By minimizing the sum of the square error (SSE) which we recall is
+The square error (SSE) for the simple linear regression model is
 
 $$
 \begin{aligned}
-SSE &= \sum_{i=1}^{n} (y_i - \hat{y}_{i})^2\\
-    &= \sum_{i=1}^{n} \big(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i) \big)^2.
+\mathrm{SSE} 
+  &= \sum_{i=1}^{n} (y_i - \hat{y}_{i})^2\\
+  &= \sum_{i=1}^{n} \big(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i) \big)^2.
 \end{aligned}
 $$ 
-By taking the partial derivatives of the $SSE$ with respect to $\hat{\beta}_0$ and $\hat{\beta}_1$, setting the expression to 0 and solving for each term, we obtain 
+The find the values of $\hat{\beta}_0$ and $\hat{\beta}_1$ which minimizes the SSSE, we take the partial derivatives of the SSE with respect to $\hat{\beta}_0$ and $\hat{\beta}_1$, setting the expression to 0 and solving for each term, we obtain 
 
 ::: {.definition }
 For a model of the form $y = \beta_{0} + \beta_{1}x + \varepsilon, \, \varepsilon \sim N(0, \sigma^2)$, the least square estimates for $\beta_{0}$ and $\beta_{1}$ are given by
 $$
 \begin{aligned}
-\hat{\beta}_1 &= \frac{S_{xy}}{S_{xx}} 
+\hat{\beta}_1 &= \frac{SS_{xy}}{SS_{xx}} 
                   = \frac{\displaystyle\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) }{ \displaystyle\sum_{i=1}^{n} (x_i - \bar{x})^2 }
                   = \frac{\displaystyle\sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y}}{\displaystyle\sum_{i=1}^{n}x_i^2 - n\bar{x}^2}\\
 \hfill\\
@@ -801,9 +832,12 @@ related to the variation in the data.
 **SSE (Sum of Squared Error)**
 
 ::: definition
-For any simple linear regression model, SSE (Sum of residual squared)
+For any simple linear regression model, the sum of square errors SSE
 measures the distance between observed data and estimated data, which is
-given by: $$SSE = \sum_{i=1}^{n} (y_i - \hat{y_i})^2.$$
+given by: 
+$$
+\mathrm{SSE} = \sum_{i=1}^{n} (y_i - \hat{y_i})^2.
+$$
 :::
 
 The SSE is the sum of the squares of residuals (deviations predicted from
@@ -896,7 +930,9 @@ print(p_sse)
 For any simple linear regression, the distance between the mean of
 dependent value and estimated dependent value is called sum square
 regression (SSR), which is given by
-$$SSR = \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2.$$
+$$
+\mathrm{SSR} = \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2.
+$$
 :::
 
 The SSR is the variation which is explained by the model.
@@ -987,7 +1023,9 @@ print(p_ssr)
 For any simple linear regression model, SST (Total sum of squares)
 measures the sum over all squared differences between the observations
 and their overall mean $\bar{y}$ is given by:
-$$SST = \sum_{i=1}^{n}(y_i - \bar{y})^2.$$
+$$
+\mathrm{SST} = \sum_{i=1}^{n}(y_i - \bar{y})^2.
+$$
 :::
 
 The SST is the sum of the squared differences between the
@@ -1083,18 +1121,11 @@ variation explained by the model (SSR) and the variation which is not explained 
 
 $$
 \begin{aligned}
-(y_i - \bar{y}) & = (y_i - \hat{y_i}) + (\hat{y_i} - \bar{y})
+SST &= SSR + SSE  \\
+\sum_{i=1}^{n}(y_i - \bar{y})^2 &= \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2 + \sum_{i=1}^{n}(y_i - \hat{y_i})^2
 \end{aligned}
 $$.
 
-We square all three deviations for each one of our data points, and sum
-over all $n$ points. Here, cross terms drop out, and we are left with
-the following equation:
-$$\sum_{i=1}^{n}(y_i - \bar{y})^2 = \sum_{i=1}^{n} (y_i - \hat{y_i})^2 + \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2,$$
-SST = SSE + SSR.
-
-Total sum of squares = Sum of squares for error + Sum of squares for
-regression.
 
 
 ```{r fig.cap = "Visual representation of regression variability. The blue point represents the observed value $y_i$, the red point shows the predicted value $\\hat{y}_i$, and the dashed line represents the mean $\\bar{y}$. The green arrow illustrates the total variability (SST), the pink arrow shows the explained variability (SSR), and the orange curly bracket represents the residual (unexplained) variability (SSE).", echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide',}
@@ -1166,8 +1197,7 @@ mean of zero and a constant variance.
 
 Can verify with residual plots (assumptions).
 
-We estimate $\sigma^2$ with a value we call $S^2$ and use $S^2$ for
-inference.
+We estimate $\sigma^2$ with a value we call $s^2$ which we use for inference.
 
 ### Estimating Variance in Linear Regression {#estimating-variance-in-linear-regression}
 
@@ -1175,45 +1205,32 @@ $$Y = \beta_0 + \beta_1 X + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \
 
 **Estimate $\sigma^2$ with $S^2$**:
 
-$$S^2 = \frac{\sum_{i=1}^n e_i^2}{n - 2}
+$$s^2 = \frac{\sum_{i=1}^n e_i^2}{n - 2}
 = \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{n - 2}
 = \frac{SSE}{n - 2}$$
 
-[*notice similarity*]{style="color: red"}
+<!-- [*notice similarity*]{style="color: red"} -->
 
-$$S_x^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}
-\quad {\text{(sample variance, }\bar{x} \text{ estimated)}}$$
+<!-- $$S_x^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1} -->
+<!-- \quad {\text{(sample variance, }\bar{x} \text{ estimated)}}$$ -->
 
-$$S = +\sqrt{S^2}
-\quad {\text{(estimate of standard deviation)}} \\$$
+<!-- $$S = +\sqrt{S^2} -->
+<!-- \quad {\text{(estimate of standard deviation)}} \\$$ -->
 
-**In calculating $S^2$, why do we divide by $n-2$?**
+A natural question to ask is why we divide by $n-2$ in the calculation of $s^2$.
+The reason is that we are estimating 2 unknown parameters in the model (both $\beta_0$ and
+$\beta_1$ are unknown) and since the calculation of $s^2$ uses estimates of both parameters, we lose 2 degrees of freedom.
 
-Since we estimate 2 unknown parameters in the model (both $\beta_0$ and
-$\beta_1$), which are used in the calculation of $S^2$.
+::: {.remark}
+We can use $s{x}, \, s{y}, \, \bar{x}, \, \bar{y}$ and $r$ to calculate the least square estimators using
 
-::: tcolorbox
-We have data on an explanatory variable $x$ and a response variable $y$
-for $n$ individuals. From the data, calculate the means $\bar{x}$ and
-$\bar{y}$ and the standard deviations $S_x$ and $S_y$ of the two
-variables, and their correlation $r$. The least-squares regression line
-is the line:
-
-$$\hat{y} = b_0 + b_1 x$$
-
-with *slope*
-
-$$b_1 = r \frac{S_y}{S_x}$$
-
-and *intercept*
-
-$$b_0 = \bar{y} - b_1 \bar{x}$$
-:::
-
-::: definition
-The **least-squares regression line** of $y$ on $x$ is the line that
-makes the sum of the squares of the vertical distances of the data
-points from the line as small as possible.
+$$
+\begin{aligned}
+\hat{\beta}_1 & = r \frac{s_y}{s_x} \\
+\text{and}  \\
+\hat{\beta}_0 & = \bar{y} - \hat{\beta}_1 \bar{x}
+\end{aligned}
+$$
 :::
 
 ::: example
@@ -1244,8 +1261,7 @@ x & = \text{independent variable} \\
 | 5     | 5                           | 4                        |
 
 
-
-The question is this: How can we best use the information in the sample
+The question is how can we best use the information in the sample
 of five observations in our table to estimate the unknown $y$-intercept
 $\beta_0$ and slope $\beta_1$?
 
@@ -1394,11 +1410,11 @@ Use $s$ to estimate the **unknown** $\sigma$ in the regression model
 A level $C$ confidence interval for the slope $\beta_1$ of the true
 regression line is
 
-$$b_1 \pm t^* SE_{b_1}$$
+$$\hat{\beta}_1 \pm t^* SE(\hat{\beta}_1)$$
 
-In this formula, the standard error of the least-squares slope $b$ is
+In this formula, the standard error of the least-squares slope $\beta_{1}$ is
 
-$$SE_{b_1} = \frac{s}{\sqrt{\sum (x_i - \bar{x})^2}} = \frac{s}{\sqrt{(n - 1) S_x^2}}$$
+$$SE(\hat{\beta}_1) = \frac{s}{\sqrt{\sum (x_i - \bar{x})^2}} = \frac{s}{\sqrt{(n - 1) SS_{xx} }}$$
 
 and $t^*$ is the critical value for the $t(n - 2)$ density curve with
 area $C$ between $-t^*$ and $t^*$.
@@ -1468,7 +1484,7 @@ is no true linear relationship between $x$ and $y$.
 
 ::: tcolorbox
 To test the hypothesis $H_0 : \beta_1 = 0$, compute the $t$ statistic
-$$t = \frac{b_1}{SE_{b_1}}.$$
+$$t = \frac{\hat{\beta}_1}{SE({\hat{\beta}_1})}.$$
 
 In terms of a random variable $T$ having the $t(n - 2)$ distribution,
 the P-value for a test of $H_0$ against: $$\begin{aligned}
@@ -1483,7 +1499,7 @@ $$\alpha = 0.05$$
 
 1.  $H_0: \beta_1 = 0 \quad \text{vs} \quad H_a: \beta_1 > 0$
 
-2.  $t^* = \frac{b_1}{SE_{b_1}} = \frac{0.7}{0.1914} = 3.6572$
+2.  $t^* = \displaystyle\frac{\hat{\beta}_1}{SE(\hat{\beta}_1)} = \displaystyle\frac{0.7}{0.1914} = 3.6572$
 
 3.  $P\text{-value} = P(T > t) = P(T > 3.6572) \quad \text{d.f.} = n - 2 = 5 - 2 = 3.$\
     Using t-distribution table, $0.01 < P\text{ value} < 0.025$
@@ -1739,32 +1755,45 @@ ggplot(df, aes(x = area, y = price)) +
 ```
 
 
-   **Price**   **Area**   $(x - \bar{x})$   $(y - \bar{y})$          $(x - \bar{x})(y - \bar{y})$                 $(x - \bar{x})^2$
-  ----------- ---------- ----------------- ----------------- --------------------------------------------- --------------------------------
-      620        11.0           1.8              -38.9                          -70.02                                   3.24
-      590        6.5           -2.7              -68.9                          186.03                                   7.29
-      620        10.0           0.8              -38.9                          -31.12                                   0.64
-      700        8.4           -0.8              41.1                           -32.88                                   0.64
-      680        8.0           -1.2              21.1                           -25.32                                   1.44
-      500        5.7           -3.5             -158.9                          556.15                                  12.25
-      760        12.0           2.8              101.1                          283.08                                   7.84
-      800        14.0           4.8              141.1                          677.28                                  23.04
-      660        7.3           -1.9               1.1                            -2.09                                   3.61
-    **Sum**      82.9                                         $\sum (x - \bar{x})(y - \bar{y}) = 1541.11$   $\sum (x - \bar{x})^2 = 60.00$
+| Price | Area | $(x-\bar{x})$ | $(y-\bar{y})$ | $(x-\bar{x})(y-\bar{y})$ | $(x-\bar{x})^2$ |
+| ----: | ---: | ------------: | ------------: | ------------------------: | --------------: |
+|  620  | 11.0 |          1.8  |        -38.9  |                  -70.02  |           3.24  |
+|  590  |  6.5 |         -2.7  |        -68.9  |                  186.03  |           7.29  |
+|  620  | 10.0 |          0.8  |        -38.9  |                  -31.12  |           0.64  |
+|  700  |  8.4 |         -0.8  |         41.1  |                  -32.88  |           0.64  |
+|  680  |  8.0 |         -1.2  |         21.1  |                  -25.32  |           1.44  |
+|  500  |  5.7 |         -3.5  |       -158.9  |                  556.15  |          12.25  |
+|  760  | 12.0 |          2.8  |        101.1  |                  283.08  |           7.84  |
+|  800  | 14.0 |          4.8  |        141.1  |                  677.28  |          23.04  |
+|  660  |  7.3 |         -1.9  |          1.1  |                   -2.09  |           3.61  |
+| **Sum** | 82.9 |             |               | $\sum (x - \bar{x})(y - \bar{y})$ | $\sum (x - \bar{x})^2$ |
+|       |      |                               | = 1541.11                | = 60.00         |
+Table: Deviation table for computing $\hat{\beta}_1$ and $\hat{\beta}_0$.
 
-  : Deviation table for computing $\hat{\beta}_1$ and $\hat{\beta}_0$
 
 The sample means are:
-$$\bar{y} = \frac{\sum y}{n} = \frac{5930}{9} = 658.89, \qquad
-\bar{x} = \frac{\sum x}{n} = \frac{82.9}{9} = 9.21$$
+$$
+\begin{aligned}
+\bar{y} &= \frac{\sum y}{n} = \frac{5930}{9} = 658.89\\
+\hfill\\
+\bar{x} &= \frac{\sum x}{n} = \frac{82.9}{9} = 9.21
+\end{aligned}
+$$
 
 #### Finding the Regression Coefficients {#finding-the-regression-coefficients .unnumbered}
 
 To compute the least squares regression line, we calculate the slope and
 intercept using the formulas:
 
-$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{1541.11}{60} = 25.69$$
-$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} = 658.89 - (25.69)(9.21) = 422.28$$
+
+$$
+\begin{aligned}
+\hat{\beta}_1 &= \frac{S_{xy}}{S_{xx}} = \frac{1541.11}{60} = 25.69 \\
+\hfill\\
+\hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x} = 658.89 - (25.69)(9.21) = 422.28
+\end{aligned}
+$$
+
 
 #### Equation of the Regression Line {#equation-of-the-regression-line .unnumbered}
 
