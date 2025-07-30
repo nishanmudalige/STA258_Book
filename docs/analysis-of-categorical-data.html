@@ -312,11 +312,11 @@ Z=\frac{Y_{1}-n p_{1}}{\sqrt{n p_{1}\left(1-p_{1}\right)}}
 <p>has a distribution that is approximately <span class="math inline">\(N(0,1)\)</span> for large <span class="math inline">\(n\)</span>, particularly when <span class="math inline">\(n p_{1} \geq 5\)</span> and <span class="math inline">\(n\left(1-p_{1}\right) \geq 5\)</span>.</p>
 <p>Thus, it is not surprising that <span class="math inline">\(Q_{1}=Z^{2}\)</span> is approximately <span class="math inline">\(\chi^{2}(1)\)</span>. If we let <span class="math inline">\(Y_{2}=n-Y_{1}\)</span> and <span class="math inline">\(p_{2}=1-p_{1}\)</span>, we see that <span class="math inline">\(Q_{1}\)</span> may be written as</p>
 <p><span class="math display">\[
-Q_{1}=\frac{\left[Y_{1}-n p_{1}\right]^{2}}{n p_{1}\left(1-p_{1}\right)}=\frac{\left[Y_{1}-n p_{1}\right]^{2}}{n p_{1}}+\frac{\left[Y_{2}-n p_{2}\right]^{2}}{n p_{2}}
+Q_{1}=\frac{\left(Y_{1}-n p_{1}\right)^{2}}{n p_{1}\left(1-p_{1}\right)}=\frac{\left(Y_{1}-n p_{1}\right)^{2}}{n p_{1}}+\frac{\left(Y_{2}-n p_{2}\right)^{2}}{n p_{2}}
 \]</span></p>
 <p>or</p>
 <p><span class="math display">\[
-Q_{1}=\sum_{i=1}^{2} \frac{\left[Y_{i}-n p_{i}\right]^{2}}{n p_{i}}
+Q_{1}=\sum_{i=1}^{2} \frac{\left(Y_{i}-n p_{i}\right)^{2}}{n p_{i}}
 \]</span></p>
 <p>To generalize, we let an experiment have <span class="math inline">\(k\)</span> (instead of only two) mutually exclusive and exhaustive outcomes, say, <span class="math inline">\(A_{1}, A_{2}, \ldots, A_{k}\)</span>. Let <span class="math inline">\(p_{i}=P\left(A_{i}\right)\)</span>, and thus <span class="math inline">\(\sum_{i=1}^{k} p_{i}=1\)</span>. The experiment is repeated <span class="math inline">\(n\)</span> independent times, and we let <span class="math inline">\(Y_{i}\)</span> represent the number of times the experiment results in <span class="math inline">\(A_{i}, i=1,2, \ldots, k\)</span>. This joint distribution of <span class="math inline">\(Y_{1}, Y_{2}, \ldots, Y_{k-1}\)</span> is a generalization of the Binomial distribution.</p>
 <p>The joint pmf of <span class="math inline">\(Y_{1}, Y_{2}, \ldots, Y_{k-1}\)</span> is</p>
@@ -329,7 +329,7 @@ Q_{1}=\sum_{i=1}^{2} \frac{\left[Y_{i}-n p_{i}\right]^{2}}{n p_{i}}
 We say that <span class="math inline">\(Y_{1}, Y_{2}, \ldots, Y_{k-1}\)</span> have a multinomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p_{1}, p_{2}, \ldots, p_{k-1}.\)</span></p>
 <p>Pearson then extended <span class="math inline">\(Q_{1}\)</span> to an expression that we denote by <span class="math inline">\(Q_{k-1}\)</span>,</p>
 <p><span class="math display">\[
-Q_{k-1}=\sum_{i=1}^{k} \frac{\left[Y_{i}-n p_{i}\right]^{2}}{n p_{i}}
+Q_{k-1}=\sum_{i=1}^{k} \frac{\left(Y_{i}-n p_{i}\right)^{2}}{n p_{i}}
 \]</span></p>
 <p>He argued that <span class="math inline">\(Q_{k-1}\)</span> has an approximate chi-square distribution with <span class="math inline">\(k-1\)</span> degrees of freedom in a similar way we argued that <span class="math inline">\(Q_{1}\)</span> is approximately <span class="math inline">\(\chi^{2}(1)\)</span>.</p>
 <div id="multinomial-response-model" class="section level2 hasAnchor" number="10.1">
