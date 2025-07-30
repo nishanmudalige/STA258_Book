@@ -1,13 +1,378 @@
 # Simple Linear Regression
 
-## Linear Model
+## Introduction to the Linear Model
 
-In statistics, simple linear regression (SLR) is a linear regression
-model with a single explanatory variable. In other words, we use linear
-functions to illustrate the relationship of variables (ie. time and
-one's height). The goal of simple linear regression is to find the
-best-fitting straight line, known as the regression line, that predicts
-the dependent variable based on the independent variable. 
+A linear model is a function the form
+
+$$y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots + \beta_p x_{ip} + \varepsilon_i, \quad \varepsilon_i \sim N(0, \sigma^2)$$
+
+where $y$ is the _response_ (also called the _outcome_ or _dependent_) variable, $(x_{i1},\dots,x_{ip})$ are the _predictors_ (also called _explanatory_ or _independent_ variables or _covariates_) and $\varepsilon_i$ is random error.
+In practice, the aim of constructing a linear model is usually prediction using the $x_{ij}$ to predict $y$, and to conduct statistical inference to assess whether $y$ is related to the predictors, such as testing for association.
+In this mode, $x_{ij}$ are assumed fixed, $y_i$ are random and the error terms $\varepsilon_i$ is independent Gaussian noise with a constant variance $\sigma^2$.
+The coefficients $\beta_0, \ldots, \beta_p$ are fixed but unknown constants.
+
+A simple linear regression (SLR) model is a linear regression model with just 1 predictor and it has the form
+
+$$y_i = \beta_0 + \beta_1 x_{i} \varepsilon_i, \quad \varepsilon_i \sim N(0, \sigma^2).$$
+
+
+### Least Squares Method
+
+The method of least squares is an optimization technique used to calculate the coefficients $\beta_0, \ldots, \beta_p$ in regression analysis. Its goal is to determine the parameters of a candidate model that make the model’s predictions as close as possible to the observed data
+based on some minimization criteria.
+
+Given a sample of $n$ observations, we consider the sum of the square distances between each observed $y_i$ and corresponding predicted $\hat{y}_i$ which is given by the model.
+This quantity which is minimized is called the Sum of Square Errors (SSE):
+$$
+    \mathrm{SSE}
+    \;=\;
+    \sum_{i=1}^n \bigl(y_i - \hat y_i\bigr)^2
+    \;=\;
+    \sum_{i=1}^n \bigl(y_i - (\beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip})\bigr)^2.
+$$
+The goal of the least‑squares technique is to find $\beta_0,\dots,\beta_p$ such that the SSE is as small as possible.
+This can formally be written as:
+
+$$
+\begin{align}
+& \text{solve}\quad \min_{\beta_0,\beta_1,\dots,\beta_p}\; \frac{1}{2}\sum_{i=1}^{n}\left(y_i - \beta_0 - \sum_{j=1}^{p}\beta_j x_{ij}\right)^2\\
+& \text{such that}\quad \beta_0,\dots,\beta_p \in \mathbb{R}.
+\end{align}
+$$
+This can also be represented in vector-matrix form as
+
+$$
+\begin{align}
+& \text{solve}\quad \min_{\beta\in\mathbb{R}^{p+1}} \;\frac{1}{2}\,(y - X\beta)^{\!\top}(y - X\beta)  \\
+& \text{such that}\quad \beta \in \mathbb{R}^{p+1}.
+\end{align}
+$$
+where
+$$
+\begin{align*}
+&\textbf{y}\in\mathbb{R}^{n}\ \text{is a response vector }(y_1,\dots,y_n)^{\top}.\\
+&\textbf{X}\in\mathbb{R}^{n\times(p+1)}\ \text{is a design matrix }[\,\mathbf{1}\ \ x_1\ \ \cdots\ \ x_p\,],\ \text{with first column of ones (intercept)}.\\
+&\boldsymbol{\beta}\in\mathbb{R}^{p+1}\ \text{is a vector if parameters }(\beta_0,\beta_1,\dots,\beta_p)^{\top}.\\
+\end{align*}
+$$
+Using matrix calculus, we can show the solution for the least squares optimization problem is
+
+$$
+\hat{\beta} = (X^{\top}X)^{-1} X^{\top} y
+$$
+
+
+The resulting fitted values take the form
+$$
+    \hat y_i
+    \;=\;
+    \hat\beta_0 + \hat\beta_1\,x_{i1} + \cdots + \hat\beta_p\,x_{ip}.
+$$
+
+Here, $\hat\beta_0$ is the intercept which is the predicted value of $y$ when $x_{i1}, \ldots, x_{ip}$ are all 0,
+and each $\hat\beta_j$ for $j=1,\dots,p$ is the change in the expected response for a one‑unit increase in the corresponding predictor
+with all other predictor values held fixed.
+
+\bigskip
+
+ In this course, we will focus on the simplest nontrivial case of a single predictor
+$$
+    \hat{y} \;=\; \beta_0 + \beta_1\,x,
+$$
+where $\beta_0$ and $\beta_1$ denote the intercept and slope of the fitted line.
+
+
+
+
+
+### Estimating Parameters for the Simple Linear Model
+
+The regression line which we are going to use is:
+$E(Y) = \beta_0 + \beta_1 \cdot x$. This is fitted to the data points
+$(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ by finding the line that is
+closest to the data in some sense. There are many ways in which
+closeness can be defined, but the method most generally used is to
+consider the vertical deviations between the line and the data points:
+$y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq n$.
+
+The fitted line is chosen to be the line that minimizes the sum of the
+squares of these vertical deviations
+$$Q = \sum_{i=1}^{n} [y_i - (\beta_0 + \beta_1 \cdot x_i)]^2$$ and this
+is referred to as the least squares fit. (The quantity $Q$ is also
+called the **sum of squares for error**, SSE.)
+
+The parameter estimates $\hat{\beta_0}$ and $\hat{\beta_1}$ are
+therefore the values that minimize the quantity $Q$. They are found
+taking partial derivatives of $Q$ with respect to $\hat{\beta_0}$ and
+$\hat{\beta_1}$ and setting the resulting expressions equal to $0$.
+
+```{r fig.cap="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$.", message=FALSE, warning=FALSE,echo=FALSE, fig.align='center'}
+library(ggplot2)
+
+# --- Manually chosen data for clear distances ---
+df <- data.frame(
+  x = c(0.5, 1.0, 1.5, 2.0, 2.5,
+        3.0, 3.5, 4.0, 4.5, 5.0),
+  y = c(3.0, 2.5, 1.0, 4.5, 2.0,
+        5.0, 1.5, 6.0, 4.0, 7.0)
+)
+
+# Fit linear model
+model <- lm(y ~ x, data = df)
+b0    <- coef(model)[1]
+b1    <- coef(model)[2]
+
+# Predicted values
+yhat  <- model$fitted.values
+df    <- cbind(df, yhat)
+
+# Sample mean of y
+ybar  <- mean(df$y)
+
+# (SST segments calculated but not used in this SSE plot)
+df$sst_y0 <- pmin(df$y, ybar)
+df$sst_y1 <- pmax(df$y, ybar)
+
+# Create the SSE plot
+p_sse <- ggplot(df, aes(x, y)) +
+  # Residuals: yi - ŷi
+  geom_segment(aes(x = x, xend = x, y = yhat, yend = y, color = "yi - yhat"),
+               size = 0.6) +
+  # Observed points
+  geom_point(size = 3.2, color = "#619CFF") +
+  # Regression line
+  geom_abline(aes(intercept = b0, slope = b1, color = "Regression line"),
+              size = 1.3,
+              key_glyph = draw_key_path) +
+  # Mean line
+  geom_hline(yintercept = ybar, linetype = "dashed", size = 0.6) +
+  # Annotate ȳ
+  annotate("text", x = 6.05, y = ybar + 0.03,
+           label = "bar(y)", parse = TRUE,
+           hjust = 1, vjust = -0.2) +
+  # Annotate regression equation
+  annotate("text", x = 6, y = max(df$y) - 1.75,
+           label = "hat(y) == hat(beta)[0] + hat(beta)[1]*x",
+           parse = TRUE, color = "#F8766D", size = 5) +
+  # extend x-axis to 6.5
+  coord_cartesian(xlim = c(0, 6.5)) +
+  labs(x = "x", y = "y") +
+  # Manual legend entries for regression and residuals
+  scale_color_manual(
+    name   = NULL,
+    values = c("Regression line" = "#F8766D",
+               "yi - yhat"       = "black"),
+    breaks = c("Regression line", "yi - yhat"),
+    labels = c("Regression line",
+               expression(y[i] - hat(y)[i]))
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    legend.position      = c(0.02, 0.98),
+    legend.justification = c(0, 1),
+    legend.background    = element_rect(fill = alpha("white", 0.5), color = NA),
+    legend.key.width     = unit(1.5, "lines")
+  )
+
+# Display the SSE plot
+print(p_sse)
+```
+
+
+Let $x$ be independent variable and $y$ be dependent variable, then the
+model of simple linear regression is:
+$\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x + \varepsilon$, where
+$\hat{\beta_0}$ represents the $y$-intercept, $\hat{\beta_1}$ represents
+the slope and $\varepsilon$ is the error term that
+$\varepsilon \sim N(0, \sigma^2)$. 
+
+Moreover,
+$$\hat{\beta_0} = \bar{y} - \hat{\beta_1}\cdot \bar{x}$$ 
+and
+$$\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = \frac{\displaystyle\sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y}}{\displaystyle\sum_{i=1}^{n}x_i^2 - n\bar{x}^2}$$.
+
+
+::::: example
+Suppose an appliance store conducts a 5-month experiment to determine
+the effect of advertising on sales revenue. The results are shown in a
+table below. The relationship between sales revenue, $y$, and
+advertising expenditure, $x$, is hypothesized to follow a ﬁrst-order
+linear model, that is, $y = \beta_0 + \beta_1\cdot x + \varepsilon$, where
+$y =$ dependent variable, $x =$ independent variable, $\beta_0$
+y-intercept, $\beta_1 =$ slope of the line and $\varepsilon =$ error
+variable.
+
+::: {.smalltbl}
+| Day | Number of tools (X) | Electricity costs (Y) |
+|:---:|:-------------------:|:---------------------:|
+|  1  |          7          |         23.80         |
+|  2  |          3          |         11.89         |
+|  3  |          2          |         15.89         |
+|  4  |          5          |         26.11         |
+|  5  |          8          |         31.79         |
+|  6  |         11          |         39.93         |
+|  7  |          5          |         12.27         |
+|  8  |         15          |         40.06         |
+|  9  |          3          |         21.38         |
+| 10  |          6          |         18.65         |
+:::
+
+a\) Obtain the least squares estimates of $\beta_0$ and $\beta_1$, and
+state the estimated regression function.
+
+b\) Plot the estimated regression function and the data.
+
+**Solution:**
+
+a\) $\bar{x} = 3$, $\bar{y} = 2$, $S_{xx} = 10$, $S_{xy} = 7$
+
+Then, the slope of the least squares line is
+$\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = 0.7$ and
+$\hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x} = -0.1$. Thus, the least
+squares line is $\hat{y} = -0.1 + 0.7x$.
+
+b\) R-code
+
+::: tcolorbox
+    plot(x, y, main="Scatterplot: Simple Linear Regression",
+    xlab="x", ylab="y", pch=19,col="blue");
+
+    abline(coef(linear.reg), col="red",lty=2);
+:::
+:::::
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- By taking partial derivatives of the residual sum of squares with respect to $b_0$ and $b_1$ and setting them to zero, one obtains the classical normal equations.   -->
+
+<!-- Their solution yields the familiar closed‑form formulas -->
+<!-- \[ -->
+<!--     b_1 \;=\; r\,\frac{s_y}{s_x}, -->
+<!--     \qquad -->
+<!--     b_0 \;=\; \bar y \;-\; b_1\,\bar x, -->
+<!-- \] -->
+<!-- where $r$ is the sample correlation between $x$ and $y$, and $s_x$, $s_y$ denote their sample standard deviations. -->
+
+
+::: {.remark}
+- The distinction between explanatory and response variables is
+  essential in Least Squares Method.
+
+- The least-squares line (trendline) always passes through the point
+  ($\bar{x}$, $\bar{y}$) on the graph of $y$ against $x$.
+
+- The square of the correlation, $r^2$, is the fraction of the variation
+  in the values of $y$ that is explained by the variation in $x$.
+:::
+
+:::: example
+A tool die maker operates out of a small shop making specialized tools.
+He is considering increasing the size of his business and needs to know
+more about his costs. One such cost is electricity, which he needs to
+operate his machines and lights. He keeps track of his daily electricity
+costs and the number of tools that he made that day. These data are
+listed next. Determine the fixed and variable electricity costs using
+the Least Squares Method.
+
+::: {.smalltl}
+| Day | Number of tools (X) | Electricity costs (Y) |
+|:---:|:-------------------:|:---------------------:|
+|  1  |          7          |         23.80         |
+|  2  |          3          |         11.89         |
+|  3  |          2          |         15.89         |
+|  4  |          5          |         26.11         |
+|  5  |          8          |         31.79         |
+|  6  |         11          |         39.93         |
+|  7  |          5          |         12.27         |
+|  8  |         15          |         40.06         |
+|  9  |          3          |         21.38         |
+| 10  |          6          |         18.65         |
+:::
+
+Solution:
+
+Step 1: Entering Data;
+
+::: tcolorbox
+    tools=c(7,3,2,5,8,11,5,15,3,6);
+
+    cost=c(23.80,11.89,15.98,26.11,31.79, 39.93,12.27,40.06,21.38,18.65);
+:::
+
+Step 2: Finding Slope;
+
+::: tcolorbox
+    Sx=sd(tools); 
+
+    Sy=sd(cost); 
+
+    r=cor(tools,cost); 
+
+    b1=r*(Sy/Sx); 
+
+    b1;
+     
+    ## [1] 2.245882
+:::
+
+Step 3: Finding $y$-intercept;
+
+::: tcolorbox
+    x.bar=mean(tools); 
+
+    y.bar=mean(cost);
+
+    b0=y.bar - b1*x.bar;
+
+    b0; 
+
+    ## [1] 9.587765
+:::
+
+We can also use R-code to draw a graph:
+
+::: tcolorbox
+    plot(tools,cost,pch=19);
+
+    abline(least.squares$coeff,col="red");
+
+    # pch=19 tells R to draw solid circles; 
+
+    # abline tells R to add trendline;
+:::
+
+Interpretation:
+
+The slope measures the marginal rate of change in the dependent
+variable. In this example, the slope is $2.25$, which means that in this
+sample, for each one-unit increase in the number of tools, the marginal
+increase in the electricity cost is $\$ 2.25$ per tool.
+
+The $y$-intercept is $9.57$; that is, the line strikes the $y$-axis at
+$9.57$. However, when $x = 0$, we are producing no tools and hence the
+estimated ﬁxed cost of electricity is $\$9.57$ per day .
+::::
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Measures of Linear Relationship
 
@@ -116,7 +481,7 @@ data$fit <- predict(model)
 # Step 3: Plot using Plotly
 # -----------------------------
 fig <- plot_ly(data, x = ~sleep, y = ~memory, type = 'scatter', mode = 'markers',
-               marker = list(color = 'rgba(0, 100, 255, 0.7)', size = 8),
+               marker = list(color = '#619CFF', size = 8),
                name = 'Data points') %>%
   # add_lines(y = ~fit, mode = 'lines',
   #           line = list(color = '#F8766D', width = 2),
@@ -223,7 +588,7 @@ The interactive plot below allows us to examine the spatial arrangement of data 
 
 <center>
 ```{r CorrShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
-knitr::include_app("https://bryan-su.shinyapps.io/desktop/", height = "735")
+knitr::include_app("https://nishan-mudalige.shinyapps.io/Correlation_Shiny_App/", height = "825")
 ```
 </center>
 
@@ -317,400 +682,20 @@ Step 5: Finding covariance and correlation;
 :::
 :::::::::
 
-### Least Squares Method
 
-\noindent The method of least squares is a foundational optimization technique in regression analysis.  Its goal is to determine the parameters of a candidate model that make the model’s predictions as close as possible to the observed data.  Concretely, in the linear setting, we posit that each observation $(x_{i1}, \dots, x_{ip}, y_i)$ satisfies
-\[
-    y_i \;=\; \beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip} + \varepsilon_i,
-    \quad \varepsilon_i \sim N(0, \sigma^2),
-\]
-where the predictors $x_{ij}$ are assumed fixed and the error terms $\varepsilon_i$ are independent Gaussian noise.
 
-\bigskip
 
-\noindent Given a sample of $n$ observations, the least‑squares estimates of the coefficients $\beta_0,\dots,\beta_p$ are those values $\hat\beta_0,\dots,\hat\beta_p$ which minimize the sum of square errors (SSE),
-\[
-    \mathrm{SSE}
-    \;=\;
-    \sum_{i=1}^n \bigl(y_i - \hat y_i\bigr)^2
-    \;=\;
-    \sum_{i=1}^n \bigl(y_i - (\beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip})\bigr)^2.
-\]
-The resulting fitted values take the form
-\[
-    \hat y_i
-    \;=\;
-    \hat\beta_0 + \hat\beta_1\,x_{i1} + \cdots + \hat\beta_p\,x_{ip}.
-\]
-Here, $\hat\beta_0$ serves as the intercept, while each $\hat\beta_j$ for $j=1,\dots,p$ quantifies the change in the expected response for a one‑unit increase in the corresponding predictor.
 
-\bigskip
 
-\noindent In this course, we will concentrate on the simplest nontrivial case of a single predictor, writing
-\[
-    \hat y \;=\; b_0 + b_1\,x,
-\]
-where $b_0$ and $b_1$ denote the intercept and slope of the fitted line, respectively.  By taking partial derivatives of the residual sum of squares with respect to $b_0$ and $b_1$ and setting them to zero, one obtains the classical normal equations.  Their solution yields the familiar closed‑form formulas
-\[
-    b_1 \;=\; r\,\frac{s_y}{s_x},
-    \qquad
-    b_0 \;=\; \bar y \;-\; b_1\,\bar x,
-\]
-where $r$ is the sample correlation between $x$ and $y$, and $s_x$, $s_y$ denote their sample standard deviations.
 
+### SSE, SSR and SST
 
-::: {.remark}
-- The distinction between explanatory and response variables is
-  essential in Least Squares Method.
+The sum squared error (SSE), sum of squares for regression (SSR) 
+and the total sum of square (SST) are components of a model which are
+related to the variation in the data.
 
-- The least-squares line (trendline) always passes through the point
-  ($\bar{x}$, $\bar{y}$) on the graph of $y$ against $x$.
 
-- The square of the correlation, $r^2$, is the fraction of the variation
-  in the values of $y$ that is explained by the variation in $x$.
-:::
-
-:::: example
-A tool die maker operates out of a small shop making specialized tools.
-He is considering increasing the size of his business and needs to know
-more about his costs. One such cost is electricity, which he needs to
-operate his machines and lights. He keeps track of his daily electricity
-costs and the number of tools that he made that day. These data are
-listed next. Determine the fixed and variable electricity costs using
-the Least Squares Method.
-
-::: {.smalltl}
-| Day | Number of tools (X) | Electricity costs (Y) |
-|:---:|:-------------------:|:---------------------:|
-|  1  |          7          |         23.80         |
-|  2  |          3          |         11.89         |
-|  3  |          2          |         15.89         |
-|  4  |          5          |         26.11         |
-|  5  |          8          |         31.79         |
-|  6  |         11          |         39.93         |
-|  7  |          5          |         12.27         |
-|  8  |         15          |         40.06         |
-|  9  |          3          |         21.38         |
-| 10  |          6          |         18.65         |
-:::
-
-Solution:
-
-Step 1: Entering Data;
-
-::: tcolorbox
-    tools=c(7,3,2,5,8,11,5,15,3,6);
-
-    cost=c(23.80,11.89,15.98,26.11,31.79, 39.93,12.27,40.06,21.38,18.65);
-:::
-
-Step 2: Finding Slope;
-
-::: tcolorbox
-    Sx=sd(tools); 
-
-    Sy=sd(cost); 
-
-    r=cor(tools,cost); 
-
-    b1=r*(Sy/Sx); 
-
-    b1;
-     
-    ## [1] 2.245882
-:::
-
-Step 3: Finding $y$-intercept;
-
-::: tcolorbox
-    x.bar=mean(tools); 
-
-    y.bar=mean(cost);
-
-    b0=y.bar - b1*x.bar;
-
-    b0; 
-
-    ## [1] 9.587765
-:::
-
-We can also use R-code to draw a graph:
-
-::: tcolorbox
-    plot(tools,cost,pch=19);
-
-    abline(least.squares$coeff,col="red");
-
-    # pch=19 tells R to draw solid circles; 
-
-    # abline tells R to add trendline;
-:::
-
-Interpretation:
-
-The slope measures the marginal rate of change in the dependent
-variable. In this example, the slope is $2.25$, which means that in this
-sample, for each one-unit increase in the number of tools, the marginal
-increase in the electricity cost is $\$ 2.25$ per tool.
-
-The $y$-intercept is $9.57$; that is, the line strikes the $y$-axis at
-$9.57$. However, when $x = 0$, we are producing no tools and hence the
-estimated ﬁxed cost of electricity is $\$9.57$ per day .
-::::
-
-### Estimating Regression Model Parameters
-
-The regression line which we are going to use is:
-$E(Y) = \beta_0 + \beta_1 \cdot x$. This is fitted to the data points
-$(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ by finding the line that is
-closest to the data in some sense. There are many ways in which
-closeness can be defined, but the method most generally used is to
-consider the vertical deviations between the line and the data points:
-$y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq n$.
-
-The fitted line is chosen to be the line that minimizes the sum of the
-squares of these vertical deviations
-$$Q = \sum_{i=1}^{n} [y_i - (\beta_0 + \beta_1 \cdot x_i)]^2$$ and this
-is referred to as the least squares fit. (The quantity $Q$ is also
-called the **sum of squares for error**, SSE.)
-
-The parameter estimates $\hat{\beta_0}$ and $\hat{\beta_1}$ are
-therefore the values that minimize the quantity $Q$. They are found
-taking partial derivatives of $Q$ with respect to $\hat{\beta_0}$ and
-$\hat{\beta_1}$ and setting the resulting expressions equal to $0$.
-
-```{r fig.cap="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$.", message=FALSE, warning=FALSE,echo=FALSE, fig.align='center'}
-library(ggplot2)
-
-# Data points
-x_vals <- c(0.5, 1.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5)
-y_vals <- c(1.0, 1.4, 1.5, 2.4, 2.1, 2.7, 3.3, 3.4, 4.2, 3.7)
-df <- data.frame(x = x_vals, y = y_vals)
-
-# Regression line: y_hat = 0.8x + 0.35
-df$y_hat <- 0.8 * df$x + 0.35
-
-# Residual segments
-residual_segments <- data.frame(
-  x = df$x,
-  xend = df$x,
-  y = df$y,
-  yend = df$y_hat
-)
-
-# Generate regression line for plotting
-line_df <- data.frame(x = seq(0, 6, length.out = 100))
-line_df$y <- 0.8 * line_df$x + 0.35
-
-# Plot
-# Plot
-ggplot(df, aes(x = x, y = y)) +
-  geom_point(color = "#619CFF", size = 2) +  # Blue points
-
-  geom_line(data = line_df, aes(x = x, y = y), color = "#F8766D", size = 1) +  # Red regression line
-
-  geom_segment(data = residual_segments,
-               aes(x = x, xend = xend, y = y, yend = yend),
-               color = "#000", linetype = "solid") +  # Residual lines
-
-  annotate("text", x = 4.5, y = 5.4,
-           label = expression(hat(y) == hat(beta)[0] + hat(beta)[1] * x),
-           color = "#F8766D", size = 5, hjust = 0) +  # Equation label
-
-  labs(x = expression(x), y = expression(y)) +
-  theme_minimal()
-```
-
-
-
-The following proof is the derive of $\hat{\beta_0}$ and $\hat{\beta_1}$
-for simple linear regression model:
-$\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x + \varepsilon$.
-
-Let $x$ be independent variable and $y$ be dependent variable, then the
-model of simple linear regression is:
-$\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x + \varepsilon$, where
-$\hat{\beta_0}$ represents the $y$-intercept, $\hat{\beta_1}$ represents
-the slope and $\varepsilon$ is the error term that
-$\varepsilon \sim N(0, \sigma^2)$. 
-
-Moreover,
-$$\hat{\beta_0} = \bar{y} - \hat{\beta_1}\cdot \bar{x}$$ 
-and
-$$\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = \frac{\displaystyle\sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y}}{\displaystyle\sum_{i=1}^{n}x_i^2 - n\bar{x}^2}$$.
-
-
-::::: example
-Suppose an appliance store conducts a 5-month experiment to determine
-the effect of advertising on sales revenue. The results are shown in a
-table below. The relationship between sales revenue, $y$, and
-advertising expenditure, $x$, is hypothesized to follow a ﬁrst-order
-linear model, that is, $y = \beta_0 + \beta_1\cdot x + \varepsilon$, where
-$y =$ dependent variable, $x =$ independent variable, $\beta_0$
-y-intercept, $\beta_1 =$ slope of the line and $\varepsilon =$ error
-variable.
-
-::: {.smalltbl}
-| Day | Number of tools (X) | Electricity costs (Y) |
-|:---:|:-------------------:|:---------------------:|
-|  1  |          7          |         23.80         |
-|  2  |          3          |         11.89         |
-|  3  |          2          |         15.89         |
-|  4  |          5          |         26.11         |
-|  5  |          8          |         31.79         |
-|  6  |         11          |         39.93         |
-|  7  |          5          |         12.27         |
-|  8  |         15          |         40.06         |
-|  9  |          3          |         21.38         |
-| 10  |          6          |         18.65         |
-:::
-
-a\) Obtain the least squares estimates of $\beta_0$ and $\beta_1$, and
-state the estimated regression function.
-
-b\) Plot the estimated regression function and the data.
-
-**Solution:**
-
-a\) $\bar{x} = 3$, $\bar{y} = 2$, $S_{xx} = 10$, $S_{xy} = 7$
-
-Then, the slope of the least squares line is
-$\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = 0.7$ and
-$\hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x} = -0.1$. Thus, the least
-squares line is $\hat{y} = -0.1 + 0.7x$.
-
-b\) R-code
-
-::: tcolorbox
-    plot(x, y, main="Scatterplot: Simple Linear Regression",
-    xlab="x", ylab="y", pch=19,col="blue");
-
-    abline(coef(linear.reg), col="red",lty=2);
-:::
-:::::
-
-### SST, SSE and SSR
-
-Early in Section $15.3$, we introduced a value called the sum of
-residual squared (SSE). There are two more values that are important in
-simple linear regression, which are total sum of squares (SST) and sum
-of squares for regression (SSR). We will introduce all these three
-values with figures, so that you may have a better understanding of what
-they measure.
-
-**SST (Total Sum of Squares)**
-
-It is defined as the sum over all squared differences between the
-observations and their overall mean $\bar{y}$.
-
-
-
-```{r fig.cap= "An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components).", echo=FALSE, out.width='90%',fig.align='center'}
-library(ggplot2)
-
-# Observed data
-df <- data.frame(
-  x = c(0.5, 1.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5),
-  y = c(1.3, 2.1, 1.6, 2.7, 2.2, 2.5, 3.7, 3.9, 3.4, 4.2)
-)
-
-# Mean line value
-y_bar <- mean(df$y)
-
-# Regression line points
-reg_line <- data.frame(x = seq(0, 6, length.out = 100))
-reg_line$y <- 0.8 * reg_line$x + 0.35
-
-# Vertical segments from each point to mean
-df$y_bar <- y_bar
-
-# Plot
-ggplot(df, aes(x = x, y = y)) +
-  geom_point(color = "#619CFF", size = 2) +  # Blue points
-  geom_line(data = reg_line, aes(x = x, y = y),
-            color = "#F8766D", size = 1) +  # Red regression line
-  geom_hline(yintercept = y_bar, linetype = "dashed", color = "#000000") +  # Mean line
-  geom_segment(aes(x = x, xend = x, y = y, yend = y_bar),
-               color = "#000000") +  # SST verticals
-
-  # Mean label (bar(y))
-  annotate("text", x = 6.3, y = y_bar, label = "bar(y)",
-           hjust = 0, vjust = -0.5, parse = TRUE) +
-
-  # Regression equation label: hat(y) == hat(beta)[0] + hat(beta)[1]*x
-  annotate("text", x = 4.5, y = 5.4,
-           label = "hat(y)==hat(beta)[0]+hat(beta)[1]*x",
-           parse = TRUE, color = "#F8766D", size = 5, hjust = 0) +
-
-  labs(x = expression(x), y = expression(y)) +
-  theme_minimal()
-```
-
-
- 
-
-
-
-::: definition
-For any simple linear regression model, SST (Toal sum of squares)
-measures the sum over all squared differences between the observations
-and their overall mean $\bar{y}$ is given by:
-$$SST = \sum_{i=1}^{n}(y_i - \bar{y})^2.$$
-:::
-
-**SSE (Sum of Residual Squared)**
-
-It is the sum of the squares of residuals (deviations predicted from
-actual empirical values of data). It is a measure of the discrepancy
-between the data and an estimation model, such as a linear regression. A
-small SSE indicates a tight fit of the model to the data.
-
-
-```{r fig.cap= "A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \\hat{y}_i$.", echo=FALSE, fig.align='center', out.width='90%'}
-library(ggplot2)
-
-# Data points from TikZ
-df <- data.frame(
-  x = c(0.5, 1.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5),
-  y = c(1.4, 1.1, 2.1, 1.9, 3.1, 2.2, 3.8, 3.4, 4.5, 3.6)
-)
-
-# Regression line: y_hat = 0.8x + 0.35
-df$y_hat <- 0.8 * df$x + 0.35
-
-# Residual segments
-residual_df <- data.frame(
-  x = df$x,
-  xend = df$x,
-  y = df$y,
-  yend = df$y_hat
-)
-
-# Regression line curve
-reg_line_df <- data.frame(x = seq(0, 6, length.out = 100))
-reg_line_df$y <- 0.8 * reg_line_df$x + 0.35
-
-# Mean line
-y_bar <- 2.7
-
-# Plot
-ggplot(df, aes(x = x, y = y)) +
-  geom_point(color = "#619CFF", size = 2) +  # Blue points
-  geom_line(data = reg_line_df, aes(x = x, y = y), color = "#F8766D", size = 1) +  # Regression line
-  geom_segment(data = residual_df,
-               aes(x = x, xend = xend, y = y, yend = yend),
-               color = "#000000") +  # Residuals
-  geom_hline(yintercept = y_bar, linetype = "dashed", color = "#000000") +  # Mean line
-  annotate("text", x = 6.7, y = y_bar, label = "bar(y)", parse = TRUE, hjust = 0) +  # Mean label
-  annotate("text", x = 4.5, y = 5.0,
-           label = "hat(y)==hat(beta)[0]+hat(beta)[1]*x", parse = TRUE,
-           color = "#F8766D", size = 5, hjust = 0) +  # Regression equation
-  labs(x = expression(x), y = expression(y)) +
-  theme_minimal()
-```
-
-
-
+**SSE (Sum of Squared Error)**
 
 ::: definition
 For any simple linear regression model, SSE (Sum of residual squared)
@@ -718,50 +703,91 @@ measures the distance between observed data and estimated data, which is
 given by: $$SSE = \sum_{i=1}^{n} (y_i - \hat{y_i})^2.$$
 :::
 
-Note that SSE (sum of residual squared) is an explained variation.
+The SSE is the sum of the squares of residuals (deviations predicted from
+actual empirical values of data). It is a measure of the discrepancy
+between the data and an estimation model. 
+A small SSE indicates a tight fit of the model to the data.
 
-**SSR (Sum Square Regression)**
+The SSE is the variation which is not explained by the model.
+It is illustrated in Figure \@ref(fig:SSEregression).
 
-It measures the distance between estimated value (estimated dependent
-data) and the mean of dependent data ($\bar{y}$).
-
-
-```{r fig.cap= "An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean.", echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+```{r SSEregression, fig.cap= "An illustration of $y_i - \\hat{y}_{i}$. when these distances are squared and added together, we get the SSE.", echo=FALSE, fig.align='center', out.width='90%'}
 library(ggplot2)
-library(dplyr)
 
-# Create data with both over- and under-predicted points
+# --- Manually chosen data for clear distances ---
 df <- data.frame(
-  x = c(0.5, 1.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5),
-  y = c(1.2, 2.1, 1.6, 2.5, 2.9, 3.3, 3.7, 4.2, 4.4, 4.7)
+  x = c(0.5, 1.0, 1.5, 2.0, 2.5,
+        3.0, 3.5, 4.0, 4.5, 5.0),
+  y = c(3.0, 2.5, 1.0, 4.5, 2.0,
+        5.0, 1.5, 6.0, 4.0, 7.0)
 )
 
-# Linear model
+# Fit linear model
 model <- lm(y ~ x, data = df)
-df$y_hat <- predict(model)
-# Ensure y_bar is numeric
-y_bar <- mean(df$y)
+b0    <- coef(model)[1]
+b1    <- coef(model)[2]
 
-ggplot(df, aes(x = x, y = y)) +
-  geom_point(color = "#619CFF", size = 3) +  # Blue points
-  geom_abline(intercept = coef(model)[1], slope = coef(model)[2],
-              color = "#F8766D", size = 1) +  # Red regression line
-  geom_segment(aes(x = x, xend = x, y = y_hat, yend = y_bar),
-               color = "#000000") +  # SSR residuals
-  geom_hline(yintercept = y_bar, linetype = "dashed", color = "#000000") +  # Mean line
-  annotate("text", x = 5.5, y = y_bar,
-           label = expression(bar(y)),
-           hjust = 0) +  # Mean label
-  annotate("text", x = max(df$x) - 0.2, y = max(df$y) - 0.2,
-           label = expression(hat(y) == hat(beta)[0] + hat(beta)[1]*x),
-           color = "#F8766D", size = 5, hjust = 0) +  # Regression equation
+# Predicted values
+yhat  <- model$fitted.values
+df    <- cbind(df, yhat)
+
+# Sample mean of y
+ybar  <- mean(df$y)
+
+# (SST segments calculated but not used in this SSE plot)
+df$sst_y0 <- pmin(df$y, ybar)
+df$sst_y1 <- pmax(df$y, ybar)
+
+# Create the SSE plot
+p_sse <- ggplot(df, aes(x, y)) +
+  # Residuals: yi - ŷi
+  geom_segment(aes(x = x, xend = x, y = yhat, yend = y, color = "yi - yhat"),
+               size = 0.6) +
+  # Observed points
+  geom_point(size = 3.2, color = "#619CFF") +
+  # Regression line
+  geom_abline(aes(intercept = b0, slope = b1, color = "Regression line"),
+              size = 1.3,
+              key_glyph = draw_key_path) +
+  # Mean line
+  geom_hline(yintercept = ybar, linetype = "dashed", size = 0.6) +
+  # Annotate ȳ
+  annotate("text", x = 6.05, y = ybar + 0.03,
+           label = "bar(y)", parse = TRUE,
+           hjust = 1, vjust = -0.2) +
+  # Annotate regression equation
+  annotate("text", x = 6, y = max(df$y) - 1.75,
+           label = "hat(y) == hat(beta)[0] + hat(beta)[1]*x",
+           parse = TRUE, color = "#F8766D", size = 5) +
+  # extend x-axis to 6.5
+  coord_cartesian(xlim = c(0, 6.5)) +
   labs(x = "x", y = "y") +
-  theme_minimal(base_size = 14) +
-  coord_cartesian(clip = "off")
+  # Manual legend entries for regression and residuals
+  scale_color_manual(
+    name   = NULL,
+    values = c("Regression line" = "#F8766D",
+               "yi - yhat"       = "black"),
+    breaks = c("Regression line", "yi - yhat"),
+    labels = c("Regression line",
+               expression(y[i] - hat(y)[i]))
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    legend.position      = c(0.02, 0.98),
+    legend.justification = c(0, 1),
+    legend.background    = element_rect(fill = alpha("white", 0.5), color = NA),
+    legend.key.width     = unit(1.5, "lines")
+  )
+
+# Display the SSE plot
+print(p_sse)
 ```
 
 
 
+
+
+**SSR (Sum Square Regression)**
 
 ::: definition
 For any simple linear regression, the distance between the mean of
@@ -770,14 +796,193 @@ regression (SSR), which is given by
 $$SSR = \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2.$$
 :::
 
-Note that sum square regression (SSR) is an explained variation.
+The SSR is the variation which is explained by the model.
+It measures the distance between estimated value (estimated dependent
+data) and the mean of dependent data ($\bar{y}$).
+It is illustrated in Figure \@ref(fig:SSRregression).
+
+
+```{r SSRregression, fig.cap= "An illustration of $y_i - \\bar{y}$. when these distances are squared and added together, we get the SSR.", echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+library(ggplot2)
+
+# --- Manually chosen data for clear distances ---
+df <- data.frame(
+  x = c(0.5, 1.0, 1.5, 2.0, 2.5,
+        3.0, 3.5, 4.0, 4.5, 5.0),
+  y = c(3.0, 2.5, 1.0, 4.5, 2.0,
+        5.0, 1.5, 6.0, 4.0, 7.0)
+)
+
+# Fit linear model
+model <- lm(y ~ x, data = df)
+b0    <- coef(model)[1]
+b1    <- coef(model)[2]
+
+# Predicted values
+yhat  <- model$fitted.values
+df    <- cbind(df, yhat)
+
+# Sample mean of y
+ybar  <- mean(df$y)
+
+# (SST segments computed above but not used here)
+df$sst_y0 <- pmin(df$y, ybar)
+df$sst_y1 <- pmax(df$y, ybar)
+
+# Create the SSR plot
+p_ssr <- ggplot(df, aes(x, y)) +
+  # Explained deviations: ŷi - ȳ
+  geom_segment(aes(x = x, xend = x, y = ybar, yend = yhat, color = "yhat - y-bar"),
+               size = 0.6) +
+  # Observed points
+  geom_point(size = 3.2, color = "#619CFF") +
+  # Regression line
+  geom_abline(aes(intercept = b0, slope = b1, color = "Regression line"),
+              size = 1.3,
+              key_glyph = draw_key_path) +
+  # Mean line
+  geom_hline(yintercept = ybar, linetype = "dashed", size = 0.6) +
+  # Annotate ȳ
+  annotate("text", x = 6.05, y = ybar + 0.03,
+           label = "bar(y)", parse = TRUE,
+           hjust = 1, vjust = -0.2) +
+  # Annotate regression equation
+  annotate("text", x = 6, y = max(df$y) - 1.75,
+           label = "hat(y) == hat(beta)[0] + hat(beta)[1]*x",
+           parse = TRUE, color = "#F8766D", size = 5) +
+  # Extend x-axis to 6.5
+  coord_cartesian(xlim = c(0, 6.5)) +
+  labs(x = "x", y = "y") +
+  # Manual legend entries for regression and explained deviations
+  scale_color_manual(
+    name   = NULL,
+    values = c("Regression line" = "#F8766D",
+               "yhat - y-bar"    = "black"),
+    breaks = c("Regression line", "yhat - y-bar"),
+    labels = c("Regression line",
+               expression(hat(y)[i] - bar(y)))
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    legend.position      = c(0.02, 0.98),
+    legend.justification = c(0, 1),
+    legend.background    = element_rect(fill = alpha("white", 0.5), color = NA),
+    legend.key.width     = unit(1.5, "lines")
+  )
+
+# Display the SSR plot
+print(p_ssr)
+```
+
+
+
+
+
+**SST (Total Sum of Squares)**
+
+::: definition
+For any simple linear regression model, SST (Total sum of squares)
+measures the sum over all squared differences between the observations
+and their overall mean $\bar{y}$ is given by:
+$$SST = \sum_{i=1}^{n}(y_i - \bar{y})^2.$$
+:::
+
+The SST is the sum of the squared differences between the
+observations and their overall mean $\bar{y}$ in the data. 
+This is illustrated in Figure \@ref(fig:SSTregression).
+
+```{r SSTregression, fig.cap= "An illustration of $\\hat{y}_i - \\bar{y}$. when these distances are squared and added together, we get the SST.", echo=FALSE, out.width='90%',fig.align='center'}
+library(ggplot2)
+
+# --- Manually chosen data for clear distances ---
+df <- data.frame(
+  x = c(0.5, 1.0, 1.5, 2.0, 2.5,
+        3.0, 3.5, 4.0, 4.5, 5.0),
+  y = c(3.0, 2.5, 1.0, 4.5, 2.0,
+        5.0, 1.5, 6.0, 4.0, 7.0)
+)
+
+# Fit linear model
+model <- lm(y ~ x, data = df)
+b0    <- coef(model)[1]
+b1    <- coef(model)[2]
+
+# Predicted values
+yhat  <- model$fitted.values
+df    <- cbind(df, yhat)
+
+# Sample mean of y
+ybar  <- mean(df$y)
+
+# Segments for total deviation (SST): |y_i - ȳ|
+df$sst_y0 <- pmin(df$y, ybar)
+df$sst_y1 <- pmax(df$y, ybar)
+
+# Create the SST plot
+p_sst <- ggplot(df, aes(x, y)) +
+  # Total deviations: yi - ȳ
+  geom_segment(aes(x = x, xend = x, y = sst_y0, yend = sst_y1, color = "yi - y-bar"),
+               size = 0.6) +
+  # Observed points
+  geom_point(size = 3.2, color = "#619CFF") +
+  # Regression line
+  geom_abline(aes(intercept = b0, slope = b1, color = "Regression line"),
+              size = 1.3,
+              key_glyph = draw_key_path) +
+  # Mean line
+  geom_hline(yintercept = ybar, linetype = "dashed", size = 0.6) +
+  # Annotate ȳ
+  annotate("text", x = 6.05, y = ybar + 0.03,
+           label = "bar(y)", parse = TRUE,
+           hjust = 1, vjust = -0.2) +
+  # Annotate regression equation
+  annotate("text", x = 6, y = max(df$y) - 1.75,
+           label = "hat(y) == hat(beta)[0] + hat(beta)[1]*x",
+           parse = TRUE, color = "#F8766D", size = 5) +
+  # extend x-axis to 6.5
+  coord_cartesian(xlim = c(0, 6.5)) +
+  labs(x = "x", y = "y") +
+  # Manual legend entries for regression and total deviations
+  scale_color_manual(
+    name   = NULL,
+    values = c("Regression line" = "#F8766D",
+               "yi - y-bar"      = "black"),
+    breaks = c("Regression line", "yi - y-bar"),
+    labels = c("Regression line",
+               expression(y[i] - bar(y)))
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    legend.position      = c(0.02, 0.98),
+    legend.justification = c(0, 1),
+    legend.background    = element_rect(fill = alpha("white", 0.5), color = NA),
+    legend.key.width     = unit(1.5, "lines")
+  )
+
+# Display the SST plot
+print(p_sst)
+```
+
+
+
+The app below allows us to show or hide each of these component on one plot.
+
+<center>
+```{r DecompVarShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
+knitr::include_app("https://nishan-mudalige.shinyapps.io/Regression_Decomposition_of_Variation/", height = "725")
+```
+</center>
 
 **Summary**
 
-Now, let's zoom in to see SST, SSE and SSR. Note that the relationship
-of these measures is that total deviation is equal to unexplained
-deviation (error) plus explained deviation (regression), that is:
-$(y_i - \bar{y}) = (y_i - \hat{y_i}) + (\hat{y_i} - \bar{y})$.
+The total variation (SST) can be decomposed as the sum of the 
+variation explained by the model (SSR) and the variation which is not explained by the model (SSE):
+
+$$
+\begin{aligned}
+(y_i - \bar{y}) & = (y_i - \hat{y_i}) + (\hat{y_i} - \bar{y})
+\end{aligned}
+$$.
 
 We square all three deviations for each one of our data points, and sum
 over all $n$ points. Here, cross terms drop out, and we are left with
