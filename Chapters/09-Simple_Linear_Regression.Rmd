@@ -279,7 +279,7 @@ $$
 By taking the partial derivatives of the $SSE$ with respect to $\hat{\beta}_0$ and $\hat{\beta}_1$, setting the expression to 0 and solving for each term, we obtain 
 
 ::: {.definition }
-For a model of the form $y = \beta_{0} + \beta_{1}x + \varepsilon, \, \varepsilon \sim N(0, \sigma^2)$, the least square estimates for $\beta_{0}$ and $\beta_{1}$ are given be
+For a model of the form $y = \beta_{0} + \beta_{1}x + \varepsilon, \, \varepsilon \sim N(0, \sigma^2)$, the least square estimates for $\beta_{0}$ and $\beta_{1}$ are given by
 $$
 \begin{aligned}
 \hat{\beta}_1 &= \frac{S_{xy}}{S_{xx}} 
@@ -495,7 +495,7 @@ based on the variances they share.
 
 ::: definition
 The sample covariance for 2 variables $X$ and $Y$ is:
-$$S_{xy} = \frac{1}{n-1} \cdot \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) = \frac{\sum_{i = 1}^{n}x_i \cdot y_i}{n -1} - \frac{n\bar{x}\bar{y}}{n-1}.$$
+$$s_{xy} = \frac{1}{n-1} \cdot \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) = \frac{\sum_{i = 1}^{n}x_i \cdot y_i}{n -1} - \frac{n\bar{x}\bar{y}}{n-1}.$$
 These are the two ways to compute covariance. Both will give you the
 same answer.
 :::
@@ -535,11 +535,13 @@ $+1$.
 
 ::: definition
 The coefficient of correlation is given by:
-$$r_{xy} = \frac{S_{xy}}{S_x \cdot S_y}.$$ Now, $r_{xy} =$ sample
-correlation coefficient, $S_{xy} =$ sample covariance, $S_{x} =$ sample
-standard deviation of $x$, $S_{y} =$ sample standard deviation of $y$.
-Also, remember that the range of coefficient of correlation is between
-$-1$ and $+1$: $r_{xy} \in [-1, +1]$.
+$$r_{xy} = \frac{s_{xy}}{s_x \cdot s_y}.$$ 
+where 
+
+$r_{xy}$ \, is the sample correlation coefficient; <br>
+$s_{xy}$ \, is the sample covariance; <br> 
+$s_{x}$ \, is the sample standard deviation of $x$; <br> 
+$s_{y}$ \, is the sample standard deviation of $y$.
 :::
 
 The correlation r measures the strength and direction of the linear
@@ -689,7 +691,7 @@ The interactive plot below allows us to examine the spatial arrangement of data 
 
 <center>
 ```{r CorrShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
-knitr::include_app("https://nishan-mudalige.shinyapps.io/Correlation_Shiny_App/", height = "825")
+knitr::include_app("https://nishan-mudalige.shinyapps.io/Correlation_Shiny_App/", height = "860")
 ```
 </center>
 
