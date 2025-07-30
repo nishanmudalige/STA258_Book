@@ -126,12 +126,12 @@ p = ggplot(ci_df, aes(y = sim)) +
   # 3b) Vertical dashed line from y = 0 to y = num_sims
   geom_segment(aes(x = true_mu, xend = true_mu, y = 0, yend = num_sims + 2),
                linetype     = "dashed",
-               color        = "#000000",
+               color        = "black",
                inherit.aes  = FALSE) +
   # 3c) Mark intervals that miss the true mean with a red "X"
   geom_text(data = filter(ci_df, misses),
             aes(x = upper + 0.3, label = "X"),
-            color = "#F8766D", size = 5, hjust = 0) +
+            color = "red", size = 5, hjust = 0) +
   # 4) Scales and labels
   scale_y_continuous(breaks = 1:num_sims) +
   scale_x_continuous(limits = c(-3, 5)) +
@@ -145,12 +145,7 @@ p = ggplot(ci_df, aes(y = sim)) +
     panel.grid.major.x  = element_blank(),  # remove vertical grid lines
     axis.ticks          = element_blank(),
     axis.text           = element_blank()
-  ) +
-  
-scale_color_manual(values = rep(c(
-  "#F8766D", "#00BA38", "#619CFF", "#F564E3", "#00BFC4", "#B79F00", "#FF61C3"
-), length.out = 50))
-
+  )
 
 p +
   # your existing vline…
@@ -162,7 +157,7 @@ p +
            fontface = "bold",
            size = 5,
            hjust = 0.5,                        # center it horizontally
-           vjust = 0.5)            
+           vjust = 0.5)        
 ```
 
 
@@ -188,10 +183,10 @@ $z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)$.\
 
 
 
-The critical value $z_{\ast}$ is illustrated in a Figure below and
+The critical value $z_{\ast}$ is illustrated in Figure \@ref(fig:ConfLevelImg) below and
 depends on $C$.
 
-```{r fig.cap="The central area under the standard normal curve with confidence level \\(C\\)", echo=FALSE, fig.align='center', warning=FALSE, message=FALSE}
+```{r ConfLevelImg, fig.cap="The central area under the standard normal curve with confidence level \\(C\\)", echo=FALSE, fig.align='center', warning=FALSE, message=FALSE}
 library(ggplot2)
 library(dplyr)
 
@@ -209,7 +204,7 @@ df_shaded <- df %>% filter(z >= -z_star & z <= z_star)
 ggplot(df, aes(x = z, y = density)) +
   geom_line(size = 1.2) +
   geom_ribbon(data = df_shaded, aes(ymin = 0, ymax = density),
-              fill = "#BEBEBE", alpha = 0.6) +
+              fill = "#00C0B8", alpha = 0.6) +
   geom_hline(yintercept = 0) +
   scale_x_continuous(breaks = c(-z_star, 0, z_star),
                      labels = c(expression(-z^"*"), "0", expression(z^"*")),
