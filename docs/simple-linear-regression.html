@@ -266,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#introduction-to-the-linear-model"><i class="fa fa-check"></i><b>9.1</b> Introduction to the Linear Model</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#least-squares-method"><i class="fa fa-check"></i><b>9.1.1</b> Least Squares Method</a></li>
+<li class="chapter" data-level="9.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sec:LeastSquaresMethod"><i class="fa fa-check"></i><b>9.1.1</b> Least Squares Method</a></li>
 <li class="chapter" data-level="9.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-parameters-for-the-simple-linear-model"><i class="fa fa-check"></i><b>9.1.2</b> Estimating Parameters for the Simple Linear Model</a></li>
 <li class="chapter" data-level="9.1.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#measures-of-linear-relationship"><i class="fa fa-check"></i><b>9.1.3</b> Measures of Linear Relationship</a></li>
 <li class="chapter" data-level="9.1.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sse-ssr-and-sst"><i class="fa fa-check"></i><b>9.1.4</b> SSE, SSR and SST</a></li>
@@ -314,8 +314,8 @@ In this mode, <span class="math inline">\(x_{ij}\)</span> are assumed fixed, <sp
 The coefficients <span class="math inline">\(\beta_0, \ldots, \beta_p\)</span> are fixed but unknown constants.</p>
 <p>A simple linear regression (SLR) model is a linear regression model with just 1 predictor and it has the form</p>
 <p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{i} \varepsilon_i, \quad \varepsilon_i \sim N(0, \sigma^2).\]</span></p>
-<div id="least-squares-method" class="section level3 hasAnchor" number="9.1.1">
-<h3><span class="header-section-number">9.1.1</span> Least Squares Method<a href="simple-linear-regression.html#least-squares-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sec:LeastSquaresMethod" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Least Squares Method<a href="simple-linear-regression.html#sec:LeastSquaresMethod" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The method of least squares is an optimization technique used to calculate the coefficients <span class="math inline">\(\beta_0, \ldots, \beta_p\)</span> in regression analysis. Its goal is to determine the parameters of a candidate model that make the model’s predictions as close as possible to the observed data
 based on some minimization criteria.</p>
 <p>Given a sample of <span class="math inline">\(n\)</span> observations, we consider the sum of the square distances between each observed <span class="math inline">\(y_i\)</span> and corresponding predicted <span class="math inline">\(\hat{y}_i\)</span> which is given by the model.
@@ -371,43 +371,58 @@ where <span class="math inline">\(\beta_0\)</span> and <span class="math inline"
 </div>
 <div id="estimating-parameters-for-the-simple-linear-model" class="section level3 hasAnchor" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Estimating Parameters for the Simple Linear Model<a href="simple-linear-regression.html#estimating-parameters-for-the-simple-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The regression line which we are going to use is:
-<span class="math inline">\(E(Y) = \beta_0 + \beta_1 \cdot x\)</span>. This is fitted to the data points
-<span class="math inline">\((x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)\)</span> by finding the line that is
-closest to the data in some sense. There are many ways in which
-closeness can be defined, but the method most generally used is to
-consider the vertical deviations between the line and the data points:
-<span class="math inline">\(y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq n\)</span>.</p>
-<p>The fitted line is chosen to be the line that minimizes the sum of the
-squares of these vertical deviations
-<span class="math display">\[Q = \sum_{i=1}^{n} [y_i - (\beta_0 + \beta_1 \cdot x_i)]^2\]</span> and this
-is referred to as the least squares fit. (The quantity <span class="math inline">\(Q\)</span> is also
-called the <strong>sum of squares for error</strong>, SSE.)</p>
-<p>The parameter estimates <span class="math inline">\(\hat{\beta_0}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span> are
-therefore the values that minimize the quantity <span class="math inline">\(Q\)</span>. They are found
-taking partial derivatives of <span class="math inline">\(Q\)</span> with respect to <span class="math inline">\(\hat{\beta_0}\)</span> and
-<span class="math inline">\(\hat{\beta_1}\)</span> and setting the resulting expressions equal to <span class="math inline">\(0\)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-29-1.png" alt="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$." width="672" />
+<p>Let <span class="math inline">\((x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)\)</span> be pairs of points
+for independent variable <span class="math inline">\(x\)</span> and dependent variable <span class="math inline">\(y\)</span>.
+Suppose we plot these points on coordinate axes (See Figure <a href="simple-linear-regression.html#fig:PlotPointsOnly">9.1</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:PlotPointsOnly"></span>
+<img src="Book_Files/figure-html/PlotPointsOnly-1.png" alt="Example of points plotted on coordinate axes." width="672" />
 <p class="caption">
-Figure 9.1: An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily <span class="math inline">\(0\)</span>.
+Figure 9.1: Example of points plotted on coordinate axes.
 </p>
 </div>
-<p>The following proof is the derive of <span class="math inline">\(\hat{\beta_0}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span>
-for simple linear regression model:
-<span class="math inline">\(\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x + \varepsilon\)</span>.</p>
-<p>Let <span class="math inline">\(x\)</span> be independent variable and <span class="math inline">\(y\)</span> be dependent variable, then the
-model of simple linear regression is:
-<span class="math inline">\(\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x + \varepsilon\)</span>, where
-<span class="math inline">\(\hat{\beta_0}\)</span> represents the <span class="math inline">\(y\)</span>-intercept, <span class="math inline">\(\hat{\beta_1}\)</span> represents
-the slope and <span class="math inline">\(\varepsilon\)</span> is the error term that
-<span class="math inline">\(\varepsilon \sim N(0, \sigma^2)\)</span>.</p>
-<p>Moreover,
-<span class="math display">\[\hat{\beta_0} = \bar{y} - \hat{\beta_1}\cdot \bar{x}\]</span>
-and
-<span class="math display">\[\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = \frac{\displaystyle\sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y}}{\displaystyle\sum_{i=1}^{n}x_i^2 - n\bar{x}^2}\]</span>.</p>
+<p>Our goal is to find the line of best fit for these points.
+The line of best fit will be of the form
+<span class="math display">\[
+\hat{y} = \hat{\beta}_{0} + \hat{\beta}_{1}x
+\]</span>
+where <span class="math inline">\(\hat{y}\)</span> represents all fitted points on the line, <span class="math inline">\(x\)</span> is a value we can input into calculate a predicted <span class="math inline">\(\hat{y}\)</span>, <span class="math inline">\(\hat{\beta}_0\)</span> is the estimate of the intercept and <span class="math inline">\(\hat{\beta}_1\)</span> is the estimate of the slope (See Figure <a href="simple-linear-regression.html#fig:PlotPointsLine">9.2</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:PlotPointsLine"></span>
+<img src="Book_Files/figure-html/PlotPointsLine-1.png" alt="The line of best fit has now been superimposed on the points in Figure \@ref(fig:PlotPointsOnly)." width="672" />
+<p class="caption">
+Figure 9.2: The line of best fit has now been superimposed on the points in Figure <a href="simple-linear-regression.html#fig:PlotPointsOnly">9.1</a>.
+</p>
+</div>
+<p>Recall in Section <a href="simple-linear-regression.html#sec:LeastSquaresMethod">9.1.1</a> thatwe discussed that the technique used to determine the line of best fit is to minimize the sum the squared distances between the observed <span class="math inline">\(y_{i}\)</span>’s from our data and the fitter <span class="math inline">\(\hat{y}_{i}\)</span>’s which are predicted from the line (See Figure <a href="simple-linear-regression.html#fig:PlotPtsLnRes">9.3</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:PlotPtsLnRes"></span>
+<img src="Book_Files/figure-html/PlotPtsLnRes-1.png" alt="The distances between each observed $y_i$ and fitted $\hat{y}_{i}$ from Figure \@ref(fig:PlotPointsLine)." width="672" />
+<p class="caption">
+Figure 9.3: The distances between each observed <span class="math inline">\(y_i\)</span> and fitted <span class="math inline">\(\hat{y}_{i}\)</span> from Figure <a href="simple-linear-regression.html#fig:PlotPointsLine">9.2</a>.
+</p>
+</div>
+<p>By minimizing the sum of the square error (SSE) which we recall is</p>
+<p><span class="math display">\[
+\begin{aligned}
+SSE &amp;= \sum_{i=1}^{n} (y_i - \hat{y}_{i})^2\\
+    &amp;= \sum_{i=1}^{n} \big(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i) \big)^2.
+\end{aligned}
+\]</span>
+By taking the partial derivatives of the <span class="math inline">\(SSE\)</span> with respect to <span class="math inline">\(\hat{\beta}_0\)</span> and <span class="math inline">\(\hat{\beta}_1\)</span>, setting the expression to 0 and solving for each term, we obtain</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-91" class="definition"><strong>Definition 9.1  </strong></span>For a model of the form <span class="math inline">\(y = \beta_{0} + \beta_{1}x + \varepsilon, \, \varepsilon \sim N(0, \sigma^2)\)</span>, the least square estimates for <span class="math inline">\(\beta_{0}\)</span> and <span class="math inline">\(\beta_{1}\)</span> are given be
+<span class="math display">\[
+\begin{aligned}
+\hat{\beta}_1 &amp;= \frac{S_{xy}}{S_{xx}}
+                  = \frac{\displaystyle\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) }{ \displaystyle\sum_{i=1}^{n} (x_i - \bar{x})^2 }
+                  = \frac{\displaystyle\sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y}}{\displaystyle\sum_{i=1}^{n}x_i^2 - n\bar{x}^2}\\
+\hfill\\
+\text{and}\\
+\hfill\\
+\hat{\beta}_0 &amp;= \bar{y} - \hat{\beta}_1\bar{x}
+\end{aligned}
+\]</span></p>
+</div>
 <div class="example">
-<p><span id="exm:unlabeled-div-91" class="example"><strong>Example 9.1  </strong></span>Suppose an appliance store conducts a 5-month experiment to determine
+<p><span id="exm:unlabeled-div-92" class="example"><strong>Example 9.1  </strong></span>Suppose an appliance store conducts a 5-month experiment to determine
 the effect of advertising on sales revenue. The results are shown in a
 table below. The relationship between sales revenue, <span class="math inline">\(y\)</span>, and
 advertising expenditure, <span class="math inline">\(x\)</span>, is hypothesized to follow a ﬁrst-order
@@ -484,8 +499,8 @@ state the estimated regression function.</p>
 <p><strong>Solution:</strong></p>
 <p>a) <span class="math inline">\(\bar{x} = 3\)</span>, <span class="math inline">\(\bar{y} = 2\)</span>, <span class="math inline">\(S_{xx} = 10\)</span>, <span class="math inline">\(S_{xy} = 7\)</span></p>
 <p>Then, the slope of the least squares line is
-<span class="math inline">\(\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = 0.7\)</span> and
-<span class="math inline">\(\hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x} = -0.1\)</span>. Thus, the least
+<span class="math inline">\(\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = 0.7\)</span> and
+<span class="math inline">\(\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = -0.1\)</span>. Thus, the least
 squares line is <span class="math inline">\(\hat{y} = -0.1 + 0.7x\)</span>.</p>
 <p>b) R-code</p>
 <div class="tcolorbox">
@@ -504,7 +519,7 @@ abline(coef(linear.reg), col=&quot;red&quot;,lty=2);</code></pre>
 <!-- \] -->
 <!-- where $r$ is the sample correlation between $x$ and $y$, and $s_x$, $s_y$ denote their sample standard deviations. -->
 <div class="remark">
-<p><span id="unlabeled-div-92" class="remark"><em>Remark</em>. </span></p>
+<p><span id="unlabeled-div-93" class="remark"><em>Remark</em>. </span></p>
 <ul>
 <li><p>The distinction between explanatory and response variables is
 essential in Least Squares Method.</p></li>
@@ -515,7 +530,7 @@ in the values of <span class="math inline">\(y\)</span> that is explained by the
 </ul>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-93" class="example"><strong>Example 9.2  </strong></span>A tool die maker operates out of a small shop making specialized tools.
+<p><span id="exm:unlabeled-div-94" class="example"><strong>Example 9.2  </strong></span>A tool die maker operates out of a small shop making specialized tools.
 He is considering increasing the size of his business and needs to know
 more about his costs. One such cost is electricity, which he needs to
 operate his machines and lights. He keeps track of his daily electricity
@@ -654,7 +669,7 @@ negative, meaning they move in opposite directions. The size (magnitude)
 of the covariance reflects how much the two variables vary together,
 based on the variances they share.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-94" class="definition"><strong>Definition 9.1  </strong></span>The sample covariance for 2 variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is:
+<p><span id="def:unlabeled-div-95" class="definition"><strong>Definition 9.2  </strong></span>The sample covariance for 2 variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is:
 <span class="math display">\[S_{xy} = \frac{1}{n-1} \cdot \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) = \frac{\sum_{i = 1}^{n}x_i \cdot y_i}{n -1} - \frac{n\bar{x}\bar{y}}{n-1}.\]</span>
 These are the two ways to compute covariance. Both will give you the
 same answer.</p>
@@ -688,7 +703,7 @@ decrease as the other increases. The degree of correlation is usually
 expressed with a correlation coefficient, which ranges from <span class="math inline">\(-1\)</span> to
 <span class="math inline">\(+1\)</span>.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-95" class="definition"><strong>Definition 9.2  </strong></span>The coefficient of correlation is given by:
+<p><span id="def:unlabeled-div-96" class="definition"><strong>Definition 9.3  </strong></span>The coefficient of correlation is given by:
 <span class="math display">\[r_{xy} = \frac{S_{xy}}{S_x \cdot S_y}.\]</span> Now, <span class="math inline">\(r_{xy} =\)</span> sample
 correlation coefficient, <span class="math inline">\(S_{xy} =\)</span> sample covariance, <span class="math inline">\(S_{x} =\)</span> sample
 standard deviation of <span class="math inline">\(x\)</span>, <span class="math inline">\(S_{y} =\)</span> sample standard deviation of <span class="math inline">\(y\)</span>.
@@ -703,37 +718,37 @@ measure of the strength of the linear relationship between two random
 variables.</p>
 <ul>
 <li>If <span class="math inline">\(r_{xy} \approx +1\)</span>, then we say that the two random variables have
-a strong positive correlation (See Figure <a href="simple-linear-regression.html#fig:examplePositiveCorr">9.2</a>).</li>
+strong positive correlation (See Figure <a href="simple-linear-regression.html#fig:examplePositiveCorr">9.4</a>).</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:examplePositiveCorr"></span>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-a8aea2b220a5a38ac788" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-a8aea2b220a5a38ac788">{"x":{"visdat":{"116ed207c7c8e":["function () ","plotlyVisDat"]},"cur_data":"116ed207c7c8e","attrs":{"116ed207c7c8e":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Positive Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[4,4.2068965517241379,4.4137931034482758,4.6206896551724137,4.8275862068965516,5.0344827586206895,5.2413793103448274,5.4482758620689653,5.6551724137931032,5.8620689655172411,6.068965517241379,6.2758620689655178,6.4827586206896548,6.6896551724137936,6.8965517241379306,7.1034482758620694,7.3103448275862064,7.5172413793103452,7.7241379310344822,7.931034482758621,8.137931034482758,8.3448275862068968,8.5517241379310356,8.7586206896551726,8.9655172413793096,9.1724137931034484,9.3793103448275872,9.5862068965517242,9.7931034482758612,10],"y":[67.197621767238942,69.883595311204303,79.862507087986998,73.455990232984945,74.784369710287493,83.747738727519845,78.511477581670135,70.916073137312154,74.841597809497898,77.082034977086423,86.465236573404198,83.178379480114401,84.417650356418534,84.001689441794568,81.703552946919274,94.451807063325745,89.040976529077227,77.753121113403537,92.127469162990835,87.291215375153442,85.350536642479568,90.634263357742995,87.628598448118979,90.148647301820176,91.702389867650254,87.428602411805173,101.08548694661056,98.697900071941191,93.274832556319566,106.26907460534963],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-14781498344f4d277ef3" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-14781498344f4d277ef3">{"x":{"visdat":{"116ed1786b0ac":["function () ","plotlyVisDat"]},"cur_data":"116ed1786b0ac","attrs":{"116ed1786b0ac":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Positive Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[4,4.2068965517241379,4.4137931034482758,4.6206896551724137,4.8275862068965516,5.0344827586206895,5.2413793103448274,5.4482758620689653,5.6551724137931032,5.8620689655172411,6.068965517241379,6.2758620689655178,6.4827586206896548,6.6896551724137936,6.8965517241379306,7.1034482758620694,7.3103448275862064,7.5172413793103452,7.7241379310344822,7.931034482758621,8.137931034482758,8.3448275862068968,8.5517241379310356,8.7586206896551726,8.9655172413793096,9.1724137931034484,9.3793103448275872,9.5862068965517242,9.7931034482758612,10],"y":[67.197621767238942,69.883595311204303,79.862507087986998,73.455990232984945,74.784369710287493,83.747738727519845,78.511477581670135,70.916073137312154,74.841597809497898,77.082034977086423,86.465236573404198,83.178379480114401,84.417650356418534,84.001689441794568,81.703552946919274,94.451807063325745,89.040976529077227,77.753121113403537,92.127469162990835,87.291215375153442,85.350536642479568,90.634263357742995,87.628598448118979,90.148647301820176,91.702389867650254,87.428602411805173,101.08548694661056,98.697900071941191,93.274832556319566,106.26907460534963],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Figure 9.2: An illustration of simple linear regression model (with positive correlation between total sleep duration and memory score).
+Figure 9.4: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx +1\)</span>).
 </p>
 </div>
 <ul>
 <li>If <span class="math inline">\(r_{xy} \approx -1\)</span>, then we say that the two random variables have
-a strong negative correlation. (See figure <a href="simple-linear-regression.html#fig:exampleNegaticeCorr">9.3</a>)</li>
+strong negative correlation. (See figure <a href="simple-linear-regression.html#fig:exampleNegaticeCorr">9.5</a>)</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:exampleNegaticeCorr"></span>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-b085df500f4ca45a56c4" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-b085df500f4ca45a56c4">{"x":{"visdat":{"116edf42f7a1":["function () ","plotlyVisDat"]},"cur_data":"116edf42f7a1","attrs":{"116edf42f7a1":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data Points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Negative Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[40,42.068965517241381,44.137931034482762,46.206896551724142,48.275862068965516,50.344827586206897,52.413793103448278,54.482758620689658,56.551724137931032,58.620689655172413,60.689655172413794,62.758620689655174,64.827586206896555,66.896551724137936,68.965517241379317,71.034482758620697,73.103448275862064,75.172413793103459,77.241379310344826,79.310344827586206,81.379310344827587,83.448275862068968,85.517241379310349,87.58620689655173,89.65517241379311,91.724137931034477,93.793103448275872,95.862068965517238,97.931034482758633,100],"y":[2.3879048706895576,2.3310136824312124,2.5773666628298249,2.1782807827625268,2.0972861184607607,2.3293143672396699,2.0000779780399456,1.5824307910533766,1.6309221125481241,1.6167499589211847,1.892543632215165,1.665369358818066,1.6227074816081719,1.516981904013766,1.338831773049185,1.7651496176518777,1.4674946239477347,0.93695179803187023,1.4349140374555942,1.1663112836718046,1.0152488181246648,1.1547521245063574,0.96415394904822938,0.99595403760633883,0.99037676181476386,0.7528869017612918,1.2337338794871402,1.0738400911932022,0.79349937316099073,1.2507629842139854],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data Points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-c2f5d78d20ed842775de" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-c2f5d78d20ed842775de">{"x":{"visdat":{"116ed4c9a18a2":["function () ","plotlyVisDat"]},"cur_data":"116ed4c9a18a2","attrs":{"116ed4c9a18a2":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data Points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Negative Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[40,42.068965517241381,44.137931034482762,46.206896551724142,48.275862068965516,50.344827586206897,52.413793103448278,54.482758620689658,56.551724137931032,58.620689655172413,60.689655172413794,62.758620689655174,64.827586206896555,66.896551724137936,68.965517241379317,71.034482758620697,73.103448275862064,75.172413793103459,77.241379310344826,79.310344827586206,81.379310344827587,83.448275862068968,85.517241379310349,87.58620689655173,89.65517241379311,91.724137931034477,93.793103448275872,95.862068965517238,97.931034482758633,100],"y":[2.3879048706895576,2.3310136824312124,2.5773666628298249,2.1782807827625268,2.0972861184607607,2.3293143672396699,2.0000779780399456,1.5824307910533766,1.6309221125481241,1.6167499589211847,1.892543632215165,1.665369358818066,1.6227074816081719,1.516981904013766,1.338831773049185,1.7651496176518777,1.4674946239477347,0.93695179803187023,1.4349140374555942,1.1663112836718046,1.0152488181246648,1.1547521245063574,0.96415394904822938,0.99595403760633883,0.99037676181476386,0.7528869017612918,1.2337338794871402,1.0738400911932022,0.79349937316099073,1.2507629842139854],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data Points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Figure 9.3: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx -1\)</span>).
+Figure 9.5: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx -1\)</span>).
 </p>
 </div>
 <ul>
 <li>If <span class="math inline">\(r_{xy} \approx 0\)</span>, then we say that there is essentially no
 correlation between the two random variables. Note that if
 <span class="math inline">\(r \approx 0\)</span>, then it suggests a linear relationship doesn’t exist
-but other relationship may exist (See Figure <a href="simple-linear-regression.html#fig:exampleNoCorr">9.4</a>).</li>
+but other relationship may exist (See Figure <a href="simple-linear-regression.html#fig:exampleNoCorr">9.6</a>).</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:exampleNoCorr"></span>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-e04fd17a50a19acd0390" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-e04fd17a50a19acd0390">{"x":{"visdat":{"116ed5dc3338b":["function () ","plotlyVisDat"]},"cur_data":"116ed5dc3338b","attrs":{"116ed5dc3338b":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of No Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,0.27586206896551724,0.55172413793103448,0.82758620689655171,1.103448275862069,1.3793103448275863,1.6551724137931034,1.9310344827586206,2.2068965517241379,2.4827586206896552,2.7586206896551726,3.0344827586206895,3.3103448275862069,3.5862068965517242,3.8620689655172411,4.1379310344827589,4.4137931034482758,4.6896551724137927,4.9655172413793105,5.2413793103448274,5.5172413793103452,5.7931034482758621,6.068965517241379,6.3448275862068968,6.6206896551724137,6.8965517241379306,7.1724137931034484,7.4482758620689653,7.7241379310344822,8],"y":[94.395243534477871,97.698225105167197,115.58708314149123,100.70508391424576,101.29287735160946,117.15064986883282,104.60916205989203,87.349387653934656,93.131471481064736,95.543380299000418,112.24081797439462,103.59813827057364,104.00771450594053,101.1068271594512,94.441588652459245,117.86913136803078,104.97850478229239,80.333828433703616,107.01355901563686,95.272085922720663,89.321762940131549,97.820250853417051,89.739955516927608,92.711087707088595,93.749607321507426,83.133066892575869,108.37787044494524,101.53373117836516,88.618630629880528,112.53814921069926],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-4a8639728678e48a98ff" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4a8639728678e48a98ff">{"x":{"visdat":{"116edcdb378c":["function () ","plotlyVisDat"]},"cur_data":"116edcdb378c","attrs":{"116edcdb378c":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of No Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,0.27586206896551724,0.55172413793103448,0.82758620689655171,1.103448275862069,1.3793103448275863,1.6551724137931034,1.9310344827586206,2.2068965517241379,2.4827586206896552,2.7586206896551726,3.0344827586206895,3.3103448275862069,3.5862068965517242,3.8620689655172411,4.1379310344827589,4.4137931034482758,4.6896551724137927,4.9655172413793105,5.2413793103448274,5.5172413793103452,5.7931034482758621,6.068965517241379,6.3448275862068968,6.6206896551724137,6.8965517241379306,7.1724137931034484,7.4482758620689653,7.7241379310344822,8],"y":[94.395243534477871,97.698225105167197,115.58708314149123,100.70508391424576,101.29287735160946,117.15064986883282,104.60916205989203,87.349387653934656,93.131471481064736,95.543380299000418,112.24081797439462,103.59813827057364,104.00771450594053,101.1068271594512,94.441588652459245,117.86913136803078,104.97850478229239,80.333828433703616,107.01355901563686,95.272085922720663,89.321762940131549,97.820250853417051,89.739955516927608,92.711087707088595,93.749607321507426,83.133066892575869,108.37787044494524,101.53373117836516,88.618630629880528,112.53814921069926],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Figure 9.4: An illustration of no correlation (<span class="math inline">\(r_{xy} \approx 0\)</span>).
+Figure 9.6: An illustration of no correlation (<span class="math inline">\(r_{xy} \approx 0\)</span>).
 </p>
 </div>
 <p>The interactive plot below allows us to examine the spatial arrangement of data and the resulting correlation.</p>
@@ -755,7 +770,7 @@ causes decrease in <span class="math inline">\(y\)</span>.</p></li>
 <li><p><span class="math inline">\(cor(x,y) = cor(y,x)\)</span>.</p></li>
 </ul>
 <div class="example">
-<p><span id="exm:unlabeled-div-96" class="example"><strong>Example 9.3  </strong></span>Five observations taken for two variables follow.</p>
+<p><span id="exm:unlabeled-div-97" class="example"><strong>Example 9.3  </strong></span>Five observations taken for two variables follow.</p>
 <div class="smalltbl">
 <table>
 <thead>
@@ -838,7 +853,7 @@ and the total sum of square (SST) are components of a model which are
 related to the variation in the data.</p>
 <p><strong>SSE (Sum of Squared Error)</strong></p>
 <div class="definition">
-<p><span id="def:unlabeled-div-97" class="definition"><strong>Definition 9.3  </strong></span>For any simple linear regression model, SSE (Sum of residual squared)
+<p><span id="def:unlabeled-div-98" class="definition"><strong>Definition 9.4  </strong></span>For any simple linear regression model, SSE (Sum of residual squared)
 measures the distance between observed data and estimated data, which is
 given by: <span class="math display">\[SSE = \sum_{i=1}^{n} (y_i - \hat{y_i})^2.\]</span></p>
 </div>
@@ -847,16 +862,16 @@ actual empirical values of data). It is a measure of the discrepancy
 between the data and an estimation model.
 A small SSE indicates a tight fit of the model to the data.</p>
 <p>The SSE is the variation which is not explained by the model.
-It is illustrated in Figure <a href="simple-linear-regression.html#fig:SSEregression">9.5</a>.</p>
+It is illustrated in Figure <a href="simple-linear-regression.html#fig:SSEregression">9.7</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:SSEregression"></span>
 <img src="Book_Files/figure-html/SSEregression-1.png" alt="An illustration of $y_i - \hat{y}_{i}$. when these distances are squared and added together, we get the SSE." width="90%" />
 <p class="caption">
-Figure 9.5: An illustration of <span class="math inline">\(y_i - \hat{y}_{i}\)</span>. when these distances are squared and added together, we get the SSE.
+Figure 9.7: An illustration of <span class="math inline">\(y_i - \hat{y}_{i}\)</span>. when these distances are squared and added together, we get the SSE.
 </p>
 </div>
 <p><strong>SSR (Sum Square Regression)</strong></p>
 <div class="definition">
-<p><span id="def:unlabeled-div-98" class="definition"><strong>Definition 9.4  </strong></span>For any simple linear regression, the distance between the mean of
+<p><span id="def:unlabeled-div-99" class="definition"><strong>Definition 9.5  </strong></span>For any simple linear regression, the distance between the mean of
 dependent value and estimated dependent value is called sum square
 regression (SSR), which is given by
 <span class="math display">\[SSR = \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2.\]</span></p>
@@ -864,27 +879,27 @@ regression (SSR), which is given by
 <p>The SSR is the variation which is explained by the model.
 It measures the distance between estimated value (estimated dependent
 data) and the mean of dependent data (<span class="math inline">\(\bar{y}\)</span>).
-It is illustrated in Figure <a href="simple-linear-regression.html#fig:SSRregression">9.6</a>.</p>
+It is illustrated in Figure <a href="simple-linear-regression.html#fig:SSRregression">9.8</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:SSRregression"></span>
 <img src="Book_Files/figure-html/SSRregression-1.png" alt="An illustration of $y_i - \bar{y}$. when these distances are squared and added together, we get the SSR." width="90%" />
 <p class="caption">
-Figure 9.6: An illustration of <span class="math inline">\(y_i - \bar{y}\)</span>. when these distances are squared and added together, we get the SSR.
+Figure 9.8: An illustration of <span class="math inline">\(y_i - \bar{y}\)</span>. when these distances are squared and added together, we get the SSR.
 </p>
 </div>
 <p><strong>SST (Total Sum of Squares)</strong></p>
 <div class="definition">
-<p><span id="def:unlabeled-div-99" class="definition"><strong>Definition 9.5  </strong></span>For any simple linear regression model, SST (Total sum of squares)
+<p><span id="def:unlabeled-div-100" class="definition"><strong>Definition 9.6  </strong></span>For any simple linear regression model, SST (Total sum of squares)
 measures the sum over all squared differences between the observations
 and their overall mean <span class="math inline">\(\bar{y}\)</span> is given by:
 <span class="math display">\[SST = \sum_{i=1}^{n}(y_i - \bar{y})^2.\]</span></p>
 </div>
 <p>The SST is the sum of the squared differences between the
 observations and their overall mean <span class="math inline">\(\bar{y}\)</span> in the data.
-This is illustrated in Figure <a href="simple-linear-regression.html#fig:SSTregression">9.7</a>.</p>
+This is illustrated in Figure <a href="simple-linear-regression.html#fig:SSTregression">9.9</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:SSTregression"></span>
 <img src="Book_Files/figure-html/SSTregression-1.png" alt="An illustration of $\hat{y}_i - \bar{y}$. when these distances are squared and added together, we get the SST." width="90%" />
 <p class="caption">
-Figure 9.7: An illustration of <span class="math inline">\(\hat{y}_i - \bar{y}\)</span>. when these distances are squared and added together, we get the SST.
+Figure 9.9: An illustration of <span class="math inline">\(\hat{y}_i - \bar{y}\)</span>. when these distances are squared and added together, we get the SST.
 </p>
 </div>
 <p>The app below allows us to show or hide each of these component on one plot.</p>
@@ -913,7 +928,7 @@ is important in simple linear regression, that is coefficient of
 determination. It is proportion of variability in <span class="math inline">\(y\)</span> which is explained
 by <span class="math inline">\(x\)</span>.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-100" class="definition"><strong>Definition 9.6  </strong></span>We define the coefficient of determination as the sum of squares due to
+<p><span id="def:unlabeled-div-101" class="definition"><strong>Definition 9.7  </strong></span>We define the coefficient of determination as the sum of squares due to
 the regression divided by the total sum of squares.
 <span class="math display">\[r^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}.\]</span> The coefficient of
 determination can be interpreted as the proportion of the variation in
@@ -973,12 +988,12 @@ is the line:</p>
 <p><span class="math display">\[b_0 = \bar{y} - b_1 \bar{x}\]</span></p>
 </div>
 <div class="definition">
-<p><span id="def:unlabeled-div-101" class="definition"><strong>Definition 9.7  </strong></span>The <strong>least-squares regression line</strong> of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> is the line that
+<p><span id="def:unlabeled-div-102" class="definition"><strong>Definition 9.8  </strong></span>The <strong>least-squares regression line</strong> of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> is the line that
 makes the sum of the squares of the vertical distances of the data
 points from the line as small as possible.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-102" class="example"><strong>Example 9.4  </strong></span>Suppose an appliance store conducts a 5-month experiment to determine
+<p><span id="exm:unlabeled-div-103" class="example"><strong>Example 9.4  </strong></span>Suppose an appliance store conducts a 5-month experiment to determine
 the effect of advertising on sales revenue. The results are shown in a
 table below. The relationship between sales revenue, <span class="math inline">\(y\)</span>, and
 advertising expenditure, <span class="math inline">\(x\)</span>, is hypothesized to follow a first-order
@@ -1082,7 +1097,7 @@ sampling distribution of <span class="math inline">\(\hat{\beta}_1\)</span> (est
 \quad = \quad
 \hat{\beta}_1 \pm t_{(n-2, \, \alpha/2)} \cdot \frac{s}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2}}\]</span></p>
 <div class="example">
-<p><span id="exm:unlabeled-div-103" class="example"><strong>Example 9.5  </strong></span>Revisit the example on advertising and sales and construct a 95%
+<p><span id="exm:unlabeled-div-104" class="example"><strong>Example 9.5  </strong></span>Revisit the example on advertising and sales and construct a 95%
 confidence interval on the slope. Provide an interpretation of the CI.</p>
 <p>From earlier: <span class="math display">\[\hat{y} = -0.1 + 0.7x\]</span></p>
 <div class="center">
@@ -1216,7 +1231,7 @@ freedom.</p>
 <span class="math display">\[\text{test stat} = \frac{\text{statistic} - \text{hypothesized value}}{\text{SE(statistic)}}\]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-104" class="example"><strong>Example 9.6  </strong></span>For the advertising example, perform a two-sided hypothesis test on the
+<p><span id="exm:unlabeled-div-105" class="example"><strong>Example 9.6  </strong></span>For the advertising example, perform a two-sided hypothesis test on the
 slope.</p>
 <p><strong>Hypotheses:</strong> <span class="math display">\[H_0\!: \beta_1 = 0
 \qquad
@@ -1258,7 +1273,7 @@ H_a : \beta_1 &lt; 0 &amp; \quad \text{is } P(T &lt; t).
 \end{aligned}\]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-105" class="example"><strong>Example 9.7  </strong></span><span class="math display">\[\alpha = 0.05\]</span></p>
+<p><span id="exm:unlabeled-div-106" class="example"><strong>Example 9.7  </strong></span><span class="math display">\[\alpha = 0.05\]</span></p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(H_0: \beta_1 = 0 \quad \text{vs} \quad H_a: \beta_1 &gt; 0\)</span></p></li>
 <li><p><span class="math inline">\(t^* = \frac{b_1}{SE_{b_1}} = \frac{0.7}{0.1914} = 3.6572\)</span></p></li>
@@ -1426,7 +1441,7 @@ structured table format.</p>
 <p><strong>Reference distribution:</strong> <span class="math inline">\(F\)</span> with numerator df = <span class="math inline">\(p\)</span>, denominator df
 = <span class="math inline">\(n - p - 1\)</span></p>
 <div class="example">
-<p><span id="exm:unlabeled-div-106" class="example"><strong>Example 9.8  </strong></span>We fitted a simple linear regression model using:</p>
+<p><span id="exm:unlabeled-div-107" class="example"><strong>Example 9.8  </strong></span>We fitted a simple linear regression model using:</p>
 <div class="tcolorbox">
 <pre><code>x = c(1,2,3,4,5);
 y = c(1,1,2,2,4);
@@ -1463,7 +1478,7 @@ conclude that <span class="math inline">\(x\)</span> has a statistically signifi
 with <span class="math inline">\(y\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-107" class="example"><strong>Example 9.9  </strong></span>We consider data on apartments near UTM, with price (in thousands of
+<p><span id="exm:unlabeled-div-108" class="example"><strong>Example 9.9  </strong></span>We consider data on apartments near UTM, with price (in thousands of
 dollars), area (in 100 square feet), and number of beds and baths.</p>
 <div class="center">
 <table>
@@ -1537,10 +1552,10 @@ dollars), area (in 100 square feet), and number of beds and baths.</p>
 </tbody>
 </table>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-31-1.png" alt="Plot of Price vs Area for Apartments near UTM" width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-30-1.png" alt="Plot of Price vs Area for Apartments near UTM" width="80%" />
 <p class="caption">
-Figure 9.8: Plot of Price vs Area for Apartments near UTM
+Figure 9.10: Plot of Price vs Area for Apartments near UTM
 </p>
 </div>
 <table>
@@ -1954,7 +1969,7 @@ F-statistic: 10.78 on 1 and 7 DF,  p-value: 0.01341</code></pre>
 </div>
 </div>
 <div class="definition">
-<p><span id="def:unlabeled-div-108" class="definition"><strong>Definition 9.8  </strong></span></p>
+<p><span id="def:unlabeled-div-109" class="definition"><strong>Definition 9.9  </strong></span></p>
 <ul>
 <li><p><strong>Interpolation</strong> is calculating predicted values of <span class="math inline">\(y\)</span> using our
 linear model while working within the range of <span class="math inline">\(x\)</span> in which data was
@@ -1997,10 +2012,10 @@ band, roughly half above and half below zero.</p>
 isolated influential observations or clustering.</p></li>
 </ol>
 <!-- # ```{r residual-stack, fig.width=6, fig.height=16, dev="png", out.width="100%", fig.align="center", message=FALSE, warning=FALSE} -->
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-32-1.png" alt="Examples of residual plots which satisfy assumpations and which violate assumptions" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-31-1.png" alt="Examples of residual plots which satisfy assumpations and which violate assumptions" width="70%" />
 <p class="caption">
-Figure 9.9: Examples of residual plots which satisfy assumpations and which violate assumptions
+Figure 9.11: Examples of residual plots which satisfy assumpations and which violate assumptions
 </p>
 </div>
 <div class="tcolorbox">

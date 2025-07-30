@@ -16,7 +16,7 @@ A simple linear regression (SLR) model is a linear regression model with just 1 
 $$y_i = \beta_0 + \beta_1 x_{i} \varepsilon_i, \quad \varepsilon_i \sim N(0, \sigma^2).$$
 
 
-### Least Squares Method
+### Least Squares Method {#sec:LeastSquaresMethod}
 
 The method of least squares is an optimization technique used to calculate the coefficients $\beta_0, \ldots, \beta_p$ in regression analysis. Its goal is to determine the parameters of a candidate model that make the model’s predictions as close as possible to the observed data
 based on some minimization criteria.
@@ -87,34 +87,46 @@ where $\beta_0$ and $\beta_1$ denote the intercept and slope of the fitted line.
 
 ### Estimating Parameters for the Simple Linear Model
 
-The regression line which we are going to use is:
-$E(Y) = \beta_0 + \beta_1 \cdot x$. This is fitted to the data points
-$(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ by finding the line that is
-closest to the data in some sense. There are many ways in which
-closeness can be defined, but the method most generally used is to
-consider the vertical deviations between the line and the data points:
-$y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq n$.
+Let $(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ be pairs of points
+for independent variable $x$ and dependent variable $y$.
+Suppose we plot these points on coordinate axes (See Figure \@ref(fig:PlotPointsOnly)).
 
-The fitted line is chosen to be the line that minimizes the sum of the
-squares of these vertical deviations
-$$Q = \sum_{i=1}^{n} [y_i - (\beta_0 + \beta_1 \cdot x_i)]^2$$ and this
-is referred to as the least squares fit. (The quantity $Q$ is also
-called the **sum of squares for error**, SSE.)
-
-The parameter estimates $\hat{\beta_0}$ and $\hat{\beta_1}$ are
-therefore the values that minimize the quantity $Q$. They are found
-taking partial derivatives of $Q$ with respect to $\hat{\beta_0}$ and
-$\hat{\beta_1}$ and setting the resulting expressions equal to $0$.
-
-```{r fig.cap="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$.", message=FALSE, warning=FALSE,echo=FALSE, fig.align='center'}
+```{r PlotPointsOnly, fig.cap="Example of points plotted on coordinate axes.", echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 library(ggplot2)
 
-# --- Manually chosen data for clear distances ---
+# --- Same 5 points as before ---
 df <- data.frame(
-  x = c(0.5, 1.0, 1.5, 2.0, 2.5,
-        3.0, 3.5, 4.0, 4.5, 5.0),
-  y = c(3.0, 2.5, 1.0, 4.5, 2.0,
-        5.0, 1.5, 6.0, 4.0, 7.0)
+  x = c(0.5, 1.5, 2.5, 3.5, 4.5),
+  y = c(3.5, 1.0, 5.0, 1.5, 6.5)
+)
+
+# Plot with only the points
+p_points <- ggplot(df, aes(x, y)) +
+  geom_point(size = 3.2, color = "#619CFF") +
+  # Keep x-axis extent
+  coord_cartesian(xlim = c(-0.75, 6.5)) +
+  # Keep y-axis extent
+  coord_cartesian(ylim = c(-0.5, 7)) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 16)
+
+print(p_points)
+```
+
+Our goal is to find the line of best fit for these points. 
+The line of best fit will be of the form
+$$
+\hat{y} = \hat{\beta}_{0} + \hat{\beta}_{1}x
+$$
+where $\hat{y}$ represents all fitted points on the line, $x$ is a value we can input into calculate a predicted $\hat{y}$, $\hat{\beta}_0$ is the estimate of the intercept and $\hat{\beta}_1$ is the estimate of the slope (See Figure \@ref(fig:PlotPointsLine)).
+
+```{r PlotPointsLine, fig.cap="The line of best fit has now been superimposed on the points in Figure \\@ref(fig:PlotPointsOnly).", message=FALSE,warning=FALSE,echo=FALSE,fig.align='center'}
+library(ggplot2)
+
+# --- Reduced to 5 points with reasonably large residuals ---
+df <- data.frame(
+  x = c(0.5, 1.5, 2.5, 3.5, 4.5),
+  y = c(3.5, 1.0, 5.0, 1.5, 6.5)
 )
 
 # Fit linear model
@@ -123,41 +135,119 @@ b0    <- coef(model)[1]
 b1    <- coef(model)[2]
 
 # Predicted values
-yhat  <- model$fitted.values
-df    <- cbind(df, yhat)
+df$yhat <- fitted(model)
+
+# Sample mean of y (used only for the text annotation)
+ybar  <- mean(df$y)
+
+# Create the plot (no brackets, no labels, no vertical residual lines)
+p_clean <- ggplot(df, aes(x, y)) +
+  # Observed points
+  geom_point(size = 3.2, color = "#619CFF") +
+  # Regression line (kept)
+  geom_abline(aes(intercept = b0, slope = b1, color = "Regression line"),
+              size = 1.3, key_glyph = draw_key_path) +
+  # Annotate regression equation (kept)
+  annotate("text", x = 4.25, y = 4,
+           label = "hat(y) == hat(beta)[0] + hat(beta)[1]*x",
+           parse = TRUE, color = "#F8766D", size = 5) +
+  # Keep x-axis extent
+  coord_cartesian(xlim = c(-0.75, 6.5)) +
+  # Keep y-axis extent
+  coord_cartesian(ylim = c(-0.5, 7)) +
+  labs(x = "x", y = "y") +
+  # Legend with only the regression line
+  scale_color_manual(
+    name   = NULL,
+    values = c("Regression line" = "#F8766D"),
+    breaks = c("Regression line"),
+    labels = c("Regression line")
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    legend.position      = c(0.02, 0.98),
+    legend.justification = c(0, 1),
+    legend.background    = element_rect(fill = alpha("white", 0.5), color = NA),
+    legend.key.width     = unit(1.5, "lines")
+  )
+
+# Display the plot
+print(p_clean)
+```
+
+Recall in Section \@ref(sec:LeastSquaresMethod) thatwe discussed that the technique used to determine the line of best fit is to minimize the sum the squared distances between the observed $y_{i}$'s from our data and the fitter $\hat{y}_{i}$'s which are predicted from the line (See Figure \@ref(fig:PlotPtsLnRes)).
+
+```{r PlotPtsLnRes, fig.cap="The distances between each observed $y_i$ and fitted $\\hat{y}_{i}$ from Figure \\@ref(fig:PlotPointsLine).", message=FALSE,warning=FALSE,echo=FALSE,fig.align='center'}
+library(ggplot2)
+
+# --- Reduced to 5 points with reasonably large residuals ---
+df <- data.frame(
+  x = c(0.5, 1.5, 2.5, 3.5, 4.5),
+  y = c(3.5, 1.0, 5.0, 1.5, 6.5)
+)
+
+# Fit linear model
+model <- lm(y ~ x, data = df)
+b0    <- coef(model)[1]
+b1    <- coef(model)[2]
+
+# Predicted values
+df$yhat <- fitted(model)
 
 # Sample mean of y
 ybar  <- mean(df$y)
 
-# (SST segments calculated but not used in this SSE plot)
-df$sst_y0 <- pmin(df$y, ybar)
-df$sst_y1 <- pmax(df$y, ybar)
+# --- Bracket placement: put brackets on the LEFT for points ABOVE the line ---
+cap    <- 0.10   # horizontal cap length
+offset <- 0.20   # horizontal offset from the residual line
 
-# Create the SSE plot
+# sgn = -1 for positive residuals (y > yhat) -> bracket to the LEFT
+# sgn = +1 for negative residuals (y < yhat) -> bracket to the RIGHT
+sgn <- ifelse(df$y > df$yhat, -1, 1)
+
+br <- transform(
+  df,
+  i      = seq_len(nrow(df)),
+  x0     = x + sgn * offset,                # x-location of bracket's vertical bar
+  y0     = pmin(y, yhat),                   # bottom of bracket
+  y1     = pmax(y, yhat),                   # top of bracket
+  ymid   = (pmin(y, yhat) + pmax(y, yhat)) / 2,
+  xlab   = x + sgn * (offset + 0.14),       # label position a bit further from bracket
+  lab    = paste0("y[", seq_len(nrow(df)), "] - hat(y)[", seq_len(nrow(df)), "]")
+)
+
+# Create the SSE plot with square brackets showing |y_i - yhat_i|
 p_sse <- ggplot(df, aes(x, y)) +
   # Residuals: yi - ŷi
-  geom_segment(aes(x = x, xend = x, y = yhat, yend = y, color = "yi - yhat"),
-               size = 0.6) +
+  geom_segment(aes(x = x, xend = x, y = yhat, yend = y, color = "yi - yhat"), size = 0.6) +
   # Observed points
   geom_point(size = 3.2, color = "#619CFF") +
   # Regression line
   geom_abline(aes(intercept = b0, slope = b1, color = "Regression line"),
-              size = 1.3,
-              key_glyph = draw_key_path) +
-  # Mean line
-  geom_hline(yintercept = ybar, linetype = "dashed", size = 0.6) +
-  # Annotate ȳ
-  annotate("text", x = 6.05, y = ybar + 0.03,
-           label = "bar(y)", parse = TRUE,
-           hjust = 1, vjust = -0.2) +
-  # Annotate regression equation
-  annotate("text", x = 6, y = max(df$y) - 1.75,
+              size = 1.3, key_glyph = draw_key_path) +
+  # (Mean line intentionally removed)
+  # geom_hline(yintercept = ybar, linetype = "dashed", size = 0.6)
+  # Square-bracket lines (drawn without mapping -> not added to legend)
+  geom_segment(data = br, inherit.aes = FALSE,
+               aes(x = x0, xend = x0, y = y0, yend = y1), linewidth = 0.6) +               # vertical bar
+  geom_segment(data = br, inherit.aes = FALSE,
+               aes(x = x0 - sgn * cap, xend = x0, y = y0, yend = y0), linewidth = 0.6) +   # lower cap (toward line)
+  geom_segment(data = br, inherit.aes = FALSE,
+               aes(x = x0 - sgn * cap, xend = x0, y = y1, yend = y1), linewidth = 0.6) +   # upper cap (toward line)
+  # Labels for each residual next to its bracket
+  geom_text(data = br, inherit.aes = FALSE,
+            aes(x = xlab, y = ymid, label = lab),
+            parse = TRUE, size = 4, hjust = ifelse(sgn > 0, 0, 1)) +
+  # Annotate regression equation (kept)
+  annotate("text", x = 4.25, y = 4,
            label = "hat(y) == hat(beta)[0] + hat(beta)[1]*x",
            parse = TRUE, color = "#F8766D", size = 5) +
-  # extend x-axis to 6.5
-  coord_cartesian(xlim = c(0, 6.5)) +
+  # Keep x-axis extent
+  coord_cartesian(xlim = c(-0.75, 6.5)) +
+  # Keep y-axis extent
+  coord_cartesian(ylim = c(-0.5, 7)) +
   labs(x = "x", y = "y") +
-  # Manual legend entries for regression and residuals
+  # Manual legend entries for regression and residuals (unchanged)
   scale_color_manual(
     name   = NULL,
     values = c("Regression line" = "#F8766D",
@@ -174,23 +264,34 @@ p_sse <- ggplot(df, aes(x, y)) +
     legend.key.width     = unit(1.5, "lines")
   )
 
-# Display the SSE plot
+# Display the plot
 print(p_sse)
 ```
 
+By minimizing the sum of the square error (SSE) which we recall is
 
-Let $x$ be independent variable and $y$ be dependent variable, then the
-model of simple linear regression is:
-$\hat{y} = \hat{\beta_0} + \hat{\beta_1} \cdot x + \varepsilon$, where
-$\hat{\beta_0}$ represents the $y$-intercept, $\hat{\beta_1}$ represents
-the slope and $\varepsilon$ is the error term that
-$\varepsilon \sim N(0, \sigma^2)$. 
+$$
+\begin{aligned}
+SSE &= \sum_{i=1}^{n} (y_i - \hat{y}_{i})^2\\
+    &= \sum_{i=1}^{n} \big(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i) \big)^2.
+\end{aligned}
+$$ 
+By taking the partial derivatives of the $SSE$ with respect to $\hat{\beta}_0$ and $\hat{\beta}_1$, setting the expression to 0 and solving for each term, we obtain 
 
-Moreover,
-$$\hat{\beta_0} = \bar{y} - \hat{\beta_1}\cdot \bar{x}$$ 
-and
-$$\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = \frac{\displaystyle\sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y}}{\displaystyle\sum_{i=1}^{n}x_i^2 - n\bar{x}^2}$$.
-
+::: {.definition }
+For a model of the form $y = \beta_{0} + \beta_{1}x + \varepsilon, \, \varepsilon \sim N(0, \sigma^2)$, the least square estimates for $\beta_{0}$ and $\beta_{1}$ are given be
+$$
+\begin{aligned}
+\hat{\beta}_1 &= \frac{S_{xy}}{S_{xx}} 
+                  = \frac{\displaystyle\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) }{ \displaystyle\sum_{i=1}^{n} (x_i - \bar{x})^2 }
+                  = \frac{\displaystyle\sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y}}{\displaystyle\sum_{i=1}^{n}x_i^2 - n\bar{x}^2}\\
+\hfill\\
+\text{and}\\
+\hfill\\
+\hat{\beta}_0 &= \bar{y} - \hat{\beta}_1\bar{x}
+\end{aligned}
+$$
+:::
 
 ::::: example
 Suppose an appliance store conducts a 5-month experiment to determine
@@ -227,8 +328,8 @@ b\) Plot the estimated regression function and the data.
 a\) $\bar{x} = 3$, $\bar{y} = 2$, $S_{xx} = 10$, $S_{xy} = 7$
 
 Then, the slope of the least squares line is
-$\hat{\beta_1} = \frac{S_{xy}}{S_{xx}} = 0.7$ and
-$\hat{\beta_0} = \bar{y} - \hat{\beta_1}\bar{x} = -0.1$. Thus, the least
+$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = 0.7$ and
+$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = -0.1$. Thus, the least
 squares line is $\hat{y} = -0.1 + 0.7x$.
 
 b\) R-code
@@ -449,9 +550,9 @@ measure of the strength of the linear relationship between two random
 variables.
 
 - If $r_{xy} \approx +1$, then we say that the two random variables have
-  a strong positive correlation (See Figure \@ref(fig:examplePositiveCorr)).
+  strong positive correlation (See Figure \@ref(fig:examplePositiveCorr)).
 
-```{r examplePositiveCorr,fig.cap="An illustration of simple linear regression model (with positive correlation between total sleep duration and memory score).", echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+```{r examplePositiveCorr,fig.cap="An illustration of strong negative correlation ($r_{xy} \\approx +1$).", echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 # Load necessary library
 library(plotly)
 
@@ -498,7 +599,7 @@ fig
 
 
 - If $r_{xy} \approx -1$, then we say that the two random variables have
-  a strong negative correlation. (See figure \@ref(fig:exampleNegaticeCorr))
+  strong negative correlation. (See figure \@ref(fig:exampleNegaticeCorr))
 
 
 ```{r exampleNegaticeCorr, fig.cap="An illustration of strong negative correlation ($r_{xy} \\approx -1$).", message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
