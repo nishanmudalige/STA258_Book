@@ -9,159 +9,11 @@ one's height). The goal of simple linear regression is to find the
 best-fitting straight line, known as the regression line, that predicts
 the dependent variable based on the independent variable. 
 
-**Example of Positive Correlation**
-
-Researchers find out that longer sleep plays crucial role in memory consolidation. It helps people to save and solidify new information, making it less likely to be forgotten.
-
-```{r fig.cap="An illustration of simple linear regression model (with positive correlation between total sleep duration and memory score).", echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-# Load necessary library
-library(plotly)
-
-# -----------------------------
-# Step 1: Simulate example data
-# -----------------------------
-set.seed(123)
-
-# Simulate 30 observations of sleep duration (hours)
-sleep <- seq(4, 10, length.out = 30)
-
-# Simulate memory scores with noise (linearly dependent on sleep)
-memory <- 50 + 5 * sleep + rnorm(30, mean = 0, sd = 5)
-
-# Create a data frame
-data <- data.frame(sleep, memory)
-
-# -----------------------------
-# Step 2: Fit simple linear model
-# -----------------------------
-model <- lm(memory ~ sleep, data = data)
-
-# Add predicted (fitted) values to data frame
-data$fit <- predict(model)
-
-# -----------------------------
-# Step 3: Plot using Plotly
-# -----------------------------
-fig <- plot_ly(data, x = ~sleep, y = ~memory, type = 'scatter', mode = 'markers',
-               marker = list(color = 'rgba(0, 100, 255, 0.7)', size = 8),
-               name = 'Data points') %>%
-  add_trace(y = ~fit, mode = 'lines',
-            line = list(color = '#F8766D', width = 2),
-            name = 'SLR Line') %>%
-  layout(title = "Simple Linear Regression: Total Sleep Duration vs Memory Score",
-         xaxis = list(title = "Hours of Sleep"),
-         yaxis = list(title = "Memory Score"),
-         legend = list(x = 0.05, y = 0.95))
-
-# Display the plot
-fig
-```
-
-From figure 9.1 above, you have probably already noticed that as total sleep duration increases (increase in x-axis or independent variable), the memory score also increases (increase in y-axis or dependent variable). If this holds, then we say that there exists a positive correlation between total sleep duration (independent variable) and memory score (dependent variable).
-
-**Example of Negative Correlation**
-
-Now, let's consider another scenario that you want to drive from Toronto to Vancouver. You are going to arrive in Vancouver with about 42.06 hours, if you drive your car with average speed 100 km/h. Trivially, you will arrive in Vancouver faster (35.05 hours), if you drive your car with average speed 120 km/h.
-
-```{r fig.align='center', fig.cap="An illustration of simple linear regression model (with negative correlation between car speed and total travel time).", echo=FALSE, message=FALSE, warning=FALSE}
-# Load required library
-library(plotly)
-
-# -----------------------------
-# Step 1: Simulate data
-# -----------------------------
-set.seed(123)
-
-# Simulate speed (km/h), ranging from 40 to 100
-speed <- seq(40, 100, length.out = 30)
-
-# Assume travel time = distance / speed + some noise
-distance <- 100  # km
-travel_time <- distance / speed + rnorm(30, mean = 0, sd = 0.2)
-
-# Create data frame
-data <- data.frame(speed, travel_time)
-
-# -----------------------------
-# Step 2: Fit linear regression
-# -----------------------------
-model <- lm(travel_time ~ speed, data = data)
-data$fit <- predict(model)
-
-# -----------------------------
-# Step 3: Plot using Plotly
-# -----------------------------
-fig <- plot_ly(data, x = ~speed, y = ~travel_time, type = 'scatter', mode = 'markers',
-               marker = list(color = '#619CFF', size = 8),  # Default Plotly blue
-               name = 'Data Points') %>%
-  add_trace(y = ~fit, mode = 'lines',
-            line = list(color = '#F8766D', width = 2),
-            name = 'SLR Line') %>%
-  layout(title = "SLR: Car Speed vs Travel Time",
-         xaxis = list(title = "Average Speed (km/h)"),
-         yaxis = list(title = "Travel Time (hours)"),
-         legend = list(x = 0.05, y = 0.95))
-
-# Display plot
-fig
-```
-
-From figure 9.2 above, you have probably already noticed that as average car speed increases (increase in x-axis or independent variable), the total travel time decreases (decrease in y-axis or dependent variable). If this holds, then we say that there exists a negative correlation between average car speed (independent variable) and total travel time (dependent variable).
-
-**Example of No Correlation**
-
-Finally, let's consider the relationship between coffee consumption and intelligence. There is no evidence to prove that someone drink coffee will lead to increase or decrease in intelligence.
-
-```{r fig.align='center', fig.cap="An illustration of simple linear regression model (with no correlation between coffee consumption and intelligence).", echo=FALSE, message=FALSE, warning=FALSE}
-# Load library
-library(plotly)
-
-# -----------------------------
-# Step 1: Simulate no-correlation data
-# -----------------------------
-set.seed(123)
-
-# Simulate coffee consumption (0 to 8 cups/day)
-coffee <- seq(0, 8, length.out = 30)
-
-# Simulate intelligence scores randomly, independent of coffee
-intelligence <- rnorm(30, mean = 100, sd = 10)  # No trend with coffee
-
-# Create data frame
-data <- data.frame(coffee, intelligence)
-
-# -----------------------------
-# Step 2: Plot only data points (no line)
-# -----------------------------
-fig <- plot_ly(data, x = ~coffee, y = ~intelligence, type = 'scatter', mode = 'markers',
-               marker = list(color = 'rgba(0, 100, 255, 0.7)', size = 8),
-               name = 'Data points') %>%
-  layout(title = "Coffee Consumption vs Intelligence (No Correlation)",
-         xaxis = list(title = "Coffee Consumption (cups/day)"),
-         yaxis = list(title = "Intelligence Score"),
-         legend = list(x = 0.05, y = 0.95))
-
-# Show plot
-fig
-```
-
-In this case, if we cannot conclude that an increase in coffee consumption (independent variable) will lead to either an increase or a decrease in intelligence (dependent variable), then we say there is no correlation between coffee consumption (independent variable) and intelligence (dependent variable).
-
-Also, we are going to discuss more about correlation in the following subsection.
-
-Now, you may wonder the accuracy of this model. In statistics, we do
-have parameters that approximate the slope and intercept of the function
-$y = mx + b$. The model we are going to use is:
-$\hat{y} = \hat{\beta_1}x + \hat{\beta_0} + \varepsilon$. From this model,
-the slope and the intercept are $\hat{\beta_1}$, $\hat{\beta_{0}}$
-respectively ($\hat{\beta_1}$ and $\hat{\beta_{0}}$ are unbiased
-estimators). Moreover, the $\varepsilon$-term is called error term, which
-we will discuss it later.
-
 ### Measures of Linear Relationship
 
-Before we formally introduce simple linear regression, there are some
-measures of SLR that should be discussed.
+We begin be introducing a quantitaive measurement to
+measure the linear relationship between variavles
+
 **Covariance (Sample Covariance)**
 
 In probability theory and statistics, covariance is a measure of the
@@ -232,101 +84,146 @@ measure of the strength of the linear relationship between two random
 variables.
 
 - If $r_{xy} \approx +1$, then we say that the two random variables have
-  a strong positive correlation. (See figure 9.2)
-  
+  a strong positive correlation (See Figure \@ref(fig:examplePositiveCorr)).
 
-```{r fig.cap="An illustration of strong positive correlation ($r_{xy} \\approx +1$).", message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
-library(ggplot2)
+```{r examplePositiveCorr,fig.cap="An illustration of simple linear regression model (with positive correlation between total sleep duration and memory score).", echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+# Load necessary library
+library(plotly)
 
-set.seed(123)  # for reproducibility
+# -----------------------------
+# Step 1: Simulate example data
+# -----------------------------
+set.seed(123)
 
-# Data for blue points (on y ≈ x with noise)
-blue_df <- data.frame(
-  x = seq(0.5, 5, by = 0.5),
-  y = seq(0.5, 5, by = 0.5) + rnorm(10, mean = 0, sd = 0.1)  # add noise here
-)
+# Simulate 30 observations of sleep duration (hours)
+sleep <- seq(4, 10, length.out = 30)
 
-# Data for blue points (on y ≈ x + 0.5 with noise)
-red_df <- data.frame(
-  x = seq(0.5, 5, by = 0.5),
-  y = seq(1, 5.5, by = 0.5) + rnorm(10, mean = 0, sd = 0.1)  # and here
-)
+# Simulate memory scores with noise (linearly dependent on sleep)
+memory <- 50 + 5 * sleep + rnorm(30, mean = 0, sd = 5)
 
-# Plot
-ggplot() +
-  geom_point(data = blue_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
-  geom_point(data = red_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
-  labs(x = expression(x), y = expression(y)) +
-  theme_minimal()
+# Create a data frame
+data <- data.frame(sleep, memory)
+
+# -----------------------------
+# Step 2: Fit simple linear model
+# -----------------------------
+model <- lm(memory ~ sleep, data = data)
+
+# Add predicted (fitted) values to data frame
+data$fit <- predict(model)
+
+# -----------------------------
+# Step 3: Plot using Plotly
+# -----------------------------
+fig <- plot_ly(data, x = ~sleep, y = ~memory, type = 'scatter', mode = 'markers',
+               marker = list(color = 'rgba(0, 100, 255, 0.7)', size = 8),
+               name = 'Data points') %>%
+  # add_lines(y = ~fit, mode = 'lines',
+  #           line = list(color = '#F8766D', width = 2),
+  #           name = 'SLR Line') %>%
+  layout(title = "Example of Positive Correlation",
+         xaxis = list(title = "X"),
+         yaxis = list(title = "Y"),
+         legend = list(x = 0.05, y = 0.95))
+
+# Display the plot
+fig
 ```
+  
 
 
 - If $r_{xy} \approx -1$, then we say that the two random variables have
-  a strong negative correlation. (See figure 9.3)
+  a strong negative correlation. (See figure \@ref(fig:exampleNegaticeCorr))
 
 
-```{r fig.cap="An illustration of strong negative correlation ($r_{xy} \\approx -1$).", message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
-library(ggplot2)
+```{r exampleNegaticeCorr, fig.cap="An illustration of strong negative correlation ($r_{xy} \\approx -1$).", message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
+# Load required library
+library(plotly)
 
-set.seed(456)  # ensures reproducibility
+# -----------------------------
+# Step 1: Simulate data
+# -----------------------------
+set.seed(123)
 
-# Blue points: y decreases with x + noise
-x_vals <- c(0.5, 1, 1.5, 2.3, 2.5, 3.2, 3.5, 4.1, 4.5, 5)
-blue_df <- data.frame(
-  x = x_vals,
-  y = rev(x_vals) + rnorm(10, mean = 0, sd = 0.1)  # reversed x with noise
-)
+# Simulate speed (km/h), ranging from 40 to 100
+speed <- seq(40, 100, length.out = 30)
 
-# Red points: slightly off the main trend with noise
-red_df <- data.frame(
-  x = x_vals,
-  y = rev(x_vals) + 0.2 + rnorm(10, mean = 0, sd = 0.1)  # slight offset + noise
-)
+# Assume travel time = distance / speed + some noise
+distance <- 100  # km
+travel_time <- distance / speed + rnorm(30, mean = 0, sd = 0.2)
 
-# Plot (all points in blue)
-ggplot() +
-  geom_point(data = blue_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
-  geom_point(data = red_df, aes(x = x, y = y), color = "#619CFF", size = 2) +
-  labs(x = expression(x), y = expression(y)) +
-  theme_minimal()
+# Create data frame
+data <- data.frame(speed, travel_time)
+
+# -----------------------------
+# Step 2: Fit linear regression
+# -----------------------------
+model <- lm(travel_time ~ speed, data = data)
+data$fit <- predict(model)
+
+# -----------------------------
+# Step 3: Plot using Plotly
+# -----------------------------
+fig <- plot_ly(data, x = ~speed, y = ~travel_time, type = 'scatter', mode = 'markers',
+               marker = list(color = '#619CFF', size = 8),  # Default Plotly blue
+name = 'Data Points') %>%
+  # add_trace(y = ~fit, mode = 'lines',
+  #           line = list(color = '#F8766D', width = 2),
+  #           name = 'SLR Line') %>%
+  layout(title = "Example of Negative Correlation",
+         xaxis = list(title = "X"),
+         yaxis = list(title = "Y"),
+         legend = list(x = 0.05, y = 0.95))
+
+# Display plot
+fig
 ```
 
 
 - If $r_{xy} \approx 0$, then we say that there is essentially no
   correlation between the two random variables. Note that if
   $r \approx 0$, then it suggests a linear relationship doesn't exist
-  but other relationship may exist. (See figure 15.4)
+  but other relationship may exist (See Figure \@ref(fig:exampleNoCorr)).
   
  
-```{r fig.cap="An illustration of no correlation ($r_{xy} \\approx 0$).", message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
-library(ggplot2)
+```{r exampleNoCorr, fig.cap="An illustration of no correlation ($r_{xy} \\approx 0$).", message=FALSE, warning=FALSE, echo=FALSE, fig.align='center'}
+# Load library
+library(plotly)
 
-set.seed(789)
+# -----------------------------
+# Step 1: Simulate no-correlation data
+# -----------------------------
+set.seed(123)
 
-x_vals <- c(0.5, 1, 1.5, 2.3, 3.1, 4.0, 4.5, 5.2, 6.0)
+# Simulate coffee consumption (0 to 8 cups/day)
+coffee <- seq(0, 8, length.out = 30)
 
-df <- data.frame(
-  x = x_vals,
-  y = runif(length(x_vals), min = 0.5, max = 5),  # random y
-  color = c("blue", "red", "blue", "red", "blue", "red", "blue", "red", "blue")
-)
+# Simulate intelligence scores randomly, independent of coffee
+intelligence <- rnorm(30, mean = 100, sd = 10)  # No trend with coffee
 
-ggplot(df, aes(x = x, y = y)) +
-  geom_point(aes(color = color), size = 2) +
-  geom_hline(yintercept = 1.3, color = "black", linewidth = 1) +
-  scale_color_manual(values = c("blue" = "#619CFF", "red" = "#619CFF")) +
-  labs(x = expression(x), y = expression(y)) +
-  theme_minimal() +
-  theme(legend.position = "none")
+# Create data frame
+data <- data.frame(coffee, intelligence)
+
+# -----------------------------
+# Step 2: Plot only data points (no line)
+# -----------------------------
+fig <- plot_ly(data, x = ~coffee, y = ~intelligence, type = 'scatter', mode = 'markers',
+               marker = list(color = 'rgba(0, 100, 255, 0.7)', size = 8),
+               name = 'Data points') %>%
+  layout(title = "Example of No Correlation",
+         xaxis = list(title = "X"),
+         yaxis = list(title = "Y"),
+         legend = list(x = 0.05, y = 0.95))
+
+# Show plot
+fig
 ```
 
-We are going to provide an interactive correlation figure (see the one below). The aim of the figure is to give you an illustration about where data locates as correlation changes.
+The interactive plot below allows us to examine the spatial arrangement of data and the resulting correlation.
 
 <center>
-```{r CorrShinyApp, echo=FALSE, warning=FALSE, results='asis'}
-cat('<div style="border: none;">')
-knitr::include_app("https://bryan-su.shinyapps.io/desktop/", height = "743")
-cat('</div>')
+```{r CorrShinyApp, echo=FALSE, warning=FALSE, results='asis', out.width='100%'}
+knitr::include_app("https://bryan-su.shinyapps.io/desktop/", height = "735")
 ```
 </center>
 
@@ -569,12 +466,14 @@ $(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)$ by finding the line that is
 closest to the data in some sense. There are many ways in which
 closeness can be defined, but the method most generally used is to
 consider the vertical deviations between the line and the data points:
-$y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq n$.\
+$y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq n$.
+
 The fitted line is chosen to be the line that minimizes the sum of the
 squares of these vertical deviations
 $$Q = \sum_{i=1}^{n} [y_i - (\beta_0 + \beta_1 \cdot x_i)]^2$$ and this
 is referred to as the least squares fit. (The quantity $Q$ is also
-called the **sum of squares for error**, SSE.)\
+called the **sum of squares for error**, SSE.)
+
 The parameter estimates $\hat{\beta_0}$ and $\hat{\beta_1}$ are
 therefore the values that minimize the quantity $Q$. They are found
 taking partial derivatives of $Q$ with respect to $\hat{\beta_0}$ and
@@ -697,7 +596,8 @@ residual squared (SSE). There are two more values that are important in
 simple linear regression, which are total sum of squares (SST) and sum
 of squares for regression (SSR). We will introduce all these three
 values with figures, so that you may have a better understanding of what
-they measure.\
+they measure.
+
 **SST (Total Sum of Squares)**
 
 It is defined as the sum over all squared differences between the
@@ -818,7 +718,8 @@ measures the distance between observed data and estimated data, which is
 given by: $$SSE = \sum_{i=1}^{n} (y_i - \hat{y_i})^2.$$
 :::
 
-Note that SSE (sum of residual squared) is an explained variation.\
+Note that SSE (sum of residual squared) is an explained variation.
+
 **SSR (Sum Square Regression)**
 
 It measures the distance between estimated value (estimated dependent
@@ -869,13 +770,15 @@ regression (SSR), which is given by
 $$SSR = \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2.$$
 :::
 
-Note that sum square regression (SSR) is an explained variation.\
+Note that sum square regression (SSR) is an explained variation.
+
 **Summary**
 
 Now, let's zoom in to see SST, SSE and SSR. Note that the relationship
 of these measures is that total deviation is equal to unexplained
 deviation (error) plus explained deviation (regression), that is:
-$(y_i - \bar{y}) = (y_i - \hat{y_i}) + (\hat{y_i} - \bar{y})$.\
+$(y_i - \bar{y}) = (y_i - \hat{y_i}) + (\hat{y_i} - \bar{y})$.
+
 We square all three deviations for each one of our data points, and sum
 over all $n$ points. Here, cross terms drop out, and we are left with
 the following equation:
@@ -944,7 +847,8 @@ particularly the slope.
 $$Y = \beta_0 + \beta_1 X + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2)$$
 
 Can perform inference on $\beta_0$ and $\beta_1$, however we are usually
-more interested in $\beta_1$.\
+more interested in $\beta_1$
+
 What does the error term $\varepsilon \sim \mathcal{N}(0, \sigma^2)$
 mean?\
 **At each** value of $X$, the errors are distributed normally with a
@@ -1091,7 +995,9 @@ $$s = \sqrt{\frac{1}{n - 2} \sum \text{residual}^2}
 = \sqrt{\frac{1}{n - 2} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2} 
 = \sqrt{\frac{SSE}{n - 2}}$$
 
-Use $s$ to estimate the **unknown** $\sigma$ in the regression model.\
+Use $s$ to estimate the **unknown** $\sigma$ in the regression model
+
+
 The standard error of $\hat{\beta}_1$ is the standard deviation of the
 sampling distribution of $\hat{\beta}_1$ (estimate of slope $\beta_1$):
 
@@ -1167,12 +1073,16 @@ model lies between 0.0908 and 1.3092.
 :::
 
 In cases where the CI does not contain zero, we can infer the sign of
-the slope (just not the steepness).\
+the slope (just not the steepness)
+
+
 The **regression standard error** is
 
 $$s = \sqrt{\frac{1}{n - 2} \sum_{i=1}^n (y_i - \hat{y}_i)^2} = \sqrt{\frac{SSE}{n - 2}} = \sqrt{\frac{1.1}{3}} = 0.6055$$
 
-Use $s$ to estimate the **unknown** $\sigma$ in the regression model.\
+Use $s$ to estimate the **unknown** $\sigma$ in the regression model
+
+
 A level $C$ confidence interval for the slope $\beta_1$ of the true
 regression line is
 
@@ -1227,7 +1137,9 @@ $H_a\!: \beta_1 \neq 0$.
 
 *Interpretation:* The slope should be included in the model. There is
 significant evidence of a linear relationship between advertising and
-sales revenue.\
+sales revenue
+
+
 For the advertising-sales example, a 95% Confidence Interval for the
 slope $\beta_1$ is
 $$0.7 \pm 3.182 \left( \frac{0.6055}{\sqrt{10}} \right)$$
@@ -1364,7 +1276,9 @@ $$\sum_{i=1}^{n}(y_i - \bar{y})^2 = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \sum_{i=
 $$\text{SST} = \text{SSE} + \text{SSR}$$
 
 Total sum of squares = Sum of squares for error + Sum of squares for
-regression.\
+regression
+
+
 $$\begin{aligned}
 SSE &= \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \\
     &= \sum_{i=1}^{n} (y_i - \bar{y})^2 - \hat{\beta}_1 \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) \\
@@ -1372,7 +1286,9 @@ SSE &= \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \\
 \end{aligned}$$
 
 Notice that this provides an easier computational method of finding
-SSE.\
+SSE
+
+
 **R output (Additional example)**
 
 ::: tcolorbox
@@ -1414,7 +1330,9 @@ structured table format.
 For the general multivariate regression model: $$\begin{aligned}
     Y &= \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \varepsilon, \\
       &\quad \varepsilon \sim N(0, \sigma^2)
-\end{aligned}$$ with $p$ predictors.\
+\end{aligned}$$ with $p$ predictors
+
+
 ANOVA can be used for testing: $$\begin{aligned}
     H_0&: \beta_1 = \beta_2 = \cdots = \beta_p = 0 \\
     H_a&: \text{At least one } \beta_j \ne 0, \quad j = 1, \ldots, p
@@ -1553,7 +1471,9 @@ area (in 100 sq ft).
 
 The slope $\hat{\beta}_1 = 25.69$ means that for every additional 100 sq
 ft in area, we expect the apartment price to increase by approximately
-\$25,690 on average.\
+\$25,690 on average
+
+
 The intercept $\hat{\beta}_0 = 422.28$ suggests the predicted price when
 the area is zero. While this has no practical interpretation in this
 context, it is a necessary component of the regression model.
@@ -1573,7 +1493,9 @@ For an apartment with 2,500 sq ft ($x = 25$):
 $$\hat{y} = 422.28 + 25.69(25) = 1064.53 \quad (\$1000)$$
 
 This is an example of **extrapolation**, and such predictions should be
-treated with caution since they lie outside the data range.\
+treated with caution since they lie outside the data range
+
+
 We can create a simple linear regression model in R using the `lm`
 command:
 
@@ -1881,6 +1803,3 @@ $\varepsilon \sim \mathcal{N}(0, \sigma^2)$
 
   These assumptions can be verified using residual plots.
 :::
-
-
-

@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+
+%────────────────────────────────────────────────
+%— Your existing style
+\usepackage{pepadun}
+
+%────────────────────────────────────────────────
+%— BIBLIOGRAPHY SETUP (biblatex + Biber)
+\usepackage[backend=biber,style=ieee]{biblatex}
+\addbibresource{pepadun.bib}
+% Uncomment to include _all_ entries from pepadun.bib, even if not cited:
+\nocite{*}
+
+%────────────────────────────────────────────────
+\title{Template Journal of Computing, Data, and Exploration}
+\author{%
+    \begin{tabular}{c}
+        \textsuperscript{1}Nurlana Alili and\\
+        \textsuperscript{2}Bryan Xu \\[6pt]
+        \textsuperscript{1,2} Department of Mathematical and Computational Sciences, University of Toronto Mississauga, \\ 
+        3359 Mississauga Road, Mississauga ON, L5M 3Z3\\[6pt]
+        e-mail: \textsuperscript{1} \href{mailto:nurlana.alili@mail.utoronto.ca}{\uline{nurlana.alili@mail.utoronto.ca}}\\
+        \textsuperscript{2} \href{mailto:bryansuxi.su@mail.utoronto.ca}{\uline{bryansuxi.su@mail.utoronto.ca}}
+    \end{tabular}%
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document is the article writing format for the Journal of Computing, Data, and Exploration (CODEX). Authors must follow all instructions in this document to be published in the CODEX. Abstract is a summary of the article. The abstract contains a summary of the introduction, a summary of the methods, a summary of the results and discussion, and a summary of the conclusions. The number of words in the abstract ranges from 200 - 300 words. The abstract is written in \textbf{English} using \textbf{font size 10pt spacing single before 12pt after 12pt italic} style. Keywords are scientific terms that are often encountered in the field of science related to the article, and can be used as a search key to find articles. Use 3-5 words or phrases that are key to the submitted article. *You should not use symbols, mathematical equations in the title and abstract.
+\end{abstract}
+
+\keywords{keywords; are written; alphabetically; with a maximum; of 5 words}
+
+\section{INTRODUCTION}
+
+Articles should be submitted to the CODEX using this template.
+
+The title of the article should be short and clear. The title should first state the main idea of the article and then be followed by other explanations. The title of the article should pinpoint the problem to be addressed. The article should contain at least \textbf{an introduction, research methodology, results, discussion, and conclusion}. The introduction outlines the issues raised in the research. The introduction can contain reasons why the topic being researched and written about is considered important, and issues related to the topic being researched. Literature reviews related to previous research results can be written in the Introduction section.
+
+\section{RESEARCH METHODOLOGY}
+
+The method contains a description of how to carry out the research. It describes how to obtain data, the algorithm or formula used in the research or how to process the data, and how to evaluate/assess the research results. Common methods do not need to be written in detail, but simply refer to the reference book. Research procedures should be written in the form of news sentences, not command sentences.
+
+\subsection{Page Style}
+
+The easiest way to fulfill the formatting requirements is to use this document as a \textit{template}. \textit{Author} can directly write on this \textit{template} file. Articles are written in A4 paper format with a right-left-bottom border of 2 cm and an upper border of 3.25 cm. The article format uses 1 column.
+
+\section{RESULTS AND DISCUSSION}
+
+Research results in the form of data or numbers are presented in tables or graphs. If the research is carried out application/software development, some important \textit{screenshots} can be presented. Each table, graph or figure must be referred to in the text/paragraph.
+
+The discussion section provides \textit{insights} into the data obtained in the research. This section can present tables or graphs that are the result of data processing (not just raw data). The author is required to explain the findings obtained in the research, accompanied by clear evidence. This section can contain reviews that compare the results obtained in this study with the results obtained in previous studies.
+
+\noindent\textbf{1. Writing Format}
+
+Paragraphs should be organized and consistent. Pay attention to the spelling and formatting of foreign terms. All paragraphs must be right-aligned and left-aligned. The entire document should be written in Times New Roman font with \textit{single} spacing. Other fonts may be used if there is a specific purpose. The title consists of a maximum of 10 words.
+
+\noindent\textbf{2. \textit{Author}}
+
+Authors should indicate their names. To avoid confusion, the last name of each \textit{author} should be written at the end, not abbreviated and marked with a comma (e.g. Rizky Prabowo becomes Prabowo, Rizky). Each affiliation must include, at a minimum, the name of the company and the name of the author's country of residence (e.g. University of Lampung, Indonesia). An email address is required for the corresponding author.
+
+\noindent\textbf{3. Math Formulation}
+
+Equations must be written using the LaTex. Writing symbol descriptions in equations is made in descriptive paragraphs, not list items as in book writing. Equations must be typed with an indent of 1.27 pt and numbered sequentially starting with the number (1) on the right. \textit{Author} can use \textit{ref\_rumus style} for formula writing rules.
+
+\begin{equation}
+    \label{eq:formula}
+    \int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2} \hspace{\eqmargin} (1)
+\end{equation}
+
+\noindent\textbf{4. Table and Figure/Graphic Writing}
+
+All figures and tables must be centred and numbered consecutively. All text within figures and tables must be clearly legible, no \textit{blurring}. Each figure and table must be referred to in the text, the way of referring should not use location (e.g. below, above, following, etc.). Writing tables, figures, graphs, and equations must have high resolution (min 300 dpi). Avoid cropping images or \textit{screenshots} for writing tables and equations.
+
+\begin{pepadunfigure}{UTM logo}
+    \includegraphics[width=0.3\textwidth]{utm-logo.png}
+\end{pepadunfigure}
+
+The \textit{author} can use the image \textit{style} for image writing rules while for table writing, the \textit{author} can use the Table \textit{style}. Tables are made with horizontal lines without using vertical lines. Tables must not be cut off on other pages.
+
+\begin{pepaduntable}{Summary of physical parameters}
+    \begin{tabular}{@{}c c c c@{}}
+        \toprule
+        \textbf{No.} & \textbf{Segments} & \textbf{Length (km)} & \textbf{Elevation (meters)} \\
+        \midrule
+        1 & A-B & 25 & 30 \\
+        2 & B-C & 75.15 & 10 \\
+        3 & C-D & 44.75 & 50 \\
+        4 & D-E & 72.5 & 10 \\
+        5 & E-F & 21.25 & 10 \\
+        \bottomrule
+    \end{tabular}
+\end{pepaduntable}
+
+\noindent\textbf{5. Bibliography Writing}
+
+References in the text must be cited by writing the author's last name and its sequence number in the reference. The citation style used in Journal of Computing, Data, and Exploration is IEEE \cite{Zhang2023}. Bibliography writing also uses IEEE style. Citations are sorted by their appearance in the text and use Arabic numerals in square brackets \cite{Sugumar2025}. It is highly recommended to use citation management applications such as Mendeley or Reference Manager when writing articles \cite{Nie2021,Drogkoula2023,Jiang2023} so that citation management becomes easy. Writing a list of references using single \textit{spacing} using \textit{font size 11pt, spacing before 0 after 6pt}.
+
+\section{CONCLUSIONS}
+
+The Conclusion section summarizes the reviews written in the Results and Discussion sections. The Conclusion section is written in paragraph form, no need to use numbers. The paper will not be reformatted, so please stick to the instructions given above. Otherwise, it will be returned to the \textit{author}. Articles should be returned back via e-mail to be processed.
+
+\begin{nomenclature}
+    $A$      & = & Amplitude \\
+    $C_d$    & = & drag coefficient \\
+    $f_e$    & = & linearization coefficient \\
+    $K_i$    & = & modification factor \\
+\end{nomenclature}
+
+\begin{acknowledgments}
+If necessary, acknowledgments can be made here. Acknowledgments should be directed to research funders or experts who provided significant assistance in the completion of the research.
+\end{acknowledgments}
+
+%────────────────────────────────────────────────
+%— Updated bibliography command
+\printbibliography[title={REFERENCES},heading=bibintoc]
+
+\end{document}

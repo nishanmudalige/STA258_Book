@@ -311,30 +311,12 @@ model with a single explanatory variable. In other words, we use linear
 functions to illustrate the relationship of variables (ie. time and
 one’s height). The goal of simple linear regression is to find the
 best-fitting straight line, known as the regression line, that predicts
-the dependent variable based on the independent variable. For example we
-are interested a people’s height within 10 months. Then, we use
-coordinate system to draw each data point and use simple linear
-regression to find a function which perfectly describes the relationship
-between height and time.</p>
-<div class="figure" style="text-align: center">
-<img src="Book_Files/figure-html/fig.slr-1.png" alt="An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case $m$ is the slope, $b$ is the intercept." width="672" />
-<p class="caption">
-(#fig:fig.slr)An illustration of simple linear regression. The blue points are measures of height monthly, and the red line is our SLR model. In this case <span class="math inline">\(m\)</span> is the slope, <span class="math inline">\(b\)</span> is the intercept.
-</p>
-</div>
-<p>Now, you may wonder the accuracy of this model. In statistics, we do
-have parameters that approximate the slope and intercept of the function
-<span class="math inline">\(y = mx + b\)</span>. The model we are going to use is:
-<span class="math inline">\(\hat{y} = \hat{\beta_1}x + \hat{\beta_0} + \varepsilon\)</span>. From this model,
-the slope and the intercept are <span class="math inline">\(\hat{\beta_1}\)</span>, <span class="math inline">\(\hat{\beta_{0}}\)</span>
-respectively (<span class="math inline">\(\hat{\beta_1}\)</span> and <span class="math inline">\(\hat{\beta_{0}}\)</span> are unbiased
-estimators). Moreover, the <span class="math inline">\(\varepsilon\)</span>-term is called error term, which
-we will discuss it later.</p>
+the dependent variable based on the independent variable.</p>
 <div id="measures-of-linear-relationship" class="section level3 hasAnchor" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Measures of Linear Relationship<a href="simple-linear-regression.html#measures-of-linear-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Before we formally introduce simple linear regression, there are some
-measures of SLR that should be discussed.
-<strong>Covariance (Sample Covariance)</strong></p>
+<p>We begin be introducing a quantitaive measurement to
+measure the linear relationship between variavles</p>
+<p><strong>Covariance (Sample Covariance)</strong></p>
 <p>In probability theory and statistics, covariance is a measure of the
 joint variability of two random variables. The covariance sign shows the
 direction of the linear relationship between two variables. If higher
@@ -395,36 +377,44 @@ measure of the strength of the linear relationship between two random
 variables.</p>
 <ul>
 <li>If <span class="math inline">\(r_{xy} \approx +1\)</span>, then we say that the two random variables have
-a strong positive correlation. (See figure 9.2)</li>
+a strong positive correlation (See Figure <a href="simple-linear-regression.html#fig:examplePositiveCorr">9.1</a>).</li>
 </ul>
-<div class="figure" style="text-align: center">
-<img src="Book_Files/figure-html/fig.correlation-1.png" alt="An illustration of strong positive correlation ($r_{xy} \approx +1$)." width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:examplePositiveCorr"></span>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-45f8d6e5fd0ce52f564a" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-45f8d6e5fd0ce52f564a">{"x":{"visdat":{"cce46d2ca4e9":["function () ","plotlyVisDat"]},"cur_data":"cce46d2ca4e9","attrs":{"cce46d2ca4e9":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Positive Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[4,4.2068965517241379,4.4137931034482758,4.6206896551724137,4.8275862068965516,5.0344827586206895,5.2413793103448274,5.4482758620689653,5.6551724137931032,5.8620689655172411,6.068965517241379,6.2758620689655178,6.4827586206896548,6.6896551724137936,6.8965517241379306,7.1034482758620694,7.3103448275862064,7.5172413793103452,7.7241379310344822,7.931034482758621,8.137931034482758,8.3448275862068968,8.5517241379310356,8.7586206896551726,8.9655172413793096,9.1724137931034484,9.3793103448275872,9.5862068965517242,9.7931034482758612,10],"y":[67.197621767238942,69.883595311204303,79.862507087986998,73.455990232984945,74.784369710287493,83.747738727519845,78.511477581670135,70.916073137312154,74.841597809497898,77.082034977086423,86.465236573404198,83.178379480114401,84.417650356418534,84.001689441794568,81.703552946919274,94.451807063325745,89.040976529077227,77.753121113403537,92.127469162990835,87.291215375153442,85.350536642479568,90.634263357742995,87.628598448118979,90.148647301820176,91.702389867650254,87.428602411805173,101.08548694661056,98.697900071941191,93.274832556319566,106.26907460534963],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-(#fig:fig.correlation)An illustration of strong positive correlation (<span class="math inline">\(r_{xy} \approx +1\)</span>).
+Figure 9.1: An illustration of simple linear regression model (with positive correlation between total sleep duration and memory score).
 </p>
 </div>
 <ul>
 <li>If <span class="math inline">\(r_{xy} \approx -1\)</span>, then we say that the two random variables have
-a strong negative correlation. (See figure 9.3)</li>
+a strong negative correlation. (See figure <a href="simple-linear-regression.html#fig:exampleNegaticeCorr">9.2</a>)</li>
 </ul>
-<div class="figure" style="text-align: center">
-<img src="Book_Files/figure-html/fig.negative-1.png" alt="An illustration of strong negative correlation ($r_{xy} \approx -1$)." width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:exampleNegaticeCorr"></span>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-b6a6f141b3cfe4c98b1a" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b6a6f141b3cfe4c98b1a">{"x":{"visdat":{"cce41eb17a71":["function () ","plotlyVisDat"]},"cur_data":"cce41eb17a71","attrs":{"cce41eb17a71":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data Points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Negative Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[40,42.068965517241381,44.137931034482762,46.206896551724142,48.275862068965516,50.344827586206897,52.413793103448278,54.482758620689658,56.551724137931032,58.620689655172413,60.689655172413794,62.758620689655174,64.827586206896555,66.896551724137936,68.965517241379317,71.034482758620697,73.103448275862064,75.172413793103459,77.241379310344826,79.310344827586206,81.379310344827587,83.448275862068968,85.517241379310349,87.58620689655173,89.65517241379311,91.724137931034477,93.793103448275872,95.862068965517238,97.931034482758633,100],"y":[2.3879048706895576,2.3310136824312124,2.5773666628298249,2.1782807827625268,2.0972861184607607,2.3293143672396699,2.0000779780399456,1.5824307910533766,1.6309221125481241,1.6167499589211847,1.892543632215165,1.665369358818066,1.6227074816081719,1.516981904013766,1.338831773049185,1.7651496176518777,1.4674946239477347,0.93695179803187023,1.4349140374555942,1.1663112836718046,1.0152488181246648,1.1547521245063574,0.96415394904822938,0.99595403760633883,0.99037676181476386,0.7528869017612918,1.2337338794871402,1.0738400911932022,0.79349937316099073,1.2507629842139854],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data Points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-(#fig:fig.negative)An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx -1\)</span>).
+Figure 9.2: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx -1\)</span>).
 </p>
 </div>
 <ul>
 <li>If <span class="math inline">\(r_{xy} \approx 0\)</span>, then we say that there is essentially no
 correlation between the two random variables. Note that if
 <span class="math inline">\(r \approx 0\)</span>, then it suggests a linear relationship doesn’t exist
-but other relationship may exist. (See figure 15.4)</li>
+but other relationship may exist (See Figure <a href="simple-linear-regression.html#fig:exampleNoCorr">9.3</a>).</li>
 </ul>
-<div class="figure" style="text-align: center">
-<img src="Book_Files/figure-html/fig.nocorrelation-1.png" alt="An illustration of no correlation ($r_{xy} \approx 0$)." width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:exampleNoCorr"></span>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-90fd592f830b2c67c22e" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-90fd592f830b2c67c22e">{"x":{"visdat":{"cce440acdccd":["function () ","plotlyVisDat"]},"cur_data":"cce440acdccd","attrs":{"cce440acdccd":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of No Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,0.27586206896551724,0.55172413793103448,0.82758620689655171,1.103448275862069,1.3793103448275863,1.6551724137931034,1.9310344827586206,2.2068965517241379,2.4827586206896552,2.7586206896551726,3.0344827586206895,3.3103448275862069,3.5862068965517242,3.8620689655172411,4.1379310344827589,4.4137931034482758,4.6896551724137927,4.9655172413793105,5.2413793103448274,5.5172413793103452,5.7931034482758621,6.068965517241379,6.3448275862068968,6.6206896551724137,6.8965517241379306,7.1724137931034484,7.4482758620689653,7.7241379310344822,8],"y":[94.395243534477871,97.698225105167197,115.58708314149123,100.70508391424576,101.29287735160946,117.15064986883282,104.60916205989203,87.349387653934656,93.131471481064736,95.543380299000418,112.24081797439462,103.59813827057364,104.00771450594053,101.1068271594512,94.441588652459245,117.86913136803078,104.97850478229239,80.333828433703616,107.01355901563686,95.272085922720663,89.321762940131549,97.820250853417051,89.739955516927608,92.711087707088595,93.749607321507426,83.133066892575869,108.37787044494524,101.53373117836516,88.618630629880528,112.53814921069926],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-(#fig:fig.nocorrelation)An illustration of no correlation (<span class="math inline">\(r_{xy} \approx 0\)</span>).
+Figure 9.3: An illustration of no correlation (<span class="math inline">\(r_{xy} \approx 0\)</span>).
 </p>
 </div>
+<p>The interactive plot below allows us to examine the spatial arrangement of data and the resulting correlation.</p>
+<center>
+<iframe src="https://bryan-su.shinyapps.io/desktop/?showcase=0" width="100%" height="735" data-external="1">
+</iframe>
+</center>
 <p>Note that correlation doesn’t imply causation:</p>
 <ul>
 <li><p><span class="math inline">\(cor(x,y) \approx +1\)</span> doesn’t necessarily imply on increase in <span class="math inline">\(x\)</span>
@@ -692,20 +682,20 @@ estimated ﬁxed cost of electricity is <span class="math inline">\(\$9.57\)</sp
 closest to the data in some sense. There are many ways in which
 closeness can be defined, but the method most generally used is to
 consider the vertical deviations between the line and the data points:
-<span class="math inline">\(y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq n\)</span>.<br />
-The fitted line is chosen to be the line that minimizes the sum of the
+<span class="math inline">\(y_i - (\beta_0 + \beta_1 \cdot x_i), 1 \leq i \leq n\)</span>.</p>
+<p>The fitted line is chosen to be the line that minimizes the sum of the
 squares of these vertical deviations
 <span class="math display">\[Q = \sum_{i=1}^{n} [y_i - (\beta_0 + \beta_1 \cdot x_i)]^2\]</span> and this
 is referred to as the least squares fit. (The quantity <span class="math inline">\(Q\)</span> is also
-called the <strong>sum of squares for error</strong>, SSE.)<br />
-The parameter estimates <span class="math inline">\(\hat{\beta_0}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span> are
+called the <strong>sum of squares for error</strong>, SSE.)</p>
+<p>The parameter estimates <span class="math inline">\(\hat{\beta_0}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span> are
 therefore the values that minimize the quantity <span class="math inline">\(Q\)</span>. They are found
 taking partial derivatives of <span class="math inline">\(Q\)</span> with respect to <span class="math inline">\(\hat{\beta_0}\)</span> and
 <span class="math inline">\(\hat{\beta_1}\)</span> and setting the resulting expressions equal to <span class="math inline">\(0\)</span>.</p>
-<div class="figure" style="text-align: center">
-<img src="Book_Files/figure-html/fig.residuals-1.png" alt="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$." width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-30-1.png" alt="An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily $0$." width="672" />
 <p class="caption">
-(#fig:fig.residuals)An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily <span class="math inline">\(0\)</span>.
+Figure 9.4: An illustration of a simple linear regression model. The red line is the fitted regression line, and the full black vertical lines represent the residuals (SSE). The data points deviate from the line to show errors clearly. Note that the sum of residuals is necessarily <span class="math inline">\(0\)</span>.
 </p>
 </div>
 <p>The following proof is the derive of <span class="math inline">\(\hat{\beta_0}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span>
@@ -818,14 +808,14 @@ residual squared (SSE). There are two more values that are important in
 simple linear regression, which are total sum of squares (SST) and sum
 of squares for regression (SSR). We will introduce all these three
 values with figures, so that you may have a better understanding of what
-they measure.<br />
-<strong>SST (Total Sum of Squares)</strong></p>
+they measure.</p>
+<p><strong>SST (Total Sum of Squares)</strong></p>
 <p>It is defined as the sum over all squared differences between the
 observations and their overall mean <span class="math inline">\(\bar{y}\)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-30-1.png" alt="An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components)." width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-31-1.png" alt="An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height $\bar{y}$, and the solid black vertical lines represent the squared deviations from the mean (SST components)." width="90%" />
 <p class="caption">
-Figure 9.1: An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height <span class="math inline">\(\bar{y}\)</span>, and the solid black vertical lines represent the squared deviations from the mean (SST components).
+Figure 9.5: An illustration of Total Sum of Squares (SST). The blue points represent height measurements over time, the dashed line is the mean height <span class="math inline">\(\bar{y}\)</span>, and the solid black vertical lines represent the squared deviations from the mean (SST components).
 </p>
 </div>
 <div class="definition">
@@ -839,10 +829,10 @@ and their overall mean <span class="math inline">\(\bar{y}\)</span> is given by:
 actual empirical values of data). It is a measure of the discrepancy
 between the data and an estimation model, such as a linear regression. A
 small SSE indicates a tight fit of the model to the data.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-31-1.png" alt="A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \hat{y}_i$. " width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-32-1.png" alt="A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of $y$, and black lines represent residuals $y_i - \hat{y}_i$." width="90%" />
 <p class="caption">
-Figure 9.2: A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of <span class="math inline">\(y\)</span>, and black lines represent residuals <span class="math inline">\(y_i - \hat{y}_i\)</span>.
+Figure 9.6: A simple linear regression illustration with residuals shown. Blue points are observed data, red line is the model, dashed line is the average of <span class="math inline">\(y\)</span>, and black lines represent residuals <span class="math inline">\(y_i - \hat{y}_i\)</span>.
 </p>
 </div>
 <div class="definition">
@@ -850,14 +840,14 @@ Figure 9.2: A simple linear regression illustration with residuals shown. Blue p
 measures the distance between observed data and estimated data, which is
 given by: <span class="math display">\[SSE = \sum_{i=1}^{n} (y_i - \hat{y_i})^2.\]</span></p>
 </div>
-<p>Note that SSE (sum of residual squared) is an explained variation.<br />
-<strong>SSR (Sum Square Regression)</strong></p>
+<p>Note that SSE (sum of residual squared) is an explained variation.</p>
+<p><strong>SSR (Sum Square Regression)</strong></p>
 <p>It measures the distance between estimated value (estimated dependent
 data) and the mean of dependent data (<span class="math inline">\(\bar{y}\)</span>).</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-32-1.png" alt="An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean." width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-33-1.png" alt="An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, $\bar{y}$, and the solid black lines illustrate the deviation of the model's predictions from this mean." width="90%" />
 <p class="caption">
-Figure 9.3: An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, <span class="math inline">\(\bar{y}\)</span>, and the solid black lines illustrate the deviation of the model’s predictions from this mean.
+Figure 9.7: An illustration of simple linear regression. The blue points represent monthly height measurements with added variability. The red line is the fitted simple linear regression model. The dashed line shows the mean of the dependent variable, <span class="math inline">\(\bar{y}\)</span>, and the solid black lines illustrate the deviation of the model’s predictions from this mean.
 </p>
 </div>
 <div class="definition">
@@ -866,25 +856,19 @@ dependent value and estimated dependent value is called sum square
 regression (SSR), which is given by
 <span class="math display">\[SSR = \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2.\]</span></p>
 </div>
-<p>Note that sum square regression (SSR) is an explained variation.<br />
-<strong>Summary</strong></p>
+<p>Note that sum square regression (SSR) is an explained variation.</p>
+<p><strong>Summary</strong></p>
 <p>Now, let’s zoom in to see SST, SSE and SSR. Note that the relationship
 of these measures is that total deviation is equal to unexplained
 deviation (error) plus explained deviation (regression), that is:
-<span class="math inline">\((y_i - \bar{y}) = (y_i - \hat{y_i}) + (\hat{y_i} - \bar{y})\)</span>.<br />
-We square all three deviations for each one of our data points, and sum
+<span class="math inline">\((y_i - \bar{y}) = (y_i - \hat{y_i}) + (\hat{y_i} - \bar{y})\)</span>.</p>
+<p>We square all three deviations for each one of our data points, and sum
 over all <span class="math inline">\(n\)</span> points. Here, cross terms drop out, and we are left with
 the following equation:
 <span class="math display">\[\sum_{i=1}^{n}(y_i - \bar{y})^2 = \sum_{i=1}^{n} (y_i - \hat{y_i})^2 + \sum_{i=1}^{n}(\hat{y_i} - \bar{y})^2,\]</span>
 SST = SSE + SSR.</p>
 <p>Total sum of squares = Sum of squares for error + Sum of squares for
 regression.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-33-1.png" alt="Visual representation of regression variability. The blue point represents the observed value $y_i$, the red point shows the predicted value $\hat{y}_i$, and the dashed line represents the mean $\bar{y}$. The green arrow illustrates the total variability (SST), the pink arrow shows the explained variability (SSR), and the orange curly bracket represents the residual (unexplained) variability (SSE)." width="90%" />
-<p class="caption">
-Figure 9.4: Visual representation of regression variability. The blue point represents the observed value <span class="math inline">\(y_i\)</span>, the red point shows the predicted value <span class="math inline">\(\hat{y}_i\)</span>, and the dashed line represents the mean <span class="math inline">\(\bar{y}\)</span>. The green arrow illustrates the total variability (SST), the pink arrow shows the explained variability (SSR), and the orange curly bracket represents the residual (unexplained) variability (SSE).
-</p>
-</div>
 <p><strong>Coefficient of Determination (<span class="math inline">\(r^2\)</span>)</strong></p>
 <p>Moreover, we can use SST, SSE and SSR to calculate another value which
 is important in simple linear regression, that is coefficient of
@@ -915,8 +899,8 @@ assumptions necessary to perform inference on the coefficients,
 particularly the slope.</p>
 <p><span class="math display">\[Y = \beta_0 + \beta_1 X + \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \sigma^2)\]</span></p>
 <p>Can perform inference on <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, however we are usually
-more interested in <span class="math inline">\(\beta_1\)</span>.<br />
-What does the error term <span class="math inline">\(\varepsilon \sim \mathcal{N}(0, \sigma^2)\)</span>
+more interested in <span class="math inline">\(\beta_1\)</span></p>
+<p>What does the error term <span class="math inline">\(\varepsilon \sim \mathcal{N}(0, \sigma^2)\)</span>
 mean?<br />
 <strong>At each</strong> value of <span class="math inline">\(X\)</span>, the errors are distributed normally with a
 mean of zero and a constant variance.</p>
@@ -1050,8 +1034,8 @@ is</p>
 <p><span class="math display">\[s = \sqrt{\frac{1}{n - 2} \sum \text{residual}^2}
 = \sqrt{\frac{1}{n - 2} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
 = \sqrt{\frac{SSE}{n - 2}}\]</span></p>
-<p>Use <span class="math inline">\(s\)</span> to estimate the <strong>unknown</strong> <span class="math inline">\(\sigma\)</span> in the regression model.<br />
-The standard error of <span class="math inline">\(\hat{\beta}_1\)</span> is the standard deviation of the
+<p>Use <span class="math inline">\(s\)</span> to estimate the <strong>unknown</strong> <span class="math inline">\(\sigma\)</span> in the regression model</p>
+<p>The standard error of <span class="math inline">\(\hat{\beta}_1\)</span> is the standard deviation of the
 sampling distribution of <span class="math inline">\(\hat{\beta}_1\)</span> (estimate of slope <span class="math inline">\(\beta_1\)</span>):</p>
 <p><span class="math display">\[SE(\hat{\beta}_1) = \frac{s}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2}}
 = \frac{s}{\sqrt{(n - 1) s_x^2}}\]</span></p>
@@ -1169,11 +1153,11 @@ Suggests <strong>no linear relationship</strong> between <span class="math inlin
 </table>
 </div>
 <p>In cases where the CI does not contain zero, we can infer the sign of
-the slope (just not the steepness).<br />
-The <strong>regression standard error</strong> is</p>
+the slope (just not the steepness)</p>
+<p>The <strong>regression standard error</strong> is</p>
 <p><span class="math display">\[s = \sqrt{\frac{1}{n - 2} \sum_{i=1}^n (y_i - \hat{y}_i)^2} = \sqrt{\frac{SSE}{n - 2}} = \sqrt{\frac{1.1}{3}} = 0.6055\]</span></p>
-<p>Use <span class="math inline">\(s\)</span> to estimate the <strong>unknown</strong> <span class="math inline">\(\sigma\)</span> in the regression model.<br />
-A level <span class="math inline">\(C\)</span> confidence interval for the slope <span class="math inline">\(\beta_1\)</span> of the true
+<p>Use <span class="math inline">\(s\)</span> to estimate the <strong>unknown</strong> <span class="math inline">\(\sigma\)</span> in the regression model</p>
+<p>A level <span class="math inline">\(C\)</span> confidence interval for the slope <span class="math inline">\(\beta_1\)</span> of the true
 regression line is</p>
 <p><span class="math display">\[b_1 \pm t^* SE_{b_1}\]</span></p>
 <p>In this formula, the standard error of the least-squares slope <span class="math inline">\(b\)</span> is</p>
@@ -1211,8 +1195,8 @@ degrees of freedom.</p>
 <span class="math inline">\(H_a\!: \beta_1 \neq 0\)</span>.</p>
 <p><em>Interpretation:</em> The slope should be included in the model. There is
 significant evidence of a linear relationship between advertising and
-sales revenue.<br />
-For the advertising-sales example, a 95% Confidence Interval for the
+sales revenue</p>
+<p>For the advertising-sales example, a 95% Confidence Interval for the
 slope <span class="math inline">\(\beta_1\)</span> is
 <span class="math display">\[0.7 \pm 3.182 \left( \frac{0.6055}{\sqrt{10}} \right)\]</span>
 <span class="math display">\[0.7 \pm 0.6092\]</span></p>
@@ -1318,15 +1302,15 @@ the following equation:</p>
 <p><span class="math display">\[\sum_{i=1}^{n}(y_i - \bar{y})^2 = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \sum_{i=1}^{n}(\hat{y}_i - \bar{y})^2\]</span></p>
 <p><span class="math display">\[\text{SST} = \text{SSE} + \text{SSR}\]</span></p>
 <p>Total sum of squares = Sum of squares for error + Sum of squares for
-regression.<br />
-<span class="math display">\[\begin{aligned}
+regression</p>
+<p><span class="math display">\[\begin{aligned}
 SSE &amp;= \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \\
     &amp;= \sum_{i=1}^{n} (y_i - \bar{y})^2 - \hat{\beta}_1 \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) \\
     &amp;= S_{YY} - \hat{\beta}_1 S_{XY}
 \end{aligned}\]</span></p>
 <p>Notice that this provides an easier computational method of finding
-SSE.<br />
-<strong>R output (Additional example)</strong></p>
+SSE</p>
+<p><strong>R output (Additional example)</strong></p>
 <div class="tcolorbox">
 <pre><code>&gt; summary(model);
 
@@ -1393,8 +1377,8 @@ structured table format.</p>
 <p>For the general multivariate regression model: <span class="math display">\[\begin{aligned}
     Y &amp;= \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_p X_p + \varepsilon, \\
       &amp;\quad \varepsilon \sim N(0, \sigma^2)
-\end{aligned}\]</span> with <span class="math inline">\(p\)</span> predictors.<br />
-ANOVA can be used for testing: <span class="math display">\[\begin{aligned}
+\end{aligned}\]</span> with <span class="math inline">\(p\)</span> predictors</p>
+<p>ANOVA can be used for testing: <span class="math display">\[\begin{aligned}
     H_0&amp;: \beta_1 = \beta_2 = \cdots = \beta_p = 0 \\
     H_a&amp;: \text{At least one } \beta_j \ne 0, \quad j = 1, \ldots, p
 \end{aligned}\]</span></p>
@@ -1515,10 +1499,10 @@ dollars), area (in 100 square feet), and number of beds and baths.</p>
 </tbody>
 </table>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-34-1.png" alt="Plot of Price vs Area for Apartments near UTM" width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-35-1.png" alt="Plot of Price vs Area for Apartments near UTM" width="80%" />
 <p class="caption">
-Figure 9.5: Plot of Price vs Area for Apartments near UTM
+Figure 9.8: Plot of Price vs Area for Apartments near UTM
 </p>
 </div>
 <table>
@@ -1637,8 +1621,8 @@ area (in 100 sq ft).</p>
 <h4>Interpretation of Coefficients<a href="simple-linear-regression.html#interpretation-of-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The slope <span class="math inline">\(\hat{\beta}_1 = 25.69\)</span> means that for every additional 100 sq
 ft in area, we expect the apartment price to increase by approximately
-$25,690 on average.<br />
-The intercept <span class="math inline">\(\hat{\beta}_0 = 422.28\)</span> suggests the predicted price when
+$25,690 on average</p>
+<p>The intercept <span class="math inline">\(\hat{\beta}_0 = 422.28\)</span> suggests the predicted price when
 the area is zero. While this has no practical interpretation in this
 context, it is a necessary component of the regression model.</p>
 </div>
@@ -1652,8 +1636,8 @@ context, it is a necessary component of the regression model.</p>
 <p>For an apartment with 2,500 sq ft (<span class="math inline">\(x = 25\)</span>):</p>
 <p><span class="math display">\[\hat{y} = 422.28 + 25.69(25) = 1064.53 \quad (\$1000)\]</span></p>
 <p>This is an example of <strong>extrapolation</strong>, and such predictions should be
-treated with caution since they lie outside the data range.<br />
-We can create a simple linear regression model in R using the <code>lm</code>
+treated with caution since they lie outside the data range</p>
+<p>We can create a simple linear regression model in R using the <code>lm</code>
 command:</p>
 <p><strong>R code</strong></p>
 <div class="tcolorbox">
@@ -1975,10 +1959,10 @@ band, roughly half above and half below zero.</p>
 isolated influential observations or clustering.</p></li>
 </ol>
 <!-- # ```{r residual-stack, fig.width=6, fig.height=16, dev="png", out.width="100%", fig.align="center", message=FALSE, warning=FALSE} -->
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-35-1.png" alt="Examples of residual plots which satisfy assumpations and which violate assumptions" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-36-1.png" alt="Examples of residual plots which satisfy assumpations and which violate assumptions" width="70%" />
 <p class="caption">
-Figure 9.6: Examples of residual plots which satisfy assumpations and which violate assumptions
+Figure 9.9: Examples of residual plots which satisfy assumpations and which violate assumptions
 </p>
 </div>
 <div class="tcolorbox">
