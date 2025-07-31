@@ -484,6 +484,44 @@ Here \(\Gamma(\cdot)\) is the Gamma function as in Definition \@ref(def:GammaFun
 
 The t-distribution resembles the normal distribution but with heavier tails.
 
+
+```{r fig.cap="Comparison of the standard normal distribution and t-distributions with 2 and 9 degrees of freedom", echo=FALSE, fig.align='center', warning=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+
+# Generate x values and compute densities
+# Generate x values
+x_vals <- seq(-4, 4, length.out = 300)
+
+# Create data frame for all distributions
+df <- tibble(
+  x = rep(x_vals, 3),  # Repeat x_vals for each distribution
+  y = c(dnorm(x_vals), dt(x_vals, df = 2), dt(x_vals, df = 9)),  # All y values
+  dist = factor(rep(c("Standard Normal", "t(2)", "t(9)"), each = length(x_vals)),
+                levels = c("Standard Normal", "t(2)", "t(9)"))
+)
+
+
+
+# Create the plot
+ggplot(df, aes(x = x, y = y, color = dist, linetype = dist)) +
+  geom_line(size = 1.2) +
+  scale_color_manual(values = c("#F8766D", "#00BA38", "#619CFF")) +
+
+  scale_linetype_manual(values = c("solid", "dashed", "dashed")) +
+  labs(
+    x = "t",
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.title = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+
+<!--
 ```{r t-densities, echo=FALSE, fig.align='center', fig.cap='The $t-$Distributions at different degrees of freedom.', out.width='90%', warning=FALSE}
 library(ggplot2)
 library(grid)   # for unit()
@@ -583,6 +621,8 @@ p <- p +
 ## 6) Render the combined plot -----------------------------------------------
 print(p)
 ```
+-->
+
 
 ### Introduction to the F-Distribution
 

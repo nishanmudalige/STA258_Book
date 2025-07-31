@@ -179,7 +179,7 @@ $$\bar{x} \; \pm \; z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)$$
 
 The $z_{\alpha/2}$ value is obtained from standard normal tables. The
 standard error is $\frac{\sigma}{\sqrt{n}}$ and the margin of error is
-$z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)$.\
+$z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)$
 
 
 
@@ -225,17 +225,20 @@ ggplot(df, aes(x = z, y = density)) +
   )
 ```
 
-## Table of Common $z$-values {.unlisted .unnumbered}
-::: {.centered }
-   Confidence coefficient   Confidence level    $z$
-  ------------------------ ------------------ -------
-            0.90                  90%          1.645
-            0.95                  95%          1.96
-            0.99                  99%          2.576
-:::
+
+#### Table of Common $z$-values {.unlisted .unnumbered}
 
 
-::: example
+| Confidence coefficient | Confidence level |   $z$   |
+|:----------------------:|:----------------:|:-------:|
+|          0.90          |       90%        |  1.645  |
+|          0.95          |       95%        |  1.96   |
+|          0.99          |       99%        |  2.576  |
+
+
+
+
+::: {.example}
 Playbill magazine reported that the mean annual household income of its
 readers is \$119,155. Assume this estimate is based on a sample of 80
 households, and that the population standard deviation is known to be
@@ -276,7 +279,8 @@ We are 99% confident the mean household income of magazine readers is
 between \$110,534.96 and \$127,775.04.
 :::
 
-::::: example
+
+::: {.example}
 **Scenario:**
 
 The number of cars sold annually by used car salespeople is known to be
@@ -325,53 +329,13 @@ $$\bar{x} = \frac{79 + 43 + \cdots + 55 + 88}{15} = 68.6$$
     ## [1] 61.00909 76.19091
 ```
 
-**Interpretation:** **We estimate that the mean number of cars sold
+**Interpretation:** 
+
+We estimate that the mean number of cars sold
 annually by all used car salespeople lies between 61 and 76,
-approximately. This type of estimate is correct 95% of the time.**
-:::::
-
-::: tcolorbox
-- Large samples where population is **normal**.
-
-- Large samples where population is **not normal** (By CLT).
-
-- Small samples where population is **normal**.
-
-*Note: A sample is considered large if $n \geq 30$.*
+approximately. This type of estimate is correct 95% of the time.
 :::
 
-::: example
-Suppose a student measuring the boiling temperature of a certain liquid
-observes the readings (in degrees Celsius) 102.5, 101.7, 103.1, 100.9,
-100.5, and 102.2 on 6 different samples of the liquid. He calculates the
-sample mean to be 101.82. If he knows that the distribution of boiling
-points is Normal, with standard deviation 1.2 degrees, what is the
-confidence interval for the population mean at a 95% confidence level?\
-:::
-
-**A confidence interval** uses sample data to estimate an unknown
-population parameter with an indication of how accurate the estimate is
-and of how confident we are that the result is correct.
-
-The **interval** often has the form\
-estimate $\pm$ margin of error
-
-The **confidence level** is the success rate of the method that produces
-the interval. A level $C$ **confidence interval for the mean** $\mu$ of
-a Normal population with **known** standard deviation $\sigma$, based on
-an SRS of size $n$, is given by
-$$\bar{x} \pm z^\star \frac{\sigma}{\sqrt{n}}$$
-
-The **critical value** $z^\star$ is chosen so that the standard Normal
-curve has area $C$ between $-z^\star$ and $z^\star$.\
-Other things being equal, the **margin of error** of a confidence
-interval gets smaller as
-
-- the confidence level $C$ decreases,
-
-- the population standard deviation $\sigma$ decreases, and
-
-- the sample size $n$ increases.
 
 
 <!-- ########## ########## ########## -->
@@ -380,21 +344,18 @@ interval gets smaller as
 
 #### When $\sigma$ is Not known
 
-::: definition
+
+::: {.definition}
 Let $\mu$ be the population mean. When the population standard deviation
-is unknown and the sample size is small, a confidence interval for $\mu$
-is given by:
-$$\bar{Y} \pm t_{\alpha/2} \left( \frac{S}{\sqrt{n}} \right), \quad \nu = n - 1$$
-This interval is valid under the following conditions:
-
-- The observations are independent and identically distributed (i.i.d).
-
-- The sample is random.
-
-- The population **must** follow a Normal distribution (CLT does not
-  apply).
+is unknown, a confidence interval for $\mu$ is given by:
+$$\bar{x} \pm t_{n-1, \alpha/2} \left( \frac{s}{\sqrt{n}} \right)$$
+where 
+$\bar{x}$ is the sample mean; <br> 
+$s$ is the sample standard deviation; <br>
+$n$ is the sample size.
 :::
 
+<!--
 ### Independence Assumption {#independence-assumption .unlisted .unnumbered}
 
 The data values should be independent. There's really no way to check
@@ -404,9 +365,15 @@ about whether the assumption is reasonable.
 ### Randomization Condition {#randomization-condition .unlisted .unnumbered}
 
 The data arise from a random sample or suitably randomized experiment.
-Randomly sampled data --- especially data from a Simple Random Sample
---- are ideal.
+Randomly sampled data is ideal is usually most preferred. 
 
+A common way type of random sample is a simple random sample (SRS),
+which is a sample where every unit, or every group of units, is equally likely to be selected.
+Other sampling techniques exist, however these are more suitable for a course 
+on sampling techniques.
+-->
+
+<!--
 ::: tcolorbox
 - For very small samples ($n < 15$ or so), the data should follow a
   Normal model pretty closely. If you do find outliers or strong
@@ -420,13 +387,17 @@ Randomly sampled data --- especially data from a Simple Random Sample
   use unless the data are extremely skewed. Make a histogram, boxplot,
   or Q--Q plot to check.
 :::
+-->
 
+<!--
 ### Standard Error {#standard-error .unlisted .unnumbered}
 
 When the standard deviation of a statistic is estimated from data, the
 result is called the *standard error* of the statistic. The standard
 error of the sample mean $\bar{x}$ is $$\frac{s}{\sqrt{n}}.$$
+-->
 
+<!--
 ::: tcolorbox
 - The density curves of the *t* distributions are similar in shape to
   the Standard Normal curve. They are symmetric about 0, single-peaked,
@@ -444,43 +415,12 @@ error of the sample mean $\bar{x}$ is $$\frac{s}{\sqrt{n}}.$$
   place of $\sigma$ causes little extra variation when the sample is
   large.
 :::
-```{r fig.cap="Comparison of the standard normal distribution and t-distributions with 2 and 9 degrees of freedom", echo=FALSE, fig.align='center', warning=FALSE, message=FALSE}
-library(ggplot2)
-library(dplyr)
-
-# Generate x values and compute densities
-# Generate x values
-x_vals <- seq(-4, 4, length.out = 300)
-
-# Create data frame for all distributions
-df <- tibble(
-  x = rep(x_vals, 3),  # Repeat x_vals for each distribution
-  y = c(dnorm(x_vals), dt(x_vals, df = 2), dt(x_vals, df = 9)),  # All y values
-  dist = factor(rep(c("Standard Normal", "t(2)", "t(9)"), each = length(x_vals)),
-                levels = c("Standard Normal", "t(2)", "t(9)"))
-)
+-->
 
 
 
-# Create the plot
-ggplot(df, aes(x = x, y = y, color = dist, linetype = dist)) +
-  geom_line(size = 1.2) +
-  scale_color_manual(values = c("#F8766D", "#00BA38", "#619CFF")) +
 
-  scale_linetype_manual(values = c("solid", "dashed", "dashed")) +
-  labs(
-    x = "t",
-    y = "Density"
-  ) +
-  theme_minimal(base_size = 14) +
-  theme(
-    legend.title = element_blank(),
-    panel.grid = element_blank()
-  )
-```
-
-
-:::::: example
+::: {.example}
 The composition of the Earth's atmosphere may have changed over time. To
 study the nature of the atmosphere long ago, scientists examined the gas
 in air bubbles trapped in ancient amber. Amber is fossilized tree resin
@@ -489,9 +429,9 @@ that preserved the atmospheric gases at the time it was formed.
 Measurements on amber specimens from the late Cretaceous era (75 to 95
 million years ago) give the following percent values of nitrogen:
 
-::: center
+$$
 63.4, 65.0, 64.4, 63.3, 54.8, 64.5, 60.8, 49.1, 51.0
-:::
+$$
 
 Assume these observations are a simple random sample (SRS) from the
 population of all ancient air bubbles. Construct a **90% confidence
@@ -534,9 +474,11 @@ $$\boxed{55.7106 \text{ to } 63.4670}$$
     mean of x 
       59.58889 
 ```
-::::::
+:::
 
-:::::: example
+
+
+::: {.example}
 Most owners of digital cameras store their pictures on the camera. Some
 will eventually download these to a computer or print them using their
 own printers or a commercial printer. A film-processing company wanted
@@ -544,9 +486,9 @@ to know how many pictures were stored on cameras.
 
 A random sample of 10 digital camera owners produced the following data:
 
-::: center
+$$
 25, 6, 22, 26, 31, 18, 13, 20, 14, 2
-:::
+$$
 
 Estimate with **95% confidence** the mean number of pictures stored on
 digital cameras.
@@ -610,9 +552,11 @@ cameras is between 11.205 and 24.195.
     mean of x 
          17.7 
 ```
-::::::
+:::
 
-:::::: example
+
+
+::: {.example}
 A manufacturing company produces electric insulators. If the insulators
 break when in use, a short circuit is likely. To test the strength of
 the insulators, destructive testing is performed to determine how much
@@ -621,11 +565,11 @@ force (in pounds) is required to break them.
 The following dataset consists of force values (in pounds) recorded for
 a random sample of 30 insulators:
 
-::: center
+$$
 1870, 1728, 1656, 1610, 1634, 1784, 1522, 1696, 1592, 1662, 1866, 1764,
 1734, 1662, 1734, 1774, 1550, 1756, 1762, 1866, 1820, 1744, 1788, 1688,
 1810, 1752, 1680, 1810, 1652, 1736
-:::
+$$
 
 Construct a **95% confidence interval** for the population mean force
 required to break the insulators.
@@ -668,9 +612,11 @@ standard deviation is unknown, so we use a *one-sample* t-interval.
 We are 95% confident that the average force required to break an
 electric insulator is between **1689.961 pounds** and **1756.839
 pounds**.
-::::::
+:::
 
-::: example
+
+
+::: {.example}
 The operations manager of a production plant would like to estimate the
 mean amount of time a worker takes to assemble a new electronic
 component. After observing 120 workers assembling similar devices, she
@@ -680,8 +626,10 @@ deviation of 3.6 minutes).
 Construct a **92% confidence interval** for the mean assembly time.
 State all necessary assumptions.
 :::
+-->
 
-:::::::::::: example
+<!--
+::: {.example}
 In 2010, 142,823,000 tax returns were filed in the United States. The
 Internal Revenue Service (IRS) examined 1.107%, or 1,581,000, of them to
 determine if they were correctly done. To evaluate auditor performance,
@@ -689,7 +637,8 @@ a random sample of these returns was drawn and the additional tax was
 recorded.
 
 Estimate with 95% confidence the mean additional income tax collected
-from the 1,581,000 files audited.\
+from the 1,581,000 files audited.
+
 **Solution:**
 
 We use a one-sample confidence interval for the population mean
@@ -722,7 +671,8 @@ additional tax collected.
          col = "blue")
 ```
 
-::: center
+
+
 ```{r fig.cap="Histogram for the Taxes dataset", echo=FALSE, fig.align='center', warning=FALSE, message=FALSE}
 library(ggplot2)
 
@@ -747,7 +697,7 @@ ggplot(taxes_data, aes(x = Taxes)) +
   ) +
   theme_minimal(base_size = 14)
 ```
-:::
+
 
 *Boxplot:*
 
@@ -757,7 +707,7 @@ ggplot(taxes_data, aes(x = Taxes)) +
             col = "blue")
 ```
 
-::: center
+
 ```{r fig.cap="Boxplot of Additional Income Tax", echo=FALSE, fig.align='center', warning=FALSE, message=FALSE}
 library(ggplot2)
 
@@ -775,7 +725,7 @@ ggplot(taxes_data, aes(y = Taxes)) +
   ) +
   theme_minimal(base_size = 14)
 ```
-:::
+
 
 *Q-Q Plot:*
 
@@ -784,7 +734,7 @@ ggplot(taxes_data, aes(y = Taxes)) +
     qqline(taxes)
 ```
 
-::: center
+
 ```{r fig.cap="Normal Q-Q Plot of Taxes", echo=FALSE, fig.align='center', warning=FALSE, message=FALSE}
 library(ggplot2)
 
@@ -803,7 +753,7 @@ ggplot(taxes_data, aes(sample = Taxes)) +
   ) +
   theme_minimal(base_size = 14)
 ```
-:::
+
 
 **Step 3: Construct 95% CI**
 
@@ -842,8 +792,9 @@ from the sample.
 
 We estimate that the mean additional tax collected lies between \$8,887
 and \$10,168 (with 95% confidence).
-::::::::::::
+:::
 
+<!--
 ### A few final comments {#a-few-final-comments .unlisted .unnumbered}
 
 When we introduced the Student *t*-distribution, we pointed out that the
@@ -855,11 +806,8 @@ results of the confidence interval estimate are still valid provided
 that the population is **not extremely non-Normal**. Our histogram,
 boxplot, and Q--Q plot suggest that our variable of interest is not
 extremely non-Normal, and in fact, may be Normal.
+-->
 
-
-<!-- ########## ########## ########## -->
-<!-- ########## ########## ########## -->
-<!-- ########## ########## ########## -->
 
 
 ### On a Population Proportion
@@ -891,7 +839,8 @@ We select a random sample of size $n$ from a population with **unknown**
 proportion $p$ of success. An approximate confidence interval for **p**
 is:
 $$p = \hat{p}  \pm z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}, \text{ where $\hat{p} = \frac{\text{number of observations satisfying the criteria}}{n}$.}$$
-In addition, $n$ is the sample size.\
+In addition, $n$ is the sample size.
+
 To apply this confidence interval, there are $3$ conditions that we need
 to guarantee:
 
@@ -925,7 +874,9 @@ following number line shows:\
 Remember that your final answer of the range of $p$ must between $0$ and
 $1$, since we are working with proportion.
 
-**Summary about One Sample Confidence Intervals**
+
+<!--
+**Summary on One Sample Confidence Intervals**
 
 We have introduced one sample confidence interval under three different
 cases: given population variance, unknown population variance and
@@ -936,24 +887,25 @@ remember the basic skeleton of one sample confidence interval. Let's
 revisit the three distinct types of confidence interval:
 
 - Known variance:
-  $\hat{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$ [(Chapter
-  7)](#ch:7).
+  $\hat{x} \pm z_{\alpha/2} \displaystyle \frac{\sigma}{\sqrt{n}}$.
 
 - Unknown variance:
-  $\bar{x} \pm t_{\scriptscriptstyle{\alpha/2}} \cdot \frac{s}{\sqrt{n}}$
+  $\bar{x} \pm t_{\alpha/2} \displaystyle \frac{s}{\sqrt{n}}$
 
 - Proportion:
-  $\hat{p} \pm z_{\scriptscriptstyle{\alpha/2}} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
+  $\hat{p} \pm z_{\alpha/2} \displaystyle \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
 
 The question is: what is the similarity between the three distinct types
 of confidence interval? You may have already noticed that the confidence
 intervals above are all follow such a skeleton that $\bar{x}$ plus or
-minus its margin of error (different between each type of C.I.).\
+minus its margin of error (different between each type of C.I.).
+
 If we keep questioning ourselves that how the margin of error comes
 from, you will catch the pattern. The margin of error contains reference
 distribution and the standard deviation of $\bar{x}$ under its reference
 distribution. Let's analyze each type of confidence interval to prove my
-statement is true:\
+statement is true:
+
 The first type (given population variance) confidence interval is quite
 easy to recognize. Recall chapter $3$: The Central Limit Theorem, we
 state that $\bar{x} \sim N(\mu, \frac{\sigma^2}{n})$, which is how
@@ -962,7 +914,8 @@ the standard deviation of $\bar{x}$, we simply take the square root of
 the variance, then $s_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$. Finally, we
 multiply reference distribution at the point $\frac{\alpha}{2}$ with the
 standard deviation of $\bar{x}$ under normal distribution to get the
-margin of error.\
+margin of error.
+
 The second type (unknown population variance) confidence interval is
 similar to the first type, but the reference distribution is
 t-distribution instead of normal distribution. In chapter $7$, we
@@ -975,7 +928,8 @@ term $\frac{s}{\sqrt{n}}$ (verify this by yourself as an extra exercise)
 is the standard deviation of $\bar{x}$ under t-distribution with $n-1$
 degrees of freedom. Finally, we multiply multiply reference distribution
 at the point $\frac{\alpha}{2}$ with the standard deviation of $\bar{x}$
-under t-distribution to get the margin of error.\
+under t-distribution to get the margin of error.
+
 The third type (estimate population proportion) confidence interval is
 slightly harder to identify. Recall chapter $4$ that we can approximate
 binomial distribution by normal distribution. Suppose that a random
@@ -987,7 +941,8 @@ $\sqrt{\frac{p(1-p)}{n}}$, since we don't know the value $p$ and use
 $\hat{p}$ to estimate that. Then, standard deviation of $\hat{p}$ is
 $\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$. Finally, by multiplying the
 reference distribution and standard deviation, we get the margin of
-error of the confidence interval.\
+error of the confidence interval.
+
 **Conclusion About One Sample Confidence Intervals**
 
 If you follow the skeleton below, one sample confidence interval will
@@ -1039,7 +994,7 @@ The construction of any confidence interval relies on a set of underlying assump
   - For variances: The population must be normally distributed to use the chi-square-based interval for \( \sigma^2 \).
 
 If these assumptions are violated, the resulting confidence interval may not be valid or reliable.
-
+-->
 
 
 <!-- ########## ########## ########## -->
@@ -1112,7 +1067,7 @@ we consider two subcases.
 
 We first examine the case where we assume the standard deviation of both populations is assumed equal.
 
-::: definition
+::: {.definition #CIpooled}
 Suppose that the chosen two independent samples have same unknown
 population variance. Then the two sample confidence interval for
 $\mu_1 - \mu_2$ is given by the following:
@@ -1122,16 +1077,18 @@ samples respectively; $s_p$ is aggregated variance of both samples
 combined which accommodates samples of different sizes. Additionally,
 $s_p$ is called pooled standard deviation which is calculated by the
 following equation:
-$$s_p^2 = \frac{(n_1-1) \cdot s_1^2 + (n_2-1) \cdot s_2^2 }{n_1+n_2-2},$$
+$$s_p^2 = \frac{(n_1-1) s_1^2 + (n_2-1) s_2^2 }{n_1+n_2-2},$$
 where $s_1^2$ and $s_2^2$ are sample variance of the two chosen samples
-respectively.\
+respectively.
+
 Then we take the square root $s_p = \sqrt{s_p^2}$ to get pooled standard
 deviation.
 :::
 
-Alternatively, we can write the equation for two sample confidence
-interval with equal unknown variance as:
-$$(\bar{x}_1 - \bar{x}_2)  \pm  t_{n_1+n_2-2; \alpha/2} \cdot \sqrt{s_p^2(\frac{1}{n_1} + \frac{1}{n_2})}, \text{ which is same as the one above.}$$
+::: {.remark}
+Alternatively we can also write the two sample confidence in Definition \@ref(def:CIpooled) as
+$$(\bar{x}_1 - \bar{x}_2)  \pm  t_{n_1+n_2-2; \alpha/2} \sqrt{s_p^2 \left(\frac{1}{n_1} + \frac{1}{n_2} \right) }$$
+:::
 
 The pooled variance (also known as combined variance,
 composite variance, or overall variance) is a method to calculate such a
@@ -1243,7 +1200,8 @@ each selected random sample respectively.
 
 Confidence interval is a strong technique in inferential statistics, we
 have discussed its application on population mean, proportion and
-dependent data. Now, let's move on to variance.\
+dependent data. Now, let's move on to variance.
+
 One simple method involves just looking at two sample variances.
 Logically, if two population variances are equal, then the two sample
 variances should be very similar. When the two sample variances are
@@ -1263,20 +1221,34 @@ $(\sigma_1^2)/(\sigma_2^2)$.
 At this point, let's derive the confidence interval. We know that:
 $\frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} \sim F_{n_1-1, n_2 -1}$.
 
-Then, we can construct our confidence interval as:
+Then we can construct our confidence interval as:
 
-$$P[F_{n_1-1, n_2 -1; 1-\alpha/2} < \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} < F_{n_1-1, n_2 -1; \alpha/2}]  = 1 -\alpha.$$
+$$
+P \left( F_{n_1-1, n_2 -1; 1-\alpha/2} < \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} < F_{n_1-1, n_2 -1; \alpha/2} \right)  = 1 -\alpha.
+$$
 Now, the reference distribution of this confidence interval is
 F-distribution with $n_1 - 1$ and $n_2 -1$ degrees of freedom, leaving
 areas of $1 - \alpha/2$ and $\alpha/2$, respectively, to the right.
 
 Rearranging gives us:
 
-$$P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; \alpha/2}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}}] = 1 -\alpha.$$
+$$
+P \left( \frac{s_1^2}{s_2^2}\frac{1}{F_{n_1-1, n_2 -1; \alpha/2}} 
+  < \frac{\sigma_1^2}{\sigma_2^2} 
+  < \frac{s_1^2}{s_2^2} \frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}} \right) = 1 - \alpha.
+$$
+
 Using the face that
-$F_{n_1-1,n_2-1; 1 - \alpha/2} = \frac{1}{F_{n_2-1,n_1-1; \alpha/2}}$,
+
+$F_{n_1-1,n_2-1; 1 - \alpha/2} = \displaystyle\frac{1}{F_{n_2-1,n_1-1; \alpha/2}}$,
+
 we have:
-$$P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2-1, \alpha/2}} < \frac{\sigma_1^2}{\sigma_2^2} < \frac{s_1^2}{s_2^2} \cdot F_{n_2-1, n_1 - 1, \alpha/2}] = 1- \alpha.$$
+
+$$
+P\left( \frac{s_1^2}{s_2^2} \frac{1}{F_{n_1-1, n_2-1, \alpha/2}}
+  < \frac{\sigma_1^2}{\sigma_2^2} 
+  < \frac{s_1^2}{s_2^2} F_{n_2-1, n_1 - 1, \alpha/2}
+\right)= 1 - \alpha.$$
 
 
 #### Assumptions
@@ -1394,7 +1366,7 @@ $$E = z_{\alpha/2}\,\frac{\sigma}{\sqrt{n}}$$
 
 We can rearrange $E$ to calculate the sample size using
 $$n = \left( \frac{z_{\alpha/2}\,\sigma}{E} \right)^2$$ where $n$ is
-always *rounded up* to the next integer.\
+always *rounded up* to the next integer.
 
 ::: {.example #SampleSizePharmaceutical}
 A manufacturer of pharmaceutical products analyzes a specimen from each
@@ -1407,7 +1379,8 @@ $\sigma = 0.0068$ grams per liter. (That the mean of the population of
 all measurements is the true concentration says that the measurements
 process has no bias. The standard deviation describes the precision of
 the measurement.) The laboratory analyzes each specimen $n$ times and
-reports the mean result.\
+reports the mean result.
+
 Management asks the laboratory to produce results accurate to within
 $\pm 0.005$ with 95% confidence. How many measurements must be averaged
 to comply with this request?
@@ -1449,9 +1422,9 @@ When the population standard deviation \( \sigma \) is not known, we cannot use 
 
 The formula for determining the sample size becomes:
 
-\[
+$$
 n = \left( \frac{t_{n-1, \alpha/2} \cdot s}{E} \right)^2
-\]
+$$
 
 However, there’s a complication: the critical value \( t_{n-1, \alpha/2} \) depends on \( n \), the very quantity we are trying to compute. Therefore, an **iterative approach** is usually required. The steps are as follows:
 

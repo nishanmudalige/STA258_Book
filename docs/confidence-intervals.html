@@ -224,6 +224,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.3</b> One Sample Confidence Intervals</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-mean"><i class="fa fa-check"></i><b>5.3.1</b> On a Population Mean</a></li>
+<li class="chapter" data-level="5.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-proportion"><i class="fa fa-check"></i><b>5.3.2</b> On a Population Proportion</a></li>
+<li class="chapter" data-level="5.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-variance"><i class="fa fa-check"></i><b>5.3.3</b> On a Population Variance</a></li>
+<li class="chapter" data-level="5.3.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assumptions"><i class="fa fa-check"></i><b>5.3.4</b> Assumptions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.4</b> Two Sample Confidence Intervals</a>
 <ul>
@@ -381,8 +384,8 @@ does not.</p>
 </div>
 <p>Not all confidence intervals contain the true value of the parameter. This can be
 illustrated by plotting many intervals simultaneously and observing.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-5-1.png" alt="Simulated 95% confidence intervals for the population mean" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="Book_Files/figure-html/unnamed-chunk-6-1.png" alt="Simulated 95% confidence intervals for the population mean" width="672" />
 <p class="caption">
 Figure 5.1: Simulated 95% confidence intervals for the population mean
 </p>
@@ -402,8 +405,7 @@ known is given by
 <span class="math display">\[\bar{x} \; \pm \; z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)\]</span></p>
 <p>The <span class="math inline">\(z_{\alpha/2}\)</span> value is obtained from standard normal tables. The
 standard error is <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span> and the margin of error is
-<span class="math inline">\(z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)\)</span>.<br />
-</p>
+<span class="math inline">\(z_{\alpha/2} \left( \frac{\sigma}{\sqrt{n}} \right)\)</span></p>
 <p>The critical value <span class="math inline">\(z_{\ast}\)</span> is illustrated in Figure <a href="confidence-intervals.html#fig:ConfLevelImg">5.2</a> below and
 depends on <span class="math inline">\(C\)</span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ConfLevelImg"></span>
@@ -413,11 +415,8 @@ Figure 5.2: The central area under the standard normal curve with confidence lev
 </p>
 </div>
 </div>
-</div>
-</div>
-<div id="table-of-common-z-values" class="section level2 unlisted unnumbered hasAnchor">
-<h2>Table of Common <span class="math inline">\(z\)</span>-values<a href="confidence-intervals.html#table-of-common-z-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="centered">
+<div id="table-of-common-z-values" class="section level4 unlisted unnumbered hasAnchor">
+<h4>Table of Common <span class="math inline">\(z\)</span>-values<a href="confidence-intervals.html#table-of-common-z-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <table>
 <thead>
 <tr class="header">
@@ -444,7 +443,6 @@ Figure 5.2: The central area under the standard normal curve with confidence lev
 </tr>
 </tbody>
 </table>
-</div>
 <div class="example">
 <p><span id="exm:unlabeled-div-31" class="example"><strong>Example 5.2  </strong></span>Playbill magazine reported that the mean annual household income of its
 readers is $119,155. Assume this estimate is based on a sample of 80
@@ -508,128 +506,94 @@ provide an interpretation.</p>
 <span id="cb22-6"><a href="confidence-intervals.html#cb22-6" tabindex="-1"></a>    <span class="fu">simple.z.test</span>(cars, <span class="dv">15</span>)</span>
 <span id="cb22-7"><a href="confidence-intervals.html#cb22-7" tabindex="-1"></a></span>
 <span id="cb22-8"><a href="confidence-intervals.html#cb22-8" tabindex="-1"></a>    <span class="do">## [1] 61.00909 76.19091</span></span></code></pre></div>
-<p><strong>Interpretation:</strong> <strong>We estimate that the mean number of cars sold
+<p><strong>Interpretation:</strong></p>
+<p>We estimate that the mean number of cars sold
 annually by all used car salespeople lies between 61 and 76,
-approximately. This type of estimate is correct 95% of the time.</strong></p>
+approximately. This type of estimate is correct 95% of the time.</p>
 </div>
-<div class="tcolorbox">
-<ul>
-<li><p>Large samples where population is <strong>normal</strong>.</p></li>
-<li><p>Large samples where population is <strong>not normal</strong> (By CLT).</p></li>
-<li><p>Small samples where population is <strong>normal</strong>.</p></li>
-</ul>
-<p><em>Note: A sample is considered large if <span class="math inline">\(n \geq 30\)</span>.</em></p>
-</div>
-<div class="example">
-<p><span id="exm:unlabeled-div-33" class="example"><strong>Example 5.4  </strong></span>Suppose a student measuring the boiling temperature of a certain liquid
-observes the readings (in degrees Celsius) 102.5, 101.7, 103.1, 100.9,
-100.5, and 102.2 on 6 different samples of the liquid. He calculates the
-sample mean to be 101.82. If he knows that the distribution of boiling
-points is Normal, with standard deviation 1.2 degrees, what is the
-confidence interval for the population mean at a 95% confidence level?<br />
-</p>
-</div>
-<p><strong>A confidence interval</strong> uses sample data to estimate an unknown
-population parameter with an indication of how accurate the estimate is
-and of how confident we are that the result is correct.</p>
-<p>The <strong>interval</strong> often has the form<br />
-estimate <span class="math inline">\(\pm\)</span> margin of error</p>
-<p>The <strong>confidence level</strong> is the success rate of the method that produces
-the interval. A level <span class="math inline">\(C\)</span> <strong>confidence interval for the mean</strong> <span class="math inline">\(\mu\)</span> of
-a Normal population with <strong>known</strong> standard deviation <span class="math inline">\(\sigma\)</span>, based on
-an SRS of size <span class="math inline">\(n\)</span>, is given by
-<span class="math display">\[\bar{x} \pm z^\star \frac{\sigma}{\sqrt{n}}\]</span></p>
-<p>The <strong>critical value</strong> <span class="math inline">\(z^\star\)</span> is chosen so that the standard Normal
-curve has area <span class="math inline">\(C\)</span> between <span class="math inline">\(-z^\star\)</span> and <span class="math inline">\(z^\star\)</span>.<br />
-Other things being equal, the <strong>margin of error</strong> of a confidence
-interval gets smaller as</p>
-<ul>
-<li><p>the confidence level <span class="math inline">\(C\)</span> decreases,</p></li>
-<li><p>the population standard deviation <span class="math inline">\(\sigma\)</span> decreases, and</p></li>
-<li><p>the sample size <span class="math inline">\(n\)</span> increases.</p></li>
-</ul>
 <!-- ########## ########## ########## -->
 <!-- ########## ########## ########## -->
 <!-- ########## ########## ########## -->
+</div>
 <div id="when-sigma-is-not-known" class="section level4 hasAnchor" number="5.3.1.2">
 <h4><span class="header-section-number">5.3.1.2</span> When <span class="math inline">\(\sigma\)</span> is Not known<a href="confidence-intervals.html#when-sigma-is-not-known" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="definition">
-<p><span id="def:unlabeled-div-34" class="definition"><strong>Definition 5.3  </strong></span>Let <span class="math inline">\(\mu\)</span> be the population mean. When the population standard deviation
-is unknown and the sample size is small, a confidence interval for <span class="math inline">\(\mu\)</span>
-is given by:
-<span class="math display">\[\bar{Y} \pm t_{\alpha/2} \left( \frac{S}{\sqrt{n}} \right), \quad \nu = n - 1\]</span>
-This interval is valid under the following conditions:</p>
-<ul>
-<li><p>The observations are independent and identically distributed (i.i.d).</p></li>
-<li><p>The sample is random.</p></li>
-<li><p>The population <strong>must</strong> follow a Normal distribution (CLT does not
-apply).</p></li>
-</ul>
+<p><span id="def:unlabeled-div-33" class="definition"><strong>Definition 5.3  </strong></span>Let <span class="math inline">\(\mu\)</span> be the population mean. When the population standard deviation
+is unknown, a confidence interval for <span class="math inline">\(\mu\)</span> is given by:
+<span class="math display">\[\bar{x} \pm t_{n-1, \alpha/2} \left( \frac{s}{\sqrt{n}} \right)\]</span>
+where
+<span class="math inline">\(\bar{x}\)</span> is the sample mean; <br>
+<span class="math inline">\(s\)</span> is the sample standard deviation; <br>
+<span class="math inline">\(n\)</span> is the sample size.</p>
 </div>
-</div>
-<div id="independence-assumption" class="section level3 unlisted unnumbered hasAnchor">
-<h3>Independence Assumption<a href="confidence-intervals.html#independence-assumption" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The data values should be independent. There’s really no way to check
+<!--
+### Independence Assumption {#independence-assumption .unlisted .unnumbered}
+
+The data values should be independent. There's really no way to check
 independence of the data by looking at the sample, but we should think
-about whether the assumption is reasonable.</p>
-</div>
-<div id="randomization-condition" class="section level3 unlisted unnumbered hasAnchor">
-<h3>Randomization Condition<a href="confidence-intervals.html#randomization-condition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The data arise from a random sample or suitably randomized experiment.
-Randomly sampled data — especially data from a Simple Random Sample
-— are ideal.</p>
-<div class="tcolorbox">
-<ul>
-<li><p>For very small samples (<span class="math inline">\(n &lt; 15\)</span> or so), the data should follow a
-Normal model pretty closely. If you do find outliers or strong
-skewness, don’t use this method.</p></li>
-<li><p>For moderate samples (<span class="math inline">\(n\)</span> between 15 and 40 or so), the t-method will
-work well as long as the data is unimodal and reasonably symmetric.
-Make a histogram, boxplot, or Q–Q plot to check.</p></li>
-<li><p>When the sample size is larger than 40 or 50, the t-method is safe to
-use unless the data are extremely skewed. Make a histogram, boxplot,
-or Q–Q plot to check.</p></li>
-</ul>
-</div>
-</div>
-<div id="standard-error" class="section level3 unlisted unnumbered hasAnchor">
-<h3>Standard Error<a href="confidence-intervals.html#standard-error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>When the standard deviation of a statistic is estimated from data, the
-result is called the <em>standard error</em> of the statistic. The standard
-error of the sample mean <span class="math inline">\(\bar{x}\)</span> is <span class="math display">\[\frac{s}{\sqrt{n}}.\]</span></p>
-<div class="tcolorbox">
-<ul>
-<li><p>The density curves of the <em>t</em> distributions are similar in shape to
-the Standard Normal curve. They are symmetric about 0, single-peaked,
-and bell-shaped.</p></li>
-<li><p>The spread of the <em>t</em> distributions is a bit greater than that of the
-Standard Normal distribution. The <em>t</em> distributions have more
-probability in the tails and less in the center than the Standard
-Normal. This is because substituting the estimate <span class="math inline">\(s\)</span> for the fixed
-parameter <span class="math inline">\(\sigma\)</span> introduces more variation into the statistic.</p></li>
-<li><p>As the degrees of freedom increase, the <em>t</em> density curve approaches
-the <span class="math inline">\(N(0, 1)\)</span> curve more closely. This happens because <span class="math inline">\(s\)</span> estimates
-<span class="math inline">\(\sigma\)</span> more accurately as the sample size increases. So using <span class="math inline">\(s\)</span> in
-place of <span class="math inline">\(\sigma\)</span> causes little extra variation when the sample is
-large.</p></li>
-</ul>
-</div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-6-1.png" alt="Comparison of the standard normal distribution and t-distributions with 2 and 9 degrees of freedom" width="672" />
-<p class="caption">
-Figure 5.3: Comparison of the standard normal distribution and t-distributions with 2 and 9 degrees of freedom
-</p>
-</div>
+about whether the assumption is reasonable.
+
+### Randomization Condition {#randomization-condition .unlisted .unnumbered}
+
+The data arise from a random sample or suitably randomized experiment.
+Randomly sampled data is ideal is usually most preferred. 
+
+A common way type of random sample is a simple random sample (SRS),
+which is a sample where every unit, or every group of units, is equally likely to be selected.
+Other sampling techniques exist, however these are more suitable for a course 
+on sampling techniques.
+-->
+<!--
+::: tcolorbox
+- For very small samples ($n < 15$ or so), the data should follow a
+  Normal model pretty closely. If you do find outliers or strong
+  skewness, don't use this method.
+
+- For moderate samples ($n$ between 15 and 40 or so), the t-method will
+  work well as long as the data is unimodal and reasonably symmetric.
+  Make a histogram, boxplot, or Q--Q plot to check.
+
+- When the sample size is larger than 40 or 50, the t-method is safe to
+  use unless the data are extremely skewed. Make a histogram, boxplot,
+  or Q--Q plot to check.
+:::
+-->
+<!--
+### Standard Error {#standard-error .unlisted .unnumbered}
+
+When the standard deviation of a statistic is estimated from data, the
+result is called the *standard error* of the statistic. The standard
+error of the sample mean $\bar{x}$ is $$\frac{s}{\sqrt{n}}.$$
+-->
+<!--
+::: tcolorbox
+- The density curves of the *t* distributions are similar in shape to
+  the Standard Normal curve. They are symmetric about 0, single-peaked,
+  and bell-shaped.
+
+- The spread of the *t* distributions is a bit greater than that of the
+  Standard Normal distribution. The *t* distributions have more
+  probability in the tails and less in the center than the Standard
+  Normal. This is because substituting the estimate $s$ for the fixed
+  parameter $\sigma$ introduces more variation into the statistic.
+
+- As the degrees of freedom increase, the *t* density curve approaches
+  the $N(0, 1)$ curve more closely. This happens because $s$ estimates
+  $\sigma$ more accurately as the sample size increases. So using $s$ in
+  place of $\sigma$ causes little extra variation when the sample is
+  large.
+:::
+-->
 <div class="example">
-<p><span id="exm:unlabeled-div-35" class="example"><strong>Example 5.5  </strong></span>The composition of the Earth’s atmosphere may have changed over time. To
+<p><span id="exm:unlabeled-div-34" class="example"><strong>Example 5.4  </strong></span>The composition of the Earth’s atmosphere may have changed over time. To
 study the nature of the atmosphere long ago, scientists examined the gas
 in air bubbles trapped in ancient amber. Amber is fossilized tree resin
 that preserved the atmospheric gases at the time it was formed.</p>
 <p>Measurements on amber specimens from the late Cretaceous era (75 to 95
 million years ago) give the following percent values of nitrogen:</p>
-<div class="center">
-<p>63.4, 65.0, 64.4, 63.3, 54.8, 64.5, 60.8, 49.1, 51.0</p>
-</div>
+<p><span class="math display">\[
+63.4, 65.0, 64.4, 63.3, 54.8, 64.5, 60.8, 49.1, 51.0
+\]</span></p>
 <p>Assume these observations are a simple random sample (SRS) from the
 population of all ancient air bubbles. Construct a <strong>90% confidence
 interval</strong> to estimate the mean percent of nitrogen in ancient air.
@@ -660,14 +624,14 @@ compute a 90% confidence interval for <span class="math inline">\(\mu\)</span> u
 <span id="cb24-10"><a href="confidence-intervals.html#cb24-10" tabindex="-1"></a>      <span class="fl">59.58889</span> </span></code></pre></div>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-36" class="example"><strong>Example 5.6  </strong></span>Most owners of digital cameras store their pictures on the camera. Some
+<p><span id="exm:unlabeled-div-35" class="example"><strong>Example 5.5  </strong></span>Most owners of digital cameras store their pictures on the camera. Some
 will eventually download these to a computer or print them using their
 own printers or a commercial printer. A film-processing company wanted
 to know how many pictures were stored on cameras.</p>
 <p>A random sample of 10 digital camera owners produced the following data:</p>
-<div class="center">
-<p>25, 6, 22, 26, 31, 18, 13, 20, 14, 2</p>
-</div>
+<p><span class="math display">\[
+25, 6, 22, 26, 31, 18, 13, 20, 14, 2
+\]</span></p>
 <p>Estimate with <strong>95% confidence</strong> the mean number of pictures stored on
 digital cameras.</p>
 <hr />
@@ -711,17 +675,17 @@ cameras is between 11.205 and 24.195.</p>
 <span id="cb26-10"><a href="confidence-intervals.html#cb26-10" tabindex="-1"></a>         <span class="fl">17.7</span> </span></code></pre></div>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-37" class="example"><strong>Example 5.7  </strong></span>A manufacturing company produces electric insulators. If the insulators
+<p><span id="exm:unlabeled-div-36" class="example"><strong>Example 5.6  </strong></span>A manufacturing company produces electric insulators. If the insulators
 break when in use, a short circuit is likely. To test the strength of
 the insulators, destructive testing is performed to determine how much
 force (in pounds) is required to break them.</p>
 <p>The following dataset consists of force values (in pounds) recorded for
 a random sample of 30 insulators:</p>
-<div class="center">
-<p>1870, 1728, 1656, 1610, 1634, 1784, 1522, 1696, 1592, 1662, 1866, 1764,
+<p><span class="math display">\[
+1870, 1728, 1656, 1610, 1634, 1784, 1522, 1696, 1592, 1662, 1866, 1764,
 1734, 1662, 1734, 1774, 1550, 1756, 1762, 1866, 1820, 1744, 1788, 1688,
-1810, 1752, 1680, 1810, 1652, 1736</p>
-</div>
+1810, 1752, 1680, 1810, 1652, 1736
+\]</span></p>
 <p>Construct a <strong>95% confidence interval</strong> for the population mean force
 required to break the insulators.</p>
 <p><strong>Solution:</strong></p>
@@ -753,7 +717,7 @@ electric insulator is between <strong>1689.961 pounds</strong> and <strong>1756.
 pounds</strong>.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-38" class="example"><strong>Example 5.8  </strong></span>The operations manager of a production plant would like to estimate the
+<p><span id="exm:unlabeled-div-37" class="example"><strong>Example 5.7  </strong></span>The operations manager of a production plant would like to estimate the
 mean amount of time a worker takes to assemble a new electronic
 component. After observing 120 workers assembling similar devices, she
 noticed that their average time was 16.2 minutes (with a standard
@@ -761,108 +725,140 @@ deviation of 3.6 minutes).</p>
 <p>Construct a <strong>92% confidence interval</strong> for the mean assembly time.
 State all necessary assumptions.</p>
 </div>
-<div class="example">
-<p><span id="exm:unlabeled-div-39" class="example"><strong>Example 5.9  </strong></span>In 2010, 142,823,000 tax returns were filed in the United States. The
+<p>–&gt;</p>
+<!--
+::: {.example}
+In 2010, 142,823,000 tax returns were filed in the United States. The
 Internal Revenue Service (IRS) examined 1.107%, or 1,581,000, of them to
 determine if they were correctly done. To evaluate auditor performance,
 a random sample of these returns was drawn and the additional tax was
-recorded.</p>
-<p>Estimate with 95% confidence the mean additional income tax collected
-from the 1,581,000 files audited.<br />
-<strong>Solution:</strong></p>
-<p>We use a one-sample confidence interval for the population mean
-additional tax collected.</p>
-<p><strong>Step 1: Import the data from <code>taxes.txt</code></strong></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="confidence-intervals.html#cb29-1" tabindex="-1"></a></span>
-<span id="cb29-2"><a href="confidence-intervals.html#cb29-2" tabindex="-1"></a>    <span class="co"># url of taxes;</span></span>
-<span id="cb29-3"><a href="confidence-intervals.html#cb29-3" tabindex="-1"></a>    url <span class="ot">&lt;-</span> <span class="st">&quot;https://mcs.utm.utoronto.ca/~nosedal/data/taxes.txt&quot;</span></span>
-<span id="cb29-4"><a href="confidence-intervals.html#cb29-4" tabindex="-1"></a>    taxes_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb29-5"><a href="confidence-intervals.html#cb29-5" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="confidence-intervals.html#cb29-6" tabindex="-1"></a>    <span class="co"># inspect structure</span></span>
-<span id="cb29-7"><a href="confidence-intervals.html#cb29-7" tabindex="-1"></a>    <span class="fu">names</span>(taxes_data)</span>
-<span id="cb29-8"><a href="confidence-intervals.html#cb29-8" tabindex="-1"></a>    <span class="fu">head</span>(taxes_data)</span>
-<span id="cb29-9"><a href="confidence-intervals.html#cb29-9" tabindex="-1"></a></span>
-<span id="cb29-10"><a href="confidence-intervals.html#cb29-10" tabindex="-1"></a>    <span class="co"># isolate the tax values</span></span>
-<span id="cb29-11"><a href="confidence-intervals.html#cb29-11" tabindex="-1"></a>    taxes <span class="ot">&lt;-</span> taxes_data<span class="sc">$</span>Taxes</span></code></pre></div>
-<p><strong>Step 2: Plot the data</strong></p>
-<p><em>Histogram:</em></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="confidence-intervals.html#cb30-1" tabindex="-1"></a>    <span class="fu">hist</span>(taxes,</span>
-<span id="cb30-2"><a href="confidence-intervals.html#cb30-2" tabindex="-1"></a>         <span class="at">main =</span> <span class="st">&quot;Histogram for our example&quot;</span>,</span>
-<span id="cb30-3"><a href="confidence-intervals.html#cb30-3" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;taxes&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;frequency&quot;</span>,</span>
-<span id="cb30-4"><a href="confidence-intervals.html#cb30-4" tabindex="-1"></a>         <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<div class="center">
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+recorded.
+
+Estimate with 95% confidence the mean additional income tax collected
+from the 1,581,000 files audited.
+
+**Solution:**
+
+We use a one-sample confidence interval for the population mean
+additional tax collected.
+
+**Step 1: Import the data from `taxes.txt`**
+
+```r
+
+    # url of taxes;
+    url <- "https://mcs.utm.utoronto.ca/~nosedal/data/taxes.txt"
+    taxes_data <- read.table(url, header = TRUE)
+
+    # inspect structure
+    names(taxes_data)
+    head(taxes_data)
+
+    # isolate the tax values
+    taxes <- taxes_data$Taxes
+```
+
+**Step 2: Plot the data**
+
+*Histogram:*
+
+```r
+    hist(taxes,
+         main = "Histogram for our example",
+         xlab = "taxes", ylab = "frequency",
+         col = "blue")
+```
+
+
+
+<div class="figure" style="text-align: center">
 <img src="Book_Files/figure-html/unnamed-chunk-7-1.png" alt="Histogram for the Taxes dataset" width="672" />
-<p class="caption">
-Figure 5.4: Histogram for the Taxes dataset
-</p>
+<p class="caption">(\#fig:unnamed-chunk-7)Histogram for the Taxes dataset</p>
 </div>
-</div>
-<p><em>Boxplot:</em></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="confidence-intervals.html#cb31-1" tabindex="-1"></a>    <span class="fu">boxplot</span>(taxes,</span>
-<span id="cb31-2"><a href="confidence-intervals.html#cb31-2" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">&quot;Additional Income Tax&quot;</span>,</span>
-<span id="cb31-3"><a href="confidence-intervals.html#cb31-3" tabindex="-1"></a>            <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
-<div class="center">
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+
+
+*Boxplot:*
+
+```r
+    boxplot(taxes,
+            main = "Additional Income Tax",
+            col = "blue")
+```
+
+
+<div class="figure" style="text-align: center">
 <img src="Book_Files/figure-html/unnamed-chunk-8-1.png" alt="Boxplot of Additional Income Tax" width="672" />
-<p class="caption">
-Figure 5.5: Boxplot of Additional Income Tax
-</p>
+<p class="caption">(\#fig:unnamed-chunk-8)Boxplot of Additional Income Tax</p>
 </div>
-</div>
-<p><em>Q-Q Plot:</em></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="confidence-intervals.html#cb32-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(taxes, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span>
-<span id="cb32-2"><a href="confidence-intervals.html#cb32-2" tabindex="-1"></a>    <span class="fu">qqline</span>(taxes)</span></code></pre></div>
-<div class="center">
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
+
+
+*Q-Q Plot:*
+
+```r
+    qqnorm(taxes, col = "blue", pch = 19)
+    qqline(taxes)
+```
+
+
+<div class="figure" style="text-align: center">
 <img src="Book_Files/figure-html/unnamed-chunk-9-1.png" alt="Normal Q-Q Plot of Taxes" width="672" />
-<p class="caption">
-Figure 5.6: Normal Q-Q Plot of Taxes
-</p>
+<p class="caption">(\#fig:unnamed-chunk-9)Normal Q-Q Plot of Taxes</p>
 </div>
-</div>
-<p><strong>Step 3: Construct 95% CI</strong></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="confidence-intervals.html#cb33-1" tabindex="-1"></a>    <span class="fu">t.test</span>(taxes, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
-<p><strong>Interpretation:</strong> Based on the t-test, we are 95% confident that the
+
+
+**Step 3: Construct 95% CI**
+
+```r
+    t.test(taxes, conf.level = 0.95)
+```
+
+**Interpretation:** Based on the t-test, we are 95% confident that the
 average additional tax collected lies within the interval calculated
-from the sample.</p>
-<p><strong>Assumptions:</strong></p>
-<ul>
-<li><p>The sample is a random sample from the population of interest.</p></li>
-<li><p>Observations are independent.</p></li>
-<li><p>The population is approximately Normal, or the sample size is large
-enough (justified by the histogram, boxplot, and Q-Q plot).</p></li>
-</ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="confidence-intervals.html#cb34-1" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb34-2"><a href="confidence-intervals.html#cb34-2" tabindex="-1"></a>    <span class="do">##  One Sample t-test</span></span>
-<span id="cb34-3"><a href="confidence-intervals.html#cb34-3" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb34-4"><a href="confidence-intervals.html#cb34-4" tabindex="-1"></a>    <span class="do">##  data:  taxes</span></span>
-<span id="cb34-5"><a href="confidence-intervals.html#cb34-5" tabindex="-1"></a>    <span class="do">##  t = 29.345, df = 191, p-value &lt; 2.2e-16</span></span>
-<span id="cb34-6"><a href="confidence-intervals.html#cb34-6" tabindex="-1"></a>    <span class="do">##  alternative hypothesis: true mean is not equal to 0</span></span>
-<span id="cb34-7"><a href="confidence-intervals.html#cb34-7" tabindex="-1"></a>    <span class="do">##  95 percent confidence interval:</span></span>
-<span id="cb34-8"><a href="confidence-intervals.html#cb34-8" tabindex="-1"></a>    <span class="do">##   8886.932 10167.721</span></span>
-<span id="cb34-9"><a href="confidence-intervals.html#cb34-9" tabindex="-1"></a>    <span class="do">##  sample estimates:</span></span>
-<span id="cb34-10"><a href="confidence-intervals.html#cb34-10" tabindex="-1"></a>    <span class="do">##  mean of x </span></span>
-<span id="cb34-11"><a href="confidence-intervals.html#cb34-11" tabindex="-1"></a>    <span class="do">##    9527.326 </span></span></code></pre></div>
-<p><strong>Interpretation:</strong></p>
-<p>We estimate that the mean additional tax collected lies between $8,887
-and $10,168 (with 95% confidence).</p>
-</div>
-</div>
-<div id="a-few-final-comments" class="section level3 unlisted unnumbered hasAnchor">
-<h3>A few final comments<a href="confidence-intervals.html#a-few-final-comments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>When we introduced the Student <em>t</em>-distribution, we pointed out that the
-<em>t</em>-statistic is Student <em>t</em>-distributed if the population from which
-we’ve sampled is Normal. However, statisticians have shown that the
-mathematical process that derived the Student <em>t</em>-distribution is
-<strong>robust</strong>, which means that if the population is non-Normal, the
+from the sample.
+
+**Assumptions:**
+
+- The sample is a random sample from the population of interest.
+
+- Observations are independent.
+
+- The population is approximately Normal, or the sample size is large
+  enough (justified by the histogram, boxplot, and Q-Q plot).
+
+```r
+    ## 
+    ##  One Sample t-test
+    ## 
+    ##  data:  taxes
+    ##  t = 29.345, df = 191, p-value < 2.2e-16
+    ##  alternative hypothesis: true mean is not equal to 0
+    ##  95 percent confidence interval:
+    ##   8886.932 10167.721
+    ##  sample estimates:
+    ##  mean of x 
+    ##    9527.326 
+```
+
+**Interpretation:**
+
+We estimate that the mean additional tax collected lies between \$8,887
+and \$10,168 (with 95% confidence).
+:::
+
+<!--
+### A few final comments {#a-few-final-comments .unlisted .unnumbered}
+
+When we introduced the Student *t*-distribution, we pointed out that the
+*t*-statistic is Student *t*-distributed if the population from which
+we've sampled is Normal. However, statisticians have shown that the
+mathematical process that derived the Student *t*-distribution is
+**robust**, which means that if the population is non-Normal, the
 results of the confidence interval estimate are still valid provided
-that the population is <strong>not extremely non-Normal</strong>. Our histogram,
-boxplot, and Q–Q plot suggest that our variable of interest is not
-extremely non-Normal, and in fact, may be Normal.</p>
-<!-- ########## ########## ########## -->
-<!-- ########## ########## ########## -->
-<!-- ########## ########## ########## -->
+that the population is **not extremely non-Normal**. Our histogram,
+boxplot, and Q--Q plot suggest that our variable of interest is not
+extremely non-Normal, and in fact, may be Normal.
+-->
+</div>
 </div>
 <div id="on-a-population-proportion" class="section level3 hasAnchor" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> On a Population Proportion<a href="confidence-intervals.html#on-a-population-proportion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -886,12 +882,12 @@ confidence.</p>
 <p>Now let’s begin with the proper definition of confidence interval on
 proportion.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-40" class="definition"><strong>Definition 5.4  </strong></span>We select a random sample of size <span class="math inline">\(n\)</span> from a population with <strong>unknown</strong>
+<p><span id="def:unlabeled-div-38" class="definition"><strong>Definition 5.4  </strong></span>We select a random sample of size <span class="math inline">\(n\)</span> from a population with <strong>unknown</strong>
 proportion <span class="math inline">\(p\)</span> of success. An approximate confidence interval for <strong>p</strong>
 is:
 <span class="math display">\[p = \hat{p}  \pm z_{\frac{\alpha}{2}} \cdot \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}, \text{ where $\hat{p} = \frac{\text{number of observations satisfying the criteria}}{n}$.}\]</span>
-In addition, <span class="math inline">\(n\)</span> is the sample size.<br />
-To apply this confidence interval, there are <span class="math inline">\(3\)</span> conditions that we need
+In addition, <span class="math inline">\(n\)</span> is the sample size.</p>
+<p>To apply this confidence interval, there are <span class="math inline">\(3\)</span> conditions that we need
 to guarantee:</p>
 <ul>
 <li><p><span class="math inline">\(1\)</span>. Random sample;</p></li>
@@ -908,86 +904,100 @@ following number line shows:<br />
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="Book_Files/figure-html/unnamed-chunk-10-1.png" alt="Visualization of the result of confidence interval on a proportion." width="90%" />
 <p class="caption">
-Figure 5.7: Visualization of the result of confidence interval on a proportion.
+Figure 5.3: Visualization of the result of confidence interval on a proportion.
 </p>
 </div>
 <p>Remember that your final answer of the range of <span class="math inline">\(p\)</span> must between <span class="math inline">\(0\)</span> and
 <span class="math inline">\(1\)</span>, since we are working with proportion.</p>
-<p><strong>Summary about One Sample Confidence Intervals</strong></p>
-<p>We have introduced one sample confidence interval under three different
+<!--
+**Summary on One Sample Confidence Intervals**
+
+We have introduced one sample confidence interval under three different
 cases: given population variance, unknown population variance and
 unknown population proportion. All the material of one sample confidence
-interval comes from chapter <span class="math inline">\(6, 7, 8\)</span>, which seems like you to remember
+interval comes from chapter $6, 7, 8$, which seems like you to remember
 a lot. However, the reason why we give this summery is to help you to
-remember the basic skeleton of one sample confidence interval. Let’s
-revisit the three distinct types of confidence interval:</p>
-<ul>
-<li><p>Known variance:
-<span class="math inline">\(\hat{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}\)</span> <a href="#ch:7">(Chapter
-7)</a>.</p></li>
-<li><p>Unknown variance:
-<span class="math inline">\(\bar{x} \pm t_{\scriptscriptstyle{\alpha/2}} \cdot \frac{s}{\sqrt{n}}\)</span></p></li>
-<li><p>Proportion:
-<span class="math inline">\(\hat{p} \pm z_{\scriptscriptstyle{\alpha/2}} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span></p></li>
-</ul>
-<p>The question is: what is the similarity between the three distinct types
+remember the basic skeleton of one sample confidence interval. Let's
+revisit the three distinct types of confidence interval:
+
+- Known variance:
+  $\hat{x} \pm z_{\alpha/2} \displaystyle \frac{\sigma}{\sqrt{n}}$.
+
+- Unknown variance:
+  $\bar{x} \pm t_{\alpha/2} \displaystyle \frac{s}{\sqrt{n}}$
+
+- Proportion:
+  $\hat{p} \pm z_{\alpha/2} \displaystyle \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$
+
+The question is: what is the similarity between the three distinct types
 of confidence interval? You may have already noticed that the confidence
-intervals above are all follow such a skeleton that <span class="math inline">\(\bar{x}\)</span> plus or
-minus its margin of error (different between each type of C.I.).<br />
+intervals above are all follow such a skeleton that $\bar{x}$ plus or
+minus its margin of error (different between each type of C.I.).
+
 If we keep questioning ourselves that how the margin of error comes
 from, you will catch the pattern. The margin of error contains reference
-distribution and the standard deviation of <span class="math inline">\(\bar{x}\)</span> under its reference
-distribution. Let’s analyze each type of confidence interval to prove my
-statement is true:<br />
+distribution and the standard deviation of $\bar{x}$ under its reference
+distribution. Let's analyze each type of confidence interval to prove my
+statement is true:
+
 The first type (given population variance) confidence interval is quite
-easy to recognize. Recall chapter <span class="math inline">\(3\)</span>: The Central Limit Theorem, we
-state that <span class="math inline">\(\bar{x} \sim N(\mu, \frac{\sigma^2}{n})\)</span>, which is how
+easy to recognize. Recall chapter $3$: The Central Limit Theorem, we
+state that $\bar{x} \sim N(\mu, \frac{\sigma^2}{n})$, which is how
 reference distribution comes from with given population variance. To get
-the standard deviation of <span class="math inline">\(\bar{x}\)</span>, we simply take the square root of
-the variance, then <span class="math inline">\(s_{\bar{x}} = \frac{\sigma}{\sqrt{n}}\)</span>. Finally, we
-multiply reference distribution at the point <span class="math inline">\(\frac{\alpha}{2}\)</span> with the
-standard deviation of <span class="math inline">\(\bar{x}\)</span> under normal distribution to get the
-margin of error.<br />
+the standard deviation of $\bar{x}$, we simply take the square root of
+the variance, then $s_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$. Finally, we
+multiply reference distribution at the point $\frac{\alpha}{2}$ with the
+standard deviation of $\bar{x}$ under normal distribution to get the
+margin of error.
+
 The second type (unknown population variance) confidence interval is
 similar to the first type, but the reference distribution is
-t-distribution instead of normal distribution. In chapter <span class="math inline">\(7\)</span>, we
-introduced the calculation of sample variance (<span class="math inline">\(s^2\)</span>) to estimate
-population variance (<span class="math inline">\(\sigma^2\)</span>), and <span class="math inline">\(s^2\)</span> is an unbiased estimator of
-<span class="math inline">\(\sigma^2\)</span> (the proof of this statement is in STA260, in this course we
-can assume it freely). In chapter <span class="math inline">\(2\)</span>, we defined that
-<span class="math inline">\(T = \frac{\bar{x} - \mu}{(\frac{s}{\sqrt{n}})} \sim t_{n-1},\)</span> then the
-term <span class="math inline">\(\frac{s}{\sqrt{n}}\)</span> (verify this by yourself as an extra exercise)
-is the standard deviation of <span class="math inline">\(\bar{x}\)</span> under t-distribution with <span class="math inline">\(n-1\)</span>
+t-distribution instead of normal distribution. In chapter $7$, we
+introduced the calculation of sample variance ($s^2$) to estimate
+population variance ($\sigma^2$), and $s^2$ is an unbiased estimator of
+$\sigma^2$ (the proof of this statement is in STA260, in this course we
+can assume it freely). In chapter $2$, we defined that
+$T = \frac{\bar{x} - \mu}{(\frac{s}{\sqrt{n}})} \sim t_{n-1},$ then the
+term $\frac{s}{\sqrt{n}}$ (verify this by yourself as an extra exercise)
+is the standard deviation of $\bar{x}$ under t-distribution with $n-1$
 degrees of freedom. Finally, we multiply multiply reference distribution
-at the point <span class="math inline">\(\frac{\alpha}{2}\)</span> with the standard deviation of <span class="math inline">\(\bar{x}\)</span>
-under t-distribution to get the margin of error.<br />
+at the point $\frac{\alpha}{2}$ with the standard deviation of $\bar{x}$
+under t-distribution to get the margin of error.
+
 The third type (estimate population proportion) confidence interval is
-slightly harder to identify. Recall chapter <span class="math inline">\(4\)</span> that we can approximate
+slightly harder to identify. Recall chapter $4$ that we can approximate
 binomial distribution by normal distribution. Suppose that a random
-variable <span class="math inline">\(X \sim Binomial(n,p)\)</span>, then the random variable
-<span class="math inline">\(X \sim N(np, np(1-p)).\)</span> From chapter <span class="math inline">\(4\)</span>, we know that
-<span class="math inline">\(\hat{p} \sim N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^{2} = \frac{p(1-p)}{n})\)</span>.
-Trivially, the standard deviation of <span class="math inline">\(\hat{p}\)</span> is
-<span class="math inline">\(\sqrt{\frac{p(1-p)}{n}}\)</span>, since we don’t know the value <span class="math inline">\(p\)</span> and use
-<span class="math inline">\(\hat{p}\)</span> to estimate that. Then, standard deviation of <span class="math inline">\(\hat{p}\)</span> is
-<span class="math inline">\(\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span>. Finally, by multiplying the
+variable $X \sim Binomial(n,p)$, then the random variable
+$X \sim N(np, np(1-p)).$ From chapter $4$, we know that
+$\hat{p} \sim N(\mu_{\hat{p}} = p, \sigma_{\hat{p}}^{2} = \frac{p(1-p)}{n})$.
+Trivially, the standard deviation of $\hat{p}$ is
+$\sqrt{\frac{p(1-p)}{n}}$, since we don't know the value $p$ and use
+$\hat{p}$ to estimate that. Then, standard deviation of $\hat{p}$ is
+$\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$. Finally, by multiplying the
 reference distribution and standard deviation, we get the margin of
-error of the confidence interval.<br />
-<strong>Conclusion About One Sample Confidence Intervals</strong></p>
-<p>If you follow the skeleton below, one sample confidence interval will
-become easier:</p>
-<ul>
-<li><p>1. Identify what type of one sample confidence interval to use from
-given information;</p></li>
-<li><p>2. Construct your confidence interval that fits the circumstance
-which you are facing, it either going to be
-<span class="math inline">\(\bar{x}  \pm M.E.(\bar{x})\text{ or } \hat{p}  \pm M.E.(\hat{p});\)</span></p></li>
-<li><p>3. Check the validity of your final answer. For example, the range of
-<span class="math inline">\(p\)</span> must between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</p></li>
-<li><p>4. Clearly state your final conclusion: we have a certain percentage
-of confidence to guarantee that the value of the chosen sample is
-between its lower bound and upper bound.</p></li>
-</ul>
+error of the confidence interval.
+
+**Conclusion About One Sample Confidence Intervals**
+
+If you follow the skeleton below, one sample confidence interval will
+become easier:
+
+- 1\. Identify what type of one sample confidence interval to use from
+  given information;
+
+- 2\. Construct your confidence interval that fits the circumstance
+  which you are facing, it either going to be
+  $\bar{x}  \pm M.E.(\bar{x})\text{ or } \hat{p}  \pm M.E.(\hat{p});$
+
+- 3\. Check the validity of your final answer. For example, the range of
+  $p$ must between $0$ and $1$.
+
+- 4\. Clearly state your final conclusion: we have a certain percentage
+  of confidence to guarantee that the value of the chosen sample is
+  between its lower bound and upper bound.
+
+
+
 <!-- ########## ########## ########## -->
 <!-- ########## ########## ########## -->
 <!-- ########## ########## ########## -->
@@ -1018,7 +1028,8 @@ This interval is not symmetric and depends heavily on the shape of the chi-squar
 <li>For variances: The population must be normally distributed to use the chi-square-based interval for <span class="math inline">\(\sigma^2\)</span>.</li>
 </ul></li>
 </ul>
-<p>If these assumptions are violated, the resulting confidence interval may not be valid or reliable.</p>
+<p>If these assumptions are violated, the resulting confidence interval may not be valid or reliable.
+–&gt;</p>
 <!-- ########## ########## ########## -->
 <!-- ########## ########## ########## -->
 <!-- ########## ########## ########## -->
@@ -1054,7 +1065,7 @@ a mean, we examine various cases of two-sample confidence intervals on a differe
 <div id="when-sigma_1-and-sigma_2-are-known" class="section level4 hasAnchor" number="5.4.1.1">
 <h4><span class="header-section-number">5.4.1.1</span> When <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> are Known<a href="confidence-intervals.html#when-sigma_1-and-sigma_2-are-known" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="definition">
-<p><span id="def:unlabeled-div-41" class="definition"><strong>Definition 5.5  </strong></span>Suppose we are given the population variance for both two independent
+<p><span id="def:unlabeled-div-39" class="definition"><strong>Definition 5.5  </strong></span>Suppose we are given the population variance for both two independent
 groups of population. The confidence interval of <span class="math inline">\(\mu_1 - \mu_2\)</span>
 (difference of mean between population group 1 and 2) is given by the
 following:
@@ -1080,7 +1091,7 @@ we consider two subcases.</p>
 <h4><span class="header-section-number">5.4.1.3</span> When <span class="math inline">\(\sigma_1 = \sigma_2\)</span><a href="confidence-intervals.html#when-sigma_1-sigma_2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We first examine the case where we assume the standard deviation of both populations is assumed equal.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-42" class="definition"><strong>Definition 5.6  </strong></span>Suppose that the chosen two independent samples have same unknown
+<p><span id="def:CIpooled" class="definition"><strong>Definition 5.6  </strong></span>Suppose that the chosen two independent samples have same unknown
 population variance. Then the two sample confidence interval for
 <span class="math inline">\(\mu_1 - \mu_2\)</span> is given by the following:
 <span class="math display">\[(\bar{x}_1 - \bar{x}_2)  \pm  t_{n_1+n_2-2; \alpha/2} \cdot s_p \cdot \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}.\]</span>
@@ -1089,15 +1100,16 @@ samples respectively; <span class="math inline">\(s_p\)</span> is aggregated var
 combined which accommodates samples of different sizes. Additionally,
 <span class="math inline">\(s_p\)</span> is called pooled standard deviation which is calculated by the
 following equation:
-<span class="math display">\[s_p^2 = \frac{(n_1-1) \cdot s_1^2 + (n_2-1) \cdot s_2^2 }{n_1+n_2-2},\]</span>
+<span class="math display">\[s_p^2 = \frac{(n_1-1) s_1^2 + (n_2-1) s_2^2 }{n_1+n_2-2},\]</span>
 where <span class="math inline">\(s_1^2\)</span> and <span class="math inline">\(s_2^2\)</span> are sample variance of the two chosen samples
-respectively.<br />
-Then we take the square root <span class="math inline">\(s_p = \sqrt{s_p^2}\)</span> to get pooled standard
+respectively.</p>
+<p>Then we take the square root <span class="math inline">\(s_p = \sqrt{s_p^2}\)</span> to get pooled standard
 deviation.</p>
 </div>
-<p>Alternatively, we can write the equation for two sample confidence
-interval with equal unknown variance as:
-<span class="math display">\[(\bar{x}_1 - \bar{x}_2)  \pm  t_{n_1+n_2-2; \alpha/2} \cdot \sqrt{s_p^2(\frac{1}{n_1} + \frac{1}{n_2})}, \text{ which is same as the one above.}\]</span></p>
+<div class="remark">
+<p><span id="unlabeled-div-40" class="remark"><em>Remark</em>. </span>Alternatively we can also write the two sample confidence in Definition <a href="confidence-intervals.html#def:CIpooled">5.6</a> as
+<span class="math display">\[(\bar{x}_1 - \bar{x}_2)  \pm  t_{n_1+n_2-2; \alpha/2} \sqrt{s_p^2 \left(\frac{1}{n_1} + \frac{1}{n_2} \right) }\]</span></p>
+</div>
 <p>The pooled variance (also known as combined variance,
 composite variance, or overall variance) is a method to calculate such a
 value in order to estimate variance between several distinct
@@ -1111,7 +1123,7 @@ instead of variance.</p>
 <h4><span class="header-section-number">5.4.1.4</span> When <span class="math inline">\(\sigma_1 \neq \sigma_2\)</span><a href="confidence-intervals.html#when-sigma_1-neq-sigma_2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We now examine the case where we assume the standard deviation of both populations is assumed different.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-43" class="definition"><strong>Definition 5.7  </strong></span>Suppose that our chosen two independent samples with unequal and unknown
+<p><span id="def:unlabeled-div-41" class="definition"><strong>Definition 5.7  </strong></span>Suppose that our chosen two independent samples with unequal and unknown
 population variance, then the confidence interval for <span class="math inline">\(\mu_1 - \mu_2\)</span> is
 given by:
 <span class="math display">\[(\bar{x}_1 - \bar{x}_2)  \pm t_{df; \alpha/2} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}\]</span>
@@ -1120,7 +1132,7 @@ groups; and <span class="math inline">\(n_1\)</span>, <span class="math inline">
 respectively.</p>
 </div>
 <div class="remark">
-<p><span id="unlabeled-div-44" class="remark"><em>Remark</em>. </span>Note a more accurate approximation of the degrees of freedom is given by
+<p><span id="unlabeled-div-42" class="remark"><em>Remark</em>. </span>Note a more accurate approximation of the degrees of freedom is given by
 <span class="math display">\[df = \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}
 {
 \left( \frac{1}{n_1 - 1} \left( \frac{s_1^2}{n_1} \right)^2 \right)
@@ -1160,7 +1172,7 @@ two independent groups (one group from each campus), then apply two
 sample confidence interval to approximate which campus has a larger
 proportion.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-45" class="definition"><strong>Definition 5.8  </strong></span>Draw an SRS of size <span class="math inline">\(n_1\)</span> from a population having proportion <span class="math inline">\(p_1\)</span> of
+<p><span id="def:unlabeled-div-43" class="definition"><strong>Definition 5.8  </strong></span>Draw an SRS of size <span class="math inline">\(n_1\)</span> from a population having proportion <span class="math inline">\(p_1\)</span> of
 successes and draw an independent SRS of size <span class="math inline">\(n_2\)</span> from another
 population having proportion <span class="math inline">\(p_2\)</span> of successes. When <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>
 are large, an approximate level C confidence interval for <span class="math inline">\(p_1 - p_2\)</span> is
@@ -1191,8 +1203,8 @@ than <span class="math inline">\(70\)</span>.</p></li>
 <h3><span class="header-section-number">5.4.3</span> On a Ratio of Variances<a href="confidence-intervals.html#on-a-ratio-of-variances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Confidence interval is a strong technique in inferential statistics, we
 have discussed its application on population mean, proportion and
-dependent data. Now, let’s move on to variance.<br />
-One simple method involves just looking at two sample variances.
+dependent data. Now, let’s move on to variance.</p>
+<p>One simple method involves just looking at two sample variances.
 Logically, if two population variances are equal, then the two sample
 variances should be very similar. When the two sample variances are
 reasonably close, you can be reasonably conﬁdent that the homogeneity
@@ -1207,17 +1219,27 @@ collect sample data and use the ratio of the sample variances</p>
 <p><span class="math inline">\((\sigma_1^2)/(\sigma_2^2)\)</span>.</p>
 <p>At this point, let’s derive the confidence interval. We know that:
 <span class="math inline">\(\frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} \sim F_{n_1-1, n_2 -1}\)</span>.</p>
-<p>Then, we can construct our confidence interval as:</p>
-<p><span class="math display">\[P[F_{n_1-1, n_2 -1; 1-\alpha/2} &lt; \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} &lt; F_{n_1-1, n_2 -1; \alpha/2}]  = 1 -\alpha.\]</span>
+<p>Then we can construct our confidence interval as:</p>
+<p><span class="math display">\[
+P \left( F_{n_1-1, n_2 -1; 1-\alpha/2} &lt; \frac{s_1^2/\sigma_1^2}{s_2^2/\sigma_2^2} &lt; F_{n_1-1, n_2 -1; \alpha/2} \right)  = 1 -\alpha.
+\]</span>
 Now, the reference distribution of this confidence interval is
 F-distribution with <span class="math inline">\(n_1 - 1\)</span> and <span class="math inline">\(n_2 -1\)</span> degrees of freedom, leaving
 areas of <span class="math inline">\(1 - \alpha/2\)</span> and <span class="math inline">\(\alpha/2\)</span>, respectively, to the right.</p>
 <p>Rearranging gives us:</p>
-<p><span class="math display">\[P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; \alpha/2}} &lt; \frac{\sigma_1^2}{\sigma_2^2} &lt; \frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}}] = 1 -\alpha.\]</span>
-Using the face that
-<span class="math inline">\(F_{n_1-1,n_2-1; 1 - \alpha/2} = \frac{1}{F_{n_2-1,n_1-1; \alpha/2}}\)</span>,
-we have:
-<span class="math display">\[P[\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{n_1-1, n_2-1, \alpha/2}} &lt; \frac{\sigma_1^2}{\sigma_2^2} &lt; \frac{s_1^2}{s_2^2} \cdot F_{n_2-1, n_1 - 1, \alpha/2}] = 1- \alpha.\]</span></p>
+<p><span class="math display">\[
+P \left( \frac{s_1^2}{s_2^2}\frac{1}{F_{n_1-1, n_2 -1; \alpha/2}}
+  &lt; \frac{\sigma_1^2}{\sigma_2^2}
+  &lt; \frac{s_1^2}{s_2^2} \frac{1}{F_{n_1-1, n_2 -1; 1-\alpha/2}} \right) = 1 - \alpha.
+\]</span></p>
+<p>Using the face that</p>
+<p><span class="math inline">\(F_{n_1-1,n_2-1; 1 - \alpha/2} = \displaystyle\frac{1}{F_{n_2-1,n_1-1; \alpha/2}}\)</span>,</p>
+<p>we have:</p>
+<p><span class="math display">\[
+P\left( \frac{s_1^2}{s_2^2} \frac{1}{F_{n_1-1, n_2-1, \alpha/2}}
+  &lt; \frac{\sigma_1^2}{\sigma_2^2}
+  &lt; \frac{s_1^2}{s_2^2} F_{n_2-1, n_1 - 1, \alpha/2}
+\right)= 1 - \alpha.\]</span></p>
 <div id="assumptions-3" class="section level4 hasAnchor" number="5.4.3.1">
 <h4><span class="header-section-number">5.4.3.1</span> Assumptions<a href="confidence-intervals.html#assumptions-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The confidence interval for the ratio of two population variances relies on the following assumptions:</p>
@@ -1301,7 +1323,7 @@ We then calculate the difference between the two measurements for each of the me
 as shown in the last column,
 difference between the second and the first measurement (<span class="math inline">\(M_2 - M_1\)</span>).</p>
 <div class="remark">
-<p><span id="unlabeled-div-46" class="remark"><em>Remark</em>. </span>In the table above, we calculated differences as <span class="math inline">\(M_{2} - M_{1}\)</span>, however it is also possible to calculate <span class="math inline">\(M_{2} - M_{1}\)</span>.
+<p><span id="unlabeled-div-44" class="remark"><em>Remark</em>. </span>In the table above, we calculated differences as <span class="math inline">\(M_{2} - M_{1}\)</span>, however it is also possible to calculate <span class="math inline">\(M_{2} - M_{1}\)</span>.
 The final results and interpretation will be the same, however one order in which measurements are subtracted
 may be more convenient than the other.</p>
 </div>
@@ -1313,7 +1335,7 @@ s_{d} = \displaystyle\frac{\displaystyle\sum_{i=1}^{m} (x_{di} - \bar{x}_{d} )^2
 and sample standard deviation of the difference. Now, let’s begin with
 the proper definition:</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-47" class="definition"><strong>Definition 5.9  </strong></span>Suppose we have two samples that are dependent with each other, the
+<p><span id="def:unlabeled-div-45" class="definition"><strong>Definition 5.9  </strong></span>Suppose we have two samples that are dependent with each other, the
 confidence interval on paired data’s mean (<span class="math inline">\(\mu_d\)</span>) is given by:
 <span class="math display">\[\bar{x}_d  \pm t_{n-1, \alpha/2} \cdot \frac{s_d}{\sqrt{n}}.\]</span> In this
 case, the reference distribution is t-distribution with <span class="math inline">\(n-1\)</span> degrees of
@@ -1353,10 +1375,9 @@ level <span class="math inline">\(1-\alpha\)</span>.</p>
 <span class="math display">\[E = z_{\alpha/2}\,\frac{\sigma}{\sqrt{n}}\]</span></p>
 <p>We can rearrange <span class="math inline">\(E\)</span> to calculate the sample size using
 <span class="math display">\[n = \left( \frac{z_{\alpha/2}\,\sigma}{E} \right)^2\]</span> where <span class="math inline">\(n\)</span> is
-always <em>rounded up</em> to the next integer.<br />
-</p>
+always <em>rounded up</em> to the next integer.</p>
 <div class="example">
-<p><span id="exm:SampleSizePharmaceutical" class="example"><strong>Example 5.10  </strong></span>A manufacturer of pharmaceutical products analyzes a specimen from each
+<p><span id="exm:SampleSizePharmaceutical" class="example"><strong>Example 5.8  </strong></span>A manufacturer of pharmaceutical products analyzes a specimen from each
 batch of a product to verify the concentration of the active ingredient.
 The chemical analysis is not perfectly precise. Repeated measurements on
 the same specimen give slightly different results. Suppose we know that
@@ -1366,8 +1387,8 @@ mean <span class="math inline">\(\mu\)</span> equal to the true concentration an
 all measurements is the true concentration says that the measurements
 process has no bias. The standard deviation describes the precision of
 the measurement.) The laboratory analyzes each specimen <span class="math inline">\(n\)</span> times and
-reports the mean result.<br />
-Management asks the laboratory to produce results accurate to within
+reports the mean result.</p>
+<p>Management asks the laboratory to produce results accurate to within
 <span class="math inline">\(\pm 0.005\)</span> with 95% confidence. How many measurements must be averaged
 to comply with this request?</p>
 <p><span class="math display">\[n = \left( \displaystyle \frac{z_{0.025}\,\sigma}{E} \right)^2
@@ -1375,13 +1396,13 @@ to comply with this request?</p>
     \approx 7.1\]</span> Since the sample size should be a whole number, we
 round our result up to <span class="math inline">\(n=8\)</span> measurements.</p>
 </div>
-<p>In Example <a href="confidence-intervals.html#exm:SampleSizePharmaceutical">5.10</a>, we note that 7 measurements
+<p>In Example <a href="confidence-intervals.html#exm:SampleSizePharmaceutical">5.8</a>, we note that 7 measurements
 will give a slightly larger margin of error than desired, and 8
 measurements a slightly smaller margin of error, the lab must take 8
 measurements on each specimen to meet management’s demand. Always round
 up to the next higher whole number when finding <span class="math inline">\(n\)</span>.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-48" class="example"><strong>Example 5.11  </strong></span>Planning value <span class="math inline">\(\sigma=22.50\)</span>, desired margin <span class="math inline">\(E=2\)</span>.</p>
+<p><span id="exm:unlabeled-div-46" class="example"><strong>Example 5.9  </strong></span>Planning value <span class="math inline">\(\sigma=22.50\)</span>, desired margin <span class="math inline">\(E=2\)</span>.</p>
 <ol style="list-style-type: decimal">
 <li><p>90% confidence, <span class="math inline">\(z_{0.05}=1.65\)</span>:
 <span class="math display">\[n = \Bigl(\frac{1.65 \times 22.50}{2}\Bigr)^2
@@ -1433,7 +1454,7 @@ information such as a pilot study. If we do not have any prior
 information on <span class="math inline">\(p^*\)</span>, we can use <span class="math inline">\(p^* = 0.5\)</span> which is the conservative
 value that maximizes the product <span class="math inline">\(p^*(1-p^*)\)</span>.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-49" class="example"><strong>Example 5.12  </strong></span>Aisha Shariff and Yvette Ye are the candidates for mayor in a large
+<p><span id="exm:unlabeled-div-47" class="example"><strong>Example 5.10  </strong></span>Aisha Shariff and Yvette Ye are the candidates for mayor in a large
 city. You are planning a sample survey to determine what percent of the
 voters plan to vote for Shariff. This is a population proportion <span class="math inline">\(p\)</span>.
 You will contact an SRS of registered voters in the city. You want to
@@ -1447,7 +1468,7 @@ n = \left(\frac{1.96}{0.03}\right)^{2} (0.5)(0.5) \approx 1067.1.\]</span>
 Round up: <span class="math display">\[n = 1068.\]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-50" class="example"><strong>Example 5.13  </strong></span>The percentage of people not covered by health care insurance in 2007 in
+<p><span id="exm:unlabeled-div-48" class="example"><strong>Example 5.11  </strong></span>The percentage of people not covered by health care insurance in 2007 in
 the USA was 15.6%. A congressional committee has been charged with
 conducting a sample survey to obtain more current information.</p>
 <ol style="list-style-type: decimal">
@@ -1473,7 +1494,7 @@ p^{*}(1-p^{*}),
 \approx 974.\]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-51" class="example"><strong>Example 5.14  </strong></span>A consumer advocacy group would like to find the proportion of consumers
+<p><span id="exm:unlabeled-div-49" class="example"><strong>Example 5.12  </strong></span>A consumer advocacy group would like to find the proportion of consumers
 who bought the newest generation of iPhone and were happy with their
 purchase. How large a sample should they take to estimate <span class="math inline">\(p\)</span> with 2%
 margin of error and 90% confidence?</p>
