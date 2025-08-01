@@ -1,10 +1,7 @@
 # STA258: Statistics with Applied Probability
 
-
-<p align="center"> 
-<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/UTM_Stats.svg"> 
-  &thinsp; 
-<img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/STA258.svg">
+<p align="center">
+  <img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/STA258.svg">
 </p>
 
 
@@ -13,7 +10,6 @@
 ![up-time](https://img.shields.io/uptimerobot/ratio/7/m800993650-eea0832eb8270800e4f0461f)
 ![GitHub branch check runs](https://img.shields.io/github/check-runs/nishanmudalige/STA258/main)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fnishanmudalige.github.io%2FSTA258%2F)
-
 
 ![GitHub License](https://img.shields.io/github/license/nishanmudalige/STA258)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
@@ -42,4 +38,10 @@ Visit [https://nishanmudalige.github.io/STA258/](https://nishanmudalige.github.i
 
 <p align="center"> 
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/bookdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rmarkdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/knitr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/ggplot2.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/pipe.svg"> <!-- <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/dplyr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyverse.svg"> --> <img style="float:left;height:100px;"src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/plotly_no_bg.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/shiny.svg">
+</p>
+
+---
+
+<p align="center">
+  <img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/UTM_Stats.svg"> 
 </p>
