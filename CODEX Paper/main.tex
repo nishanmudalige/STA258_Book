@@ -30,94 +30,88 @@
 \maketitle
 
 \begin{abstract}
-This document is the article writing format for the Journal of Computing, Data, and Exploration (CODEX). Authors must follow all instructions in this document to be published in the CODEX. Abstract is a summary of the article. The abstract contains a summary of the introduction, a summary of the methods, a summary of the results and discussion, and a summary of the conclusions. The number of words in the abstract ranges from 200 - 300 words. The abstract is written in \textbf{English} using \textbf{font size 10pt spacing single before 12pt after 12pt italic} style. Keywords are scientific terms that are often encountered in the field of science related to the article, and can be used as a search key to find articles. Use 3-5 words or phrases that are key to the submitted article. *You should not use symbols, mathematical equations in the title and abstract.
+In most university courses, students learn from textbooks they did not help develop. In our Independent Statistics Research Project, we as undergraduates, collaborated with faculty to create an open-access, interactive e-book for STA258: Statistics with Applied Probability – an applied statistics course at UTM that provides students their first in-depth exposure to statistical inference (hypothesis testing, confidence intervals, and related concepts).
+ 
+In our project, we developed content, explained concepts, designed plots and figures, built interactive apps embedded in the e-book, and created illustrative examples with coding components. The e-book was created using R and Bookdown, maintained with version control (Git), and is hosted on GitHub Pages with source code available on GitHub.
+ 
+This process made us co-authors rather than passive readers, allowing us appreciate reproducible research, collaborate, learn project management, and gain opportunities to independently learn and apply new skills. Faculty benefit from fresh ideas and perspectives.
+ 
+In this poster, we describe the e-book’s development, methodology, software tools used, and our experience in the research process.
 \end{abstract}
-
-\keywords{keywords; are written; alphabetically; with a maximum; of 5 words}
 
 \section{INTRODUCTION}
 
-Articles should be submitted to the CODEX using this template.
+In lots of undergraduate statistics classes, core concepts are introduced through traditional textbooks and lectures, which provide students with the theoretical grounding, but do not allow students an opportunity to interact with the concepts or figure out where the use of statistical methods fits in the "real world". For example, when students are learning a topic like hypothesis testing, confidence intervals, or regression, it can be very difficult for them to move from abstract theory to understanding, because of their passive learning and the lack of contextualized application of knowledge.
 
-When we started STA258, it became clear pretty quickly that understanding the theory was only one part of the challenge. What really tested us was figuring out how to apply those ideas to real data and make sense of what the results actually meant. Concepts like confidence intervals or regression equations seemed straightforward in class, but when it came time to use them, things felt less clear. We kept thinking—what if there was something more hands-on that could help connect the dots?
-That thought is what eventually led to this project.
-We wanted to create something we wished we had while learning—an interactive e-book that doesn’t just explain the material but gives students the chance to explore it in a way that’s practical, visual, and engaging.
-From the start, we pictured a resource made for students like us: maybe you’re still getting comfortable with R, or maybe you're just looking for a clearer explanation than what’s in the slides. Either way, we wanted to offer explanations, examples, and interactive components that feel more approachable and less intimidating.
-To make it all work, we built the project using tools like R Markdown, GitHub, and Bookdown. This setup let us collaborate smoothly, keep everything organized, and make the content reproducible and open-source for others who want to use or expand it later on.
-In the end, this e-book reflects everything we learned—not just about statistics, but about building something useful from scratch. While it’s designed to support future STA258 students, we hope it ends up being helpful to anyone who’s trying to get a better grasp of applied statistics.
+Recognizing these limitations, we launched an interactive e-book project in Summer 2025 as a collaboration between undergraduate students and faculty. Our desire was to totally rethink the way we deliver statistics content. We wanted to create a modern, web-based learning tool that was interactive, accessible, and engaging for students. We envisioned an interactive resource that not only explained a statistical method, but also allowed students to use live coding, dynamic visualizations, and engaged interactive applications with the statistical methods. We hoped to transform students from passive consumers of statistical methods to active participants in the use of the statistical methods, ultimately helping their comprehension and experiences with genuine learning.
 
-\section{RESEARCH METHODOLOGY}
+Moreover, this motivation was formed from our own experiences as students trying to navigate dense lecture notes and static PDFs. We wanted to develop a resource that offered the clear, flexible, and hands-on exploration that we wished we had. In creating this vision, we wanted to adhere to the principles of reproducibility, collaboration, and open access, with the intention that our end product could be useful both to our peers and to the academic community as a whole.
 
-The method contains a description of how to carry out the research. It describes how to obtain data, the algorithm or formula used in the research or how to process the data, and how to evaluate/assess the research results. Common methods do not need to be written in detail, but simply refer to the reference book. Research procedures should be written in the form of news sentences, not command sentences.
 
-\subsection{Page Style}
+\section{DESIGN, DEVELOPMENT AND IMPLEMENTATION}
 
-The easiest way to fulfill the formatting requirements is to use this document as a \textit{template}. \textit{Author} can directly write on this \textit{template} file. Articles are written in A4 paper format with a right-left-bottom border of 2 cm and an upper border of 3.25 cm. The article format uses 1 column.
+The interactive e-book project was launched in the Summer of 2025 as a joint initiative between undergraduate students and faculty to create an engaging and innovative learning resource for undergraduate students enrolled in statistics courses. Our initial decision to use LaTeX was based on the appropriate typesetting features as well as its familiarity in the academic publishing landscape.
 
-\section{RESULTS AND DISCUSSION}
+In July 2025, we decided to switch to the Bookdown framework, which we believed was better suited to the modern style of interactive and accessible online learning materials. We were able to utilize dynamic, interactive activities that greatly enhance student engagement and understanding. Converting from LaTeX (.tex) to R Markdown (.Rmd) was a seamless process using Pandoc, and most of the formatting and structure remained intact. More importantly, the Bookdown framework provided potential development features such as inline code execution, interactive graphics, and dynamic cross-referencing of equations, figures, and tables with static content being transformed into an interactive learning resource.
 
-Research results in the form of data or numbers are presented in tables or graphs. If the research is carried out application/software development, some important \textit{screenshots} can be presented. Each table, graph or figure must be referred to in the text/paragraph.
+The effectiveness of our e-book depended on the careful selection of user-friendly, open-source tools and programming languages in order to make a visually aesthetic and reproducible learning resource. Essential technologies included:
 
-The discussion section provides \textit{insights} into the data obtained in the research. This section can present tables or graphs that are the result of data processing (not just raw data). The author is required to explain the findings obtained in the research, accompanied by clear evidence. This section can contain reviews that compare the results obtained in this study with the results obtained in previous studies.
+\textbf{Languages:} R, LaTeX, Markdown, YAML, HTML5, JavaScript, CSS \\
+\textbf{Packages and Frameworks:} bookdown, rmarkdown, knitr, ggplot2, plotly, Shiny \\
+\textbf{Version Control and Deployment:} GitHub, GitHub Pages 
 
-\noindent\textbf{1. Writing Format}
+We intentionally selected these tools for inter-compatibility for working effectively together, managing version control, being transparent, and reproducible. Specifically, GitHub was primarily a repository and a node in the project for real-time collaborations on public-facing work as well as frequent updates, while GitHub Pages was a way of deploying the e-book publicly online, and also contributed to creating the conditions for others to be able to be involved asynchronously. 
 
-Paragraphs should be organized and consistent. Pay attention to the spelling and formatting of foreign terms. All paragraphs must be right-aligned and left-aligned. The entire document should be written in Times New Roman font with \textit{single} spacing. Other fonts may be used if there is a specific purpose. The title consists of a maximum of 10 words.
+Our core team consisted of two undergraduate students, Nurlana Alili and Xi Su, who both were contributors to content development and also the technical implementation; Professors Nishan Mudalige and Masoud Ataei, valuable supervisors who held regular meetings, offered substantial and specific feedback, and collaboratively shaped critical decisions regarding the e-book's structure and technology.
 
-\noindent\textbf{2. \textit{Author}}
+We received notable feedback and contributions from Dr. Steve Tully (Okanagan College) and Avanti Coonghe (United Nations, World Health Organization). Both experts provided suggestions regarding the potential scope of content, pedagogical structure, and overall educational effectiveness of the e-book development.
 
-Authors should indicate their names. To avoid confusion, the last name of each \textit{author} should be written at the end, not abbreviated and marked with a comma (e.g. Rizky Prabowo becomes Prabowo, Rizky). Each affiliation must include, at a minimum, the name of the company and the name of the author's country of residence (e.g. University of Lampung, Indonesia). An email address is required for the corresponding author.
+We faced some technical challenges, especially with the transition from LaTeX to Bookdown, but these challenges only made us more effective at comprehending reproducible computing and what collaborative digital authorship looks like. The e-book that we developed represented not only an innovative way to deliver educational content but also an adventurous journey into collaborative practices to develop and deliver meaningful academic resources.
 
-\noindent\textbf{3. Math Formulation}
-
-Equations must be written using the LaTex. Writing symbol descriptions in equations is made in descriptive paragraphs, not list items as in book writing. Equations must be typed with an indent of 1.27 pt and numbered sequentially starting with the number (1) on the right. \textit{Author} can use \textit{ref\_rumus style} for formula writing rules.
-
-\begin{equation}
-    \label{eq:formula}
-    \int_{0}^{\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2} \hspace{\eqmargin} (1)
-\end{equation}
-
-\noindent\textbf{4. Table and Figure/Graphic Writing}
-
-All figures and tables must be centred and numbered consecutively. All text within figures and tables must be clearly legible, no \textit{blurring}. Each figure and table must be referred to in the text, the way of referring should not use location (e.g. below, above, following, etc.). Writing tables, figures, graphs, and equations must have high resolution (min 300 dpi). Avoid cropping images or \textit{screenshots} for writing tables and equations.
-
-\begin{pepadunfigure}{UTM logo}
-    \includegraphics[width=0.3\textwidth]{Images/utm-logo.png}
+\begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
+    \includegraphics[width=0.7\textwidth]{Images/github-ss.png}
 \end{pepadunfigure}
 
-The \textit{author} can use the image \textit{style} for image writing rules while for table writing, the \textit{author} can use the Table \textit{style}. Tables are made with horizontal lines without using vertical lines. Tables must not be cut off on other pages.
+\section{CONTENT AND INTERACTIVE DESIGN}
 
-\begin{pepaduntable}{Summary of physical parameters}
-    \begin{tabular}{@{}c c c c@{}}
-        \toprule
-        \textbf{No.} & \textbf{Segments} & \textbf{Length (km)} & \textbf{Elevation (meters)} \\
-        \midrule
-        1 & A-B & 25 & 30 \\
-        2 & B-C & 75.15 & 10 \\
-        3 & C-D & 44.75 & 50 \\
-        4 & D-E & 72.5 & 10 \\
-        5 & E-F & 21.25 & 10 \\
-        \bottomrule
-    \end{tabular}
-\end{pepaduntable}
+Overall, this e-textbook development and formation required a considerable amount of work regarding consideration and planning to ensure that it produced a cohesive and pedagogically relevant organization. The first draft was mainly just a collection of numbered lecture notes and presentation slides; as a result, we wrote a full version using LaTeX, as this will also allow us to cohesively organize the format and style. However, when we reviewed the draft, we realized there were far too many chapters, which resulted in too much fragmentation of related content from a student's perspective. As we discussed and collaborated on the writing, we were able to put together overlapping sections and flow the material into a more logical order altogether, reducing redundancies in the end, and providing a cohesive user experience for both students and instructors.
 
-\noindent\textbf{5. Bibliography Writing}
+The final outline starts with basic statistical ideas, defining important terminology, data types, and inferential statistics. We recognize the opportunities to apply statistics and have included a chapter early on R programming and when and how to apply it. This all moves quickly through a chapter that clearly explains how to install R and includes explanations of essential functions, data structures, and visualization. Therefore, we provided a solid technical foundation. Once technical skills are established, the textbook walks logically through core statistical methods, starting with the basics of inference, then to confidence intervals, hypothesis testing, and statistical power. The progression continues to more advanced material, including topics such as analysis of variance, simple linear regression, and categorical data analysis. This means students can develop their statistical reasoning in small increments, and instructors can teach from a well-defined plan of knowledge progression that will allow easy instruction.
 
-References in the text must be cited by writing the author's last name and its sequence number in the reference. The citation style used in Journal of Computing, Data, and Exploration is IEEE \cite{Zhang2023}. Bibliography writing also uses IEEE style. Citations are sorted by their appearance in the text and use Arabic numerals in square brackets \cite{Sugumar2025}. It is highly recommended to use citation management applications such as Mendeley or Reference Manager when writing articles \cite{Nie2021,Drogkoula2023,Jiang2023} so that citation management becomes easy. Writing a list of references using single \textit{spacing} using \textit{font size 11pt, spacing before 0 after 6pt}.
+One of the most significant challenges we encountered in creating this e-textbook was creating statistical ideas using visualizations, while ensuring the figures were educationally useful and aesthetically appealing. Initially, we relied on the TikZ package in LaTeX to create static diagrams, which were appropriate for simple illustrations. When considering more complicated statistical ideas, we understood that static figures alone were not able to demonstrate the range of dynamic ideas we needed to illustrate. For example, we found that (potentially) the simplest idea, variations in correlation between two random variables and how that affects data behaviour, was complicated to visualize. We were able to explain this theoretically and discuss the concepts behind it, but not being able to show variations in correlation in an interactive way took away from a potentially rich learning experience for the students. After facing this challenge with the static diagrams, we revisited our overall approach to visualizing statistical ideas, and we moved to R Markdown and then R Shiny to create interactive web applications in the R environment. At that point, it meant we could create dynamic visualizations with user-controlled engagement, allowing the students to manipulate variables and observe how distributions behaved. It took considerable time through trial and error to build each of these tools, including programming and redesigning to ensure the tools functioned properly, and created an exploratory learning experience.
 
-\section{CONCLUSIONS}
+One of the most noteworthy results—and often mentioned selling points of the e-textbook—was the collection of beautiful, publishable figures that we created in ggplot2. These images are not only aesthetically pleasing figures, with added interactive components where appropriate, but they are also far superior to traditional course materials. They reflect exact design decisions grounded in data, and they translate data into clearly stated and elegant designs that allow complex statistical concepts to be expressed intuitively and engagingly. While designed as static images and as interactive representations was labourious, it almost proved to be the most enjoyable and transformative aspect of the entire project.
 
-The Conclusion section summarizes the reviews written in the Results and Discussion sections. The Conclusion section is written in paragraph form, no need to use numbers. The paper will not be reformatted, so please stick to the instructions given above. Otherwise, it will be returned to the \textit{author}. Articles should be returned back via e-mail to be processed.
 
-\begin{nomenclature}
-    $A$      & = & Amplitude \\
-    $C_d$    & = & drag coefficient \\
-    $f_e$    & = & linearization coefficient \\
-    $K_i$    & = & modification factor \\
-\end{nomenclature}
+\begin{pepadunfigure}{Interactive Shiny app exploring the relationship between two variables at varying correlation levels. Users can dynamically adjust the correlation coefficient and sample size, and optionally display the regression line. This tool helps students visualize how correlation strength influences the spread and direction of data points, reinforcing conceptual understanding through real-time feedback.}
+    \includegraphics[width=0.7\textwidth]{Images/ch9-image.png}
+\end{pepadunfigure}
+
+\section{CONCLUSION}
+
+In addition to technical and pedagogical impacts, our project serves as an example of the potential for student-led innovation to transform spaces of learning. It blurred the boundary between learners and educators, with students taking a role in the contribution of knowledge as opposed to being passive consumers of knowledge. This creative act required more than programming and analysis skills and additionally incorporated flexibility, purpose, and critical thinking - all increasingly useful in an academic or professional context.
+
+From our experience, when students are given the task of authorship and design, they find a sense of investment in their learning and creative process. When students have accountability for their ideas, they take more ownership, which leads to deeper engagement with the material at hand. In the case of our project, the product or outcome was explicitly collaborative, bringing together self-reports, negotiation, and problem-solving, not limited to the domain of statistics.
+
+Looking ahead, we are confident that this project will inspire ongoing conversation surrounding participatory curriculum design and the implications of open-source technologies as means of promoting educational innovation. It serves as a tangible opportunity for us to imagine how substantive educational change might also be realized through collaboration, interdisciplinary thinking, and creative problem-solving, which supports more inclusive and engaging learning.
+
+\section{FUTURE WORK}
+
+While the current iteration of the e-book is successful in embedding core statistical ideas with interactive elements, there are multiple pathways for future development. First, the central area of interest is potentially expanding the existing content to encompass more advanced topics such as generalized linear models, non-parametric tests, or multivariate analysis, so that this resource could be used with students in upper-year or specialized courses. 
+
+Another area of focus is the enhancement of accessibility and user experience. Potential advancements include optimizing the interface for potential mobile users, incorporating text-to-speech, and offering multilingual support so that the book can reach various students from different backgrounds.
+
+From a technical standpoint, future versions could contemplate a deeper experience with Shiny dashboards, where the reader has the opportunity to manipulate a live dataset and engage the reader in convincing, unique statistical results arranged within the proposed chapter. Ideally, embedded quizzes, automatic checking of code supplied by readers, and notes contributed by users would all contribute to a better overall experience for learners and increased retention of concepts.
+
+In short, our long-term plan is for the project to continue to grow, particularly through ongoing student and faculty collaboration. In this way, we see a versioning system, a pipeline for documenting, and a guide for potential contributors all contributing to an established resource that future cohorts can utilize to iterate and continuously maintain as a living educational resource.
+
 
 \begin{acknowledgments}
-If necessary, acknowledgments can be made here. Acknowledgments should be directed to research funders or experts who provided significant assistance in the completion of the research.
+We extend our deepest gratitude to Professor Nishan Mudalige, the lead academic supervisor for this project from the beginning. His mentorship, vision, continued support, and enthusiasm were essential to the direction and actual success of this project. We are also thankful to Professor Masoud Ataei for his valuable guidance throughout the later stages of development and for his thoughtful feedback on both technical and pedagogical aspects.
+
+We would like to thank our fellow collaborators for their contributions, and the Department of Mathematical and Computational Sciences at the University of Toronto Mississauga for creating an environment that supports vibrant student-faculty collaborations that continue to innovate.
+
+Finally, we acknowledge the open-source community, whose many tools, documentation, and knowledge have made the technical realization of this project possible.
 \end{acknowledgments}
 
 %────────────────────────────────────────────────
