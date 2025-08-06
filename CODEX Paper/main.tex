@@ -3,6 +3,8 @@
 %────────────────────────────────────────────────
 %— Your existing style
 \usepackage{pepadun}
+\usepackage{float}
+
 
 %────────────────────────────────────────────────
 %— BIBLIOGRAPHY SETUP (biblatex + Biber)
@@ -12,7 +14,7 @@
 \nocite{*}
 
 %────────────────────────────────────────────────
-\title{Template Journal of Computing, Data, and Exploration}
+\title{Designing an Interactive, Reproducible Statistics E-Book: A Student–Faculty Collaboration Using Bookdown and R}
 \author{%
     \begin{tabular}{c}
         \textsuperscript{1}Nurlana Alili and\\
@@ -30,43 +32,44 @@
 \maketitle
 
 \begin{abstract}
-In most university courses, students learn from textbooks they did not help develop. In our Independent Statistics Research Project, we as undergraduates, collaborated with faculty to create an open-access, interactive e-book for STA258: Statistics with Applied Probability – an applied statistics course at UTM that provides students their first in-depth exposure to statistical inference (hypothesis testing, confidence intervals, and related concepts).
- 
-In our project, we developed content, explained concepts, designed plots and figures, built interactive apps embedded in the e-book, and created illustrative examples with coding components. The e-book was created using R and Bookdown, maintained with version control (Git), and is hosted on GitHub Pages with source code available on GitHub.
- 
-This process made us co-authors rather than passive readers, allowing us appreciate reproducible research, collaborate, learn project management, and gain opportunities to independently learn and apply new skills. Faculty benefit from fresh ideas and perspectives.
- 
-In this poster, we describe the e-book’s development, methodology, software tools used, and our experience in the research process.
+Most undergraduate students are introduced to statistics through lectures and textbooks that emphasize theoretical knowledge but offer limited opportunities for active learning or applied practice. In this project, we collaborated with faculty to develop an interactive, open-access e-book designed to integrate statistical theory with hands-on analytical practice. The resource combines step-by-step explanations with embedded code examples, data-driven graphics, and user-controlled simulations to encourage exploratory and applied learning.
+
+Initially developed in LaTeX, the project was later transitioned to the Bookdown framework to improve accessibility, interactivity, and reproducibility. Content was reorganized to improve instructional flow, and the visual and interactive elements were developed using R-based tools such as ggplot2 and Shiny. GitHub and GitHub Pages facilitated version control, collaborative authorship, and online publishing.
+
+The project illustrates the contributions of students to curricular innovation in the development of educational resources. Participating in the design and technical implementation deepened our own learning while producing a tool that can benefit future learners. It also highlights the potential of open-source technologies and student–faculty collaboration to support the development of inclusive, adaptive, and accessible resources for statistical education.
 \end{abstract}
 
 \section{INTRODUCTION}
 
-In lots of undergraduate statistics classes, core concepts are introduced through traditional textbooks and lectures, which provide students with the theoretical grounding, but do not allow students an opportunity to interact with the concepts or figure out where the use of statistical methods fits in the "real world". For example, when students are learning a topic like hypothesis testing, confidence intervals, or regression, it can be very difficult for them to move from abstract theory to understanding, because of their passive learning and the lack of contextualized application of knowledge.
+In many undergraduate statistics courses, foundational concepts are introduced through lectures and static texts. While these approaches build necessary theoretical understanding, they often fail to provide opportunities for students to interact meaningfully with statistical methods or explore real-world applications. Topics such as hypothesis testing, confidence intervals, and regression frequently remain abstract due to limited context and passive delivery formats.
 
-Recognizing these limitations, we launched an interactive e-book project in Summer 2025 as a collaboration between undergraduate students and faculty. Our desire was to totally rethink the way we deliver statistics content. We wanted to create a modern, web-based learning tool that was interactive, accessible, and engaging for students. We envisioned an interactive resource that not only explained a statistical method, but also allowed students to use live coding, dynamic visualizations, and engaged interactive applications with the statistical methods. We hoped to transform students from passive consumers of statistical methods to active participants in the use of the statistical methods, ultimately helping their comprehension and experiences with genuine learning.
+This project emerged in response to those limitations. In summer 2025, a collaborative initiative between undergraduate students and faculty sought to restructure the delivery of statistical content through an interactive, web-based e-book. The objective was to develop a resource that not only explained statistical theory, but also incorporated dynamic learning tools—including live code, responsive graphics, and simulation-based applications—to enhance student engagement and agency.
 
-Moreover, this motivation was formed from our own experiences as students trying to navigate dense lecture notes and static PDFs. We wanted to develop a resource that offered the clear, flexible, and hands-on exploration that we wished we had. In creating this vision, we wanted to adhere to the principles of reproducibility, collaboration, and open access, with the intention that our end product could be useful both to our peers and to the academic community as a whole.
+Drawing on our own experiences as learners, we envisioned a platform that would support exploratory learning, offer clearer explanations, and foster reproducible practices. From the outset, the project was guided by principles of open access, collaboration, and technical transparency, with the intention that the resulting e-book would serve both current students and the broader educational community.
+
+The live version of the interactive e-book is available at:
+\url{https://nishanmudalige.github.io}
 
 
 \section{DESIGN, DEVELOPMENT AND IMPLEMENTATION}
 
-The interactive e-book project was launched in the Summer of 2025 as a joint initiative between undergraduate students and faculty to create an engaging and innovative learning resource for undergraduate students enrolled in statistics courses. Our initial decision to use LaTeX was based on the appropriate typesetting features as well as its familiarity in the academic publishing landscape.
+The interactive e-book project was launched in summer 2025 as a joint initiative between undergraduate students and faculty to create an engaging and innovative learning resource for students enrolled in statistics courses. Our initial decision to use LaTeX was based on its well-established typesetting capabilities and familiarity within academic publishing.
 
-In July 2025, we decided to switch to the Bookdown framework, which we believed was better suited to the modern style of interactive and accessible online learning materials. We were able to utilize dynamic, interactive activities that greatly enhance student engagement and understanding. Converting from LaTeX (.tex) to R Markdown (.Rmd) was a seamless process using Pandoc, and most of the formatting and structure remained intact. More importantly, the Bookdown framework provided potential development features such as inline code execution, interactive graphics, and dynamic cross-referencing of equations, figures, and tables with static content being transformed into an interactive learning resource.
+In July 2025, we decided to transition to the Bookdown framework, which proved more compatible with the goals of interactive and accessible online learning. This switch allowed us to integrate dynamic and interactive elements that enhance student engagement and understanding. The conversion from LaTeX (.tex) to R Markdown (.Rmd) was carried out using Pandoc, which preserved most of the formatting and structure. More importantly, Bookdown offered key features such as inline code execution, interactive graphics, and dynamic cross-referencing of equations, figures, and tables—transforming static content into a fully interactive learning resource.
 
-The effectiveness of our e-book depended on the careful selection of user-friendly, open-source tools and programming languages in order to make a visually aesthetic and reproducible learning resource. Essential technologies included:
+The success of the project relied on the careful selection of user-friendly, open-source tools and programming languages that could support both visual design and reproducible workflows. The following technologies were essential:
 
 \textbf{Languages:} R, LaTeX, Markdown, YAML, HTML5, JavaScript, CSS \\
 \textbf{Packages and Frameworks:} bookdown, rmarkdown, knitr, ggplot2, plotly, Shiny \\
 \textbf{Version Control and Deployment:} GitHub, GitHub Pages 
 
-We intentionally selected these tools for inter-compatibility for working effectively together, managing version control, being transparent, and reproducible. Specifically, GitHub was primarily a repository and a node in the project for real-time collaborations on public-facing work as well as frequent updates, while GitHub Pages was a way of deploying the e-book publicly online, and also contributed to creating the conditions for others to be able to be involved asynchronously. 
+These tools were intentionally selected for their compatibility, transparency, and capacity to support reproducible computing. GitHub served both as a collaborative development platform and as a public-facing repository for version control, while GitHub Pages enabled open access to the live e-book and supported asynchronous contributions from others.
 
-Our core team consisted of two undergraduate students, Nurlana Alili and Xi Su, who both were contributors to content development and also the technical implementation; Professors Nishan Mudalige and Masoud Ataei, valuable supervisors who held regular meetings, offered substantial and specific feedback, and collaboratively shaped critical decisions regarding the e-book's structure and technology.
+The core team consisted of two undergraduate students, Nurlana Alili and Xi Su, who contributed to both content development and technical implementation. Professors Nishan Mudalige and Masoud Ataei provided consistent guidance through regular meetings, detailed feedback, and critical input into decisions regarding the e-book’s structure and tools.
 
-We received notable feedback and contributions from Dr. Steve Tully (Okanagan College) and Avanti Coonghe (United Nations, World Health Organization). Both experts provided suggestions regarding the potential scope of content, pedagogical structure, and overall educational effectiveness of the e-book development.
+We also received valuable external feedback from Dr. Steve Tully (Okanagan College) and Avanti Coonghe (United Nations, World Health Organization), who provided suggestions related to content scope, pedagogical structure, and overall educational value.
 
-We faced some technical challenges, especially with the transition from LaTeX to Bookdown, but these challenges only made us more effective at comprehending reproducible computing and what collaborative digital authorship looks like. The e-book that we developed represented not only an innovative way to deliver educational content but also an adventurous journey into collaborative practices to develop and deliver meaningful academic resources.
+Although we encountered some technical challenges, especially during the transition from LaTeX to Bookdown, these obstacles deepened our understanding of collaborative digital authorship and reproducible research. The final product represents not only an innovative approach to content delivery, but also an exploration of what collaborative educational development can look like in practice.
 
 \begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
     \includegraphics[width=0.7\textwidth]{Images/github-ss.png}
@@ -74,48 +77,83 @@ We faced some technical challenges, especially with the transition from LaTeX to
 
 \section{CONTENT AND INTERACTIVE DESIGN}
 
-Overall, this e-textbook development and formation required a considerable amount of work regarding consideration and planning to ensure that it produced a cohesive and pedagogically relevant organization. The first draft was mainly just a collection of numbered lecture notes and presentation slides; as a result, we wrote a full version using LaTeX, as this will also allow us to cohesively organize the format and style. However, when we reviewed the draft, we realized there were far too many chapters, which resulted in too much fragmentation of related content from a student's perspective. As we discussed and collaborated on the writing, we were able to put together overlapping sections and flow the material into a more logical order altogether, reducing redundancies in the end, and providing a cohesive user experience for both students and instructors.
+The development of the e-textbook required significant planning and coordination to ensure that the final product was cohesive and pedagogically meaningful. The initial draft was largely a collection of numbered lecture notes and presentation slides. To build something more unified, we first created a full version in LaTeX, which allowed for better organization of formatting and structure. However, after reviewing the draft, we realized that the large number of chapters caused fragmentation of related content, making it more difficult for students to follow.
 
-The final outline starts with basic statistical ideas, defining important terminology, data types, and inferential statistics. We recognize the opportunities to apply statistics and have included a chapter early on R programming and when and how to apply it. This all moves quickly through a chapter that clearly explains how to install R and includes explanations of essential functions, data structures, and visualization. Therefore, we provided a solid technical foundation. Once technical skills are established, the textbook walks logically through core statistical methods, starting with the basics of inference, then to confidence intervals, hypothesis testing, and statistical power. The progression continues to more advanced material, including topics such as analysis of variance, simple linear regression, and categorical data analysis. This means students can develop their statistical reasoning in small increments, and instructors can teach from a well-defined plan of knowledge progression that will allow easy instruction.
+Through collaboration and discussion, we combined overlapping sections and reordered material into a more logical flow. This process helped reduce redundancy and resulted in a smoother experience for both students and instructors.
 
-One of the most significant challenges we encountered in creating this e-textbook was creating statistical ideas using visualizations, while ensuring the figures were educationally useful and aesthetically appealing. Initially, we relied on the TikZ package in LaTeX to create static diagrams, which were appropriate for simple illustrations. When considering more complicated statistical ideas, we understood that static figures alone were not able to demonstrate the range of dynamic ideas we needed to illustrate. For example, we found that (potentially) the simplest idea, variations in correlation between two random variables and how that affects data behaviour, was complicated to visualize. We were able to explain this theoretically and discuss the concepts behind it, but not being able to show variations in correlation in an interactive way took away from a potentially rich learning experience for the students. After facing this challenge with the static diagrams, we revisited our overall approach to visualizing statistical ideas, and we moved to R Markdown and then R Shiny to create interactive web applications in the R environment. At that point, it meant we could create dynamic visualizations with user-controlled engagement, allowing the students to manipulate variables and observe how distributions behaved. It took considerable time through trial and error to build each of these tools, including programming and redesigning to ensure the tools functioned properly, and created an exploratory learning experience.
+The final outline begins with foundational statistical concepts, including key terminology, data types, and the basic ideas behind inferential statistics. Recognizing the importance of technical skills, we included an early chapter on R programming and its practical uses. This section explains how to install R, use essential functions, and work with basic data structures and visualizations. Together, these elements provide a strong technical foundation. From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
 
-One of the most noteworthy results—and often mentioned selling points of the e-textbook—was the collection of beautiful, publishable figures that we created in ggplot2. These images are not only aesthetically pleasing figures, with added interactive components where appropriate, but they are also far superior to traditional course materials. They reflect exact design decisions grounded in data, and they translate data into clearly stated and elegant designs that allow complex statistical concepts to be expressed intuitively and engagingly. While designed as static images and as interactive representations was labourious, it almost proved to be the most enjoyable and transformative aspect of the entire project.
+One of the most challenging aspects of the project was presenting statistical ideas visually in a way that was both accurate and engaging. At first, we used TikZ in LaTeX to create static diagrams, which worked well for simple illustrations. However, more complex concepts, such as how changes in correlation affect the shape of data, were difficult to represent using only static figures. While we could explain the theory behind these concepts, the lack of interactivity limited students’ ability to explore them meaningfully.
+
+After encountering this limitation, we revisited our approach to visualization. We shifted to using R Markdown and Shiny to build interactive web applications. These tools allowed students to manipulate variables and observe how distributions changed in real time. Although they took time to build and required trial and error, they significantly improved the exploratory aspect of the learning experience.
+
+To illustrate these interactive elements in practice, we developed a short lesson on histogram interpretation, skewness, and dynamic bin width adjustment. This section begins by comparing left-skewed, right-skewed, and symmetric distributions using interactive histograms, helping students build intuition about shape and spread. The lesson concludes with an app that allows students to adjust bin widths and explore how histogram appearance changes with sampling resolution (Figures 2–5).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{Images/left.png}
+  \caption{An interactive histogram displaying a left-skewed distribution. Students can toggle the kernel density overlay and observe how left-skewness shifts the bulk of the distribution toward higher values, providing a visual interpretation of negative skew.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{Images/right.png}
+  \caption{A histogram showing a right-skewed distribution. This figure enables students to identify how the majority of values cluster on the left side, with a long tail extending rightward, reinforcing the concept of positive skew.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{Images/symm.png}
+  \caption{A symmetric histogram used to contrast with skewed examples. It illustrates an approximately normal distribution with balanced tails, aiding in comparisons of central tendency and dispersion.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\textwidth]{Images/bin.png}
+  \caption{Interactive application that allows students to adjust the bin width for a histogram built on real-world data (geyser eruption waiting times). The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity.}
+\end{figure}
 
 
-\begin{pepadunfigure}{Interactive Shiny app exploring the relationship between two variables at varying correlation levels. Users can dynamically adjust the correlation coefficient and sample size, and optionally display the regression line. This tool helps students visualize how correlation strength influences the spread and direction of data points, reinforcing conceptual understanding through real-time feedback.}
-    \includegraphics[width=0.7\textwidth]{Images/ch9-image.png}
-\end{pepadunfigure}
+One of the most rewarding parts of the project was designing the figures. Many were created using ggplot2 and are now central features of the e-book. They are visually clear, carefully styled, and interactive where appropriate. These visualizations reflect intentional design choices and help communicate complex ideas in a way that is both intuitive and accessible. Although this process was time-consuming, it was also one of the most enjoyable and educational parts of the project.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{Images/ch9-image.png}
+  \caption{Interactive Shiny app exploring the relationship between two variables at varying correlation levels. Users can dynamically adjust the correlation coefficient and sample size, and optionally display the regression line. This tool helps students visualize how correlation strength influences the spread and direction of data points, reinforcing conceptual understanding through real-time feedback.}
+\end{figure}
+
 
 \section{CONCLUSION}
 
-In addition to technical and pedagogical impacts, our project serves as an example of the potential for student-led innovation to transform spaces of learning. It blurred the boundary between learners and educators, with students taking a role in the contribution of knowledge as opposed to being passive consumers of knowledge. This creative act required more than programming and analysis skills and additionally incorporated flexibility, purpose, and critical thinking - all increasingly useful in an academic or professional context.
+Beyond its technical and instructional outcomes, this project demonstrates the pedagogical potential of student-led authorship and design. By actively participating in the creation of educational content, students shift from consumers to contributors of knowledge, engaging more deeply with the subject matter.
 
-From our experience, when students are given the task of authorship and design, they find a sense of investment in their learning and creative process. When students have accountability for their ideas, they take more ownership, which leads to deeper engagement with the material at hand. In the case of our project, the product or outcome was explicitly collaborative, bringing together self-reports, negotiation, and problem-solving, not limited to the domain of statistics.
+The process required not only statistical expertise and programming fluency, but also adaptability, design thinking, and critical reflection—skills applicable in both academic and professional contexts. Through collaborative authorship, the final product embodies negotiated decisions, iterative problem-solving, and responsiveness to peer and faculty feedback.
 
-Looking ahead, we are confident that this project will inspire ongoing conversation surrounding participatory curriculum design and the implications of open-source technologies as means of promoting educational innovation. It serves as a tangible opportunity for us to imagine how substantive educational change might also be realized through collaboration, interdisciplinary thinking, and creative problem-solving, which supports more inclusive and engaging learning.
+More broadly, the project presents a replicable model of participatory curriculum development that integrates open-source tools, student initiative, and faculty mentorship to generate accessible, engaging, and adaptive learning resources.
 
 \section{FUTURE WORK}
 
-While the current iteration of the e-book is successful in embedding core statistical ideas with interactive elements, there are multiple pathways for future development. First, the central area of interest is potentially expanding the existing content to encompass more advanced topics such as generalized linear models, non-parametric tests, or multivariate analysis, so that this resource could be used with students in upper-year or specialized courses. 
+While the current version of the e-book successfully integrates core statistical ideas with interactive elements, there are several directions for future development. One important area is expanding the content to include more advanced topics, such as generalized linear models, non-parametric tests, or multivariate analysis. Including these topics would make the resource more useful for students in upper-year or specialized courses.
 
-Another area of focus is the enhancement of accessibility and user experience. Potential advancements include optimizing the interface for potential mobile users, incorporating text-to-speech, and offering multilingual support so that the book can reach various students from different backgrounds.
+Improving accessibility and the overall user experience is another key goal. Possible next steps include optimizing the interface for mobile devices, adding text-to-speech functionality, and offering multilingual options. These features would help the e-book reach a wider range of learners from diverse backgrounds.
 
-From a technical standpoint, future versions could contemplate a deeper experience with Shiny dashboards, where the reader has the opportunity to manipulate a live dataset and engage the reader in convincing, unique statistical results arranged within the proposed chapter. Ideally, embedded quizzes, automatic checking of code supplied by readers, and notes contributed by users would all contribute to a better overall experience for learners and increased retention of concepts.
+From a technical perspective, future versions could explore more extensive use of Shiny dashboards, where students would be able to interact with full datasets and generate real-time statistical outputs within the textbook. Additional features, such as embedded quizzes, automatic feedback on code, and user-submitted notes, could further enhance student engagement and retention of concepts.
 
-In short, our long-term plan is for the project to continue to grow, particularly through ongoing student and faculty collaboration. In this way, we see a versioning system, a pipeline for documenting, and a guide for potential contributors all contributing to an established resource that future cohorts can utilize to iterate and continuously maintain as a living educational resource.
+In the long term, we hope to maintain and grow the project through continued collaboration between students and faculty. Building a clear versioning system, contributor documentation, and a guide for future authors would help ensure that the e-book remains a living resource that evolves with each new cohort.
 
 
 \begin{acknowledgments}
-We extend our deepest gratitude to Professor Nishan Mudalige, the lead academic supervisor for this project from the beginning. His mentorship, vision, continued support, and enthusiasm were essential to the direction and actual success of this project. We are also thankful to Professor Masoud Ataei for his valuable guidance throughout the later stages of development and for his thoughtful feedback on both technical and pedagogical aspects.
+We would like to sincerely thank Professor Nishan Mudalige, who served as the principal supervisor for this project from the very beginning. His guidance, encouragement, and consistent support played a central role in shaping both the direction and success of the e-book.
 
-We would like to thank our fellow collaborators for their contributions, and the Department of Mathematical and Computational Sciences at the University of Toronto Mississauga for creating an environment that supports vibrant student-faculty collaborations that continue to innovate.
+We are also grateful to Professor Masoud Ataei, whose input during the later stages of development helped refine both the technical and pedagogical aspects of the project. His feedback was thoughtful and valuable throughout.
 
-Finally, we acknowledge the open-source community, whose many tools, documentation, and knowledge have made the technical realization of this project possible.
+We thank our fellow collaborators for their contributions and support, as well as the Department of Mathematical and Computational Sciences at the University of Toronto Mississauga for fostering an environment where student–faculty collaboration is encouraged and actively supported and facilitated.
+
+Finally, we acknowledge the open-source community. The tools, documentation, and shared knowledge developed and maintained by contributors around the world made the technical side of this project achievable and rewarding.
 \end{acknowledgments}
 
 %────────────────────────────────────────────────
 %— Updated bibliography command
-\printbibliography[title={REFERENCES},heading=bibintoc]
+%\printbibliography[title={REFERENCES},heading=bibintoc]
 
 \end{document}
