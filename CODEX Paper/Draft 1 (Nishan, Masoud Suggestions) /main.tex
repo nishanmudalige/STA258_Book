@@ -15,6 +15,28 @@
 \usepackage{xcolor} 
 %\usepackage{minted}
 
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{calrsfs}
+
+\usepackage{listings}%
+\usepackage{caption}
+\usepackage{subcaption}
+
+%\usepackage{amsmath,amsfonts,amsbsy,amssymb,amsthm,mathtools,tabulary,graphicx,caption,fancyhdr, mathrsfs, pgf, pgfplots, epsfig, epstopdf, lscape,booktabs,enumitem,lipsum,tkz-graph,scalerel,stackengine,setspace,adjustbox,float,amsthm}
+%\usepackage[labelformat=simple]{subfig}
+%\renewcommand\thesubfigure{\normalfont(\textbf{\alph{subfigure}})}
+
 \definecolor{solBlue}   {HTML}{268BD2}	% keyword / function
 %\colorlet{darkgreen}{green!50!black!75}	% strings
 \definecolor{darkgreen}{HTML}{2E7D32}
@@ -127,6 +149,10 @@ This paper outlines the framework that guided our partnership, describes the aut
 
 \section{DESIGN, DEVELOPMENT AND IMPLEMENTATION}
 
+The core team consisted of two undergraduate students, Nurlana Alili and Xi Su, who contributed to both content development and technical implementation. Professors Nishan Mudalige and Masoud Ataei provided consistent guidance through regular meetings, detailed feedback, training with software, and contributed critical input into decisions regarding the e-book’s structure and tools.
+Both Professors also assisted with trouble shooting and Professors Nishan contributed a substantial amount towards the coding component, particularly with initiating the framework and resolving some of the more challenging components.
+We also received valuable external feedback from Dr. Steve Tully, Mathematics Professor at Okanagan College, and Avanti Coonghe, Communications and Design Consultant at the United Nations (World Health Organization), who provided suggestions related to content scope, pedagogical structure, and overall educational value.
+
 The interactive e-book project was launched in Summer 2025 semester as a joint initiative between undergraduate students and faculty to create an engaging and innovative learning resource for students enrolled in statistics courses. 
 The University of Toronto Mississauga provides high-performing undergraduate students enrolled in a statistics major or specialist with the opportunity to enrol in \textit{STA378: Statistics Research Project}, where students explore a topic in statistics under the supervision of a faculty member.
 Students can not directly enrol into STA378 through ACORN, and a special administrative process is required, including approval from the associate chair.
@@ -166,7 +192,6 @@ pandoc --filter pandoc-citeproc --mathjax -s input.tex -f latex -t markdown -o o
 
 Once we established our framework, we selected other open-source tools and programming languages that could support both visual design and reproducible workflows around Bookdown. A summary of the technologies used in developing the e-book are listed in Table \ref{tab:ebook_Technologies}.
 
-
 \renewcommand\arraystretch{1.25}
 \begin{table}[H]
 \setlength{\belowcaptionskip}{-20pt}
@@ -196,6 +221,26 @@ GitHub served both as a collaborative development platform and as a public-facin
 The YAML file was used for front matter, to store the book’s metadata, for build settings and for integration with GitHub pages.
 CSS was used to customize environments in Bookdown, such as the definition environment and remark environment with personalized aesthetics and consistent colour scheme.
 
+Although we encountered some technical challenges, especially during the transition from LaTeX to Bookdown, these obstacles deepened our understanding of collaborative digital authorship and reproducible research. The final product represents not only an innovative approach to content delivery, but also an exploration of what collaborative educational development can look like in practice.
+
+%\begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
+%    \includegraphics[width=0.7\textwidth]{Images/github-ss.png}
+%\end{pepadunfigure}
+
+The development of the e-book required significant planning and coordination to ensure that the final product was cohesive and pedagogically meaningful. The initial draft was largely a collection of lecture notes and presentation slides. 
+We used these to build a single unified document which was a one-to-one replication of the notes and slides.
+This was our baseline draft for the e-book.
+During the development of this baseline, the inclusion of figures and graphics was sparse since we were aware that content would be rearranged.
+After reviewing this initial baseline draft, we realized that the large number of chapters resulted in fragmentation of related content, making it difficult for students to learn material.
+
+Through collaboration and discussion, we combined overlapping sections and reordered material into a more logical flow. This process helped reduce redundancy and resulted in a smoother experience for both students and instructors and material being presented in a coherent manner.
+We also removed as much content as possible which overlapped with STA260, making these two courses much more distinct.
+Once the order and layout were finalized, the content created was rearranged and refined, and static and interactive plots and figures were built around the updated content.
+
+Static and interactive plots and figures are rendered natively within the R Markdown file within code blocks.
+An example of a code block used to render a figure using the ggplot2 library is given in Listing \ref{lst:Markdown_ggplot2}.
+Interactive plots were created using the Plotly and R Shiny.\\
+
 \begin{lstlisting}[language=R,
                    caption={An example of a code block in Markdown used to render an image with ggplot},
                    label={lst:Markdown_ggplot2},
@@ -207,17 +252,12 @@ library(ggplot2)
 ```
 \end{lstlisting}
 
-
-Static and interactive plots and figures are rendered natively within the R Markdown file within code blocks.
-An example of a code block used to render a figure using the ggplot2 library is given in Listing \ref{lst:Markdown_ggplot2}.
-Interactive plots were created using the Plotly and R Shiny.
 Similar to ggplot2, plotly figures are generated natively within codeblocks.
 The Tikz package was initially used with LaTeX to create some graphics used in the both the initial PDF and the Bookdown version of the e-book, since Tikz is a powerful package which can create vector graphics.
 However, we discovered that we can create all of the required graphics using ggplot2 and plotly, so we decided to utilize these 2 packages for all figures for a more consistent appearance.
 R Shiny apps were developed in R and hosted on \href{https://www.shinyapps.io/}{Shinyapps.io}. 
 These apps are natively embedded into the e-book using a code block and some HTML for formatting.
-Listing \ref{lst:Markdown_shiny} provides the syntax for embedding R Shiny apps in the e-book.
-Finally we used the rgl library to create a 3D interactive version of the hexSticker designed for the e-book which appears on the cover of the e-book.
+Listing \ref{lst:Markdown_shiny} provides the syntax for embedding R Shiny apps in the e-book.\\
 
 \begin{lstlisting}[language=R,
                    caption={An example of a code block in Markdown used to render an image with ggplot},
@@ -230,23 +270,39 @@ knitr::include_app("URL to App Hosted on shinyapps.io", )
 </center>
 \end{lstlisting}
 
+Finally, we used the rgl library to create a 3D interactive version of the digital hex sticker designed for the project which appears on the cover of the e-book.
 
-The core team consisted of two undergraduate students, Nurlana Alili and Xi Su, who contributed to both content development and technical implementation. Professors Nishan Mudalige and Masoud Ataei provided consistent guidance through regular meetings, detailed feedback, and critical input into decisions regarding the e-book’s structure and tools.
-We also received valuable external feedback from Dr. Steve Tully, Mathematics Professor at Okanagan College, and Avanti Coonghe, Communications and Design Consultant at the United Nations (World Health Organization), who provided suggestions related to content scope, pedagogical structure, and overall educational value.
 
-Although we encountered some technical challenges, especially during the transition from LaTeX to Bookdown, these obstacles deepened our understanding of collaborative digital authorship and reproducible research. The final product represents not only an innovative approach to content delivery, but also an exploration of what collaborative educational development can look like in practice.
-
-%\begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
-%    \includegraphics[width=0.7\textwidth]{Images/github-ss.png}
-%\end{pepadunfigure}
 
 \section{CONTENT AND INTERACTIVE DESIGN}
 
-The development of the e-textbook required significant planning and coordination to ensure that the final product was cohesive and pedagogically meaningful. The initial draft was largely a collection of numbered lecture notes and presentation slides. To build something more unified, we first created a full version in LaTeX, which allowed for better organization of formatting and structure. However, after reviewing the draft, we realized that the large number of chapters caused fragmentation of related content, making it more difficult for students to follow.
+We selected to utilize the default theme of Bookdown since it has a clean layout and appearance.
+The default theme also comes with options for light and dark mode and the table of contents appears along the left.
+The landing page in light and dark mode are presented in Figure \ref{fig:landing_page}.
 
-Through collaboration and discussion, we combined overlapping sections and reordered material into a more logical flow. This process helped reduce redundancy and resulted in a smoother experience for both students and instructors.
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.975\textwidth]{Images/ebookCover.png}
+        \caption{Landing page of the e-book in the default layout.}
+    \end{subfigure}%
+    \hfill
+    \hfill
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.975\textwidth]{Images/ebookCover_dark.png}
+        \caption{Landing page of the e-book in dark mode.}
+    \end{subfigure}
+    \caption{Landing page of the e-book in the default and dark theme. Notice the table of contents on the left.}
+    \label{fig:landing_page}
+\end{figure}
 
-The final outline begins with foundational statistical concepts, including key terminology, data types, and the basic ideas behind inferential statistics. Recognizing the importance of technical skills, we included an early chapter on R programming and its practical uses. This section explains how to install R, use essential functions, and work with basic data structures and visualizations. Together, these elements provide a strong technical foundation. From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
+%\begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
+%    \includegraphics[width=0.7\textwidth]{Images/ebookCover.png}
+%\end{pepadunfigure}
+
+The content of the material presented begins with foundational statistical concepts, including key terminology, data types, and the basic ideas behind inferential statistics. Recognizing the importance of technical skills, we included an early chapter on R programming and its practical uses. This section explains how to install R, use essential functions, and work with basic data structures and visualizations. Together, these elements provide a strong technical foundation. From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
 
 One of the most challenging aspects of the project was presenting statistical ideas visually in a way that was both accurate and engaging. At first, we used TikZ in LaTeX to create static diagrams, which worked well for simple illustrations. However, more complex concepts, such as how changes in correlation affect the shape of data, were difficult to represent using only static figures. While we could explain the theory behind these concepts, the lack of interactivity limited students’ ability to explore them meaningfully.
 
