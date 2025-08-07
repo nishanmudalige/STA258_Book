@@ -33,10 +33,6 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
-%\usepackage{amsmath,amsfonts,amsbsy,amssymb,amsthm,mathtools,tabulary,graphicx,caption,fancyhdr, mathrsfs, pgf, pgfplots, epsfig, epstopdf, lscape,booktabs,enumitem,lipsum,tkz-graph,scalerel,stackengine,setspace,adjustbox,float,amsthm}
-%\usepackage[labelformat=simple]{subfig}
-%\renewcommand\thesubfigure{\normalfont(\textbf{\alph{subfigure}})}
-
 \definecolor{solBlue}   {HTML}{268BD2}	% keyword / function
 %\colorlet{darkgreen}{green!50!black!75}	% strings
 \definecolor{darkgreen}{HTML}{2E7D32}
@@ -67,7 +63,7 @@
 \nocite{*}
 
 %────────────────────────────────────────────────
-\title{Designing an Interactive, Reproducible Statistics E-Book: A Student–Faculty Collaboration Using Bookdown and R}
+\title{Student-Faculty Co-Creation of Open Source Resources for Learning Applied Statistics}
 \author{%
     \begin{tabular}{c}
         \textsuperscript{1}Nurlana Alili and\\
@@ -159,7 +155,7 @@ This paper outlines the framework that guided our partnership, describes the aut
 
 \section{DESIGN, DEVELOPMENT AND IMPLEMENTATION}
 
-The interactive e-book project was launched in Summer 2025 semester as a joint initiative between undergraduate students and faculty to create an engaging and innovative learning resource for students enrolled in statistics courses. 
+The interactive e-book project was launched during the Summer 2025 semester (May - August) as a joint initiative between undergraduate students and faculty to create an engaging and innovative learning resource for students enrolled in statistics courses. 
 The University of Toronto Mississauga provides high-performing undergraduate students enrolled in a statistics major or specialist with the opportunity to enrol in \textit{STA378: Statistics Research Project}, where students explore a topic in statistics under the supervision of a faculty member.
 Students can not directly enrol into STA378 through ACORN, and a special administrative process is required, including approval from the associate chair.
 Both authors of this paper had recently completed STA258 during the Winter 2025 semester and agreed with Dr. Mudalige that the course required adjustments, and we mutually expressed interest in working together on this course redevelopment project.
@@ -172,9 +168,11 @@ However there are limitations with this approach, including being limited to fix
 
 Although we began the e-book in LaTeX, midway through our development we learned about Bookdown which is a package in R package developed for writing materials such as books and long-form content with R Markdown. 
 Bookdown has the advantage of converting R Markdown into responsive HTML, EPUB, and print-ready PDF while automatically generating cross-references and a searchable table of contents, LaTeX can be typeset within R Markdown documents, the HTML output from Bookdown can embed live R code, interactive widgets, and interactive apps using libraries such as shiny and plotly, giving students a hands-on e-book experience that fixed-layout PDFs cannot match, and a book generated in Bookdown can be hosted on GitHub pages allowing anyone with an internet connection to easily access it.
+LaTeX code written in Bookdown is rendered using MathJax which is an open-source JavaScript library for mathematical symbols and equations for web browsers.
+Therefore, the vast majority of content which can be typeset in LaTeX can be rendered on a browser using Bookdown.
 Due to its many advantages over traditional LaTeX, we decided to transition to the Bookdown framework since it proved more compatible with the goals of interactive and accessible online learning. 
 
-This shift from LaTex to Bookdown allowed us to integrate dynamic and interactive elements that enhance student engagement and understanding and
+This shift from LaTeX to Bookdown allowed us to integrate dynamic and interactive elements that enhance student engagement and understanding and
 %More importantly, Bookdown offered key features such as inline code execution, interactive graphics, and dynamic cross-referencing of equations, figures, and tables—transforming static content into a fully interactive learning resource.
 transformed static content into a fully interactive learning resource.
 The conversion from LaTeX (.tex) to R Markdown (.Rmd) was performed using Pandoc, with the majority of the the formatting and structure intact. Pandoc also preserved most of the fidelity of the LaTeX code during the conversion. 
@@ -187,8 +185,6 @@ The syntax used for the conversion is given in Listings \ref{lst:tex_to_rmd_basi
 pandoc -s input.tex -f latex -t markdown -o output.Rmd
 \end{lstlisting}
 
-\hfill
-
 \begin{lstlisting}[language=bash,
                    caption={Conversion of a LaTeX .tex file to an R Markdown .Rmd file rendered with MathJax using Pandoc},
                    label={lst:tex_to_rmd_mathjax},
@@ -200,7 +196,7 @@ Once we established our framework, we selected other open-source tools and progr
 
 \renewcommand\arraystretch{1.25}
 \begin{table}[H]
-\setlength{\belowcaptionskip}{-20pt}
+\setlength{\belowcaptionskip}{-25pt}
 \begin{center}
 \begin{tabular}{| l | l |}
 \hline
@@ -246,6 +242,31 @@ Through collaboration and discussion, we combined overlapping sections and reord
 We also removed as much content as possible which overlapped with STA260, making these two courses much more distinct.
 Once the order and layout were finalized, the content created was rearranged and refined, and static and interactive plots and figures were built around the updated content.
 
+A brief description of the specific R packages from Table $\ref{tab:ebook_Technologies}$ are given in Table $\ref{tab:R_Packages}$:
+\renewcommand\arraystretch{1.25}
+\begin{table}[H]
+\setlength{\belowcaptionskip}{-25pt}
+\begin{center}
+\begin{tabular}{| p{0.15\linewidth} | p{0.8\linewidth} |}
+\hline
+\textbf{R Package}	&	\textbf{Description}\\
+\hline
+\texttt{knitr}		&	The knitr package is designed to integrate R code, output, and commentary into a single document, facilitating reproducible research and dynamic report generation.\\
+\hline
+\texttt{ggplot2}		&	A data visualization package that implements a layered grammar of graphics, enabling the systematic creation of a diverse range of static plots.\\
+\hline
+\texttt{plotly}		&	This package provides tools for generating interactive, web-based plots and dashboards that can be easily shared and embedded.\\
+\hline
+\texttt{Shiny}		&	An R package for building interactive web applications directly from R, allowing users to create powerful data analysis tools and visualizations without extensive knowledge of web development languages.\\
+\hline
+\texttt{rgl}			&	A visualization package that creates interactive 3D plots and scenes, providing a robust platform for exploring spatial data. It leverages OpenGL for high-performance rendering and can export scenes to WebGL, allowing for the display of 3D content within web browsers.\\
+\hline
+\end{tabular}
+\caption{Description of each R package used in developing the e-book.}
+\label{tab:R_Packages}
+\end{center}
+\end{table}
+\renewcommand\arraystretch{1.00}
 Static and interactive plots and figures are rendered natively within the R Markdown file within code blocks.
 The Tikz package was initially used with LaTeX to create some static graphics which were used in the both the initial PDF and the first draft of the Bookdown version of the e-book, since Tikz is a powerful package which can create vector graphics. 
 However, we discovered that we can create all of the required graphics using \texttt{ggplot2} and plotly, so we decided to utilize these 2 packages for all figures for a more consistent appearance.
@@ -265,7 +286,9 @@ library(ggplot2)
 
 Interactive plots were created using the Plotly and R Shiny.
 Plotly figures figures are generated natively within codeblocks similar in a similar manner to ggplot2, with syntax similar to that of \ref{lst:Markdown_ggplot2}.
-R Shiny apps were developed in R and hosted on \href{https://www.shinyapps.io/}{Shinyapps.io}. 
+R Shiny apps were developed in R and hosted on \href{https://www.shinyapps.io/}{Shinyapps.io},
+which is a platform provided for hosting and sharing Shiny web applications.
+\href{https://www.shinyapps.io/}{Shinyapps.io} is maintained by Posit, who are most well known as the developers of R Studio and Positron.
 These apps are natively embedded into the e-book using a code block and some HTML for formatting.
 Listing \ref{lst:Markdown_shiny} provides the syntax for embedding R Shiny apps in the e-book.\\
 
@@ -310,7 +333,27 @@ The landing page in light and dark mode are presented in Figure \ref{fig:landing
 %    \includegraphics[width=0.7\textwidth]{Images/ebookCover.png}
 %\end{pepadunfigure}
 
-The content of the material presented begins with foundational statistical concepts, including key terminology, data types, and the basic ideas behind inferential statistics. Recognizing the importance of technical skills, we included an early chapter on R programming and its practical uses. This section explains how to install R, use essential functions, and work with basic data structures and visualizations. Together, these elements provide a strong technical foundation. From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
+The content of the material presented begins with foundational statistical concepts, including key terminology, data types, and the basic ideas behind inferential statistics. 
+Samples of content are given in Figure $\ref{fig:sample_content}$.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.80\textwidth]{Images/example_screen_sec_3_crop.png}
+        \caption{Sample content from the Chapter on descriptive statistics.}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.80\textwidth]{Images/example_screen_sec_4_crop.png}
+        \caption{Sample content from the Chapter on foundations on inference}
+    \end{subfigure}
+    \caption{Landing page of the e-book in the default and dark theme. Notice the table of contents on the left.}
+    \label{fig:sample_content}
+\end{figure}
+
+Recognizing the importance of technical skills, we included an early chapter on R programming and its practical uses. This section explains how to install R, use essential functions, and work with basic data structures and visualizations. Together, these elements provide a strong technical foundation. From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
 
 Many of the static figures were created using \texttt{ggplot2}.
 
