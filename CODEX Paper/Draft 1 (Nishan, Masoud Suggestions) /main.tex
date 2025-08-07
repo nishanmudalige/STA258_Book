@@ -138,12 +138,14 @@ Therefore, it has the potential to be a self-contained course which can equip st
 Redesigning STA258 eliminates the necessity for the Department of Mathematical and Computational Sciences at UTM to go through lengthy development and approval process required for an entirely new course to address the curricular gap.
 
 The core team working on this project consisted of the two undergraduate authors of this paper, and two faculty members who are both Assistant Professors in Statistics at the Department of Mathematical and Computational Sciences at UTM. One of the faculty members is the current course coordinator for STA258.
-We contributed to both content development and technical implementation, and the faculty members provided consistent guidance through regular meetings, detailed feedback, training with software, and contributed critical input into decisions regarding the e-book’s structure and tools.
-Both Professors also assisted with trouble shooting and Professors Nishan contributed a substantial amount towards the coding component, particularly with initiating the framework and resolving some of the more challenging components.
+We contributed to content development and the technical implementation, and the faculty members provided consistent guidance through regular meetings, detailed feedback, training with software, and contributed critical input into decisions regarding the e-book’s structure and tools.
+Both Professors also assisted with trouble shooting and the course coordinator contributed a substantial amount towards the coding component, particularly with initiating the framework and resolving some of the more challenging components.
 We also received valuable feedback from two additional external partners 
 %Dr. Steve Tully, Mathematics Professor at Okanagan College, and Avanti Coonghe, Communications and Design Consultant at the United Nations (World Health Organization), 
 who provided suggestions related to content scope, pedagogical structure, and overall educational value.
 One of the external partners is faculty at a College in British Columbia and the other is an expert consultant in communication and design of digital assets.
+We met with faculty weekly for progress checks and trouble shooting and we met with our external partners approximately once a month to provide progress updates and to receive feedback.
+One of the authors was living outside of Canada and joined meetings through video conference.
 
 During the initial phase of the STA258 course development timeline, we as undergraduate students worked alongside Dr. Mudalige and Dr. Ataei to produce an open-access, interactive e-book which integrates narrative exposition, reproducible simulations and examples involving code, embeds visualizations and interactive components to explain concepts, and provides an open-source resource for educators in the broader statistical community.
 This paper outlines the framework that guided our partnership, describes the authoring workflow (version control, peer review, and continuous deployment), and reflects on early outcomes. By sharing these first-phase results, we aim to provide a practical model for implementing student-faculty co-creation in applied statistics and related quantitative courses.
@@ -310,9 +312,18 @@ The landing page in light and dark mode are presented in Figure \ref{fig:landing
 
 The content of the material presented begins with foundational statistical concepts, including key terminology, data types, and the basic ideas behind inferential statistics. Recognizing the importance of technical skills, we included an early chapter on R programming and its practical uses. This section explains how to install R, use essential functions, and work with basic data structures and visualizations. Together, these elements provide a strong technical foundation. From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
 
-One of the most challenging aspects of the project was presenting statistical ideas visually in a way that was both accurate and engaging. At first, we used TikZ in LaTeX to create static diagrams, which worked well for simple illustrations. However, more complex concepts, such as how changes in correlation affect the shape of data, were difficult to represent using only static figures. While we could explain the theory behind these concepts, the lack of interactivity limited students’ ability to explore them meaningfully.
+Many of the static figures were created using \texttt{ggplot2}.
 
-After encountering this limitation, we revisited our approach to visualization. We shifted to using R Markdown and Shiny to build interactive web applications. These tools allowed students to manipulate variables and observe how distributions changed in real time. Although they took time to build and required trial and error, they significantly improved the exploratory aspect of the learning experience.
+Although \texttt{plotly} can be used for interactive figures, we also used \texttt{plotly} to create several static figures by deactivating the options which allow for interactivity.
+This decision was out of convenience for a more unified design of figures and for aesthetics.
+Not all of the figures in the e-book required an interactive component, since they may have become unnecessarily distractive for students.
+Examples of figures which had their interactive options removed are presented in Figures
+
+Examples were presented with R code for students.
+
+%One of the most challenging aspects of the project was presenting statistical ideas visually in a way that was both accurate and engaging. At first, we used TikZ in LaTeX to create static diagrams, which worked well for simple illustrations. However, more complex concepts, such as how changes in correlation affect the shape of data, were difficult to represent using only static figures. While we could explain the theory behind these concepts, the lack of interactivity limited students’ ability to explore them meaningfully.
+%
+%After encountering this limitation, we revisited our approach to visualization. We shifted to using R Markdown and Shiny to build interactive web applications. These tools allowed students to manipulate variables and observe how distributions changed in real time. Although they took time to build and required trial and error, they significantly improved the exploratory aspect of the learning experience.
 
 To illustrate these interactive elements in practice, we developed a short lesson on histogram interpretation, skewness, and dynamic bin width adjustment. This section begins by comparing left-skewed, right-skewed, and symmetric distributions using interactive histograms, helping students build intuition about shape and spread. The lesson concludes with an app that allows students to adjust bin widths and explore how histogram appearance changes with sampling resolution (Figures 2–5).
 
