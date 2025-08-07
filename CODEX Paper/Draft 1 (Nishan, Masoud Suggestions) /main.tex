@@ -89,7 +89,7 @@
 %
 %Initially developed in LaTeX, the project was later transitioned to the Bookdown framework to improve accessibility, interactivity, and reproducibility. Content was reorganized to improve instructional flow, and the visual and interactive elements were developed using R-based tools such as ggplot2 and Shiny. GitHub and GitHub Pages facilitated version control, collaborative authorship, and online publishing.
 %
-%The project illustrates the contributions of students to curricular innovation in the development of educational resources. Participating in the design and technical implementation deepened our own learning while producing a tool that can benefit future learners. It also highlights the potential of open-source technologies and student–faculty collaboration to support the development of inclusive, adaptive, and accessible resources for statistical education.
+%The project illustrates the contributions of students to curricular innovation in the development of educational resources. Participating in the design and technical implementation deepened our own learning while producing a tool that can benefit future learners. It also highlights the potential of open-source technologies and student–faculty collaboration to support the development of inclusive, adaptive, and accessible resourc††es for statistical education.
 
 In most university courses, students learn from textbooks they did not help develop. 
 We present an innovative approach where undergraduate students collaborated with faculty to create an open-access, interactive web-based e-book for an introductory applied statistics course.
@@ -101,7 +101,7 @@ This type of collaboration is important to explore since evidence on student--fa
 In this paper, we illustrate the contributions of undergraduate students to curricular innovation in the development of the e-book by describing the development process, methodology and software tools used, and reflect on our experience in the process of being collaborators alongside faculty.
 Our participation deepened our own learning while producing resources to benefit future learners, we highlight the potential of open-source technologies and student–faculty collaboration to support the development of inclusive, adaptive, and accessible resources for statistical education.
 
-\keywords{Bookdown, Shiny, Plotly, GitHub pages, Statistics education}
+\keywords{Bookdown, statistics education, curriculum development, interactive technology}
 
 \end{abstract}
 
@@ -122,12 +122,12 @@ Topics such as hypothesis testing, confidence intervals, and regression frequent
 
 
 Our project emerged in response to those to the lack of study in student-faculty collaboration in co-developing course material and to simultaneously address the limitations of traditional texts in statistics. 
-We partnered with faculty through the \textit{STA378: Independent Research Project Course}, at the University of Toronto Mississauga (UTM) to assist the current course coordinator, Professor Nishan Mudalige, for \textit{STA258: Statistics with Applied Probability}, develop an interactive e-book for the course as part of an on-going course redevelopment project.
+We partnered with faculty through the \textit{STA378: Independent Research Project Course}, at the University of Toronto Mississauga (UTM) to assist the current course coordinator, for \textit{STA258: Statistics with Applied Probability}, develop an interactive e-book for the course as part of an on-going course redevelopment project.
 STA258 is an introductory applied statistics course at UTM where most students are learn about applied inference techniques (i.e. testing of hypotheses, interval estimation) and regression for the first time in their university learning experience.
 This is an important course since it provides students with the foundational skills for data analysis and equips them with the ability to interpret statistical results in advanced courses across all disciplines, including other statistics courses, the life sciences, social sciences, economics and finance and computer science courses requiring a knowledge of inference.
 This course also provides students with the ability to read and interpret statistical results from academic journals which is essential for critically evaluating research, making evidence-based decisions, and succeeding in advanced study and professional practice in both academic and non-academic settings.
 
-Dr. Mudalige is involved in a long term project to redesign the content in STA258. 
+The current course coordinator is involved in a long term project to redesign the content in STA258. 
 There are several reasons justifying the development of STA258.
 One such reason is that it currently overlaps considerably with \textit{STA260: Probability and Statistics II}, with both courses sharing common introductory content.
 Students simultaneously enrolled in both courses experience substantial duplication in the content delivered to them during the opening weeks of both courses.
@@ -136,6 +136,14 @@ There some distinct features of STA258 which makes it a good candidate for colla
 Within the University of Toronto system, STA258 is only offered at the Mississauga campus and there is no equivalent course or combination of courses available at the St. George campus or the Scarborough campus.
 Therefore, it has the potential to be a self-contained course which can equip students with the skills required providing an efficient pathway for students to learn important skills related to statistical reasoning, which is equivalent to multiple courses from other campuses, 
 Redesigning STA258 eliminates the necessity for the Department of Mathematical and Computational Sciences at UTM to go through lengthy development and approval process required for an entirely new course to address the curricular gap.
+
+The core team working on this project consisted of the two undergraduate authors of this paper, and two faculty members who are both Assistant Professors in Statistics at the Department of Mathematical and Computational Sciences at UTM. One of the faculty members is the current course coordinator for STA258.
+We contributed to both content development and technical implementation, and the faculty members provided consistent guidance through regular meetings, detailed feedback, training with software, and contributed critical input into decisions regarding the e-book’s structure and tools.
+Both Professors also assisted with trouble shooting and Professors Nishan contributed a substantial amount towards the coding component, particularly with initiating the framework and resolving some of the more challenging components.
+We also received valuable feedback from two additional external partners 
+%Dr. Steve Tully, Mathematics Professor at Okanagan College, and Avanti Coonghe, Communications and Design Consultant at the United Nations (World Health Organization), 
+who provided suggestions related to content scope, pedagogical structure, and overall educational value.
+One of the external partners is faculty at a College in British Columbia and the other is an expert consultant in communication and design of digital assets.
 
 During the initial phase of the STA258 course development timeline, we as undergraduate students worked alongside Dr. Mudalige and Dr. Ataei to produce an open-access, interactive e-book which integrates narrative exposition, reproducible simulations and examples involving code, embeds visualizations and interactive components to explain concepts, and provides an open-source resource for educators in the broader statistical community.
 This paper outlines the framework that guided our partnership, describes the authoring workflow (version control, peer review, and continuous deployment), and reflects on early outcomes. By sharing these first-phase results, we aim to provide a practical model for implementing student-faculty co-creation in applied statistics and related quantitative courses.
@@ -148,10 +156,6 @@ This paper outlines the framework that guided our partnership, describes the aut
 
 
 \section{DESIGN, DEVELOPMENT AND IMPLEMENTATION}
-
-The core team consisted of two undergraduate students, Nurlana Alili and Xi Su, who contributed to both content development and technical implementation. Professors Nishan Mudalige and Masoud Ataei provided consistent guidance through regular meetings, detailed feedback, training with software, and contributed critical input into decisions regarding the e-book’s structure and tools.
-Both Professors also assisted with trouble shooting and Professors Nishan contributed a substantial amount towards the coding component, particularly with initiating the framework and resolving some of the more challenging components.
-We also received valuable external feedback from Dr. Steve Tully, Mathematics Professor at Okanagan College, and Avanti Coonghe, Communications and Design Consultant at the United Nations (World Health Organization), who provided suggestions related to content scope, pedagogical structure, and overall educational value.
 
 The interactive e-book project was launched in Summer 2025 semester as a joint initiative between undergraduate students and faculty to create an engaging and innovative learning resource for students enrolled in statistics courses. 
 The University of Toronto Mississauga provides high-performing undergraduate students enrolled in a statistics major or specialist with the opportunity to enrol in \textit{STA378: Statistics Research Project}, where students explore a topic in statistics under the supervision of a faculty member.
@@ -198,13 +202,13 @@ Once we established our framework, we selected other open-source tools and progr
 \begin{center}
 \begin{tabular}{| l | l |}
 \hline
-\textbf{Languages}		&	R, R Markdown, LaTeX, YAML, HTML, CSS, JavaScript\\
+\textbf{Languages}		&	R, Markdown, LaTeX, YAML, HTML, CSS, JavaScript\\
 \hline
 \textbf{Frameworks} 		&	Bookdown, R Markdown\\
 \hline
-\textbf{R packages}		&	knitr, ggplot2, plotly, Shiny, rgl\\
+\textbf{R packages}		&	\texttt{knitr}, \, \texttt{ggplot2}, \, \texttt{plotly}, \, \texttt{Shiny}, \, \texttt{rgl}\\
 \hline
-\textbf{Version Control} 	&	GitHub, GitHub Pages \\
+\textbf{Version Control} 	&	Git (with GitHub)\\
 \hline
 \textbf{Deployment} 		&	GitHub Pages \\
 \hline
@@ -217,8 +221,11 @@ Once we established our framework, we selected other open-source tools and progr
 
 The tools utilized in Table \ref{tab:ebook_Technologies} were intentionally selected for their compatibility, transparency, and capacity to support reproducible computing. 
 Some tools were used directly such as R Markdown and R, while others were secondary technologies which were used by the frameworks in rendering the e-book.
-GitHub served both as a collaborative development platform and as a public-facing repository for version control, while GitHub Pages enabled open access to the live e-book and supported asynchronous contributions from others.
-The YAML file was used for front matter, to store the book’s metadata, for build settings and for integration with GitHub pages.
+GitHub served both as a collaborative development platform and as a public-facing repository for version control, enabled open access to the resources created and providing asynchronous contributions from others.
+The core members worked on developing content on various branches on GitHub before merging everything on to the main branch after sufficient progress.
+We utilized GitHub Pages to host the e-book directly from the repository used for the project.
+GitHub Pages is a service offered by GitHub which allows users to host webpages directly from a GitHub repository.
+The YAML file was used for front matter, to store the book’s metadata, for build settings and for integration with GitHub pages
 CSS was used to customize environments in Bookdown, such as the definition environment and remark environment with personalized aesthetics and consistent colour scheme.
 
 Although we encountered some technical challenges, especially during the transition from LaTeX to Bookdown, these obstacles deepened our understanding of collaborative digital authorship and reproducible research. The final product represents not only an innovative approach to content delivery, but also an exploration of what collaborative educational development can look like in practice.
@@ -238,23 +245,24 @@ We also removed as much content as possible which overlapped with STA260, making
 Once the order and layout were finalized, the content created was rearranged and refined, and static and interactive plots and figures were built around the updated content.
 
 Static and interactive plots and figures are rendered natively within the R Markdown file within code blocks.
-An example of a code block used to render a figure using the ggplot2 library is given in Listing \ref{lst:Markdown_ggplot2}.
-Interactive plots were created using the Plotly and R Shiny.\\
+The Tikz package was initially used with LaTeX to create some static graphics which were used in the both the initial PDF and the first draft of the Bookdown version of the e-book, since Tikz is a powerful package which can create vector graphics. 
+However, we discovered that we can create all of the required graphics using \texttt{ggplot2} and plotly, so we decided to utilize these 2 packages for all figures for a more consistent appearance.
+An example of a code block used to render a figure using the ggplot2 library is given in Listing \ref{lst:Markdown_ggplot2}.\\
 
 \begin{lstlisting}[language=R,
                    caption={An example of a code block in Markdown used to render an image with ggplot},
                    label={lst:Markdown_ggplot2},
                    captionpos=b] 
-```{r label, fig.cap="Example Code Block", echo=FALSE, fig.align='center', warning=FALSE}
-library(ggplot2)
+```{r fig_label, fig.cap="Example Code Block", echo=FALSE, fig.align='center', warning=FALSE}
 
-# code for ggplot2 figure goes here
+library(ggplot2)
+# Code for ggplot2 figure goes here
+# The ggplot2 figure is natively created and natively embedded into HTML when rendered in Bookdown
 ```
 \end{lstlisting}
 
-Similar to ggplot2, plotly figures are generated natively within codeblocks.
-The Tikz package was initially used with LaTeX to create some graphics used in the both the initial PDF and the Bookdown version of the e-book, since Tikz is a powerful package which can create vector graphics.
-However, we discovered that we can create all of the required graphics using ggplot2 and plotly, so we decided to utilize these 2 packages for all figures for a more consistent appearance.
+Interactive plots were created using the Plotly and R Shiny.
+Plotly figures figures are generated natively within codeblocks similar in a similar manner to ggplot2, with syntax similar to that of \ref{lst:Markdown_ggplot2}.
 R Shiny apps were developed in R and hosted on \href{https://www.shinyapps.io/}{Shinyapps.io}. 
 These apps are natively embedded into the e-book using a code block and some HTML for formatting.
 Listing \ref{lst:Markdown_shiny} provides the syntax for embedding R Shiny apps in the e-book.\\
@@ -263,11 +271,10 @@ Listing \ref{lst:Markdown_shiny} provides the syntax for embedding R Shiny apps 
                    caption={An example of a code block in Markdown used to render an image with ggplot},
                    label={lst:Markdown_shiny},
                    captionpos=b] 
-<center>
-```{r HistShinyApp, echo=FALSE, out.width='100%', warning=FALSE}
-knitr::include_app("URL to App Hosted on shinyapps.io", )
+```{r shiny_app_label, fig.cap="Example Interactive Application", echo=FALSE, out.width='100%', warning=FALSE}
+
+knitr::include_app("URL to App Hosted on shinyapps.io")
 ```
-</center>
 \end{lstlisting}
 
 Finally, we used the rgl library to create a 3D interactive version of the digital hex sticker designed for the project which appears on the cover of the e-book.
@@ -287,7 +294,6 @@ The landing page in light and dark mode are presented in Figure \ref{fig:landing
         \includegraphics[width=0.975\textwidth]{Images/ebookCover.png}
         \caption{Landing page of the e-book in the default layout.}
     \end{subfigure}%
-    \hfill
     \hfill
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
@@ -328,12 +334,42 @@ To illustrate these interactive elements in practice, we developed a short lesso
   \caption{A symmetric histogram used to contrast with skewed examples. It illustrates an approximately normal distribution with balanced tails, aiding in comparisons of central tendency and dispersion.}
 \end{figure}
 
+
+\pagebreak
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.75\textwidth]{Images/bin.png}
   \caption{Interactive application that allows students to adjust the bin width for a histogram built on real-world data (geyser eruption waiting times). The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity.}
 \end{figure}
 
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.975\textwidth]{Images/interactive_hist_1.png}
+        \caption{Interactive histogram with the slider for bin width set to a bin width of 1 minute.}
+    \end{subfigure}%
+    \hfill
+    \hfill
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[width=0.975\textwidth]{Images/interactive_hist_4.png}
+        \caption{Interactive histogram with the slider for bin width set to a bin width of 4 minutes.}
+    \end{subfigure}
+    \caption{Interactive application that allows students to adjust the bin width for a histogram built on real-world data (geyser eruption waiting times). The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity.}
+    \label{fig:interactive_hist}
+\end{figure}
+
+
+
+
+%\begin{figure}[H]
+%  \centering
+%  \includegraphics[width=0.75\textwidth]{Images/bin.png}
+%  \caption{Interactive application that allows students to adjust the bin width for a histogram built on real-world data (geyser eruption waiting times). The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity.}
+%\end{figure}
 
 One of the most rewarding parts of the project was designing the figures. Many were created using ggplot2 and are now central features of the e-book. They are visually clear, carefully styled, and interactive where appropriate. These visualizations reflect intentional design choices and help communicate complex ideas in a way that is both intuitive and accessible. Although this process was time-consuming, it was also one of the most enjoyable and educational parts of the project.
 
@@ -344,7 +380,7 @@ One of the most rewarding parts of the project was designing the figures. Many w
 \end{figure}
 
 
-\section{CONCLUSION}
+\section{CONCLUSIONS AND FUTURE WORK}
 
 Beyond its technical and instructional outcomes, this project demonstrates the pedagogical potential of student-led authorship and design. By actively participating in the creation of educational content, students shift from consumers to contributors of knowledge, engaging more deeply with the subject matter.
 
@@ -352,7 +388,7 @@ The process required not only statistical expertise and programming fluency, but
 
 More broadly, the project presents a replicable model of participatory curriculum development that integrates open-source tools, student initiative, and faculty mentorship to generate accessible, engaging, and adaptive learning resources.
 
-\section{FUTURE WORK}
+%\section{FUTURE WORK}
 
 While the current version of the e-book successfully integrates core statistical ideas with interactive elements, there are several directions for future development. One important area is expanding the content to include more advanced topics, such as generalized linear models, non-parametric tests, or multivariate analysis. Including these topics would make the resource more useful for students in upper-year or specialized courses.
 
