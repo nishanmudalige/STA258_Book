@@ -7,23 +7,35 @@
 \usepackage{xcolor}
 \usepackage{color}
 \usepackage{soul}
+\usepackage{hyperref}
+
 
 \usepackage[T1]{fontenc}
 \usepackage{listings}
 \usepackage{xcolor} 
 %\usepackage{minted}
 
+\definecolor{solBlue}   {HTML}{268BD2}	% keyword / function
+%\colorlet{darkgreen}{green!50!black!75}	% strings
+\definecolor{darkgreen}{HTML}{2E7D32}
+
+% Define a simple style
 \lstdefinestyle{mystyle}{
   basicstyle=\ttfamily\small,
-  keywordstyle=\color{blue},
+  keywordstyle=\color{solBlue},
   commentstyle=\color{gray},
-  stringstyle=\color{red},
+  stringstyle=\color{darkgreen},
   frame=single,
   numbers=left,
   numberstyle=\tiny,
   breaklines=true
 }
 \lstset{style=mystyle}
+
+
+
+
+
 
 %────────────────────────────────────────────────
 %— BIBLIOGRAPHY SETUP (biblatex + Biber)
@@ -134,7 +146,7 @@ This shift from LaTex to Bookdown allowed us to integrate dynamic and interactiv
 %More importantly, Bookdown offered key features such as inline code execution, interactive graphics, and dynamic cross-referencing of equations, figures, and tables—transforming static content into a fully interactive learning resource.
 transformed static content into a fully interactive learning resource.
 The conversion from LaTeX (.tex) to R Markdown (.Rmd) was performed using Pandoc, with the majority of the the formatting and structure intact. Pandoc also preserved most of the fidelity of the LaTeX code during the conversion. 
-The syntax used for the conversion is given in code blokcs \ref{lst:tex_to_rmd_basic} and \ref{lst:tex_to_rmd_mathjax}.
+The syntax used for the conversion is given in Listings \ref{lst:tex_to_rmd_basic} and \ref{lst:tex_to_rmd_mathjax}.\\
 
 \begin{lstlisting}[language=bash,
                    caption={Basic conversion of a LaTeX .tex file to an R Markdown .Rmd file using Pandoc},
@@ -143,20 +155,14 @@ The syntax used for the conversion is given in code blokcs \ref{lst:tex_to_rmd_b
 pandoc -s input.tex -f latex -t markdown -o output.Rmd
 \end{lstlisting}
 
+\hfill
+
 \begin{lstlisting}[language=bash,
                    caption={Conversion of a LaTeX .tex file to an R Markdown .Rmd file rendered with MathJax using Pandoc},
                    label={lst:tex_to_rmd_mathjax},
                    captionpos=b] 
-pandoc -s input.tex -f latex -t markdown -o output.Rmd
+pandoc --filter pandoc-citeproc --mathjax -s input.tex -f latex -t markdown -o output.Rmd
 \end{lstlisting}
-
-%# Handle 
-%pandoc --filter pandoc-citeproc --mathjax -s input.tex -f latex -t markdown -o output.Rmd
-
-%# Basic conversion
-%
-%# Handle citations and render equations with MathJax
-%pandoc --filter pandoc-citeproc --mathjax -s input.tex -f latex -t markdown -o output.Rmd
 
 Once we established our framework, we selected other open-source tools and programming languages that could support both visual design and reproducible workflows around Bookdown. A summary of the technologies used in developing the e-book are listed in Table \ref{tab:ebook_Technologies}.
 
@@ -167,13 +173,15 @@ Once we established our framework, we selected other open-source tools and progr
 \begin{center}
 \begin{tabular}{| l | l |}
 \hline
-\textbf{Languages}				&	R, Markdown, LaTeX, YAML, HTML5, JavaScript, CSS \\
+\textbf{Languages}		&	R, R Markdown, LaTeX, YAML, HTML, CSS, JavaScript\\
 \hline
-\textbf{Packages and Frameworks} 	&	bookdown, rmarkdown, knitr, ggplot2, plotly, Shiny, rgl \\
+\textbf{Frameworks} 		&	Bookdown, R Markdown\\
 \hline
-\textbf{Version Control} 			&	GitHub, GitHub Pages \\
+\textbf{R packages}		&	knitr, ggplot2, plotly, Shiny, rgl\\
 \hline
-\textbf{Deployment} 				&	GitHub Pages \\
+\textbf{Version Control} 	&	GitHub, GitHub Pages \\
+\hline
+\textbf{Deployment} 		&	GitHub Pages \\
 \hline
 \end{tabular}
 \caption{Summary of software, libraries and frameworks used in developing the e-book.}
@@ -183,17 +191,54 @@ Once we established our framework, we selected other open-source tools and progr
 \renewcommand\arraystretch{1.00}
 
 The tools utilized in Table \ref{tab:ebook_Technologies} were intentionally selected for their compatibility, transparency, and capacity to support reproducible computing. 
-Some tools were used directly, while others were secondary technologies which were used by 
+Some tools were used directly such as R Markdown and R, while others were secondary technologies which were used by the frameworks in rendering the e-book.
 GitHub served both as a collaborative development platform and as a public-facing repository for version control, while GitHub Pages enabled open access to the live e-book and supported asynchronous contributions from others.
+The YAML file was used for front matter, to store the book’s metadata, for build settings and for integration with GitHub pages.
+CSS was used to customize environments in Bookdown, such as the definition environment and remark environment with personalized aesthetics and consistent colour scheme.
+
+\begin{lstlisting}[language=R,
+                   caption={An example of a code block in Markdown used to render an image with ggplot},
+                   label={lst:Markdown_ggplot2},
+                   captionpos=b] 
+```{r label, fig.cap="Example Code Block", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+
+# code for ggplot2 figure goes here
+```
+\end{lstlisting}
+
+
+Static and interactive plots and figures are rendered natively within the R Markdown file within code blocks.
+An example of a code block used to render a figure using the ggplot2 library is given in Listing \ref{lst:Markdown_ggplot2}.
+Interactive plots were created using the Plotly and R Shiny.
+Similar to ggplot2, plotly figures are generated natively within codeblocks.
+The Tikz package was initially used with LaTeX to create some graphics used in the both the initial PDF and the Bookdown version of the e-book, since Tikz is a powerful package which can create vector graphics.
+However, we discovered that we can create all of the required graphics using ggplot2 and plotly, so we decided to utilize these 2 packages for all figures for a more consistent appearance.
+R Shiny apps were developed in R and hosted on \href{https://www.shinyapps.io/}{Shinyapps.io}. 
+These apps are natively embedded into the e-book using a code block and some HTML for formatting.
+Listing \ref{lst:Markdown_shiny} provides the syntax for embedding R Shiny apps in the e-book.
+Finally we used the rgl library to create a 3D interactive version of the hexSticker designed for the e-book which appears on the cover of the e-book.
+
+\begin{lstlisting}[language=R,
+                   caption={An example of a code block in Markdown used to render an image with ggplot},
+                   label={lst:Markdown_shiny},
+                   captionpos=b] 
+<center>
+```{r HistShinyApp, echo=FALSE, out.width='100%', warning=FALSE}
+knitr::include_app("URL to App Hosted on shinyapps.io", )
+```
+</center>
+\end{lstlisting}
+
 
 The core team consisted of two undergraduate students, Nurlana Alili and Xi Su, who contributed to both content development and technical implementation. Professors Nishan Mudalige and Masoud Ataei provided consistent guidance through regular meetings, detailed feedback, and critical input into decisions regarding the e-book’s structure and tools.
-We also received valuable external feedback from Dr. Steve Tully (Okanagan College) and Avanti Coonghe (United Nations, World Health Organization), who provided suggestions related to content scope, pedagogical structure, and overall educational value.
+We also received valuable external feedback from Dr. Steve Tully, Mathematics Professor at Okanagan College, and Avanti Coonghe, Communications and Design Consultant at the United Nations (World Health Organization), who provided suggestions related to content scope, pedagogical structure, and overall educational value.
 
 Although we encountered some technical challenges, especially during the transition from LaTeX to Bookdown, these obstacles deepened our understanding of collaborative digital authorship and reproducible research. The final product represents not only an innovative approach to content delivery, but also an exploration of what collaborative educational development can look like in practice.
 
-\begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
-    \includegraphics[width=0.7\textwidth]{Images/github-ss.png}
-\end{pepadunfigure}
+%\begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
+%    \includegraphics[width=0.7\textwidth]{Images/github-ss.png}
+%\end{pepadunfigure}
 
 \section{CONTENT AND INTERACTIVE DESIGN}
 
