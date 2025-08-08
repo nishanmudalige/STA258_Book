@@ -325,11 +325,11 @@ We note that the e-book is still a work in progress since it is one component wh
 
 We selected the default theme of Bookdown since it has a clean layout and appearance.
 The default theme also comes with options for light mode, dark mode and high contrast (sepia) mode with the table of contents appears along the left.
-The landing page in light and dark mode is presented in Figure \ref{fig:landing_page}.
-The table of contents is available on the left of the webpage and it can be hidden if desired.
-There is also a search feature, indicated by the magnifying glass in Figures \ref{subfig:landing_page_default} and \ref{subfig:landing_page_dark}
-where indexing is automatically performed by Bookdown.
-Additional accessibility features to help improve legibility include the ability to increase of decrease font size, increase or decrease spacing between lines and the ability to switch between serif and sans serif fonts.
+The landing page in light and dark mode is presented in Figures \ref{subfig:landing_page_default} and \ref{subfig:landing_page_dark}.
+The table of contents is available on the left of the webpage and it can be hidden if desired using the menu button on the top menu bar.
+
+There is also a search feature where indexing is automatically performed by Bookdown. The search feature is accessed from a magnifying glass icon near the top of the page.
+Additional accessibility features to help improve legibility include the ability to increase of decrease font size, increase or decrease spacing between lines and the ability to switch between serif and sans serif fonts. The search feature and accessibility options are illustrated in Figures \ref{subfig:menu_bar_search} and \ref{subfig:menu_bar_access}
 %\begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
 %    \includegraphics[width=0.7\textwidth]{Images/ebookCover.png}
 %\end{pepadunfigure}
@@ -340,20 +340,34 @@ Additional accessibility features to help improve legibility include the ability
 
 \begin{figure}[h!]
     \centering
-    \begin{subfigure}[t]{0.5\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=0.975\textwidth]{Images/ebookCover.png}
         \caption{Landing page of the e-book in the default layout.}
         \label{subfig:landing_page_default}
     \end{subfigure}%
     \hfill
-    \begin{subfigure}[t]{0.5\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=0.975\textwidth]{Images/ebookCover_dark.png}
         \caption{Landing page of the e-book in dark mode.}
         \label{subfig:landing_page_dark}
+    \end{subfigure}\\[1.00em]
+    %%% New row %%%
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[height=0.125\textheight]{Images/menu_bar_search.png}
+        \caption{Activating the search feature from the menu bar.}
+        \label{subfig:menu_bar_search}
     \end{subfigure}
-    \caption{Landing page of the e-book in the default light theme and dark theme. Notice the table of contents on the left. Icons for changing theme, searching, changing font size and spacing are located near the top left.}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[height=0.125\textheight]{Images/menu_bar_access.png}
+        \caption{Accessibility options accessed from the menu bar.}
+        \label{subfig:menu_bar_access}
+    \end{subfigure}\
+    \caption{Landing page of the e-book in the default light theme and dark theme. Notice the table of contents in the left panel. Icons for changing theme, searching, changing font size and spacing are located near the top left and are elaborated in the sub-figures.}
     \label{fig:landing_page}
 %\setlength{\belowcaptionskip}{-25pt}
 \end{figure}
@@ -389,23 +403,28 @@ Chapter 8 covers one-way analysis of variance;
 Chapter 9 covers simple linear regression, including inference on the slope;
 and 
 Chapter 10 covers chi-square tests for categorical data.
+%The content covered in the ten chapters constitute the material in many typical introductory statistics courses.
 These chapters were further broken down at a more granular level into sub-sections, however the title of these components are not listed for brevity.
-An example of the appearance of text-based content of the body of the e-book is presented in Figure \ref{fig:sample_content}.
 
-\begin{figure}[h!]
+Examples of the appearance of standard text-based content and mathematical statements which appear in the body of the e-book is presented in Figure \ref{fig:sample_content}, 
+highlighting the use of coloured blocks to help distinguish several recurring components, such as definitions, remarks and theorems.
+Notice that mathematical statements and symbols which are rendered with MathJax appear similar to content which would appear in a document rendered using LaTeX.
+
+
+\begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=0.80\textwidth]{Images/example_screen_sec_3_crop.png}
-        \caption{Sample content from the Chapter 3: Descriptive Statistics.}
+        \caption{Sample content from the body of Chapter 3: Descriptive Statistics.}
     \end{subfigure}%
     \hfill
    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=0.80\textwidth]{Images/example_screen_sec_4_crop.png}
-        \caption{Sample content from the Chapter 4: Foundations on inference}
+        \caption{Sample content from the body of Chapter 4: Foundations on inference.}
     \end{subfigure}
-    \caption{Examples of written content of the e-book.}
+    \caption{Examples of content with text and mathematical statements in the e-book.}
     \label{fig:sample_content}
 \end{figure}
 
@@ -413,18 +432,20 @@ An example of the appearance of text-based content of the body of the e-book is 
 Recognizing the importance of technical skills, the second chapter is an introduction to R and its practical uses. 
 This section explains how to install R, use essential functions, and work with basic data structures and visualizations. 
 Together, these elements provide a strong technical foundation. 
-This chapter also provides information on working with R Studio which is a popular integrated development environmentSome examples of (IDE) for programming in R.
+Installation instructions for both R and R Studio are provided, including screenshots to help guide the reader.
+Information related to working with R Studio was included in this chapter since R Studio is a popular integrated development environmentSome examples of (IDE) for programming in R.
+
 We also introduce positron which is the next-generation of data science IDE that also supports coding with python.
 This chapter helps the reader become familiar with R by introducing the language as a powerful calculator and also introduces some basic data structures, functions and graphical plots.
 This sets the necessary ground work for the coding examples which are provided in subsequent chapters.
 %From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
 
-Numerous static figures were created using \texttt{ggplot2} within code blocks in the form of Listing \ref{lst:Markdown_ggplot2}.
+Numerous static figures were created using \texttt{ggplot2}, within code blocks in the form of Listing \ref{lst:Markdown_ggplot2}.
 Some examples of the static figures created are given in Figure \ref{fig:sample_ggplot2}.
-We utilized the default colour palette of \texttt{ggplot2}, or emulated it where necessary for visual consistency.
+We utilized the default colour palette of \texttt{ggplot2}, or emulated it where necessary for visual consistency,
 and also because this colour palette was developed with the principles of effective data visualization and accessibility in mind.
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -455,7 +476,7 @@ If interactivity was forcefully implemented on to all figures, some of them woul
 Examples of figures created with \texttt{plotly} in which the interactive options were removed are presented in Figure \ref{fig:sample_plotly_static}.
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
