@@ -8,7 +8,7 @@
 \usepackage{color}
 \usepackage{soul}
 \usepackage{hyperref}
-
+\usepackage{multicol}
 
 \usepackage[T1]{fontenc}
 \usepackage{listings}
@@ -288,7 +288,8 @@ An example of a code block used to render a figure using the ggplot2 library is 
 
 library(ggplot2)
 # Code for ggplot2 figure goes here
-# The ggplot2 figure is natively created and natively embedded into HTML when rendered in Bookdown
+# The ggplot2 figure is natively created and embedded into HTML rendered
+#  in Bookdown
 ```
 \end{lstlisting}
 
@@ -352,13 +353,17 @@ Additional accessibility features to help improve legibility include the ability
         \caption{Landing page of the e-book in dark mode.}
         \label{subfig:landing_page_dark}
     \end{subfigure}
-    \caption{Landing page of the e-book in the default and dark theme. Notice the table of contents on the left.}
+    \caption{Landing page of the e-book in the default light theme and dark theme. Notice the table of contents on the left. Icons for changing theme, searching, changing font size and spacing are located near the top left.}
     \label{fig:landing_page}
 %\setlength{\belowcaptionskip}{-25pt}
 \end{figure}
 
 The main chapters in the e-book are organized in the following manner:
-\begin{itemize}[itemsep=-2.5pt, topsep=-5pt]
+\setlength{\columnsep}{-100pt}
+\begin{multicols}{2}
+\setlength{\columnsep}{30pt}
+%\begin{itemize}[itemsep=-2.5pt, topsep=-5pt, leftmargin=*]
+\begin{itemize}[itemsep=-2.0pt, topsep=-5pt]
 %\itemsep-0.25em
 \item	Chapter 1: Introduction
 \item	Chapter 2: An Introduction to R
@@ -371,7 +376,8 @@ The main chapters in the e-book are organized in the following manner:
 \item	Chapter 9: Simple Linear Regression
 \item	Chapter 10: Analysis of Categorical Data
 \end{itemize}
-\hfill
+\end{multicols}
+%\hfill
 
 Chapter 1 is a broad introduction to applied statistics; 
 Chapter 2 is a dedicated section with an introduction to R; 
@@ -384,7 +390,7 @@ Chapter 9 covers simple linear regression, including inference on the slope;
 and 
 Chapter 10 covers chi-square tests for categorical data.
 These chapters were further broken down at a more granular level into sub-sections, however the title of these components are not listed for brevity.
-An example of the appearance of content of the e-book is presented in Figure \ref{fig:sample_content}.
+An example of the appearance of text-based content of the body of the e-book is presented in Figure \ref{fig:sample_content}.
 
 \begin{figure}[h!]
     \centering
@@ -407,7 +413,7 @@ An example of the appearance of content of the e-book is presented in Figure \re
 Recognizing the importance of technical skills, the second chapter is an introduction to R and its practical uses. 
 This section explains how to install R, use essential functions, and work with basic data structures and visualizations. 
 Together, these elements provide a strong technical foundation. 
-This chapter also provides information on working with R Studio which is a popular integrated development environment (IDE) for programming in R.
+This chapter also provides information on working with R Studio which is a popular integrated development environmentSome examples of (IDE) for programming in R.
 We also introduce positron which is the next-generation of data science IDE that also supports coding with python.
 This chapter helps the reader become familiar with R by introducing the language as a powerful calculator and also introduces some basic data structures, functions and graphical plots.
 This sets the necessary ground work for the coding examples which are provided in subsequent chapters.
@@ -415,6 +421,8 @@ This sets the necessary ground work for the coding examples which are provided i
 
 Numerous static figures were created using \texttt{ggplot2} within code blocks in the form of Listing \ref{lst:Markdown_ggplot2}.
 Some examples of the static figures created are given in Figure \ref{fig:sample_ggplot2}.
+We utilized the default colour palette of \texttt{ggplot2}, or emulated it where necessary for visual consistency.
+and also because this colour palette was developed with the principles of effective data visualization and accessibility in mind.
 
 \begin{figure}[h!]
     \centering
@@ -496,12 +504,14 @@ Examples of figures created with \texttt{plotly} in which the interactive option
 %\end{figure}
 
 One of the areas in which this e-book stands out is the inclusion of interactive plots.
-Some interactive plots were created using \texttt{plotly} while others were created using \texttt{shiny}, 
-where the shiny app was hosted on \href{https://www.shinyapps.io/}{Shinyapps.io} as discussed in Section \ref{sec:design}.
+Incorporating interactive plots and interactive applications allows users to learn by applying themselves and observing dynamic changes.
+Some interactive plots were created using \texttt{plotly} while others were created using \texttt{shiny}. 
 Plots with relatively simpler components were created with \texttt{plotly}, 
-such as plots which would display or hide information when the used hovers over them,
+such as plots which would display or hide information when the user hovers over them with their cursor,
 and plots which had buttons on them to show or hide a feature.
-An example of such a plot created with \texttt{plotly} is illustrated in Figure \ref{fig:interactive_hist_plotly}.
+An example of an interactive plot created with \texttt{plotly} containing an interactive button is illustrated in Figure \ref{fig:interactive_hist_plotly}
+and an example of an interactive plot created with \texttt{plotly} which dynamically changes based on the component of the plot where the user hovers with their cursor is illustrated in Figure \ref{fig:interactive_boxplot_plotly}.
+
 
 \begin{figure}[h!]
     \centering
@@ -517,12 +527,57 @@ An example of such a plot created with \texttt{plotly} is illustrated in Figure 
         \includegraphics[width=0.975\textwidth]{Images/interactive_hist_plotly_show.png}
         \caption{Interactive histogram created with \texttt{plotly} with density plot shown from Section 3: Descriptive Statistics.}
     \end{subfigure}
-    \caption{Interactive plot created with \texttt{plotly} which will can or hide the density plot when the used clicks the \textit{Show/Hide Density} button on the plot.}
+    \caption{Interactive plot of a histogram created with \texttt{plotly} which can show or hide the density plot superimposed over the histogram when the user clicks the \textit{Show/Hide Density} button on the plot.}
     \label{fig:interactive_hist_plotly}
 \end{figure}
 
 
+%\begin{figure}[h!]
+%    \centering
+%    \begin{subfigure}[t]{0.325\textwidth}
+%        \centering
+%        \includegraphics[width=0.975\textwidth]{Images/interactive_boxplot_plotly_plain.png}
+%        \caption{Interactive boxplot created with \texttt{plotly} from Section 3: Descriptive Statistics. This is the baseline state of the figure.}
+%    \end{subfigure}%
+%    \hfill
+%    \begin{subfigure}[t]{0.325\textwidth}
+%        \centering
+%        \includegraphics[width=0.975\textwidth]{Images/interactive_boxplot_plotly_hover.png}
+%        \caption{Interactive boxplot created with \texttt{plotly} from Section 3: Descriptive Statistics. Information appears when the user moves the cursor over the plot.}
+%    \end{subfigure}
+%    \hfill
+%    \begin{subfigure}[t]{0.325\textwidth}
+%        \centering
+%        \includegraphics[width=0.975\textwidth]{Images/interactive_boxplot_plotly_outlier.png}
+%        \caption{Interactive boxplot created with \texttt{plotly} from Section 3: Descriptive Statistics. Information changes when a user identifies an outlier with their cursor.}
+%    \end{subfigure}    
+%    \caption{Interactive plot created with \texttt{plotly} which will can or hide the density plot when the used clicks the \textit{Show/Hide Density} button on the plot.}
+%    \label{fig:interactive_boxplot_plotly}
+%\end{figure}
 
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.975\textwidth]{Images/interactive_boxplot_plotly_hover.png}
+        \caption{Interactive boxplot created with \texttt{plotly} from Section 3: Descriptive Statistics. Information appears when the user moves the cursor over the plot.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.975\textwidth]{Images/interactive_boxplot_plotly_outlier.png}
+        \caption{Interactive boxplot created with \texttt{plotly} from Section 3: Descriptive Statistics. Information changes when a user identifies an outlier with their cursor.}
+    \end{subfigure}    
+    \caption{Interactive plot of a boxplot created with \texttt{plotly} where the information changes based on the component of the plot where the user hover over with their cursor. Note in this particular example, the baseline plot does not display any text labels when the cursor does not hover over it.}
+    \label{fig:interactive_boxplot_plotly}
+\end{figure}
+
+
+Applications which required more advanced interactive capabilities were implemented using \texttt{shiny}, with each shiny app being hosted on \href{https://www.shinyapps.io/}{Shinyapps.io} as discussed in Section \ref{sec:design}.
+The \texttt{shiny} package allows us to implement advanced features which are not possible in \texttt{plotly}, such as sliders, tabs, switches and control buttons, menus, reading and writing files, check boxes and input boxes for text and numbers.
+Although the time commitment required to refine a shiny app is considerably longer, the resulting product is very powerful.
+Some examples of interactive apps created using \texttt{shiny} are given in Figures \ref{fig:interactive_hist_shiny} and \ref{fig:interactive_corr_shiny}.
 
 \begin{figure}[h!]
     \centering
@@ -538,11 +593,74 @@ An example of such a plot created with \texttt{plotly} is illustrated in Figure 
         \includegraphics[width=0.975\textwidth]{Images/interactive_hist_shiny_4.png}
         \caption{Interactive histogram with the slider for bin width set to a bin width of 4 minutes.}
     \end{subfigure}
-    \caption{Interactive application that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity.}
+    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
     \label{fig:interactive_hist_shiny}
 \end{figure}
 
 
+%\begin{figure}[h!]
+%    \centering
+%    %%% Row 1 %%%
+%    \begin{subfigure}[t]{0.240\textwidth}
+%        \centering
+%        \includegraphics[width=0.95\textwidth]{Images/interactive_shiny_corr_0.png}
+%        \caption{Interactive plot created with \texttt{shiny} to demonstrate correlation between 2 variables showing a correlation of approximately 0 with the regression line superimposed.}
+%    \end{subfigure}%
+%    \hfill
+%    \begin{subfigure}[t]{0.240\textwidth}
+%        \centering
+%        \includegraphics[width=0.95\textwidth]{Images/interactive_shiny_corr_neg.png}
+%        \caption{Interactive plot created with \texttt{shiny} to demonstrate correlation between 2 variables showing a data with strong negative correlation with the regression line superimposed.}
+%    \end{subfigure}
+%    %%% Row 2 %%%
+%    \begin{subfigure}[t]{0.240\textwidth}
+%        \centering    
+%	\includegraphics[width=0.95\textwidth]{Images/interactive_shiny_corr_pos.png}
+%        \caption{Interactive plot created with \texttt{shiny} to demonstrate correlation between 2 variables showing a data with strong positive correlation with the regression line superimposed.}
+%    \end{subfigure}%
+%    \hfill
+%    \begin{subfigure}[t]{0.240\textwidth}
+%        \centering
+%        \includegraphics[width=0.95\textwidth]{Images/interactive_shiny_corr_pos_no_line.png}
+%        \caption{Interactive plot created with \texttt{shiny} to demonstrate correlation between 2 variables showing a data with strong positive correlation and the regression line removed.}
+%    \end{subfigure}
+%    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
+%    \label{fig:interactive_hist_shiny}
+%\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    %%% Row 1 %%%
+    \begin{subfigure}[t]{0.320\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{Images/interactive_shiny_corr_neg.png}
+        \caption{Interactive plot created with \texttt{shiny} to demonstrate correlation between 2 variables showing a data with strong negative correlation with the regression line superimposed.}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[t]{0.320\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{Images/interactive_shiny_corr_0_no_line.png}
+        \caption{Interactive plot created with \texttt{shiny} to demonstrate correlation between 2 variables showing a correlation of approximately 0.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.320\textwidth}
+        \centering    
+	\includegraphics[width=0.95\textwidth]{Images/interactive_shiny_corr_pos.png}
+        \caption{Interactive plot created with \texttt{shiny} to demonstrate correlation between 2 variables showing a data with strong positive correlation with the regression line superimposed.}
+    \end{subfigure}%
+    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
+    \label{fig:interactive_corr_shiny}
+\end{figure}
+
+
+The final component in the e-book we would like to discuss are the examples.
+At the end of each major topic in Sections 3 -- 10 of the e-book, we included example questions with solutions. 
+Recall that Section 1 introduces the e-book and Section 2 is a section introducing R.
+Therefore, we did not consider the need to include examples for these 2 sections.
+
+Examples from Sections 3 -- 10 covered numerical calculations, interpretations, explanations and many also included a coding component involving R.
+Examples can be studied by students to reinforce the concepts covered in the book and they also provide opportunities to practice coding in R.
 
 
 %\begin{figure}[H]
