@@ -1,8 +1,33 @@
 /* style.css */
 
-canvas.rglWebGL {
-  background: transparent !important;
+/* Increase main content width */
+.book .book-body .page-wrapper .page-inner {
+  max-width: 900px; /* default is ~800px */
 }
+
+/* Optional: make text paragraphs less stretched by limiting width inside content */
+.book .book-body .page-wrapper .page-inner section.normal {
+  max-width: 900px; 
+  margin: auto;
+}
+
+/* Allows the RGL object size to be 100% */
+.rglWebGL {
+  width: 100% !important;
+  height: 800px !important; /* or whatever you want */
+}
+
+/* Center plotly figures using */
+.plotly.html-widget {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* Does not work*/
+/* canvas.rglWebGL {
+  background: transparent !important;
+} */
 
 
 /* Inserting more space above and/or below  heading levels */
