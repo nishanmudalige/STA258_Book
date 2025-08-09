@@ -435,9 +435,11 @@ Together, these elements provide a strong technical foundation.
 Installation instructions for both R and R Studio are provided, including screenshots to help guide the reader.
 Information related to working with R Studio was included in this chapter since R Studio is a popular integrated development environmentSome examples of (IDE) for programming in R.
 
-We also introduce positron which is the next-generation of data science IDE that also supports coding with python.
 This chapter helps the reader become familiar with R by introducing the language as a powerful calculator and also introduces some basic data structures, functions and graphical plots.
 This sets the necessary ground work for the coding examples which are provided in subsequent chapters.
+
+We also introduce positron which is the next-generation of data science IDE that also supports coding with python.
+Positron was introduced in an attempt to potentially future-proof the e-book and to inform the reader that the creators of the e-book are aware of trends in programming with statistical software.
 %From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
 
 Numerous static figures were created using \texttt{ggplot2}, within code blocks in the form of Listing \ref{lst:Markdown_ggplot2}.
@@ -445,7 +447,10 @@ Some examples of the static figures created are given in Figure \ref{fig:sample_
 We utilized the default colour palette of \texttt{ggplot2}, or emulated it where necessary for visual consistency,
 and also because this colour palette was developed with the principles of effective data visualization and accessibility in mind.
 
-\begin{figure}[H]
+%\colorbox{yellow!34}{\textcolor{red}{\textbf{AND A FILLER SENTENCE SO FIGURE APPEARS ON NEXT PAGE}}}.\\
+%\colorbox{yellow!34}{\textcolor{red}{\textbf{SO THAT THE MANUSCRIPT LOOKS NICER}}}.
+
+\begin{figure}[h]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -614,10 +619,10 @@ Some examples of interactive apps created using \texttt{shiny} are given in Figu
         \includegraphics[width=0.975\textwidth]{Images/interactive_hist_shiny_4.png}
         \caption{Interactive histogram with the slider for bin width set to a bin width of 4 minutes.}
     \end{subfigure}
-    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
+%    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
+    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram which was built with real-world data. This specific used the \textit{faithful} data set which has waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how the appearance of a histogram is sensitive to graphical parameters, enhancing  understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
     \label{fig:interactive_hist_shiny}
 \end{figure}
-
 
 %\begin{figure}[h!]
 %    \centering
@@ -650,7 +655,7 @@ Some examples of interactive apps created using \texttt{shiny} are given in Figu
 %\end{figure}
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     %%% Row 1 %%%
     \begin{subfigure}[t]{0.320\textwidth}
@@ -670,18 +675,18 @@ Some examples of interactive apps created using \texttt{shiny} are given in Figu
 	\includegraphics[width=0.95\textwidth]{Images/interactive_shiny_corr_pos.png}
         \caption{Interactive plot created with \texttt{shiny} to demonstrate correlation between 2 variables showing a data with strong positive correlation with the regression line superimposed.}
     \end{subfigure}%
-    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
+    \caption{Interactive application which simulates data points based on the correlation and the number of points selected. This allows the user to observe various strengths of positive and negative correlation. The user can also show or hide the ordinary least square regression line on the plot.}
+%    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram which was built with real-world data. This specific used the \textit{faithful} data set which has waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how the appearance of a histogram is sensitive to graphical parameters, enhancing  understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
     \label{fig:interactive_corr_shiny}
 \end{figure}
 
 
-The final component in the e-book we would like to discuss are the examples.
-At the end of each major topic in Sections 3 -- 10 of the e-book, we included example questions with solutions. 
+%The final component we would like to discuss are the examples provided.
+At the end of each major topic in Chapters 3 -- 10 of the e-book, we also included example questions with solutions. 
 Recall that Section 1 introduces the e-book and Section 2 is a section introducing R.
-Therefore, we did not consider the need to include examples for these 2 sections.
-
-Examples from Sections 3 -- 10 covered numerical calculations, interpretations, explanations and many also included a coding component involving R.
-Examples can be studied by students to reinforce the concepts covered in the book and they also provide opportunities to practice coding in R.
+Therefore, it was not necessary to include examples for these two chapters.
+Examples from Chapters 3 -- 10 covered numerical calculations, interpretations, explanations and many also included a coding component involving R.
+The examples can be studied by students to reinforce the concepts covered in the book and they also provide opportunities to practice coding in R.
 
 
 %\begin{figure}[H]
