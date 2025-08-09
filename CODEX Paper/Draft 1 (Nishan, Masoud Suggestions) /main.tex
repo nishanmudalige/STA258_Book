@@ -320,7 +320,7 @@ This was done for aesthetic purposes and to provide the e-book with a recognizab
 
 \section{CONTENT AND INTERACTIVE DESIGN}
 
-The textbook is live and available to be accessed at \href{https://nishanmudalige.github.io/STA258/}{nishanmudalige.github.io/STA258/}.
+The textbook is live and available to be accessed at \href{https://nishanmudalige.github.io/STA258/}{https://nishanmudalige.github.io/STA258/}.
 We note that the e-book is still a work in progress since it is one component which is part of an ongoing, long-term course redevelopment project which we discussed in Section \ref{sec:Introduction}.
 
 We selected the default theme of Bookdown since it has a clean layout and appearance.
@@ -682,11 +682,11 @@ Some examples of interactive apps created using \texttt{shiny} are given in Figu
 
 
 %The final component we would like to discuss are the examples provided.
-At the end of each major topic in Chapters 3 -- 10 of the e-book, we also included example questions with solutions. 
+At the end of each major topic in Chapters 3 -- 10, we also included examples with complete solutions. 
 Recall that Section 1 introduces the e-book and Section 2 is a section introducing R.
 Therefore, it was not necessary to include examples for these two chapters.
-Examples from Chapters 3 -- 10 covered numerical calculations, interpretations, explanations and many also included a coding component involving R.
-The examples can be studied by students to reinforce the concepts covered in the book and they also provide opportunities to practice coding in R.
+Examples from Chapters 3 -- 10 cover numerical calculations, interpretations, explanations and many also includ a coding component involving R.
+The examples can be studied by students to reinforce concepts covered in the book, to become familiar with mathematical expressions, formulas, terminology and interpretation, and they also provide opportunities to practice coding with R.
 
 
 %\begin{figure}[H]
@@ -706,26 +706,47 @@ The examples can be studied by students to reinforce the concepts covered in the
 
 \section{CONCLUSIONS, REFLECTION AND FUTURE WORK}
 
+Through this project, undergraduate students partnered with faculty to develop an interactive e-book that covers the full content of a typical introductory applied statistics course, completing the work within a single semester using entirely open-source tools. The e-book is freely accessible to anyone with a web browser and an internet connection. Even after deciding to change the development framework midway through the project, we successfully leveraged tools to streamline the conversion process.
+
+The completed e-book is available to students, and all source files and the framework used to create it are openly hosted on GitHub at \href{https://github.com/nishanmudalige/STA258/}{https://github.com/nishanmudalige/STA258/}, making them freely available to the broader statistical education community. Educators can easily fork the repository to create their own version, adapting and personalizing the content to meet the specific needs of their institution’s curriculum.
+
 Beyond its technical and instructional outcomes, this project demonstrates the pedagogical potential of student-led authorship and design. By actively participating in the creation of educational content, students shift from consumers to contributors of knowledge, engaging more deeply with the subject matter.
-
 The process required not only statistical expertise and programming fluency, but also adaptability, design thinking, and critical reflection—skills applicable in both academic and professional contexts. Through collaborative authorship, the final product embodies negotiated decisions, iterative problem-solving, and responsiveness to peer and faculty feedback.
-
 More broadly, the project presents a replicable model of participatory curriculum development that integrates open-source tools, student initiative, and faculty mentorship to generate accessible, engaging, and adaptive learning resources.
+
+The undergraduate students who participated also gained experience with a wide range of tools and skills that would not typically be covered in their formal coursework.
+We engaged in both independent and collaborative learning, developing the ability to work independently on technical tasks and also collaborating effectively to work on components of the project.
+In addition to learning both breadth and depth of software platforms and version-control systems, we were introduced to principles of project management, including setting milestones, tracking progress, coordinating deliverables, and troubleshooting.
+We also developed the ability to be creative with plots and graphics, applying principles of design to produce clear, engaging, and visually effective materials.
+Throughout the project, we benefited from close mentorship with faculty, receiving guidance on both technical and pedagogical aspects of the work.
+We also had the opportunity to interact with external partners, including meetings to gather feedback, discuss design considerations, and align the project with broader educational goals.
+This combination of technical, professional, and interpersonal skill development provided a learning experience that extended well beyond the boundaries of a traditional classroom.
 
 One of the most time-consuming components was designing figures and interactive plots. 
 Although this was challenging, it was also one of the most rewarding aspects of this project.
-Many were created using \texttt{ggplot2} and are now central features of the e-book. 
+Many static plots were created using \texttt{ggplot2}, some static plots and many interactive plots were created using \texttt{plotly}, 
+and all advanced applications were created with \texttt{shiny}. 
+The figures and interactive components are now central features of the e-book which help convey concepts and also distinguish our e-book from an e-book published in a document format such PDF or EPUB, or even the proprietary digital books offered from a publisher.
 They are visually clear, carefully styled, and interactive where appropriate. These visualizations reflect intentional design choices and help communicate complex ideas in a way that is both intuitive and accessible. Although this process was time-consuming, it was also one of the most enjoyable and educational parts of the project.
-
 
 %\section{FUTURE WORK}
 
-While the current version of the e-book successfully integrates core statistical ideas with interactive elements, there are several directions for future development. One important area is expanding the content to include more advanced topics, such as generalized linear models, non-parametric tests, or multivariate analysis. Including these topics would make the resource more useful for students in upper-year or specialized courses.
+While the current version of the e-book successfully integrates core statistical ideas with interactive elements, there are several directions for future development. 
+%One important area is expanding the content to include more advanced topics, such as generalized linear models, non-parametric tests, or multivariate analysis. Including these topics would make the resource more useful for students in upper-year or specialized courses.
+One important area to expand the content is to develop exercises at the end of each chapter for readers to practice, along with solutions.
+Some exercises should also include a computer programming component with data sets.
+Exercises can be added and updated overtime by the course coordinator.
+Since the core content has been established, the inclusion of exercises can be performed in the next phase of the STA258 redevelopment timeline.
 
-Improving accessibility and the overall user experience is another key goal. Possible next steps include optimizing the interface for mobile devices, adding text-to-speech functionality, and offering multilingual options. These features would help the e-book reach a wider range of learners from diverse backgrounds.
 
-From a technical perspective, future versions could explore more extensive use of Shiny dashboards, where students would be able to interact with full datasets and generate real-time statistical outputs within the textbook. Additional features, such as embedded quizzes, automatic feedback on code, and user-submitted notes, could further enhance student engagement and retention of concepts.
+Improving accessibility and the overall user experience is another key goal. 
+Possible next steps include optimizing the interface for mobile devices and developing visual themes with accessible colour palettes to target individuals with specific visual impairments, such as deuteranomaly (red-green colour vision deficiency) which is the most common forms of colour vision deficiency affecting approximately 3.66\% of males (95\% CI: 3.02 -- 4.44) and 0.46\% of females (95\% CI: 0.30 -- 0.69) worldwide, based on a recent systematic review \cite{Jeong2025}.
+%adding text-to-speech functionality, and offering multilingual options. 
+%These features would help the e-book reach a wider range of learners from diverse backgrounds.
 
+From a technical perspective, future versions could explore more extensive use of shiny applications, where students would be able to interact with full datasets and generate real-time statistical output within the e-book. 
+%Additional features, such as embedded quizzes, automatic feedback on code, and user-submitted notes, could further enhance student engagement and retention of concepts.
+We would also like to explore ways in which we can utilize \texttt{rgl} to enhance content.
 In the long term, we hope to maintain and grow the project through continued collaboration between students and faculty. Building a clear versioning system, contributor documentation, and a guide for future authors would help ensure that the e-book remains a living resource that evolves with each new cohort.
 
 
