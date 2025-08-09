@@ -320,16 +320,16 @@ This was done for aesthetic purposes and to provide the e-book with a recognizab
 
 \section{CONTENT AND INTERACTIVE DESIGN}
 
-The textbook is live and available to be accessed at \href{https://nishanmudalige.github.io/STA258/}{nishanmudalige.github.io/STA258/}.
+The textbook is live and available to be accessed at \href{https://nishanmudalige.github.io/STA258/}{https://nishanmudalige.github.io/STA258/}.
 We note that the e-book is still a work in progress since it is one component which is part of an ongoing, long-term course redevelopment project which we discussed in Section \ref{sec:Introduction}.
 
 We selected the default theme of Bookdown since it has a clean layout and appearance.
 The default theme also comes with options for light mode, dark mode and high contrast (sepia) mode with the table of contents appears along the left.
-The landing page in light and dark mode is presented in Figure \ref{fig:landing_page}.
-The table of contents is available on the left of the webpage and it can be hidden if desired.
-There is also a search feature, indicated by the magnifying glass in Figures \ref{subfig:landing_page_default} and \ref{subfig:landing_page_dark}
-where indexing is automatically performed by Bookdown.
-Additional accessibility features to help improve legibility include the ability to increase of decrease font size, increase or decrease spacing between lines and the ability to switch between serif and sans serif fonts.
+The landing page in light and dark mode is presented in Figures \ref{subfig:landing_page_default} and \ref{subfig:landing_page_dark}.
+The table of contents is available on the left of the webpage and it can be hidden if desired using the menu button on the top menu bar.
+
+There is also a search feature where indexing is automatically performed by Bookdown. The search feature is accessed from a magnifying glass icon near the top of the page.
+Additional accessibility features to help improve legibility include the ability to increase of decrease font size, increase or decrease spacing between lines and the ability to switch between serif and sans serif fonts. The search feature and accessibility options are illustrated in Figures \ref{subfig:menu_bar_search} and \ref{subfig:menu_bar_access}
 %\begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
 %    \includegraphics[width=0.7\textwidth]{Images/ebookCover.png}
 %\end{pepadunfigure}
@@ -340,20 +340,34 @@ Additional accessibility features to help improve legibility include the ability
 
 \begin{figure}[h!]
     \centering
-    \begin{subfigure}[t]{0.5\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=0.975\textwidth]{Images/ebookCover.png}
         \caption{Landing page of the e-book in the default layout.}
         \label{subfig:landing_page_default}
     \end{subfigure}%
     \hfill
-    \begin{subfigure}[t]{0.5\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=0.975\textwidth]{Images/ebookCover_dark.png}
         \caption{Landing page of the e-book in dark mode.}
         \label{subfig:landing_page_dark}
+    \end{subfigure}\\[1.00em]
+    %%% New row %%%
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[height=0.125\textheight]{Images/menu_bar_search.png}
+        \caption{Activating the search feature from the menu bar.}
+        \label{subfig:menu_bar_search}
     \end{subfigure}
-    \caption{Landing page of the e-book in the default light theme and dark theme. Notice the table of contents on the left. Icons for changing theme, searching, changing font size and spacing are located near the top left.}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[height=0.125\textheight]{Images/menu_bar_access.png}
+        \caption{Accessibility options accessed from the menu bar.}
+        \label{subfig:menu_bar_access}
+    \end{subfigure}\
+    \caption{Landing page of the e-book in the default light theme and dark theme. Notice the table of contents in the left panel. Icons for changing theme, searching, changing font size and spacing are located near the top left and are elaborated in the sub-figures.}
     \label{fig:landing_page}
 %\setlength{\belowcaptionskip}{-25pt}
 \end{figure}
@@ -389,23 +403,28 @@ Chapter 8 covers one-way analysis of variance;
 Chapter 9 covers simple linear regression, including inference on the slope;
 and 
 Chapter 10 covers chi-square tests for categorical data.
+%The content covered in the ten chapters constitute the material in many typical introductory statistics courses.
 These chapters were further broken down at a more granular level into sub-sections, however the title of these components are not listed for brevity.
-An example of the appearance of text-based content of the body of the e-book is presented in Figure \ref{fig:sample_content}.
 
-\begin{figure}[h!]
+Examples of the appearance of standard text-based content and mathematical statements which appear in the body of the e-book is presented in Figure \ref{fig:sample_content}, 
+highlighting the use of coloured blocks to help distinguish several recurring components, such as definitions, remarks and theorems.
+Notice that mathematical statements and symbols which are rendered with MathJax appear similar to content which would appear in a document rendered using LaTeX.
+
+
+\begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=0.80\textwidth]{Images/example_screen_sec_3_crop.png}
-        \caption{Sample content from the Chapter 3: Descriptive Statistics.}
+        \caption{Sample content from the body of Chapter 3: Descriptive Statistics.}
     \end{subfigure}%
     \hfill
    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=0.80\textwidth]{Images/example_screen_sec_4_crop.png}
-        \caption{Sample content from the Chapter 4: Foundations on inference}
+        \caption{Sample content from the body of Chapter 4: Foundations on inference.}
     \end{subfigure}
-    \caption{Examples of written content of the e-book.}
+    \caption{Examples of content with text and mathematical statements in the e-book.}
     \label{fig:sample_content}
 \end{figure}
 
@@ -413,18 +432,25 @@ An example of the appearance of text-based content of the body of the e-book is 
 Recognizing the importance of technical skills, the second chapter is an introduction to R and its practical uses. 
 This section explains how to install R, use essential functions, and work with basic data structures and visualizations. 
 Together, these elements provide a strong technical foundation. 
-This chapter also provides information on working with R Studio which is a popular integrated development environmentSome examples of (IDE) for programming in R.
-We also introduce positron which is the next-generation of data science IDE that also supports coding with python.
+Installation instructions for both R and R Studio are provided, including screenshots to help guide the reader.
+Information related to working with R Studio was included in this chapter since R Studio is a popular integrated development environmentSome examples of (IDE) for programming in R.
+
 This chapter helps the reader become familiar with R by introducing the language as a powerful calculator and also introduces some basic data structures, functions and graphical plots.
 This sets the necessary ground work for the coding examples which are provided in subsequent chapters.
+
+We also introduce positron which is the next-generation of data science IDE that also supports coding with python.
+Positron was introduced in an attempt to potentially future-proof the e-book and to inform the reader that the creators of the e-book are aware of trends in programming with statistical software.
 %From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
 
-Numerous static figures were created using \texttt{ggplot2} within code blocks in the form of Listing \ref{lst:Markdown_ggplot2}.
+Numerous static figures were created using \texttt{ggplot2}, within code blocks in the form of Listing \ref{lst:Markdown_ggplot2}.
 Some examples of the static figures created are given in Figure \ref{fig:sample_ggplot2}.
-We utilized the default colour palette of \texttt{ggplot2}, or emulated it where necessary for visual consistency.
+We utilized the default colour palette of \texttt{ggplot2}, or emulated it where necessary for visual consistency,
 and also because this colour palette was developed with the principles of effective data visualization and accessibility in mind.
 
-\begin{figure}[h!]
+%\colorbox{yellow!34}{\textcolor{red}{\textbf{AND A FILLER SENTENCE SO FIGURE APPEARS ON NEXT PAGE}}}.\\
+%\colorbox{yellow!34}{\textcolor{red}{\textbf{SO THAT THE MANUSCRIPT LOOKS NICER}}}.
+
+\begin{figure}[h]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -455,7 +481,7 @@ If interactivity was forcefully implemented on to all figures, some of them woul
 Examples of figures created with \texttt{plotly} in which the interactive options were removed are presented in Figure \ref{fig:sample_plotly_static}.
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -593,10 +619,10 @@ Some examples of interactive apps created using \texttt{shiny} are given in Figu
         \includegraphics[width=0.975\textwidth]{Images/interactive_hist_shiny_4.png}
         \caption{Interactive histogram with the slider for bin width set to a bin width of 4 minutes.}
     \end{subfigure}
-    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
+%    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
+    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram which was built with real-world data. This specific used the \textit{faithful} data set which has waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how the appearance of a histogram is sensitive to graphical parameters, enhancing  understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
     \label{fig:interactive_hist_shiny}
 \end{figure}
-
 
 %\begin{figure}[h!]
 %    \centering
@@ -629,7 +655,7 @@ Some examples of interactive apps created using \texttt{shiny} are given in Figu
 %\end{figure}
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     %%% Row 1 %%%
     \begin{subfigure}[t]{0.320\textwidth}
@@ -649,18 +675,18 @@ Some examples of interactive apps created using \texttt{shiny} are given in Figu
 	\includegraphics[width=0.95\textwidth]{Images/interactive_shiny_corr_pos.png}
         \caption{Interactive plot created with \texttt{shiny} to demonstrate correlation between 2 variables showing a data with strong positive correlation with the regression line superimposed.}
     \end{subfigure}%
-    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram built on real-world data. Th specific app was created using the \textit{faithful} data set which has the waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how histogram appearance is sensitive to graphical parameters, enhancing students’ understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
+    \caption{Interactive application which simulates data points based on the correlation and the number of points selected. This allows the user to observe various strengths of positive and negative correlation. The user can also show or hide the ordinary least square regression line on the plot.}
+%    \caption{Interactive application created using \texttt{shiny} that allows students to adjust the bin width for a histogram which was built with real-world data. This specific used the \textit{faithful} data set which has waiting times for the Old Faithful geyser in Yellowstone National Park. The tool demonstrates how the appearance of a histogram is sensitive to graphical parameters, enhancing  understanding of distribution shape and granularity. Notice the title of the histogram also updates based on the numeric value of the bin width the slider has been set to.}
     \label{fig:interactive_corr_shiny}
 \end{figure}
 
 
-The final component in the e-book we would like to discuss are the examples.
-At the end of each major topic in Sections 3 -- 10 of the e-book, we included example questions with solutions. 
+%The final component we would like to discuss are the examples provided.
+At the end of each major topic in Chapters 3 -- 10, we also included examples with complete solutions. 
 Recall that Section 1 introduces the e-book and Section 2 is a section introducing R.
-Therefore, we did not consider the need to include examples for these 2 sections.
-
-Examples from Sections 3 -- 10 covered numerical calculations, interpretations, explanations and many also included a coding component involving R.
-Examples can be studied by students to reinforce the concepts covered in the book and they also provide opportunities to practice coding in R.
+Therefore, it was not necessary to include examples for these two chapters.
+Examples from Chapters 3 -- 10 cover numerical calculations, interpretations, explanations and many also includ a coding component involving R.
+The examples can be studied by students to reinforce concepts covered in the book, to become familiar with mathematical expressions, formulas, terminology and interpretation, and they also provide opportunities to practice coding with R.
 
 
 %\begin{figure}[H]
@@ -680,26 +706,47 @@ Examples can be studied by students to reinforce the concepts covered in the boo
 
 \section{CONCLUSIONS, REFLECTION AND FUTURE WORK}
 
+Through this project, undergraduate students partnered with faculty to develop an interactive e-book that covers the full content of a typical introductory applied statistics course, completing the work within a single semester using entirely open-source tools. The e-book is freely accessible to anyone with a web browser and an internet connection. Even after deciding to change the development framework midway through the project, we successfully leveraged tools to streamline the conversion process.
+
+The completed e-book is available to students, and all source files and the framework used to create it are openly hosted on GitHub at \href{https://github.com/nishanmudalige/STA258/}{https://github.com/nishanmudalige/STA258/}, making them freely available to the broader statistical education community. Educators can easily fork the repository to create their own version, adapting and personalizing the content to meet the specific needs of their institution’s curriculum.
+
 Beyond its technical and instructional outcomes, this project demonstrates the pedagogical potential of student-led authorship and design. By actively participating in the creation of educational content, students shift from consumers to contributors of knowledge, engaging more deeply with the subject matter.
-
 The process required not only statistical expertise and programming fluency, but also adaptability, design thinking, and critical reflection—skills applicable in both academic and professional contexts. Through collaborative authorship, the final product embodies negotiated decisions, iterative problem-solving, and responsiveness to peer and faculty feedback.
-
 More broadly, the project presents a replicable model of participatory curriculum development that integrates open-source tools, student initiative, and faculty mentorship to generate accessible, engaging, and adaptive learning resources.
+
+The undergraduate students who participated also gained experience with a wide range of tools and skills that would not typically be covered in their formal coursework.
+We engaged in both independent and collaborative learning, developing the ability to work independently on technical tasks and also collaborating effectively to work on components of the project.
+In addition to learning both breadth and depth of software platforms and version-control systems, we were introduced to principles of project management, including setting milestones, tracking progress, coordinating deliverables, and troubleshooting.
+We also developed the ability to be creative with plots and graphics, applying principles of design to produce clear, engaging, and visually effective materials.
+Throughout the project, we benefited from close mentorship with faculty, receiving guidance on both technical and pedagogical aspects of the work.
+We also had the opportunity to interact with external partners, including meetings to gather feedback, discuss design considerations, and align the project with broader educational goals.
+This combination of technical, professional, and interpersonal skill development provided a learning experience that extended well beyond the boundaries of a traditional classroom.
 
 One of the most time-consuming components was designing figures and interactive plots. 
 Although this was challenging, it was also one of the most rewarding aspects of this project.
-Many were created using \texttt{ggplot2} and are now central features of the e-book. 
+Many static plots were created using \texttt{ggplot2}, some static plots and many interactive plots were created using \texttt{plotly}, 
+and all advanced applications were created with \texttt{shiny}. 
+The figures and interactive components are now central features of the e-book which help convey concepts and also distinguish our e-book from an e-book published in a document format such PDF or EPUB, or even the proprietary digital books offered from a publisher.
 They are visually clear, carefully styled, and interactive where appropriate. These visualizations reflect intentional design choices and help communicate complex ideas in a way that is both intuitive and accessible. Although this process was time-consuming, it was also one of the most enjoyable and educational parts of the project.
-
 
 %\section{FUTURE WORK}
 
-While the current version of the e-book successfully integrates core statistical ideas with interactive elements, there are several directions for future development. One important area is expanding the content to include more advanced topics, such as generalized linear models, non-parametric tests, or multivariate analysis. Including these topics would make the resource more useful for students in upper-year or specialized courses.
+While the current version of the e-book successfully integrates core statistical ideas with interactive elements, there are several directions for future development. 
+%One important area is expanding the content to include more advanced topics, such as generalized linear models, non-parametric tests, or multivariate analysis. Including these topics would make the resource more useful for students in upper-year or specialized courses.
+One important area to expand the content is to develop exercises at the end of each chapter for readers to practice, along with solutions.
+Some exercises should also include a computer programming component with data sets.
+Exercises can be added and updated overtime by the course coordinator.
+Since the core content has been established, the inclusion of exercises can be performed in the next phase of the STA258 redevelopment timeline.
 
-Improving accessibility and the overall user experience is another key goal. Possible next steps include optimizing the interface for mobile devices, adding text-to-speech functionality, and offering multilingual options. These features would help the e-book reach a wider range of learners from diverse backgrounds.
 
-From a technical perspective, future versions could explore more extensive use of Shiny dashboards, where students would be able to interact with full datasets and generate real-time statistical outputs within the textbook. Additional features, such as embedded quizzes, automatic feedback on code, and user-submitted notes, could further enhance student engagement and retention of concepts.
+Improving accessibility and the overall user experience is another key goal. 
+Possible next steps include optimizing the interface for mobile devices and developing visual themes with accessible colour palettes to target individuals with specific visual impairments, such as deuteranomaly (red-green colour vision deficiency) which is the most common forms of colour vision deficiency affecting approximately 3.66\% of males (95\% CI: 3.02 -- 4.44) and 0.46\% of females (95\% CI: 0.30 -- 0.69) worldwide, based on a recent systematic review \cite{Jeong2025}.
+%adding text-to-speech functionality, and offering multilingual options. 
+%These features would help the e-book reach a wider range of learners from diverse backgrounds.
 
+From a technical perspective, future versions could explore more extensive use of shiny applications, where students would be able to interact with full datasets and generate real-time statistical output within the e-book. 
+%Additional features, such as embedded quizzes, automatic feedback on code, and user-submitted notes, could further enhance student engagement and retention of concepts.
+We would also like to explore ways in which we can utilize \texttt{rgl} to enhance content.
 In the long term, we hope to maintain and grow the project through continued collaboration between students and faculty. Building a clear versioning system, contributor documentation, and a guide for future authors would help ensure that the e-book remains a living resource that evolves with each new cohort.
 
 
