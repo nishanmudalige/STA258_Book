@@ -249,7 +249,7 @@ a_smp <- 2.6; b_smp <- 1.25
 pop_title_y <- pop_ctr_y + 0.25
 pop_stats_y <- pop_ctr_y - 0.25
 pop_rects <- data.frame(
-  cx = c(0, 0.0), cy = c(pop_title_y, pop_stats_y),
+  cx = c(0, 0.1), cy = c(pop_title_y, pop_stats_y),
   w  = c(1.30, 3.50), h  = c(0.60, 0.75)
 )
 
@@ -325,7 +325,7 @@ p <- plot_ly() %>%
       # Population title & stats (LaTeX)
       list(x = 0, y = pop_title_y, text = "Population", showarrow = FALSE,
            font = list(size = 20, color = "white", family="Arial")),
-      list(x = 0, y = pop_stats_y, text = "$$Parameters \\ such \\ as \\ μ,\\ \\sigma,\\ p$$", showarrow = FALSE,
+      list(x = -0.2, y = pop_stats_y, text = "$$Parameters \\ such \\ as \\ μ,\\ \\sigma,\\ p$$", showarrow = FALSE,
            font = list(size = 18, color = "white")),
       # Sample title & stats (LaTeX)
       list(x = 0, y = smp_title_y, text = "Sample", showarrow = FALSE,
