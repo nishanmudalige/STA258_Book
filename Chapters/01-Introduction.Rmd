@@ -44,15 +44,12 @@ data.
 In statistics, researchers are often interested in characteristics of a large group of interest. They often observe behaviours, patterns, trends etc. to give a conclusion for  the group. To make the conclusions, researchers require data to support them.
 
 ::: {.definition name="Population" #Pop}
-A population is a set of similar observations which is of
-interest for some experimental questions. It can be a set of existing
-objects such as all people in Canada, or hypothetical group of existing
-objects such as the set of all possible hands in a game of poker.
+In statistics, a population is the entire group of individuals, items, or measurements that share a characteristic of interest and about which conclusions are to be drawn.
 :::
 
 A population can be a set of existing objects such as all people in Canada, or hypothetical group of existing objects such as the set of all possible hands in a game of poker.
 Populations are often large.
-Some more examples are given below.
+Additional examples are given below.
 
 ::: {.example}
 - All students at the University of Toronto
@@ -63,21 +60,67 @@ Data collection from every object in a population is often not feasible to perfo
 Researchers often select a finite number of observations to study.
 
 ::: {.definition name="Sample" #Sample}
-A sample refers to a subset from population.
+A sample is a subset from population.
 :::
+
+Samples are smaller than a population and are therefore easier to manage.
+Researchers are often able to take measurements on all units in a sample.
 
 ::: {.example}
 - A random sample of 50 students at the University of Toronto.
 - A random sample of 100 residents of Mississauga.
 :::
 
+
 ::: {.definition name="Unit" #Unit}
-The objects within a sample for which data are collected.
+A unit (or observational unit, element) is the smallest entity in a study from which data are collected or measured. It is the fundamental building block of the data set.
 :::
 
 ::: {.example}
 - In a sample of 10 students, a unit would be one of the students in this sample.
 :::
+
+Each unit has certain characteristics we can measure. When we record the values of all characteristics for a particular unit, we obtain an **observation**.
+
+::: {.definition name="Observation" #Observation}
+An observation is the collection of measured values for all variables from a single unit. In a data table, one row typically represents one observation.
+:::
+
+::: {.example}
+- If a student’s age, height, and weight are recorded, the set of these three values for that student is one observation.
+:::
+
+The characteristics themselves are called **variables**. Variables can be numerical (e.g., height) or categorical (e.g., eye colour) and describe different aspects of the units we are studying.
+
+::: {.definition name="Variable" #Variable}
+A variable is a characteristic or attribute that can be measured or recorded for each unit, and can vary from unit to unit. In a data table, one column typically represents one variable.
+:::
+
+::: {.example}
+- If we record the age of each student in a study, “age” is the variable.
+:::
+
+In any statistical investigation, we first define the **population**—the full set of units we want to study. A **population unit** is simply one member of that full set.
+
+::: {.definition name="Population Unit" #PopulationUnit}
+A population unit is a unit that belongs to the entire population — the complete set of units that share the characteristic(s) of interest in a study.
+:::
+
+::: {.example}
+- If the population is all students at a university, then one student at that university is a population unit.
+:::
+
+Because studying an entire population is often impractical, we select a smaller group—a **sample**—to represent it. A **sample unit** is one member of that smaller group.
+
+::: {.definition name="Sample Unit" #SampleUnit}
+A sample unit is a unit that is part of the sample — the subset of the population selected for measurement or observation in the study.
+:::
+
+::: {.example}
+- If we select 50 students from a university for a survey, one of these selected students is a sample unit.
+:::
+
+By clearly distinguishing these terms, we can describe our data precisely, communicate our methods effectively, and avoid confusion when interpreting results.
 
 There are characteristics of a population and sample which are of interest to us.
 
@@ -206,15 +249,15 @@ a_smp <- 2.6; b_smp <- 1.25
 pop_title_y <- pop_ctr_y + 0.25
 pop_stats_y <- pop_ctr_y - 0.25
 pop_rects <- data.frame(
-  cx = c(0, 0), cy = c(pop_title_y, pop_stats_y),
-  w  = c(1.6, 1.0), h  = c(0.60, 0.50)
+  cx = c(0, 0.0), cy = c(pop_title_y, pop_stats_y),
+  w  = c(1.30, 3.50), h  = c(0.60, 0.75)
 )
 
 smp_title_y <- samp_ctr_y + 0.21
 smp_stats_y <- samp_ctr_y - 0.21
 smp_rects <- data.frame(
   cx = c(0,0), cy = c(smp_title_y, smp_stats_y),
-  w  = c(0.95,0.8), h  = c(0.525,0.52)
+  w  = c(0.90, 2.25), h  = c(0.525, 0.575)
 )
 
 epsilon <- abs(0.06)
@@ -267,7 +310,7 @@ p <- plot_ly() %>%
       # straight arrow
       list(
         x   =  0.00, y   = samp_ctr_y + 1.25,
-        ax  =  0.00, ay  = pop_ctr_y - 1.975,
+        ax  =  0.00, ay  = pop_ctr_y - 1.78,
         xref= 'x',     yref= 'y',
         axref= 'x',    ayref= 'y',
         showarrow = TRUE,
@@ -277,18 +320,18 @@ p <- plot_ly() %>%
         text = ''
       ),
       # "draw"
-      list(x = 0.50, y = -0.20, text = "draw", showarrow = FALSE,
+      list(x = 0.50, y = -0.60, text = "draw", showarrow = FALSE,
            font = list(size = 16, color = "black")),
       # Population title & stats (LaTeX)
       list(x = 0, y = pop_title_y, text = "Population", showarrow = FALSE,
-           font = list(size = 18, color = "black", family="Arial")),
-      list(x = 0, y = pop_stats_y, text = "$$μ,\\ \\sigma,\\ p$$", showarrow = FALSE,
-           font = list(size = 16, color = "black")),
+           font = list(size = 20, color = "white", family="Arial")),
+      list(x = 0, y = pop_stats_y, text = "$$Parameters \\ such \\ as \\ μ,\\ \\sigma,\\ p$$", showarrow = FALSE,
+           font = list(size = 18, color = "white")),
       # Sample title & stats (LaTeX)
       list(x = 0, y = smp_title_y, text = "Sample", showarrow = FALSE,
-           font = list(size = 18, color = "black", family="Arial")),
-      list(x = 0, y = smp_stats_y, text = "$$\\bar{x},\\ s,\\ \\hat{p}$$", showarrow = FALSE,
-           font = list(size = 16, color = "black"))
+           font = list(size = 18, color = "white", family="Arial")),
+      list(x = 0, y = smp_stats_y, text = "$$Statistics \\ such \\ as \\ \\bar{x},\\ s,\\ \\hat{p}$$", showarrow = FALSE,
+           font = list(size = 14, color = "white"))
     )
   ) %>%
   # Enable MathJax so that $...$ renders correctly
