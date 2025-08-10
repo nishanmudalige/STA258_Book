@@ -98,10 +98,10 @@ We present an innovative approach where undergraduate students collaborated with
 %This process allows undergraduate students to be co-authors rather than passive readers, fostering an appreciation for reproducible research, provides opportunities for collaboration, learning about project management and work flows, and gaining opportunities to independently learn and apply new skills and technologies.
 This process transforms undergraduates into co-authors rather than passive readers, fosters an appreciation for reproducible research, encourages academic collaboration, and offers hands-on opportunities to acquire and apply new skills and technologies.
 Faculty also benefit from fresh ideas and new perspectives.
-This type of collaboration is important to explore since evidence on student--faculty partnerships on developing course materials is sparse in the literature, particularly in a Canadian context and in the area of statistics.
+This type of collaboration is important to explore since evidence on student-faculty partnerships in developing course materials is sparse in the literature, particularly in a Canadian context and in the area of statistics.
 %To address this, we collaborated with faculty to develop and contribute to developing a live, interactive e-book for an applied statistics course at the University of Toronto Mississauga.
-In this paper, we illustrate the contributions of undergraduate students to curricular innovation in the development of the e-book by describing the development process, methodology and software tools used, and reflect on our experience in the process of being collaborators alongside faculty.
-Our participation deepened our own learning while producing resources to benefit future learners, we highlight the potential of open-source technologies and student–faculty collaboration to support the development of inclusive, adaptive, and accessible resources for statistical education.
+In this paper, we illustrate the contributions of undergraduate students to curricular innovation in the development of the e-book by describing the development process, methodology, and software tools used, and reflect on our experience as collaborators alongside faculty.
+Our participation deepened our learning while producing resources to benefit future learners. We highlight the potential of open-source technologies and student–faculty collaboration to support the development of inclusive, adaptive, and accessible resources for statistical education.
 
 \keywords{Bookdown, statistics education, curriculum development, interactive technology}
 
@@ -110,47 +110,47 @@ Our participation deepened our own learning while producing resources to benefit
 \section{INTRODUCTION}
 \label{sec:Introduction}
 
-Undergraduate courses designed through a partnership between faculty and students can deepen engagement and develop a meaningful learning experience \cite{Healey2016,Bovill2019}. 
+Undergraduate courses designed through a partnership between faculty and students can deepen engagement and develop a meaningful learning experience \cite{Healey2016, Bovill2019}. 
 Students are provided with the opportunity to be co-creators, rather than simply passive recipients of information, thereby encouraging them to take ownership of their educational journey, and faculty gain fresh insights into how students learn \cite{Healey2016}.
-These partnerships between deepen engagement and promote more authentic learning experiences for both students and faculty involved \cite{Healey2016,Bengtson2013}.
-Systematic reviews highlight that such collaborations enhance motivation, empower students, and enrich teaching practice, yet they have not been studied or documented uniformly across disciplines \cite{MercerMapstone2017,Bovill2019} and reports of whole-course co-creation are particularly limited within statistics education \cite{Kim2022}. 
-Systematic reviews by Mercer et.al \cite{MercerMapstone2017} and Omland et. al discuss several studies where students and faculty have partnered in course designed internationally, however there is a lack of such collaboration documents in relation to mathematics and statistics education \cite{Duah2011}.
+These partnerships deepen engagement and promote more authentic learning experiences for both students and faculty involved \cite{Healey2016, Bengtson2013}.
+Systematic reviews highlight that such collaborations enhance motivation, empower students, and enrich teaching practice; however, they have not been studied or documented uniformly across disciplines \cite{MercerMapstone2017, Bovill2019}. Reports of whole-course co-creation are particularly limited within statistics education \cite{Kim2022}. 
+Systematic reviews by Mercer et al. \cite{MercerMapstone2017} and Omland et al. discuss several studies where students and faculty have partnered in course design internationally. However, there is a lack of such collaboration documents about mathematics and statistics education \cite{Duah2011}.
 To the best of our knowledge, we could not find any collaborations specifically in a Canadian context.
 
 Furthermore, many undergraduate statistics courses introduce foundational concepts through traditional lectures and texts. 
-Even digital versions of textbooks are still usually static with limited advantages beyond quickly searching for content and conveniently applying bookmarks.
+Even digital versions of textbooks are still typically static, offering limited advantages beyond the ability to quickly search for content and conveniently apply bookmarks.
 While these approaches build necessary theoretical understanding, they are often unable to provide opportunities for students to interact meaningfully with statistical methods or explore real-world applications. 
-Topics such as hypothesis testing, confidence intervals, and regression frequently may remain abstract due to limited context and passive delivery formats  
+Topics such as hypothesis testing, confidence intervals, and regression may frequently remain abstract due to limited context and passive delivery formats  
 \colorbox{yellow!34}{\textcolor{red}{\textbf{[PLEASE FIND CITATION TO JUSTIFY THIS]}}}.
 
 
-Our project emerged in response to those to the lack of study in student-faculty collaboration in co-developing course material and to simultaneously address the limitations of traditional texts in statistics. 
-We partnered with faculty through the \textit{STA378: Independent Research Project Course}, at the University of Toronto Mississauga (UTM) to assist the current course coordinator, for \textit{STA258: Statistics with Applied Probability}, develop an interactive e-book for the course as part of an on-going course redevelopment project.
-STA258 is an introductory applied statistics course at UTM where most students are learn about applied inference techniques (i.e. testing of hypotheses, interval estimation) and regression for the first time in their university learning experience.
-This is an important course since it provides students with the foundational skills for data analysis and equips them with the ability to interpret statistical results in advanced courses across all disciplines, including other statistics courses, the life sciences, social sciences, economics and finance and computer science courses requiring a knowledge of inference.
-This course also provides students with the ability to read and interpret statistical results from academic journals which is essential for critically evaluating research, making evidence-based decisions, and succeeding in advanced study and professional practice in both academic and non-academic settings.
+Our project emerged in response to the lack of study in student-faculty collaboration in co-developing course material and to simultaneously address the limitations of traditional texts in statistics. 
+We partnered with faculty through the \textit{STA378: Independent Research Project Course}, at the University of Toronto Mississauga (UTM), to assist the current course coordinator, for \textit{STA258: Statistics with Applied Probability}, develop an interactive e-book for the course as part of an ongoing course redevelopment project.
+STA258 is an introductory applied statistics course at UTM where most students learn about applied inference techniques (i.e., testing of hypotheses, interval estimation) and regression for the first time in their university learning experience.
+This is an important course since it provides students with the foundational skills for data analysis and equips them with the ability to interpret statistical results in advanced courses across all disciplines, including other statistics courses, the life sciences, social sciences, economics, finance, and computer science courses requiring a knowledge of inference.
+This course also provides students with the ability to read and interpret statistical results from academic journals, which is essential for critically evaluating research, making evidence-based decisions, and succeeding in advanced study and professional practice in both academic and non-academic settings.
 
-The current course coordinator is involved in a long term project to redesign the content in STA258. 
+The current course coordinator is involved in a long-term project to redesign the content in STA258. 
 There are several reasons justifying the development of STA258.
 One such reason is that it currently overlaps considerably with \textit{STA260: Probability and Statistics II}, with both courses sharing common introductory content.
 Students simultaneously enrolled in both courses experience substantial duplication in the content delivered to them during the opening weeks of both courses.
 Another reason to redevelop STA258 is the necessity to incorporate more data analysis components to modernize the course and make it more relevant for students by equipping them with foundational skills for independent statistical analysis.
-There some distinct features of STA258 which makes it a good candidate for collaborative re-design between students and faculty.
-Within the University of Toronto system, STA258 is only offered at the Mississauga campus and there is no equivalent course or combination of courses available at the St. George campus or the Scarborough campus.
-Therefore, it has the potential to be a self-contained course which can equip students with the skills required providing an efficient pathway for students to learn important skills related to statistical reasoning, which is equivalent to multiple courses from other campuses, 
-Redesigning STA258 eliminates the necessity for the Department of Mathematical and Computational Sciences at UTM to go through lengthy development and approval process required for an entirely new course to address the curricular gap.
+There are some distinct features of STA258 that make it a good candidate for collaborative re-design between students and faculty.
+Within the University of Toronto system, STA258 is only offered at the Mississauga campus, and there is no equivalent course or combination of courses available at the St. George campus or the Scarborough campus.
+Therefore, it has the potential to be a self-contained course which can equip students with the skills required, providing an efficient pathway for students to learn important skills related to statistical reasoning, which is equivalent to multiple courses from other campuses.
+Redesigning STA258 eliminates the necessity for the Department of Mathematical and Computational Sciences at UTM to go through the lengthy development and approval process required for an entirely new course to address the curricular gap.
 
-The core team working on this project consisted of the two undergraduate authors of this paper, and two faculty members who are both Assistant Professors in Statistics at the Department of Mathematical and Computational Sciences at UTM. One of the faculty members is the current course coordinator for STA258.
+The core team working on this project consisted of the two undergraduate authors of this paper and two faculty members who are both Assistant Professors in Statistics at the Department of Mathematical and Computational Sciences at UTM. One of the faculty members is the current course coordinator for STA258.
 We contributed to content development and the technical implementation, and the faculty members provided consistent guidance through regular meetings, detailed feedback, training with software, and contributed critical input into decisions regarding the e-book’s structure and tools.
-Both Professors also assisted with trouble shooting and the course coordinator contributed a substantial amount towards the coding component, particularly with initiating the framework and resolving some of the more challenging components.
+Both Professors also assisted with troubleshooting, and the course coordinator contributed a substantial amount towards the coding component, particularly with initiating the framework and resolving some of the more challenging components.
 We also received valuable feedback from two additional external partners 
 %Dr. Steve Tully, Mathematics Professor at Okanagan College, and Avanti Coonghe, Communications and Design Consultant at the United Nations (World Health Organization), 
 who provided suggestions related to content scope, pedagogical structure, and overall educational value.
-One of the external partners is faculty at a College in British Columbia and the other is an expert consultant in communication and design of digital assets.
-We met with faculty weekly for progress checks and trouble shooting and we met with our external partners approximately once a month to provide progress updates and to receive feedback.
+One of the external partners is faculty at a College in British Columbia, and the other is an expert consultant in communication and design of digital assets.
+We met with faculty weekly for progress checks and troubleshooting, and with our external partners approximately once a month to provide progress updates and to receive feedback.
 One of the authors was living outside of Canada and joined meetings through video conference.
 
-During the initial phase of the STA258 course development timeline, we as undergraduate students worked alongside Dr. Mudalige and Dr. Ataei to produce an open-access, interactive e-book which integrates narrative exposition, reproducible simulations and examples involving code, embeds visualizations and interactive components to explain concepts, and provides an open-source resource for educators in the broader statistical community.
+During the initial phase of the STA258 course development timeline, we as undergraduate students worked alongside Dr. Mudalige and Dr. Ataei to produce an open-access, interactive e-book which integrates narrative exposition, reproducible simulations, and examples involving code, embeds visualizations and interactive components to explain concepts, and provides an open-source resource for educators in the broader statistical community.
 This paper outlines the framework that guided our partnership, describes the authoring workflow (version control, peer review, and continuous deployment), and reflects on early outcomes. By sharing these first-phase results, we aim to provide a practical model for implementing student-faculty co-creation in applied statistics and related quantitative courses.
 
 %In summer 2025, a collaborative initiative between undergraduate students and faculty sought to restructure the delivery of statistical content through an interactive, web-based e-book. The objective was to develop a resource that not only explained statistical theory, but also incorporated dynamic learning tools—including live code, responsive graphics, and simulation-based applications—to enhance student engagement and agency.
