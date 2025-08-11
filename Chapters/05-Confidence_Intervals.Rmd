@@ -187,41 +187,112 @@ The critical value $z_{\ast}$ is illustrated in Figure \@ref(fig:ConfLevelImg) b
 depends on $C$.
 
 ```{r ConfLevelImg, fig.cap="The central area under the standard normal curve with confidence level \\(C\\)", echo=FALSE, fig.align='center', warning=FALSE, message=FALSE}
-library(ggplot2)
+library(plotly)
 library(dplyr)
 
 # Parameters
-z <- seq(-4, 4, length.out = 1000)
-curve <- dnorm(z)
-C <- 0.95
+z      <- seq(-4, 4, length.out = 1000)
+curve  <- dnorm(z)
+C      <- 0.95
 z_star <- qnorm(1 - (1 - C)/2)
 
-# Data frames
-df <- tibble(z = z, density = curve)
+# Data
+df        <- tibble(z = z, density = curve)
 df_shaded <- df %>% filter(z >= -z_star & z <= z_star)
 
-# Plot
-ggplot(df, aes(x = z, y = density)) +
-  geom_line(size = 1.2) +
-  geom_ribbon(data = df_shaded, aes(ymin = 0, ymax = density),
-              fill = "#00C0B8", alpha = 0.6) +
-  geom_hline(yintercept = 0) +
-  scale_x_continuous(breaks = c(-z_star, 0, z_star),
-                     labels = c(expression(-z^"*"), "0", expression(z^"*")),
-                     limits = c(-4, 4)) +
-  annotate("text", x = 0, y = 0.12, label = "Probability = C", size = 5) +
-  annotate("text", x = z_star + 0.6, y = 0.20,
-           label = expression((1 - C)/2), parse = TRUE, size = 4) +
-  annotate("segment",
-           x = z_star + 0.55, y = 0.18,
-           xend = z_star + 0.1, yend = dnorm(z_star),
-           arrow = arrow(length = unit(0.2, "cm"))) +
-  theme_minimal(base_size = 14) +
-  theme(
-    axis.title = element_blank(),
-    axis.text.y = element_blank(),
-    axis.ticks.y = element_blank(),
-    panel.grid = element_blank()
+# Bracket positioning
+bracket_height <- 0.08   # height above axis for brackets
+bracket_width  <- 0.0    # horizontal length of top bar
+cap_height     <- 0.02   # vertical cap height
+
+# x-range for tails
+left_end_x  <- min(df$z)  + 0.001  # nudge inside so left cap is visible
+right_end_x <- max(df$z)  - 0.001  # nudge inside so right cap is visible
+
+# Build plot
+plot_ly() |>
+  # Shaded central area
+  add_ribbons(
+    x = df_shaded$z,
+    ymin = 0,
+    ymax = df_shaded$density,
+    fillcolor = "rgba(0,192,184,0.6)",
+    line = list(color = "rgba(0,0,0,0)"),
+    hoverinfo = "skip"
+  ) |>
+  # Density curve
+  add_trace(
+    x = df$z, y = df$density,
+    type = "scatter", mode = "lines",
+    line = list(width = 3, color = "rgba(0,192,184,0.6)"),
+    hovertemplate = "z=%{x:.2f}<br>f(z)=%{y:.3f}<extra></extra>"
+  ) |>
+  layout(
+    xaxis = list(
+      title = "",
+      range = c(-4.2, 4.2),
+      tickvals = c(-z_star, 0, z_star),
+      ticktext = c("\u2212z\u002A", "0", "z\u002A"),  # minus z* and z*
+      tickfont = list(size = 18),                     # increased font size
+      zeroline = FALSE,
+      showgrid = FALSE
+    ),
+    yaxis = list(
+      title = "",
+      showticklabels = FALSE,
+      showgrid = FALSE,
+      zeroline = FALSE
+    ),
+    shapes = list(
+      # baseline y = 0
+      list(type = "line", x0 = -4, x1 = 4, y0 = 0, y1 = 0,
+           line = list(color = "black", width = 1)),
+      
+      # ---- LEFT BRACKET ----
+      list(type = "line",
+           x0 = left_end_x, x1 = -z_star,
+           y0 = bracket_height, y1 = bracket_height,
+           line = list(color = "black", width = 2)),
+      list(type = "line",
+           x0 = left_end_x, x1 = left_end_x,
+           y0 = bracket_height, y1 = bracket_height - cap_height,
+           line = list(color = "black", width = 2)),
+      list(type = "line",
+           x0 = -z_star, x1 = -z_star,
+           y0 = bracket_height, y1 = bracket_height - cap_height,
+           line = list(color = "black", width = 2)),
+      
+      # ---- RIGHT BRACKET ----
+      list(type = "line",
+           x0 = z_star, x1 = right_end_x,
+           y0 = bracket_height, y1 = bracket_height,
+           line = list(color = "black", width = 2)),
+      list(type = "line",
+           x0 = z_star, x1 = z_star,
+           y0 = bracket_height, y1 = bracket_height - cap_height,
+           line = list(color = "black", width = 2)),
+      list(type = "line",
+           x0 = right_end_x, x1 = right_end_x,
+           y0 = bracket_height, y1 = bracket_height - cap_height,
+           line = list(color = "black", width = 2))
+    ),
+    annotations = list(
+      # C/2 above each bracket
+      list(x = (left_end_x + (-z_star)) / 2,  y = bracket_height + 0.02,
+           text = "(C/2)%", showarrow = FALSE, font = list(size = 14)),
+      list(x = (z_star + right_end_x) / 2,    y = bracket_height + 0.02,
+           text = "(C/2)%", showarrow = FALSE, font = list(size = 14)),
+      list(x = 0, y = 0.12, text = "C%",
+           showarrow = FALSE, font = list(size = 16))
+    ),
+    plot_bgcolor  = "rgba(0,0,0,0)",
+    paper_bgcolor = "rgba(0,0,0,0)",
+    margin = list(l = 40, r = 20, t = 20, b = 50),
+    showlegend = FALSE
+  ) |>
+  config(
+    displayModeBar = FALSE,      # remove mode bar
+    staticPlot = TRUE            # disable zoom/pan
   )
 ```
 
