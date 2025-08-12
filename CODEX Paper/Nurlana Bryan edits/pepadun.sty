@@ -1,0 +1,157 @@
+% pepadun.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pepadun}[2023/06/23 Template Jurnal Pepadun]
+
+
+\RequirePackage[a4paper,top=3.25cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\RequirePackage{times}
+\RequirePackage{setspace}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{graphicx}
+\RequirePackage{array}
+\RequirePackage{booktabs}
+\RequirePackage{amsmath}
+% \RequirePackage[style=ieee]{biblatex}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{hyperref}
+
+\usepackage[backend=biber, style=ieee]{biblatex}
+\addbibresource{pepadun.bib}  
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=doi, final]
+      \step[fieldset=url, null]
+      \step[fieldset=eprint, null]
+    }
+  }
+}
+
+
+% \renewcommand{\figurename}{Gambar}
+% \renewcommand{\tablename}{Tabel}
+
+
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{12pt}
+
+
+\renewcommand{\normalsize}{\fontsize{11}{13}\selectfont}
+\newcommand{\titlefont}{\fontsize{12}{14}\selectfont\bfseries}
+\newcommand{\affilfont}{\fontsize{10}{12}\selectfont}
+\newcommand{\abstractfont}{\fontsize{10}{12}\selectfont\itshape}
+\newcommand{\keywordfont}{\fontsize{10}{12}\selectfont}
+\newcommand{\captionfont}{\fontsize{10}{12}\selectfont}
+
+
+\renewcommand{\maketitle}{%
+    \begin{center}
+        {\titlefont \@title \par}
+        \vspace{12pt}
+        {\affilfont \@author \par}
+        {\affilfont \@date \par}
+    \end{center}
+}
+
+
+\titleformat{\section}
+{\titlefont\raggedright}
+{\thesection}{1em}{}
+[\vspace{1pt}] 
+
+
+\titlespacing*{\section}{0pt}{3pt}{3pt}
+
+
+\titleformat{\subsection}
+{\fontsize{11}{13}\selectfont\bfseries\raggedright}
+{\thesubsection}{1em}{}
+[\vspace{3pt}]
+
+
+\titlespacing*{\subsection}{0pt}{3pt}{3pt}
+
+% Format abstract
+\renewenvironment{abstract}{
+    \vspace{3pt}
+    \noindent\textbf{\textit{Abstract}} - \textit\abstractfont
+}{
+    \par
+    \vspace{3pt}
+}
+
+% Format keywords
+\newcommand{\keywords}[1]{
+    \vspace{3pt}
+    \noindent\textbf{\textit{Keywords}:} \keywordfont #1
+    \vspace{3pt}
+}
+
+
+\newenvironment{pepaduntable}[1]
+{
+    \begin{table}[ht]
+    \vspace{10pt}
+    \centering
+    \captionfont
+    \def\pepaduntabcaption{#1}
+    \vspace{-6pt}
+}
+{
+    \caption{\pepaduntabcaption}
+    \end{table}
+    \vspace{6pt}
+}
+
+
+\newenvironment{pepadunfigure}[1]
+{
+    \begin{figure}[ht]
+    \vspace{6pt}
+    \centering
+    \captionfont
+    \def\pepadunfigcaption{#1}
+}
+{
+    \caption{\pepadunfigcaption}
+    \end{figure}
+    \vspace{10pt}
+}
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt} 
+\fancyhf{} 
+\fancyhead[L]{\textit{Journal of Computing, Data, and Exploration}}
+\fancyhead[R]{\textit{Vol. 1, No. 1, The CODEX}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\counterwithin{equation}{section}
+\newcommand{\eqmargin}{1.27pt}
+\everydisplay{\setlength{\abovedisplayskip}{12pt}}
+\everydisplay{\setlength{\belowdisplayskip}{12pt}}
+
+\defbibheading{bibliography}[\refname]{
+    \section*{#1}
+    \vspace{12pt}
+}
+\AtEveryBibitem{\setlength{\itemsep}{6pt}}
+
+
+\newenvironment{nomenclature}
+{\section*{NOMENCLATURES}
+ \begin{tabular}{@{}l l l@{}}
+}
+{\end{tabular}}
+
+
+\newenvironment{acknowledgments}
+{\section*{ACKNOWLEDGMENTS}}
+{}
+
+\endinput
