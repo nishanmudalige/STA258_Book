@@ -183,13 +183,13 @@ However, there are limitations with this approach, including being limited to fi
 Although we began the e-book in LaTeX, midway through our development we learned about Bookdown, which is an R package developed for writing materials such as books and long-form content with R Markdown. 
 %Bookdown has the advantage of converting R Markdown into responsive HTML, EPUB, and print-ready PDF while automatically generating cross-references and a searchable table of contents, LaTeX can be typeset within R Markdown documents, the HTML output from Bookdown can embed live R code, interactive widgets, and interactive apps using libraries such as \texttt{shiny} and \texttt{plotly}, giving students a hands-on e-book experience that fixed-layout PDFs cannot match, and a book generated in Bookdown can be hosted on GitHub pages allowing anyone with an internet connection to easily access it.
 Bookdown can convert R Markdown into responsive HTML, EPUB, and print-ready PDF, while automatically generating cross-references and a searchable table of contents. It also supports LaTeX typesetting directly within R Markdown documents. The HTML output from Bookdown can embed live R code, interactive widgets, and apps using libraries such as \texttt{shiny} and \texttt{plotly}, giving students a hands-on e-book experience that fixed-layout PDFs cannot match. In addition, a Bookdown project can be hosted on GitHub Pages, making it freely accessible to anyone with an internet connection.
-LaTeX code written in Bookdown is rendered using MathJax which is an open-source JavaScript library for mathematical symbols and equations for web browsers.
+LaTeX code written in Bookdown is rendered using MathJax, which is an open-source JavaScript library for mathematical symbols and equations for web browsers.
 Therefore, the vast majority of content that can be typeset in LaTeX can be rendered on a browser using Bookdown.
-Due to its many advantages over traditional LaTeX, we decided to transition to the Bookdown framework since it proved more compatible with the goals of interactive and accessible online learning. 
+Due to its many advantages over traditional LaTeX, we decided to transition to the Bookdown framework, since it proved more compatible with the goals of interactive and accessible online learning. 
 
-This shift from LaTeX to Bookdown allowed us to integrate dynamic and interactive elements that enhance student engagement and understanding and
+This shift from LaTeX to Bookdown allowed us to integrate dynamic and interactive elements that enhance student engagement and understanding.
 %More importantly, Bookdown offered key features such as inline code execution, interactive graphics, and dynamic cross-referencing of equations, figures, and tables—transforming static content into a fully interactive learning resource.
-transformed static content into a fully interactive learning resource.
+With Bookdown, we transitioned from producing a static PDF to creating a fully interactive and engaging learning resource.
 The conversion from LaTeX (.tex) to R Markdown (.Rmd) was performed using Pandoc, with the majority of the formatting and structure intact. Pandoc also preserved most of the fidelity of the LaTeX code during the conversion. 
 The syntax used for the conversion is given in Listings \ref{lst:tex_to_rmd_basic} and \ref{lst:tex_to_rmd_mathjax}.\\
 
@@ -234,11 +234,11 @@ Once we established our framework, we selected other open-source tools and progr
 \renewcommand\arraystretch{1.00}
 
 The tools utilized in Table \ref{tab:ebook_Technologies} were intentionally selected for their compatibility, transparency, and capacity to support reproducible computing. 
-Some tools were used directly such as R Markdown and R, while others were secondary technologies that were used by the frameworks in rendering the e-book.
+Some tools were used directly, such as R Markdown and R, while others were secondary technologies that were used by the frameworks in rendering the e-book.
 GitHub served both as a collaborative development platform and as a public-facing repository for version control, enabling open access to the resources created and providing asynchronous contributions from others.
 The core members worked on developing content on various branches on GitHub before merging everything on to the main branch after sufficient progress.
 We utilized GitHub Pages to host the e-book directly from the repository used for the project.
-GitHub Pages is a service offered by GitHub that allows users to host webpages directly from a GitHub repository.
+GitHub Pages is a service offered by GitHub that allows users to host web pages directly from a GitHub repository.
 The YAML file was used for front matter, to store the book’s metadata, for build settings and for integration with GitHub Pages.
 CSS was used to customize environments in Bookdown, such as the definition environment and remark environment with personalized aesthetics and consistent colour scheme.
 Mathematical statements were written in LaTeX and JavaScript libraries were used by Bookdown for stylizing the HTML document, such as implementing a table of contents and menu bar in the e-book rendered in HTML, and for using MathJax for displaying math statements.
@@ -251,8 +251,8 @@ Although we encountered some technical challenges, especially during the transit
 
 The development of the e-book required significant planning and coordination to ensure that the final product was cohesive and pedagogically meaningful. The initial draft was largely a collection of lecture notes and presentation slides. 
 We used these to build a single unified document which was a one-to-one replication of the notes and slides.
-This was our baseline draft for the e-book.
-During the development of this baseline, the inclusion of figures and graphics was sparse since we were aware that content would be rearranged.
+This served as out baseline draft for the e-book.
+During the development of this baseline, the inclusion of figures and graphics was sparse, since we were aware that content would be rearranged.
 After reviewing this initial baseline draft, we realized that the large number of chapters resulted in the fragmentation of related content, making it difficult for students to learn the material.
 
 Through collaboration and discussion, we combined overlapping sections and reordered material into a more logical flow. 
@@ -260,7 +260,7 @@ This process helped reduce redundancy and resulted in a smoother experience for 
 We also removed as much content as possible which overlapped with STA260, making these two courses much more distinct.
 Once the order and layout were finalized, the content created was rearranged and refined, and static and interactive plots and figures were built around the updated content.
 
-A brief description of the specific R packages from Table $\ref{tab:ebook_Technologies}$ which were used in developing the e-book is given in Table $\ref{tab:R_Packages}$:
+A brief description of the specific R packages from Table $\ref{tab:ebook_Technologies}$ which were used in developing the e-book is given in Table $\ref{tab:R_Packages}$.
 \renewcommand\arraystretch{1.10}
 \begin{table}[H]
 \setlength{\belowcaptionskip}{-25pt}
@@ -291,8 +291,10 @@ A brief description of the specific R packages from Table $\ref{tab:ebook_Techno
 \renewcommand\arraystretch{1.00}
 The \texttt{bookdown} package was key in implementing the Bookdown framework for rendering the e-book as an HTML document that could be hosted on GitHub pages. This package allowed all the text, math statements, stylized content, graphics, applications and interactive elements to be embedded in the e-book. 
 Static and interactive plots and figures are rendered natively within the R Markdown file within code blocks.
-The Tikz package was initially used with LaTeX to create some static graphics which were used in both the initial PDF and the first draft of the Bookdown version of the e-book, since Tikz is a powerful package that can create vector graphics. 
-However, we discovered that we can create all of the required graphics using \texttt{ggplot2} and plotly, so we decided to utilize these 2 packages for all figures for a more consistent appearance.
+%The Tikz package was initially used with LaTeX to create some static graphics which were used in both the initial PDF and the first draft of the Bookdown version of the e-book, since Tikz is a powerful package that can create vector graphics. 
+The TikZ package in LaTeX was initially used to create high-quality static vector graphics, which appeared in both the original PDF and the first draft of the Bookdown version of the e-book. 
+We applied this approach since Tikz is a powerful package for producing figures in LaTeX.
+However, we discovered that we can create all of the required graphics using \texttt{ggplot2} and \texttt{plotly}, so we decided to utilize these two packages for all figures to achieve a more consistent appearance.
 An example of a code block used to render a figure using the \texttt{ggplot2} library is given in Listing \ref{lst:Markdown_ggplot2}.\\
 
 \begin{lstlisting}[language=R,
@@ -309,7 +311,7 @@ library(ggplot2)
 \end{lstlisting}
 
 Interactive plots were created using the \texttt{plotly} and \texttt{shiny} packages.
-Plotly figures are generated and embeded natively within code blocks in a similar manner to \texttt{ggplot2}, with syntax similar to that of \ref{lst:Markdown_ggplot2}.
+Figures generated with \texttt{plotly} are embeded natively within code blocks in a similar manner to \texttt{ggplot2}, using syntax similar to that of \ref{lst:Markdown_ggplot2}.
 R Shiny apps were developed in R and hosted on \href{https://www.shinyapps.io/}{Shinyapps.io},
 which is a platform provided for hosting and sharing Shiny web applications.
 \href{https://www.shinyapps.io/}{Shinyapps.io} is maintained by Posit, who are most well known as the developers of R Studio and Positron.
@@ -326,7 +328,7 @@ knitr::include_app("URL to App Hosted on shinyapps.io")
 ```
 \end{lstlisting}
 
-Finally, we used the \texttt{rgl} library to create a 3D interactive version of the digital hex sticker designed for the project which appears on the cover of the e-book.
+Finally, we used the \texttt{rgl} library to create a 3D interactive version of the digital hex sticker designed for the project, which appears on the cover of the e-book.
 This was done for aesthetic purposes and to provide the e-book with a recognizable visual identity.
 %The image on the hex sticker was created using OpenAI's ChatGPT Model 4.0. 
 %The hex sticker itself was created with the \texttt{hexSticker} package in R using the image generate from ChatGPT, 
@@ -336,14 +338,14 @@ This was done for aesthetic purposes and to provide the e-book with a recognizab
 \section{CONTENT AND INTERACTIVE DESIGN}
 
 The textbook is live and available for access at \href{https://nishanmudalige.github.io/STA258/}{https://nishanmudalige.github.io/STA258/}.
-We note that the e-book is still a work in progress since it is one component that is part of an ongoing, long-term course redevelopment project which we discussed in Section \ref{sec:Introduction} and the core members of the team are continuously refining the e-book.
+We note that the e-book is still a work in progress since it is one component of an ongoing, long-term course redevelopment project which we discussed in Section \ref{sec:Introduction} and the core members of the team are continuously refining the e-book.
 
 We selected the default theme of Bookdown since it has a clean layout and appearance.
 The default theme also comes with options for light mode, dark mode and high contrast (sepia) mode with the table of contents appearing along the left.
 The landing page in light and dark mode are presented in Figures \ref{subfig:landing_page_default} and \ref{subfig:landing_page_dark}.
-The table of contents is available on the left of the webpage and it can be hidden if desired using the menu button on the top menu bar.
+The table of contents is available on the left of the web page and it can be hidden if desired using the menu button on the top menu bar.
 There is also a search feature, where indexing is automatically performed by Bookdown. The search feature is accessed from a magnifying glass icon near the top of the page.
-Additional accessibility features to help improve legibility include the ability to increase or decrease font size, increase or decrease spacing between lines and the ability to switch between serif and sans serif fonts. The search feature and accessibility options are illustrated in Figures \ref{subfig:menu_bar_search} and \ref{subfig:menu_bar_access}.
+Additional accessibility features to help improve legibility include the ability to increase or decrease font size, increase or decrease spacing between lines, and the ability to switch between serif and sans serif fonts. The search feature and accessibility options are illustrated in Figures \ref{subfig:menu_bar_search} and \ref{subfig:menu_bar_access}.
 %\begin{pepadunfigure}{GitHub repository structure showing organized files, collaborative development history, and team contributions for the e-book project. GitHub supported version control, content management, and public access through GitHub Pages.}
 %    \includegraphics[width=0.7\textwidth]{Images/ebookCover.png}
 %\end{pepadunfigure}
@@ -411,18 +413,18 @@ Chapter 1 is a broad introduction to applied statistics;
 Chapter 2 is a dedicated section with an introduction to R;
 Chapter 3 contains foundational statistical concepts, including key terminology, data types, and the basic ideas behind inferential statistics;
 Chapter 4 sets the stage for statistical inference, covering sampling distributions and the main reference distributions in the course (the normal distribution, $t$-distribution, $F$-distribution, and chi-square distribution);
-Chapters 5 and 6 cover standard one-sample and two-sample inference techniques on a mean, on a proportion, on a difference of means, on a difference of proportions, on paired data, on a variance, and on a ratio of two variances;
+Chapters 5 and 6 cover standard one-sample and two-sample inference techniques on a mean, a proportion, a difference of means, a difference of proportions, a variance, a ratio of two variances and inference techniques on paired data;
 Chapter 7 discusses type I and type II errors and introduces statistical power for the one-sample case when the population variance is known;
 Chapter 8 covers one-way analysis of variance;
 Chapter 9 covers simple linear regression, including inference on the slope; and
 Chapter 10 covers chi-square tests for categorical data.
 %The content covered in the ten chapters constitute the material in many typical introductory statistics courses.
 These chapters were further broken down into sub-sections at a more granular level; however, the titles of these components are not listed for brevity.
-In addition
+
 
 Examples of the appearance of standard text-based content and mathematical statements which appear in the body of the e-book are presented in Figure \ref{fig:sample_content}.
 Notice that mathematical statements and symbols rendered with MathJax appear similar to content that would appear in a document created using LaTeX.
-Further notice the coloured blocks which help distinguish several recurring components, such as definitions, remarks and theorems.
+Further notice the coloured blocks which help distinguish several recurring components, such as definitions, remarks, and theorems.
 This visual customization was achieved using CSS and YAML as discussed in Section \ref{sec:design}.
 
 \begin{figure}[H]
@@ -452,7 +454,7 @@ Information related to working with R Studio was included in this chapter since 
 This chapter helps the reader become familiar with R by introducing the language as a powerful calculator and also introduces some basic data structures, functions and graphical plots.
 This sets the necessary groundwork for the coding examples which are provided in subsequent chapters.
 
-We also introduce Positron which is the next-generation of data science IDE that also supports coding with Python.
+We also introduce Positron, which is the next-generation of data science IDE that also supports coding with Python.
 Positron was introduced in an attempt to potentially future-proof the e-book and to inform the reader that the creators of the e-book are aware of trends in programming with statistical software.
 %From there, the book progresses through core statistical methods, covering confidence intervals, hypothesis testing, and statistical power, before moving into topics such as analysis of variance, linear regression, and categorical data analysis. The structure was designed to support progressive skill-building for students while offering instructors a clear and teachable sequence of topics.
 
@@ -489,7 +491,7 @@ and also because this colour palette was developed with the principles of effect
 
 
 Although \texttt{plotly} can be used for interactive figures, we also used \texttt{plotly} to create several static figures by deactivating the options which allow for interactivity.
-This decision was made for convenience, to achieve a more unified design of figures and enhance overall aesthetics of the plots.
+This decision was made to achieve a more unified design for figures and to enhance overall aesthetics of the plots.
 Not all of the figures in the e-book required an interactive component. 
 If interactivity were forcefully implemented on all figures, some of the figures may have become unnecessarily distracting for students.
 Examples of figures created with \texttt{plotly} in which the interactive options were removed are presented in Figure \ref{fig:sample_plotly_static}.
@@ -548,7 +550,7 @@ Incorporating interactive plots and interactive applications allows users to lea
 Some interactive plots were created using \texttt{plotly} while others were created using \texttt{shiny}. 
 Plots with relatively simpler components were created with \texttt{plotly}, 
 such as plots which would display or hide information when the user hovers over them with their cursor,
-and plots which had buttons on them to show or hide a feature.
+and plots which had buttons to show or hide a feature.
 An example of an interactive plot created with \texttt{plotly} containing an interactive button is illustrated in Figure \ref{fig:interactive_hist_plotly},
 and an example of an interactive plot created with \texttt{plotly} which dynamically changes based on the component of the plot where the user hovers with their cursor is illustrated in Figure \ref{fig:interactive_boxplot_plotly}.
 
@@ -614,8 +616,8 @@ and an example of an interactive plot created with \texttt{plotly} which dynamic
 \end{figure}
 
 
-Applications that required more advanced interactive capabilities were implemented using \texttt{shiny}, with each shiny app being hosted on \href{https://www.shinyapps.io/}{Shinyapps.io} as discussed in Section \ref{sec:design}.
-The \texttt{shiny} package allows us to implement advanced features which are not possible in \texttt{plotly}, such as sliders, tabs, switches and control buttons, menus, reading and writing files, check boxes and input boxes for text and numbers.
+Applications that required more advanced interactive capabilities were implemented using \texttt{shiny}, with each shiny app being hosted on \href{https://www.shinyapps.io/}{Shinyapps.io}, as discussed in Section \ref{sec:design}.
+The \texttt{shiny} package allows us to implement advanced features which are not possible in \texttt{plotly}, such as sliders, tabs, switches and control buttons, menus, reading and writing files, check boxes, and input boxes for text and numbers.
 Although the time commitment required to refine a shiny app is considerably longer, the resulting product is very powerful.
 Some examples of interactive apps created using \texttt{shiny} are given in Figures \ref{fig:interactive_hist_shiny} and \ref{fig:interactive_corr_shiny}.
 
@@ -718,14 +720,16 @@ The examples can be studied by students to reinforce concepts covered in the boo
 %\end{figure}
 
 
-\section{CONCLUSIONS, REFLECTION AND FUTURE WORK}
+\section{CONCLUSIONS, REFLECTIONS AND FUTURE WORK}
 
 Through this project, undergraduate students partnered with faculty to develop an interactive e-book that covers the full content of a typical introductory applied statistics course, completing the work within a single semester using entirely open-source tools. The e-book is freely accessible to anyone with a web browser and an internet connection. Even after deciding to change the development framework midway through the project, we successfully leveraged tools to streamline the conversion process.
 
-The completed e-book is available to students, and all source files and the framework used to create it are openly hosted on GitHub at \href{https://github.com/nishanmudalige/STA258/}{https://github.com/nishanmudalige/STA258/}, making them freely available to the broader statistical education community. Educators can easily fork the repository to create their own version, adapting and personalizing the content to meet the specific needs of their institution’s curriculum.
+The completed e-book is available to students, and all source files and the framework used to create it are openly hosted on GitHub at \href{https://github.com/nishanmudalige/STA258/}{https://github.com/nishanmudalige/STA258/}, making them freely available to the broader statistical education community. Educators can easily fork the repository to create their own version, adapting, and personalizing the content to meet the specific needs of their institution’s curriculum.
 
 Beyond its technical and instructional outcomes, this project demonstrates the pedagogical potential of student-led authorship and design. By actively participating in the creation of educational content, students shift from consumers to contributors of knowledge, engaging more deeply with the subject matter.
-The process required not only statistical expertise and programming fluency, but also adaptability, design thinking, and critical reflection—skills applicable in both academic and professional contexts. Through collaborative authorship, the final product embodies negotiated decisions, iterative problem-solving, and responsiveness to peer and faculty feedback.
+%The process required not only statistical expertise and fluency in programming, but also adaptability, design-focussed thinking, and critical reflection. 
+The process demanded not only statistical expertise and programming fluency, but also adaptability, design-oriented thinking, and critical reflection.
+These are skills applicable in both academic and professional contexts. Through collaborative authorship, the final product embodies negotiated decisions, iterative problem-solving, and responsiveness to peer and faculty feedback.
 More broadly, the project presents a replicable model of participatory curriculum development that integrates open-source tools, student initiative, and faculty mentorship to generate accessible, engaging, and adaptive learning resources.
 
 The undergraduate students who participated also gained experience with a wide range of tools and skills that would not typically be covered in their formal coursework.
@@ -756,7 +760,7 @@ Since the core content has been established, the inclusion of exercises can be p
 
 
 Improving accessibility and the overall user experience is another key goal. 
-Possible next steps include optimizing the interface for mobile devices and developing visual themes with accessible colour palettes to target individuals with specific visual impairments, such as deuteranomaly (red-green colour vision deficiency) which is the most common forms of colour vision deficiency affecting approximately 3.66\% of males (95\% CI: 3.02 -- 4.44) and 0.46\% of females (95\% CI: 0.30 -- 0.69) worldwide, based on a recent systematic review \cite{Jeong2025}.
+Possible next steps include optimizing the interface for mobile devices and developing visual themes with accessible colour palettes to target individuals with specific visual impairments, such as deuteranomaly (red-green colour vision deficiency), which is the most common forms of colour vision deficiency affecting approximately 3.66\% of males (95\% CI: 3.02 -- 4.44) and 0.46\% of females (95\% CI: 0.30 -- 0.69) worldwide, based on a recent systematic review \cite{Jeong2025}.
 %adding text-to-speech functionality, and offering multilingual options. 
 %These features would help the e-book reach a wider range of learners from diverse backgrounds.
 
@@ -769,12 +773,12 @@ In the long-term, we hope to maintain and grow the project through continued col
 \begin{acknowledgments}
 We would like to sincerely thank Professor Nishan Mudalige, who served as the principal supervisor for this project from the very beginning. His guidance, encouragement, and consistent support played a central role in shaping both the direction and success of the e-book.
 We are also grateful to Professor Masoud Ataei, whose input during the later stages of development helped refine both the technical and pedagogical aspects of the project. His feedback was thoughtful and valuable throughout.
-Professor Mudalige and Professor Ataei also assisted in the preparation of this manuscript.
+Professor Mudalige, Professor Ataei and Ms. Coonghe also assisted in the preparation of this manuscript.
 
 We thank our external partners, Dr. Steve Tully, Mathematics Professor at Okanagan College, and Ms. Avanti Coonghe, Communications and Design Consultant at the United Nations (World Health Organization), for their guidance, input, and feedback with content and design.
 We are also grateful to the Department of Mathematical and Computational Sciences at the University of Toronto Mississauga for fostering an environment where student–faculty collaboration is encouraged and actively supported and facilitated.
 
-Finally, we acknowledge the open-source community. The tools, documentation, and shared knowledge developed and maintained by contributors around the world made the technical side of this project achievable and rewarding.
+Finally, we acknowledge the open-source community. The tools, documentation, and shared knowledge developed and maintained by contributors around the world have made the technical side of this project achievable and rewarding.
 \end{acknowledgments}
 
 %────────────────────────────────────────────────
