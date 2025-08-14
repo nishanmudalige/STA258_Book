@@ -1,0 +1,108 @@
+```{r, child=if(knitr::is_latex_output()) '_knitr-options.Rmd'}
+```
+
+\backmatter
+
+<!-- `r if (knitr::is_html_output()) '
+# References {-}
+'` -->
+
+```{r include=FALSE, tidy=FALSE, warning = FALSE}
+# list cited packages
+pkgs <- c(
+  .packages(),
+  'animation',
+  'blastula',
+  'blogdown',
+  'bookdown',
+  'broom',
+  'Cairo',
+  'condformat',
+  'dagitty',
+  'diagram',
+  'DiagrammeR',
+  'distill',
+  'downloadthis',
+  'DT',
+  'equatiomatic',
+  'ezknitr',
+  'flair',
+  'flexdashboard',
+  'flextable',
+  'formatR',
+  'formattable',
+  'gganimate',
+  'ggdag',
+  'ggplot2',
+  'gifski',
+  'googledrive',
+  'govdown',
+  'gt',
+  'gtsummary',
+  'here',
+  'huxtable',
+  'kableExtra',
+  'knitcitations',
+  'knitr',
+  'learnr',
+  'magick',
+  'nomnoml',
+  'officedown',
+  'officer',
+  'pagedown',
+  'pander',
+  'pandoc',
+  'pixiedust',
+  'pkgdown',
+  'printr',
+  'r2d3',
+  'reactable',
+  'reticulate',
+  'revealjs',
+  'rgl',
+  'rhandsontable',
+  'rmarkdown',
+  'rmdformats',
+  'roxygen2',
+  'rsconnect',
+  'rticles',
+  'sass',
+  'spelling',
+  'stargazer',
+  'styler',
+  'svglite',
+  'tables',
+  'tangram',
+  'tikzDevice',
+  'tinytex',
+  'trackdown',
+  'tufte',
+  'usethis',
+  'webshot2',
+  'workflowr',
+  'xaringan',
+  'xfun',
+  'xtable',
+  'yaml',
+  'ztable'
+  # GH Only: 'MonashEBSTemplates', 'plantuml', 'redoc', 'Statamarkdown', 'rmdrive'
+  # LaTeX: 'float', 'framed', 'tscolorbox', 'booktabs', 'longtable', 'flafter', 'subfig', 'fancyhdr', 'xcolor', 'listings', 'titling', 'animate'
+  # Bios only: 'shiny', 'leaflet', 'rolldown', 'crrri', 'projmgr', 'Rd2roxyen', 'servr', 'highr', 'mime', 'testit', 'fun', 'tufte'
+  # JavaScript: 'DataTables'
+)
+
+
+# # Warn to add new deps in DESCRIPTION
+# pkg2 <- setdiff(pkgs, xfun::base_pkgs())
+# in_desc <-  pkg2 %in% desc::desc_get_deps()$package
+# if (any(!in_desc)) warning("To add to DESCRIPTION: ", paste0(pkg2[!in_desc], collapse = ", "))
+# 
+# # automatically create a bib database for R packages
+# knitr::write_bib(pkgs, file = 'packages.bib', lib.loc = c(.libPaths(), '~/R-tmp'))
+# 
+# # embed fonts
+# if (knitr::is_latex_output()) {
+#   pdfs = list.files(knitr::opts_chunk$get('fig.path'), '[.]pdf$', full.names = TRUE)
+#   invisible(lapply(pdfs, embedFonts))
+# }
+```
