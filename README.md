@@ -9,7 +9,7 @@
 ![status](https://img.shields.io/uptimerobot/status/m800993650-eea0832eb8270800e4f0461f)
 ![up-time](https://img.shields.io/uptimerobot/ratio/7/m800993650-eea0832eb8270800e4f0461f)
 ![GitHub branch check runs](https://img.shields.io/github/check-runs/nishanmudalige/STA258/main)
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fnishanmudalige.github.io%2FSTA258%2F)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fnishanmudalige.github.io%2FSTA258_Tutorials%2F)
 
 ![GitHub License](https://img.shields.io/github/license/nishanmudalige/STA258)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
