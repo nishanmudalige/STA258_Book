@@ -11,7 +11,7 @@
 ![GitHub branch check runs](https://img.shields.io/github/check-runs/nishanmudalige/STA258/main)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fnishanmudalige.github.io%2FSTA258_Tutorials%2F)
 
-![GitHub License](https://img.shields.io/github/license/nishanmudalige/STA258)
+![GitHub License](https://img.shields.io/github/license/nishanmudalige/STA258_Book)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 ---
