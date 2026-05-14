@@ -4,24 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Hypothesis Tests | Book.knit</title>
-  <meta name="description" content="" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <title>Chapter 6 Hypothesis Tests | STA258: Statistics with Applied Probability</title>
+  <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Hypothesis Tests | Book.knit" />
+  <meta property="og:title" content="Chapter 6 Hypothesis Tests | STA258: Statistics with Applied Probability" />
   <meta property="og:type" content="book" />
   
-  
-  
+  <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta name="github-repo" content="nishanmudalige/STA258" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Hypothesis Tests | Book.knit" />
+  <meta name="twitter:title" content="Chapter 6 Hypothesis Tests | STA258: Statistics with Applied Probability" />
   
-  
+  <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
   
 
+<meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
+<meta name="date" content="2026-05-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,20 +53,22 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/rglWebGL-binding-1.3.36/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-1.3.36/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-1.3.36/rglClass.min.js"></script>
-<script src="libs/CanvasMatrix4-1.3.36/CanvasMatrix.min.js"></script>
+<script src="libs/rglWebGL-binding-1.3.24/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.24/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.24/rglClass.min.js"></script>
+<script src="libs/CanvasMatrix4-1.3.24/CanvasMatrix.min.js"></script>
 <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
-<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
 <script src="libs/mathjax-2.7.5/cdn.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -136,6 +140,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <style type="text/css">
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -298,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">STA258: Statistics with Applied Probability</a>
           </h1>
         </div>
 
@@ -495,19 +521,19 @@ Common distributions which thetest statistic follows are the standard normal dis
 <!-- It quantifies the evidence against the null hypothesis. -->
 <p>We use the test statistic, reference distribution, and refer back to <span class="math inline">\(H_a\)</span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
-<img src="Book_files/figure-html/unnamed-chunk-11-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-11-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
+<img src="Book_Files/figure-html/unnamed-chunk-11-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-11-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.1: Right-tailed test: p-value is the area to the right of the test statistic
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="Book_files/figure-html/unnamed-chunk-12-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-12-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
+<img src="Book_Files/figure-html/unnamed-chunk-12-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-12-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.2: Left-tailed test: p-value is the area to the left of the test statistic
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
-<img src="Book_files/figure-html/unnamed-chunk-13-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
+<img src="Book_Files/figure-html/unnamed-chunk-13-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
 <p class="caption">
 Figure 6.3: Two-tailed test: p-value is the total area in both tails beyond ±test statistic
 </p>
@@ -687,7 +713,7 @@ decreased. Assume the standard deviation is known to be 5.25 kg.</p>
 <p><strong>4. Calculate p-value</strong></p>
 <span class="math display">\[\text{p-value} = P(Z &lt; -2.82) \approx 0.0024\]</span>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
-<img src="Book_files/figure-html/unnamed-chunk-14-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
+<img src="Book_Files/figure-html/unnamed-chunk-14-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
 <p class="caption">
 Figure 6.4: Left-tailed p-value for the test statistic <span class="math inline">\(z^* = -2.82\)</span>
 </p>
@@ -796,7 +822,7 @@ likely positive.</p>
 <span id="cb32-11"><a href="hypothesis-tests.html#cb32-11" tabindex="-1"></a>    z.star <span class="ot">&lt;-</span> (x.bar <span class="sc">-</span> mu.zero) <span class="sc">/</span> sigma.xbar;</span>
 <span id="cb32-12"><a href="hypothesis-tests.html#cb32-12" tabindex="-1"></a>    <span class="fu">hist</span>(z.star, <span class="at">xlab =</span> <span class="st">&quot;differences&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="Book_files/figure-html/unnamed-chunk-15-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
+<img src="Book_Files/figure-html/unnamed-chunk-15-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
 <p class="caption">
 Figure 6.5: Histogram of <span class="math inline">\(z^\star\)</span> values from 10,000 simulations under <span class="math inline">\(H_0\)</span>
 </p>
@@ -1660,7 +1686,7 @@ H_a &amp;: \sigma^2 &gt; 0.81
 From the chi-squared table, the null hypothesis is rejected when
 <span class="math inline">\(\chi^2 &gt; 16.919\)</span>, where <span class="math inline">\(\nu = 9\)</span> degrees of freedom.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
-<img src="Book_files/figure-html/unnamed-chunk-16-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
+<img src="Book_Files/figure-html/unnamed-chunk-16-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
 <p class="caption">
 Figure 6.6: Right-tailed chi-squared distribution with critical value at 16.919
 </p>
@@ -1924,7 +1950,7 @@ interactions”.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="hypothesis-tests.html#cb50-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
 <span id="cb50-2"><a href="hypothesis-tests.html#cb50-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="Book_files/figure-html/unnamed-chunk-17-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-17-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
 <p class="caption">
 Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
 </p>
@@ -1933,7 +1959,7 @@ Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="hypothesis-tests.html#cb51-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span>
 <span id="cb51-2"><a href="hypothesis-tests.html#cb51-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
-<img src="Book_files/figure-html/unnamed-chunk-18-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-18-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
 <p class="caption">
 Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
 </p>
@@ -1942,7 +1968,7 @@ Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
 <p><strong>Nearly Normal Condition:</strong></p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="hypothesis-tests.html#cb52-1" tabindex="-1"></a>    <span class="fu">boxplot</span>(Success_Index <span class="sc">~</span> Group, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="Book_files/figure-html/unnamed-chunk-19-1.png" alt="Boxplot of Success Index by Group" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-19-1.png" alt="Boxplot of Success Index by Group" width="60%" />
 <p class="caption">
 Figure 6.9: Boxplot of Success Index by Group
 </p>
@@ -2180,7 +2206,7 @@ control (Group 2), the hypotheses are:</p>
 <span id="cb59-2"><a href="hypothesis-tests.html#cb59-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Treatment&quot;</span>);</span>
 <span id="cb59-3"><a href="hypothesis-tests.html#cb59-3" tabindex="-1"></a>    <span class="fu">qqline</span>(treatment, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
-<img src="Book_files/figure-html/unnamed-chunk-20-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-20-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
 <p class="caption">
 Figure 6.10: Q-Q Plot for Treatment Group
 </p>
@@ -2190,7 +2216,7 @@ Figure 6.10: Q-Q Plot for Treatment Group
 <span id="cb60-2"><a href="hypothesis-tests.html#cb60-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Control&quot;</span>);</span>
 <span id="cb60-3"><a href="hypothesis-tests.html#cb60-3" tabindex="-1"></a>    <span class="fu">qqline</span>(control, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
-<img src="Book_files/figure-html/unnamed-chunk-21-1.png" alt="Q-Q Plot for Control Group" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-21-1.png" alt="Q-Q Plot for Control Group" width="60%" />
 <p class="caption">
 Figure 6.11: Q-Q Plot for Control Group
 </p>
