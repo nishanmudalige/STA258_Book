@@ -1,5 +1,13 @@
 # STA258: Statistics with Applied Probability
 
+## Things to do for May 21
+
+- Make about 10 questions for Chapter 1 (including solutions)
+- No questions for chapter 2 (R)
+- Make at least 5 questions each (i.e. 15 or more) questions for Chapter 3 (including solutions)
+- Find out how to hide solutions (search internet, use AI etc.)
+
+<!--
 <p align="center">
   <img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/STA258.svg">
 </p>
@@ -20,7 +28,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/nishanmudalige/STA258)
 ![Number 0f Languages](https://img.shields.io/github/languages/count/nishanmudalige/STA258?color=%23FF69B4)
 ![GitHub top language](https://img.shields.io/github/languages/top/nishanmudalige/STA258?logoColor=)
-<!-- ![GitHub repo size](https://img.shields.io/github/repo-size/nishanmudalige/STA258) -->
+<!-- ![GitHub repo size](https://img.shields.io/github/repo-size/nishanmudalige/STA258) - ->
 
 ![Language](https://img.shields.io/badge/language-HTML5-917fff?logo=HTML5&logoColor=f5f5f5)
 ![Language](https://img.shields.io/badge/language-R-6da4ff?logo=R)
@@ -37,7 +45,7 @@ Visit [https://nishanmudalige.github.io/STA258_Book/](https://nishanmudalige.git
 ---
 
 <p align="center"> 
-<img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/bookdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rmarkdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/knitr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/ggplot2.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/pipe.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/dplyr.svg"> <!-- <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyverse.svg"> --> <img style="float:left;height:100px;"src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/plotly_no_bg.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/shiny.svg">
+<img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/bookdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rmarkdown.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/knitr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/ggplot2.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/pipe.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/dplyr.svg"> <!-- <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyr.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyverse.svg"> - -> <img style="float:left;height:100px;"src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/plotly_no_bg.svg"> <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/shiny.svg">
 </p>
 
 ---
@@ -45,3 +53,4 @@ Visit [https://nishanmudalige.github.io/STA258_Book/](https://nishanmudalige.git
 <p align="center">
   <img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/UTM_Stats.svg"> 
 </p>
+-->
