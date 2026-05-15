@@ -414,3 +414,62 @@ pre, pre code {
 .level1 h1 { border-bottom: 1px solid; }
 h1.title { font-weight: 700; }
 h1,h2,h3,h4,h5,h6 { font-weight: bold; }
+
+
+/* ── Exercises: question box ───────────────────────────── */
+.exercise-box {
+  border-left: 4px solid #3498db;
+  background: #f0f7ff;
+  padding: 12px 16px;
+  margin: 18px 0 6px 0;
+  border-radius: 0 6px 6px 0;
+}
+.exercise-box p { margin: 0; }
+.exercise-label {
+  font-weight: bold;
+  color: #2980b9;
+  margin-bottom: 6px;
+}
+
+/* ── Exercises: collapsible hint / answer ─────────────── */
+details {
+  margin: 6px 0 16px 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+details[data-type="hint"] summary {
+  background: #fff8e1;
+  border: 1px solid #f9a825;
+  color: #7a5800;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 6px;
+  list-style: none;
+}
+details[data-type="hint"][open] summary { border-radius: 6px 6px 0 0; }
+details[data-type="hint"] .content {
+  background: #fffde7;
+  border: 1px solid #f9a825;
+  border-top: none;
+  padding: 10px 16px;
+  border-radius: 0 0 6px 6px;
+}
+details[data-type="answer"] summary {
+  background: #e8f5e9;
+  border: 1px solid #43a047;
+  color: #1b5e20;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 6px;
+  list-style: none;
+}
+details[data-type="answer"][open] summary { border-radius: 6px 6px 0 0; }
+details[data-type="answer"] .content {
+  background: #f1f8f1;
+  border: 1px solid #43a047;
+  border-top: none;
+  padding: 10px 16px;
+  border-radius: 0 0 6px 6px;
+}

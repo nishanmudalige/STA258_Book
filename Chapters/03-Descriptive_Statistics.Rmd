@@ -1111,3 +1111,743 @@ config(
   staticPlot = TRUE
 )
 ```
+
+## Exercises {#sec:ch3exercises}
+
+```{r ch3-ex-setup, include=FALSE}
+library(ggplot2)
+```
+
+*Questions 1–5 cover **Section 3.1** (Representing Data); Questions 6–10 cover **Section 3.2** (Numerical Measures); Questions 11–15 cover **Section 3.3** (Graphical Techniques).*
+
+---
+
+### Representing Data
+
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+A fitness researcher records the following information for five participants in a study:
+
+| Participant | Age | Sex | Resting Heart Rate (bpm) | Exercise Habit |
+|-------------|-----|-----|--------------------------|----------------|
+| 1 | 24 | F | 68 | Daily |
+| 2 | 31 | M | 72 | Weekly |
+| 3 | 19 | F | 61 | Rarely |
+| 4 | 27 | M | 75 | Daily |
+| 5 | 22 | F | 65 | Weekly |
+
+(a) (1 mark) What is the **unit** of observation in this dataset?
+(b) (1 mark) How many **observations** are there? How many **variables**?
+(c) (2 marks) Classify each variable as **quantitative** or **qualitative**.
+(d) (1 mark) What is the **value** of "Resting Heart Rate" for Participant 4?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Each **row** is one observation from one unit.
+- **Quantitative** variables have numerical values that allow arithmetic; **qualitative** variables place units into categories.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** One **participant** (person).
+
+**(b)** **5 observations**, **4 variables** (Age, Sex, Resting Heart Rate, Exercise Habit).
+
+**(c)**
+
+| Variable | Type |
+|----------|------|
+| Age | Quantitative |
+| Sex | Qualitative |
+| Resting Heart Rate | Quantitative |
+| Exercise Habit | Qualitative |
+
+**(d)** 75 bpm.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+The following data represent the number of hours 12 UTM students spent on their phones yesterday:
+
+$$3,\ 5,\ 2,\ 7,\ 5,\ 4,\ 6,\ 5,\ 3,\ 8,\ 4,\ 5$$
+
+(a) (3 marks) Construct a **frequency table** with columns: Value, Frequency, and Relative Frequency (as a decimal rounded to 2 places).
+(b) (1 mark) What proportion of students spent **more than 5 hours** on their phones?
+(c) (1 mark) What value appears most frequently? What is this measure called?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Relative Frequency** = (Frequency) ÷ (Total number of observations).
+- Count each distinct value carefully — sort the data first to avoid missing any.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+
+| Hours | Frequency | Relative Frequency |
+|-------|-----------|-------------------|
+| 2 | 1 | 0.08 |
+| 3 | 2 | 0.17 |
+| 4 | 2 | 0.17 |
+| 5 | 4 | 0.33 |
+| 6 | 1 | 0.08 |
+| 7 | 1 | 0.08 |
+| 8 | 1 | 0.08 |
+| **Total** | **12** | **1.00** |
+
+**(b)** Values > 5: hours of 6, 7, 8 → frequency = 3. Proportion = $3/12 = 0.25$ (25%).
+
+**(c)** The value **5** appears 4 times — the most frequent. This is the **mode**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+A survey asked 40 students how many hours of sleep they got last night. The results are summarized below:
+
+| Hours of Sleep | Frequency |
+|---------------|-----------|
+| 5 | 3 |
+| 6 | 8 |
+| 7 | 12 |
+| 8 | 10 |
+| 9 | 7 |
+
+(a) (2 marks) Add a **Relative Frequency** column and a **Cumulative Frequency** column to the table.
+(b) (1 mark) What proportion of students slept **at most 7 hours**?
+(c) (2 marks) What proportion of students slept **between 6 and 8 hours inclusive**?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Cumulative Frequency** for a row = sum of all frequencies *up to and including* that row.
+- For "at most 7 hours", sum the frequencies for 5, 6, and 7.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+
+| Hours | Frequency | Relative Frequency | Cumulative Frequency |
+|-------|-----------|-------------------|---------------------|
+| 5 | 3 | 0.075 | 3 |
+| 6 | 8 | 0.200 | 11 |
+| 7 | 12 | 0.300 | 23 |
+| 8 | 10 | 0.250 | 33 |
+| 9 | 7 | 0.175 | 40 |
+
+**(b)** Cumulative frequency at 7 = 23. Proportion = $23/40 = 0.575$ (57.5%).
+
+**(c)** Frequencies for 6, 7, 8: $8 + 12 + 10 = 30$. Proportion = $30/40 = 0.75$ (75%).
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+The stem-and-leaf plot below displays the scores (out of 60) of 15 students on a statistics quiz. The stem represents the tens digit and each leaf represents the units digit.
+
+```
+Stem | Leaf
+   2 | 3  7  8
+   3 | 1  4  4  6  9
+   4 | 0  2  5  5  8
+   5 | 1  3
+```
+
+(a) (1 mark) How many students scored **at least 40**?
+(b) (2 marks) Find the **median** score.
+(c) (1 mark) Identify the **mode(s)**.
+(d) (1 mark) What is the **range** of the scores?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Read each value as: stem × 10 + leaf. For example, stem 3, leaf 4 → score of 34.
+- For the **median** of 15 values, find the 8th value in order (since $\frac{15+1}{2} = 8$).
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**All scores (sorted):** 23, 27, 28, 31, 34, 34, 36, 39, **40**, 42, 45, 45, 48, 51, 53
+
+**(a)** Scores ≥ 40: 40, 42, 45, 45, 48, 51, 53 → **7 students**.
+
+**(b)** Median = 8th value = **39**.
+
+**(c)** Modes: **34** and **45** (each appears twice).
+
+**(d)** Range = $53 - 23 = \mathbf{30}$.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+The table below shows the ages of participants in a study. The data have been organized into a grouped frequency distribution.
+
+| Age Group | Frequency |
+|-----------|-----------|
+| 18 – 22 | 14 |
+| 23 – 27 | 20 |
+| 28 – 32 | 11 |
+| 33 – 37 | 8 |
+| 38 – 42 | 7 |
+
+(a) (1 mark) What is the **class width** for each age group?
+(b) (2 marks) Calculate the **class midpoints** for each group.
+(c) (2 marks) Using the midpoints, estimate the **mean** age of participants.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Class width** = upper boundary − lower boundary + 1 (for integer data).
+- **Midpoint** = (lower limit + upper limit) ÷ 2.
+- Estimated mean from grouped data: $\bar{x} \approx \dfrac{\sum f_i \cdot m_i}{\sum f_i}$, where $m_i$ is the midpoint of group $i$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Class width = $22 - 18 + 1 = \mathbf{5}$ years.
+
+**(b)**
+
+| Age Group | Midpoint $m_i$ |
+|-----------|--------------|
+| 18 – 22 | 20 |
+| 23 – 27 | 25 |
+| 28 – 32 | 30 |
+| 33 – 37 | 35 |
+| 38 – 42 | 40 |
+
+**(c)**
+$$\bar{x} \approx \frac{14(20) + 20(25) + 11(30) + 8(35) + 7(40)}{14+20+11+8+7} = \frac{280+500+330+280+280}{60} = \frac{1670}{60} \approx \mathbf{27.8 \text{ years}}$$
+</div>
+</details>
+
+---
+
+### Numerical Measures
+
+<div class="exercise-box">
+<div class="exercise-label">Question 6</div>
+The dot plot below shows the number of cups of coffee consumed daily by 11 students. **Each dot represents one student.**
+
+```{r ch3-q6-dot, echo=FALSE, fig.height=2.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+coffee <- c(0, 1, 2, 1, 3, 2, 0, 2, 4, 2, 1)
+df_q6 <- data.frame(cups = coffee)
+ggplot(df_q6, aes(x = cups)) +
+  geom_dotplot(binwidth = 0.35, fill = "#e67e22", color = "white", dotsize = 1.0) +
+  scale_x_continuous(breaks = 0:4, limits = c(-0.5, 4.5)) +
+  labs(x = "Cups of coffee per day", y = NULL,
+       caption = "Each dot = 1 student") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        plot.caption = element_text(color = "#555", size = 10))
+```
+
+(a) (1 mark) Based on the dot plot, does the distribution appear **left-skewed, right-skewed, or roughly symmetric**? Justify briefly.
+(b) (2 marks) Calculate the **mean** $\bar{x}$ and find the **median**.
+(c) (1 mark) Identify the **mode**.
+(d) (2 marks) If the value of 4 is changed to 12, which measure — mean or median — changes more? What does this tell you about the effect of **outliers** on these measures?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Sort the 11 values first. For $n = 11$ (odd), median is the $\frac{11+1}{2} = 6$th value.
+- The mode is the value with the **tallest stack** of dots.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Sorted data:** $0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 4$
+
+**(a)** **Right-skewed** — most students drink 0–2 cups with one student at 4, pulling the tail to the right.
+
+**(b)**
+$$\bar{x} = \frac{0+0+1+1+1+2+2+2+2+3+4}{11} = \frac{18}{11} \approx 1.64 \text{ cups}$$
+Median = 6th value = **2 cups**
+
+**(c)** Mode = **2** (appears 4 times, the tallest stack)
+
+**(d)** Replacing 4 with 12: new $\bar{x} = \frac{26}{11} \approx 2.36$ (increased by ~0.73); median remains **2**. The **mean is sensitive to outliers**; the median is **robust**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 7</div>
+A dataset of 8 exam scores is given:
+
+$$62,\ 71,\ 68,\ 74,\ 70,\ 65,\ 72,\ 98$$
+
+(a) (2 marks) Calculate the **mean** and **median** of these scores.
+(b) (2 marks) Remove the score of 98 and recalculate the **mean** and **median**. How much did each change?
+(c) (1 mark) Based on your answers, which measure better represents the **typical** exam score in this dataset? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- A score that is far from all other values is an **outlier**. Check which measure changes more when the outlier is removed.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Sorted (all 8):** 62, 65, 68, 70, 71, 72, 74, 98
+
+**(a)** $\bar{x} = 580/8 = 72.5$; median = avg of 4th and 5th = $(70+71)/2 = 70.5$
+
+**(b)** Without 98 — sorted: 62, 65, 68, 70, 71, 72, 74
+
+$\bar{x} = 482/7 \approx 68.9$ (decreased by 3.6); median = 4th value = 70 (decreased by only 0.5)
+
+**(c)** The **median** (70 or 70.5) better represents the typical score — it is barely affected by the outlier of 98, while the mean is pulled noticeably upward.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
+The following data represent the number of hours 6 students spent studying for a midterm:
+
+$$x_1 = 2,\quad x_2 = 4,\quad x_3 = 4,\quad x_4 = 6,\quad x_5 = 6,\quad x_6 = 8$$
+
+(a) (1 mark) Calculate the **mean** $\bar{x}$.
+(b) (3 marks) Calculate the **sample variance** $s^2$ using the formula
+$$s^2 = \frac{\displaystyle\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$$
+Show your work using a table with columns $x_i$, $(x_i - \bar{x})$, and $(x_i - \bar{x})^2$.
+(c) (1 mark) Calculate the **sample standard deviation** $s$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compute $\bar{x}$ first, then find each deviation $(x_i - \bar{x})$, square it, sum all squared deviations, and divide by $n - 1$.
+- $s = \sqrt{s^2}$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $\bar{x} = (2+4+4+6+6+8)/6 = 30/6 = \mathbf{5}$
+
+**(b)**
+
+| $x_i$ | $x_i - \bar{x}$ | $(x_i - \bar{x})^2$ |
+|--------|-----------------|----------------------|
+| 2 | $-3$ | 9 |
+| 4 | $-1$ | 1 |
+| 4 | $-1$ | 1 |
+| 6 | $1$ | 1 |
+| 6 | $1$ | 1 |
+| 8 | $3$ | 9 |
+| | **Sum** | **22** |
+
+$$s^2 = \frac{22}{6-1} = \frac{22}{5} = \mathbf{4.4}$$
+
+**(c)** $s = \sqrt{4.4} \approx \mathbf{2.098}$ hours
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 9</div>
+The boxplot below shows the age distribution of 12 participants in a research study. **Each dot is one participant's age. The bottom and top of the box are $Q_1$ and $Q_3$; the line inside the box is the median; whiskers extend to the min and max within the IQR fences; the red dashed lines are the IQR outlier fences.**
+
+```{r ch3-q9-box, echo=FALSE, fig.height=3.8, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE}
+ages9 <- c(22, 25, 19, 31, 28, 35, 24, 22, 30, 27, 40, 23)
+df_q9 <- data.frame(ages = ages9)
+q1_9 <- quantile(ages9, 0.25); q3_9 <- quantile(ages9, 0.75)
+iqr_9 <- q3_9 - q1_9
+ggplot(df_q9, aes(x = "", y = ages)) +
+  geom_boxplot(fill = "#a29bfe", color = "#6c5ce7", width = 0.35, outlier.shape = NA) +
+  geom_jitter(width = 0.06, size = 2.5, alpha = 0.7, color = "grey25") +
+  geom_hline(aes(yintercept = q1_9 - 1.5*iqr_9, linetype = "IQR fence"),
+             color = "#d63031", linewidth = 0.8) +
+  geom_hline(aes(yintercept = q3_9 + 1.5*iqr_9, linetype = "IQR fence"),
+             color = "#d63031", linewidth = 0.8) +
+  scale_linetype_manual(name = NULL, values = c("IQR fence" = "dashed")) +
+  scale_y_continuous(breaks = seq(10, 45, by = 5)) +
+  labs(x = NULL, y = "Age (years)",
+       caption = "Each dot = 1 participant  |  Box = Q1 to Q3  |  Red dashes = IQR fences") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "top", axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Read the **five-number summary** (Min, $Q_1$, Median, $Q_3$, Max) from the plot. All reasonable estimated answers will be marked correct.
+(b) (1 mark) Compute the **IQR** using your answer to (a).
+(c) (2 marks) Do any dots fall outside the red dashed **IQR fences**? State your conclusion about outliers and justify using the IQR rule ($Q_1 - 1.5\times\text{IQR}$, $Q_3 + 1.5\times\text{IQR}$).
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Bottom whisker tip = Min; top whisker tip = Max (within fences).
+- Bottom edge of box = $Q_1$; top edge = $Q_3$; line inside = Median.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Exact values from data: Min = 19, $Q_1$ = 22.5, Median = 26, $Q_3$ = 30.5, Max = 40.
+
+**(b)** IQR $= 30.5 - 22.5 = \mathbf{8}$
+
+**(c)** Fences: lower $= 22.5 - 1.5(8) = 10.5$; upper $= 30.5 + 1.5(8) = 42.5$. All values lie within $[10.5, 42.5]$, so there are **no outliers** by the IQR rule — even the oldest participant (age 40) is inside the upper fence.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 10</div>
+Two groups of students were given the same statistics quiz (out of 20). Their scores are:
+
+- **Group A:** 14, 15, 14, 16, 15, 14, 16, 15, 15, 16
+- **Group B:** 8, 12, 15, 19, 18, 11, 17, 20, 10, 10
+
+(a) (1 mark) Without calculating, which group do you expect to have a **larger standard deviation**? Justify using the spread of the values.
+(b) (2 marks) Verify by calculating $\bar{x}$ and $s$ for each group. Use R or show your working.
+(c) (2 marks) Both groups have the same mean. What does this tell you about the **usefulness of the mean alone** as a summary of a dataset?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+Standard deviation measures how far values are from the mean *on average*. Look at whether the scores are tightly packed or spread widely.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** **Group B** — its scores range from 8 to 20 (wide spread), while Group A's scores cluster tightly between 14 and 16.
+
+**(b)**
+
+- Group A: $\bar{x} = 150/10 = 15$, $s \approx 0.816$
+- Group B: $\bar{x} = 150/10 = 15$, $s \approx 4.22$
+
+Group B's standard deviation is much larger, confirming the visual observation.
+
+**(c)** The mean alone is **insufficient** to describe a dataset — two datasets can have the same mean but very different spreads. The standard deviation (or other measures of variability) is needed to get a complete picture.
+</div>
+</details>
+
+---
+
+### Graphical Techniques
+
+<div class="exercise-box">
+<div class="exercise-label">Question 11</div>
+The histogram below shows the distribution of daily commute times (in minutes) for a random sample of 60 UTM students. **Each bar covers a 10-minute interval; bar height = frequency.**
+
+```{r ch3-q11-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(11)
+commute <- round(rlnorm(60, log(28), 0.45))
+commute <- pmin(commute, 80)
+df_q11 <- data.frame(commute = commute)
+ggplot(df_q11, aes(x = commute)) +
+  geom_histogram(binwidth = 10, fill = "#00b894", color = "white", boundary = 0) +
+  scale_x_continuous(breaks = seq(0, 80, 10)) +
+  labs(x = "Commute time (minutes)", y = "Frequency",
+       caption = "n = 60 students  |  Bar height = frequency") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Describe the **shape** of this distribution (skewness or symmetry). Justify using features of the histogram.
+(b) (2 marks) Based on the histogram, **estimate the proportion** of students with a commute time of **30 minutes or less**. All reasonable estimated answers will be marked correct.
+(c) (1 mark) Based on the shape of the distribution, would you expect the **mean** to be greater than, less than, or approximately equal to the **median**? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Right-skewed**: long tail to the right; the mean is pulled toward the tail, so mean > median.
+- For (b), add up the frequencies (bar heights) for bars covering 0–30 minutes, then divide by 60.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The distribution is **right-skewed** — most commute times are short (10–30 minutes) and the histogram has a long tail extending to the right toward 70–80 minutes.
+
+**(b)** Sum the frequencies for bars at 0–10, 10–20, and 20–30. Reading from the histogram, approximately 40–45 students have commute times ≤ 30 minutes. Proportion ≈ $42/60 \approx 0.70$ (70%). All reasonable estimates will be marked correct.
+
+**(c)** For a **right-skewed** distribution, the **mean > median** — the long right tail pulls the mean toward larger values while the median (middle value) is less affected.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
+The boxplot below shows the distribution of exam scores (out of 100) for 30 students in a statistics course. **The box spans $Q_1$ to $Q_3$; the line inside the box is the median; whiskers extend to min and max within the IQR fences; any dots beyond the whiskers are outliers.**
+
+```{r ch3-q12-box, echo=FALSE, fig.height=3.5, fig.width=4, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(12)
+scores12 <- c(round(rnorm(27, 72, 10)), 38, 42, 95)
+scores12 <- pmax(pmin(scores12, 100), 0)
+df_q12 <- data.frame(score = scores12)
+ggplot(df_q12, aes(x = "", y = score)) +
+  geom_boxplot(fill = "#74b9ff", color = "#0984e3", width = 0.35,
+               outlier.shape = 19, outlier.size = 2.5, outlier.color = "grey30") +
+  scale_y_continuous(breaks = seq(30, 100, 10)) +
+  labs(x = NULL, y = "Exam score (out of 100)",
+       caption = "Box = Q1 to Q3  |  Line = median  |  Dots = outliers") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) **Estimate** the five-number summary from the plot. All reasonable estimated answers will be marked correct.
+(b) (1 mark) **Estimate** the IQR.
+(c) (2 marks) Are there any **outliers** visible in the plot? If so, estimate their values and state whether they are low or high outliers.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Dots that appear *beyond* the whiskers are flagged as outliers.
+- Read the scale on the y-axis carefully to estimate each summary value.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Approximate values: Min ≈ 38–42, $Q_1$ ≈ 64–68, Median ≈ 72–74, $Q_3$ ≈ 78–82, Max ≈ 95–98. All reasonable estimates will be marked correct.
+
+**(b)** IQR ≈ $Q_3 - Q_1 \approx 80 - 66 = 14$.
+
+**(c)** Yes — there are **3 outlier dots**: two low outliers (approximately 38 and 42) below the lower whisker, and one high outlier (approximately 95) above the upper whisker.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 13</div>
+Two sections of STA258 each wrote the same midterm exam (out of 100). Side-by-side boxplots of their scores are shown below. **Each dot is one student's score; the box spans $Q_1$ to $Q_3$; the line inside is the median.**
+
+```{r ch3-q13-box, echo=FALSE, fig.height=3.5, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(13)
+secA <- pmax(pmin(round(rnorm(35, 74, 6)), 100), 40)
+secB_main <- round(rnorm(32, 74, 14))
+secB <- c(pmax(pmin(secB_main, 100), 30), 22, 25, 98)
+df_q13 <- data.frame(
+  score   = c(secA, secB),
+  section = factor(rep(c("Section A", "Section B"),
+                       times = c(length(secA), length(secB))))
+)
+ggplot(df_q13, aes(x = section, y = score, fill = section)) +
+  geom_boxplot(width = 0.4, alpha = 0.75, outlier.size = 2.5,
+               outlier.shape = 19, outlier.colour = "grey30") +
+  geom_jitter(width = 0.07, size = 1.8, alpha = 0.5, color = "grey30") +
+  scale_fill_manual(values = c("Section A" = "#fd79a8", "Section B" = "#fdcb6e")) +
+  scale_y_continuous(breaks = seq(20, 100, 10)) +
+  labs(x = NULL, y = "Exam score (out of 100)",
+       caption = "Each dot = 1 student  |  Box = Q1 to Q3  |  Line = median") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Which section (A or B) appears to have **greater variability** in exam scores? Justify your answer using a feature of the boxplot.
+(b) (2 marks) **Estimate the median** exam score for both Section A and Section B. All reasonable estimated answers will be marked correct.
+(c) (2 marks) Do any of the boxplots show **outliers**? If outliers exist, state which section and estimate the value of the **most extreme outlier**. All reasonable estimated answers will be marked correct.
+(d) (1 mark) Both sections have approximately the same median. What does this suggest about comparing two groups using the **median alone**?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Variability** is shown by the height of the box (IQR) and the overall span of the whiskers.
+- Outliers appear as **dots beyond the whiskers**.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** **Section B** — its box (IQR) is taller and the whiskers extend further, indicating a wider spread of exam scores compared to Section A.
+
+**(b)** Both sections: median ≈ **73–75**. All reasonable estimates will be marked correct.
+
+**(c)** Yes — **Section B** has outliers; the most extreme low outlier is approximately **22–25**.
+
+**(d)** The **median alone is insufficient** — both sections have a similar median, but Section B has much greater variability. A complete comparison requires measures of both centre *and* spread.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 14</div>
+A researcher recorded the delivery times (in minutes) for a random sample of 80 orders from two restaurants near UTM: **Restaurant A** and **Restaurant B**.
+
+Side-by-side boxplots and histograms of the delivery times are shown below. **The box spans $Q_1$ to $Q_3$; the line inside is the median; whiskers extend to the most extreme non-outlier values; dots beyond the whiskers are outliers.**
+
+```{r ch3-q14-box, echo=FALSE, fig.height=3.2, fig.width=5, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(258)
+n14 <- 80
+rA14 <- pmax(pmin(round(rnorm(n14, 35, 7)), 56), 14)
+rB14 <- c(round(rlnorm(n14 - 2, log(25), 0.40)), 60, 73)
+df14 <- data.frame(
+  time       = c(rA14, rB14),
+  restaurant = factor(rep(c("Restaurant A", "Restaurant B"), each = n14))
+)
+ggplot(df14, aes(x = restaurant, y = time, fill = restaurant)) +
+  geom_boxplot(width = 0.4, alpha = 0.75, outlier.size = 2.5,
+               outlier.shape = 19, outlier.colour = "grey30") +
+  scale_fill_manual(values = c("Restaurant A" = "#5b9bd5", "Restaurant B" = "#ed7d31")) +
+  scale_y_continuous(breaks = seq(0, 80, 10)) +
+  labs(x = NULL, y = "Delivery time (minutes)",
+       caption = "Box = Q1 to Q3  |  Line = median  |  Dots = outliers") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+```{r ch3-q14-hist, echo=FALSE, fig.height=3.8, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
+ggplot(df14, aes(x = time, fill = restaurant)) +
+  geom_histogram(binwidth = 5, color = "white", alpha = 0.85) +
+  facet_wrap(~ restaurant, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = c("Restaurant A" = "#5b9bd5", "Restaurant B" = "#ed7d31")) +
+  scale_x_continuous(breaks = seq(0, 80, 10)) +
+  labs(x = "Delivery time (minutes)", y = "Frequency") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        strip.text = element_text(face = "bold", size = 11))
+```
+
+**(a)** Use the **boxplots** to answer the following.
+
+(i) (2 marks) Which restaurant (A or B) appears to have **greater variability** in delivery time? Justify your answer using a feature of the boxplot.
+
+(ii) (2 marks) **Estimate the median** delivery time for both Restaurant A and Restaurant B. All reasonable estimated answers will be marked correct.
+
+(iii) (2 marks) Do any of the boxplots show **outliers**? If outliers exist, state which restaurant has them and estimate the value of the **largest outlier**. All reasonable estimated answers will be marked correct.
+
+**(b)** Use the **histograms** to answer the following.
+
+(i) (2 marks) Describe the **shape** (skewness or symmetry) of the delivery time distribution for Restaurant A and for Restaurant B.
+
+(ii) (3 marks) Estimate the **proportion** of deliveries from each restaurant that were completed in **40 minutes or less**. All reasonable estimated answers will be marked correct.
+
+(iii) (2 marks) One of these restaurants is a sushi restaurant known for careful, consistent preparation; the other is a pizza restaurant that occasionally receives large rush orders. Based on the plots and your previous answers, which restaurant (A or B) is the **sushi restaurant**? Explain your reasoning.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Variability** in a boxplot is shown by the height of the box (IQR) and the whisker span.
+- **Skewness**: a longer tail to the right → right-skewed; roughly bell-shaped → symmetric.
+- For (b)(ii), count bars to the left of 40 and divide by the total count.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)(i)** **Restaurant B** — its box (IQR) is taller and whiskers span a wider range.
+
+**(a)(ii)** Restaurant A median ≈ **35 min**; Restaurant B median ≈ **25 min**.
+
+**(a)(iii)** Yes — **Restaurant B** has outlier dots above the upper whisker; the largest outlier is approximately **70–75 minutes**.
+
+**(b)(i)** Restaurant A is roughly **symmetric** (approximately bell-shaped); Restaurant B is **right-skewed** (most deliveries are fast but a long right tail extends toward 70+ minutes).
+
+**(b)(ii)** Restaurant A ≈ **75–80%** of deliveries ≤ 40 min; Restaurant B ≈ **85–90%** of deliveries ≤ 40 min.
+
+**(b)(iii)** **Restaurant A** is the sushi restaurant — its symmetric distribution reflects **consistent preparation times**, characteristic of careful sushi preparation. Restaurant B's right-skewed distribution with outliers is consistent with pizza delivery, where most orders are fast but large rush orders occasionally cause extreme delays.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 15</div>
+The histogram below shows the annual salaries (in thousands of dollars) of employees at a tech company.
+
+```{r ch3-q15-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(15)
+salaries <- c(round(rlnorm(70, log(75), 0.35)), round(rlnorm(10, log(200), 0.25)))
+salaries <- pmin(salaries, 400)
+df_q15 <- data.frame(salary = salaries)
+ggplot(df_q15, aes(x = salary)) +
+  geom_histogram(binwidth = 25, fill = "#a29bfe", color = "white", boundary = 0) +
+  scale_x_continuous(breaks = seq(0, 400, 50)) +
+  labs(x = "Annual salary ($thousands)", y = "Frequency",
+       caption = "n = 80 employees  |  Bar width = $25,000") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Describe the **shape** of this salary distribution. Identify the direction of skew and justify using features of the histogram.
+(b) (2 marks) Based on the shape, would you expect the **mean salary** to be greater than, less than, or approximately equal to the **median salary**? Explain.
+(c) (1 mark) A reporter states: *"The average salary at this company is \$95,000, so most employees earn around that amount."* Is this statement likely to be **misleading**? Explain why.
+(d) (2 marks) Which single measure — **mean** or **median** — would better represent a **typical** employee's salary in this company? Justify your answer.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- In a **right-skewed** distribution, a small number of very high values pull the **mean** above the **median**.
+- The "average" (mean) can be misleading when data are skewed because it does not reflect where most data points fall.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The distribution is **right-skewed** — most employees earn between \$50,000 and \$125,000 (the tall bars on the left), but a small number of high earners (possibly executives) create a long tail extending to the right toward \$300,000–\$400,000.
+
+**(b)** We would expect the **mean > median** — the high-earning outliers in the long right tail pull the mean upward, while the median (the middle value) is not affected as strongly.
+
+**(c)** Yes, this is likely **misleading**. If the distribution is right-skewed, most employees earn *less* than the mean. The mean is inflated by a small number of very high earners (executives), so it does not represent a "typical" employee's salary.
+
+**(d)** The **median** better represents a typical employee's salary — it is robust to the influence of high-earning outliers and accurately reflects where the middle of the salary distribution falls.
+</div>
+</details>
+
