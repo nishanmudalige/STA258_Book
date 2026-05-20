@@ -15,7 +15,7 @@ or in tabular form as:
 ::: {#smalltbl .smalltbl}
 | Index       | 1     | 2     | $\ldots$  | $n$   |
 | :---------- | :-:   | :-:   | :-:       | :-:   |
-| Observation | $x_1$ | $x_2$ | $\ldots$  | $x_2$ |
+| Observation | $x_1$ | $x_2$ | $\ldots$  | $x_n$ |
 :::
 
 
@@ -58,7 +58,7 @@ Consider $n$ ordered observations $x_{(1)},x_{(2)},~\cdots~,x_{(n)}$.
 The mode is the most frequently occurring observation in a data set.
 :::
 
-We are als interested in how the data is spread out or dispersed.
+We are also interested in how the data is spread out or dispersed.
 The most common numerical measures of the dispersion are the range, variance, and standard deviation. These measures summarize a set of data by identifying the spread or variability within that data.
 
 
@@ -106,11 +106,11 @@ of the data, however when analyzed collectively, we are able to get a better ove
 
 ### Range
 
-The range is the difference between the largest and smallest observations in a data set. 
+The range is the difference between the largest and smallest observations in a data set.
 
-::: {.definition name="Standard Deviation" #StDev}
+::: {.definition name="Range" #Range}
 Let $x_{1}, ~x_{2}, ~x_{3}, ~\ldots , ~x_{n}$ represent a sample of $n$ observations.
-The range is 
+The range is
 $$\text{Range} = \max(x_{1}, x_{2}, ~x_{3}, ~\ldots , ~x_{n}) - \min(x_{1}, x_{2}, ~x_{3}, ~\ldots , ~x_{n}) $$
 :::
 
@@ -135,7 +135,7 @@ This means that they scored better than 90\% of the rest of the class.
 Quartiles are special cases of percentiles.
 
 ::: {.definition name="Quartiles" #Quartiles}
-In an ordered data set, quartiles are three values which divide the data into four groups such that each group consists of one fourth of the data. There three quartiles are the:
+In an ordered data set, quartiles are three values which divide the data into four groups such that each group consists of one fourth of the data. The three quartiles are the:
 
 -	First Quartile (Q$_{1}$)	:	A value such that 25\% (i.e. a quarter) of all observations lie below it.
 -	Second Quartile (Q$_{2}$)	:	A value such that 50\% (i.e. two quarters) of all observations lie below it.
@@ -151,13 +151,13 @@ The second quartile ($Q_2$) in Definition \@ref(def:Quartiles) is the same as th
 <!-- **Note:** The second quartile ($Q_2$) in Definition \@ref(def:Quartiles) is the same as the *median* in Definition \@ref(def:Median). -->
 <!-- ::: -->
 
-We work with quartiles since they are provide an intutitive way to partition data into quarters, and quartiles are also used in graphical summaries discussed in Section \@ref(sec:GraphicalTechniques).
+We work with quartiles since they provide an intuitive way to partition data into quarters, and quartiles are also used in graphical summaries discussed in Section \@ref(sec:GraphicalTechniques).
 
-A measure of dispersion involving quartiles is the inter-quartils range (IQR).
+A measure of dispersion involving quartiles is the interquartile range (IQR).
 
 ::: {.definition name="Interquartile Range" #IQR}
 The interquartile range (IQR) is the difference between the third quartile and the first quartile.
-$$\text{IQR} = Q_{1} - Q_{3}$$
+$$\text{IQR} = Q_{3} - Q_{1}$$
 where $Q_{1}$ and $Q_{3}$ are the first and third quartiles respectively in Definition \@ref(def:Quartiles).
 :::
 
@@ -184,7 +184,7 @@ We also may have data that is bimodal, which means that there are two distinct p
 
 
 ::: {.remark}
-*Right* skewed data is is also referred to as *positively* skewed and *left* skewed data is is also referred to as *negatively* skewed.
+*Right* skewed data is also referred to as *positively* skewed and *left* skewed data is also referred to as *negatively* skewed.
 :::
 
 Figures \@ref(fig:LeftSkewExample), \@ref(fig:RightSkewExample) and \@ref(fig:SymmetryExample) illustrate types of skewness.
@@ -436,14 +436,14 @@ ggplot(df, aes(x = x)) +
 ```
 
 <!-- ::: {#note:skewnote .note name="Skewness Note"} -->
-<!-- **Note:** *Right* skewed data is is also referred to as *positively* skewed and *left* skewed data is is also referred to as *negatively* skewed. -->
+<!-- **Note:** *Right* skewed data is also referred to as *positively* skewed and *left* skewed data is also referred to as *negatively* skewed. -->
 <!-- ::: -->
 
 Data sets can have points in it which may be unusual or unexpected. 
 These terms are called *outliers*.
 
 ::: {.definition name="Outlier" }
-An outlier is an unusual data point which appears to lies outside the overall pattern of the
+An outlier is an unusual data point which appears to lie outside the overall pattern of the
 rest of the data.
 :::
 
@@ -853,7 +853,7 @@ Otherwise, if the median cuts the box with upper area equal to
 lower area, then we say that box-plot with symmetric probability
 distribution.
 
-```{r BoxplotNegativeExample, fig.cap="An illustration of an boxplot with left (negative) skewed.", echo=FALSE, fig.align='center', warning=FALSE}
+```{r BoxplotNegativeExample, fig.cap="An illustration of a boxplot with a left (negative) skew.", echo=FALSE, fig.align='center', warning=FALSE}
 # Load Plotly
 library(plotly)
 
@@ -945,7 +945,7 @@ config(
 
 ```
 
-```{r BoxplotpositiveExample, fig.cap="An illustration of an boxplot with right (positive) skewed.", echo=FALSE, fig.align='center', warning=FALSE}
+```{r BoxplotpositiveExample, fig.cap="An illustration of a boxplot with a right (positive) skew.", echo=FALSE, fig.align='center', warning=FALSE}
 # Load Plotly
 library(plotly)
 
@@ -1032,7 +1032,7 @@ config(
 )
 ```
 
-```{r BoxplotSymmetryExample, fig.cap="An illustration of an boxplot with symetric skewed.", echo=FALSE, fig.align='center', warning=FALSE}
+```{r BoxplotSymmetryExample, fig.cap="An illustration of a boxplot with an approximately symmetric distribution.", echo=FALSE, fig.align='center', warning=FALSE}
 # Load Plotly
 library(plotly)
 
@@ -1057,7 +1057,7 @@ p <- plot_ly() %>%
     line = list(color = 'rgba(0,100,200,1)')
   ) %>%
   layout(
-    title = "Boxplot suggesting symmetic data<br>(Mean ≈ Median)",
+    title = "Boxplot suggesting symmetric data<br>(Mean ≈ Median)",
     yaxis = list(
       title = "Values",
       range = c(0, 21)
@@ -1118,11 +1118,7 @@ config(
 library(ggplot2)
 ```
 
-*Questions 1–5 cover **Section 3.1** (Representing Data); Questions 6–10 cover **Section 3.2** (Numerical Measures); Questions 11–15 cover **Section 3.3** (Graphical Techniques).*
-
 ---
-
-### Representing Data
 
 <div class="exercise-box">
 <div class="exercise-label">Question 1</div>
@@ -1352,8 +1348,6 @@ $$\bar{x} \approx \frac{14(20) + 20(25) + 11(30) + 8(35) + 7(40)}{14+20+11+8+7} 
 
 ---
 
-### Numerical Measures
-
 <div class="exercise-box">
 <div class="exercise-label">Question 6</div>
 The dot plot below shows the number of cups of coffee consumed daily by 11 students. **Each dot represents one student.**
@@ -1574,13 +1568,49 @@ Group B's standard deviation is much larger, confirming the visual observation.
 
 ---
 
-### Graphical Techniques
-
 <div class="exercise-box">
 <div class="exercise-label">Question 11</div>
+The following data show the number of minutes that 12 students spent waiting for a bus:
+
+$$3,\ 4,\ 5,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10,\ 12,\ 13,\ 30$$
+
+(a) (1 mark) Find the **median**.
+(b) (2 marks) Find $Q_1$ and $Q_3$.
+(c) (1 mark) Calculate the **IQR**.
+(d) (2 marks) Use the $1.5 \times \text{IQR}$ rule to determine whether there are any **outliers**.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- First order the data. Then use $\text{IQR} = Q_3 - Q_1$.
+- The lower fence is $Q_1 - 1.5 \times \text{IQR}$, and the upper fence is $Q_3 + 1.5 \times \text{IQR}$.
+- Any observation outside these fences is flagged as an outlier.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Sorted data:** 3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30
+
+**(a)** $n = 12$ (even), so median = average of 6th and 7th values $= (7 + 8)/2 = \mathbf{7.5}$ minutes.
+
+**(b)** Lower half: 3, 4, 5, 5, 6, 7 → $Q_1 = (5 + 5)/2 = \mathbf{5}$. Upper half: 8, 9, 10, 12, 13, 30 → $Q_3 = (10 + 12)/2 = \mathbf{11}$.
+
+**(c)** $\text{IQR} = Q_3 - Q_1 = 11 - 5 = \mathbf{6}$ minutes.
+
+**(d)** Lower fence $= 5 - 1.5(6) = -4$; upper fence $= 11 + 1.5(6) = 20$. Since $30 > 20$, the value **30 is a high outlier**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
 The histogram below shows the distribution of daily commute times (in minutes) for a random sample of 60 UTM students. **Each bar covers a 10-minute interval; bar height = frequency.**
 
-```{r ch3-q11-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch3-q12-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
 set.seed(11)
 commute <- round(rlnorm(60, log(28), 0.45))
 commute <- pmin(commute, 80)
@@ -1621,10 +1651,10 @@ ggplot(df_q11, aes(x = commute)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 12</div>
+<div class="exercise-label">Question 13</div>
 The boxplot below shows the distribution of exam scores (out of 100) for 30 students in a statistics course. **The box spans $Q_1$ to $Q_3$; the line inside the box is the median; whiskers extend to min and max within the IQR fences; any dots beyond the whiskers are outliers.**
 
-```{r ch3-q12-box, echo=FALSE, fig.height=3.5, fig.width=4, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch3-q13-box, echo=FALSE, fig.height=3.5, fig.width=4, fig.align='center', message=FALSE, warning=FALSE}
 set.seed(12)
 scores12 <- c(round(rnorm(27, 72, 10)), 38, 42, 95)
 scores12 <- pmax(pmin(scores12, 100), 0)
@@ -1667,10 +1697,10 @@ ggplot(df_q12, aes(x = "", y = score)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 13</div>
+<div class="exercise-label">Question 14</div>
 Two sections of STA258 each wrote the same midterm exam (out of 100). Side-by-side boxplots of their scores are shown below. **Each dot is one student's score; the box spans $Q_1$ to $Q_3$; the line inside is the median.**
 
-```{r ch3-q13-box, echo=FALSE, fig.height=3.5, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch3-q14-box, echo=FALSE, fig.height=3.5, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
 set.seed(13)
 secA <- pmax(pmin(round(rnorm(35, 74, 6)), 100), 40)
 secB_main <- round(rnorm(32, 74, 14))
@@ -1723,12 +1753,12 @@ ggplot(df_q13, aes(x = section, y = score, fill = section)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 14</div>
+<div class="exercise-label">Question 15</div>
 A researcher recorded the delivery times (in minutes) for a random sample of 80 orders from two restaurants near UTM: **Restaurant A** and **Restaurant B**.
 
 Side-by-side boxplots and histograms of the delivery times are shown below. **The box spans $Q_1$ to $Q_3$; the line inside is the median; whiskers extend to the most extreme non-outlier values; dots beyond the whiskers are outliers.**
 
-```{r ch3-q14-box, echo=FALSE, fig.height=3.2, fig.width=5, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch3-q15-box, echo=FALSE, fig.height=3.2, fig.width=5, fig.align='center', message=FALSE, warning=FALSE}
 set.seed(258)
 n14 <- 80
 rA14 <- pmax(pmin(round(rnorm(n14, 35, 7)), 56), 14)
@@ -1749,7 +1779,7 @@ ggplot(df14, aes(x = restaurant, y = time, fill = restaurant)) +
         plot.caption = element_text(color = "#555", size = 9))
 ```
 
-```{r ch3-q14-hist, echo=FALSE, fig.height=3.8, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch3-q15-hist, echo=FALSE, fig.height=3.8, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
 ggplot(df14, aes(x = time, fill = restaurant)) +
   geom_histogram(binwidth = 5, color = "white", alpha = 0.85) +
   facet_wrap(~ restaurant, ncol = 1, scales = "free_y") +
@@ -1807,10 +1837,10 @@ ggplot(df14, aes(x = time, fill = restaurant)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 15</div>
+<div class="exercise-label">Question 16</div>
 The histogram below shows the annual salaries (in thousands of dollars) of employees at a tech company.
 
-```{r ch3-q15-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch3-q16-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
 set.seed(15)
 salaries <- c(round(rlnorm(70, log(75), 0.35)), round(rlnorm(10, log(200), 0.25)))
 salaries <- pmin(salaries, 400)
@@ -1848,6 +1878,39 @@ ggplot(df_q15, aes(x = salary)) +
 **(c)** Yes, this is likely **misleading**. If the distribution is right-skewed, most employees earn *less* than the mean. The mean is inflated by a small number of very high earners (executives), so it does not represent a "typical" employee's salary.
 
 **(d)** The **median** better represents a typical employee's salary — it is robust to the influence of high-earning outliers and accurately reflects where the middle of the salary distribution falls.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 17</div>
+For each situation below, choose the most appropriate graph: **bar chart**, **histogram**, or **boxplot**. Briefly explain your choice.
+
+(a) (1 mark) A professor wants to display the number of students enrolled in each program: Statistics, Computer Science, Biology, and Psychology.
+(b) (1 mark) A researcher wants to show the distribution of commute times for 200 students.
+(c) (2 marks) A teaching assistant wants to compare the distribution of test scores between two tutorial sections.
+(d) (1 mark) A student wants to display the frequency of different eye colours in a class.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Think about whether the variable is **categorical** or **quantitative**.
+- When the goal is to **compare distributions between groups**, which graph type makes this easiest?
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** **Bar chart** — program is a categorical variable, and a bar chart displays the count or frequency for each category.
+
+**(b)** **Histogram** — commute time is a quantitative variable; a histogram shows the shape, centre, and spread of its distribution.
+
+**(c)** **Boxplot** — side-by-side boxplots are ideal for comparing the centre, spread, and outliers of a quantitative variable across two or more groups.
+
+**(d)** **Bar chart** — eye colour is categorical with no natural ordering, so a bar chart is appropriate.
 </div>
 </details>
 
