@@ -1353,11 +1353,11 @@ $$\bar{x} \approx \frac{14(20) + 20(25) + 11(30) + 8(35) + 7(40)}{14+20+11+8+7} 
 The dot plot below shows the number of cups of coffee consumed daily by 11 students. **Each dot represents one student.**
 
 ```{r ch3-q6-dot, echo=FALSE, fig.height=2.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
-coffee <- c(0, 1, 2, 1, 3, 2, 0, 2, 4, 2, 1)
+coffee <- c(0, 0, 0, 1, 1, 1, 1, 2, 2, 4, 7)
 df_q6 <- data.frame(cups = coffee)
 ggplot(df_q6, aes(x = cups)) +
   geom_dotplot(binwidth = 0.35, fill = "#e67e22", color = "white", dotsize = 1.0) +
-  scale_x_continuous(breaks = 0:4, limits = c(-0.5, 4.5)) +
+  scale_x_continuous(breaks = 0:7, limits = c(-0.5, 7.5)) +
   labs(x = "Cups of coffee per day", y = NULL,
        caption = "Each dot = 1 student") +
   theme_minimal(base_size = 12) +
@@ -1368,7 +1368,7 @@ ggplot(df_q6, aes(x = cups)) +
 (a) (1 mark) Based on the dot plot, does the distribution appear **left-skewed, right-skewed, or roughly symmetric**? Justify briefly.
 (b) (2 marks) Calculate the **mean** $\bar{x}$ and find the **median**.
 (c) (1 mark) Identify the **mode**.
-(d) (2 marks) If the value of 4 is changed to 12, which measure — mean or median — changes more? What does this tell you about the effect of **outliers** on these measures?
+(d) (2 marks) If the value of 7 is changed to 12, which measure — mean or median — changes more? What does this tell you about the effect of **outliers** on these measures?
 </div>
 
 <details data-type="hint">
@@ -1376,23 +1376,24 @@ ggplot(df_q6, aes(x = cups)) +
 <div class="content">
 - Sort the 11 values first. For $n = 11$ (odd), median is the $\frac{11+1}{2} = 6$th value.
 - The mode is the value with the **tallest stack** of dots.
+- For skewness, look at where most values are concentrated and which side has the longer tail.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**Sorted data:** $0, 0, 1, 1, 1, 2, 2, 2, 2, 3, 4$
+**Sorted data:** $0, 0, 0, 1, 1, 1, 1, 2, 2, 4, 7$
 
-**(a)** **Right-skewed** — most students drink 0–2 cups with one student at 4, pulling the tail to the right.
+**(a)** **Right-skewed** — most students drink 0–2 cups, while a few larger values, especially 4 and 7 cups, create a long tail to the right.
 
 **(b)**
-$$\bar{x} = \frac{0+0+1+1+1+2+2+2+2+3+4}{11} = \frac{18}{11} \approx 1.64 \text{ cups}$$
-Median = 6th value = **2 cups**
+$$\bar{x} = \frac{0+0+0+1+1+1+1+2+2+4+7}{11} = \frac{19}{11} \approx 1.73 \text{ cups}$$
+Median = 6th value = **1 cup**
 
-**(c)** Mode = **2** (appears 4 times, the tallest stack)
+**(c)** Mode = **1** (appears 4 times, the tallest stack)
 
-**(d)** Replacing 4 with 12: new $\bar{x} = \frac{26}{11} \approx 2.36$ (increased by ~0.73); median remains **2**. The **mean is sensitive to outliers**; the median is **robust**.
+**(d)** Replacing 7 with 12 gives a new total of 24, so the new $\bar{x} = \frac{24}{11} \approx 2.18$ (increased by ~0.45); median remains **1**. The **mean is sensitive to outliers**; the median is **robust**.
 </div>
 </details>
 
@@ -1558,11 +1559,11 @@ Standard deviation measures how far values are from the mean *on average*. Look 
 **(b)**
 
 - Group A: $\bar{x} = 150/10 = 15$, $s \approx 0.816$
-- Group B: $\bar{x} = 150/10 = 15$, $s \approx 4.22$
+- Group B: $\bar{x} = 140/10 = 14$, $s \approx 4.32$
 
 Group B's standard deviation is much larger, confirming the visual observation.
 
-**(c)** The mean alone is **insufficient** to describe a dataset — two datasets can have the same mean but very different spreads. The standard deviation (or other measures of variability) is needed to get a complete picture.
+**(c)** The two groups actually have **different** means (Group A: $\bar{x} = 15$, Group B: $\bar{x} = 14$) **and** very different standard deviations ($s_A \approx 0.816$, $s_B \approx 4.32$). This illustrates that the mean alone is **insufficient** to fully describe a dataset — the standard deviation is also needed to capture how spread out the values are.
 </div>
 </details>
 
