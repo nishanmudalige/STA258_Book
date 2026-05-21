@@ -1,5 +1,18 @@
 # STA258: Statistics with Applied Probability
 
+## Things to do for May 28
+
+- Add webR exercises
+  - chapter2 (e.g using R as a calculator, declare a vector, index a vector, reading a file into a data frame, loading a library tidyvers)
+  - chapter3 (mean, median, summary, variance, different plots)
+- Add more details for the solutions
+- Start different exercises for chapter5 2-3 for each type of CI
+- Nishan: Add tables for chapter4
+  
+
+
+
+
 ## Things to do for May 21
 
 - Make about 10 questions for Chapter 1 (including solutions)
