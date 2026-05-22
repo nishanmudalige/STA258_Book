@@ -1376,6 +1376,56 @@ The mean uses all observations, while the median is the middle value after order
 
 <div class="exercise-box">
 <div class="exercise-label">Question 7</div>
+The dot plot below shows the number of cups of coffee consumed daily by 11 students. **Each dot represents one student.**
+
+```{r ch3-coffee-dot, echo=FALSE, fig.height=2.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+coffee2 <- c(0, 0, 0, 1, 1, 1, 1, 2, 2, 4, 7)
+df_coffee <- data.frame(cups = coffee2)
+ggplot(df_coffee, aes(x = cups)) +
+  geom_dotplot(binwidth = 0.4, fill = "#e67e22", color = "white", dotsize = 1.0) +
+  scale_x_continuous(breaks = 0:7, limits = c(-0.5, 7.5)) +
+  labs(x = "Cups of coffee per day", y = NULL,
+       caption = "Each dot = 1 student") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        plot.caption = element_text(color = "#555", size = 10))
+```
+
+(a) (1 mark) Based on the dot plot, does the distribution appear **left-skewed, right-skewed, or roughly symmetric**? Justify briefly.
+(b) (2 marks) Calculate the **mean** $\bar{x}$ and find the **median**.
+(c) (1 mark) Identify the **mode**.
+(d) (2 marks) If the value of 7 is changed to 12, which measure — mean or median — changes more? What does this tell you about the effect of **outliers** on these measures?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Each dot represents one observation. Sort the 11 values first — for $n = 11$ (odd), the median is the $\frac{11+1}{2} = 6$th value.
+- The mean uses all observations, while the median is based only on position. Extreme values usually affect the mean more than the median.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Sorted data:** $0, 0, 0, 1, 1, 1, 1, 2, 2, 4, 7$
+
+**(a)** **Right-skewed** — most students drink 0–2 cups, but the values 4 and 7 form a long tail to the right.
+
+**(b)**
+$$\bar{x} = \frac{0+0+0+1+1+1+1+2+2+4+7}{11} = \frac{19}{11} \approx 1.73 \text{ cups}$$
+Median = 6th value = **1 cup**
+
+**(c)** Mode = **1** (appears 4 times — the tallest stack of dots).
+
+**(d)** Replacing 7 with 12: new $\bar{x} = 24/11 \approx 2.18$ (increased by ~0.45); median remains **1**. The **mean is sensitive to outliers**; the median is **robust** because it depends only on the middle value's position.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
 Two data sets are shown below.
 
 **Data Set A:**
@@ -1413,7 +1463,7 @@ Compare how much the mean and median change when 9 is replaced by 30.
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 8</div>
+<div class="exercise-label">Question 9</div>
 The following data represent the number of hours 6 students spent studying for a midterm:
 
 $$x_1 = 2,\quad x_2 = 4,\quad x_3 = 4,\quad x_4 = 6,\quad x_5 = 6,\quad x_6 = 8$$
@@ -1459,7 +1509,7 @@ $$s^2 = \frac{22}{6-1} = \frac{22}{5} = \mathbf{4.4}$$
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 9</div>
+<div class="exercise-label">Question 10</div>
 The boxplot below shows the age distribution of 12 participants in a research study. **Each dot is one participant's age. The bottom and top of the box are $Q_1$ and $Q_3$; the line inside the box is the median; whiskers extend to the min and max within the IQR fences; the red dashed lines are the IQR outlier fences.**
 
 ```{r ch3-q9-box, echo=FALSE, fig.height=3.8, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE}
@@ -1511,7 +1561,7 @@ ggplot(df_q9, aes(x = "", y = ages)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 10</div>
+<div class="exercise-label">Question 11</div>
 Two groups of students were given the same statistics quiz (out of 20). Their scores are:
 
 - **Group A:** 14, 15, 14, 16, 15, 14, 16, 15, 15, 16
@@ -1548,7 +1598,7 @@ Group B's standard deviation is much larger, confirming the visual observation.
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 11</div>
+<div class="exercise-label">Question 12</div>
 The following data show the number of minutes that 12 students spent waiting for a bus:
 
 $$3,\ 4,\ 5,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10,\ 12,\ 13,\ 30$$
@@ -1586,7 +1636,7 @@ $$3,\ 4,\ 5,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10,\ 12,\ 13,\ 30$$
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 12</div>
+<div class="exercise-label">Question 13</div>
 The histogram below shows the distribution of daily commute times (in minutes) for a random sample of 60 UTM students. **Each bar covers a 10-minute interval; bar height = frequency.**
 
 ```{r ch3-q12-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
@@ -1630,7 +1680,7 @@ ggplot(df_q11, aes(x = commute)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 13</div>
+<div class="exercise-label">Question 14</div>
 The boxplot below shows the distribution of exam scores (out of 100) for 30 students in a statistics course. **The box spans $Q_1$ to $Q_3$; the line inside the box is the median; whiskers extend to min and max within the IQR fences; any dots beyond the whiskers are outliers.**
 
 ```{r ch3-q13-box, echo=FALSE, fig.height=3.5, fig.width=4, fig.align='center', message=FALSE, warning=FALSE}
@@ -1676,7 +1726,7 @@ ggplot(df_q12, aes(x = "", y = score)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 14</div>
+<div class="exercise-label">Question 15</div>
 Two sections of STA258 each wrote the same midterm exam (out of 100). Side-by-side boxplots of their scores are shown below. **Each dot is one student's score; the box spans $Q_1$ to $Q_3$; the line inside is the median.**
 
 ```{r ch3-q14-box, echo=FALSE, fig.height=3.5, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
@@ -1732,7 +1782,7 @@ ggplot(df_q13, aes(x = section, y = score, fill = section)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 15</div>
+<div class="exercise-label">Question 16</div>
 A researcher recorded the delivery times (in minutes) for a random sample of 80 orders from two restaurants near UTM: **Restaurant A** and **Restaurant B**.
 
 Side-by-side boxplots and histograms of the delivery times are shown below. **The box spans $Q_1$ to $Q_3$; the line inside is the median; whiskers extend to the most extreme non-outlier values; dots beyond the whiskers are outliers.**
@@ -1816,7 +1866,7 @@ ggplot(df14, aes(x = time, fill = restaurant)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 16</div>
+<div class="exercise-label">Question 17</div>
 The histogram below shows the annual salaries (in thousands of dollars) of employees at a tech company.
 
 ```{r ch3-q16-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
@@ -1863,7 +1913,7 @@ ggplot(df_q15, aes(x = salary)) +
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 17</div>
+<div class="exercise-label">Question 18</div>
 For each situation below, choose the most appropriate graph: **bar chart**, **histogram**, or **boxplot**. Briefly explain your choice.
 
 (a) (1 mark) A professor wants to display the number of students enrolled in each program: Statistics, Computer Science, Biology, and Psychology.
