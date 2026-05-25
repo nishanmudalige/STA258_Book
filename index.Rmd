@@ -3,124 +3,28 @@ title: "STA258: Statistics with Applied Probability"
 author: "Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output:
-  bookdown::gitbook
+output: bookdown::gitbook
 knit: bookdown::render_book
 documentclass: book
 github-repo: nishanmudalige/STA258
 bibliography: [references.bib, packages.bib]
 biblio-style: apalike
-link-citations: yes
+link-citations: true
 nocite: '@*'
-description: "Bookdown hosted on github using bookdown::gitbook."
-# header-includes: 
-#   - \usepackage{tikz}
-#   - \usepackage{pgfplots}
-#   - \usepackage{amsmath}
-#   - \usepackage{amssymb}
-#   - \usepackage{graphicx}
-#   - \usepackage{booktabs}
-#   - \usepackage{hyperref}
-#   - \usepackage{fancyvrb}
-#   - \usepackage{listings}
-#   - \usepackage{tikz}
-#   - \usepackage{tikz-cd}
-#   - \usepackage{tikzsymbols}
-#   - \usepackage{tikz-3dplot}
-#   - \usepackage{tikz-feynman}
-#   - \usepackage{tikz-qtree}
-#   - \usepackage{tikz-uml}
-#   - \usepackage{tikz-dependency}
-#   - \usepackage{tikz-graph}
-#   - \usepackage{color}
-#   - \usepackage{xcolor}
-#   - \usepackage[T1]{fontenc}
-#   - \usepackage[oldstyle,expert,lf]{ebgaramond}
+description: "Bookdown hosted on GitHub using bookdown::gitbook."
 ---
 
 # STA258: Statistics with Applied Probability <br> University of Toronto Mississauga {-}
 
-<!--
-```{r setup, include=FALSE}
-library(rgl)                 # load first
-# disable auto‑printing of every rgl scene
-rgl::setupKnitr(autoprint = FALSE)   # ← key change :contentReference[oaicite:0]{index=0}
+<div style="text-align: center;">
+  <img
+    src="https://raw.githubusercontent.com/nishanmudalige/STA258/main/Hex%20Badges/STA258_no_bg.png"
+    alt="STA258 hex badge"
+    style="max-width: 360px; width: 65%; height: auto;"
+  />
+</div>
 
-# no chunk is treated as “WebGL” by default:
-knitr::opts_chunk$set(
-  echo    = FALSE,
-  warning = FALSE,
-  message = FALSE,
-  webgl   = FALSE,   # <- OFF globally :contentReference[oaicite:1]{index=1}
-  rgl     = FALSE    # <- OFF globally; rgl scenes won’t print :contentReference[oaicite:2]{index=2}
-)
-```
--->
-
-<center>
-```{r,echo=FALSE,warning=FALSE,webgl=TRUE,fig.show="hide"}
-library(rgl); library(png); library(RCurl)
-
-# 1. load & flip
-myurl <- "https://raw.githubusercontent.com/nishanmudalige/STA258/main/Hex%20Badges/STA258_no_bg.png"
-img   <- readPNG(getURLContent(myurl))
-img   <- img[nrow(img):1, , ]
-
-# 2. flatten over white
-alpha      <- img[,,4]
-img[,,1]   <- img[,,1] * alpha + (1 - alpha)
-img[,,2]   <- img[,,2] * alpha + (1 - alpha)
-img[,,3]   <- img[,,3] * alpha + (1 - alpha)
-img[,,4]   <- 1
-
-# 3. build quad
-h  <- dim(img)[1]; w <- dim(img)[2]; sf <- max(w, h)/2
-front <- matrix(c(
-  -w/2, -h/2, 0,
-  w/2, -h/2, 0,
-  w/2,  h/2, 0,
-  -w/2,  h/2, 0
-), byrow=TRUE, ncol=3) / sf
-front <- rotate3d(front, angle=pi/2, x=1, y=0, z=0)
-
-# 4. texture coords
-tex <- matrix(c(0,0, 1,0, 1,1, 0,1), byrow=TRUE, ncol=2)
-
-# 5. draw & embed
-invisible(open3d())                # no "glX 3" printed
-
-bg3d("white")
-view3d(theta=0, phi=-90, zoom=0.675) # smaller values means zoom in
-invisible(quads3d(
-  front,
-  texture   = img,
-  texcoords = tex,
-  lit       = FALSE,
-  col       = "white"
-))
-```
-</center>
-
-
-```{r setup2, include=FALSE}
-library(rgl)                 # load first
-# disable auto‑printing of every rgl scene
-rgl::setupKnitr(autoprint = FALSE)   # ← key change :contentReference[oaicite:0]{index=0}
-
-# no chunk is treated as “WebGL” by default:
-knitr::opts_chunk$set(
-  echo    = FALSE,
-  warning = FALSE,
-  message = FALSE,
-  webgl   = FALSE,   # <- OFF globally :contentReference[oaicite:1]{index=1}
-  rgl     = FALSE    # <- OFF globally; rgl scenes won’t print :contentReference[oaicite:2]{index=2}
-)
-
-close3d() 
-```
-
-
-<h2 style="text-align: center; color: #FF2C21;"> Work in Progress</h1>
+<h2 style="text-align: center; color: #FF2C21;">Work in Progress</h2>
 
 ---
 
@@ -134,25 +38,12 @@ Please select a chapter in the table of contents.
 
 ---
 
-<!-- Script for GitHub buttons to work -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-<!-- Star -->
+<!-- GitHub repository buttons -->
 <a class="github-button" href="https://github.com/nishanmudalige/STA258" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" aria-label="Star nishanmudalige/STA258 on GitHub">Star</a>
-<!-- Watch -->
-<a class="github-button" href="https://github.com/nishanmudalige/STA258/subscription" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-eye" data-size="large" aria-label="Watch nishanmudalige/STA258 on GitHub">Watch</a>
-<!-- Fork -->
+<a class="github-button" href="https://github.com/nishanmudalige/STA258/subscription" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-eye" data-size="large" aria-label="Watch nishanmudalige/STA258 on GitHub">Watch</a>
 <a class="github-button" href="https://github.com/nishanmudalige/STA258/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork nishanmudalige/STA258 on GitHub">Fork</a>
-<!-- Issues -->
-<a class="github-button" href="https://github.com/nishanmudalige/STA258/issues" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue nishanmudalige/STA258 on GitHub">Issue</a>
-<!-- Discuss -->
-<a class="github-button" href="https://github.com/nishanmudalige/STA258/discussions" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-comment-discussion" data-size="large" aria-label="Discuss nishanmudalige/STA258 on GitHub">Discuss</a>
-
-
-
-
-
-
+<a class="github-button" href="https://github.com/nishanmudalige/STA258/issues" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-issue-opened" data-size="large" aria-label="View issues for nishanmudalige/STA258 on GitHub">Issues</a>
+<a class="github-button" href="https://github.com/nishanmudalige/STA258/discussions" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-comment-discussion" data-size="large" aria-label="View discussions for nishanmudalige/STA258 on GitHub">Discuss</a>
 
 # Table of Contents {.unnumbered}
 
@@ -167,23 +58,13 @@ Please select a chapter in the table of contents.
 - [Section 9: Simple Linear Regression](https://nishanmudalige.github.io/STA258_Book/simple-linear-regression.html)
 - [Section 10: Analysis of Categorical Data](https://nishanmudalige.github.io/STA258_Book/analysis-of-categorical-data.html)
 
-
-
-
-
-
-
-
 # About the Authors {.unnumbered}
-
-<!-- Script for GitHub buttons to work -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 ### Nishan Mudalige {.unlisted .unnumbered}
 
 **To be completed by Nishan**
 
-<a class="github-button" href="https://github.com/nishanmudalige" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="@nishanmudalige on GitHub">Follow @nishanmudalige</a>
+<a class="github-button" href="https://github.com/nishanmudalige" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow &#64;nishanmudalige on GitHub">Follow &#64;nishanmudalige</a>
 
 ---
 
@@ -191,7 +72,7 @@ Please select a chapter in the table of contents.
 
 **To be completed by Masoud**
 
-<a class="github-button" href="https://github.com/chimera1001" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="@chimera1001 on GitHub">Follow @chimera1001</a>
+<a class="github-button" href="https://github.com/chimera1001" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow &#64;chimera1001 on GitHub">Follow &#64;chimera1001</a>
 
 ---
 
@@ -199,7 +80,7 @@ Please select a chapter in the table of contents.
 
 **To be completed by Nurlana**
 
-<a class="github-button" href="https://github.com/nurlanaalili" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="@nurlanaalili on GitHub">Follow @nurlanaalili</a>
+<a class="github-button" href="https://github.com/nurlanaalili" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow &#64;nurlanaalili on GitHub">Follow &#64;nurlanaalili</a>
 
 ---
 
@@ -207,12 +88,10 @@ Please select a chapter in the table of contents.
 
 **To be completed by Xi (Bryan) Su**
 
-<a class="github-button" href="https://github.com/BryanSu426" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="@BryanSu426 on GitHub">Follow @BryanSu426</a>
+<a class="github-button" href="https://github.com/BryanSu426" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow &#64;BryanSu426 on GitHub">Follow &#64;BryanSu426</a>
 
-
-
-
-
+<!-- Load GitHub Buttons once, after all GitHub button links have appeared. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 # Acknowledgements {-}
 
@@ -220,7 +99,6 @@ The authors would like to thank the following people for their feedback and revi
 
 - Dr. Steve Tully, Okanagan College
 - Ms. Avanti Coonghe, United Nations (World Health Organization)
-
 
 # Introduction and Overview {-}
 

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Probability Calculator with Plotly</title>
+
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f7fb;
+      color: #1f2937;
+    }
+
+    .page {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 20px 0;
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel,
+    .card {
+      background: white;
+      border: 1px solid #e4e4e7;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .card {
+      padding: 18px 22px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+      margin-top: 14px;
+    }
+
+    select,
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 9px 10px;
+      font-size: 15px;
+      border: 1px solid #d4d4d8;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .radio-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .radio-row label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .radio-row input {
+      width: auto;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .formula {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #52525b;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .probability {
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid #e4e4e7;
+      font-size: 14px;
+      color: #52525b;
+      line-height: 1.4;
+    }
+
+    #plot {
+      width: 100%;
+      height: 500px;
+      background: white;
+      border-radius: 14px;
+    }
+
+    @media (max-width: 850px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+  <h1>Probability Calculator for Common Distributions</h1>
+
+  <div class="layout">
+
+    <div>
+      <div class="card">
+        <div id="formula" class="formula"></div>
+        <div id="subtitle" class="subtitle"></div>
+        <div id="probability" class="probability"></div>
+      </div>
+
+      <div id="plot"></div>
+    </div>
+
+    <div class="panel">
+      <label for="dist">Distribution</label>
+      <select id="dist">
+        <option value="normal">Standard normal</option>
+        <option value="t">t-distribution</option>
+        <option value="chisq">Chi-square distribution</option>
+        <option value="f">F distribution</option>
+      </select>
+
+      <label>Tail area</label>
+      <div class="radio-row">
+        <label>
+          <input type="radio" name="tail" value="left" checked>
+          Left tail
+        </label>
+        <label>
+          <input type="radio" name="tail" value="right">
+          Right tail
+        </label>
+      </div>
+
+      <div id="normal-inputs">
+        <label for="zValue">z-value</label>
+        <input id="zValue" type="number" value="-1.96" step="0.01">
+      </div>
+
+      <div id="t-inputs" class="hidden">
+        <label for="tValue">t-value</label>
+        <input id="tValue" type="number" value="2" step="0.01">
+
+        <label for="tDf">Degrees of freedom</label>
+        <input id="tDf" type="number" value="10" min="1" step="1">
+      </div>
+
+      <div id="chisq-inputs" class="hidden">
+        <label for="chisqValue">Chi-square value</label>
+        <input id="chisqValue" type="number" value="10" min="0" step="0.01">
+
+        <label for="chisqDf">Degrees of freedom</label>
+        <input id="chisqDf" type="number" value="5" min="1" step="1">
+      </div>
+
+      <div id="f-inputs" class="hidden">
+        <label for="fValue">F value</label>
+        <input id="fValue" type="number" value="3" min="0" step="0.01">
+
+        <label for="fDf1">Numerator degrees of freedom</label>
+        <input id="fDf1" type="number" value="4" min="1" step="1">
+
+        <label for="fDf2">Denominator degrees of freedom</label>
+        <input id="fDf2" type="number" value="20" min="1" step="1">
+      </div>
+
+      <div class="note">
+        The shaded region displays the selected tail probability.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let currentCutoff = null;
+  let currentDist = null;
+  let currentTail = null;
+  let animationId = null;
+
+  const plotDiv = document.getElementById("plot");
+
+  function formatProb(p) {
+    if (!isFinite(p)) return "";
+    if (p < 1e-4) return p.toExponential(3);
+    return p.toFixed(6);
+  }
+
+  function formatNum(x) {
+    return Number(x).toFixed(3);
+  }
+
+  function seq(from, to, length) {
+    const out = [];
+    const step = (to - from) / (length - 1);
+
+    for (let i = 0; i < length; i++) {
+      out.push(from + i * step);
+    }
+
+    return out;
+  }
+
+  function getTail() {
+    return document.querySelector("input[name='tail']:checked").value;
+  }
+
+  function clampProbability(p) {
+    if (!isFinite(p)) return NaN;
+    return Math.max(0, Math.min(1, p));
+  }
+
+  function getInfo() {
+    const dist = document.getElementById("dist").value;
+    const tail = getTail();
+    const isLeft = tail === "left";
+
+    const symbol = isLeft ? "\u2264" : "\u2265";
+    const tailWords = isLeft ? "Left tail" : "Right tail";
+
+    let value;
+    let title;
+    let formula;
+    let probability;
+    let xMin;
+    let xMax;
+    let pdf;
+    let xLabel;
+
+    if (dist === "normal") {
+      value = Number(document.getElementById("zValue").value);
+
+      title = "Standard Normal Distribution";
+      formula = `P(Z ${symbol} ${formatNum(value)})`;
+
+      const cdf = jStat.normal.cdf(value, 0, 1);
+      probability = isLeft ? cdf : 1 - cdf;
+      probability = clampProbability(probability);
+
+      xMin = Math.min(-4, value - 1);
+      xMax = Math.max(4, value + 1);
+
+      pdf = x => jStat.normal.pdf(x, 0, 1);
+      xLabel = "z";
+    }
+
+    if (dist === "t") {
+      value = Number(document.getElementById("tValue").value);
+      const df = Number(document.getElementById("tDf").value);
+
+      title = `t-Distribution with df = ${formatNum(df)}`;
+      formula = `P(T ${symbol} ${formatNum(value)})`;
+
+      const cdf = jStat.studentt.cdf(value, df);
+      probability = isLeft ? cdf : 1 - cdf;
+      probability = clampProbability(probability);
+
+      const xUpper = Math.max(4, Math.abs(value) + 1);
+
+      xMin = -xUpper;
+      xMax = xUpper;
+
+      pdf = x => jStat.studentt.pdf(x, df);
+      xLabel = "t";
+    }
+
+    if (dist === "chisq") {
+      value = Number(document.getElementById("chisqValue").value);
+      const df = Number(document.getElementById("chisqDf").value);
+
+      title = `Chi-Square Distribution with df = ${formatNum(df)}`;
+      formula = `P(X ${symbol} ${formatNum(value)})`;
+
+      const cdf = jStat.chisquare.cdf(value, df);
+      probability = isLeft ? cdf : 1 - cdf;
+      probability = clampProbability(probability);
+
+      const q995 = jStat.chisquare.inv(0.995, df);
+
+      xMin = 0;
+      xMax = Math.max(
+        value * 1.4 + 1,
+        isFinite(q995) ? q995 : value * 1.4 + 1
+      );
+
+      pdf = x => jStat.chisquare.pdf(x, df);
+      xLabel = "\u03C7\u00B2";
+    }
+
+    if (dist === "f") {
+      value = Number(document.getElementById("fValue").value);
+      const df1 = Number(document.getElementById("fDf1").value);
+      const df2 = Number(document.getElementById("fDf2").value);
+
+      title = `F Distribution with df1 = ${formatNum(df1)}, df2 = ${formatNum(df2)}`;
+      formula = `P(F ${symbol} ${formatNum(value)})`;
+
+      const cdf = jStat.centralF.cdf(value, df1, df2);
+      probability = isLeft ? cdf : 1 - cdf;
+      probability = clampProbability(probability);
+
+      const q995 = jStat.centralF.inv(0.995, df1, df2);
+
+      xMin = 0;
+      xMax = Math.max(
+        value * 1.4 + 1,
+        isFinite(q995) ? q995 : value * 1.4 + 1
+      );
+
+      pdf = x => jStat.centralF.pdf(x, df1, df2);
+      xLabel = "F";
+    }
+
+    return {
+      dist,
+      tail,
+      isLeft,
+      tailWords,
+      value,
+      title,
+      formula,
+      probability,
+      xMin,
+      xMax,
+      pdf,
+      xLabel
+    };
+  }
+
+  function makePlotData(info, visualCutoff) {
+    const x = seq(info.xMin, info.xMax, 1200);
+    const y = x.map(info.pdf);
+
+    const shadeX = [];
+    const shadeY = [];
+
+    for (let i = 0; i < x.length; i++) {
+      if (
+        (info.isLeft && x[i] <= visualCutoff) ||
+        (!info.isLeft && x[i] >= visualCutoff)
+      ) {
+        shadeX.push(x[i]);
+        shadeY.push(y[i]);
+      }
+    }
+
+    const polygonX = shadeX.length > 0
+      ? [shadeX[0], ...shadeX, shadeX[shadeX.length - 1]]
+      : [];
+
+    const polygonY = shadeY.length > 0
+      ? [0, ...shadeY, 0]
+      : [];
+
+    const cutoffY = info.pdf(visualCutoff);
+
+    return [
+      {
+        x: polygonX,
+        y: polygonY,
+        type: "scatter",
+        mode: "lines",
+        fill: "toself",
+        fillcolor: "rgba(44, 127, 184, 0.35)",
+        line: { color: "rgba(44, 127, 184, 0)" },
+        hoverinfo: "skip",
+        name: "Tail area"
+      },
+      {
+        x: x,
+        y: y,
+        type: "scatter",
+        mode: "lines",
+        line: {
+          color: "#1f2937",
+          width: 3
+        },
+        hoverinfo: "skip",
+        name: "Density"
+      },
+      {
+        x: [visualCutoff, visualCutoff],
+        y: [0, cutoffY],
+        type: "scatter",
+        mode: "lines",
+        line: {
+          color: "#2C7FB8",
+          width: 3
+        },
+        hoverinfo: "skip",
+        showlegend: false
+      },
+      {
+        x: [visualCutoff],
+        y: [cutoffY],
+        type: "scatter",
+        mode: "markers",
+        marker: {
+          color: "#2C7FB8",
+          size: 10
+        },
+        hoverinfo: "skip",
+        showlegend: false
+      }
+    ];
+  }
+
+  function makeLayout(info) {
+    return {
+      title: {
+        text: info.title,
+        font: {
+          size: 22,
+          color: "#1f2937"
+        }
+      },
+      paper_bgcolor: "white",
+      plot_bgcolor: "white",
+      margin: {
+        l: 60,
+        r: 30,
+        t: 70,
+        b: 60
+      },
+      xaxis: {
+        title: info.xLabel,
+        range: [info.xMin, info.xMax],
+        zeroline: false,
+        gridcolor: "#e5e7eb"
+      },
+      yaxis: {
+        title: "Density",
+        rangemode: "tozero",
+        gridcolor: "#e5e7eb"
+      },
+      showlegend: true,
+      legend: {
+        x: 0.99,
+        y: 0.99,
+        xanchor: "right",
+        yanchor: "top",
+        bgcolor: "rgba(255,255,255,0.8)"
+      },
+      annotations: [
+        {
+          xref: "paper",
+          yref: "paper",
+          x: 0.99,
+          y: 0.88,
+          xanchor: "right",
+          yanchor: "top",
+          text: `${info.tailWords} probability = ${formatProb(info.probability)}`,
+          showarrow: false,
+          font: {
+            size: 15,
+            color: "#1f2937"
+          },
+          bgcolor: "rgba(255,255,255,0.8)",
+          bordercolor: "rgba(0,0,0,0)"
+        }
+      ]
+    };
+  }
+
+  function updateText(info) {
+    document.getElementById("formula").textContent = info.formula;
+
+    document.getElementById("subtitle").textContent =
+      `${info.title} | ${info.tailWords}`;
+
+    document.getElementById("probability").textContent =
+      `${info.formula} = ${formatProb(info.probability)}`;
+  }
+
+  function updateVisibleInputs() {
+    const dist = document.getElementById("dist").value;
+
+    document
+      .getElementById("normal-inputs")
+      .classList
+      .toggle("hidden", dist !== "normal");
+
+    document
+      .getElementById("t-inputs")
+      .classList
+      .toggle("hidden", dist !== "t");
+
+    document
+      .getElementById("chisq-inputs")
+      .classList
+      .toggle("hidden", dist !== "chisq");
+
+    document
+      .getElementById("f-inputs")
+      .classList
+      .toggle("hidden", dist !== "f");
+  }
+
+  function drawApp(animate = true) {
+    updateVisibleInputs();
+
+    const info = getInfo();
+
+    if (
+      !isFinite(info.value) ||
+      !isFinite(info.probability) ||
+      !isFinite(info.xMin) ||
+      !isFinite(info.xMax) ||
+      info.xMax <= info.xMin
+    ) {
+      return;
+    }
+
+    updateText(info);
+
+    let startCutoff = currentCutoff;
+
+    const distChanged = currentDist !== info.dist;
+    const tailChanged = currentTail !== info.tail;
+
+    if (
+      startCutoff === null ||
+      distChanged ||
+      tailChanged ||
+      startCutoff < info.xMin ||
+      startCutoff > info.xMax
+    ) {
+      startCutoff = info.isLeft ? info.xMin : info.xMax;
+    }
+
+    const endCutoff = info.value;
+
+    currentDist = info.dist;
+    currentTail = info.tail;
+
+    if (animationId !== null) {
+      cancelAnimationFrame(animationId);
+    }
+
+    if (!animate) {
+      currentCutoff = endCutoff;
+
+      Plotly.react(
+        plotDiv,
+        makePlotData(info, endCutoff),
+        makeLayout(info),
+        {
+          responsive: true,
+          displayModeBar: false,
+          staticPlot: true
+        }
+      );
+
+      return;
+    }
+
+    const duration = 450;
+    const startTime = performance.now();
+
+    function step(now) {
+      const rawProgress = Math.min(1, (now - startTime) / duration);
+
+      // Ease-out cubic animation.
+      const progress = 1 - Math.pow(1 - rawProgress, 3);
+
+      const visualCutoff =
+        startCutoff + progress * (endCutoff - startCutoff);
+
+      currentCutoff = visualCutoff;
+
+      Plotly.react(
+        plotDiv,
+        makePlotData(info, visualCutoff),
+        makeLayout(info),
+        {
+          responsive: true,
+          displayModeBar: false,
+          staticPlot: true
+        }
+      );
+
+      if (rawProgress < 1) {
+        animationId = requestAnimationFrame(step);
+      } else {
+        currentCutoff = endCutoff;
+        animationId = null;
+      }
+    }
+
+    animationId = requestAnimationFrame(step);
+  }
+
+  const inputs = document.querySelectorAll("select, input");
+
+  inputs.forEach(el => {
+    el.addEventListener("input", () => drawApp(true));
+    el.addEventListener("change", () => drawApp(true));
+  });
+
+  drawApp(false);
+</script>
+</body>
+</html>
