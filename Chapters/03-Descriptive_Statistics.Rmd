@@ -1122,47 +1122,53 @@ library(ggplot2)
 
 <div class="exercise-box">
 <div class="exercise-label">Question 1</div>
-A fitness researcher records the following information for five participants in a study:
+The dot plot below shows the number of steps (in thousands) walked by 10 UTM students on a randomly selected day. **Each dot represents one student.**
 
-| Participant | Age | Sex | Resting Heart Rate (bpm) | Exercise Habit |
-|-------------|-----|-----|--------------------------|----------------|
-| 1 | 24 | F | 68 | Daily |
-| 2 | 31 | M | 72 | Weekly |
-| 3 | 19 | F | 61 | Rarely |
-| 4 | 27 | M | 75 | Daily |
-| 5 | 22 | F | 65 | Weekly |
+```{r ch3-new-q1-dot, echo=FALSE, fig.height=2.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+steps1 <- c(3, 4, 4, 5, 5, 5, 6, 6, 8, 12)
+df_steps1 <- data.frame(steps = steps1)
+ggplot(df_steps1, aes(x = steps)) +
+  geom_dotplot(binwidth = 0.5, fill = "#0984e3", color = "white", dotsize = 1.0) +
+  scale_x_continuous(breaks = 1:13, limits = c(1.5, 13.5)) +
+  labs(x = "Steps per day (thousands)", y = NULL,
+       caption = "Each dot = 1 student") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        plot.caption = element_text(color = "#555", size = 10))
+```
 
-(a) (1 mark) What is the **unit** of observation in this dataset?
-(b) (1 mark) How many **observations** are there? How many **variables**?
-(c) (2 marks) Classify each variable as **quantitative** or **qualitative**.
-(d) (1 mark) What is the **value** of "Resting Heart Rate" for Participant 4?
+(a) (1 mark) Based on the dot plot, does the distribution appear **left-skewed, right-skewed, or roughly symmetric**? Justify briefly.
+(b) (2 marks) Using the values shown in the dot plot, calculate the **mean** $\bar{x}$ and find the **median**.
+(c) (1 mark) Identify the **mode**.
+(d) (2 marks) The value 12 is unusually large. If it is removed from the dataset, recalculate the mean and state whether the median changes. What does this tell you about the **sensitivity** of the mean vs. the median to extreme values?
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- Each **row** is one observation from one unit.
-- **Quantitative** variables have numerical values that allow arithmetic; **qualitative** variables place units into categories.
+- Read off all 10 values from the x-axis — count stacked dots carefully.
+- For $n = 10$ (even), median $=$ average of the 5th and 6th ordered values.
+- Removing an extreme value changes the sum and hence the mean; the median depends only on rank.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a)** One **participant** (person).
+**Data from dot plot (sorted):** 3, 4, 4, 5, 5, 5, 6, 6, 8, 12
 
-**(b)** **5 observations**, **4 variables** (Age, Sex, Resting Heart Rate, Exercise Habit).
+**(a)** **Right-skewed** — most students walk 3–6 thousand steps, but the values 8 and 12 form a long tail to the right.
 
-**(c)**
+**(b)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 10$:
+$$\bar{x} = \frac{3+4+4+5+5+5+6+6+8+12}{10} = \frac{58}{10} = \mathbf{5.8} \text{ thousand steps}$$
+Median $=$ average of 5th and 6th ordered values $= \dfrac{5+5}{2} = \mathbf{5}$ thousand steps.
 
-| Variable | Type |
-|----------|------|
-| Age | Quantitative |
-| Sex | Qualitative |
-| Resting Heart Rate | Quantitative |
-| Exercise Habit | Qualitative |
+**(c)** Mode $= \mathbf{5}$ (appears 3 times).
 
-**(d)** 75 bpm.
+**(d)** Without the value 12, new sum $= 58 - 12 = 46$ and $n = 9$:
+$$\bar{x}_{\text{new}} = \frac{46}{9} \approx 5.11 \text{ thousand steps} \quad \text{(decreased by } \approx 0.69\text{)}$$
+New sorted data: 3, 4, 4, 5, **5**, 5, 6, 6, 8 → Median $= 5$th value $= \mathbf{5}$ (unchanged).
+**Conclusion:** removing the extreme value noticeably changed the mean but not the median — the mean is more sensitive to outliers; the median is robust.
 </div>
 </details>
 
@@ -1170,42 +1176,46 @@ A fitness researcher records the following information for five participants in 
 
 <div class="exercise-box">
 <div class="exercise-label">Question 2</div>
-The following data represent the number of hours 12 UTM students spent on their phones yesterday:
+The histogram below shows the distribution of **weekly exercise hours** for 50 UTM students. **Each bar covers a 2-hour interval; bar height = frequency.**
 
-$$3,\ 5,\ 2,\ 7,\ 5,\ 4,\ 6,\ 5,\ 3,\ 8,\ 4,\ 5$$
+```{r ch3-new-q2-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(21)
+exercise2 <- c(round(rlnorm(44, log(4), 0.65)), round(rlnorm(6, log(14), 0.25)))
+exercise2 <- pmin(pmax(exercise2, 0), 25)
+df_ex2 <- data.frame(hours = exercise2)
+ggplot(df_ex2, aes(x = hours)) +
+  geom_histogram(binwidth = 2, fill = "#00cec9", color = "white", boundary = 0) +
+  scale_x_continuous(breaks = seq(0, 26, 2)) +
+  labs(x = "Weekly exercise (hours)", y = "Frequency",
+       caption = "n = 50 students  |  Bar width = 2 hours") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
 
-(a) (3 marks) Construct a **frequency table** with columns: Value, Frequency, and Relative Frequency (as a decimal rounded to 2 places).
-(b) (1 mark) What proportion of students spent **more than 5 hours** on their phones?
-(c) (1 mark) What value appears most frequently? What is this measure called?
+(a) (2 marks) Describe the **shape** of this distribution. Justify using features of the histogram.
+(b) (2 marks) **Estimate the proportion** of students who exercise **more than 10 hours** per week. All reasonable estimated answers will be marked correct.
+(c) (1 mark) Based on the shape, would you expect the **mean** to be greater than, less than, or approximately equal to the **median**? Explain.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- **Relative Frequency** = (Frequency) ÷ (Total number of observations).
-- Count each distinct value carefully — sort the data first to avoid missing any.
+- **Right-skewed**: most bars are tall on the left, with a long tail of shorter bars to the right.
+- For (b), add the bar heights for all intervals above 10 hours and divide by 50.
+- In a right-skewed distribution, the long tail pulls the mean upward while the median is less affected.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a)**
+**(a)** The distribution is **right-skewed** — most students exercise between 0 and 8 hours per week (the tall bars on the left), while a few students exercise much more, creating a long tail extending to the right toward 20+ hours.
 
-| Hours | Frequency | Relative Frequency |
-|-------|-----------|-------------------|
-| 2 | 1 | 0.08 |
-| 3 | 2 | 0.17 |
-| 4 | 2 | 0.17 |
-| 5 | 4 | 0.33 |
-| 6 | 1 | 0.08 |
-| 7 | 1 | 0.08 |
-| 8 | 1 | 0.08 |
-| **Total** | **12** | **1.00** |
+**(b)** Add bar heights for intervals 10–12, 12–14, 14–16, and beyond. Reading from the histogram, approximately 5–8 students exercise more than 10 hours per week.
+$$\text{Proportion} \approx \frac{6}{50} \approx 0.12 \quad (12\%)$$
+All reasonable estimates will be marked correct.
 
-**(b)** Values > 5: hours of 6, 7, 8 → frequency = 3. Proportion = $3/12 = 0.25$ (25%).
-
-**(c)** The value **5** appears 4 times — the most frequent. This is the **mode**.
+**(c)** **Mean > median** — in a right-skewed distribution, the long right tail pulls the mean toward larger values while the median (middle observation) is less affected by extreme values.
 </div>
 </details>
 
@@ -1213,45 +1223,48 @@ $$3,\ 5,\ 2,\ 7,\ 5,\ 4,\ 6,\ 5,\ 3,\ 8,\ 4,\ 5$$
 
 <div class="exercise-box">
 <div class="exercise-label">Question 3</div>
-A survey asked 40 students how many hours of sleep they got last night. The results are summarized below:
+The boxplot below shows the **weekly grocery spending** (in dollars) for 23 households near UTM. **The box spans $Q_1$ to $Q_3$; the line inside the box is the median; whiskers extend to the most extreme non-outlier values; dots beyond the whiskers are outliers.**
 
-| Hours of Sleep | Frequency |
-|---------------|-----------|
-| 5 | 3 |
-| 6 | 8 |
-| 7 | 12 |
-| 8 | 10 |
-| 9 | 7 |
+```{r ch3-new-q3-box, echo=FALSE, fig.height=3.8, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE}
+grocery3 <- c(52, 61, 68, 72, 75, 78, 80, 82, 85, 87, 88, 90,
+              91, 93, 95, 97, 100, 103, 108, 115, 145, 158, 170)
+df_groc <- data.frame(spend = grocery3)
+ggplot(df_groc, aes(x = "", y = spend)) +
+  geom_boxplot(fill = "#fd79a8", color = "#e84393", width = 0.35,
+               outlier.shape = 19, outlier.size = 2.5, outlier.color = "grey30") +
+  scale_y_continuous(breaks = seq(40, 180, 20)) +
+  labs(x = NULL, y = "Weekly spending ($)",
+       caption = "Box = Q1 to Q3  |  Line = median  |  Dots = outliers") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+        plot.caption = element_text(color = "#555", size = 9))
+```
 
-(a) (2 marks) Add a **Relative Frequency** column and a **Cumulative Frequency** column to the table.
-(b) (1 mark) What proportion of students slept **at most 7 hours**?
-(c) (2 marks) What proportion of students slept **between 6 and 8 hours inclusive**?
+(a) (2 marks) Read the following values from the plot: $Q_1$, Median, $Q_3$, the **lower whisker** tip, the **upper whisker** tip, and the values of any **visible outlier dots**. All reasonable estimated answers will be marked correct.
+(b) (1 mark) Calculate the **IQR** using your answer to (a).
+(c) (2 marks) Using the $1.5 \times \text{IQR}$ rule, identify any **outliers**.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- **Cumulative Frequency** for a row = sum of all frequencies *up to and including* that row.
-- For "at most 7 hours", sum the frequencies for 5, 6, and 7.
+- Bottom whisker tip = Min; top whisker tip = Max within the cutoffs; bottom of box = $Q_1$; top of box = $Q_3$; line inside = Median.
+- Dots appearing beyond a whisker are observations flagged by the $1.5 \times \text{IQR}$ outlier rule.
+- The lower cutoff is $Q_1 - 1.5 \times \text{IQR}$ and the upper cutoff is $Q_3 + 1.5 \times \text{IQR}$. Values below the lower cutoff or above the upper cutoff are considered outliers.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a)**
+**(a)** From the plot: $Q_1 = 79$, Median $= 90$, $Q_3 = 101.5$. The lower whisker extends to Min $= 52$ (the smallest value, which is within the cutoffs). The **upper whisker** extends to $\mathbf{115}$ — the largest non-outlier value. The actual data maximum is **170**, visible as the topmost outlier dot (not the whisker tip). All reasonable estimates will be marked correct.
 
-| Hours | Frequency | Relative Frequency | Cumulative Frequency |
-|-------|-----------|-------------------|---------------------|
-| 5 | 3 | 0.075 | 3 |
-| 6 | 8 | 0.200 | 11 |
-| 7 | 12 | 0.300 | 23 |
-| 8 | 10 | 0.250 | 33 |
-| 9 | 7 | 0.175 | 40 |
+**(b)** $\text{IQR} = Q_3 - Q_1 = 101.5 - 79 = \mathbf{22.5}$
 
-**(b)** Cumulative frequency at 7 = 23. Proportion = $23/40 = 0.575$ (57.5%).
-
-**(c)** Frequencies for 6, 7, 8: $8 + 12 + 10 = 30$. Proportion = $30/40 = 0.75$ (75%).
+**(c)** Apply the $1.5 \times \text{IQR}$ outlier rule:
+$$\text{Lower cutoff} = Q_1 - 1.5 \times \text{IQR} = 79 - 1.5(22.5) = 79 - 33.75 = \mathbf{45.25}$$
+$$\text{Upper cutoff} = Q_3 + 1.5 \times \text{IQR} = 101.5 + 1.5(22.5) = 101.5 + 33.75 = \mathbf{135.25}$$
+The three dots above the upper whisker — at approximately **\$145, \$158, and \$170** — all exceed the upper cutoff and are **high outliers**.
 </div>
 </details>
 
@@ -1259,39 +1272,66 @@ A survey asked 40 students how many hours of sleep they got last night. The resu
 
 <div class="exercise-box">
 <div class="exercise-label">Question 4</div>
-The following data show the number of siblings for 20 students in a class:
+The dot plot below shows the quiz scores (out of 10) for 8 students. **Each dot represents one student.**
 
-$$0, 1, 2, 1, 3, 2, 0, 1, 4, 2, 1, 0, 2, 3, 1, 2, 0, 1, 3, 2$$
+```{r ch3-new-q4-dot, echo=FALSE, fig.height=2.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+quiz4 <- c(4, 5, 5, 6, 6, 7, 7, 8)
+df_quiz4 <- data.frame(score = quiz4)
+ggplot(df_quiz4, aes(x = score)) +
+  geom_dotplot(binwidth = 0.4, fill = "#a29bfe", color = "white", dotsize = 1.0) +
+  scale_x_continuous(breaks = 1:10, limits = c(2.5, 9.5)) +
+  labs(x = "Quiz score (out of 10)", y = NULL,
+       caption = "Each dot = 1 student") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        plot.caption = element_text(color = "#555", size = 10))
+```
 
-(a) (2 marks) Create a **frequency table** for the number of siblings.
-(b) (2 marks) Create a **relative frequency table**.
-(c) (1 mark) What **proportion** of students have exactly 2 siblings?
-(d) (1 mark) What **percentage** of students have at least 3 siblings?
+(a) (1 mark) List all 8 values from the dot plot and calculate the **mean** $\bar{x}$.
+(b) (3 marks) Calculate the **sample variance** $s^2$ using the formula
+$$s^2 = \frac{\displaystyle\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$$
+Show your work using a table with columns $x_i$, $(x_i - \bar{x})$, and $(x_i - \bar{x})^2$.
+(c) (1 mark) Calculate the **sample standard deviation** $s$.
+(d) (2 marks) If every student's score is increased by **2 marks**, what happens to the **mean**? What happens to the **standard deviation**? Explain without recalculating.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-Count how many times each value appears. Relative frequency is frequency divided by the total number of observations.
+- Count stacked dots carefully — two dots at the same position means the value appears twice.
+- For (d), think about what adding a constant does to each deviation $(x_i - \bar{x})$.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a) and (b)**
+**Values from dot plot:** 4, 5, 5, 6, 6, 7, 7, 8
 
-| Number of siblings | Frequency | Relative Frequency |
-|--------------------|-----------|--------------------|
-| 0 | 4 | 4/20 = 0.20 |
-| 1 | 6 | 6/20 = 0.30 |
-| 2 | 6 | 6/20 = 0.30 |
-| 3 | 3 | 3/20 = 0.15 |
-| 4 | 1 | 1/20 = 0.05 |
+**(a)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 8$:
+$$\bar{x} = \frac{4+5+5+6+6+7+7+8}{8} = \frac{48}{8} = \mathbf{6}$$
 
-**(c)** The proportion with exactly 2 siblings is $6/20 = 0.30$.
+**(b)**
 
-**(d)** At least 3 siblings: $(3 + 1)/20 = 4/20 = 0.20 = 20\%$.
+| $x_i$ | $x_i - \bar{x}$ | $(x_i - \bar{x})^2$ |
+|--------|-----------------|----------------------|
+| 4 | $-2$ | $4$ |
+| 5 | $-1$ | $1$ |
+| 5 | $-1$ | $1$ |
+| 6 | $0$ | $0$ |
+| 6 | $0$ | $0$ |
+| 7 | $1$ | $1$ |
+| 7 | $1$ | $1$ |
+| 8 | $2$ | $4$ |
+| | **Sum** | **12** |
+
+$$s^2 = \frac{12}{8-1} = \frac{12}{7} \approx \mathbf{1.714}$$
+
+**(c)** $s = \sqrt{12/7} \approx \mathbf{1.309}$
+
+**(d)**
+- **Mean increases by 2:** new $\bar{x} = 6 + 2 = 8$.
+- **Standard deviation is unchanged:** adding a constant shifts every $x_i$ and $\bar{x}$ equally, so every deviation $(x_i - \bar{x})$ stays the same — the spread around the mean does not change.
 </div>
 </details>
 
@@ -1299,39 +1339,59 @@ Count how many times each value appears. Relative frequency is frequency divided
 
 <div class="exercise-box">
 <div class="exercise-label">Question 5</div>
-The table below shows the ages of participants in a study.
+Two sections of STA258 wrote the same midterm exam (out of 100). The histograms below show the score distribution for each section. **Each bar covers a 10-point interval; bar height = frequency.**
 
-| Age Group | Frequency |
-|-----------|-----------|
-| 18–22 | 14 |
-| 23–27 | 20 |
-| 28–32 | 11 |
-| 33–37 | 8 |
-| 38–42 | 7 |
+```{r ch3-new-q5-hist, echo=FALSE, fig.height=4.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(23)
+morning_sc <- pmax(pmin(round(rnorm(35, 68, 9)), 100), 35)
+set.seed(24)
+evening_raw <- pmax(pmin(round(rlnorm(30, log(62), 0.45)), 100), 30)
+evening_sc  <- c(evening_raw, 88, 93, 97)
+df_sections <- data.frame(
+  score   = c(morning_sc, evening_sc),
+  section = factor(rep(c("Morning Section", "Evening Section"),
+                       times = c(length(morning_sc), length(evening_sc))))
+)
+ggplot(df_sections, aes(x = score, fill = section)) +
+  geom_histogram(binwidth = 10, color = "white", alpha = 0.85, boundary = 0) +
+  facet_wrap(~ section, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = c("Morning Section" = "#6c5ce7", "Evening Section" = "#e17055")) +
+  scale_x_continuous(breaks = seq(20, 110, 10)) +
+  labs(x = "Exam score (out of 100)", y = "Frequency",
+       caption = "Bar width = 10 points") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        strip.text = element_text(face = "bold", size = 11),
+        plot.caption = element_text(color = "#555", size = 9))
+```
 
-(a) (1 mark) How many **participants** are in the study?
-(b) (1 mark) Which **age group** has the highest frequency?
-(c) (2 marks) What **proportion** of participants are between 23 and 32 years old?
-(d) (1 mark) What **percentage** of participants are at least 33 years old?
+(a) (2 marks) Describe the **shape** of the score distribution for each section. Justify using features of the histogram.
+(b) (1 mark) Based on the shapes, which section would you expect to have **mean > median**? Explain.
+(c) (2 marks) **Estimate the proportion** of Morning Section students who scored **60 or above**. All reasonable estimated answers will be marked correct.
+(d) (2 marks) Which section appears to have **greater variability** in exam scores? Justify using a feature of the histogram.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-Add the frequencies to find the total number of participants. To find a proportion, divide the relevant frequency total by the overall total.
+- **Symmetric**: bars are roughly mirror images around the centre peak.
+- **Right-skewed**: most bars are tall on the left, with a long low tail to the right.
+- For (c), add bar heights for 60–70, 70–80, 80–90, and 90–100, then divide by 35.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a)** Total $= 14 + 20 + 11 + 8 + 7 = \mathbf{60}$ participants.
+**(a)** The **Morning Section** distribution is roughly **symmetric** — bars are spread in a bell shape centred around 65–70. The **Evening Section** distribution is **right-skewed** — most students score in the 40–70 range, but a long right tail extends toward 90+.
 
-**(b)** The **23–27** age group has the highest frequency (20 participants).
+**(b)** The **Evening Section** — its right skew means the long tail of high scores pulls the mean above the median. The Morning Section's symmetric shape means mean $\approx$ median.
 
-**(c)** Between 23 and 32 years old: $(20 + 11)/60 = 31/60 \approx \mathbf{0.517}$.
+**(c)** Add bar heights for 60–70, 70–80, 80–90, and 90–100 in the Morning Section. Reading from the histogram, approximately 24–28 students score 60 or above.
+$$\text{Proportion} \approx \frac{26}{35} \approx 0.74 \quad (74\%)$$
+All reasonable estimates will be marked correct.
 
-**(d)** At least 33 years old: $(8 + 7)/60 = 15/60 = 0.25 = \mathbf{25\%}$.
+**(d)** The **Evening Section** appears to have greater variability — its histogram spans a wider overall range (approximately 30 to 100) with scores spread across many intervals, while the Morning Section is more tightly clustered around its centre. A wider spread in the histogram indicates greater variability.
 </div>
 </details>
 
@@ -1348,6 +1408,29 @@ $$2,\ 3,\ 3,\ 4,\ 4,\ 5,\ 5,\ 5,\ 6,\ 8$$
 (c) (1 mark) Find the **mode**.
 (d) (1 mark) Find the **range**.
 (e) (2 marks) Is the mean larger than the median? Briefly explain why this may happen.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Study Hours</div>
+<textarea class="webr-editor" rows="9">x <- c(2, 3, 3, 4, 4, 5, 5, 5, 6, 8)
+
+# (a) Compute the mean
+
+
+# (b) Find the median
+
+
+# (c) Find the mode using table()
+
+
+# (d) Compute the range
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
 </div>
 
 <details data-type="hint">
@@ -1360,15 +1443,42 @@ The mean uses all observations, while the median is the middle value after order
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a)** $\bar{x} = (2+3+3+4+4+5+5+5+6+8)/10 = 45/10 = \mathbf{4.5}$.
+**(a)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 10$:
+$$\bar{x} = \frac{2+3+3+4+4+5+5+5+6+8}{10} = \frac{45}{10} = \mathbf{4.5}$$
 
-**(b)** With $n = 10$ (even), the median is the average of the 5th and 6th ordered values: $(4 + 5)/2 = \mathbf{4.5}$.
+**(b)** With $n = 10$ (even), median $=$ average of the $\dfrac{n}{2} = 5$th and $\dfrac{n}{2}+1 = 6$th ordered values:
+$$\text{Median} = \frac{x_{(5)} + x_{(6)}}{2} = \frac{4 + 5}{2} = \mathbf{4.5}$$
 
-**(c)** Mode $= \mathbf{5}$ (appears 3 times).
+**(c)** Mode $= \mathbf{5}$ (appears 3 times — the most frequent value).
 
-**(d)** Range $= 8 - 2 = \mathbf{6}$.
+**(d)** $\text{Range} = x_{\max} - x_{\min} = 8 - 2 = \mathbf{6}$.
 
-**(e)** The mean and median are equal here. This suggests the data are fairly balanced around the centre, although the data are not perfectly symmetric.
+**(e)** Here $\bar{x} = \text{Median} = 4.5$. When the mean and median are equal (or very close), the distribution is fairly balanced with no strong skew in either direction.
+
+**R code:**
+
+```r
+x <- c(2, 3, 3, 4, 4, 5, 5, 5, 6, 8)
+
+# (a) Compute the mean
+mean(x)
+# [1] 4.5
+
+# (b) Find the median
+median(x)
+# [1] 4.5
+
+# (c) Find the mode using table()
+table(x)
+# x
+# 2 3 4 5 6 8
+# 1 2 2 3 1 1
+# → 5 appears 3 times, so mode = 5
+
+# (d) Compute the range
+max(x) - min(x)
+# [1] 6
+```
 </div>
 </details>
 
@@ -1412,13 +1522,13 @@ ggplot(df_coffee, aes(x = cups)) +
 
 **(a)** **Right-skewed** — most students drink 0–2 cups, but the values 4 and 7 form a long tail to the right.
 
-**(b)**
-$$\bar{x} = \frac{0+0+0+1+1+1+1+2+2+4+7}{11} = \frac{19}{11} \approx 1.73 \text{ cups}$$
-Median = 6th value = **1 cup**
+**(b)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 11$:
+$$\bar{x} = \frac{0+0+0+1+1+1+1+2+2+4+7}{11} = \frac{19}{11} \approx \mathbf{1.73} \text{ cups}$$
+For $n = 11$ (odd), median position $= \dfrac{n+1}{2} = \dfrac{12}{2} = 6$th value $=$ **1 cup**.
 
-**(c)** Mode = **1** (appears 4 times — the tallest stack of dots).
+**(c)** Mode $=$ **1** (appears 4 times — the tallest stack of dots).
 
-**(d)** Replacing 7 with 12: new $\bar{x} = 24/11 \approx 2.18$ (increased by ~0.45); median remains **1**. The **mean is sensitive to outliers**; the median is **robust** because it depends only on the middle value's position.
+**(d)** Replacing 7 with 12: new sum $= 19 - 7 + 12 = 24$, so $\bar{x} = 24/11 \approx 2.18$ (increased by $\approx 0.45$); the median remains **1** (the 6th ranked value is unchanged). **Conclusion:** the mean is sensitive to outliers; the median is **robust** because it depends only on rank, not magnitude.
 </div>
 </details>
 
@@ -1450,13 +1560,18 @@ Compare how much the mean and median change when 9 is replaced by 30.
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a)** Data Set A mean $= 54/7 \approx \mathbf{7.71}$. Data Set B mean $= 75/7 \approx \mathbf{10.71}$.
+**(a)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 7$:
+$$\bar{x}_A = \frac{6+7+7+8+8+9+9}{7} = \frac{54}{7} \approx \mathbf{7.71}$$
+$$\bar{x}_B = \frac{6+7+7+8+8+9+30}{7} = \frac{75}{7} \approx \mathbf{10.71}$$
 
-**(b)** Data Set A median $= \mathbf{8}$ (4th value). Data Set B median $= \mathbf{8}$ (4th value).
+**(b)** With $n = 7$ (odd), median position $= \dfrac{n+1}{2} = 4$th ordered value.
 
-**(c)** The **mean** is more affected by 30 — it increased from approximately 7.71 to 10.71, while the median did not change.
+- Data Set A sorted: 6, 7, 7, **8**, 8, 9, 9 → Median$_A = \mathbf{8}$
+- Data Set B sorted: 6, 7, 7, **8**, 8, 9, 30 → Median$_B = \mathbf{8}$
 
-**(d)** The **median** better represents the centre of Data Set B because 30 is an unusually large value that pulls the mean upward.
+**(c)** The **mean** is more affected by 30 — it increased from $\approx 7.71$ to $\approx 10.71$ (a change of $\approx +3$), while the median did not change at all.
+
+**(d)** The **median** better represents the centre of Data Set B because 30 is an unusually large value that pulls the mean well above the majority of the data.
 </div>
 </details>
 
@@ -1473,6 +1588,26 @@ $$x_1 = 2,\quad x_2 = 4,\quad x_3 = 4,\quad x_4 = 6,\quad x_5 = 6,\quad x_6 = 8$
 $$s^2 = \frac{\displaystyle\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$$
 Show your work using a table with columns $x_i$, $(x_i - \bar{x})$, and $(x_i - \bar{x})^2$.
 (c) (1 mark) Calculate the **sample standard deviation** $s$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Sample Variance & Standard Deviation</div>
+<textarea class="webr-editor" rows="8">x <- c(2, 4, 4, 6, 6, 8)
+
+# Compute the sample mean
+
+
+# Compute the sample variance s²
+
+
+# Compute the sample standard deviation s
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
 </div>
 
 <details data-type="hint">
@@ -1503,6 +1638,24 @@ Show your work using a table with columns $x_i$, $(x_i - \bar{x})$, and $(x_i - 
 $$s^2 = \frac{22}{6-1} = \frac{22}{5} = \mathbf{4.4}$$
 
 **(c)** $s = \sqrt{4.4} \approx \mathbf{2.098}$ hours
+
+**R code:**
+
+```r
+x <- c(2, 4, 4, 6, 6, 8)
+
+# Compute the sample mean
+mean(x)
+# [1] 5
+
+# Compute the sample variance s²
+var(x)
+# [1] 4.4
+
+# Compute the sample standard deviation s
+sd(x)
+# [1] 2.097618
+```
 </div>
 </details>
 
@@ -1510,7 +1663,7 @@ $$s^2 = \frac{22}{6-1} = \frac{22}{5} = \mathbf{4.4}$$
 
 <div class="exercise-box">
 <div class="exercise-label">Question 10</div>
-The boxplot below shows the age distribution of 12 participants in a research study. **Each dot is one participant's age. The bottom and top of the box are $Q_1$ and $Q_3$; the line inside the box is the median; whiskers extend to the min and max within the IQR fences; the red dashed lines are the IQR outlier fences.**
+The boxplot below shows the age distribution of 12 participants in a research study. **Each dot is one participant's age. The bottom and top of the box are $Q_1$ and $Q_3$; the line inside the box is the median; whiskers extend to the most extreme non-outlier values; the red dashed lines mark the IQR outlier cutoffs.**
 
 ```{r ch3-q9-box, echo=FALSE, fig.height=3.8, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE}
 ages9 <- c(22, 25, 19, 31, 28, 35, 24, 22, 30, 27, 40, 23)
@@ -1520,14 +1673,14 @@ iqr_9 <- q3_9 - q1_9
 ggplot(df_q9, aes(x = "", y = ages)) +
   geom_boxplot(fill = "#a29bfe", color = "#6c5ce7", width = 0.35, outlier.shape = NA) +
   geom_jitter(width = 0.06, size = 2.5, alpha = 0.7, color = "grey25") +
-  geom_hline(aes(yintercept = q1_9 - 1.5*iqr_9, linetype = "IQR fence"),
+  geom_hline(aes(yintercept = q1_9 - 1.5*iqr_9, linetype = "IQR cutoff"),
              color = "#d63031", linewidth = 0.8) +
-  geom_hline(aes(yintercept = q3_9 + 1.5*iqr_9, linetype = "IQR fence"),
+  geom_hline(aes(yintercept = q3_9 + 1.5*iqr_9, linetype = "IQR cutoff"),
              color = "#d63031", linewidth = 0.8) +
-  scale_linetype_manual(name = NULL, values = c("IQR fence" = "dashed")) +
+  scale_linetype_manual(name = NULL, values = c("IQR cutoff" = "dashed")) +
   scale_y_continuous(breaks = seq(10, 45, by = 5)) +
   labs(x = NULL, y = "Age (years)",
-       caption = "Each dot = 1 participant  |  Box = Q1 to Q3  |  Red dashes = IQR fences") +
+       caption = "Each dot = 1 participant  |  Box = Q1 to Q3  |  Red dashes = IQR cutoffs") +
   theme_minimal(base_size = 12) +
   theme(legend.position = "top", axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
@@ -1536,25 +1689,30 @@ ggplot(df_q9, aes(x = "", y = ages)) +
 
 (a) (2 marks) Read the **five-number summary** (Min, $Q_1$, Median, $Q_3$, Max) from the plot. All reasonable estimated answers will be marked correct.
 (b) (1 mark) Compute the **IQR** using your answer to (a).
-(c) (2 marks) Do any dots fall outside the red dashed **IQR fences**? State your conclusion about outliers and justify using the IQR rule ($Q_1 - 1.5\times\text{IQR}$, $Q_3 + 1.5\times\text{IQR}$).
+(c) (2 marks) Using the $1.5 \times \text{IQR}$ rule, identify any **outliers**. Do any dots fall outside the red dashed cutoff lines?
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- Bottom whisker tip = Min; top whisker tip = Max (within fences).
-- Bottom edge of box = $Q_1$; top edge = $Q_3$; line inside = Median.
+- Bottom whisker tip = Min; top whisker tip = Max (within the cutoffs); bottom edge of box = $Q_1$; top edge = $Q_3$; line inside = Median.
+- The lower cutoff is $Q_1 - 1.5 \times \text{IQR}$ and the upper cutoff is $Q_3 + 1.5 \times \text{IQR}$. Values outside these cutoffs are considered outliers.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a)** Exact values from data: Min = 19, $Q_1$ = 22.5, Median = 26, $Q_3$ = 30.5, Max = 40.
+**(a)** Using the equal-halves method: Min $= 19$, $Q_1 = 22.5$, Median $= 26$, $Q_3 = 30.5$, Max $= 40$.
 
-**(b)** IQR $= 30.5 - 22.5 = \mathbf{8}$
+**(b)** $\text{IQR} = Q_3 - Q_1 = 30.5 - 22.5 = \mathbf{8}$
 
-**(c)** Fences: lower $= 22.5 - 1.5(8) = 10.5$; upper $= 30.5 + 1.5(8) = 42.5$. All values lie within $[10.5, 42.5]$, so there are **no outliers** by the IQR rule — even the oldest participant (age 40) is inside the upper fence.
+**(c)** Apply the $1.5 \times \text{IQR}$ outlier rule:
+$$\text{Lower cutoff} = Q_1 - 1.5 \times \text{IQR} = 22.5 - 1.5(8) = 22.5 - 12 = \mathbf{10.5}$$
+$$\text{Upper cutoff} = Q_3 + 1.5 \times \text{IQR} = 30.5 + 1.5(8) = 30.5 + 12 = \mathbf{42.5}$$
+All values lie within $[10.5,\ 42.5]$, so there are **no outliers** — even the oldest participant (age 40) falls inside the upper cutoff.
+
+*Note: Different quartile methods can give slightly different values for $Q_1$ and $Q_3$, so the red dashed lines on the plot may not align exactly with your calculated cutoffs. The conclusion — no outliers — is the same regardless of method.*
 </div>
 </details>
 
@@ -1565,11 +1723,29 @@ ggplot(df_q9, aes(x = "", y = ages)) +
 Two groups of students were given the same statistics quiz (out of 20). Their scores are:
 
 - **Group A:** 14, 15, 14, 16, 15, 14, 16, 15, 15, 16
-- **Group B:** 8, 12, 15, 19, 18, 11, 17, 20, 10, 10
+- **Group B:** 8, 12, 15, 19, 18, 11, 17, 20, 20, 10
 
 (a) (1 mark) Without calculating, which group do you expect to have a **larger standard deviation**? Justify using the spread of the values.
 (b) (2 marks) Verify by calculating $\bar{x}$ and $s$ for each group. Use R or show your working.
 (c) (2 marks) Both groups have the same mean. What does this tell you about the **usefulness of the mean alone** as a summary of a dataset?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Comparing Two Groups</div>
+<textarea class="webr-editor" rows="10">groupA <- c(14, 15, 14, 16, 15, 14, 16, 15, 15, 16)
+groupB <- c( 8, 12, 15, 19, 18, 11, 17, 20, 20, 10)
+
+# Compute mean and SD for each group
+
+
+# Create a side-by-side boxplot to compare the spread
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
 </div>
 
 <details data-type="hint">
@@ -1584,14 +1760,69 @@ Standard deviation measures how far values are from the mean *on average*. Look 
 <div class="content">
 **(a)** **Group B** — its scores range from 8 to 20 (wide spread), while Group A's scores cluster tightly between 14 and 16.
 
-**(b)**
+**(b)** Using $s^2 = \dfrac{\displaystyle\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$ and $s = \sqrt{s^2}$:
 
-- Group A: $\bar{x} = 150/10 = 15$, $s \approx 0.816$
-- Group B: $\bar{x} = 140/10 = 14$, $s \approx 4.32$
+**Group A** ($n = 10$, $\bar{x}_A = 150/10 = 15$):
+
+| $x_i$ | $x_i - 15$ | $(x_i - 15)^2$ |
+|--------|------------|----------------|
+| 14 | $-1$ | $1$ |
+| 15 | $0$ | $0$ |
+| 14 | $-1$ | $1$ |
+| 16 | $1$ | $1$ |
+| 15 | $0$ | $0$ |
+| 14 | $-1$ | $1$ |
+| 16 | $1$ | $1$ |
+| 15 | $0$ | $0$ |
+| 15 | $0$ | $0$ |
+| 16 | $1$ | $1$ |
+| | **Sum** | **6** |
+
+$$s_A^2 = \frac{6}{9} \approx 0.667 \quad \Rightarrow \quad s_A = \sqrt{0.667} \approx \mathbf{0.816}$$
+
+**Group B** ($n = 10$, $\bar{x}_B = 150/10 = 15$):
+
+| $x_i$ | $x_i - 15$ | $(x_i - 15)^2$ |
+|--------|------------|----------------|
+| 8 | $-7$ | $49$ |
+| 12 | $-3$ | $9$ |
+| 15 | $0$ | $0$ |
+| 19 | $4$ | $16$ |
+| 18 | $3$ | $9$ |
+| 11 | $-4$ | $16$ |
+| 17 | $2$ | $4$ |
+| 20 | $5$ | $25$ |
+| 20 | $5$ | $25$ |
+| 10 | $-5$ | $25$ |
+| | **Sum** | **178** |
+
+$$s_B^2 = \frac{178}{9} \approx 19.78 \quad \Rightarrow \quad s_B = \sqrt{19.78} \approx \mathbf{4.45}$$
 
 Group B's standard deviation is much larger, confirming the visual observation.
 
-**(c)** The two groups actually have **different** means (Group A: $\bar{x} = 15$, Group B: $\bar{x} = 14$) **and** very different standard deviations ($s_A \approx 0.816$, $s_B \approx 4.32$). This illustrates that the mean alone is **insufficient** to fully describe a dataset — the standard deviation is also needed to capture how spread out the values are.
+**(c)** Both groups have the **same mean** ($\bar{x}_A = \bar{x}_B = 15$), yet their standard deviations are very different ($s_A \approx 0.816$, $s_B \approx 4.45$). This illustrates that the mean alone is **insufficient** to fully describe a dataset — the standard deviation is also needed to capture how spread out the values are.
+
+**R code:**
+
+```r
+groupA <- c(14, 15, 14, 16, 15, 14, 16, 15, 15, 16)
+groupB <- c( 8, 12, 15, 19, 18, 11, 17, 20, 20, 10)
+
+# Compute mean and SD for each group
+mean(groupA)   # [1] 15
+sd(groupA)     # [1] 0.8164966
+mean(groupB)   # [1] 15
+sd(groupB)     # [1] 4.452478
+
+# Create a side-by-side boxplot to compare the spread
+boxplot(groupA, groupB,
+        names = c("Group A", "Group B"),
+        main  = "Quiz Scores: Group A vs Group B",
+        ylab  = "Score (out of 20)",
+        col   = c("#74b9ff", "#fd79a8"))
+```
+
+Both groups have mean $= 15$, confirming Q11(c). The side-by-side boxplot makes the difference in spread immediately visible — Group B's box is far wider than Group A's.
 </div>
 </details>
 
@@ -1607,14 +1838,37 @@ $$3,\ 4,\ 5,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10,\ 12,\ 13,\ 30$$
 (b) (2 marks) Find $Q_1$ and $Q_3$.
 (c) (1 mark) Calculate the **IQR**.
 (d) (2 marks) Use the $1.5 \times \text{IQR}$ rule to determine whether there are any **outliers**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — IQR and Outlier Detection</div>
+<textarea class="webr-editor" rows="12">x <- c(3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30)
+
+# Compute Q1, Q3, and IQR
+
+
+# Compute lower and upper cutoffs
+
+
+# Identify any outliers
+
+
+# Create a horizontal boxplot
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
 - First order the data. Then use $\text{IQR} = Q_3 - Q_1$.
-- The lower fence is $Q_1 - 1.5 \times \text{IQR}$, and the upper fence is $Q_3 + 1.5 \times \text{IQR}$.
-- Any observation outside these fences is flagged as an outlier.
+- The lower cutoff is $Q_1 - 1.5 \times \text{IQR}$, and the upper cutoff is $Q_3 + 1.5 \times \text{IQR}$.
+- Any observation outside these cutoffs is flagged as an outlier.
 </div>
 </details>
 
@@ -1623,13 +1877,43 @@ $$3,\ 4,\ 5,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10,\ 12,\ 13,\ 30$$
 <div class="content">
 **Sorted data:** 3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30
 
-**(a)** $n = 12$ (even), so median = average of 6th and 7th values $= (7 + 8)/2 = \mathbf{7.5}$ minutes.
+**(a)** With $n = 12$ (even), median $=$ average of the $\dfrac{n}{2} = 6$th and $\dfrac{n}{2}+1 = 7$th ordered values:
+$$\text{Median} = \frac{x_{(6)} + x_{(7)}}{2} = \frac{7 + 8}{2} = \mathbf{7.5} \text{ minutes}$$
 
-**(b)** Lower half: 3, 4, 5, 5, 6, 7 → $Q_1 = (5 + 5)/2 = \mathbf{5}$. Upper half: 8, 9, 10, 12, 13, 30 → $Q_3 = (10 + 12)/2 = \mathbf{11}$.
+**(b)** Split the 12 sorted values into two halves of 6:
+
+- Lower half: 3, 4, 5, 5, 6, 7 → $Q_1 = \dfrac{5+5}{2} = \mathbf{5}$
+- Upper half: 8, 9, 10, 12, 13, 30 → $Q_3 = \dfrac{10+12}{2} = \mathbf{11}$
 
 **(c)** $\text{IQR} = Q_3 - Q_1 = 11 - 5 = \mathbf{6}$ minutes.
 
-**(d)** Lower fence $= 5 - 1.5(6) = -4$; upper fence $= 11 + 1.5(6) = 20$. Since $30 > 20$, the value **30 is a high outlier**.
+**(d)** Apply the $1.5 \times \text{IQR}$ outlier rule:
+$$\text{Lower cutoff} = Q_1 - 1.5 \times \text{IQR} = 5 - 1.5(6) = 5 - 9 = \mathbf{-4}$$
+$$\text{Upper cutoff} = Q_3 + 1.5 \times \text{IQR} = 11 + 1.5(6) = 11 + 9 = \mathbf{20}$$
+Since $30 > 20$, the value **30 is a high outlier**.
+
+**R code:**
+
+```r
+x <- c(3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30)
+
+# Six-number summary (Min, Q1, Median, Mean, Q3, Max)
+summary(x)
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+#    3.00    5.25    7.50   10.58   11.25   30.00
+
+# IQR and outlier cutoffs
+IQR(x)                    # [1] 6
+5.25 - 1.5 * IQR(x)       # lower cutoff: -3.75
+11.25 + 1.5 * IQR(x)      # upper cutoff: 20.25
+
+# Create a horizontal boxplot
+boxplot(x, horizontal = TRUE,
+        main = "Bus Waiting Times (minutes)",
+        xlab = "Minutes", col = "#00cec9")
+```
+
+R's `summary()` gives $Q_1 = 5.25$ and $Q_3 = 11.25$ (slightly different from the textbook split-halves values of 5 and 11), but both methods give IQR $= 6$ and both flag **30 as an outlier**. The boxplot shows 30 as an isolated dot above the upper whisker.
 </div>
 </details>
 
@@ -1671,7 +1955,9 @@ ggplot(df_q11, aes(x = commute)) +
 <div class="content">
 **(a)** The distribution is **right-skewed** — most commute times are short (10–30 minutes) and the histogram has a long tail extending to the right toward 70–80 minutes.
 
-**(b)** Sum the frequencies for bars at 0–10, 10–20, and 20–30. Reading from the histogram, approximately 40–45 students have commute times ≤ 30 minutes. Proportion ≈ $42/60 \approx 0.70$ (70%). All reasonable estimates will be marked correct.
+**(b)** Sum the frequencies (bar heights) for bars covering 0–10, 10–20, and 20–30 minutes. Reading from the histogram, approximately 40–45 students have commute times $\le 30$ minutes.
+$$\text{Proportion} \approx \frac{42}{60} \approx 0.70 \quad (70\%)$$
+All reasonable estimates will be marked correct.
 
 **(c)** For a **right-skewed** distribution, the **mean > median** — the long right tail pulls the mean toward larger values while the median (middle value) is less affected.
 </div>
@@ -1681,7 +1967,7 @@ ggplot(df_q11, aes(x = commute)) +
 
 <div class="exercise-box">
 <div class="exercise-label">Question 14</div>
-The boxplot below shows the distribution of exam scores (out of 100) for 30 students in a statistics course. **The box spans $Q_1$ to $Q_3$; the line inside the box is the median; whiskers extend to min and max within the IQR fences; any dots beyond the whiskers are outliers.**
+The boxplot below shows the distribution of exam scores (out of 100) for 30 students in a statistics course. **The box spans $Q_1$ to $Q_3$; the line inside the box is the median; whiskers extend to the most extreme non-outlier values; any dots beyond the whiskers are outliers.**
 
 ```{r ch3-q13-box, echo=FALSE, fig.height=3.5, fig.width=4, fig.align='center', message=FALSE, warning=FALSE}
 set.seed(12)
@@ -1715,9 +2001,9 @@ ggplot(df_q12, aes(x = "", y = score)) +
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a)** Approximate values: Min ≈ 38–42, $Q_1$ ≈ 64–68, Median ≈ 72–74, $Q_3$ ≈ 78–82, Max ≈ 95–98. All reasonable estimates will be marked correct.
+**(a)** Approximate values: Min $\approx 38$–$42$, $Q_1 \approx 64$–$68$, Median $\approx 72$–$74$, $Q_3 \approx 78$–$82$, Max $\approx 95$–$98$. All reasonable estimates will be marked correct.
 
-**(b)** IQR ≈ $Q_3 - Q_1 \approx 80 - 66 = 14$.
+**(b)** $\text{IQR} = Q_3 - Q_1 \approx 80 - 66 = \mathbf{14}$.
 
 **(c)** Yes — there are **3 outlier dots**: two low outliers (approximately 38 and 42) below the lower whisker, and one high outlier (approximately 95) above the upper whisker.
 </div>
@@ -1916,6 +2202,8 @@ ggplot(df_q15, aes(x = salary)) +
 <div class="exercise-label">Question 18</div>
 For each situation below, choose the most appropriate graph: **bar chart**, **histogram**, or **boxplot**. Briefly explain your choice.
 
+*Recall: a **bar chart** displays counts or frequencies for the categories of a qualitative (categorical) variable — bar width has no numerical meaning. A **histogram** displays the distribution of a quantitative variable by grouping values into intervals.*
+
 (a) (1 mark) A professor wants to display the number of students enrolled in each program: Statistics, Computer Science, Biology, and Psychology.
 (b) (1 mark) A researcher wants to show the distribution of commute times for 200 students.
 (c) (2 marks) A teaching assistant wants to compare the distribution of test scores between two tutorial sections.
@@ -1943,3 +2231,373 @@ For each situation below, choose the most appropriate graph: **bar chart**, **hi
 </div>
 </details>
 
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 19</div>
+The following data show the number of cups of coffee consumed per week by 10 UTM students:
+
+$$2,\ 3,\ 1,\ 5,\ 4,\ 3,\ 6,\ 2,\ 4,\ 5$$
+
+(a) Write R code using `mean()` to compute the sample mean $\bar{x}$.
+(b) Verify your answer by computing `sum(coffee) / length(coffee)`. Do the two results agree?
+(c) Suppose one student actually drinks **20** cups per week, not 2. Create a corrected vector and recompute the mean. How much does $\bar{x}$ change?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Mean</div>
+<textarea class="webr-editor" rows="9">coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+
+# (a) Compute the sample mean
+
+
+# (b) Verify using the formula sum / length
+
+
+# (c) Replace the first 2 with 20 and recompute
+coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `mean(x)` computes $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$.
+- `sum(x)` adds all values; `length(x)` counts how many there are.
+- Run `mean(coffee)` and `mean(coffee_new)` on separate lines to compare both means.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+
+# (a) Sample mean
+mean(coffee)
+# [1] 3.5
+
+# (b) Verify using formula
+sum(coffee) / length(coffee)
+# [1] 3.5
+
+# (c) Replace first 2 with 20 and recompute
+coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+mean(coffee_new)
+# [1] 5.3
+```
+
+**(a)** `mean(coffee)` $= 35/10 = \mathbf{3.5}$ cups per week.
+
+**(b)** `sum(coffee) / length(coffee)` $= 35/10 = 3.5$. ✓ Both give the same result.
+
+**(c)** `mean(coffee_new)` $= 53/10 = \mathbf{5.3}$. The mean increased by **1.8** cups (from 3.5 to 5.3) because of a single extreme value. This illustrates that the mean is sensitive to outliers.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 20</div>
+Use the same coffee data from Question 19:
+
+$$2,\ 3,\ 1,\ 5,\ 4,\ 3,\ 6,\ 2,\ 4,\ 5$$
+
+(a) Write R code using `median()` to find the sample median.
+(b) Use `sort(coffee)` to list the values in ascending order. For $n = 10$ (even), which two values does R average to find the median? Verify this matches `median()`.
+(c) Replace the first 2 with 20 to make `coffee_new`. Compare `mean()` and `median()` before and after. Which measure changes less?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Median</div>
+<textarea class="webr-editor" rows="10">coffee     <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+
+# (a) Median of original data
+
+
+# (b) Sort to see the order
+
+
+# (c) Compare mean and median — before and after the outlier
+
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For $n = 10$ (even), the median $=$ average of the 5th and 6th sorted values.
+- `sort(x)` returns values from smallest to largest — count along to find positions 5 and 6.
+- Run `mean(coffee)` and `median(coffee)` on separate lines to compare both measures.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+coffee     <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+
+# (a) Median of original data
+median(coffee)
+# [1] 3.5
+
+# (b) Sort to see the order
+sort(coffee)
+# [1] 1 2 2 3 3 4 4 5 5 6
+
+# (c) Compare mean and median before and after outlier
+mean(coffee)        # [1] 3.5
+median(coffee)      # [1] 3.5
+mean(coffee_new)    # [1] 5.3
+median(coffee_new)  # [1] 4
+```
+
+**(a)** `median(coffee)` $= \mathbf{3.5}$
+
+**(b)** Sorted: $1, 2, 2, 3, \mathbf{3, 4}, 4, 5, 5, 6$. The 5th value is 3 and the 6th is 4, so median $= (3 + 4)/2 = 3.5$.
+
+**(c)**
+
+| | Original | With outlier 20 | Change |
+|---|---|---|---|
+| Mean | 3.5 | 5.3 | +1.8 |
+| Median | 3.5 | 4.0 | +0.5 |
+
+The median changes much less (+0.5 vs +1.8). The median is **robust** to extreme values because it depends only on the rank of observations, not their magnitude.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 21</div>
+Use the same coffee data from Questions 19–20:
+
+$$2,\ 3,\ 1,\ 5,\ 4,\ 3,\ 6,\ 2,\ 4,\ 5$$
+
+(a) Run `summary(coffee)`. It returns six values: Min, 1st Qu. ($Q_1$), Median, Mean, 3rd Qu. ($Q_3$), and Max. Record each value and compare the Mean and Median — are they the same?
+(b) Compute `IQR(coffee)`. Using $Q_1$ and $Q_3$ from part (a), calculate the lower cutoff $Q_1 - 1.5\times\text{IQR}$ and upper cutoff $Q_3 + 1.5\times\text{IQR}$.
+(c) Would the outlier value 20 (from Q19/Q20) be flagged by the IQR rule?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Summary Statistics and IQR</div>
+<textarea class="webr-editor" rows="11">coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+
+# (a) Six-number summary
+
+
+# (b) IQR and outlier cutoffs
+iqr <- IQR(coffee)
+
+
+# (c) Is 20 an outlier? Compare to the upper cutoff
+
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `summary(x)` returns Min, 1st Qu. ($Q_1$), Median, Mean, 3rd Qu. ($Q_3$), and Max — six numbers in total.
+- `IQR(x)` directly returns $Q_3 - Q_1$.
+- Lower cutoff $= Q_1 - 1.5\times\text{IQR}$; upper cutoff $= Q_3 + 1.5\times\text{IQR}$. Read $Q_1$ and $Q_3$ from the `summary()` output.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+
+# (a) Six-number summary
+summary(coffee)
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+#    1.00    2.25    3.50    3.50    4.75    6.00
+
+# (b) IQR and outlier cutoffs
+iqr <- IQR(coffee)
+iqr              # [1] 2.5
+2.25 - 1.5 * iqr   # lower cutoff: -1.5
+4.75 + 1.5 * iqr   # upper cutoff: 8.5
+
+# (c) Is 20 an outlier?
+20 > 4.75 + 1.5 * iqr   # [1] TRUE
+```
+
+**(a)** `summary(coffee)` gives: Min = 1, $Q_1$ = 2.25, Median = 3.5, **Mean = 3.5**, $Q_3$ = 4.75, Max = 6. The mean and median are equal here, suggesting a roughly symmetric distribution.
+
+**(b)** IQR $= 4.75 - 2.25 = 2.5$.
+$$\text{Lower cutoff} = 2.25 - 1.5(2.5) = -1.5 \qquad \text{Upper cutoff} = 4.75 + 1.5(2.5) = 8.5$$
+
+**(c)** Since $20 > 8.5$, the value 20 **is** flagged as an outlier.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 22</div>
+Two groups of students took the same quiz (out of 100). Their scores are:
+
+- **Group A:** 78, 79, 80, 80, 81, 82, 80
+- **Group B:** 60, 70, 80, 80, 90, 100, 80
+
+(a) Write R code using `mean()`, `var()`, and `sd()` to compute the sample mean, sample variance $s^2$, and sample standard deviation $s$ for each group.
+(b) Both groups have the same mean. What does the difference in standard deviations tell you about the two distributions?
+(c) Add 5 to every score in Group A: `group_a + 5`. Recompute `var()` and `sd()`. Does the result change? Explain why or why not.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Variance and Standard Deviation</div>
+<textarea class="webr-editor" rows="11">group_a <- c(78, 79, 80, 80, 81, 82, 80)
+group_b <- c(60, 70, 80, 80, 90, 100, 80)
+
+# (a) Mean, variance, SD for each group
+
+
+# (c) Add 5 to group_a — does variance change?
+
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `mean(x)`, `var(x)`, and `sd(x)` each return a single number — run them on separate lines.
+- `var(x)` computes $s^2 = \dfrac{\sum(x_i - \bar{x})^2}{n-1}$; `sd(x)` $= \sqrt{s^2}$.
+- When you add a constant $c$ to every value, both each $x_i$ and $\bar{x}$ shift by $c$, so every deviation $(x_i - \bar{x})$ is unchanged — and therefore $s^2$ and $s$ are unchanged.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+group_a <- c(78, 79, 80, 80, 81, 82, 80)
+group_b <- c(60, 70, 80, 80, 90, 100, 80)
+
+# (a) Mean, variance, SD for each group
+mean(group_a)   # [1] 80
+var(group_a)    # [1] 1.666667
+sd(group_a)     # [1] 1.290994
+
+mean(group_b)   # [1] 80
+var(group_b)    # [1] 166.6667
+sd(group_b)     # [1] 12.90994
+
+# (c) Add 5 to group_a — does variance change?
+var(group_a + 5)   # [1] 1.666667  (unchanged)
+sd(group_a + 5)    # [1] 1.290994  (unchanged)
+```
+
+**(a)**
+
+| | Mean | $s^2$ | $s$ |
+|---|---|---|---|
+| Group A | 80 | $\approx 1.667$ | $\approx 1.291$ |
+| Group B | 80 | $\approx 166.7$ | $\approx 12.91$ |
+
+**(b)** Both groups have mean $= 80$, yet Group B's standard deviation is **10 times larger** than Group A's. The mean alone completely hides this difference in spread — the standard deviation is essential to describe how variable the scores are.
+
+**(c)** `var(group_a + 5)` $\approx 1.667$ and `sd(group_a + 5)` $\approx 1.291$ — **unchanged**. Adding a constant shifts every score and the mean by the same amount, so every deviation $(x_i - \bar{x})$ stays the same.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 23</div>
+The following data show exam scores for 20 students:
+
+$$40,\ 61,\ 65,\ 68,\ 70,\ 72,\ 74,\ 75,\ 76,\ 78,\ 79,\ 80,\ 82,\ 84,\ 85,\ 87,\ 88,\ 90,\ 92,\ 97$$
+
+(a) Create a **histogram** using `hist(score)`. Describe the shape of the distribution. Is it symmetric, left-skewed, or right-skewed? Does any value look like an outlier?
+(b) Create a **boxplot** using `boxplot(score)`. From the plot, identify the approximate median. Is there an outlier dot? Does this match what you saw in the histogram?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Histogram and Boxplot</div>
+<textarea class="webr-editor" rows="10">score <- c(40, 61, 65, 68, 70, 72, 74, 75,
+           76, 78, 79, 80, 82, 84, 85, 87,
+           88, 90, 92, 97)
+
+# (a) Create a histogram
+
+
+# (b) Create a boxplot
+
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `hist(x)` draws a histogram; `hist(x, main = "...", xlab = "...")` adds a title and axis label.
+- `boxplot(x)` draws a boxplot; the line inside the box is the median, and dots beyond the whiskers are outliers.
+- You can run both commands in the same cell — R will display both plots.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+score <- c(40, 61, 65, 68, 70, 72, 74, 75,
+           76, 78, 79, 80, 82, 84, 85, 87,
+           88, 90, 92, 97)
+
+# (a) Create a histogram
+hist(score, main = "Distribution of Exam Scores",
+     xlab = "Score", col = "lightblue")
+
+# (b) Create a boxplot
+boxplot(score, main = "Boxplot of Exam Scores",
+        ylab = "Score", col = "lightblue")
+```
+
+**(a)** The histogram is roughly **bell-shaped and symmetric** for scores between 60 and 97. The score of **40** appears as an isolated bar far to the left — the distribution is mildly **left-skewed** with one potential low outlier.
+
+**(b)** The **median** (line inside the box) is approximately **79**. The box spans roughly $Q_1 \approx 71$ to $Q_3 \approx 86$. The value **40** appears as an isolated dot below the lower whisker — it is flagged as an **outlier** by the IQR rule. This is consistent with what the histogram showed.
+</div>
+</details>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introduction and Overview | STA258: Statistics with Applied Probability</title>
+  <title>Chapter 5 (c) IQR and outlier fences | STA258: Statistics with Applied Probability</title>
   <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction and Overview | STA258: Statistics with Applied Probability" />
+  <meta property="og:title" content="Chapter 5 (c) IQR and outlier fences | STA258: Statistics with Applied Probability" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
   <meta name="github-repo" content="nishanmudalige/STA258" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction and Overview | STA258: Statistics with Applied Probability" />
+  <meta name="twitter:title" content="Chapter 5 (c) IQR and outlier fences | STA258: Statistics with Applied Probability" />
   
   <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
   
@@ -23,15 +23,15 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-05-24" />
+<meta name="date" content="2026-05-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="acknowledgements.html"/>
-<link rel="next" href="introduction.html"/>
+<link rel="prev" href="b-mean-and-standard-deviation.html"/>
+<link rel="next" href="foundations-of-inference.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -197,9 +197,8 @@ async function initWebR() {
   try {
     webR = new WebR({ interactive: false });
     await webR.init();
-    setGlobalStatus('📦 Installing ggplot2… (first visit only, ~30 s)', '');
-    await webR.installPackages(['ggplot2']);
-    await webR.evalRVoid('suppressMessages(library(ggplot2))');
+    // Pre-load ggplot2 so plot exercises start quickly
+    await webR.evalRVoid('suppressMessages(suppressWarnings(library(ggplot2)))');
     webRReady = true;
     setGlobalStatus('✅ R is ready — click ▶ Run to execute code', 'webr-ready');
     document.querySelectorAll('.webr-run-btn').forEach(btn => { btn.disabled = false; });
@@ -442,95 +441,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#boxplots"><i class="fa fa-check"></i><b>3.3.2</b> Boxplots</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sec:ch3exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html"><i class="fa fa-check"></i><b>4</b> Foundations of Inference</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:inference"><i class="fa fa-check"></i><b>4.1</b> Some Important Statistical Distributions</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:IntroNormalDist"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to the Normal Distribution</a></li>
-<li class="chapter" data-level="4.1.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution"><i class="fa fa-check"></i><b>4.1.2</b> Introduction to the Chi-Square distribution</a></li>
-<li class="chapter" data-level="4.1.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-t-distribution"><i class="fa fa-check"></i><b>4.1.3</b> Introduction to the t-Distribution</a></li>
-<li class="chapter" data-level="4.1.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-f-distribution"><i class="fa fa-check"></i><b>4.1.4</b> Introduction to the F-Distribution</a></li>
-<li class="chapter" data-level="4.1.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#arithmetics-of-rvs"><i class="fa fa-check"></i><b>4.1.5</b> Arithmetics of RV’s</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sampling-distributions"><i class="fa fa-check"></i><b>4.2</b> Sampling Distributions</a></li>
-<li class="chapter" data-level="4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>4.3</b> The Central Limit Theorem</a></li>
-<li class="chapter" data-level="4.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#law-of-large-numbers"><i class="fa fa-check"></i><b>4.4</b> Law of Large Numbers</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#convergence-in-probability"><i class="fa fa-check"></i><b>4.4.1</b> Convergence in Probability</a></li>
-<li class="chapter" data-level="4.4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#weak-law-of-large-numbers-wlln"><i class="fa fa-check"></i><b>4.4.2</b> Weak Law of Large Numbers (WLLN)</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#interpretation"><i class="fa fa-check"></i><b>5.2</b> Interpretation</a></li>
-<li class="chapter" data-level="5.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.3</b> One Sample Confidence Intervals</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-mean"><i class="fa fa-check"></i><b>5.3.1</b> On a Population Mean</a></li>
-<li class="chapter" data-level="5.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-proportion"><i class="fa fa-check"></i><b>5.3.2</b> On a Population Proportion</a></li>
-<li class="chapter" data-level="5.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-variance"><i class="fa fa-check"></i><b>5.3.3</b> On a Population Variance</a></li>
-<li class="chapter" data-level="5.3.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assumptions"><i class="fa fa-check"></i><b>5.3.4</b> Assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.4</b> Two Sample Confidence Intervals</a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-difference-of-means"><i class="fa fa-check"></i><b>5.4.1</b> On a Difference of Means</a></li>
-<li class="chapter" data-level="5.4.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-difference-of-proportions"><i class="fa fa-check"></i><b>5.4.2</b> On a Difference of Proportions</a></li>
-<li class="chapter" data-level="5.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-ratio-of-variances"><i class="fa fa-check"></i><b>5.4.3</b> On a Ratio of Variances</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sec:CIsOnPaired"><i class="fa fa-check"></i><b>5.5</b> Confidence Intervals on Paired Data</a></li>
-<li class="chapter" data-level="5.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sample-size-selection-using-confidence-intervals"><i class="fa fa-check"></i><b>5.6</b> Sample Size Selection using Confidence Intervals</a>
-<ul>
-<li class="chapter" data-level="5.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#secSampleSizeCIMean"><i class="fa fa-check"></i><b>5.6.1</b> Calculating Sample Size for a Confidence Interval on a Mean</a></li>
-<li class="chapter" data-level="5.6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-sample-size-for-a-confidence-interval-on-a-proportion"><i class="fa fa-check"></i><b>5.6.2</b> Calculating Sample Size for a Confidence Interval on a Proportion</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#one-sample-hypothesis-tests"><i class="fa fa-check"></i><b>6.2</b> One Sample Hypothesis Tests</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-mean-1"><i class="fa fa-check"></i><b>6.2.1</b> On a Population Mean</a></li>
-<li class="chapter" data-level="6.2.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-proportion-1"><i class="fa fa-check"></i><b>6.2.2</b> On a Population Proportion</a></li>
-<li class="chapter" data-level="6.2.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-variance-1"><i class="fa fa-check"></i><b>6.2.3</b> On a Population Variance</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#two-sample-hypothesis-tests"><i class="fa fa-check"></i><b>6.3</b> Two Sample Hypothesis Tests</a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-means-1"><i class="fa fa-check"></i><b>6.3.1</b> On a Difference of Means</a></li>
-<li class="chapter" data-level="6.3.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-proportions-1"><i class="fa fa-check"></i><b>6.3.2</b> On a Difference of Proportions</a></li>
-<li class="chapter" data-level="6.3.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:RatioVars"><i class="fa fa-check"></i><b>6.3.3</b> On a Ratio of Variances</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-on-paired-data"><i class="fa fa-check"></i><b>6.4</b> Hypothesis Tests on Paired Data</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>7</b> Statistical Power</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="statistical-power.html"><a href="statistical-power.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="statistical-power.html"><a href="statistical-power.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>7.2</b> Type I and Type II Errors</a></li>
-<li class="chapter" data-level="7.3" data-path="statistical-power.html"><a href="statistical-power.html#using-power-to-determine-sample-size"><i class="fa fa-check"></i><b>7.3</b> Using Power to Determine Sample Size</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Variance</a></li>
-<li class="chapter" data-level="9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>9</b> Simple Linear Regression</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#introduction-to-the-linear-model"><i class="fa fa-check"></i><b>9.1</b> Introduction to the Linear Model</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sec:LeastSquaresMethod"><i class="fa fa-check"></i><b>9.1.1</b> Least Squares Method</a></li>
-<li class="chapter" data-level="9.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-parameters-for-the-simple-linear-model"><i class="fa fa-check"></i><b>9.1.2</b> Estimating Parameters for the Simple Linear Model</a></li>
-<li class="chapter" data-level="9.1.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#measures-of-linear-relationship"><i class="fa fa-check"></i><b>9.1.3</b> Measures of Linear Relationship</a></li>
-<li class="chapter" data-level="9.1.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sse-ssr-and-sst"><i class="fa fa-check"></i><b>9.1.4</b> SSE, SSR and SST</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#inference-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2</b> Inference for Simple Linear Regression</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-variance-in-linear-regression"><i class="fa fa-check"></i><b>9.2.1</b> Estimating Variance in Linear Regression</a></li>
-<li class="chapter" data-level="9.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-and-hypothesis-tests"><i class="fa fa-check"></i><b>9.2.2</b> Confidence Intervals and Hypothesis Tests</a></li>
-<li class="chapter" data-level="9.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#anova-table-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2.3</b> ANOVA Table for Simple Linear Regression</a></li>
-<li class="chapter" data-level="9.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>9.2.4</b> Residual Plots</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>10</b> Analysis of Categorical Data</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#multinomial-response-model"><i class="fa fa-check"></i><b>10.1</b> Multinomial Response Model</a></li>
-<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.2</b> The Chi-square Test for Goodness of fit</a></li>
-<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.3</b> Sample Size Assumption</a></li>
+<li class="chapter" data-level="3.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sec:ch3rexercises"><i class="fa fa-check"></i><b>3.5</b> R Code Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -549,22 +460,184 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction-and-overview" class="section level1 unnumbered hasAnchor">
-<h1>Introduction and Overview<a href="introduction-and-overview.html#introduction-and-overview" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This e-book is for students in STA258: Statistics with Applied Probability at the University of Toronto Mississauga. It gives you a practical sense of the ideas from lectures and tutorials. It shows how the mathematics of probability helps us talk clearly about uncertainty in everyday life and in scientific work.</p>
-<p>Uncertainty touches almost everything we care about. Will tomorrow’s lecture move online because of a snowstorm? Can a spacecraft launch if crosswinds rise past a safe limit? Will a new medication shorten recovery time outside a clinical trial? These questions look different on the surface, yet the same statistical tools help with each one. If we treat an unknown outcome as a random variable, we can describe its typical behaviour, work out the chance of unusual events, and update those chances when new information arrives.</p>
-<p>We all do rough versions of this in our heads. Dark clouds make us grab an umbrella, and a traffic report makes us leave early. Intuition helps, but it is easy to mislead ourselves. Streaks appear at the casino even when the dice are fair, and vivid stories can drown out quiet data. Formal probability gives a firmer base. Meteorologists can combine radar images, satellite readings, and decades of storm records to say not just <em>it might snow</em>, but <em>there is a 70% chance of more than 10cm by morning</em>. Engineers can measure how often an alloy fails under stress and state the expected lifetime of a bridge girder with a clear margin of error rather than a hopeful guess. In both cases, the numbers come from a sampling distribution. Think of it as a catalog of results we would see if we could repeat the process again and again.</p>
-<p>Throughout this book we return to that catalog. We begin with random variables and their distributions. We then learn how to simulate, visualize, and summarize those distributions with real data. From there we build the core tools for inference. We use confidence intervals to place reasonable bounds on unknown parameters. We use hypothesis tests to weigh evidence for competing explanations. We use regression models to study the influence of several factors at once. The tone is friendly and driven by examples, so you will see snowfall totals, pulse rates, and exam scores alongside the necessary notation. Every result still rests on solid mathematics. By the end, you should feel comfortable turning a messy, uncertain situation into symbols, using probability to work through the problem, and explaining the answer in plain language to someone with no statistical background.</p>
-<p>That habit of moving between raw experience and quantitative insight sits at the heart of STA258. It is what this e-book aims to develop.</p>
+<div id="c-iqr-and-outlier-fences" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> (c) IQR and outlier fences<a href="c-iqr-and-outlier-fences.html#c-iqr-and-outlier-fences" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+q1 &lt;- quantile(airquality<span class="math inline">\(Temp, 0.25)
+q3 &lt;- quantile(airquality\)</span>Temp, 0.75)
+iqr &lt;- IQR(airquality$Temp)
+cat(“Lower fence:”, q1 - 1.5<em>iqr, ” Upper fence:“, q3 + 1.5</em>iqr, “”)
+</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
 
 </div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+</div>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <code>summary()</code> returns: Min = 56, Q1 = 72, Median = 79, Q3 = 85, Max = 97.</p>
+<p><strong>(b)</strong> <code>mean(airquality$Temp)</code> ≈ <strong>77.9°F</strong>; <code>sd(airquality$Temp)</code> ≈ <strong>9.47°F</strong>. The mean (77.9) is very close to the median (79), suggesting the distribution of temperatures is approximately symmetric (slightly left-skewed).</p>
+<p><strong>(c)</strong> IQR = Q3 − Q1 = 85 − 72 = 13. Lower fence = 72 − 19.5 = 52.5; upper fence = 85 + 19.5 = 104.5. All temperatures are in the range 56–97, so <strong>no outliers</strong>.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+R Exercise 2
+</div>
+<p>Still using <code>airquality</code>, the variable <code>Wind</code> records the average wind speed in miles per hour (mph).</p>
+<ol style="list-style-type: lower-alpha">
+<li>Compute the <strong>mean</strong>, <strong>median</strong>, <strong>variance</strong>, and <strong>standard deviation</strong> of <code>Wind</code>.</li>
+<li>Is the mean greater than or less than the median? What does this suggest about the shape of the distribution?</li>
+<li>Modify the code to also display <code>summary(airquality$Wind)</code>. Does this confirm your answer to (b)?</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Interactive R — Wind Speed Statistics
+</div>
+<textarea class="webr-editor" rows="8">wind <- airquality$Wind
+
+mean(wind)    # mean
+median(wind)  # median
+var(wind)     # sample variance
+sd(wind)      # sample standard deviation
+
+# Try adding: summary(wind)</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <code>mean(wind)</code> ≈ <strong>9.96 mph</strong>; <code>median(wind)</code> = <strong>9.70 mph</strong>; <code>var(wind)</code> ≈ <strong>12.41</strong>; <code>sd(wind)</code> ≈ <strong>3.52 mph</strong>.</p>
+<p><strong>(b)</strong> The mean (9.96) is slightly <strong>greater than</strong> the median (9.70). This suggests the distribution is mildly <strong>right-skewed</strong> — a few high wind-speed days pull the mean upward.</p>
+<p><strong>(c)</strong> <code>summary(wind)</code> gives: Min = 1.7, Q1 = 7.4, Median = 9.7, Q3 = 11.5, Max = 20.7. The max of 20.7 is noticeably higher than Q3 (11.5), consistent with a slight right skew.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+R Exercise 3
+</div>
+<p>Create a <strong>histogram</strong> of <code>airquality$Temp</code> using base R’s <code>hist()</code> function.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Run the starter code to produce the histogram. Describe the <strong>shape</strong> of the distribution.</li>
+<li>Modify <code>breaks = 10</code> to <code>breaks = 5</code>. How does the choice of bin count affect what you can see in the histogram?</li>
+<li>Add the line <code>abline(v = mean(airquality$Temp), col = "red", lwd = 2)</code> after <code>hist(...)</code>. What does this line represent?</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Interactive R — Histogram of Temperature
+</div>
+<textarea class="webr-editor" rows="8">hist(airquality$Temp,
+     breaks = 10,
+     main   = "Distribution of Daily Max Temperature",
+     xlab   = "Temperature (°F)",
+     col    = "#74b9ff",
+     border = "white")
+
+# Try adding: abline(v = mean(airquality$Temp), col = "red", lwd = 2)</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> The histogram shows a roughly <strong>symmetric</strong> distribution, centred around 75–80°F, with slightly more observations in the upper half. There is a mild left-skew — the left tail extends further than the right.</p>
+<p><strong>(b)</strong> With <code>breaks = 5</code>, each bar covers a wider range, hiding finer detail (e.g., the small dip around 60–65°F disappears). More breaks reveal more structure; fewer breaks show a smoother, simpler shape. The choice involves a bias–variance trade-off.</p>
+<p><strong>(c)</strong> The red vertical line <code>abline(v = mean(...))</code> marks the <strong>sample mean</strong> (≈ 77.9°F). Visually, it should fall near the centre of the distribution, which is consistent with the roughly symmetric shape observed.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+R Exercise 4
+</div>
+<p>Create a <strong>boxplot</strong> of <code>airquality$Temp</code> grouped by <code>Month</code> (month coded as integers 5 = May, 6 = June, …, 9 = September).</p>
+<ol style="list-style-type: lower-alpha">
+<li>Run the starter code. Which month has the <strong>highest median</strong> temperature? Which has the <strong>most variability</strong> (widest box)?</li>
+<li>Does any month show <strong>outliers</strong> (dots beyond the whiskers)?</li>
+<li>Modify <code>col</code> to use a different colour. What other arguments can you pass to <code>boxplot()</code>? Try adding <code>notch = TRUE</code> — what does the notch represent?</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Interactive R — Temperature by Month (Boxplot)
+</div>
+<textarea class="webr-editor" rows="10">boxplot(Temp ~ Month,
+        data   = airquality,
+        main   = "Daily Max Temperature by Month",
+        xlab   = "Month (5 = May … 9 = Sep)",
+        ylab   = "Temperature (°F)",
+        col    = "#a29bfe",
+        border = "#6c5ce7")
+
+# Try: add notch = TRUE inside boxplot() to show confidence intervals for the median</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <strong>July (Month 7)</strong> has the highest median temperature (approximately 81°F). <strong>May (Month 5)</strong> has the widest box (greatest IQR), indicating the most spread in daily temperatures that month.</p>
+<p><strong>(b)</strong> <strong>May</strong> shows a low outlier — one day with an unusually cold temperature (56°F). No other months show clear outlier dots.</p>
+<p><strong>(c)</strong> The <strong>notch</strong> in a boxplot displays an approximate 95% confidence interval for the <strong>population median</strong>. If two notches do not overlap, there is strong evidence that the two group medians differ. For example, July’s notch does not overlap with May’s, confirming that July is significantly warmer on average.</p>
+</div>
+</details>
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="acknowledgements.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="b-mean-and-standard-deviation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="foundations-of-inference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
