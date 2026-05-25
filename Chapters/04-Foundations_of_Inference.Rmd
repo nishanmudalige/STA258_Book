@@ -298,10 +298,11 @@ config(p, displayModeBar = TRUE)
 
 The interactive application below illustrates the empirical rule.
 
+<h3 style="text-align: center; color: #FF2C21;">Fix appearance of shiny app</h3>
 
 <center>
-```{r HistEmpRuleApp, echo=FALSE, out.width='80%'}
-knitr::include_app("https://nishan-mudalige.shinyapps.io/Empirical_Rule_Shiny_App/", height = "950")
+```{r HistEmpRuleApp, echo=FALSE, out.width='100%'}
+knitr::include_app("https://nishan-mudalige.shinyapps.io/Empirical_Rule_Shiny_App/", height = "750")
 ```
 </center>
 
@@ -786,9 +787,22 @@ print(f_plot)
 <!-- distribution from random given information is sufficient. -->
 
 
+### Distribution Calculator
+
+```{=html}
+<iframe 
+  src="Apps/distribution_calculator.html"
+  width="100%" 
+  height="750px"
+  style="border: 1px solid #ddd; border-radius: 8px;">
+</iframe>
+```
+
+<!--
 ### Arithmetics of RV's
 
 **To be completed**
+-->
 
 ## Sampling Distributions
 
@@ -842,7 +856,16 @@ confidence intervals and hypothesis tests for \(\mu\) even when the parent
 distribution of the data is unknown or skewed; the accuracy of this normal
 approximation improves as the sample size grows.
 
+The interactive app below can be used to illustrate the central limit theorem by sampling from various distributions.
 
+```{=html}
+<iframe 
+  src="Apps/clt_simulation.html"
+  width="100%" 
+  height="1575px"
+  style="border: 1px solid #ddd; border-radius: 8px;">
+</iframe>
+```
 
 
 
@@ -981,6 +1004,18 @@ ggplot(df, aes(x = trial, y = running_mean)) +
   )
 ```
 
+### Simulation
+
+```{=html}
+<iframe 
+  src="Apps/lln_simulation.html"
+  width="100%" 
+  height="1625px"
+  style="border: 1px solid #ddd; border-radius: 8px;">
+</iframe>
+```
+
+<br>
 **R Simulation Code (Single Sample Path):**
 
 ::: {.example}

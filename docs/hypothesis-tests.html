@@ -5,25 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Hypothesis Tests | STA258: Statistics with Applied Probability</title>
-  <meta name="description" content="Bookdown hosted on github using bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="description" content="Bookdown hosted on GitHub using bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Hypothesis Tests | STA258: Statistics with Applied Probability" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta property="og:description" content="Bookdown hosted on GitHub using bookdown::gitbook." />
   <meta name="github-repo" content="nishanmudalige/STA258" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Hypothesis Tests | STA258: Statistics with Applied Probability" />
   
-  <meta name="twitter:description" content="Bookdown hosted on github using bookdown::gitbook." />
+  <meta name="twitter:description" content="Bookdown hosted on GitHub using bookdown::gitbook." />
   
 
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-05-24" />
+<meta name="date" content="2026-05-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,238 +52,19 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/rglWebGL-binding-1.3.36/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-1.3.36/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-1.3.36/rglClass.min.js"></script>
-<script src="libs/CanvasMatrix4-1.3.36/CanvasMatrix.min.js"></script>
 <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
-<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
 <script src="libs/mathjax-2.7.5/cdn.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
-<!-- webR Interactive R Exercise Cells -->
-<!-- Loaded via _output.yml in_header for bookdown::gitbook -->
-
-<style>
-.webr-status-bar {
-  background: #fff8e1;
-  border: 1px solid #ffe082;
-  border-radius: 4px;
-  padding: 7px 14px;
-  margin: 10px 0 6px 0;
-  font-size: 0.85em;
-  color: #5d4037;
-  font-family: sans-serif;
-}
-.webr-status-bar.webr-ready {
-  background: #e8f5e9;
-  border-color: #a5d6a7;
-  color: #2e7d32;
-}
-.webr-status-bar.webr-error {
-  background: #ffebee;
-  border-color: #ef9a9a;
-  color: #b71c1c;
-}
-
-.webr-exercise {
-  margin: 12px 0 4px 0;
-  border: 1px solid #b3d4fb;
-  border-radius: 6px;
-  overflow: hidden;
-  font-family: sans-serif;
-  background: #f5faff;
-}
-.webr-exercise-header {
-  background: #1565c0;
-  color: #fff;
-  padding: 5px 12px;
-  font-size: 0.78em;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-}
-.webr-editor {
-  display: block;
-  width: 100%;
-  padding: 10px 12px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.88em;
-  line-height: 1.5;
-  border: none;
-  border-bottom: 1px solid #b3d4fb;
-  background: #fff;
-  resize: vertical;
-  outline: none;
-  box-sizing: border-box;
-  color: #1a1a2e;
-}
-.webr-controls {
-  padding: 6px 12px;
-  background: #e8f1fd;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.webr-run-btn {
-  background: #1565c0;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 18px;
-  cursor: pointer;
-  font-size: 0.85em;
-  font-weight: 700;
-  transition: background 0.15s;
-}
-.webr-run-btn:hover:not(:disabled) { background: #0d47a1; }
-.webr-run-btn:disabled { background: #90a4ae; cursor: not-allowed; }
-.webr-reset-btn {
-  background: none;
-  border: 1px solid #90a4ae;
-  border-radius: 4px;
-  padding: 5px 14px;
-  cursor: pointer;
-  font-size: 0.83em;
-  color: #546e7a;
-  transition: background 0.12s;
-}
-.webr-reset-btn:hover { background: #eceff1; }
-.webr-output-area {
-  padding: 10px 14px;
-  background: #1e1e2e;
-  color: #cdd6f4;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.85em;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  word-break: break-word;
-  display: none;
-}
-.webr-output-area.webr-has-output { display: block; }
-.webr-output-area.webr-error-output { color: #f38ba8; }
-.webr-canvas-area {
-  padding: 10px;
-  background: #fff;
-  text-align: center;
-  display: none;
-  border-top: 1px solid #b3d4fb;
-}
-.webr-canvas-area.webr-has-plot { display: block; }
-.webr-canvas-area canvas { max-width: 100%; border: 1px solid #e0e0e0; border-radius: 3px; }
-</style>
-
-<script type="module">
-import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
-
-let webR;
-let webRReady = false;
-
-function setGlobalStatus(msg, cssClass) {
-  document.querySelectorAll('.webr-status-bar').forEach(el => {
-    el.textContent = msg;
-    el.className = 'webr-status-bar ' + (cssClass || '');
-  });
-}
-
-async function initWebR() {
-  try {
-    webR = new WebR({ interactive: false });
-    await webR.init();
-    setGlobalStatus('📦 Installing ggplot2… (first visit only, ~30 s)', '');
-    await webR.installPackages(['ggplot2']);
-    await webR.evalRVoid('suppressMessages(library(ggplot2))');
-    webRReady = true;
-    setGlobalStatus('✅ R is ready — click ▶ Run to execute code', 'webr-ready');
-    document.querySelectorAll('.webr-run-btn').forEach(btn => { btn.disabled = false; });
-  } catch (e) {
-    setGlobalStatus('❌ Failed to load R engine: ' + e.message, 'webr-error');
-  }
-}
-
-function setupCell(cell) {
-  const editor    = cell.querySelector('.webr-editor');
-  const runBtn    = cell.querySelector('.webr-run-btn');
-  const resetBtn  = cell.querySelector('.webr-reset-btn');
-  const outArea   = cell.querySelector('.webr-output-area');
-  const canvasDiv = cell.querySelector('.webr-canvas-area');
-  const canvas    = canvasDiv ? canvasDiv.querySelector('canvas') : null;
-  const origCode  = editor.value;
-
-  resetBtn.addEventListener('click', () => {
-    editor.value = origCode;
-    outArea.textContent = '';
-    outArea.className = 'webr-output-area';
-    if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
-  });
-
-  runBtn.addEventListener('click', async () => {
-    if (!webRReady) return;
-    runBtn.disabled = true;
-    runBtn.textContent = '⏳ Running…';
-    outArea.textContent = '';
-    outArea.className = 'webr-output-area';
-    if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
-
-    try {
-      const code = editor.value;
-      const shelter = await new webR.Shelter();
-
-      const captureOpts = { withAutoprint: true };
-      if (canvas) {
-        captureOpts.captureGraphics = { width: 504, height: 378, bg: 'white' };
-      }
-
-      const result = await shelter.captureR(code, captureOpts);
-      await shelter.purge();
-
-      // Text output
-      const lines = result.output
-        .filter(x => x.type === 'stdout' || x.type === 'message')
-        .map(x => x.data)
-        .join('\n')
-        .trimEnd();
-
-      if (lines) {
-        outArea.textContent = lines;
-        outArea.classList.add('webr-has-output');
-      }
-
-      // Plot output
-      if (canvas && result.images && result.images.length > 0) {
-        canvasDiv.classList.add('webr-has-plot');
-        const ctx = canvas.getContext('2d');
-        canvas.width  = 504;
-        canvas.height = 378;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (const img of result.images) {
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        }
-      }
-
-    } catch (e) {
-      outArea.textContent = 'Error: ' + e.message;
-      outArea.classList.add('webr-has-output', 'webr-error-output');
-    }
-
-    runBtn.disabled = false;
-    runBtn.textContent = '▶ Run';
-  });
-}
-
-// Wait for DOM then initialise
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.webr-exercise').forEach(setupCell);
-  initWebR();
-});
-</script>
 
 
 <style type="text/css">
@@ -451,7 +232,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.1.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution"><i class="fa fa-check"></i><b>4.1.2</b> Introduction to the Chi-Square distribution</a></li>
 <li class="chapter" data-level="4.1.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-t-distribution"><i class="fa fa-check"></i><b>4.1.3</b> Introduction to the t-Distribution</a></li>
 <li class="chapter" data-level="4.1.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-f-distribution"><i class="fa fa-check"></i><b>4.1.4</b> Introduction to the F-Distribution</a></li>
-<li class="chapter" data-level="4.1.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#arithmetics-of-rvs"><i class="fa fa-check"></i><b>4.1.5</b> Arithmetics of RV’s</a></li>
+<li class="chapter" data-level="4.1.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#distribution-calculator"><i class="fa fa-check"></i><b>4.1.5</b> Distribution Calculator</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sampling-distributions"><i class="fa fa-check"></i><b>4.2</b> Sampling Distributions</a></li>
 <li class="chapter" data-level="4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>4.3</b> The Central Limit Theorem</a></li>
@@ -459,6 +240,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#convergence-in-probability"><i class="fa fa-check"></i><b>4.4.1</b> Convergence in Probability</a></li>
 <li class="chapter" data-level="4.4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#weak-law-of-large-numbers-wlln"><i class="fa fa-check"></i><b>4.4.2</b> Weak Law of Large Numbers (WLLN)</a></li>
+<li class="chapter" data-level="4.4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#simulation"><i class="fa fa-check"></i><b>4.4.3</b> Simulation</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
@@ -737,20 +519,20 @@ Common distributions which thetest statistic follows are the standard normal dis
 <p><strong>Step 4: Calculate the p-value</strong></p>
 <!-- It quantifies the evidence against the null hypothesis. -->
 <p>We use the test statistic, reference distribution, and refer back to <span class="math inline">\(H_a\)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
-<img src="Book_files/figure-html/unnamed-chunk-11-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-11-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="Book_files/figure-html/unnamed-chunk-10-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-10-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.1: Right-tailed test: p-value is the area to the right of the test statistic
 </p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="Book_files/figure-html/unnamed-chunk-12-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-12-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<img src="Book_files/figure-html/unnamed-chunk-11-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-11-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.2: Left-tailed test: p-value is the area to the left of the test statistic
 </p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
-<img src="Book_files/figure-html/unnamed-chunk-13-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
+<img src="Book_files/figure-html/unnamed-chunk-12-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
 <p class="caption">
 Figure 6.3: Two-tailed test: p-value is the total area in both tails beyond ±test statistic
 </p>
@@ -929,8 +711,8 @@ decreased. Assume the standard deviation is known to be 5.25 kg.</p>
 <p>Reference distribution: standard normal</p>
 <p><strong>4. Calculate p-value</strong></p>
 <span class="math display">\[\text{p-value} = P(Z &lt; -2.82) \approx 0.0024\]</span>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
-<img src="Book_files/figure-html/unnamed-chunk-14-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
+<img src="Book_files/figure-html/unnamed-chunk-13-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
 <p class="caption">
 Figure 6.4: Left-tailed p-value for the test statistic <span class="math inline">\(z^* = -2.82\)</span>
 </p>
@@ -1038,8 +820,8 @@ likely positive.</p>
 <span id="cb41-10"><a href="hypothesis-tests.html#cb41-10" tabindex="-1"></a>    <span class="co"># z.star = test statistic;</span></span>
 <span id="cb41-11"><a href="hypothesis-tests.html#cb41-11" tabindex="-1"></a>    z.star <span class="ot">&lt;-</span> (x.bar <span class="sc">-</span> mu.zero) <span class="sc">/</span> sigma.xbar;</span>
 <span id="cb41-12"><a href="hypothesis-tests.html#cb41-12" tabindex="-1"></a>    <span class="fu">hist</span>(z.star, <span class="at">xlab =</span> <span class="st">&quot;differences&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>);</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="Book_files/figure-html/unnamed-chunk-15-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
+<img src="Book_files/figure-html/unnamed-chunk-14-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
 <p class="caption">
 Figure 6.5: Histogram of <span class="math inline">\(z^\star\)</span> values from 10,000 simulations under <span class="math inline">\(H_0\)</span>
 </p>
@@ -1902,8 +1684,8 @@ H_a &amp;: \sigma^2 &gt; 0.81
 <p><strong>Step 3. Find Rejection Region.</strong><br />
 From the chi-squared table, the null hypothesis is rejected when
 <span class="math inline">\(\chi^2 &gt; 16.919\)</span>, where <span class="math inline">\(\nu = 9\)</span> degrees of freedom.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
-<img src="Book_files/figure-html/unnamed-chunk-16-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="Book_files/figure-html/unnamed-chunk-15-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
 <p class="caption">
 Figure 6.6: Right-tailed chi-squared distribution with critical value at 16.919
 </p>
@@ -2166,8 +1948,8 @@ interactions”.</p>
 <p><strong>Nearly Normal Condition (Group 1: “interaction with outsiders”):</strong></p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="hypothesis-tests.html#cb59-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
 <span id="cb59-2"><a href="hypothesis-tests.html#cb59-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="Book_files/figure-html/unnamed-chunk-17-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="Book_files/figure-html/unnamed-chunk-16-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
 <p class="caption">
 Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
 </p>
@@ -2175,8 +1957,8 @@ Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
 <p><strong>Nearly Normal Condition (Group 2: “fewer interactions”):</strong></p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="hypothesis-tests.html#cb60-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span>
 <span id="cb60-2"><a href="hypothesis-tests.html#cb60-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
-<img src="Book_files/figure-html/unnamed-chunk-18-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="Book_files/figure-html/unnamed-chunk-17-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
 <p class="caption">
 Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
 </p>
@@ -2184,8 +1966,8 @@ Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
 </div>
 <p><strong>Nearly Normal Condition:</strong></p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="hypothesis-tests.html#cb61-1" tabindex="-1"></a>    <span class="fu">boxplot</span>(Success_Index <span class="sc">~</span> Group, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="Book_files/figure-html/unnamed-chunk-19-1.png" alt="Boxplot of Success Index by Group" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<img src="Book_files/figure-html/unnamed-chunk-18-1.png" alt="Boxplot of Success Index by Group" width="60%" />
 <p class="caption">
 Figure 6.9: Boxplot of Success Index by Group
 </p>
@@ -2422,8 +2204,8 @@ control (Group 2), the hypotheses are:</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="hypothesis-tests.html#cb68-1" tabindex="-1"></a>    <span class="co"># Making Q-Q plot;</span></span>
 <span id="cb68-2"><a href="hypothesis-tests.html#cb68-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Treatment&quot;</span>);</span>
 <span id="cb68-3"><a href="hypothesis-tests.html#cb68-3" tabindex="-1"></a>    <span class="fu">qqline</span>(treatment, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
-<img src="Book_files/figure-html/unnamed-chunk-20-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="Book_files/figure-html/unnamed-chunk-19-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
 <p class="caption">
 Figure 6.10: Q-Q Plot for Treatment Group
 </p>
@@ -2432,8 +2214,8 @@ Figure 6.10: Q-Q Plot for Treatment Group
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="hypothesis-tests.html#cb69-1" tabindex="-1"></a>    <span class="co"># Making Q-Q plot;</span></span>
 <span id="cb69-2"><a href="hypothesis-tests.html#cb69-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Control&quot;</span>);</span>
 <span id="cb69-3"><a href="hypothesis-tests.html#cb69-3" tabindex="-1"></a>    <span class="fu">qqline</span>(control, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
-<img src="Book_files/figure-html/unnamed-chunk-21-1.png" alt="Q-Q Plot for Control Group" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<img src="Book_files/figure-html/unnamed-chunk-20-1.png" alt="Q-Q Plot for Control Group" width="60%" />
 <p class="caption">
 Figure 6.11: Q-Q Plot for Control Group
 </p>
