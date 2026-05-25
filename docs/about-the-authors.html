@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>About the Authors | STA258: Statistics with Applied Probability</title>
   <meta name="description" content="Bookdown hosted on GitHub using bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="About the Authors | STA258: Statistics with Applied Probability" />
   <meta property="og:type" content="book" />
@@ -54,17 +54,233 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
 <script src="libs/mathjax-2.7.5/cdn.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 <script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<!-- webR Interactive R Exercise Cells -->
+<!-- Loaded via _output.yml in_header for bookdown::gitbook -->
+
+<style>
+.webr-status-bar {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 4px;
+  padding: 7px 14px;
+  margin: 10px 0 6px 0;
+  font-size: 0.85em;
+  color: #5d4037;
+  font-family: sans-serif;
+}
+.webr-status-bar.webr-ready {
+  background: #e8f5e9;
+  border-color: #a5d6a7;
+  color: #2e7d32;
+}
+.webr-status-bar.webr-error {
+  background: #ffebee;
+  border-color: #ef9a9a;
+  color: #b71c1c;
+}
+
+.webr-exercise {
+  margin: 12px 0 4px 0;
+  border: 1px solid #b3d4fb;
+  border-radius: 6px;
+  overflow: hidden;
+  font-family: sans-serif;
+  background: #f5faff;
+}
+.webr-exercise-header {
+  background: #1565c0;
+  color: #fff;
+  padding: 5px 12px;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.webr-editor {
+  display: block;
+  width: 100%;
+  min-height: 160px;
+  padding: 10px 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.88em;
+  line-height: 1.5;
+  border: none;
+  border-bottom: 1px solid #b3d4fb;
+  background: #fff;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+  color: #1a1a2e;
+}
+.webr-controls {
+  padding: 6px 12px;
+  background: #e8f1fd;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.webr-run-btn {
+  background: #1565c0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 18px;
+  cursor: pointer;
+  font-size: 0.85em;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+.webr-run-btn:hover:not(:disabled) { background: #0d47a1; }
+.webr-run-btn:disabled { background: #90a4ae; cursor: not-allowed; }
+.webr-reset-btn {
+  background: none;
+  border: 1px solid #90a4ae;
+  border-radius: 4px;
+  padding: 5px 14px;
+  cursor: pointer;
+  font-size: 0.83em;
+  color: #546e7a;
+  transition: background 0.12s;
+}
+.webr-reset-btn:hover { background: #eceff1; }
+.webr-output-area {
+  padding: 10px 14px;
+  background: #1e1e2e;
+  color: #cdd6f4;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85em;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  display: none;
+}
+.webr-output-area.webr-has-output { display: block; }
+.webr-output-area.webr-error-output { color: #f38ba8; }
+.webr-canvas-area {
+  padding: 10px;
+  background: #fff;
+  text-align: center;
+  display: none;
+  border-top: 1px solid #b3d4fb;
+}
+.webr-canvas-area.webr-has-plot { display: block; }
+.webr-canvas-area canvas { max-width: 100%; border: 1px solid #e0e0e0; border-radius: 3px; }
+</style>
+
+<script type="module">
+import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
+
+let webR;
+let webRReady = false;
+
+function setGlobalStatus(msg, cssClass) {
+  document.querySelectorAll('.webr-status-bar').forEach(el => {
+    el.textContent = msg;
+    el.className = 'webr-status-bar ' + (cssClass || '');
+  });
+}
+
+async function initWebR() {
+  try {
+    webR = new WebR({ interactive: false });
+    await webR.init();
+    setGlobalStatus('📦 Installing ggplot2… (first visit only, ~30 s)', '');
+    await webR.installPackages(['ggplot2']);
+    await webR.evalRVoid('suppressMessages(library(ggplot2))');
+    webRReady = true;
+    setGlobalStatus('✅ R is ready — click ▶ Run to execute code', 'webr-ready');
+    document.querySelectorAll('.webr-run-btn').forEach(btn => { btn.disabled = false; });
+  } catch (e) {
+    setGlobalStatus('❌ Failed to load R engine: ' + e.message, 'webr-error');
+  }
+}
+
+function setupCell(cell) {
+  const editor    = cell.querySelector('.webr-editor');
+  const runBtn    = cell.querySelector('.webr-run-btn');
+  const resetBtn  = cell.querySelector('.webr-reset-btn');
+  const outArea   = cell.querySelector('.webr-output-area');
+  const canvasDiv = cell.querySelector('.webr-canvas-area');
+  const canvas    = canvasDiv ? canvasDiv.querySelector('canvas') : null;
+  const origCode  = editor.value;
+
+  resetBtn.addEventListener('click', () => {
+    editor.value = origCode;
+    outArea.textContent = '';
+    outArea.className = 'webr-output-area';
+    if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
+  });
+
+  runBtn.addEventListener('click', async () => {
+    if (!webRReady) return;
+    runBtn.disabled = true;
+    runBtn.textContent = '⏳ Running…';
+    outArea.textContent = '';
+    outArea.className = 'webr-output-area';
+    if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
+
+    try {
+      const code = editor.value;
+      const shelter = await new webR.Shelter();
+
+      const captureOpts = { withAutoprint: true };
+      if (canvas) {
+        captureOpts.captureGraphics = { width: 504, height: 378, bg: 'white' };
+      }
+
+      const result = await shelter.captureR(code, captureOpts);
+      await shelter.purge();
+
+      // Text output
+      const lines = result.output
+        .filter(x => x.type === 'stdout' || x.type === 'message')
+        .map(x => x.data)
+        .join('\n')
+        .trimEnd();
+
+      if (lines) {
+        outArea.textContent = lines;
+        outArea.classList.add('webr-has-output');
+      }
+
+      // Plot output
+      if (canvas && result.images && result.images.length > 0) {
+        canvasDiv.classList.add('webr-has-plot');
+        const ctx = canvas.getContext('2d');
+        canvas.width  = 504;
+        canvas.height = 378;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const img of result.images) {
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        }
+      }
+
+    } catch (e) {
+      outArea.textContent = 'Error: ' + e.message;
+      outArea.classList.add('webr-has-output', 'webr-error-output');
+    }
+
+    runBtn.disabled = false;
+    runBtn.textContent = '▶ Run';
+  });
+}
+
+// Wait for DOM then initialise
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.webr-exercise').forEach(setupCell);
+  initWebR();
+});
+</script>
 
 
 <style type="text/css">

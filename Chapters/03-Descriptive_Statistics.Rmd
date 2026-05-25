@@ -738,16 +738,18 @@ knitr::include_app("https://nishan-mudalige.shinyapps.io/Histogram-Shiny-App/", 
 
 Boxplots are another visual aid we can use to present and interpret data. They are one
 of the most simple graphical techniques to analyze visually and are therefore usually relatively immediate to interpret. 
-Boxplots are also known as *box-and-whisker* plots since they consists of figures resembling boxes along with a series of
-lines which we refer to as whiskers. The whiskers represent the quartiles as well as special
-values which we refer to as the *lower whisker* and the *upper whisker*.
+Boxplots are also known as *box-and-whisker* plots since they consist of figures resembling boxes along with a series of
+lines called whiskers. The whiskers extend from the box to the most extreme observed values that are not considered outliers.
+To decide which values are outliers, we compute lower and upper **outlier cutoffs** (also called **fences**) using the $1.5 \times IQR$ rule:
 
-::: {.definition name="Upper and Lower Whiskers" #UpperLowerWhiskers}
-Let $Q_{1}$, $Q_{3}$ and $IQR$ represent the first quartile, third quartile and 
+::: {.definition name="Outlier Cutoffs (Fences)" #OutlierCutoffs}
+Let $Q_{1}$, $Q_{3}$ and $IQR$ represent the first quartile, third quartile and
 interquartile range respectively as defined in \@ref(def:Quartiles) and \@ref(def:IQR) respectively.
-Then,
-\[ \text{Lower Whisker} ~ = ~ Q_{1} - 1.5 \times IQR \]
-\[ \text{Upper Whisker} ~ = ~ Q_{3} + 1.5 \times IQR \]
+Then the **lower cutoff** and **upper cutoff** are:
+\[ \text{Lower cutoff} ~ = ~ Q_{1} - 1.5 \times IQR \]
+\[ \text{Upper cutoff} ~ = ~ Q_{3} + 1.5 \times IQR \]
+Any observed value below the lower cutoff or above the upper cutoff is flagged as a potential **outlier** and plotted as an individual dot beyond the whisker.
+The **lower whisker** extends to the smallest observed value still within the lower cutoff, and the **upper whisker** extends to the largest observed value still within the upper cutoff.
 :::
 
 The box in a boxplot is divided into two parts, the lower and upper quartiles. The lower quartile is represented by the bottom of the box and the upper quartile is represented by the top of the box. The line inside the box represents the median of the data set.
