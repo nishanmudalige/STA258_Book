@@ -400,3 +400,300 @@ help.search("regression")
 ```
 
 R packages are stored in CRAN (Comprehensive R Archive Network), which you accessed when installing R. There are also GitHub-hosted packages for advanced users.
+
+## WebR Coding Exercises {#sec:ch2exercises}
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+Use R as a calculator to evaluate the following expressions. Write the correct operator or function name for each part, then click **▶ Run** to check your result.
+
+(a) Add 47 and 53.
+(b) Raise 6 to the power of 3.
+(c) Compute the square root of 144.
+(d) Find the remainder when 29 is divided by 4.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Calculator Practice</div>
+<textarea class="webr-editor" rows="10"># (a) Add 47 and 53
+
+
+# (b) Raise 6 to the power of 3
+
+
+# (c) Compute the square root of 144
+
+
+# (d) Find the remainder when 29 is divided by 4
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use `+` for addition and `^` for exponentiation.
+- The square root function in R is `sqrt()`.
+- The modulo (remainder) operator in R is `%%`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+# (a) Add 47 and 53
+47 + 53        # [1] 100
+
+# (b) Raise 6 to the power of 3
+6^3            # [1] 216
+
+# (c) Compute the square root of 144
+sqrt(144)      # [1] 12
+
+# (d) Find the remainder when 29 is divided by 4
+29 %% 4        # [1] 1
+```
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+Create a numeric vector called `scores` containing the following seven exam marks: 72, 85, 91, 68, 79, 88, 95. Then compute the mean and the maximum score. Fill in the three missing function names and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Creating a Vector</div>
+<textarea class="webr-editor" rows="9"># Create the vector
+scores <- c(72, 85, 91, 68, 79, 88, 95)
+
+# Compute the mean
+
+
+# Find the maximum score
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use `c()` to combine individual values into a vector.
+- `mean()` returns the arithmetic average of a vector.
+- `max()` returns the largest element of a vector.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+# Create the vector
+scores <- c(72, 85, 91, 68, 79, 88, 95)
+
+# Compute the mean
+mean(scores)   # [1] 82.57143
+
+# Find the maximum score
+max(scores)    # [1] 95
+```
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+The vector `temps` contains seven daily temperature readings. Use indexing to extract the requested elements and click **▶ Run** to verify each result.
+
+(a) Extract the third element.
+(b) Extract the first and fifth elements together.
+(c) Extract all elements except the second.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Indexing a Vector</div>
+<textarea class="webr-editor" rows="11">temps <- c(18.2, 21.5, 19.0, 23.8, 17.6, 22.1, 20.4)
+
+# (a) Extract the third element
+
+
+# (b) Extract the first and fifth elements together
+
+
+# (c) Extract all elements except the second
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- R uses 1-based indexing: `temps[1]` gives the first element.
+- To select multiple positions, pass a vector of indices: `temps[c(1, 5)]`.
+- To exclude an element, use a negative index: `temps[-2]` drops the second element.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+temps <- c(18.2, 21.5, 19.0, 23.8, 17.6, 22.1, 20.4)
+
+# (a) Extract the third element
+temps[3]              # [1] 19.0
+
+# (b) Extract the first and fifth elements together
+temps[c(1, 5)]        # [1] 18.2 17.6
+
+# (c) Extract all elements except the second
+temps[-2]             # [1] 18.2 19.0 23.8 17.6 22.1 20.4
+```
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+Use `library()` to load a package, then use `read.csv()` to read data into a data frame. In a full RStudio session you would run `library(tidyverse)` and `read_csv("students.csv")`. Here, practice the same pattern using base R tools that work in the browser. Fill in the two blank lines and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Loading a Library & Reading Data</div>
+<textarea class="webr-editor" rows="10"># Load the datasets package (always available in base R)
+library(datasets)
+
+# Read CSV data using read.csv() with inline text
+students <- read.csv(text = "name,age,grade\nAlice,20,88\nBob,22,72\nCarol,19,95")
+
+# Print the data frame
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use `library()` to load an installed package into the current session.
+- The tidyverse provides `read_csv()` (with an underscore) for reading CSV files — note that this is different from base R's `read.csv()` (with a dot).
+- To print a data frame, simply type its name on a line by itself.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+# Load the datasets package (always available in base R)
+library(datasets)
+
+# Read CSV data using read.csv() with inline text
+students <- read.csv(text = "name,age,grade\nAlice,20,88\nBob,22,72\nCarol,19,95")
+
+# Print the data frame
+students
+```
+
+In a full RStudio session with a real file you would instead write:
+
+```r
+library(tidyverse)
+students <- read_csv("students.csv")
+```
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+Use the built-in `mtcars` dataset to practise the five key data frame inspection functions. Fill in the missing function names after each comment and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — Inspecting a Data Frame</div>
+<textarea class="webr-editor" rows="14">students <- mtcars
+
+# (a) View the first 6 rows
+
+
+# (b) Number of rows
+
+
+# (c) Number of columns
+
+
+# (d) Column names
+
+
+# (e) Compact structure summary
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `head()` shows the first few rows of a data frame.
+- `nrow()` and `ncol()` return the number of rows and columns, respectively.
+- `names()` returns the column names of a data frame.
+- `str()` prints the structure of a data frame, including each column's type and a few sample values.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+students <- mtcars
+
+# (a) View the first 6 rows
+head(students)
+
+# (b) Number of rows
+nrow(students)     # [1] 32
+
+# (c) Number of columns
+ncol(students)     # [1] 11
+
+# (d) Column names
+names(students)
+
+# (e) Compact structure summary
+str(students)
+```
+</div>
+</details>
+
+---
