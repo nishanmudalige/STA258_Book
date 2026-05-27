@@ -1598,3 +1598,880 @@ n
 Since $n$ must be a whole number and we always round up to ensure the
 margin of error is at most $2\%$, we take $$n = 1{,}692.$$
 :::
+
+## Exercises {#sec:ch5exercises}
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+A biologist measures the average length of a certain type of leaf. She knows that leaf lengths are normally distributed with population standard deviation $\sigma = 2.4$ cm. From a random sample of $n = 16$ leaves, the sample mean is $\bar{x} = 18.6$ cm.
+
+Find the **95% confidence interval** for the population mean leaf length.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Since $\sigma$ is known, use the $z$-interval formula: $\bar{x} \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}}$.
+- For 95% confidence, $\alpha = 0.05$ and $z_{\alpha/2} = z_{0.025} = 1.96$.
+- Compute the standard error $\text{SE} = \sigma/\sqrt{n}$ first.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+**Given:** $\bar{x} = 18.6$, $\sigma = 2.4$, $n = 16$, $z_{0.025} = 1.96$
+
+**Standard error:**
+$$\text{SE} = \frac{\sigma}{\sqrt{n}} = \frac{2.4}{\sqrt{16}} = \frac{2.4}{4} = 0.6 \text{ cm}$$
+
+**Margin of error:**
+$$E = z_{0.025} \times \text{SE} = 1.96 \times 0.6000 = 1.1760 \text{ cm}$$
+
+**95% CI:**
+$$(18.6 - 1.1760,\ 18.6 + 1.1760) = \mathbf{(17.4240,\ 19.7760) \text{ cm}}$$
+
+We are 95% confident that the true mean leaf length lies between **17.4240 cm** and **19.7760 cm**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+A researcher wants to estimate the average sleep time of university students during exam week. Based on previous studies, the population standard deviation is known to be $\sigma = 1.5$ hours. From a random sample of $n = 25$ students, the sample mean sleep time is $\bar{x} = 6.8$ hours.
+
+Find the **99% confidence interval** for the population mean sleep time.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Since $\sigma$ is known, use the $z$-interval: $\bar{x} \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}}$.
+- For 99% confidence, $\alpha = 0.01$ and $z_{\alpha/2} = z_{0.005} = 2.576$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\bar{x} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+**Given:** $\bar{x} = 6.8$, $\sigma = 1.5$, $n = 25$, $z_{0.005} = 2.576$
+
+**Standard error:**
+$$\text{SE} = \frac{1.5}{\sqrt{25}} = \frac{1.5}{5} = 0.3 \text{ hr}$$
+
+**Margin of error:**
+$$E = 2.576 \times 0.3000 = 0.7728 \text{ hr}$$
+
+**99% CI:**
+$$(6.8 - 0.7728,\ 6.8 + 0.7728) = \mathbf{(6.0272,\ 7.5728) \text{ hr}}$$
+
+We are 99% confident that the true mean sleep time lies between **6.0272** and **7.5728 hours**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+A researcher wants to estimate the average sleep time of university students during exam week. She randomly selects 10 students and records their sleep hours per night:
+
+$$6.5,\ 7.2,\ 5.8,\ 6.9,\ 7.5,\ 6.1,\ 5.9,\ 6.7,\ 7.0,\ 6.4$$
+
+Assume the sleep hours are approximately normally distributed. Find the **95% confidence interval** for the population mean sleep time.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Since $\sigma$ is unknown, use the $t$-interval: $\bar{x} \pm t_{n-1,\,\alpha/2} \cdot \dfrac{s}{\sqrt{n}}$.
+- Calculate $\bar{x}$ and $s$ from the raw data first.
+- Degrees of freedom: $df = n - 1 = 9$; look up $t_{9,\,0.025} = 2.262$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\bar{x} \pm t_{n-1,\,\alpha/2} \cdot \frac{s}{\sqrt{n}}$$
+
+**Step 1 — Sample mean:**
+$$\bar{x} = \frac{6.5+7.2+5.8+6.9+7.5+6.1+5.9+6.7+7.0+6.4}{10} = \frac{66.0}{10} = 6.60 \text{ hr}$$
+
+**Step 2 — Sample standard deviation** (deviations from $\bar{x}=6.60$):
+
+| $x_i$ | $x_i - \bar{x}$ | $(x_i-\bar{x})^2$ |
+|:------:|:---------------:|:-----------------:|
+| 6.5 | −0.10 | 0.0100 |
+| 7.2 | +0.60 | 0.3600 |
+| 5.8 | −0.80 | 0.6400 |
+| 6.9 | +0.30 | 0.0900 |
+| 7.5 | +0.90 | 0.8100 |
+| 6.1 | −0.50 | 0.2500 |
+| 5.9 | −0.70 | 0.4900 |
+| 6.7 | +0.10 | 0.0100 |
+| 7.0 | +0.40 | 0.1600 |
+| 6.4 | −0.20 | 0.0400 |
+| **Sum** | | **2.8600** |
+
+$$s^2 = \frac{2.86}{9} \approx 0.3178, \qquad s \approx 0.5637 \text{ hr}$$
+
+**Step 3 — Critical value:** $df = 9$, $t_{9,\,0.025} = 2.262$
+
+**Step 4 — Margin of error:**
+$$E = 2.262 \times \frac{0.5637}{\sqrt{10}} = 2.262 \times \frac{0.5637}{3.1623} = 2.262 \times 0.1783 \approx 0.4033 \text{ hr}$$
+
+**95% CI:**
+$$(6.60 - 0.4033,\ 6.60 + 0.4033) = \mathbf{(6.1967,\ 7.0033) \text{ hr}}$$
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+A coffee shop wants to estimate the average waiting time for customers during the morning rush. A random sample of 12 customers has a sample mean waiting time of $\bar{x} = 4.8$ minutes and a sample standard deviation of $s = 1.1$ minutes.
+
+Assume the waiting times are approximately normally distributed. Find the **90% confidence interval** for the population mean waiting time.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Since $\sigma$ is unknown, use the $t$-interval: $\bar{x} \pm t_{n-1,\,\alpha/2} \cdot \dfrac{s}{\sqrt{n}}$.
+- $df = n - 1 = 11$; for 90% confidence, look up $t_{11,\,0.05} = 1.796$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\bar{x} \pm t_{n-1,\,\alpha/2} \cdot \frac{s}{\sqrt{n}}$$
+
+**Given:** $\bar{x} = 4.8$, $s = 1.1$, $n = 12$, $df = 11$, $t_{11,\,0.05} = 1.796$
+
+**Standard error:**
+$$\text{SE} = \frac{s}{\sqrt{n}} = \frac{1.1}{\sqrt{12}} = \frac{1.1}{3.4641} \approx 0.3175 \text{ min}$$
+
+**Margin of error:**
+$$E = 1.796 \times 0.3175 \approx 0.5702 \text{ min}$$
+
+**90% CI:**
+$$(4.8 - 0.5702,\ 4.8 + 0.5702) = \mathbf{(4.2298,\ 5.3702) \text{ min}}$$
+
+We are 90% confident that the true mean waiting time lies between **4.2298** and **5.3702 minutes**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+A university survey asked 1,200 students whether they use public transportation to commute to campus. Among them, 738 students said yes.
+
+Construct a **95% confidence interval** for the true proportion of all students who use public transportation to commute to campus.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The CI for a population proportion is $\hat{p} \pm z_{\alpha/2}\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}$.
+- First compute $\hat{p} = x/n$, then the standard error, then the margin of error.
+- For 95% confidence, $z_{0.025} = 1.96$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+**Given:** $n = 1200$, $x = 738$, $z_{0.025} = 1.96$
+
+**Point estimate:**
+$$\hat{p} = \frac{738}{1200} = 0.6150$$
+
+**Standard error:**
+$$\text{SE} = \sqrt{\frac{0.6150 \times 0.3850}{1200}} = \sqrt{\frac{0.2368}{1200}} \approx \sqrt{0.0001973} \approx 0.0140$$
+
+**Margin of error:**
+$$E = 1.96 \times 0.0140 \approx 0.0274$$
+
+**95% CI:**
+$$(0.6150 - 0.0274,\ 0.6150 + 0.0274) = \mathbf{(0.5876,\ 0.6424)}$$
+
+We are 95% confident that between **58.76%** and **64.24%** of all students use public transportation.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 6</div>
+A company surveyed 650 employees and found that 286 employees prefer working from home at least three days per week.
+
+**(a)** (1 mark) What is the **point estimate** of the population proportion?
+
+**(b)** (2 marks) At 90% confidence, what is the **margin of error**?
+
+**(c)** (1 mark) Construct the **90% confidence interval** for the true proportion of employees who prefer working from home at least three days per week.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Point estimate: $\hat{p} = x/n$.
+- For 90% confidence, $z_{0.05} = 1.645$.
+- Margin of error: $E = z_{\alpha/2}\sqrt{\hat{p}(1-\hat{p})/n}$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+**Given:** $n = 650$, $x = 286$, $z_{0.05} = 1.645$
+
+**(a) Point estimate:**
+$$\hat{p} = \frac{286}{650} \approx 0.4400$$
+
+**(b) Standard error and margin of error:**
+$$\text{SE} = \sqrt{\frac{0.4400 \times 0.5600}{650}} = \sqrt{\frac{0.2464}{650}} \approx \sqrt{0.000379} \approx 0.0195$$
+$$E = 1.645 \times 0.0195 \approx 0.0321$$
+
+**(c) 90% CI:**
+$$(0.4400 - 0.0321,\ 0.4400 + 0.0321) = \mathbf{(0.4079,\ 0.4721)}$$
+
+We are 90% confident that between **40.79%** and **47.21%** of all employees prefer working from home at least three days per week.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 7</div>
+A machine fills bottles of juice. The company wants to check whether the filling process is stable. A random sample of 25 bottles gives a sample variance of $s^2 = 12.5$.
+
+Assume the filling amounts are normally distributed. Construct a **95% confidence interval** for the population variance $\sigma^2$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The CI for $\sigma^2$ uses the chi-squared distribution:
+$$\left(\frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}},\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}}\right)$$
+- $df = n - 1 = 24$. For 95% confidence: $\chi^2_{0.025,\,24} = 39.364$ (upper) and $\chi^2_{0.975,\,24} = 12.401$ (lower).
+- Divide by the **larger** $\chi^2$ for the lower bound, and by the **smaller** $\chi^2$ for the upper bound.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\left(\frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}},\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}}\right)$$
+
+**Given:** $n = 25$, $s^2 = 12.5$, $df = 24$
+
+**Critical values** (95% CI, $\alpha = 0.05$):
+$$\chi^2_{0.025,\,24} = 39.364, \qquad \chi^2_{0.975,\,24} = 12.401$$
+
+**Bounds:**
+$$\text{Lower} = \frac{(24)(12.5)}{39.364} = \frac{300}{39.364} \approx 7.6212$$
+$$\text{Upper} = \frac{(24)(12.5)}{12.401} = \frac{300}{12.401} \approx 24.1916$$
+
+**95% CI for $\sigma^2$:**
+$$\mathbf{(7.6212,\ 24.1916)}$$
+
+We are 95% confident that the true population variance of the filling amounts lies between **7.6212** and **24.1916**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
+A researcher studies the variation in reaction times for drivers. A random sample of 16 drivers has a sample variance of $s^2 = 0.36$.
+
+Assume reaction times are normally distributed. Construct a **90% confidence interval** for the population variance $\sigma^2$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the chi-squared CI formula with $df = n - 1 = 15$.
+- For 90% confidence ($\alpha = 0.10$): $\chi^2_{0.05,\,15} = 24.996$ (upper) and $\chi^2_{0.95,\,15} = 7.261$ (lower).
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\left(\frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}},\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}}\right)$$
+
+**Given:** $n = 16$, $s^2 = 0.36$, $df = 15$
+
+**Critical values** (90% CI, $\alpha = 0.10$):
+$$\chi^2_{0.05,\,15} = 24.996, \qquad \chi^2_{0.95,\,15} = 7.261$$
+
+**Bounds:**
+$$\text{Lower} = \frac{(15)(0.36)}{24.996} = \frac{5.4}{24.996} \approx 0.2160$$
+$$\text{Upper} = \frac{(15)(0.36)}{7.261} = \frac{5.4}{7.261} \approx 0.7437$$
+
+**90% CI for $\sigma^2$:**
+$$\mathbf{(0.2160,\ 0.7437)}$$
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 9</div>
+A nutrition researcher wants to compare the average sodium content between frozen meals for adults and frozen meals for children. A random sample of 20 adult meals has a mean sodium content of 720 mg with a standard deviation of 150 mg. A random sample of 18 children's meals has a mean sodium content of 610 mg with a standard deviation of 120 mg.
+
+Assume the two samples are independent, both populations are approximately normal, and the **population variances are not assumed to be equal**.
+
+Construct a **95% confidence interval** for $\mu_1 - \mu_2$, where $\mu_1$ is the mean sodium content for adult meals and $\mu_2$ is the mean sodium content for children's meals.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the Welch (unequal-variance) two-sample $t$-interval:
+$$(\bar{x}_1 - \bar{x}_2) \pm t_{df,\,\alpha/2} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$$
+- Welch degrees of freedom:
+$$df = \frac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1-1} + \dfrac{(s_2^2/n_2)^2}{n_2-1}}$$
+Round $df$ down to the nearest integer.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula (Welch two-sample $t$-interval):**
+$$(\bar{x}_1 - \bar{x}_2) \pm t_{df,\,\alpha/2} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$$
+
+**Given:** $n_1=20$, $\bar{x}_1=720$, $s_1=150$; $\quad n_2=18$, $\bar{x}_2=610$, $s_2=120$
+
+**Point estimate:** $\bar{x}_1 - \bar{x}_2 = 720 - 610 = 110$ mg
+
+**Component variances:**
+$$\frac{s_1^2}{n_1} = \frac{22500}{20} = 1125, \qquad \frac{s_2^2}{n_2} = \frac{14400}{18} = 800$$
+
+**Welch degrees of freedom:**
+$$df = \frac{(1125 + 800)^2}{\dfrac{1125^2}{19} + \dfrac{800^2}{17}} = \frac{1925^2}{66{,}611.8421 + 37{,}647.0588} = \frac{3{,}705{,}625}{104{,}258.9009} \approx 35.5481 \approx 35$$
+
+**Critical value:** $t_{35,\,0.025} \approx 2.030$
+
+**Standard error:**
+$$\text{SE} = \sqrt{1125 + 800} = \sqrt{1925} \approx 43.8748 \text{ mg}$$
+
+**Margin of error:**
+$$E = 2.030 \times 43.8748 \approx 89.0658 \text{ mg}$$
+
+**95% CI for $\mu_1 - \mu_2$:**
+$$(110 - 89.0658,\ 110 + 89.0658) = \mathbf{(20.9342,\ 199.0658) \text{ mg}}$$
+
+Since the entire interval is positive, we are 95% confident that adult meals have a higher mean sodium content than children's meals, with the difference ranging from about **20.9342 mg** to **199.0658 mg**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 10</div>
+A researcher compares the average weekly screen time of university students and high school students. A random sample of 25 university students has a mean screen time of 42.5 hours with a standard deviation of 8.4 hours. A random sample of 22 high school students has a mean screen time of 36.8 hours with a standard deviation of 10.1 hours.
+
+Assume the samples are independent and the **population variances are unequal**.
+
+Construct a **90% confidence interval** for $\mu_1 - \mu_2$, where $\mu_1$ is the mean weekly screen time for university students and $\mu_2$ is the mean weekly screen time for high school students.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the Welch two-sample $t$-interval with unequal variances.
+- For 90% confidence, $\alpha = 0.10$ and use $t_{df,\,0.05}$.
+- Compute $s_i^2/n_i$ for each group, then apply the Welch $df$ formula.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula (Welch):**
+$$(\bar{x}_1 - \bar{x}_2) \pm t_{df,\,\alpha/2} \cdot \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}$$
+
+**Given:** $n_1=25$, $\bar{x}_1=42.5$, $s_1=8.4$; $\quad n_2=22$, $\bar{x}_2=36.8$, $s_2=10.1$
+
+**Point estimate:** $42.5 - 36.8 = 5.7$ hr
+
+**Component variances:**
+$$\frac{s_1^2}{n_1} = \frac{70.56}{25} = 2.8224, \qquad \frac{s_2^2}{n_2} = \frac{102.01}{22} = 4.6368$$
+
+**Welch degrees of freedom:**
+$$df = \frac{(2.8224 + 4.6368)^2}{\dfrac{2.8224^2}{24} + \dfrac{4.6368^2}{21}} = \frac{(7.4592)^2}{0.3319 + 1.0238} = \frac{55.6397}{1.3557} \approx 41.04 \approx 41$$
+
+**Critical value:** $t_{41,\,0.05} \approx 1.683$
+
+**Standard error:**
+$$\text{SE} = \sqrt{2.8224 + 4.6368} = \sqrt{7.4592} \approx 2.7312 \text{ hr}$$
+
+**Margin of error:**
+$$E = 1.683 \times 2.7312 \approx 4.5966 \text{ hr}$$
+
+**90% CI for $\mu_1 - \mu_2$:**
+$$(5.7 - 4.5966,\ 5.7 + 4.5966) = \mathbf{(1.1034,\ 10.2966) \text{ hr}}$$
+
+We are 90% confident that university students spend, on average, between **1.1034** and **10.2966 hours** more per week on screens than high school students.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 11</div>
+A company wants to compare the average productivity score of employees who work in an open-office environment and employees who work in private offices. A random sample of 14 open-office employees has a mean productivity score of 78.4 with a standard deviation of 6.2. A random sample of 16 private-office employees has a mean productivity score of 74.1 with a standard deviation of 5.8.
+
+Assume the two samples are independent, both populations are approximately normal, and the **population variances are equal**.
+
+Construct a **95% confidence interval** for $\mu_1 - \mu_2$, where $\mu_1$ is the mean productivity score for open-office employees and $\mu_2$ is the mean productivity score for private-office employees.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the pooled two-sample $t$-interval (equal variances assumed):
+$$(\bar{x}_1 - \bar{x}_2) \pm t_{n_1+n_2-2,\,\alpha/2} \cdot s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$$
+- Pooled variance: $s_p^2 = \dfrac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}$.
+- $df = n_1 + n_2 - 2 = 28$; for 95%: $t_{28,\,0.025} = 2.048$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula (pooled $t$-interval):**
+$$(\bar{x}_1 - \bar{x}_2) \pm t_{n_1+n_2-2,\,\alpha/2} \cdot s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$$
+
+**Given:** $n_1=14$, $\bar{x}_1=78.4$, $s_1=6.2$; $\quad n_2=16$, $\bar{x}_2=74.1$, $s_2=5.8$
+
+**Point estimate:** $78.4 - 74.1 = 4.3$
+
+**Pooled variance:**
+$$s_p^2 = \frac{(13)(6.2^2) + (15)(5.8^2)}{14+16-2} = \frac{(13)(38.44) + (15)(33.64)}{28} = \frac{499.72 + 504.60}{28} = \frac{1004.32}{28} \approx 35.8686$$
+$$s_p = \sqrt{35.8686} \approx 5.9890$$
+
+**Critical value:** $df = 28$, $t_{28,\,0.025} = 2.048$
+
+**Standard error:**
+$$\text{SE} = s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}} = 5.9890\sqrt{\frac{1}{14}+\frac{1}{16}} = 5.9890\sqrt{0.0714+0.0625} = 5.9890\sqrt{0.1339} \approx 5.9890 \times 0.3659 \approx 2.1914$$
+
+**Margin of error:**
+$$E = 2.048 \times 2.1914 \approx 4.4880$$
+
+**95% CI for $\mu_1 - \mu_2$:**
+$$(4.3 - 4.4880,\ 4.3 + 4.4880) = \mathbf{(-0.1880,\ 8.7880)}$$
+
+Since the interval contains 0, we cannot conclude at the 95% level that there is a significant difference in mean productivity between the two environments.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
+A psychology researcher compares the average stress score of students who exercise regularly and students who do not exercise regularly. A random sample of 12 regular exercisers has a mean stress score of 41.3 with a standard deviation of 7.1. A random sample of 15 non-exercisers has a mean stress score of 48.6 with a standard deviation of 6.9.
+
+Assume the two samples are independent, both populations are approximately normal, and the **population variances are equal**.
+
+Construct a **99% confidence interval** for $\mu_1 - \mu_2$, where $\mu_1$ is the mean stress score for regular exercisers and $\mu_2$ is the mean stress score for non-exercisers.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the pooled $t$-interval with $df = n_1 + n_2 - 2 = 25$.
+- For 99% confidence: $t_{25,\,0.005} = 2.787$.
+- Compute $s_p^2$ using the pooled formula, then find SE and the margin of error.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula (pooled $t$-interval):**
+$$(\bar{x}_1 - \bar{x}_2) \pm t_{n_1+n_2-2,\,\alpha/2} \cdot s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$$
+
+**Given:** $n_1=12$, $\bar{x}_1=41.3$, $s_1=7.1$; $\quad n_2=15$, $\bar{x}_2=48.6$, $s_2=6.9$
+
+**Point estimate:** $41.3 - 48.6 = -7.3$
+
+**Pooled variance:**
+$$s_p^2 = \frac{(11)(7.1^2) + (14)(6.9^2)}{12+15-2} = \frac{(11)(50.41) + (14)(47.61)}{25} = \frac{554.51 + 666.54}{25} = \frac{1221.05}{25} \approx 48.8420$$
+$$s_p = \sqrt{48.8420} \approx 6.9887$$
+
+**Critical value:** $df = 25$, $t_{25,\,0.005} = 2.787$
+
+**Standard error:**
+$$\text{SE} = 6.9887\sqrt{\frac{1}{12}+\frac{1}{15}} = 6.9887\sqrt{0.0833+0.0667} = 6.9887\sqrt{0.1500} \approx 6.9887 \times 0.3873 \approx 2.7067$$
+
+**Margin of error:**
+$$E = 2.787 \times 2.7067 \approx 7.5436$$
+
+**99% CI for $\mu_1 - \mu_2$:**
+$$(-7.3 - 7.5436,\ -7.3 + 7.5436) = \mathbf{(-14.8436,\ 0.2436)}$$
+
+Since the interval contains 0, we cannot conclude at the 99% level that there is a significant difference in mean stress scores between the two groups.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 13</div>
+A university wants to compare the proportion of domestic students and international students who use the campus gym. In a random sample of 400 domestic students, 168 said they use the gym regularly. In a random sample of 250 international students, 130 said they use the gym regularly.
+
+Construct a **95% confidence interval** for $p_1 - p_2$, where $p_1$ is the true proportion of domestic students who use the gym regularly, and $p_2$ is the true proportion of international students who use the gym regularly.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Two-proportion $z$-interval:
+$$(\hat{p}_1 - \hat{p}_2) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}$$
+- Compute each $\hat{p}_i = x_i/n_i$ first, then the pooled standard error.
+- For 95%: $z_{0.025} = 1.96$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$(\hat{p}_1 - \hat{p}_2) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}$$
+
+**Sample proportions:**
+$$\hat{p}_1 = \frac{168}{400} = 0.420, \qquad \hat{p}_2 = \frac{130}{250} = 0.520$$
+
+**Point estimate:** $\hat{p}_1 - \hat{p}_2 = 0.420 - 0.520 = -0.100$
+
+**Standard error:**
+$$\text{SE} = \sqrt{\frac{0.4200 \times 0.5800}{400} + \frac{0.5200 \times 0.4800}{250}} = \sqrt{0.000609 + 0.000998} = \sqrt{0.001607} \approx 0.0401$$
+
+**Margin of error:** $E = 1.96 \times 0.0401 \approx 0.0786$
+
+**95% CI for $p_1 - p_2$:**
+$$(-0.1000 - 0.0786,\ -0.1000 + 0.0786) = \mathbf{(-0.1786,\ -0.0214)}$$
+
+Since the entire interval is negative, we are 95% confident that domestic students have a **lower** proportion of regular gym users than international students, with the difference between **2.1 and 17.9 percentage points**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 14</div>
+A health survey compares the proportion of people who get at least 7 hours of sleep per night in two cities. In City A, 312 out of 600 adults reported getting at least 7 hours of sleep. In City B, 245 out of 500 adults reported getting at least 7 hours of sleep.
+
+Construct a **90% confidence interval** for $p_1 - p_2$, where $p_1$ is the true proportion in City A, and $p_2$ is the true proportion in City B.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compute $\hat{p}_1 = 312/600$ and $\hat{p}_2 = 245/500$.
+- Use the two-proportion $z$-interval formula with $z_{0.05} = 1.645$ for 90% confidence.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$(\hat{p}_1 - \hat{p}_2) \pm z_{\alpha/2}\sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}$$
+
+**Sample proportions:**
+$$\hat{p}_1 = \frac{312}{600} = 0.520, \qquad \hat{p}_2 = \frac{245}{500} = 0.490$$
+
+**Point estimate:** $0.520 - 0.490 = 0.030$
+
+**Standard error:**
+$$\text{SE} = \sqrt{\frac{0.5200 \times 0.4800}{600} + \frac{0.4900 \times 0.5100}{500}} = \sqrt{0.000416 + 0.000500} = \sqrt{0.000916} \approx 0.0303$$
+
+**Margin of error:** $E = 1.645 \times 0.0303 \approx 0.0498$
+
+**90% CI for $p_1 - p_2$:**
+$$(0.0300 - 0.0498,\ 0.0300 + 0.0498) = \mathbf{(-0.0198,\ 0.0798)}$$
+
+Since the interval contains 0, we cannot conclude at the 90% level that the two cities differ significantly in the proportion of adults getting at least 7 hours of sleep.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 15</div>
+A quality-control engineer compares the variability of bottle filling amounts from two machines. A random sample of 12 bottles from Machine A has a sample variance of $s_1^2 = 4.8$. A random sample of 15 bottles from Machine B has a sample variance of $s_2^2 = 7.2$.
+
+Assume the filling amounts from both machines are normally distributed and the samples are independent.
+
+Construct a **95% confidence interval** for $\dfrac{\sigma_1^2}{\sigma_2^2}$, where $\sigma_1^2$ is the population variance for Machine A and $\sigma_2^2$ is the population variance for Machine B.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The CI for the ratio of two variances uses the $F$-distribution:
+$$\left(\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{\alpha/2,\,df_1,\,df_2}},\ \frac{s_1^2}{s_2^2} \cdot F_{\alpha/2,\,df_2,\,df_1}\right)$$
+- $df_1 = n_1 - 1 = 11$, $df_2 = n_2 - 1 = 14$.
+- For 95%: $F_{0.025,\,11,\,14} \approx 3.09$ and $F_{0.025,\,14,\,11} \approx 3.33$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\left(\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{\alpha/2,\,df_1,\,df_2}},\ \frac{s_1^2}{s_2^2} \cdot F_{\alpha/2,\,df_2,\,df_1}\right)$$
+
+**Given:** $n_1=12$, $s_1^2=4.8$, $df_1=11$; $\quad n_2=15$, $s_2^2=7.2$, $df_2=14$
+
+**Observed ratio:** $\dfrac{s_1^2}{s_2^2} = \dfrac{4.8}{7.2} \approx 0.6667$
+
+**Critical $F$-values** (95% CI, $\alpha/2 = 0.025$):
+$$F_{0.025,\,11,\,14} \approx 3.09, \qquad F_{0.025,\,14,\,11} \approx 3.33$$
+
+**Bounds:**
+$$\text{Lower} = 0.6667 \times \frac{1}{3.09} \approx 0.2158$$
+$$\text{Upper} = 0.6667 \times 3.33 \approx 2.2201$$
+
+**95% CI for $\sigma_1^2/\sigma_2^2$:**
+$$\mathbf{(0.2158,\ 2.2201)}$$
+
+Since the interval contains 1, we cannot conclude at the 95% level that the two machines have different variability.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 16</div>
+A researcher wants to compare the variability of exam scores between two classes. In Class 1, a random sample of 18 students has a sample variance of $s_1^2 = 64$. In Class 2, a random sample of 20 students has a sample variance of $s_2^2 = 49$.
+
+Assume exam scores in both classes are approximately normally distributed and the two samples are independent.
+
+Construct a **90% confidence interval** for $\dfrac{\sigma_1^2}{\sigma_2^2}$, where $\sigma_1^2$ is the population variance of exam scores in Class 1 and $\sigma_2^2$ is the population variance of exam scores in Class 2.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the $F$-ratio CI formula with $df_1 = n_1-1 = 17$ and $df_2 = n_2-1 = 19$.
+- For 90% CI ($\alpha/2 = 0.05$): $F_{0.05,\,17,\,19} \approx 2.23$ and $F_{0.05,\,19,\,17} \approx 2.27$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$\left(\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{\alpha/2,\,df_1,\,df_2}},\ \frac{s_1^2}{s_2^2} \cdot F_{\alpha/2,\,df_2,\,df_1}\right)$$
+
+**Given:** $n_1=18$, $s_1^2=64$, $df_1=17$; $\quad n_2=20$, $s_2^2=49$, $df_2=19$
+
+**Observed ratio:** $\dfrac{s_1^2}{s_2^2} = \dfrac{64}{49} \approx 1.3061$
+
+**Critical $F$-values** (90% CI, $\alpha/2 = 0.05$):
+$$F_{0.05,\,17,\,19} \approx 2.23, \qquad F_{0.05,\,19,\,17} \approx 2.27$$
+
+**Bounds:**
+$$\text{Lower} = 1.3061 \times \frac{1}{2.23} \approx 0.5857$$
+$$\text{Upper} = 1.3061 \times 2.27 \approx 2.9648$$
+
+**90% CI for $\sigma_1^2/\sigma_2^2$:**
+$$\mathbf{(0.5857,\ 2.9648)}$$
+
+Since the interval contains 1, we cannot conclude at the 90% level that the exam score variability differs significantly between the two classes.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 17</div>
+A fitness coach wants to know whether a 6-week training program changes participants' resting heart rates. She records the resting heart rate of 10 participants before and after the program.
+
+| Participant | Before | After |
+|:-----------:|:------:|:-----:|
+| 1 | 78 | 74 |
+| 2 | 82 | 79 |
+| 3 | 76 | 73 |
+| 4 | 88 | 84 |
+| 5 | 80 | 78 |
+| 6 | 75 | 72 |
+| 7 | 84 | 81 |
+| 8 | 79 | 77 |
+| 9 | 81 | 76 |
+| 10 | 77 | 75 |
+
+Let $d = \text{Before} - \text{After}$. Construct a **95% confidence interval** for the mean difference $\mu_d$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compute $d_i = \text{Before}_i - \text{After}_i$ for each participant.
+- Find $\bar{d}$ and $s_d$, then apply the paired $t$-interval:
+$$\bar{d} \pm t_{n-1,\,\alpha/2} \cdot \frac{s_d}{\sqrt{n}}$$
+- $df = n - 1 = 9$; for 95%: $t_{9,\,0.025} = 2.262$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula (paired $t$-interval):**
+$$\bar{d} \pm t_{n-1,\,\alpha/2} \cdot \frac{s_d}{\sqrt{n}}$$
+
+**Step 1 — Compute differences** $d_i = \text{Before} - \text{After}$:
+
+| Participant | $d_i$ | $d_i - \bar{d}$ | $(d_i-\bar{d})^2$ |
+|:-----------:|:-----:|:--------------:|:-----------------:|
+| 1 | 4 | 0.9 | 0.81 |
+| 2 | 3 | −0.1 | 0.01 |
+| 3 | 3 | −0.1 | 0.01 |
+| 4 | 4 | 0.9 | 0.81 |
+| 5 | 2 | −1.1 | 1.21 |
+| 6 | 3 | −0.1 | 0.01 |
+| 7 | 3 | −0.1 | 0.01 |
+| 8 | 2 | −1.1 | 1.21 |
+| 9 | 5 | 1.9 | 3.61 |
+| 10 | 2 | −1.1 | 1.21 |
+| **Sum** | **31** | | **8.90** |
+
+**Step 2 — Mean and SD of differences:**
+$$\bar{d} = \frac{31}{10} = 3.1 \text{ bpm}, \qquad s_d^2 = \frac{8.90}{9} \approx 0.9889, \qquad s_d \approx 0.9944 \text{ bpm}$$
+
+**Step 3 — Margin of error** ($t_{9,\,0.025} = 2.262$):
+$$E = 2.262 \times \frac{0.9944}{\sqrt{10}} = 2.262 \times \frac{0.9944}{3.1623} = 2.262 \times 0.3145 \approx 0.7114 \text{ bpm}$$
+
+**95% CI for $\mu_d$:**
+$$(3.1 - 0.7114,\ 3.1 + 0.7114) = \mathbf{(2.3886,\ 3.8114) \text{ bpm}}$$
+
+We are 95% confident that the training program reduces resting heart rate by between **2.3886** and **3.8114 bpm** on average.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 18</div>
+A professor wants to compare students' quiz scores before and after a review session. The same 8 students take a quiz before and after the review.
+
+| Student | Before Review | After Review |
+|:-------:|:-------------:|:------------:|
+| 1 | 68 | 75 |
+| 2 | 72 | 78 |
+| 3 | 80 | 85 |
+| 4 | 74 | 79 |
+| 5 | 69 | 73 |
+| 6 | 77 | 83 |
+| 7 | 71 | 76 |
+| 8 | 75 | 82 |
+
+Let $d = \text{After Review} - \text{Before Review}$. Construct a **90% confidence interval** for the mean improvement $\mu_d$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compute $d_i = \text{After}_i - \text{Before}_i$ for each student.
+- $df = n - 1 = 7$; for 90% confidence: $t_{7,\,0.05} = 1.895$.
+- Apply the paired $t$-interval formula.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula (paired $t$-interval):**
+$$\bar{d} \pm t_{n-1,\,\alpha/2} \cdot \frac{s_d}{\sqrt{n}}$$
+
+**Step 1 — Compute differences** $d_i = \text{After} - \text{Before}$:
+
+| Student | $d_i$ | $d_i - \bar{d}$ | $(d_i-\bar{d})^2$ |
+|:-------:|:-----:|:--------------:|:-----------------:|
+| 1 | 7 | 1.375 | 1.891 |
+| 2 | 6 | 0.375 | 0.141 |
+| 3 | 5 | −0.625 | 0.391 |
+| 4 | 5 | −0.625 | 0.391 |
+| 5 | 4 | −1.625 | 2.641 |
+| 6 | 6 | 0.375 | 0.141 |
+| 7 | 5 | −0.625 | 0.391 |
+| 8 | 7 | 1.375 | 1.891 |
+| **Sum** | **45** | | **7.875** |
+
+**Step 2 — Mean and SD of differences:**
+$$\bar{d} = \frac{45}{8} = 5.625 \text{ points}, \qquad s_d^2 = \frac{7.875}{7} = 1.1250, \qquad s_d = \sqrt{1.1250} \approx 1.0607 \text{ points}$$
+
+**Step 3 — Margin of error** ($t_{7,\,0.05} = 1.895$):
+$$E = 1.895 \times \frac{1.0607}{\sqrt{8}} = 1.895 \times \frac{1.0607}{2.8284} = 1.895 \times 0.3750 \approx 0.7106 \text{ points}$$
+
+**90% CI for $\mu_d$:**
+$$(5.625 - 0.7106,\ 5.625 + 0.7106) = \mathbf{(4.9144,\ 6.3356) \text{ points}}$$
+
+We are 90% confident that the review session improves quiz scores by between **4.9144** and **6.3356 points** on average.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 19</div>
+A factory wants to estimate the average weight of cereal boxes. Based on past production records, the population standard deviation is known to be $\sigma = 8$ grams. The manager wants the estimate to be within 2 grams of the true population mean, with **95% confidence**.
+
+How large a sample should the manager take?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the sample size formula for a CI on a mean with known $\sigma$:
+$$n = \left(\frac{z_{\alpha/2}\,\sigma}{E}\right)^2$$
+- For 95% confidence, $z_{0.025} = 1.96$; the desired margin of error is $E = 2$.
+- Always **round up** to the next whole number.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$n = \left(\frac{z_{\alpha/2}\,\sigma}{E}\right)^2$$
+
+**Given:** $\sigma = 8$, $E = 2$, $z_{0.025} = 1.96$
+
+**Calculation:**
+$$n = \left(\frac{1.96 \times 8}{2}\right)^2 = \left(\frac{15.68}{2}\right)^2 = (7.84)^2 = 61.4656$$
+
+Since $n$ must be a whole number and we always **round up**:
+$$\boxed{n = 62}$$
+
+The manager should sample at least **62 cereal boxes** to estimate the mean weight within 2 grams with 95% confidence.
+</div>
+</details>
