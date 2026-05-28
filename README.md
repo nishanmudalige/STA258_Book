@@ -1,5 +1,16 @@
 # STA258: Statistics with Applied Probability
 
+## Things to do for June 4
+- Add webR exercises for chapter5
+  - Make corrections for two sample using Welch
+  - give a shortcut for the distribution link of chapter 4
+- Create help file
+- Start questions for chapter 6.1 and chapter 6.2
+- Make the webR look like the webR in Tutorials and Quarto Slides
+- Work on different github brunches and merge in the end
+
+
+
 ## Things to do for May 28
 
 - Add webR exercises
