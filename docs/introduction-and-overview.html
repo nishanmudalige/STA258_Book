@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-05-26" />
+<meta name="date" content="2026-05-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="acknowledgements.html"/>
-<link rel="next" href="introduction.html"/>
+<link rel="next" href="hypothesis-tests.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,19 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
-<script src="libs/mathjax-2.7.5/cdn.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <!-- webR Interactive R Exercise Cells -->
 <!-- Loaded via _output.yml in_header for bookdown::gitbook -->
 
@@ -284,8 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -295,7 +283,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -357,7 +345,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -394,143 +381,22 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
 <li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
 <li class="chapter" data-level="" data-path="introduction-and-overview.html"><a href="introduction-and-overview.html"><i class="fa fa-check"></i>Introduction and Overview</a></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<li class="chapter" data-level="1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>1</b> Hypothesis Tests</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#sec:foundations"><i class="fa fa-check"></i><b>1.1</b> Foundations</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#types-of-data"><i class="fa fa-check"></i><b>1.2</b> Types of data</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#introduction-to-inferential-statistics"><i class="fa fa-check"></i><b>1.3</b> Introduction to Inferential statistics</a></li>
-<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sec:ch1exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+<li class="chapter" data-level="1.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#one-sample-hypothesis-tests"><i class="fa fa-check"></i><b>1.2</b> One Sample Hypothesis Tests</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-mean"><i class="fa fa-check"></i><b>1.2.1</b> On a Population Mean</a></li>
+<li class="chapter" data-level="1.2.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-proportion"><i class="fa fa-check"></i><b>1.2.2</b> On a Population Proportion</a></li>
+<li class="chapter" data-level="1.2.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-variance"><i class="fa fa-check"></i><b>1.2.3</b> On a Population Variance</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> An Introduction to R</a>
+<li class="chapter" data-level="1.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#two-sample-hypothesis-tests"><i class="fa fa-check"></i><b>1.3</b> Two Sample Hypothesis Tests</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#the-statistical-computing-language"><i class="fa fa-check"></i><b>2.1</b> The Statistical Computing Language</a></li>
-<li class="chapter" data-level="2.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.2</b> Installing R and RStudio</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-r"><i class="fa fa-check"></i><b>2.2.1</b> Installing R</a></li>
-<li class="chapter" data-level="2.2.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Installing RStudio</a></li>
-<li class="chapter" data-level="2.2.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#positron"><i class="fa fa-check"></i><b>2.2.3</b> Positron</a></li>
+<li class="chapter" data-level="1.3.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-means"><i class="fa fa-check"></i><b>1.3.1</b> On a Difference of Means</a></li>
+<li class="chapter" data-level="1.3.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-proportions"><i class="fa fa-check"></i><b>1.3.2</b> On a Difference of Proportions</a></li>
+<li class="chapter" data-level="1.3.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:RatioVars"><i class="fa fa-check"></i><b>1.3.3</b> On a Ratio of Variances</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#an-introduction-to-programming-in-r"><i class="fa fa-check"></i><b>2.3</b> An Introduction to programming in R</a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#r-as-a-powerful-calculator"><i class="fa fa-check"></i><b>2.3.1</b> R as a Powerful Calculator</a></li>
-<li class="chapter" data-level="2.3.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#basic-r-data-structures"><i class="fa fa-check"></i><b>2.3.2</b> Basic R Data Structures</a></li>
-<li class="chapter" data-level="2.3.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#using-basic-functions-in-r"><i class="fa fa-check"></i><b>2.3.3</b> Using Basic Functions in R</a></li>
-<li class="chapter" data-level="2.3.4" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#make-a-histogram-using-rstudio"><i class="fa fa-check"></i><b>2.3.4</b> Make a Histogram Using RStudio</a></li>
-<li class="chapter" data-level="2.3.5" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>2.3.5</b> Installing and Loading Packages</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#sec:ch2exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive Statistics</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#representing-data"><i class="fa fa-check"></i><b>3.1</b> Representing Data</a></li>
-<li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-measures"><i class="fa fa-check"></i><b>3.2</b> Numerical Measures</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>3.2.1</b> Mean</a></li>
-<li class="chapter" data-level="3.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>3.2.2</b> Median</a></li>
-<li class="chapter" data-level="3.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>3.2.3</b> Mode</a></li>
-<li class="chapter" data-level="3.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>3.2.4</b> Variance</a></li>
-<li class="chapter" data-level="3.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>3.2.5</b> Standard Deviation</a></li>
-<li class="chapter" data-level="3.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>3.2.6</b> Range</a></li>
-<li class="chapter" data-level="3.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#percentiles"><i class="fa fa-check"></i><b>3.2.7</b> Percentiles</a></li>
-<li class="chapter" data-level="3.2.8" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quartiles"><i class="fa fa-check"></i><b>3.2.8</b> Quartiles</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sec:GraphicalTechniques"><i class="fa fa-check"></i><b>3.3</b> Graphical Techniques</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>3.3.1</b> Histograms</a></li>
-<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#boxplots"><i class="fa fa-check"></i><b>3.3.2</b> Boxplots</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sec:ch3exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html"><i class="fa fa-check"></i><b>4</b> Foundations of Inference</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:inference"><i class="fa fa-check"></i><b>4.1</b> Some Important Statistical Distributions</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:IntroNormalDist"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to the Normal Distribution</a></li>
-<li class="chapter" data-level="4.1.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution"><i class="fa fa-check"></i><b>4.1.2</b> Introduction to the Chi-Square distribution</a></li>
-<li class="chapter" data-level="4.1.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-t-distribution"><i class="fa fa-check"></i><b>4.1.3</b> Introduction to the t-Distribution</a></li>
-<li class="chapter" data-level="4.1.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-f-distribution"><i class="fa fa-check"></i><b>4.1.4</b> Introduction to the F-Distribution</a></li>
-<li class="chapter" data-level="4.1.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#distribution-calculator"><i class="fa fa-check"></i><b>4.1.5</b> Distribution Calculator</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sampling-distributions"><i class="fa fa-check"></i><b>4.2</b> Sampling Distributions</a></li>
-<li class="chapter" data-level="4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>4.3</b> The Central Limit Theorem</a></li>
-<li class="chapter" data-level="4.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#law-of-large-numbers"><i class="fa fa-check"></i><b>4.4</b> Law of Large Numbers</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#convergence-in-probability"><i class="fa fa-check"></i><b>4.4.1</b> Convergence in Probability</a></li>
-<li class="chapter" data-level="4.4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#weak-law-of-large-numbers-wlln"><i class="fa fa-check"></i><b>4.4.2</b> Weak Law of Large Numbers (WLLN)</a></li>
-<li class="chapter" data-level="4.4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#simulation"><i class="fa fa-check"></i><b>4.4.3</b> Simulation</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#interpretation"><i class="fa fa-check"></i><b>5.2</b> Interpretation</a></li>
-<li class="chapter" data-level="5.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.3</b> One Sample Confidence Intervals</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-mean"><i class="fa fa-check"></i><b>5.3.1</b> On a Population Mean</a></li>
-<li class="chapter" data-level="5.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-proportion"><i class="fa fa-check"></i><b>5.3.2</b> On a Population Proportion</a></li>
-<li class="chapter" data-level="5.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-variance"><i class="fa fa-check"></i><b>5.3.3</b> On a Population Variance</a></li>
-<li class="chapter" data-level="5.3.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assumptions"><i class="fa fa-check"></i><b>5.3.4</b> Assumptions</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.4</b> Two Sample Confidence Intervals</a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-difference-of-means"><i class="fa fa-check"></i><b>5.4.1</b> On a Difference of Means</a></li>
-<li class="chapter" data-level="5.4.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-difference-of-proportions"><i class="fa fa-check"></i><b>5.4.2</b> On a Difference of Proportions</a></li>
-<li class="chapter" data-level="5.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-ratio-of-variances"><i class="fa fa-check"></i><b>5.4.3</b> On a Ratio of Variances</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sec:CIsOnPaired"><i class="fa fa-check"></i><b>5.5</b> Confidence Intervals on Paired Data</a></li>
-<li class="chapter" data-level="5.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sample-size-selection-using-confidence-intervals"><i class="fa fa-check"></i><b>5.6</b> Sample Size Selection using Confidence Intervals</a>
-<ul>
-<li class="chapter" data-level="5.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#secSampleSizeCIMean"><i class="fa fa-check"></i><b>5.6.1</b> Calculating Sample Size for a Confidence Interval on a Mean</a></li>
-<li class="chapter" data-level="5.6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-sample-size-for-a-confidence-interval-on-a-proportion"><i class="fa fa-check"></i><b>5.6.2</b> Calculating Sample Size for a Confidence Interval on a Proportion</a></li>
-</ul></li>
-<li class="chapter" data-level="5.7" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sec:ch5exercises"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#one-sample-hypothesis-tests"><i class="fa fa-check"></i><b>6.2</b> One Sample Hypothesis Tests</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-mean-1"><i class="fa fa-check"></i><b>6.2.1</b> On a Population Mean</a></li>
-<li class="chapter" data-level="6.2.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-proportion-1"><i class="fa fa-check"></i><b>6.2.2</b> On a Population Proportion</a></li>
-<li class="chapter" data-level="6.2.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-variance-1"><i class="fa fa-check"></i><b>6.2.3</b> On a Population Variance</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#two-sample-hypothesis-tests"><i class="fa fa-check"></i><b>6.3</b> Two Sample Hypothesis Tests</a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-means-1"><i class="fa fa-check"></i><b>6.3.1</b> On a Difference of Means</a></li>
-<li class="chapter" data-level="6.3.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-proportions-1"><i class="fa fa-check"></i><b>6.3.2</b> On a Difference of Proportions</a></li>
-<li class="chapter" data-level="6.3.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:RatioVars"><i class="fa fa-check"></i><b>6.3.3</b> On a Ratio of Variances</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-on-paired-data"><i class="fa fa-check"></i><b>6.4</b> Hypothesis Tests on Paired Data</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>7</b> Statistical Power</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="statistical-power.html"><a href="statistical-power.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="statistical-power.html"><a href="statistical-power.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>7.2</b> Type I and Type II Errors</a></li>
-<li class="chapter" data-level="7.3" data-path="statistical-power.html"><a href="statistical-power.html#using-power-to-determine-sample-size"><i class="fa fa-check"></i><b>7.3</b> Using Power to Determine Sample Size</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Variance</a></li>
-<li class="chapter" data-level="9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>9</b> Simple Linear Regression</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#introduction-to-the-linear-model"><i class="fa fa-check"></i><b>9.1</b> Introduction to the Linear Model</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sec:LeastSquaresMethod"><i class="fa fa-check"></i><b>9.1.1</b> Least Squares Method</a></li>
-<li class="chapter" data-level="9.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-parameters-for-the-simple-linear-model"><i class="fa fa-check"></i><b>9.1.2</b> Estimating Parameters for the Simple Linear Model</a></li>
-<li class="chapter" data-level="9.1.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#measures-of-linear-relationship"><i class="fa fa-check"></i><b>9.1.3</b> Measures of Linear Relationship</a></li>
-<li class="chapter" data-level="9.1.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sse-ssr-and-sst"><i class="fa fa-check"></i><b>9.1.4</b> SSE, SSR and SST</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#inference-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2</b> Inference for Simple Linear Regression</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-variance-in-linear-regression"><i class="fa fa-check"></i><b>9.2.1</b> Estimating Variance in Linear Regression</a></li>
-<li class="chapter" data-level="9.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-and-hypothesis-tests"><i class="fa fa-check"></i><b>9.2.2</b> Confidence Intervals and Hypothesis Tests</a></li>
-<li class="chapter" data-level="9.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#anova-table-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2.3</b> ANOVA Table for Simple Linear Regression</a></li>
-<li class="chapter" data-level="9.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>9.2.4</b> Residual Plots</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>10</b> Analysis of Categorical Data</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#multinomial-response-model"><i class="fa fa-check"></i><b>10.1</b> Multinomial Response Model</a></li>
-<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.2</b> The Chi-square Test for Goodness of fit</a></li>
-<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.3</b> Sample Size Assumption</a></li>
+<li class="chapter" data-level="1.4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-on-paired-data"><i class="fa fa-check"></i><b>1.4</b> Hypothesis Tests on Paired Data</a></li>
 </ul></li>
 </ul>
 
@@ -564,7 +430,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="acknowledgements.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="hypothesis-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
