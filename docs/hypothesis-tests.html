@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-05-26" />
+<meta name="date" content="2026-05-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -501,6 +501,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.3.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:RatioVars"><i class="fa fa-check"></i><b>6.3.3</b> On a Ratio of Variances</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-on-paired-data"><i class="fa fa-check"></i><b>6.4</b> Hypothesis Tests on Paired Data</a></li>
+<li class="chapter" data-level="6.5" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:ch6exercises"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>7</b> Statistical Power</a>
 <ul>
@@ -2893,8 +2894,984 @@ enough evidence to infer that the new fertilizer is better.</p>
 <li>The differences between paired observations are approximately normally distributed.</li>
 <li>The samples are randomly and independently drawn from the population.</li>
 </ul>
+</div>
+</div>
+<div id="sec:ch6exercises" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Exercises<a href="hypothesis-tests.html#sec:ch6exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 1
+</div>
+<p>A cola manufacturer calibrates its filling line to a target mean fill volume of <span class="math inline">\(\mu_0 = 355\)</span> mL. The population standard deviation is known to be <span class="math inline">\(\sigma = 4\)</span> mL. A quality engineer randomly selects <span class="math inline">\(n = 64\)</span> cans and records a sample mean of <span class="math inline">\(\bar{x} = 353.2\)</span> mL.</p>
+<p>Test <span class="math inline">\(H_0: \mu = 355\)</span> vs. <span class="math inline">\(H_a: \mu &lt; 355\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Compute the <span class="math inline">\(z\)</span> test statistic using the formula <span class="math inline">\(z^* = \dfrac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}\)</span>.</li>
+<li>Compute the p-value using <code>pnorm()</code> and fill in the correct argument.</li>
+<li>Based on your p-value, state a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Interactive R — One-Sample z Test (Known σ)
+</div>
+<textarea class="webr-editor" rows="13">n     <- 64
+xbar  <- 353.2
+mu0   <- 355
+sigma <- 4
+
+# (a) Compute the z test statistic
+z_star <- (xbar - mu0) / (sigma / sqrt(n))
+z_star
+
+# (b) Compute the p-value for Ha: mu < mu0  (lower-tailed)
+p_value <- pnorm(___)
+p_value
+</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
 
 </div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The <span class="math inline">\(z\)</span> statistic for a known-<span class="math inline">\(\sigma\)</span> test is <span class="math inline">\(z^* = (\bar{x} - \mu_0) / (\sigma / \sqrt{n})\)</span>.</li>
+<li>For a lower-tailed alternative <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span>, the p-value is $P(Z &lt; z^*) = $ <code>pnorm(z_star)</code>.</li>
+<li><code>pnorm(q)</code> returns <span class="math inline">\(P(Z \leq q)\)</span> for <span class="math inline">\(Z \sim N(0,1)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="hypothesis-tests.html#cb82-1" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">64</span></span>
+<span id="cb82-2"><a href="hypothesis-tests.html#cb82-2" tabindex="-1"></a>xbar  <span class="ot">&lt;-</span> <span class="fl">353.2</span></span>
+<span id="cb82-3"><a href="hypothesis-tests.html#cb82-3" tabindex="-1"></a>mu0   <span class="ot">&lt;-</span> <span class="dv">355</span></span>
+<span id="cb82-4"><a href="hypothesis-tests.html#cb82-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb82-5"><a href="hypothesis-tests.html#cb82-5" tabindex="-1"></a></span>
+<span id="cb82-6"><a href="hypothesis-tests.html#cb82-6" tabindex="-1"></a><span class="co"># (a) z test statistic</span></span>
+<span id="cb82-7"><a href="hypothesis-tests.html#cb82-7" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb82-8"><a href="hypothesis-tests.html#cb82-8" tabindex="-1"></a>z_star</span>
+<span id="cb82-9"><a href="hypothesis-tests.html#cb82-9" tabindex="-1"></a><span class="co"># [1] -3.6</span></span>
+<span id="cb82-10"><a href="hypothesis-tests.html#cb82-10" tabindex="-1"></a></span>
+<span id="cb82-11"><a href="hypothesis-tests.html#cb82-11" tabindex="-1"></a><span class="co"># (b) p-value (lower-tailed)</span></span>
+<span id="cb82-12"><a href="hypothesis-tests.html#cb82-12" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z_star)</span>
+<span id="cb82-13"><a href="hypothesis-tests.html#cb82-13" tabindex="-1"></a>p_value</span>
+<span id="cb82-14"><a href="hypothesis-tests.html#cb82-14" tabindex="-1"></a><span class="co"># [1] 0.0001591086</span></span></code></pre></div>
+<p><strong>(a)</strong> <span class="math inline">\(z^* = \dfrac{353.2 - 355}{4 / \sqrt{64}} = \dfrac{-1.8}{0.5} = -3.6\)</span></p>
+<p><strong>(b)</strong> p-value <span class="math inline">\(= P(Z &lt; -3.6) \approx 0.00016\)</span></p>
+<p><strong>(c)</strong> Since p-value <span class="math inline">\(\approx 0.00016 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level of significance to conclude that the mean fill volume has decreased below 355 mL.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 2
+</div>
+<p>For a one-sample <span class="math inline">\(z\)</span> test, the test statistic is <span class="math inline">\(z^* = 1.75\)</span>. Fill in the correct <code>pnorm()</code> expression for the p-value under each alternative hypothesis.</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_a: \mu &gt; \mu_0\)</span> (upper-tailed)</li>
+<li><span class="math inline">\(H_a: \mu &lt; \mu_0\)</span> (lower-tailed)</li>
+<li><span class="math inline">\(H_a: \mu \neq \mu_0\)</span> (two-tailed)</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Interactive R — P-Value Calculations for Three Alternatives
+</div>
+<textarea class="webr-editor" rows="10">z_star <- 1.75
+
+# (a) Ha: mu > mu0   (upper-tailed)
+p_value_a <- ___
+
+# (b) Ha: mu < mu0   (lower-tailed)
+p_value_b <- ___
+
+# (c) Ha: mu != mu0  (two-tailed)
+p_value_c <- ___
+</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Upper-tailed: p-value $= P(Z &gt; z^*) = $ <code>1 - pnorm(z_star)</code></li>
+<li>Lower-tailed: p-value $= P(Z &lt; z^*) = $ <code>pnorm(z_star)</code></li>
+<li>Two-tailed: p-value $= 2 P(Z &gt; |z^*|) = $ <code>2 * (1 - pnorm(abs(z_star)))</code></li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="hypothesis-tests.html#cb83-1" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fl">1.75</span></span>
+<span id="cb83-2"><a href="hypothesis-tests.html#cb83-2" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="hypothesis-tests.html#cb83-3" tabindex="-1"></a><span class="co"># (a) upper-tailed</span></span>
+<span id="cb83-4"><a href="hypothesis-tests.html#cb83-4" tabindex="-1"></a>p_value_a <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z_star)</span>
+<span id="cb83-5"><a href="hypothesis-tests.html#cb83-5" tabindex="-1"></a>p_value_a</span>
+<span id="cb83-6"><a href="hypothesis-tests.html#cb83-6" tabindex="-1"></a><span class="co"># [1] 0.04005916</span></span>
+<span id="cb83-7"><a href="hypothesis-tests.html#cb83-7" tabindex="-1"></a></span>
+<span id="cb83-8"><a href="hypothesis-tests.html#cb83-8" tabindex="-1"></a><span class="co"># (b) lower-tailed</span></span>
+<span id="cb83-9"><a href="hypothesis-tests.html#cb83-9" tabindex="-1"></a>p_value_b <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z_star)</span>
+<span id="cb83-10"><a href="hypothesis-tests.html#cb83-10" tabindex="-1"></a>p_value_b</span>
+<span id="cb83-11"><a href="hypothesis-tests.html#cb83-11" tabindex="-1"></a><span class="co"># [1] 0.9599408</span></span>
+<span id="cb83-12"><a href="hypothesis-tests.html#cb83-12" tabindex="-1"></a></span>
+<span id="cb83-13"><a href="hypothesis-tests.html#cb83-13" tabindex="-1"></a><span class="co"># (c) two-tailed</span></span>
+<span id="cb83-14"><a href="hypothesis-tests.html#cb83-14" tabindex="-1"></a>p_value_c <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_star)))</span>
+<span id="cb83-15"><a href="hypothesis-tests.html#cb83-15" tabindex="-1"></a>p_value_c</span>
+<span id="cb83-16"><a href="hypothesis-tests.html#cb83-16" tabindex="-1"></a><span class="co"># [1] 0.08011832</span></span></code></pre></div>
+<p><strong>(a)</strong> <span class="math inline">\(P(Z &gt; 1.75) \approx 0.0401\)</span></p>
+<p><strong>(b)</strong> <span class="math inline">\(P(Z &lt; 1.75) \approx 0.9599\)</span></p>
+<p><strong>(c)</strong> <span class="math inline">\(2 \times P(Z &gt; 1.75) \approx 0.0801\)</span></p>
+<p>Note that for a fixed <span class="math inline">\(z^*\)</span>, the two-tailed p-value is always twice the upper-tailed p-value, and the upper-tailed and lower-tailed p-values always sum to 1.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 3
+</div>
+<p>A nutritionist believes that a new diet plan reduces daily calorie intake below 2000 kcal. She records the daily calorie intake of <span class="math inline">\(n = 10\)</span> participants:</p>
+<p><span class="math display">\[1850,\ 1920,\ 1780,\ 1960,\ 1840,\ 1990,\ 1870,\ 1930,\ 1800,\ 1910\]</span></p>
+<p>Assume calorie intake is approximately normally distributed. Use <code>t.test()</code> to test <span class="math inline">\(H_0: \mu = 2000\)</span> vs. <span class="math inline">\(H_a: \mu &lt; 2000\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>. Fill in the correct values for <code>mu</code> and <code>alternative</code>.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Interactive R — One-Sample t Test (Unknown σ)
+</div>
+<textarea class="webr-editor" rows="6">calories <- c(1850, 1920, 1780, 1960, 1840, 1990, 1870, 1930, 1800, 1910)
+
+# Run a one-sample t-test
+# H0: mu = 2000  vs  Ha: mu < 2000
+result <- t.test(calories, mu = ___, alternative = "___")
+result</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><code>t.test(x, mu = mu0, alternative = "less")</code> tests <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span>.</li>
+<li>The <code>alternative</code> argument accepts <code>"less"</code>, <code>"greater"</code>, or <code>"two.sided"</code>.</li>
+<li>When <span class="math inline">\(\sigma\)</span> is unknown, <code>t.test()</code> uses the <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(df = n - 1\)</span> degrees of freedom.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="hypothesis-tests.html#cb84-1" tabindex="-1"></a>calories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1850</span>, <span class="dv">1920</span>, <span class="dv">1780</span>, <span class="dv">1960</span>, <span class="dv">1840</span>, <span class="dv">1990</span>, <span class="dv">1870</span>, <span class="dv">1930</span>, <span class="dv">1800</span>, <span class="dv">1910</span>)</span>
+<span id="cb84-2"><a href="hypothesis-tests.html#cb84-2" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="hypothesis-tests.html#cb84-3" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(calories, <span class="at">mu =</span> <span class="dv">2000</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb84-4"><a href="hypothesis-tests.html#cb84-4" tabindex="-1"></a>result</span>
+<span id="cb84-5"><a href="hypothesis-tests.html#cb84-5" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb84-6"><a href="hypothesis-tests.html#cb84-6" tabindex="-1"></a><span class="co">#   One Sample t-test</span></span>
+<span id="cb84-7"><a href="hypothesis-tests.html#cb84-7" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb84-8"><a href="hypothesis-tests.html#cb84-8" tabindex="-1"></a><span class="co"># data:  calories</span></span>
+<span id="cb84-9"><a href="hypothesis-tests.html#cb84-9" tabindex="-1"></a><span class="co"># t = -5.3083, df = 9, p-value = 0.0002386</span></span>
+<span id="cb84-10"><a href="hypothesis-tests.html#cb84-10" tabindex="-1"></a><span class="co"># alternative hypothesis: true mean is less than 2000</span></span>
+<span id="cb84-11"><a href="hypothesis-tests.html#cb84-11" tabindex="-1"></a><span class="co"># 95 percent confidence interval:</span></span>
+<span id="cb84-12"><a href="hypothesis-tests.html#cb84-12" tabindex="-1"></a><span class="co">#      -Inf 1921.699</span></span>
+<span id="cb84-13"><a href="hypothesis-tests.html#cb84-13" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
+<span id="cb84-14"><a href="hypothesis-tests.html#cb84-14" tabindex="-1"></a><span class="co"># mean of x</span></span>
+<span id="cb84-15"><a href="hypothesis-tests.html#cb84-15" tabindex="-1"></a><span class="co">#      1885</span></span></code></pre></div>
+<p>The sample mean is <span class="math inline">\(\bar{x} = 1885\)</span> kcal. With <span class="math inline">\(t^* \approx -5.31\)</span> and <span class="math inline">\(df = 9\)</span>, the p-value <span class="math inline">\(\approx 0.00024 &lt; \alpha = 0.05\)</span>. We <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that the mean daily calorie intake under the new diet plan is less than 2000 kcal.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 4
+</div>
+<p>A student newspaper reports that only 25% of UTM students hold part-time jobs. A researcher surveys <span class="math inline">\(n = 120\)</span> randomly selected students and finds <span class="math inline">\(x = 42\)</span> who hold part-time jobs. Test whether the true proportion exceeds 25% (<span class="math inline">\(H_0: p = 0.25\)</span> vs. <span class="math inline">\(H_a: p &gt; 0.25\)</span>) at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Compute the sample proportion <span class="math inline">\(\hat{p} = x / n\)</span>.</li>
+<li>Compute the <span class="math inline">\(z\)</span> test statistic: <span class="math inline">\(z^* = \dfrac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}}\)</span>.</li>
+<li>Compute the p-value using <code>pnorm()</code>.</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Interactive R — One-Sample z Test for a Proportion
+</div>
+<textarea class="webr-editor" rows="14">x  <- 42
+n  <- 120
+p0 <- 0.25
+
+# (a) Compute sample proportion
+phat <- ___ / ___
+
+# (b) Compute z test statistic
+z_star <- (phat - p0) / sqrt(p0 * (1 - p0) / n)
+z_star
+
+# (c) Compute p-value for Ha: p > p0  (upper-tailed)
+p_value <- 1 - pnorm(___)
+p_value
+</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><span class="math inline">\(\hat{p} = x / n\)</span> where <span class="math inline">\(x\)</span> is the number of successes and <span class="math inline">\(n\)</span> is the sample size.</li>
+<li>The standard error under <span class="math inline">\(H_0\)</span> is <span class="math inline">\(\sqrt{p_0(1-p_0)/n}\)</span> — use <span class="math inline">\(p_0\)</span>, not <span class="math inline">\(\hat{p}\)</span>, here.</li>
+<li>For an upper-tailed test (<span class="math inline">\(H_a: p &gt; p_0\)</span>), the p-value is $P(Z &gt; z^*) = $ <code>1 - pnorm(z_star)</code>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="hypothesis-tests.html#cb85-1" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="dv">42</span></span>
+<span id="cb85-2"><a href="hypothesis-tests.html#cb85-2" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">120</span></span>
+<span id="cb85-3"><a href="hypothesis-tests.html#cb85-3" tabindex="-1"></a>p0 <span class="ot">&lt;-</span> <span class="fl">0.25</span></span>
+<span id="cb85-4"><a href="hypothesis-tests.html#cb85-4" tabindex="-1"></a></span>
+<span id="cb85-5"><a href="hypothesis-tests.html#cb85-5" tabindex="-1"></a><span class="co"># (a) Sample proportion</span></span>
+<span id="cb85-6"><a href="hypothesis-tests.html#cb85-6" tabindex="-1"></a>phat <span class="ot">&lt;-</span> x <span class="sc">/</span> n</span>
+<span id="cb85-7"><a href="hypothesis-tests.html#cb85-7" tabindex="-1"></a>phat</span>
+<span id="cb85-8"><a href="hypothesis-tests.html#cb85-8" tabindex="-1"></a><span class="co"># [1] 0.35</span></span>
+<span id="cb85-9"><a href="hypothesis-tests.html#cb85-9" tabindex="-1"></a></span>
+<span id="cb85-10"><a href="hypothesis-tests.html#cb85-10" tabindex="-1"></a><span class="co"># (b) z test statistic</span></span>
+<span id="cb85-11"><a href="hypothesis-tests.html#cb85-11" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> (phat <span class="sc">-</span> p0) <span class="sc">/</span> <span class="fu">sqrt</span>(p0 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p0) <span class="sc">/</span> n)</span>
+<span id="cb85-12"><a href="hypothesis-tests.html#cb85-12" tabindex="-1"></a>z_star</span>
+<span id="cb85-13"><a href="hypothesis-tests.html#cb85-13" tabindex="-1"></a><span class="co"># [1] 2.529822</span></span>
+<span id="cb85-14"><a href="hypothesis-tests.html#cb85-14" tabindex="-1"></a></span>
+<span id="cb85-15"><a href="hypothesis-tests.html#cb85-15" tabindex="-1"></a><span class="co"># (c) p-value (upper-tailed)</span></span>
+<span id="cb85-16"><a href="hypothesis-tests.html#cb85-16" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z_star)</span>
+<span id="cb85-17"><a href="hypothesis-tests.html#cb85-17" tabindex="-1"></a>p_value</span>
+<span id="cb85-18"><a href="hypothesis-tests.html#cb85-18" tabindex="-1"></a><span class="co"># [1] 0.005713023</span></span></code></pre></div>
+<p><strong>(a)</strong> <span class="math inline">\(\hat{p} = 42/120 = 0.35\)</span></p>
+<p><strong>(b)</strong> <span class="math inline">\(z^* = \dfrac{0.35 - 0.25}{\sqrt{0.25 \times 0.75 / 120}} = \dfrac{0.10}{0.03953} \approx 2.53\)</span></p>
+<p><strong>(c)</strong> p-value <span class="math inline">\(= P(Z &gt; 2.53) \approx 0.0057 &lt; \alpha = 0.05\)</span></p>
+<p>We <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that more than 25% of UTM students hold part-time jobs.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 5
+</div>
+<p>A national health study reports that 20% of adults have high blood pressure. A local clinic randomly selects <span class="math inline">\(n = 300\)</span> patients and finds <span class="math inline">\(x = 72\)</span> with high blood pressure. Test whether the local rate differs from the national figure (<span class="math inline">\(H_0: p = 0.20\)</span> vs. <span class="math inline">\(H_a: p \neq 0.20\)</span>) at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>Use <code>prop.test()</code> with <code>correct = FALSE</code>. Fill in the arguments, then state a conclusion by comparing the p-value to <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Interactive R — One-Sample Proportion Test with prop.test()
+</div>
+<textarea class="webr-editor" rows="6"># One-sample proportion test
+# H0: p = 0.20  vs  Ha: p != 0.20
+
+result <- prop.test(x = ___, n = ___, p = ___,
+                    alternative = "___", correct = ___)
+result</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><code>prop.test(x, n, p, alternative, correct)</code> tests a single proportion.</li>
+<li>For a two-sided test use <code>alternative = "two.sided"</code>.</li>
+<li>Set <code>correct = FALSE</code> to skip the continuity correction (matching the <span class="math inline">\(z\)</span> formula from Section 6.2).</li>
+<li>Compare the p-value in the output to <span class="math inline">\(\alpha = 0.05\)</span> to decide whether to reject <span class="math inline">\(H_0\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="hypothesis-tests.html#cb86-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">72</span>, <span class="at">n =</span> <span class="dv">300</span>, <span class="at">p =</span> <span class="fl">0.20</span>,</span>
+<span id="cb86-2"><a href="hypothesis-tests.html#cb86-2" tabindex="-1"></a>                    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb86-3"><a href="hypothesis-tests.html#cb86-3" tabindex="-1"></a>result</span>
+<span id="cb86-4"><a href="hypothesis-tests.html#cb86-4" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb86-5"><a href="hypothesis-tests.html#cb86-5" tabindex="-1"></a><span class="co">#   1-sample proportions test without continuity correction</span></span>
+<span id="cb86-6"><a href="hypothesis-tests.html#cb86-6" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb86-7"><a href="hypothesis-tests.html#cb86-7" tabindex="-1"></a><span class="co"># data:  72 out of 300, null probability 0.2</span></span>
+<span id="cb86-8"><a href="hypothesis-tests.html#cb86-8" tabindex="-1"></a><span class="co"># X-squared = 3, df = 1, p-value = 0.08327</span></span>
+<span id="cb86-9"><a href="hypothesis-tests.html#cb86-9" tabindex="-1"></a><span class="co"># alternative hypothesis: two.sided</span></span>
+<span id="cb86-10"><a href="hypothesis-tests.html#cb86-10" tabindex="-1"></a><span class="co"># 95 percent confidence interval:</span></span>
+<span id="cb86-11"><a href="hypothesis-tests.html#cb86-11" tabindex="-1"></a><span class="co">#  0.1912025 0.2940115</span></span>
+<span id="cb86-12"><a href="hypothesis-tests.html#cb86-12" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
+<span id="cb86-13"><a href="hypothesis-tests.html#cb86-13" tabindex="-1"></a><span class="co">#    p</span></span>
+<span id="cb86-14"><a href="hypothesis-tests.html#cb86-14" tabindex="-1"></a><span class="co"># 0.24</span></span></code></pre></div>
+<p><span class="math inline">\(\hat{p} = 72/300 = 0.24\)</span>. The p-value <span class="math inline">\(\approx 0.083 &gt; \alpha = 0.05\)</span>, so we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence at the 5% level to conclude that the local rate of high blood pressure differs from the national figure of 20%.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 6
+</div>
+<p>A bottled water plant fills bottles to a target mean weight of <span class="math inline">\(\mu_0 = 500\)</span> g. The population standard deviation is known to be <span class="math inline">\(\sigma = 8\)</span> g. A quality control inspector randomly selects <span class="math inline">\(n = 25\)</span> bottles and records a sample mean of <span class="math inline">\(\bar{x} = 496.5\)</span> g. The plant manager wants to know whether the mean fill weight has dropped below the target.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Since <span class="math inline">\(\sigma\)</span> is known and the question asks whether the mean has <em>dropped</em>, use a lower-tailed <span class="math inline">\(z\)</span> test.</li>
+<li>The test statistic is <span class="math inline">\(z^* = (\bar{x} - \mu_0) / (\sigma / \sqrt{n})\)</span>.</li>
+<li>The p-value for <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span> is <span class="math inline">\(P(Z &lt; z^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 500\)</span> g <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &lt; 500\)</span> g</p>
+<p><strong>(b)</strong> Since <span class="math inline">\(\sigma\)</span> is known, we use the <span class="math inline">\(z\)</span> statistic:
+<span class="math display">\[z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{496.5 - 500}{8 / \sqrt{25}} = \frac{-3.5}{1.6} = -2.1875\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &lt; 500\)</span> (lower-tailed), using <span class="math inline">\(Z \sim N(0,1)\)</span>:
+<span class="math display">\[\text{p-value} = P(Z &lt; -2.1875) \approx 0.0143\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0143 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the mean fill weight has dropped below the target of 500 g.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 7
+</div>
+<p>An athletics coach believes the mean sprint time of her athletes has improved (i.e., decreased) from the historical mean of <span class="math inline">\(\mu_0 = 12.5\)</span> seconds over a 100-metre course. She records sprint times for a random sample of <span class="math inline">\(n = 36\)</span> athletes and obtains a sample mean of <span class="math inline">\(\bar{x} = 12.1\)</span> s. From many years of records, the population standard deviation is known to be <span class="math inline">\(\sigma = 1.2\)</span> s.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Improved” in sprint time means a lower time, so the alternative is lower-tailed.</li>
+<li><span class="math inline">\(\sigma\)</span> is known, so use the <span class="math inline">\(z\)</span> test statistic.</li>
+<li>The p-value for <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span> is <span class="math inline">\(P(Z &lt; z^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 12.5\)</span> s <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &lt; 12.5\)</span> s</p>
+<p><strong>(b)</strong>
+<span class="math display">\[z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{12.1 - 12.5}{1.2 / \sqrt{36}} = \frac{-0.4}{0.2} = -2.000\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &lt; 12.5\)</span> (lower-tailed):
+<span class="math display">\[\text{p-value} = P(Z &lt; -2.000) \approx 0.0228\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0228 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the mean sprint time has decreased from 12.5 seconds.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 8
+</div>
+<p>A professor claims the average midterm score in her large statistics course is <span class="math inline">\(\mu_0 = 70\)</span> points. The population standard deviation is known from past semesters to be <span class="math inline">\(\sigma = 9.1\)</span> points. After a curriculum redesign, a random sample of <span class="math inline">\(n = 49\)</span> students yields a sample mean of <span class="math inline">\(\bar{x} = 72.6\)</span> points. Is there evidence that the mean score has increased?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Has the mean score <em>increased</em>?” calls for an upper-tailed alternative: <span class="math inline">\(H_a: \mu &gt; \mu_0\)</span>.</li>
+<li>The p-value for <span class="math inline">\(H_a: \mu &gt; \mu_0\)</span> is <span class="math inline">\(P(Z &gt; z^*) = 1 - P(Z \le z^*)\)</span>.</li>
+<li><span class="math inline">\(\sigma\)</span> is known, so use the <span class="math inline">\(z\)</span> test.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 70 \quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &gt; 70\)</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{72.6 - 70}{9.1 / \sqrt{49}} = \frac{2.6}{1.3} = 2.000\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &gt; 70\)</span> (upper-tailed):
+<span class="math display">\[\text{p-value} = P(Z &gt; 2.000) = 1 - P(Z \le 2.000) \approx 0.0228\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0228 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the mean midterm score increased after the curriculum redesign.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 9
+</div>
+<p>A road-safety researcher claims the mean reaction time for licensed drivers is <span class="math inline">\(\mu_0 = 0.65\)</span> seconds. The population standard deviation is known to be <span class="math inline">\(\sigma = 0.10\)</span> s. A random sample of <span class="math inline">\(n = 100\)</span> drivers is tested and the sample mean reaction time is <span class="math inline">\(\bar{x} = 0.672\)</span> s. The researcher wants to test whether the mean reaction time differs from the claimed value.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Differs from” means a two-tailed test: <span class="math inline">\(H_a: \mu \ne \mu_0\)</span>.</li>
+<li>For a two-tailed test, p-value <span class="math inline">\(= 2 \times P(Z &gt; |z^*|) = 2(1 - P(Z \le |z^*|))\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 0.65\)</span> s <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu \ne 0.65\)</span> s</p>
+<p><strong>(b)</strong>
+<span class="math display">\[z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{0.672 - 0.65}{0.10 / \sqrt{100}} = \frac{0.022}{0.01} = 2.200\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu \ne 0.65\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(Z &gt; 2.200) = 2(1 - P(Z \le 2.200)) \approx 2(0.0139) = 0.0278\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0278 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the mean reaction time differs from 0.65 seconds.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 10
+</div>
+<p>A cosmetics company claims its face cream reduces mean skin roughness to <span class="math inline">\(\mu_0 = 3.0\)</span> on a 0–10 scale (higher = rougher). Dermatologists apply the cream to a random sample of <span class="math inline">\(n = 64\)</span> volunteers and measure a sample mean roughness of <span class="math inline">\(\bar{x} = 3.4\)</span>. The population standard deviation is known to be <span class="math inline">\(\sigma = 1.6\)</span>. Test whether the true mean roughness exceeds the company’s claim.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.01\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The question asks whether the mean is <em>higher</em> than claimed, so use an upper-tailed test.</li>
+<li>Note that <span class="math inline">\(\alpha = 0.01\)</span> here — compare the p-value to 0.01, not 0.05.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 3.0 \quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &gt; 3.0\)</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{3.4 - 3.0}{1.6 / \sqrt{64}} = \frac{0.4}{0.2} = 2.000\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &gt; 3.0\)</span> (upper-tailed):
+<span class="math display">\[\text{p-value} = P(Z &gt; 2.000) \approx 0.0228\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0228 &gt; \alpha = 0.01\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence at the 1% level to conclude that the true mean skin roughness exceeds 3.0. <em>(Note: the result would be significant at <span class="math inline">\(\alpha = 0.05\)</span>, but not at the stricter <span class="math inline">\(\alpha = 0.01\)</span>.)</em></p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 11
+</div>
+<p>A health study reports that adults sleep a mean of <span class="math inline">\(\mu_0 = 7.0\)</span> hours per night. A nutritionist administers a dietary supplement to a random sample of <span class="math inline">\(n = 16\)</span> volunteers for four weeks. At the end of the study the sample mean sleep time is <span class="math inline">\(\bar{x} = 7.8\)</span> hours with a sample standard deviation of <span class="math inline">\(s = 1.2\)</span> hours. The nutritionist believes the supplement increases sleep time. Assume sleep times are approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><span class="math inline">\(\sigma\)</span> is unknown, so use the <span class="math inline">\(t\)</span> statistic with <span class="math inline">\(df = n - 1 = 15\)</span>.</li>
+<li>For <span class="math inline">\(H_a: \mu &gt; \mu_0\)</span> (upper-tailed), p-value <span class="math inline">\(= P(T_{15} &gt; t^*)\)</span>.</li>
+<li>You can bound the p-value from the <span class="math inline">\(t\)</span>-table by locating where <span class="math inline">\(t^*\)</span> falls relative to tabulated critical values at <span class="math inline">\(df = 15\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 7.0\)</span> hr <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &gt; 7.0\)</span> hr</p>
+<p><strong>(b)</strong> Since <span class="math inline">\(\sigma\)</span> is unknown, we use the <span class="math inline">\(t\)</span> statistic with <span class="math inline">\(df = n - 1 = 15\)</span>:
+<span class="math display">\[t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{7.8 - 7.0}{1.2 / \sqrt{16}} = \frac{0.8}{0.3} \approx 2.667\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &gt; 7.0\)</span> (upper-tailed), using <span class="math inline">\(T \sim t_{15}\)</span>:
+<span class="math display">\[\text{p-value} = P(T_{15} &gt; 2.667) \approx 0.0088\]</span>
+From the <span class="math inline">\(t\)</span>-table: <span class="math inline">\(t_{15,\,0.01} = 2.602 &lt; 2.667 &lt; 2.947 = t_{15,\,0.005}\)</span>, so <span class="math inline">\(0.005 &lt; \text{p-value} &lt; 0.01\)</span>.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(&lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the mean sleep time for volunteers on the supplement exceeds 7.0 hours per night.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 12
+</div>
+<p>A fast-food chain states its drive-through service takes a mean of <span class="math inline">\(\mu_0 = 3.5\)</span> minutes. A regional manager suspects service has slowed at a particular outlet. She times <span class="math inline">\(n = 20\)</span> randomly selected customers and records <span class="math inline">\(\bar{x} = 3.9\)</span> minutes and <span class="math inline">\(s = 0.8\)</span> minutes. Assume service times are approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The manager suspects the mean has <em>increased</em>, so use an upper-tailed test: <span class="math inline">\(H_a: \mu &gt; \mu_0\)</span>.</li>
+<li><span class="math inline">\(\sigma\)</span> is unknown, so use the <span class="math inline">\(t\)</span> statistic with <span class="math inline">\(df = n - 1 = 19\)</span>.</li>
+<li>Upper-tailed p-value <span class="math inline">\(= P(T_{19} &gt; t^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 3.5\)</span> min <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &gt; 3.5\)</span> min</p>
+<p><strong>(b)</strong> With <span class="math inline">\(df = n - 1 = 19\)</span>:
+<span class="math display">\[t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{3.9 - 3.5}{0.8 / \sqrt{20}} = \frac{0.4}{0.1789} \approx 2.236\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &gt; 3.5\)</span> (upper-tailed), using <span class="math inline">\(T \sim t_{19}\)</span>:
+<span class="math display">\[\text{p-value} = P(T_{19} &gt; 2.236) \approx 0.0188\]</span>
+From the <span class="math inline">\(t\)</span>-table: <span class="math inline">\(t_{19,\,0.025} = 2.093 &lt; 2.236 &lt; 2.539 = t_{19,\,0.01}\)</span>, so <span class="math inline">\(0.01 &lt; \text{p-value} &lt; 0.025\)</span>.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.019 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the mean drive-through service time at this outlet has increased above 3.5 minutes.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 13
+</div>
+<p>A psychologist claims the population mean anxiety score on a standardised scale is <span class="math inline">\(\mu_0 = 15\)</span>. She collects a random sample of <span class="math inline">\(n = 10\)</span> patients and records <span class="math inline">\(\bar{x} = 17.2\)</span> with <span class="math inline">\(s = 3.6\)</span>. She wants to test whether the mean anxiety score differs from 15. Assume scores are approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Differs from” calls for a two-tailed test: <span class="math inline">\(H_a: \mu \ne \mu_0\)</span>.</li>
+<li><span class="math inline">\(\sigma\)</span> is unknown, so use the <span class="math inline">\(t\)</span> statistic with <span class="math inline">\(df = n - 1 = 9\)</span>.</li>
+<li>Two-tailed p-value <span class="math inline">\(= 2 \times P(T_9 &gt; |t^*|)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 15 \quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu \ne 15\)</span></p>
+<p><strong>(b)</strong> With <span class="math inline">\(df = n - 1 = 9\)</span>:
+<span class="math display">\[t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{17.2 - 15}{3.6 / \sqrt{10}} = \frac{2.2}{1.1384} \approx 1.933\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu \ne 15\)</span> (two-tailed), using <span class="math inline">\(T \sim t_9\)</span>:
+<span class="math display">\[\text{p-value} = 2 \times P(T_9 &gt; 1.933) \approx 2(0.0427) = 0.0853\]</span>
+From the <span class="math inline">\(t\)</span>-table: <span class="math inline">\(t_{9,\,0.05} = 1.833 &lt; 1.933 &lt; 2.262 = t_{9,\,0.025}\)</span>, so <span class="math inline">\(0.05 &lt; \text{p-value} &lt; 0.10\)</span>.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.085 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence at the 5% level to conclude that the mean anxiety score differs from 15.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 14
+</div>
+<p>A botanist claims that a new plant food reduces the mean germination time of seeds below the standard <span class="math inline">\(\mu_0 = 8.0\)</span> days. She plants <span class="math inline">\(n = 12\)</span> seeds treated with the food and records <span class="math inline">\(\bar{x} = 7.0\)</span> days and <span class="math inline">\(s = 1.5\)</span> days. Assume germination times are approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The claim is that germination time has <em>decreased</em>, so use <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span>.</li>
+<li><span class="math inline">\(\sigma\)</span> is unknown, so use the <span class="math inline">\(t\)</span> statistic with <span class="math inline">\(df = n - 1 = 11\)</span>.</li>
+<li>Lower-tailed p-value <span class="math inline">\(= P(T_{11} &lt; t^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 8.0\)</span> days <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &lt; 8.0\)</span> days</p>
+<p><strong>(b)</strong> With <span class="math inline">\(df = n - 1 = 11\)</span>:
+<span class="math display">\[t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{7.0 - 8.0}{1.5 / \sqrt{12}} = \frac{-1.0}{0.4330} \approx -2.309\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &lt; 8.0\)</span> (lower-tailed), using <span class="math inline">\(T \sim t_{11}\)</span>:
+<span class="math display">\[\text{p-value} = P(T_{11} &lt; -2.309) \approx 0.0207\]</span>
+From the <span class="math inline">\(t\)</span>-table: <span class="math inline">\(t_{11,\,0.025} = 2.201 &lt; 2.309 &lt; 2.718 = t_{11,\,0.01}\)</span>, so <span class="math inline">\(0.01 &lt; \text{p-value} &lt; 0.025\)</span>.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.021 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the new plant food reduces mean germination time below 8.0 days.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 15
+</div>
+<p>A university registrar claims that 40% of students live off campus. A housing researcher believes the true proportion is lower. In a random sample of <span class="math inline">\(n = 200\)</span> students, <span class="math inline">\(x = 65\)</span> reported living off campus.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the sample proportion <span class="math inline">\(\hat{p}\)</span> and the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The researcher believes the proportion is <em>lower</em>, so use <span class="math inline">\(H_a: p &lt; p_0\)</span>.</li>
+<li>The test statistic is <span class="math inline">\(z^* = (\hat{p} - p_0) / \sqrt{p_0(1-p_0)/n}\)</span>, using <span class="math inline">\(p_0\)</span> in the denominator.</li>
+<li>Lower-tailed p-value <span class="math inline">\(= P(Z &lt; z^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: p = 0.40 \quad\)</span> vs. <span class="math inline">\(\quad H_a: p &lt; 0.40\)</span></p>
+<p><strong>(b)</strong> Sample proportion:
+<span class="math display">\[\hat{p} = \frac{x}{n} = \frac{65}{200} = 0.325\]</span>
+Test statistic:
+<span class="math display">\[z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.325 - 0.40}{\sqrt{0.40 \times 0.60 / 200}} = \frac{-0.075}{0.03464} \approx -2.165\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: p &lt; 0.40\)</span> (lower-tailed):
+<span class="math display">\[\text{p-value} = P(Z &lt; -2.165) \approx 0.0152\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0152 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that fewer than 40% of students live off campus.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 16
+</div>
+<p>A candy manufacturer claims that 30% of candies in each bag are red. A consumer randomly selects <span class="math inline">\(n = 100\)</span> candies from several bags and finds <span class="math inline">\(x = 26\)</span> that are red. Test whether the true proportion of red candies differs from 30%.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(\hat{p}\)</span> and the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Differs from” calls for a two-tailed test: <span class="math inline">\(H_a: p \ne p_0\)</span>.</li>
+<li>Two-tailed p-value <span class="math inline">\(= 2 \times P(Z &gt; |z^*|) = 2(1 - P(Z \le |z^*|))\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: p = 0.30 \quad\)</span> vs. <span class="math inline">\(\quad H_a: p \ne 0.30\)</span></p>
+<p><strong>(b)</strong> Sample proportion:
+<span class="math display">\[\hat{p} = \frac{26}{100} = 0.26\]</span>
+Test statistic:
+<span class="math display">\[z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.26 - 0.30}{\sqrt{0.30 \times 0.70 / 100}} = \frac{-0.04}{0.04583} \approx -0.873\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: p \ne 0.30\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(Z &gt; 0.873) = 2(1 - P(Z \le 0.873)) \approx 2(0.1913) = 0.3827\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.383 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence to conclude that the true proportion of red candies differs from 30%.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 17
+</div>
+<p>A manufacturer claims fewer than 5% of its electronic components are defective. A quality inspector samples <span class="math inline">\(n = 500\)</span> components and finds <span class="math inline">\(x = 15\)</span> that are defective. Test whether the defective rate is below 5%.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(\hat{p}\)</span> and the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The claim is that the defect rate is <em>below</em> 5%, so use <span class="math inline">\(H_a: p &lt; 0.05\)</span>.</li>
+<li>Lower-tailed p-value <span class="math inline">\(= P(Z &lt; z^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: p = 0.05 \quad\)</span> vs. <span class="math inline">\(\quad H_a: p &lt; 0.05\)</span></p>
+<p><strong>(b)</strong> Sample proportion:
+<span class="math display">\[\hat{p} = \frac{15}{500} = 0.030\]</span>
+Test statistic:
+<span class="math display">\[z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.030 - 0.05}{\sqrt{0.05 \times 0.95 / 500}} = \frac{-0.020}{0.009747} \approx -2.052\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: p &lt; 0.05\)</span> (lower-tailed):
+<span class="math display">\[\text{p-value} = P(Z &lt; -2.052) \approx 0.0201\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.020 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the true defective rate is below 5%.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 18
+</div>
+<p>A national survey reports that 60% of households own at least one pet. A researcher randomly selects <span class="math inline">\(n = 150\)</span> households in one city. Of these, <span class="math inline">\(x = 102\)</span> report owning at least one pet. Is the local pet-ownership rate higher than the national rate?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(\hat{p}\)</span> and the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Is the local rate <em>higher</em>?” calls for an upper-tailed test: <span class="math inline">\(H_a: p &gt; p_0\)</span>.</li>
+<li>Upper-tailed p-value <span class="math inline">\(= P(Z &gt; z^*) = 1 - P(Z \le z^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: p = 0.60 \quad\)</span> vs. <span class="math inline">\(\quad H_a: p &gt; 0.60\)</span></p>
+<p><strong>(b)</strong> Sample proportion:
+<span class="math display">\[\hat{p} = \frac{102}{150} = 0.680\]</span>
+Test statistic:
+<span class="math display">\[z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.680 - 0.60}{\sqrt{0.60 \times 0.40 / 150}} = \frac{0.080}{0.04000} = 2.000\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: p &gt; 0.60\)</span> (upper-tailed):
+<span class="math display">\[\text{p-value} = P(Z &gt; 2.000) = 1 - P(Z \le 2.000) \approx 0.0228\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0228 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the local pet-ownership rate exceeds the national figure of 60%.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 19
+</div>
+<p>A statistics professor conjectures that more than 50% of students pass a particularly challenging midterm. Out of <span class="math inline">\(n = 80\)</span> students, <span class="math inline">\(x = 46\)</span> passed. Test the professor’s conjecture.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(\hat{p}\)</span> and the test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“More than 50%” means <span class="math inline">\(H_a: p &gt; 0.50\)</span>.</li>
+<li>Upper-tailed p-value <span class="math inline">\(= P(Z &gt; z^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(H_0: p = 0.50 \quad\)</span> vs. <span class="math inline">\(\quad H_a: p &gt; 0.50\)</span></p>
+<p><strong>(b)</strong> Sample proportion:
+<span class="math display">\[\hat{p} = \frac{46}{80} = 0.575\]</span>
+Test statistic:
+<span class="math display">\[z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.575 - 0.50}{\sqrt{0.50 \times 0.50 / 80}} = \frac{0.075}{0.05590} \approx 1.342\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: p &gt; 0.50\)</span> (upper-tailed):
+<span class="math display">\[\text{p-value} = P(Z &gt; 1.342) \approx 0.0899\]</span></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.090 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence at the 5% level to conclude that more than 50% of students pass the midterm.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 20
+</div>
+<p>Three independent research scenarios are given below. For <strong>each scenario</strong>: (i) identify the appropriate test (one-sample <span class="math inline">\(z\)</span> test for a mean, one-sample <span class="math inline">\(t\)</span> test for a mean, or one-sample <span class="math inline">\(z\)</span> test for a proportion); (ii) state <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>; (iii) compute the test statistic; (iv) find the p-value; and (v) state a conclusion at the given <span class="math inline">\(\alpha\)</span>.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find required tail probabilities.</p>
+<p><strong>(a)</strong> A physiotherapist records grip strength for <span class="math inline">\(n = 25\)</span> patients and reports <span class="math inline">\(\bar{x} = 18.8\)</span> kg and <span class="math inline">\(s = 3.5\)</span> kg. The population standard deviation is <strong>unknown</strong>. Historical data show the mean for healthy adults is <span class="math inline">\(\mu_0 = 17.0\)</span> kg. Test whether the sample mean differs from the historical norm at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><strong>(b)</strong> A pollster claims 25% of voters support Candidate X. In a random sample of <span class="math inline">\(n = 200\)</span> voters, <span class="math inline">\(x = 56\)</span> indicate support for Candidate X. Test whether the true support level differs from 25% at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><strong>(c)</strong> A fitness app reports its users average <span class="math inline">\(\mu_0 = 46.0\)</span> minutes of exercise per day. The population standard deviation is <strong>known</strong> to be <span class="math inline">\(\sigma = 6\)</span> minutes. A researcher samples <span class="math inline">\(n = 36\)</span> users and records <span class="math inline">\(\bar{x} = 43.8\)</span> minutes. Test whether the mean is lower than reported at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Use the <strong><span class="math inline">\(z\)</span> test for a mean</strong> when <span class="math inline">\(\sigma\)</span> is known.</li>
+<li>Use the <strong><span class="math inline">\(t\)</span> test for a mean</strong> when <span class="math inline">\(\sigma\)</span> is unknown and data are approximately normal.</li>
+<li>Use the <strong><span class="math inline">\(z\)</span> test for a proportion</strong> when the parameter of interest is a population proportion <span class="math inline">\(p\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a) One-sample <span class="math inline">\(t\)</span> test for a mean</strong> (<span class="math inline">\(\sigma\)</span> unknown)</p>
+<p><span class="math inline">\(H_0: \mu = 17.0\)</span> kg <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu \ne 17.0\)</span> kg, with <span class="math inline">\(df = 24\)</span>.</p>
+<p><span class="math display">\[t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{18.8 - 17.0}{3.5 / \sqrt{25}} = \frac{1.8}{0.7} \approx 2.571\]</span></p>
+<p><span class="math display">\[\text{p-value} = 2 \times P(T_{24} &gt; 2.571) \approx 0.0167\]</span></p>
+<p>From the <span class="math inline">\(t\)</span>-table: <span class="math inline">\(t_{24,\,0.01} = 2.492 &lt; 2.571 &lt; 2.797 = t_{24,\,0.005}\)</span>, so <span class="math inline">\(0.01 &lt; \text{p-value} &lt; 0.02\)</span>.</p>
+<p>Since p-value <span class="math inline">\(&lt; \alpha = 0.05\)</span>, <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that mean grip strength differs from 17.0 kg.</p>
+<hr />
+<p><strong>(b) One-sample <span class="math inline">\(z\)</span> test for a proportion</strong></p>
+<p><span class="math inline">\(H_0: p = 0.25 \quad\)</span> vs. <span class="math inline">\(\quad H_a: p \ne 0.25\)</span>.</p>
+<p><span class="math display">\[\hat{p} = \frac{56}{200} = 0.280, \qquad z^* = \frac{0.280 - 0.25}{\sqrt{0.25 \times 0.75 / 200}} = \frac{0.030}{0.03062} \approx 0.980\]</span></p>
+<p><span class="math display">\[\text{p-value} = 2 \times P(Z &gt; 0.980) \approx 2(0.1635) = 0.3271\]</span></p>
+<p>Since p-value <span class="math inline">\(\approx 0.327 &gt; \alpha = 0.05\)</span>, <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence that support for Candidate X differs from 25%.</p>
+<hr />
+<p><strong>(c) One-sample <span class="math inline">\(z\)</span> test for a mean</strong> (<span class="math inline">\(\sigma\)</span> known)</p>
+<p><span class="math inline">\(H_0: \mu = 46.0\)</span> min <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &lt; 46.0\)</span> min.</p>
+<p><span class="math display">\[z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{43.8 - 46.0}{6 / \sqrt{36}} = \frac{-2.2}{1.0} = -2.200\]</span></p>
+<p><span class="math display">\[\text{p-value} = P(Z &lt; -2.200) \approx 0.0139\]</span></p>
+<p>Since p-value <span class="math inline">\(\approx 0.014 &lt; \alpha = 0.05\)</span>, <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that mean daily exercise time for app users is less than 46.0 minutes.</p>
+</div>
+</details>
+
 </div>
 </div>
             </section>

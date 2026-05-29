@@ -3244,3 +3244,960 @@ enough evidence to infer that the new fertilizer is better.
 
 - The differences between paired observations are approximately normally distributed.
 - The samples are randomly and independently drawn from the population.
+
+## Exercises {#sec:ch6exercises}
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+A cola manufacturer calibrates its filling line to a target mean fill volume of $\mu_0 = 355$ mL. The population standard deviation is known to be $\sigma = 4$ mL. A quality engineer randomly selects $n = 64$ cans and records a sample mean of $\bar{x} = 353.2$ mL.
+
+Test $H_0: \mu = 355$ vs. $H_a: \mu < 355$ at $\alpha = 0.05$.
+
+(a) Compute the $z$ test statistic using the formula $z^* = \dfrac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$.
+(b) Compute the p-value using `pnorm()` and fill in the correct argument.
+(c) Based on your p-value, state a conclusion at $\alpha = 0.05$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — One-Sample z Test (Known σ)</div>
+<textarea class="webr-editor" rows="13">n     <- 64
+xbar  <- 353.2
+mu0   <- 355
+sigma <- 4
+
+# (a) Compute the z test statistic
+z_star <- (xbar - mu0) / (sigma / sqrt(n))
+z_star
+
+# (b) Compute the p-value for Ha: mu < mu0  (lower-tailed)
+p_value <- pnorm(___)
+p_value
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The $z$ statistic for a known-$\sigma$ test is $z^* = (\bar{x} - \mu_0) / (\sigma / \sqrt{n})$.
+- For a lower-tailed alternative $H_a: \mu < \mu_0$, the p-value is $P(Z < z^*) = $ `pnorm(z_star)`.
+- `pnorm(q)` returns $P(Z \leq q)$ for $Z \sim N(0,1)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+n     <- 64
+xbar  <- 353.2
+mu0   <- 355
+sigma <- 4
+
+# (a) z test statistic
+z_star <- (xbar - mu0) / (sigma / sqrt(n))
+z_star
+# [1] -3.6
+
+# (b) p-value (lower-tailed)
+p_value <- pnorm(z_star)
+p_value
+# [1] 0.0001591086
+```
+
+**(a)** $z^* = \dfrac{353.2 - 355}{4 / \sqrt{64}} = \dfrac{-1.8}{0.5} = -3.6$
+
+**(b)** p-value $= P(Z < -3.6) \approx 0.00016$
+
+**(c)** Since p-value $\approx 0.00016 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level of significance to conclude that the mean fill volume has decreased below 355 mL.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+For a one-sample $z$ test, the test statistic is $z^* = 1.75$. Fill in the correct `pnorm()` expression for the p-value under each alternative hypothesis.
+
+(a) $H_a: \mu > \mu_0$ (upper-tailed)
+(b) $H_a: \mu < \mu_0$ (lower-tailed)
+(c) $H_a: \mu \neq \mu_0$ (two-tailed)
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — P-Value Calculations for Three Alternatives</div>
+<textarea class="webr-editor" rows="10">z_star <- 1.75
+
+# (a) Ha: mu > mu0   (upper-tailed)
+p_value_a <- ___
+
+# (b) Ha: mu < mu0   (lower-tailed)
+p_value_b <- ___
+
+# (c) Ha: mu != mu0  (two-tailed)
+p_value_c <- ___
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Upper-tailed: p-value $= P(Z > z^*) = $ `1 - pnorm(z_star)`
+- Lower-tailed: p-value $= P(Z < z^*) = $ `pnorm(z_star)`
+- Two-tailed: p-value $= 2 \times P(Z > |z^*|) = $ `2 * (1 - pnorm(abs(z_star)))`
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+z_star <- 1.75
+
+# (a) upper-tailed
+p_value_a <- 1 - pnorm(z_star)
+p_value_a
+# [1] 0.04005916
+
+# (b) lower-tailed
+p_value_b <- pnorm(z_star)
+p_value_b
+# [1] 0.9599408
+
+# (c) two-tailed
+p_value_c <- 2 * (1 - pnorm(abs(z_star)))
+p_value_c
+# [1] 0.08011832
+```
+
+**(a)** $P(Z > 1.75) \approx 0.0401$
+
+**(b)** $P(Z < 1.75) \approx 0.9599$
+
+**(c)** $2 \times P(Z > 1.75) \approx 0.0801$
+
+Note that for a fixed $z^*$, the two-tailed p-value is always twice the upper-tailed p-value, and the upper-tailed and lower-tailed p-values always sum to 1.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+A nutritionist believes that a new diet plan reduces daily calorie intake below 2000 kcal. She records the daily calorie intake of $n = 10$ participants:
+
+$$1850,\ 1920,\ 1780,\ 1960,\ 1840,\ 1990,\ 1870,\ 1930,\ 1800,\ 1910$$
+
+Assume calorie intake is approximately normally distributed. Use `t.test()` to test $H_0: \mu = 2000$ vs. $H_a: \mu < 2000$ at $\alpha = 0.05$. Fill in the correct values for `mu` and `alternative`.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — One-Sample t Test (Unknown σ)</div>
+<textarea class="webr-editor" rows="6">calories <- c(1850, 1920, 1780, 1960, 1840, 1990, 1870, 1930, 1800, 1910)
+
+# Run a one-sample t-test
+# H0: mu = 2000  vs  Ha: mu < 2000
+result <- t.test(calories, mu = ___, alternative = "___")
+result</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `t.test(x, mu = mu0, alternative = "less")` tests $H_a: \mu < \mu_0$.
+- The `alternative` argument accepts `"less"`, `"greater"`, or `"two.sided"`.
+- When $\sigma$ is unknown, `t.test()` uses the $t$ distribution with $df = n - 1$ degrees of freedom.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+calories <- c(1850, 1920, 1780, 1960, 1840, 1990, 1870, 1930, 1800, 1910)
+
+result <- t.test(calories, mu = 2000, alternative = "less")
+result
+#
+#   One Sample t-test
+#
+# data:  calories
+# t = -5.3083, df = 9, p-value = 0.0002386
+# alternative hypothesis: true mean is less than 2000
+# 95 percent confidence interval:
+#      -Inf 1921.699
+# sample estimates:
+# mean of x
+#      1885
+```
+
+The sample mean is $\bar{x} = 1885$ kcal. With $t^* \approx -5.31$ and $df = 9$, the p-value $\approx 0.00024 < \alpha = 0.05$. We **reject $H_0$**. There is sufficient evidence that the mean daily calorie intake under the new diet plan is less than 2000 kcal.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+A student newspaper reports that only 25% of UTM students hold part-time jobs. A researcher surveys $n = 120$ randomly selected students and finds $x = 42$ who hold part-time jobs. Test whether the true proportion exceeds 25% ($H_0: p = 0.25$ vs. $H_a: p > 0.25$) at $\alpha = 0.05$.
+
+(a) Compute the sample proportion $\hat{p} = x / n$.
+(b) Compute the $z$ test statistic: $z^* = \dfrac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}}$.
+(c) Compute the p-value using `pnorm()`.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — One-Sample z Test for a Proportion</div>
+<textarea class="webr-editor" rows="14">x  <- 42
+n  <- 120
+p0 <- 0.25
+
+# (a) Compute sample proportion
+phat <- ___ / ___
+
+# (b) Compute z test statistic
+z_star <- (phat - p0) / sqrt(p0 * (1 - p0) / n)
+z_star
+
+# (c) Compute p-value for Ha: p > p0  (upper-tailed)
+p_value <- 1 - pnorm(___)
+p_value
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- $\hat{p} = x / n$ where $x$ is the number of successes and $n$ is the sample size.
+- The standard error under $H_0$ is $\sqrt{p_0(1-p_0)/n}$ — use $p_0$, not $\hat{p}$, here.
+- For an upper-tailed test ($H_a: p > p_0$), the p-value is $P(Z > z^*) = $ `1 - pnorm(z_star)`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+x  <- 42
+n  <- 120
+p0 <- 0.25
+
+# (a) Sample proportion
+phat <- x / n
+phat
+# [1] 0.35
+
+# (b) z test statistic
+z_star <- (phat - p0) / sqrt(p0 * (1 - p0) / n)
+z_star
+# [1] 2.529822
+
+# (c) p-value (upper-tailed)
+p_value <- 1 - pnorm(z_star)
+p_value
+# [1] 0.005713023
+```
+
+**(a)** $\hat{p} = 42/120 = 0.35$
+
+**(b)** $z^* = \dfrac{0.35 - 0.25}{\sqrt{0.25 \times 0.75 / 120}} = \dfrac{0.10}{0.03953} \approx 2.53$
+
+**(c)** p-value $= P(Z > 2.53) \approx 0.0057 < \alpha = 0.05$
+
+We **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that more than 25% of UTM students hold part-time jobs.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+A national health study reports that 20% of adults have high blood pressure. A local clinic randomly selects $n = 300$ patients and finds $x = 72$ with high blood pressure. Test whether the local rate differs from the national figure ($H_0: p = 0.20$ vs. $H_a: p \neq 0.20$) at $\alpha = 0.05$.
+
+Use `prop.test()` with `correct = FALSE`. Fill in the arguments, then state a conclusion by comparing the p-value to $\alpha = 0.05$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Interactive R — One-Sample Proportion Test with prop.test()</div>
+<textarea class="webr-editor" rows="6"># One-sample proportion test
+# H0: p = 0.20  vs  Ha: p != 0.20
+
+result <- prop.test(x = ___, n = ___, p = ___,
+                    alternative = "___", correct = ___)
+result</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `prop.test(x, n, p, alternative, correct)` tests a single proportion.
+- For a two-sided test use `alternative = "two.sided"`.
+- Set `correct = FALSE` to skip the continuity correction (matching the $z$ formula from Section 6.2).
+- Compare the p-value in the output to $\alpha = 0.05$ to decide whether to reject $H_0$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+result <- prop.test(x = 72, n = 300, p = 0.20,
+                    alternative = "two.sided", correct = FALSE)
+result
+#
+#   1-sample proportions test without continuity correction
+#
+# data:  72 out of 300, null probability 0.2
+# X-squared = 3, df = 1, p-value = 0.08327
+# alternative hypothesis: two.sided
+# 95 percent confidence interval:
+#  0.1912025 0.2940115
+# sample estimates:
+#    p
+# 0.24
+```
+
+$\hat{p} = 72/300 = 0.24$. The p-value $\approx 0.083 > \alpha = 0.05$, so we **fail to reject $H_0$**. There is not sufficient evidence at the 5% level to conclude that the local rate of high blood pressure differs from the national figure of 20%.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 6</div>
+A bottled water plant fills bottles to a target mean weight of $\mu_0 = 500$ g. The population standard deviation is known to be $\sigma = 8$ g. A quality control inspector randomly selects $n = 25$ bottles and records a sample mean of $\bar{x} = 496.5$ g. The plant manager wants to know whether the mean fill weight has dropped below the target.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Since $\sigma$ is known and the question asks whether the mean has *dropped*, use a lower-tailed $z$ test.
+- The test statistic is $z^* = (\bar{x} - \mu_0) / (\sigma / \sqrt{n})$.
+- The p-value for $H_a: \mu < \mu_0$ is $P(Z < z^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 500$ g $\quad$ vs. $\quad H_a: \mu < 500$ g
+
+**(b)** Since $\sigma$ is known, we use the $z$ statistic:
+$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{496.5 - 500}{8 / \sqrt{25}} = \frac{-3.5}{1.6} = -2.1875$$
+
+**(c)** For $H_a: \mu < 500$ (lower-tailed), using $Z \sim N(0,1)$:
+$$\text{p-value} = P(Z < -2.1875) \approx 0.0143$$
+
+**(d)** Since p-value $\approx 0.0143 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the mean fill weight has dropped below the target of 500 g.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 7</div>
+An athletics coach believes the mean sprint time of her athletes has improved (i.e., decreased) from the historical mean of $\mu_0 = 12.5$ seconds over a 100-metre course. She records sprint times for a random sample of $n = 36$ athletes and obtains a sample mean of $\bar{x} = 12.1$ s. From many years of records, the population standard deviation is known to be $\sigma = 1.2$ s.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Improved" in sprint time means a lower time, so the alternative is lower-tailed.
+- $\sigma$ is known, so use the $z$ test statistic.
+- The p-value for $H_a: \mu < \mu_0$ is $P(Z < z^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 12.5$ s $\quad$ vs. $\quad H_a: \mu < 12.5$ s
+
+**(b)**
+$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{12.1 - 12.5}{1.2 / \sqrt{36}} = \frac{-0.4}{0.2} = -2.000$$
+
+**(c)** For $H_a: \mu < 12.5$ (lower-tailed):
+$$\text{p-value} = P(Z < -2.000) \approx 0.0228$$
+
+**(d)** Since p-value $\approx 0.0228 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the mean sprint time has decreased from 12.5 seconds.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
+A professor claims the average midterm score in her large statistics course is $\mu_0 = 70$ points. The population standard deviation is known from past semesters to be $\sigma = 9.1$ points. After a curriculum redesign, a random sample of $n = 49$ students yields a sample mean of $\bar{x} = 72.6$ points. Is there evidence that the mean score has increased?
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Has the mean score *increased*?" calls for an upper-tailed alternative: $H_a: \mu > \mu_0$.
+- The p-value for $H_a: \mu > \mu_0$ is $P(Z > z^*) = 1 - P(Z \le z^*)$.
+- $\sigma$ is known, so use the $z$ test.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 70 \quad$ vs. $\quad H_a: \mu > 70$
+
+**(b)**
+$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{72.6 - 70}{9.1 / \sqrt{49}} = \frac{2.6}{1.3} = 2.000$$
+
+**(c)** For $H_a: \mu > 70$ (upper-tailed):
+$$\text{p-value} = P(Z > 2.000) = 1 - P(Z \le 2.000) \approx 0.0228$$
+
+**(d)** Since p-value $\approx 0.0228 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the mean midterm score increased after the curriculum redesign.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 9</div>
+A road-safety researcher claims the mean reaction time for licensed drivers is $\mu_0 = 0.65$ seconds. The population standard deviation is known to be $\sigma = 0.10$ s. A random sample of $n = 100$ drivers is tested and the sample mean reaction time is $\bar{x} = 0.672$ s. The researcher wants to test whether the mean reaction time differs from the claimed value.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Differs from" means a two-tailed test: $H_a: \mu \ne \mu_0$.
+- For a two-tailed test, p-value $= 2 \times P(Z > |z^*|) = 2(1 - P(Z \le |z^*|))$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 0.65$ s $\quad$ vs. $\quad H_a: \mu \ne 0.65$ s
+
+**(b)**
+$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{0.672 - 0.65}{0.10 / \sqrt{100}} = \frac{0.022}{0.01} = 2.200$$
+
+**(c)** For $H_a: \mu \ne 0.65$ (two-tailed):
+$$\text{p-value} = 2 \times P(Z > 2.200) = 2(1 - P(Z \le 2.200)) \approx 2(0.0139) = 0.0278$$
+
+**(d)** Since p-value $\approx 0.0278 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the mean reaction time differs from 0.65 seconds.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 10</div>
+A cosmetics company claims its face cream reduces mean skin roughness to $\mu_0 = 3.0$ on a 0–10 scale (higher = rougher). Dermatologists apply the cream to a random sample of $n = 64$ volunteers and measure a sample mean roughness of $\bar{x} = 3.4$. The population standard deviation is known to be $\sigma = 1.6$. Test whether the true mean roughness exceeds the company's claim.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.01$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The question asks whether the mean is *higher* than claimed, so use an upper-tailed test.
+- Note that $\alpha = 0.01$ here — compare the p-value to 0.01, not 0.05.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 3.0 \quad$ vs. $\quad H_a: \mu > 3.0$
+
+**(b)**
+$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{3.4 - 3.0}{1.6 / \sqrt{64}} = \frac{0.4}{0.2} = 2.000$$
+
+**(c)** For $H_a: \mu > 3.0$ (upper-tailed):
+$$\text{p-value} = P(Z > 2.000) \approx 0.0228$$
+
+**(d)** Since p-value $\approx 0.0228 > \alpha = 0.01$, we **fail to reject $H_0$**. There is not sufficient evidence at the 1% level to conclude that the true mean skin roughness exceeds 3.0. *(Note: the result would be significant at $\alpha = 0.05$, but not at the stricter $\alpha = 0.01$.)*
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 11</div>
+A health study reports that adults sleep a mean of $\mu_0 = 7.0$ hours per night. A nutritionist administers a dietary supplement to a random sample of $n = 16$ volunteers for four weeks. At the end of the study the sample mean sleep time is $\bar{x} = 7.8$ hours with a sample standard deviation of $s = 1.2$ hours. The nutritionist believes the supplement increases sleep time. Assume sleep times are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- $\sigma$ is unknown, so use the $t$ statistic with $df = n - 1 = 15$.
+- For $H_a: \mu > \mu_0$ (upper-tailed), p-value $= P(T_{15} > t^*)$.
+- You can bound the p-value from the $t$-table by locating where $t^*$ falls relative to tabulated critical values at $df = 15$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 7.0$ hr $\quad$ vs. $\quad H_a: \mu > 7.0$ hr
+
+**(b)** Since $\sigma$ is unknown, we use the $t$ statistic with $df = n - 1 = 15$:
+$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{7.8 - 7.0}{1.2 / \sqrt{16}} = \frac{0.8}{0.3} \approx 2.667$$
+
+**(c)** For $H_a: \mu > 7.0$ (upper-tailed), using $T \sim t_{15}$:
+$$\text{p-value} = P(T_{15} > 2.667) \approx 0.0088$$
+From the $t$-table: $t_{15,\,0.01} = 2.602 < 2.667 < 2.947 = t_{15,\,0.005}$, so $0.005 < \text{p-value} < 0.01$.
+
+**(d)** Since p-value $< \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the mean sleep time for volunteers on the supplement exceeds 7.0 hours per night.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
+A fast-food chain states its drive-through service takes a mean of $\mu_0 = 3.5$ minutes. A regional manager suspects service has slowed at a particular outlet. She times $n = 20$ randomly selected customers and records $\bar{x} = 3.9$ minutes and $s = 0.8$ minutes. Assume service times are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The manager suspects the mean has *increased*, so use an upper-tailed test: $H_a: \mu > \mu_0$.
+- $\sigma$ is unknown, so use the $t$ statistic with $df = n - 1 = 19$.
+- Upper-tailed p-value $= P(T_{19} > t^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 3.5$ min $\quad$ vs. $\quad H_a: \mu > 3.5$ min
+
+**(b)** With $df = n - 1 = 19$:
+$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{3.9 - 3.5}{0.8 / \sqrt{20}} = \frac{0.4}{0.1789} \approx 2.236$$
+
+**(c)** For $H_a: \mu > 3.5$ (upper-tailed), using $T \sim t_{19}$:
+$$\text{p-value} = P(T_{19} > 2.236) \approx 0.0188$$
+From the $t$-table: $t_{19,\,0.025} = 2.093 < 2.236 < 2.539 = t_{19,\,0.01}$, so $0.01 < \text{p-value} < 0.025$.
+
+**(d)** Since p-value $\approx 0.019 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the mean drive-through service time at this outlet has increased above 3.5 minutes.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 13</div>
+A psychologist claims the population mean anxiety score on a standardised scale is $\mu_0 = 15$. She collects a random sample of $n = 10$ patients and records $\bar{x} = 17.2$ with $s = 3.6$. She wants to test whether the mean anxiety score differs from 15. Assume scores are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Differs from" calls for a two-tailed test: $H_a: \mu \ne \mu_0$.
+- $\sigma$ is unknown, so use the $t$ statistic with $df = n - 1 = 9$.
+- Two-tailed p-value $= 2 \times P(T_9 > |t^*|)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 15 \quad$ vs. $\quad H_a: \mu \ne 15$
+
+**(b)** With $df = n - 1 = 9$:
+$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{17.2 - 15}{3.6 / \sqrt{10}} = \frac{2.2}{1.1384} \approx 1.933$$
+
+**(c)** For $H_a: \mu \ne 15$ (two-tailed), using $T \sim t_9$:
+$$\text{p-value} = 2 \times P(T_9 > 1.933) \approx 2(0.0427) = 0.0853$$
+From the $t$-table: $t_{9,\,0.05} = 1.833 < 1.933 < 2.262 = t_{9,\,0.025}$, so $0.05 < \text{p-value} < 0.10$.
+
+**(d)** Since p-value $\approx 0.085 > \alpha = 0.05$, we **fail to reject $H_0$**. There is not sufficient evidence at the 5% level to conclude that the mean anxiety score differs from 15.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 14</div>
+A botanist claims that a new plant food reduces the mean germination time of seeds below the standard $\mu_0 = 8.0$ days. She plants $n = 12$ seeds treated with the food and records $\bar{x} = 7.0$ days and $s = 1.5$ days. Assume germination times are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The claim is that germination time has *decreased*, so use $H_a: \mu < \mu_0$.
+- $\sigma$ is unknown, so use the $t$ statistic with $df = n - 1 = 11$.
+- Lower-tailed p-value $= P(T_{11} < t^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 8.0$ days $\quad$ vs. $\quad H_a: \mu < 8.0$ days
+
+**(b)** With $df = n - 1 = 11$:
+$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{7.0 - 8.0}{1.5 / \sqrt{12}} = \frac{-1.0}{0.4330} \approx -2.309$$
+
+**(c)** For $H_a: \mu < 8.0$ (lower-tailed), using $T \sim t_{11}$:
+$$\text{p-value} = P(T_{11} < -2.309) \approx 0.0207$$
+From the $t$-table: $t_{11,\,0.025} = 2.201 < 2.309 < 2.718 = t_{11,\,0.01}$, so $0.01 < \text{p-value} < 0.025$.
+
+**(d)** Since p-value $\approx 0.021 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the new plant food reduces mean germination time below 8.0 days.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 15</div>
+A university registrar claims that 40% of students live off campus. A housing researcher believes the true proportion is lower. In a random sample of $n = 200$ students, $x = 65$ reported living off campus.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the sample proportion $\hat{p}$ and the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The researcher believes the proportion is *lower*, so use $H_a: p < p_0$.
+- The test statistic is $z^* = (\hat{p} - p_0) / \sqrt{p_0(1-p_0)/n}$, using $p_0$ in the denominator.
+- Lower-tailed p-value $= P(Z < z^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: p = 0.40 \quad$ vs. $\quad H_a: p < 0.40$
+
+**(b)** Sample proportion:
+$$\hat{p} = \frac{x}{n} = \frac{65}{200} = 0.325$$
+Test statistic:
+$$z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.325 - 0.40}{\sqrt{0.40 \times 0.60 / 200}} = \frac{-0.075}{0.03464} \approx -2.165$$
+
+**(c)** For $H_a: p < 0.40$ (lower-tailed):
+$$\text{p-value} = P(Z < -2.165) \approx 0.0152$$
+
+**(d)** Since p-value $\approx 0.0152 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that fewer than 40% of students live off campus.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 16</div>
+A candy manufacturer claims that 30% of candies in each bag are red. A consumer randomly selects $n = 100$ candies from several bags and finds $x = 26$ that are red. Test whether the true proportion of red candies differs from 30%.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute $\hat{p}$ and the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Differs from" calls for a two-tailed test: $H_a: p \ne p_0$.
+- Two-tailed p-value $= 2 \times P(Z > |z^*|) = 2(1 - P(Z \le |z^*|))$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: p = 0.30 \quad$ vs. $\quad H_a: p \ne 0.30$
+
+**(b)** Sample proportion:
+$$\hat{p} = \frac{26}{100} = 0.26$$
+Test statistic:
+$$z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.26 - 0.30}{\sqrt{0.30 \times 0.70 / 100}} = \frac{-0.04}{0.04583} \approx -0.873$$
+
+**(c)** For $H_a: p \ne 0.30$ (two-tailed):
+$$\text{p-value} = 2 \times P(Z > 0.873) = 2(1 - P(Z \le 0.873)) \approx 2(0.1913) = 0.3827$$
+
+**(d)** Since p-value $\approx 0.383 > \alpha = 0.05$, we **fail to reject $H_0$**. There is not sufficient evidence to conclude that the true proportion of red candies differs from 30%.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 17</div>
+A manufacturer claims fewer than 5% of its electronic components are defective. A quality inspector samples $n = 500$ components and finds $x = 15$ that are defective. Test whether the defective rate is below 5%.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute $\hat{p}$ and the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The claim is that the defect rate is *below* 5%, so use $H_a: p < 0.05$.
+- Lower-tailed p-value $= P(Z < z^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: p = 0.05 \quad$ vs. $\quad H_a: p < 0.05$
+
+**(b)** Sample proportion:
+$$\hat{p} = \frac{15}{500} = 0.030$$
+Test statistic:
+$$z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.030 - 0.05}{\sqrt{0.05 \times 0.95 / 500}} = \frac{-0.020}{0.009747} \approx -2.052$$
+
+**(c)** For $H_a: p < 0.05$ (lower-tailed):
+$$\text{p-value} = P(Z < -2.052) \approx 0.0201$$
+
+**(d)** Since p-value $\approx 0.020 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the true defective rate is below 5%.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 18</div>
+A national survey reports that 60% of households own at least one pet. A researcher randomly selects $n = 150$ households in one city. Of these, $x = 102$ report owning at least one pet. Is the local pet-ownership rate higher than the national rate?
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute $\hat{p}$ and the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Is the local rate *higher*?" calls for an upper-tailed test: $H_a: p > p_0$.
+- Upper-tailed p-value $= P(Z > z^*) = 1 - P(Z \le z^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: p = 0.60 \quad$ vs. $\quad H_a: p > 0.60$
+
+**(b)** Sample proportion:
+$$\hat{p} = \frac{102}{150} = 0.680$$
+Test statistic:
+$$z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.680 - 0.60}{\sqrt{0.60 \times 0.40 / 150}} = \frac{0.080}{0.04000} = 2.000$$
+
+**(c)** For $H_a: p > 0.60$ (upper-tailed):
+$$\text{p-value} = P(Z > 2.000) = 1 - P(Z \le 2.000) \approx 0.0228$$
+
+**(d)** Since p-value $\approx 0.0228 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the local pet-ownership rate exceeds the national figure of 60%.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 19</div>
+A statistics professor conjectures that more than 50% of students pass a particularly challenging midterm. Out of $n = 80$ students, $x = 46$ passed. Test the professor's conjecture.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute $\hat{p}$ and the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "More than 50%" means $H_a: p > 0.50$.
+- Upper-tailed p-value $= P(Z > z^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: p = 0.50 \quad$ vs. $\quad H_a: p > 0.50$
+
+**(b)** Sample proportion:
+$$\hat{p} = \frac{46}{80} = 0.575$$
+Test statistic:
+$$z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.575 - 0.50}{\sqrt{0.50 \times 0.50 / 80}} = \frac{0.075}{0.05590} \approx 1.342$$
+
+**(c)** For $H_a: p > 0.50$ (upper-tailed):
+$$\text{p-value} = P(Z > 1.342) \approx 0.0899$$
+
+**(d)** Since p-value $\approx 0.090 > \alpha = 0.05$, we **fail to reject $H_0$**. There is not sufficient evidence at the 5% level to conclude that more than 50% of students pass the midterm.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 20</div>
+Three independent research scenarios are given below. For **each scenario**: (i) identify the appropriate test (one-sample $z$ test for a mean, one-sample $t$ test for a mean, or one-sample $z$ test for a proportion); (ii) state $H_0$ and $H_a$; (iii) compute the test statistic; (iv) find the p-value; and (v) state a conclusion at the given $\alpha$.
+
+You may use the Distribution Calculator in Section 4.1.5 to find required tail probabilities.
+
+**(a)** A physiotherapist records grip strength for $n = 25$ patients and reports $\bar{x} = 18.8$ kg and $s = 3.5$ kg. The population standard deviation is **unknown**. Historical data show the mean for healthy adults is $\mu_0 = 17.0$ kg. Test whether the sample mean differs from the historical norm at $\alpha = 0.05$.
+
+**(b)** A pollster claims 25% of voters support Candidate X. In a random sample of $n = 200$ voters, $x = 56$ indicate support for Candidate X. Test whether the true support level differs from 25% at $\alpha = 0.05$.
+
+**(c)** A fitness app reports its users average $\mu_0 = 46.0$ minutes of exercise per day. The population standard deviation is **known** to be $\sigma = 6$ minutes. A researcher samples $n = 36$ users and records $\bar{x} = 43.8$ minutes. Test whether the mean is lower than reported at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the **$z$ test for a mean** when $\sigma$ is known.
+- Use the **$t$ test for a mean** when $\sigma$ is unknown and data are approximately normal.
+- Use the **$z$ test for a proportion** when the parameter of interest is a population proportion $p$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a) One-sample $t$ test for a mean** ($\sigma$ unknown)
+
+$H_0: \mu = 17.0$ kg $\quad$ vs. $\quad H_a: \mu \ne 17.0$ kg, with $df = 24$.
+
+$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{18.8 - 17.0}{3.5 / \sqrt{25}} = \frac{1.8}{0.7} \approx 2.571$$
+
+$$\text{p-value} = 2 \times P(T_{24} > 2.571) \approx 0.0167$$
+
+From the $t$-table: $t_{24,\,0.01} = 2.492 < 2.571 < 2.797 = t_{24,\,0.005}$, so $0.01 < \text{p-value} < 0.02$.
+
+Since p-value $< \alpha = 0.05$, **reject $H_0$**. There is sufficient evidence that mean grip strength differs from 17.0 kg.
+
+---
+
+**(b) One-sample $z$ test for a proportion**
+
+$H_0: p = 0.25 \quad$ vs. $\quad H_a: p \ne 0.25$.
+
+$$\hat{p} = \frac{56}{200} = 0.280, \qquad z^* = \frac{0.280 - 0.25}{\sqrt{0.25 \times 0.75 / 200}} = \frac{0.030}{0.03062} \approx 0.980$$
+
+$$\text{p-value} = 2 \times P(Z > 0.980) \approx 2(0.1635) = 0.3271$$
+
+Since p-value $\approx 0.327 > \alpha = 0.05$, **fail to reject $H_0$**. There is not sufficient evidence that support for Candidate X differs from 25%.
+
+---
+
+**(c) One-sample $z$ test for a mean** ($\sigma$ known)
+
+$H_0: \mu = 46.0$ min $\quad$ vs. $\quad H_a: \mu < 46.0$ min.
+
+$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{43.8 - 46.0}{6 / \sqrt{36}} = \frac{-2.2}{1.0} = -2.200$$
+
+$$\text{p-value} = P(Z < -2.200) \approx 0.0139$$
+
+Since p-value $\approx 0.014 < \alpha = 0.05$, **reject $H_0$**. There is sufficient evidence that mean daily exercise time for app users is less than 46.0 minutes.
+</div>
+</details>

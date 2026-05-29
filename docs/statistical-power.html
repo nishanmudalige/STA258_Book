@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-05-26" />
+<meta name="date" content="2026-05-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -501,6 +501,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.3.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:RatioVars"><i class="fa fa-check"></i><b>6.3.3</b> On a Ratio of Variances</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-on-paired-data"><i class="fa fa-check"></i><b>6.4</b> Hypothesis Tests on Paired Data</a></li>
+<li class="chapter" data-level="6.5" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:ch6exercises"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>7</b> Statistical Power</a>
 <ul>
@@ -707,21 +708,21 @@ H_0\!:&amp;\ p = 0.50 \\
 H_a\!:&amp;\ p &gt; 0.50
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="statistical-power.html#cb82-1" tabindex="-1"></a>    <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">1581</span>, <span class="at">n =</span> <span class="dv">4756</span>, <span class="at">p =</span> <span class="fl">0.50</span>,</span>
-<span id="cb82-2"><a href="statistical-power.html#cb82-2" tabindex="-1"></a>              <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb82-3"><a href="statistical-power.html#cb82-3" tabindex="-1"></a></span>
-<span id="cb82-4"><a href="statistical-power.html#cb82-4" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb82-5"><a href="statistical-power.html#cb82-5" tabindex="-1"></a>    <span class="do">##  1-sample proportions test without continuity</span></span>
-<span id="cb82-6"><a href="statistical-power.html#cb82-6" tabindex="-1"></a>    <span class="do">##  correction</span></span>
-<span id="cb82-7"><a href="statistical-power.html#cb82-7" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb82-8"><a href="statistical-power.html#cb82-8" tabindex="-1"></a>    <span class="do">## data:  1581 out of 4756, null probability 0.5</span></span>
-<span id="cb82-9"><a href="statistical-power.html#cb82-9" tabindex="-1"></a>    <span class="do">## X-squared = 534.24, df = 1, p-value = 1</span></span>
-<span id="cb82-10"><a href="statistical-power.html#cb82-10" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true p is greater than 0.5</span></span>
-<span id="cb82-11"><a href="statistical-power.html#cb82-11" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb82-12"><a href="statistical-power.html#cb82-12" tabindex="-1"></a>    <span class="do">##  0.3212845 1.0000000</span></span>
-<span id="cb82-13"><a href="statistical-power.html#cb82-13" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
-<span id="cb82-14"><a href="statistical-power.html#cb82-14" tabindex="-1"></a>    <span class="do">##         p </span></span>
-<span id="cb82-15"><a href="statistical-power.html#cb82-15" tabindex="-1"></a>    <span class="do">## 0.3324222 </span></span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="statistical-power.html#cb87-1" tabindex="-1"></a>    <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">1581</span>, <span class="at">n =</span> <span class="dv">4756</span>, <span class="at">p =</span> <span class="fl">0.50</span>,</span>
+<span id="cb87-2"><a href="statistical-power.html#cb87-2" tabindex="-1"></a>              <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb87-3"><a href="statistical-power.html#cb87-3" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="statistical-power.html#cb87-4" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb87-5"><a href="statistical-power.html#cb87-5" tabindex="-1"></a>    <span class="do">##  1-sample proportions test without continuity</span></span>
+<span id="cb87-6"><a href="statistical-power.html#cb87-6" tabindex="-1"></a>    <span class="do">##  correction</span></span>
+<span id="cb87-7"><a href="statistical-power.html#cb87-7" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb87-8"><a href="statistical-power.html#cb87-8" tabindex="-1"></a>    <span class="do">## data:  1581 out of 4756, null probability 0.5</span></span>
+<span id="cb87-9"><a href="statistical-power.html#cb87-9" tabindex="-1"></a>    <span class="do">## X-squared = 534.24, df = 1, p-value = 1</span></span>
+<span id="cb87-10"><a href="statistical-power.html#cb87-10" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true p is greater than 0.5</span></span>
+<span id="cb87-11"><a href="statistical-power.html#cb87-11" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb87-12"><a href="statistical-power.html#cb87-12" tabindex="-1"></a>    <span class="do">##  0.3212845 1.0000000</span></span>
+<span id="cb87-13"><a href="statistical-power.html#cb87-13" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
+<span id="cb87-14"><a href="statistical-power.html#cb87-14" tabindex="-1"></a>    <span class="do">##         p </span></span>
+<span id="cb87-15"><a href="statistical-power.html#cb87-15" tabindex="-1"></a>    <span class="do">## 0.3324222 </span></span></code></pre></div>
 <p><strong><span class="math inline">\(P\text{-value} &gt; \alpha = 0.05\)</span></strong>; we Fail to Reject <span class="math inline">\(H_0\)</span>.</p>
 <p><strong>This means we could be making a Type II error.</strong>We indicated that
 there is no evidence to conclude that the true proportion of adult
@@ -861,8 +862,8 @@ milk is really 85%.</p>
 &amp;= P(Z &lt; 0.5980) \approx 0.7250
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="statistical-power.html#cb83-1" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="fl">0.5980</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb83-2"><a href="statistical-power.html#cb83-2" tabindex="-1"></a>    <span class="co"># [1] 0.72508</span></span></code></pre></div></li>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="statistical-power.html#cb88-1" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="fl">0.5980</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb88-2"><a href="statistical-power.html#cb88-2" tabindex="-1"></a>    <span class="co"># [1] 0.72508</span></span></code></pre></div></li>
 <li><p>Calculate beta if the percentage of adults who drink milk is really
 85%.</p>
 <p><span class="math display">\[\begin{aligned}
@@ -880,8 +881,8 @@ P\left( \frac{\hat{p} - 0.85}{\sqrt{\frac{0.85(1 - 0.85)}{n}}} &lt; \frac{\hat{p
 \hat{p}^* &amp;= 0.85 + 0.8416 \sqrt{\frac{0.85(1 - 0.85)}{n}}
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="statistical-power.html#cb84-1" tabindex="-1"></a>    <span class="fu">qnorm</span>(<span class="fl">0.80</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb84-2"><a href="statistical-power.html#cb84-2" tabindex="-1"></a>    <span class="co"># [1] 0.8416212</span></span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="statistical-power.html#cb89-1" tabindex="-1"></a>    <span class="fu">qnorm</span>(<span class="fl">0.80</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb89-2"><a href="statistical-power.html#cb89-2" tabindex="-1"></a>    <span class="co"># [1] 0.8416212</span></span></code></pre></div>
 <p><strong>Step 3: Equating expressions for</strong> <span class="math inline">\(\hat{p}^*\)</span> <span class="math display">\[\begin{aligned}
 0.90 - 1.645 \sqrt{\frac{0.90(1 - 0.90)}{n}} &amp;= 0.85 + 0.8416 \sqrt{\frac{0.85(1 - 0.85)}{n}} \\
 0.05 &amp;= \left(1.645 \sqrt{0.90(0.10)} + 0.8416 \sqrt{0.85(0.15)}\right) \cdot \frac{1}{\sqrt{n}} \\
@@ -913,8 +914,8 @@ P(Z &lt; -1.645) &amp;= 0.05 \quad \text{(Z critical value is -1.645)}
 &amp;= P(Z &lt; 0.0182) \approx 0.5072
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="statistical-power.html#cb85-1" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="fl">0.0182</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb85-2"><a href="statistical-power.html#cb85-2" tabindex="-1"></a>    <span class="co"># [1] 0.5072603</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="statistical-power.html#cb90-1" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="fl">0.0182</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb90-2"><a href="statistical-power.html#cb90-2" tabindex="-1"></a>    <span class="co"># [1] 0.5072603</span></span></code></pre></div>
 </div>
 <div class="example">
 <p><span id="exm:unlabeled-div-92" class="example"><strong>Example 7.8  </strong></span>A newsletter reports that 90% of adults drink milk. The researchers are
@@ -940,8 +941,8 @@ P(Z &lt; -1.645) &amp;= 0.05 \quad \text{(Z critical value is -1.645)}
 &amp;\approx 0.3475
 \end{aligned}\]</span></p>
 <p><strong>R Output</strong></p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="statistical-power.html#cb86-1" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">0.3921</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb86-2"><a href="statistical-power.html#cb86-2" tabindex="-1"></a>    <span class="co"># [1] 0.3474922</span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="statistical-power.html#cb91-1" tabindex="-1"></a>    <span class="fu">pnorm</span>(<span class="sc">-</span><span class="fl">0.3921</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb91-2"><a href="statistical-power.html#cb91-2" tabindex="-1"></a>    <span class="co"># [1] 0.3474922</span></span></code></pre></div>
 </div>
 <p>If we keep <span class="math inline">\(\alpha\)</span> at the same size, larger sample sizes increase the
 power of the test because sampling variability (sampling distributions)
