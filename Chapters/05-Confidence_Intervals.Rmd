@@ -2510,10 +2510,9 @@ What is the 92% two-sided $z^*$ critical value?
 Fill in the blank and click **▶ Run** to verify your answer.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Z Critical Value</div>
-<textarea class="webr-editor" rows="4"># 92% two-sided: upper tail probability = ___
-qnorm(___)
-</textarea>
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="3"># 92% two-sided: upper tail probability = ___
+qnorm(___)</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2550,18 +2549,15 @@ Using the dataset `Academic_Performance_A.csv`, consider the variable `Exam_Scor
 What is the **lower bound** of this interval? Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Z Confidence Interval Lower Bound</div>
-<textarea class="webr-editor" rows="12">df <- read.csv("Academic_Performance_A.csv")
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="9">df <- read.csv("Academic_Performance_A.csv")
 x <- df$Exam_Score
-
 xbar  <- ___
 n     <- ___
 sigma <- ___
 z     <- ___
-
 lower <- ___
-lower
-</textarea>
+lower</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2607,14 +2603,12 @@ Using the dataset `Academic_Performance_A.csv`, consider the variable `Final_Exa
 Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — t Critical Value</div>
-<textarea class="webr-editor" rows="8">df <- read.csv("Academic_Performance_A.csv")
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">df <- read.csv("Academic_Performance_A.csv")
 x <- df$Final_Exam_Score
-
 n     <- ___
 tstar <- qt(___, df = ___)
-tstar
-</textarea>
+tstar</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2656,18 +2650,15 @@ Using the dataset `Academic_Performance_A.csv`, construct a 95% $t$-confidence i
 What is the **lower bound** of this interval? Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — t Confidence Interval Lower Bound</div>
-<textarea class="webr-editor" rows="12">df <- read.csv("Academic_Performance_A.csv")
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="9">df <- read.csv("Academic_Performance_A.csv")
 x <- df$Final_Exam_Score
-
 xbar  <- ___
 s     <- ___
 n     <- ___
 tstar <- qt(___, df = ___)
-
 lower <- ___
-lower
-</textarea>
+lower</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2713,17 +2704,14 @@ Using the dataset `Academic_Performance_A.csv`, construct a 95% $z$-confidence i
 What is the **lower bound** of this interval? Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Proportion CI Lower Bound</div>
-<textarea class="webr-editor" rows="11">df <- read.csv("Academic_Performance_A.csv")
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="8">df <- read.csv("Academic_Performance_A.csv")
 x <- df$Admitted
-
 n    <- ___
 phat <- ___
 z    <- ___
-
 lower <- ___
-lower
-</textarea>
+lower</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2768,15 +2756,12 @@ Using the dataset `plant_yield.csv`, use `boxplot()` to compare the spreads of f
 Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Two-Sample t CI (Unequal Variances)</div>
-<textarea class="webr-editor" rows="10">yield_df <- read.csv("plant_yield.csv")
-
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">yield_df <- read.csv("plant_yield.csv")
 boxplot(___, ___)
-
 t.test(___, ___,
        var.equal  = ___,
-       conf.level = ___)
-</textarea>
+       conf.level = ___)</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2820,15 +2805,12 @@ Using the dataset `braking_dist.csv`, compute a 95% confidence interval for the 
 Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Ratio of Variances CI</div>
-<textarea class="webr-editor" rows="10">brake_df <- read.csv("braking_dist.csv")
-
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">brake_df <- read.csv("braking_dist.csv")
 x <- brake_df$___[brake_df$___ == "X"]
 y <- brake_df$___[brake_df$___ == "Y"]
-
 var.test(___, ___,
-         conf.level = ___)
-</textarea>
+         conf.level = ___)</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2877,14 +2859,12 @@ Compute a two-sided **90% paired $t$-confidence interval** for the mean differen
 Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Paired t Confidence Interval</div>
-<textarea class="webr-editor" rows="9">A <- c(___)
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">A <- c(___)
 B <- c(___)
-
 t.test(___, ___,
        paired     = ___,
-       conf.level = ___)
-</textarea>
+       conf.level = ___)</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>

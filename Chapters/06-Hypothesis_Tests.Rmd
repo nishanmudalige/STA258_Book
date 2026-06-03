@@ -3260,20 +3260,17 @@ Test $H_0: \mu = 355$ vs. $H_a: \mu < 355$ at $\alpha = 0.05$.
 (c) Based on your p-value, state a conclusion at $\alpha = 0.05$.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — One-Sample z Test (Known σ)</div>
-<textarea class="webr-editor" rows="13">n     <- 64
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="11">n     <- 64
 xbar  <- 353.2
 mu0   <- 355
 sigma <- 4
-
 # (a) Compute the z test statistic
 z_star <- (xbar - mu0) / (sigma / sqrt(n))
 z_star
-
 # (b) Compute the p-value for Ha: mu < mu0  (lower-tailed)
 p_value <- pnorm(___)
-p_value
-</textarea>
+p_value</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -3332,18 +3329,14 @@ For a one-sample $z$ test, the test statistic is $z^* = 1.75$. Fill in the corre
 (c) $H_a: \mu \neq \mu_0$ (two-tailed)
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — P-Value Calculations for Three Alternatives</div>
-<textarea class="webr-editor" rows="10">z_star <- 1.75
-
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="8">z_star <- 1.75
 # (a) Ha: mu > mu0   (upper-tailed)
 p_value_a <- ___
-
 # (b) Ha: mu < mu0   (lower-tailed)
 p_value_b <- ___
-
 # (c) Ha: mu != mu0  (two-tailed)
-p_value_c <- ___
-</textarea>
+p_value_c <- ___</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -3406,9 +3399,8 @@ $$1850,\ 1920,\ 1780,\ 1960,\ 1840,\ 1990,\ 1870,\ 1930,\ 1800,\ 1910$$
 Assume calorie intake is approximately normally distributed. Use `t.test()` to test $H_0: \mu = 2000$ vs. $H_a: \mu < 2000$ at $\alpha = 0.05$. Fill in the correct values for `mu` and `alternative`.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — One-Sample t Test (Unknown σ)</div>
+<div class="webr-exercise-header">Exercise</div>
 <textarea class="webr-editor" rows="6">calories <- c(1850, 1920, 1780, 1960, 1840, 1990, 1870, 1930, 1800, 1910)
-
 # Run a one-sample t-test
 # H0: mu = 2000  vs  Ha: mu < 2000
 result <- t.test(calories, mu = ___, alternative = "___")
@@ -3468,22 +3460,18 @@ A student newspaper reports that only 25% of UTM students hold part-time jobs. A
 (c) Compute the p-value using `pnorm()`.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — One-Sample z Test for a Proportion</div>
-<textarea class="webr-editor" rows="14">x  <- 42
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="12">x  <- 42
 n  <- 120
 p0 <- 0.25
-
 # (a) Compute sample proportion
 phat <- ___ / ___
-
 # (b) Compute z test statistic
 z_star <- (phat - p0) / sqrt(p0 * (1 - p0) / n)
 z_star
-
 # (c) Compute p-value for Ha: p > p0  (upper-tailed)
 p_value <- 1 - pnorm(___)
-p_value
-</textarea>
+p_value</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -3546,10 +3534,9 @@ A national health study reports that 20% of adults have high blood pressure. A l
 Use `prop.test()` with `correct = FALSE`. Fill in the arguments, then state a conclusion by comparing the p-value to $\alpha = 0.05$.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — One-Sample Proportion Test with prop.test()</div>
+<div class="webr-exercise-header">Exercise</div>
 <textarea class="webr-editor" rows="6"># One-sample proportion test
 # H0: p = 0.20  vs  Ha: p != 0.20
-
 result <- prop.test(x = ___, n = ___, p = ___,
                     alternative = "___", correct = ___)
 result</textarea>

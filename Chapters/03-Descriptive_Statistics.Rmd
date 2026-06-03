@@ -1414,20 +1414,12 @@ $$2,\ 3,\ 3,\ 4,\ 4,\ 5,\ 5,\ 5,\ 6,\ 8$$
 (e) (2 marks) Is the mean larger than the median? Briefly explain why this may happen.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Study Hours</div>
-<textarea class="webr-editor" rows="9">x <- c(2, 3, 3, 4, 4, 5, 5, 5, 6, 8)
-
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">x <- c(2, 3, 3, 4, 4, 5, 5, 5, 6, 8)
 # (a) Compute the mean
-
-
 # (b) Find the median
-
-
 # (c) Find the mode using table()
-
-
-# (d) Compute the range
-</textarea>
+# (d) Compute the range</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -1594,17 +1586,11 @@ Show your work using a table with columns $x_i$, $(x_i - \bar{x})$, and $(x_i - 
 (c) (1 mark) Calculate the **sample standard deviation** $s$.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Sample Variance & Standard Deviation</div>
-<textarea class="webr-editor" rows="8">x <- c(2, 4, 4, 6, 6, 8)
-
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="5">x <- c(2, 4, 4, 6, 6, 8)
 # Compute the sample mean
-
-
 # Compute the sample variance s²
-
-
-# Compute the sample standard deviation s
-</textarea>
+# Compute the sample standard deviation s</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -1734,15 +1720,11 @@ Two groups of students were given the same statistics quiz (out of 20). Their sc
 (c) (2 marks) Both groups have the same mean. What does this tell you about the **usefulness of the mean alone** as a summary of a dataset?
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Comparing Two Groups</div>
-<textarea class="webr-editor" rows="10">groupA <- c(14, 15, 14, 16, 15, 14, 16, 15, 15, 16)
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="5">groupA <- c(14, 15, 14, 16, 15, 14, 16, 15, 15, 16)
 groupB <- c( 8, 12, 15, 19, 18, 11, 17, 20, 20, 10)
-
 # Compute mean and SD for each group
-
-
-# Create a side-by-side boxplot to compare the spread
-</textarea>
+# Create a side-by-side boxplot to compare the spread</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -1844,20 +1826,12 @@ $$3,\ 4,\ 5,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10,\ 12,\ 13,\ 30$$
 (d) (2 marks) Use the $1.5 \times \text{IQR}$ rule to determine whether there are any **outliers**.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — IQR and Outlier Detection</div>
-<textarea class="webr-editor" rows="12">x <- c(3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30)
-
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">x <- c(3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30)
 # Compute Q1, Q3, and IQR
-
-
 # Compute lower and upper cutoffs
-
-
 # Identify any outliers
-
-
-# Create a horizontal boxplot
-</textarea>
+# Create a horizontal boxplot</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2248,18 +2222,12 @@ $$2,\ 3,\ 1,\ 5,\ 4,\ 3,\ 6,\ 2,\ 4,\ 5$$
 (c) Suppose one student actually drinks **20** cups per week, not 2. Create a corrected vector and recompute the mean. How much does $\bar{x}$ change?
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Mean</div>
-<textarea class="webr-editor" rows="9">coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
-
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
 # (a) Compute the sample mean
-
-
 # (b) Verify using the formula sum / length
-
-
 # (c) Replace the first 2 with 20 and recompute
-coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)
-</textarea>
+coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2320,19 +2288,12 @@ $$2,\ 3,\ 1,\ 5,\ 4,\ 3,\ 6,\ 2,\ 4,\ 5$$
 (c) Replace the first 2 with 20 to make `coffee_new`. Compare `mean()` and `median()` before and after. Which measure changes less?
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Median</div>
-<textarea class="webr-editor" rows="10">coffee     <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">coffee     <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
 coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)
-
 # (a) Median of original data
-
-
 # (b) Sort to see the order
-
-
-# (c) Compare mean and median — before and after the outlier
-
-</textarea>
+# (c) Compare mean and median — before and after the outlier</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2402,19 +2363,12 @@ $$2,\ 3,\ 1,\ 5,\ 4,\ 3,\ 6,\ 2,\ 4,\ 5$$
 (c) Would the outlier value 20 (from Q19/Q20) be flagged by the IQR rule?
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Summary Statistics and IQR</div>
-<textarea class="webr-editor" rows="11">coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
-
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
 # (a) Six-number summary
-
-
 # (b) IQR and outlier cutoffs
 iqr <- IQR(coffee)
-
-
-# (c) Is 20 an outlier? Compare to the upper cutoff
-
-</textarea>
+# (c) Is 20 an outlier? Compare to the upper cutoff</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2478,16 +2432,11 @@ Two groups of students took the same quiz (out of 100). Their scores are:
 (c) Add 5 to every score in Group A: `group_a + 5`. Recompute `var()` and `sd()`. Does the result change? Explain why or why not.
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Variance and Standard Deviation</div>
-<textarea class="webr-editor" rows="11">group_a <- c(78, 79, 80, 80, 81, 82, 80)
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="5">group_a <- c(78, 79, 80, 80, 81, 82, 80)
 group_b <- c(60, 70, 80, 80, 90, 100, 80)
-
 # (a) Mean, variance, SD for each group
-
-
-# (c) Add 5 to group_a — does variance change?
-
-</textarea>
+# (c) Add 5 to group_a — does variance change?</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>
@@ -2553,17 +2502,12 @@ $$40,\ 61,\ 65,\ 68,\ 70,\ 72,\ 74,\ 75,\ 76,\ 78,\ 79,\ 80,\ 82,\ 84,\ 85,\ 87,
 (b) Create a **boxplot** using `boxplot(score)`. From the plot, identify the approximate median. Is there an outlier dot? Does this match what you saw in the histogram?
 
 <div class="webr-exercise">
-<div class="webr-exercise-header">Interactive R — Histogram and Boxplot</div>
-<textarea class="webr-editor" rows="10">score <- c(40, 61, 65, 68, 70, 72, 74, 75,
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">score <- c(40, 61, 65, 68, 70, 72, 74, 75,
            76, 78, 79, 80, 82, 84, 85, 87,
            88, 90, 92, 97)
-
 # (a) Create a histogram
-
-
-# (b) Create a boxplot
-
-</textarea>
+# (b) Create a boxplot</textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
   <button class="webr-reset-btn">↺ Reset</button>

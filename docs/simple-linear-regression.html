@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-05-31" />
+<meta name="date" content="2026-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,113 +69,151 @@
 <!-- Loaded via _output.yml in_header for bookdown::gitbook -->
 
 <style>
-.webr-status-bar {
-  background: #fff8e1;
-  border: 1px solid #ffe082;
-  border-radius: 4px;
-  padding: 7px 14px;
-  margin: 10px 0 6px 0;
-  font-size: 0.85em;
-  color: #5d4037;
+/* ── Loading indicator ── */
+#webr-loading-indicator {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid #dee2e6;
+  background-color: #f8f8f8;
+  border-top-left-radius: 5px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #212529;
   font-family: sans-serif;
 }
-.webr-status-bar.webr-ready {
-  background: #e8f5e9;
-  border-color: #a5d6a7;
-  color: #2e7d32;
-}
-.webr-status-bar.webr-error {
-  background: #ffebee;
-  border-color: #ef9a9a;
-  color: #b71c1c;
+#webr-loading-indicator.webr-ready { display: none; }
+#webr-loading-indicator.webr-error {
+  background-color: #f8d7da;
+  border-color: #f1aeb5;
+  color: #58151c;
 }
 
+/* ── Exercise card ── */
 .webr-exercise {
-  margin: 12px 0 4px 0;
-  border: 1px solid #b3d4fb;
-  border-radius: 6px;
+  margin: 0.5rem 0;
+  border: 1px solid rgba(0,0,0,0.175);
+  border-radius: 0.375rem;
   overflow: hidden;
   font-family: sans-serif;
-  background: #f5faff;
+  font-size: 0.85em;
+  background: #fff;
 }
+
+/* ── Card header ── */
 .webr-exercise-header {
-  background: #1565c0;
-  color: #fff;
-  padding: 5px 12px;
-  font-size: 0.78em;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid rgba(0,0,0,0.175);
+  font-weight: 600;
+  color: #212529;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
 }
+
+.webr-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+/* ── Run button ── */
+.webr-run-btn {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8em;
+  color: #fff;
+  background-color: #0d6efd;
+  border: 1px solid #0d6efd;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-family: sans-serif;
+  white-space: nowrap;
+  transition: background-color 0.15s;
+}
+.webr-run-btn:hover:not(:disabled) { background-color: #0b5ed7; }
+.webr-run-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* ── Reset button ── */
+.webr-reset-btn {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8em;
+  color: #6c757d;
+  background-color: transparent;
+  border: 1px solid #6c757d;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-family: sans-serif;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s;
+}
+.webr-reset-btn:hover { background-color: #6c757d; color: #fff; }
+
+/* ── Textarea code editor ── */
 .webr-editor {
   display: block;
   width: 100%;
-  min-height: 160px;
-  padding: 10px 12px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.88em;
+  box-sizing: border-box;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
   line-height: 1.5;
-  border: none;
-  border-bottom: 1px solid #b3d4fb;
+  padding: 0.4rem 0.6rem;
   background: #fff;
+  color: #212529;
+  border: none;
+  border-bottom: 1px solid #dee2e6;
   resize: vertical;
   outline: none;
-  box-sizing: border-box;
-  color: #1a1a2e;
+  overflow: auto;
 }
-.webr-controls {
-  padding: 6px 12px;
-  background: #e8f1fd;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.webr-editor:focus {
+  background: #fafcff;
 }
-.webr-run-btn {
-  background: #1565c0;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 18px;
-  cursor: pointer;
-  font-size: 0.85em;
-  font-weight: 700;
-  transition: background 0.15s;
-}
-.webr-run-btn:hover:not(:disabled) { background: #0d47a1; }
-.webr-run-btn:disabled { background: #90a4ae; cursor: not-allowed; }
-.webr-reset-btn {
-  background: none;
-  border: 1px solid #90a4ae;
-  border-radius: 4px;
-  padding: 5px 14px;
-  cursor: pointer;
-  font-size: 0.83em;
-  color: #546e7a;
-  transition: background 0.12s;
-}
-.webr-reset-btn:hover { background: #eceff1; }
+
+/* ── Hide original controls (moved to header by JS) ── */
+.webr-controls { display: none; }
+
+/* ── Output area ── */
 .webr-output-area {
-  padding: 10px 14px;
-  background: #1e1e2e;
-  color: #cdd6f4;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.85em;
-  line-height: 1.6;
+  padding: 0.3rem 0.6rem;
+  background: #fff;
+  color: #212529;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;
+  border-top: 1px solid #dee2e6;
   display: none;
 }
 .webr-output-area.webr-has-output { display: block; }
-.webr-output-area.webr-error-output { color: #f38ba8; }
+.webr-output-area.webr-error-output { color: #ad0000; background: #fff8f8; }
+
+/* ── Plot area ── */
 .webr-canvas-area {
-  padding: 10px;
+  padding: 0.5rem;
   background: #fff;
   text-align: center;
   display: none;
-  border-top: 1px solid #b3d4fb;
+  border-top: 1px solid #dee2e6;
 }
 .webr-canvas-area.webr-has-plot { display: block; }
-.webr-canvas-area canvas { max-width: 100%; border: 1px solid #e0e0e0; border-radius: 3px; }
+.webr-canvas-area canvas {
+  max-width: 100%;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
 </style>
+
+<div id="webr-loading-indicator">
+  <span id="webr-loading-text">⏳ Loading R engine…</span>
+</div>
 
 <script type="module">
 import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
@@ -183,65 +221,85 @@ import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
 let webR;
 let webRReady = false;
 
-function setGlobalStatus(msg, cssClass) {
-  document.querySelectorAll('.webr-status-bar').forEach(el => {
-    el.textContent = msg;
-    el.className = 'webr-status-bar ' + (cssClass || '');
-  });
+const indicator     = document.getElementById('webr-loading-indicator');
+const indicatorText = document.getElementById('webr-loading-text');
+
+function setStatus(msg, cssClass) {
+  if (!indicator) return;
+  indicatorText.textContent = msg;
+  indicator.className = cssClass || '';
 }
 
 async function initWebR() {
   try {
     webR = new WebR({ interactive: false });
     await webR.init();
-    setGlobalStatus('📦 Installing ggplot2… (first visit only, ~30 s)', '');
+    setStatus('📦 Installing packages… (first visit only)', '');
     await webR.installPackages(['ggplot2']);
     await webR.evalRVoid('suppressMessages(library(ggplot2))');
     webRReady = true;
-    setGlobalStatus('✅ R is ready — click ▶ Run to execute code', 'webr-ready');
-    document.querySelectorAll('.webr-run-btn').forEach(btn => { btn.disabled = false; });
+    setStatus('', 'webr-ready');
+    document.querySelectorAll('.webr-run-btn').forEach(btn => {
+      btn.disabled = false;
+      btn.textContent = '▶ Run';
+    });
   } catch (e) {
-    setGlobalStatus('❌ Failed to load R engine: ' + e.message, 'webr-error');
+    setStatus('❌ Failed to load R: ' + e.message, 'webr-error');
   }
 }
 
 function setupCell(cell) {
-  const editor    = cell.querySelector('.webr-editor');
+  const textarea  = cell.querySelector('.webr-editor');
   const runBtn    = cell.querySelector('.webr-run-btn');
   const resetBtn  = cell.querySelector('.webr-reset-btn');
   const outArea   = cell.querySelector('.webr-output-area');
   const canvasDiv = cell.querySelector('.webr-canvas-area');
   const canvas    = canvasDiv ? canvasDiv.querySelector('canvas') : null;
-  const origCode  = editor.value;
+  const header    = cell.querySelector('.webr-exercise-header');
+  const origCode  = textarea.value;
 
+  // Auto-size textarea to content
+  function fitHeight() {
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  }
+  fitHeight();
+  textarea.addEventListener('input', fitHeight);
+
+  // Move buttons into header
+  const btnGroup = document.createElement('div');
+  btnGroup.className = 'webr-btn-group';
+  btnGroup.appendChild(runBtn);
+  btnGroup.appendChild(resetBtn);
+  header.appendChild(btnGroup);
+
+  // Reset
   resetBtn.addEventListener('click', () => {
-    editor.value = origCode;
+    textarea.value = origCode;
+    fitHeight();
     outArea.textContent = '';
     outArea.className = 'webr-output-area';
     if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
   });
 
+  // Run
   runBtn.addEventListener('click', async () => {
     if (!webRReady) return;
     runBtn.disabled = true;
-    runBtn.textContent = '⏳ Running…';
+    runBtn.textContent = '⏳';
     outArea.textContent = '';
     outArea.className = 'webr-output-area';
     if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
 
     try {
-      const code = editor.value;
+      const code = textarea.value;
       const shelter = await new webR.Shelter();
-
       const captureOpts = { withAutoprint: true };
-      if (canvas) {
-        captureOpts.captureGraphics = { width: 504, height: 378, bg: 'white' };
-      }
+      if (canvas) captureOpts.captureGraphics = { width: 504, height: 378, bg: 'white' };
 
       const result = await shelter.captureR(code, captureOpts);
       await shelter.purge();
 
-      // Text output
       const lines = result.output
         .filter(x => x.type === 'stdout' || x.type === 'message')
         .map(x => x.data)
@@ -253,18 +311,13 @@ function setupCell(cell) {
         outArea.classList.add('webr-has-output');
       }
 
-      // Plot output
       if (canvas && result.images && result.images.length > 0) {
         canvasDiv.classList.add('webr-has-plot');
         const ctx = canvas.getContext('2d');
-        canvas.width  = 504;
-        canvas.height = 378;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (const img of result.images) {
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        }
+        canvas.width = 504; canvas.height = 378;
+        ctx.clearRect(0, 0, 504, 378);
+        for (const img of result.images) ctx.drawImage(img, 0, 0, 504, 378);
       }
-
     } catch (e) {
       outArea.textContent = 'Error: ' + e.message;
       outArea.classList.add('webr-has-output', 'webr-error-output');
@@ -275,7 +328,6 @@ function setupCell(cell) {
   });
 }
 
-// Wait for DOM then initialise
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.webr-exercise').forEach(setupCell);
   initWebR();
@@ -284,8 +336,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -295,7 +348,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -357,7 +410,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -635,7 +687,7 @@ where <span class="math inline">\(\beta_0\)</span> and <span class="math inline"
 for independent variable <span class="math inline">\(x\)</span> and dependent variable <span class="math inline">\(y\)</span>.
 Suppose we plot these points on coordinate axes (See Figure <a href="simple-linear-regression.html#fig:PlotPointsOnly">9.1</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:PlotPointsOnly"></span>
-<img src="Book_Files/figure-html/PlotPointsOnly-1.png" alt="Example of points plotted on coordinate axes." width="672" />
+<img src="Book_files/figure-html/PlotPointsOnly-1.png" alt="Example of points plotted on coordinate axes." width="672" />
 <p class="caption">
 Figure 9.1: Example of points plotted on coordinate axes.
 </p>
@@ -647,14 +699,14 @@ The line of best fit will be of the form
 \]</span>
 where <span class="math inline">\(\hat{y}\)</span> represents all fitted points on the line, <span class="math inline">\(x\)</span> is a value we can input into calculate a predicted <span class="math inline">\(\hat{y}\)</span>, <span class="math inline">\(\hat{\beta}_0\)</span> is the estimate of the intercept and <span class="math inline">\(\hat{\beta}_1\)</span> is the estimate of the slope (See Figure <a href="simple-linear-regression.html#fig:PlotPointsLine">9.2</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:PlotPointsLine"></span>
-<img src="Book_Files/figure-html/PlotPointsLine-1.png" alt="The line of best fit has now been superimposed on the points in Figure \@ref(fig:PlotPointsOnly)." width="672" />
+<img src="Book_files/figure-html/PlotPointsLine-1.png" alt="The line of best fit has now been superimposed on the points in Figure \@ref(fig:PlotPointsOnly)." width="672" />
 <p class="caption">
 Figure 9.2: The line of best fit has now been superimposed on the points in Figure <a href="simple-linear-regression.html#fig:PlotPointsOnly">9.1</a>.
 </p>
 </div>
 <p>Recall in Section <a href="simple-linear-regression.html#sec:LeastSquaresMethod">9.1.1</a> that we discussed that the technique used to determine the line of best fit is to minimize the sum the squared distances between the observed <span class="math inline">\(y_{i}\)</span>’s from our data and the fitter <span class="math inline">\(\hat{y}_{i}\)</span>’s which are predicted from the line (See Figure <a href="simple-linear-regression.html#fig:PlotPtsLnRes">9.3</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:PlotPtsLnRes"></span>
-<img src="Book_Files/figure-html/PlotPtsLnRes-1.png" alt="The distances between each observed $y_i$ and fitted $\hat{y}_{i}$ from Figure \@ref(fig:PlotPointsLine)." width="672" />
+<img src="Book_files/figure-html/PlotPtsLnRes-1.png" alt="The distances between each observed $y_i$ and fitted $\hat{y}_{i}$ from Figure \@ref(fig:PlotPointsLine)." width="672" />
 <p class="caption">
 Figure 9.3: The distances between each observed <span class="math inline">\(y_i\)</span> and fitted <span class="math inline">\(\hat{y}_{i}\)</span> from Figure <a href="simple-linear-regression.html#fig:PlotPointsLine">9.2</a>.
 </p>
@@ -983,8 +1035,8 @@ variables.</p>
 strong positive correlation (See Figure <a href="simple-linear-regression.html#fig:examplePositiveCorr">9.4</a>).</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:examplePositiveCorr"></span>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-131375a460208ff95651" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-131375a460208ff95651">{"x":{"visdat":{"10667ff0e18d":["function () ","plotlyVisDat"]},"cur_data":"10667ff0e18d","attrs":{"10667ff0e18d":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Positive Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[4,4.2068965517241379,4.4137931034482758,4.6206896551724137,4.8275862068965516,5.0344827586206895,5.2413793103448274,5.4482758620689653,5.6551724137931032,5.8620689655172411,6.068965517241379,6.2758620689655178,6.4827586206896548,6.6896551724137936,6.8965517241379306,7.1034482758620694,7.3103448275862064,7.5172413793103452,7.7241379310344822,7.931034482758621,8.137931034482758,8.3448275862068968,8.5517241379310356,8.7586206896551726,8.9655172413793096,9.1724137931034484,9.3793103448275872,9.5862068965517242,9.7931034482758612,10],"y":[67.197621767238942,69.883595311204303,79.862507087986998,73.455990232984945,74.784369710287493,83.747738727519845,78.511477581670135,70.916073137312154,74.841597809497898,77.082034977086423,86.465236573404198,83.178379480114401,84.417650356418534,84.001689441794568,81.703552946919274,94.451807063325745,89.040976529077227,77.753121113403537,92.127469162990835,87.291215375153442,85.350536642479568,90.634263357742995,87.628598448118979,90.148647301820176,91.702389867650254,87.428602411805173,101.08548694661056,98.697900071941191,93.274832556319566,106.26907460534963],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-1cdf55b3391749224c66" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1cdf55b3391749224c66">{"x":{"visdat":{"89bd58288055":["function () ","plotlyVisDat"]},"cur_data":"89bd58288055","attrs":{"89bd58288055":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Positive Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[4,4.2068965517241379,4.4137931034482758,4.6206896551724137,4.8275862068965516,5.0344827586206895,5.2413793103448274,5.4482758620689653,5.6551724137931032,5.8620689655172411,6.068965517241379,6.2758620689655178,6.4827586206896548,6.6896551724137936,6.8965517241379306,7.1034482758620694,7.3103448275862064,7.5172413793103452,7.7241379310344822,7.931034482758621,8.137931034482758,8.3448275862068968,8.5517241379310356,8.7586206896551726,8.9655172413793096,9.1724137931034484,9.3793103448275872,9.5862068965517242,9.7931034482758612,10],"y":[67.197621767238942,69.883595311204303,79.862507087986998,73.455990232984945,74.784369710287493,83.747738727519845,78.511477581670135,70.916073137312154,74.841597809497898,77.082034977086423,86.465236573404198,83.178379480114401,84.417650356418534,84.001689441794568,81.703552946919274,94.451807063325745,89.040976529077227,77.753121113403537,92.127469162990835,87.291215375153442,85.350536642479568,90.634263357742995,87.628598448118979,90.148647301820176,91.702389867650254,87.428602411805173,101.08548694661056,98.697900071941191,93.274832556319566,106.26907460534963],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 9.4: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx +1\)</span>).
 </p>
@@ -994,8 +1046,8 @@ Figure 9.4: An illustration of strong negative correlation (<span class="math in
 strong negative correlation. (See figure <a href="simple-linear-regression.html#fig:exampleNegaticeCorr">9.5</a>)</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:exampleNegaticeCorr"></span>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-b24b285dc855c9443a7a" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-b24b285dc855c9443a7a">{"x":{"visdat":{"106672907598":["function () ","plotlyVisDat"]},"cur_data":"106672907598","attrs":{"106672907598":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data Points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Negative Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[40,42.068965517241381,44.137931034482762,46.206896551724142,48.275862068965516,50.344827586206897,52.413793103448278,54.482758620689658,56.551724137931032,58.620689655172413,60.689655172413794,62.758620689655174,64.827586206896555,66.896551724137936,68.965517241379317,71.034482758620697,73.103448275862064,75.172413793103459,77.241379310344826,79.310344827586206,81.379310344827587,83.448275862068968,85.517241379310349,87.58620689655173,89.65517241379311,91.724137931034477,93.793103448275872,95.862068965517238,97.931034482758633,100],"y":[2.3879048706895576,2.3310136824312124,2.5773666628298249,2.1782807827625268,2.0972861184607607,2.3293143672396699,2.0000779780399456,1.5824307910533766,1.6309221125481241,1.6167499589211847,1.892543632215165,1.665369358818066,1.6227074816081719,1.516981904013766,1.338831773049185,1.7651496176518777,1.4674946239477347,0.93695179803187023,1.4349140374555942,1.1663112836718046,1.0152488181246648,1.1547521245063574,0.96415394904822938,0.99595403760633883,0.99037676181476386,0.7528869017612918,1.2337338794871402,1.0738400911932022,0.79349937316099073,1.2507629842139854],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data Points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-d50b25c171ae19dae2fa" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-d50b25c171ae19dae2fa">{"x":{"visdat":{"89bd4fedc540":["function () ","plotlyVisDat"]},"cur_data":"89bd4fedc540","attrs":{"89bd4fedc540":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data Points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Negative Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[40,42.068965517241381,44.137931034482762,46.206896551724142,48.275862068965516,50.344827586206897,52.413793103448278,54.482758620689658,56.551724137931032,58.620689655172413,60.689655172413794,62.758620689655174,64.827586206896555,66.896551724137936,68.965517241379317,71.034482758620697,73.103448275862064,75.172413793103459,77.241379310344826,79.310344827586206,81.379310344827587,83.448275862068968,85.517241379310349,87.58620689655173,89.65517241379311,91.724137931034477,93.793103448275872,95.862068965517238,97.931034482758633,100],"y":[2.3879048706895576,2.3310136824312124,2.5773666628298249,2.1782807827625268,2.0972861184607607,2.3293143672396699,2.0000779780399456,1.5824307910533766,1.6309221125481241,1.6167499589211847,1.892543632215165,1.665369358818066,1.6227074816081719,1.516981904013766,1.338831773049185,1.7651496176518777,1.4674946239477347,0.93695179803187023,1.4349140374555942,1.1663112836718046,1.0152488181246648,1.1547521245063574,0.96415394904822938,0.99595403760633883,0.99037676181476386,0.7528869017612918,1.2337338794871402,1.0738400911932022,0.79349937316099073,1.2507629842139854],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data Points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 9.5: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx -1\)</span>).
 </p>
@@ -1007,8 +1059,8 @@ correlation between the two random variables. Note that if
 but other relationship may exist (See Figure <a href="simple-linear-regression.html#fig:exampleNoCorr">9.6</a>).</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:exampleNoCorr"></span>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-7df1b2d26bcc9f5552b0" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-7df1b2d26bcc9f5552b0">{"x":{"visdat":{"106674d0dd408":["function () ","plotlyVisDat"]},"cur_data":"106674d0dd408","attrs":{"106674d0dd408":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of No Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,0.27586206896551724,0.55172413793103448,0.82758620689655171,1.103448275862069,1.3793103448275863,1.6551724137931034,1.9310344827586206,2.2068965517241379,2.4827586206896552,2.7586206896551726,3.0344827586206895,3.3103448275862069,3.5862068965517242,3.8620689655172411,4.1379310344827589,4.4137931034482758,4.6896551724137927,4.9655172413793105,5.2413793103448274,5.5172413793103452,5.7931034482758621,6.068965517241379,6.3448275862068968,6.6206896551724137,6.8965517241379306,7.1724137931034484,7.4482758620689653,7.7241379310344822,8],"y":[94.395243534477871,97.698225105167197,115.58708314149123,100.70508391424576,101.29287735160946,117.15064986883282,104.60916205989203,87.349387653934656,93.131471481064736,95.543380299000418,112.24081797439462,103.59813827057364,104.00771450594053,101.1068271594512,94.441588652459245,117.86913136803078,104.97850478229239,80.333828433703616,107.01355901563686,95.272085922720663,89.321762940131549,97.820250853417051,89.739955516927608,92.711087707088595,93.749607321507426,83.133066892575869,108.37787044494524,101.53373117836516,88.618630629880528,112.53814921069926],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-5c1c5bfe020f28d5b160" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-5c1c5bfe020f28d5b160">{"x":{"visdat":{"89bd3e38390f":["function () ","plotlyVisDat"]},"cur_data":"89bd3e38390f","attrs":{"89bd3e38390f":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of No Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,0.27586206896551724,0.55172413793103448,0.82758620689655171,1.103448275862069,1.3793103448275863,1.6551724137931034,1.9310344827586206,2.2068965517241379,2.4827586206896552,2.7586206896551726,3.0344827586206895,3.3103448275862069,3.5862068965517242,3.8620689655172411,4.1379310344827589,4.4137931034482758,4.6896551724137927,4.9655172413793105,5.2413793103448274,5.5172413793103452,5.7931034482758621,6.068965517241379,6.3448275862068968,6.6206896551724137,6.8965517241379306,7.1724137931034484,7.4482758620689653,7.7241379310344822,8],"y":[94.395243534477871,97.698225105167197,115.58708314149123,100.70508391424576,101.29287735160946,117.15064986883282,104.60916205989203,87.349387653934656,93.131471481064736,95.543380299000418,112.24081797439462,103.59813827057364,104.00771450594053,101.1068271594512,94.441588652459245,117.86913136803078,104.97850478229239,80.333828433703616,107.01355901563686,95.272085922720663,89.321762940131549,97.820250853417051,89.739955516927608,92.711087707088595,93.749607321507426,83.133066892575869,108.37787044494524,101.53373117836516,88.618630629880528,112.53814921069926],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 9.6: An illustration of no correlation (<span class="math inline">\(r_{xy} \approx 0\)</span>).
 </p>
@@ -1129,7 +1181,7 @@ A small SSE indicates a tight fit of the model to the data.</p>
 <p>The SSE is the variation which is not explained by the model.
 It is illustrated in Figure <a href="simple-linear-regression.html#fig:SSEregression">9.7</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:SSEregression"></span>
-<img src="Book_Files/figure-html/SSEregression-1.png" alt="An illustration of $y_i - \hat{y}_{i}$. when these distances are squared and added together, we get the SSE." width="90%" />
+<img src="Book_files/figure-html/SSEregression-1.png" alt="An illustration of $y_i - \hat{y}_{i}$. when these distances are squared and added together, we get the SSE." width="90%" />
 <p class="caption">
 Figure 9.7: An illustration of <span class="math inline">\(y_i - \hat{y}_{i}\)</span>. when these distances are squared and added together, we get the SSE.
 </p>
@@ -1148,7 +1200,7 @@ It measures the distance between estimated value (estimated dependent
 data) and the mean of dependent data (<span class="math inline">\(\bar{y}\)</span>).
 It is illustrated in Figure <a href="simple-linear-regression.html#fig:SSRregression">9.8</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:SSRregression"></span>
-<img src="Book_Files/figure-html/SSRregression-1.png" alt="An illustration of $y_i - \bar{y}$. when these distances are squared and added together, we get the SSR." width="90%" />
+<img src="Book_files/figure-html/SSRregression-1.png" alt="An illustration of $y_i - \bar{y}$. when these distances are squared and added together, we get the SSR." width="90%" />
 <p class="caption">
 Figure 9.8: An illustration of <span class="math inline">\(y_i - \bar{y}\)</span>. when these distances are squared and added together, we get the SSR.
 </p>
@@ -1166,7 +1218,7 @@ and their overall mean <span class="math inline">\(\bar{y}\)</span> is given by:
 observations and their overall mean <span class="math inline">\(\bar{y}\)</span> in the data.
 This is illustrated in Figure <a href="simple-linear-regression.html#fig:SSTregression">9.9</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:SSTregression"></span>
-<img src="Book_Files/figure-html/SSTregression-1.png" alt="An illustration of $\hat{y}_i - \bar{y}$. when these distances are squared and added together, we get the SST." width="90%" />
+<img src="Book_files/figure-html/SSTregression-1.png" alt="An illustration of $\hat{y}_i - \bar{y}$. when these distances are squared and added together, we get the SST." width="90%" />
 <p class="caption">
 Figure 9.9: An illustration of <span class="math inline">\(\hat{y}_i - \bar{y}\)</span>. when these distances are squared and added together, we get the SST.
 </p>
@@ -1808,7 +1860,7 @@ dollars), area (in 100 square feet), and number of beds and baths.</p>
 </table>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-29-1.png" alt="Plot of Price vs Area for Apartments near UTM" width="80%" />
+<img src="Book_files/figure-html/unnamed-chunk-29-1.png" alt="Plot of Price vs Area for Apartments near UTM" width="80%" />
 <p class="caption">
 Figure 9.10: Plot of Price vs Area for Apartments near UTM
 </p>
@@ -2294,7 +2346,7 @@ isolated influential observations or clustering.</p></li>
 </ol>
 <!-- # ```{r residual-stack, fig.width=6, fig.height=16, dev="png", out.width="100%", fig.align="center", message=FALSE, warning=FALSE} -->
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-30-1.png" alt="Examples of residual plots which satisfy assumpations and which violate assumptions" width="70%" />
+<img src="Book_files/figure-html/unnamed-chunk-30-1.png" alt="Examples of residual plots which satisfy assumpations and which violate assumptions" width="70%" />
 <p class="caption">
 Figure 9.11: Examples of residual plots which satisfy assumpations and which violate assumptions
 </p>

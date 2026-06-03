@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-05-31" />
+<meta name="date" content="2026-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,113 +69,151 @@
 <!-- Loaded via _output.yml in_header for bookdown::gitbook -->
 
 <style>
-.webr-status-bar {
-  background: #fff8e1;
-  border: 1px solid #ffe082;
-  border-radius: 4px;
-  padding: 7px 14px;
-  margin: 10px 0 6px 0;
-  font-size: 0.85em;
-  color: #5d4037;
+/* ── Loading indicator ── */
+#webr-loading-indicator {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid #dee2e6;
+  background-color: #f8f8f8;
+  border-top-left-radius: 5px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #212529;
   font-family: sans-serif;
 }
-.webr-status-bar.webr-ready {
-  background: #e8f5e9;
-  border-color: #a5d6a7;
-  color: #2e7d32;
-}
-.webr-status-bar.webr-error {
-  background: #ffebee;
-  border-color: #ef9a9a;
-  color: #b71c1c;
+#webr-loading-indicator.webr-ready { display: none; }
+#webr-loading-indicator.webr-error {
+  background-color: #f8d7da;
+  border-color: #f1aeb5;
+  color: #58151c;
 }
 
+/* ── Exercise card ── */
 .webr-exercise {
-  margin: 12px 0 4px 0;
-  border: 1px solid #b3d4fb;
-  border-radius: 6px;
+  margin: 0.5rem 0;
+  border: 1px solid rgba(0,0,0,0.175);
+  border-radius: 0.375rem;
   overflow: hidden;
   font-family: sans-serif;
-  background: #f5faff;
+  font-size: 0.85em;
+  background: #fff;
 }
+
+/* ── Card header ── */
 .webr-exercise-header {
-  background: #1565c0;
-  color: #fff;
-  padding: 5px 12px;
-  font-size: 0.78em;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid rgba(0,0,0,0.175);
+  font-weight: 600;
+  color: #212529;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
 }
+
+.webr-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+/* ── Run button ── */
+.webr-run-btn {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8em;
+  color: #fff;
+  background-color: #0d6efd;
+  border: 1px solid #0d6efd;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-family: sans-serif;
+  white-space: nowrap;
+  transition: background-color 0.15s;
+}
+.webr-run-btn:hover:not(:disabled) { background-color: #0b5ed7; }
+.webr-run-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* ── Reset button ── */
+.webr-reset-btn {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8em;
+  color: #6c757d;
+  background-color: transparent;
+  border: 1px solid #6c757d;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-family: sans-serif;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s;
+}
+.webr-reset-btn:hover { background-color: #6c757d; color: #fff; }
+
+/* ── Textarea code editor ── */
 .webr-editor {
   display: block;
   width: 100%;
-  min-height: 160px;
-  padding: 10px 12px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.88em;
+  box-sizing: border-box;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
   line-height: 1.5;
-  border: none;
-  border-bottom: 1px solid #b3d4fb;
+  padding: 0.4rem 0.6rem;
   background: #fff;
+  color: #212529;
+  border: none;
+  border-bottom: 1px solid #dee2e6;
   resize: vertical;
   outline: none;
-  box-sizing: border-box;
-  color: #1a1a2e;
+  overflow: auto;
 }
-.webr-controls {
-  padding: 6px 12px;
-  background: #e8f1fd;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.webr-editor:focus {
+  background: #fafcff;
 }
-.webr-run-btn {
-  background: #1565c0;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 18px;
-  cursor: pointer;
-  font-size: 0.85em;
-  font-weight: 700;
-  transition: background 0.15s;
-}
-.webr-run-btn:hover:not(:disabled) { background: #0d47a1; }
-.webr-run-btn:disabled { background: #90a4ae; cursor: not-allowed; }
-.webr-reset-btn {
-  background: none;
-  border: 1px solid #90a4ae;
-  border-radius: 4px;
-  padding: 5px 14px;
-  cursor: pointer;
-  font-size: 0.83em;
-  color: #546e7a;
-  transition: background 0.12s;
-}
-.webr-reset-btn:hover { background: #eceff1; }
+
+/* ── Hide original controls (moved to header by JS) ── */
+.webr-controls { display: none; }
+
+/* ── Output area ── */
 .webr-output-area {
-  padding: 10px 14px;
-  background: #1e1e2e;
-  color: #cdd6f4;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.85em;
-  line-height: 1.6;
+  padding: 0.3rem 0.6rem;
+  background: #fff;
+  color: #212529;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;
+  border-top: 1px solid #dee2e6;
   display: none;
 }
 .webr-output-area.webr-has-output { display: block; }
-.webr-output-area.webr-error-output { color: #f38ba8; }
+.webr-output-area.webr-error-output { color: #ad0000; background: #fff8f8; }
+
+/* ── Plot area ── */
 .webr-canvas-area {
-  padding: 10px;
+  padding: 0.5rem;
   background: #fff;
   text-align: center;
   display: none;
-  border-top: 1px solid #b3d4fb;
+  border-top: 1px solid #dee2e6;
 }
 .webr-canvas-area.webr-has-plot { display: block; }
-.webr-canvas-area canvas { max-width: 100%; border: 1px solid #e0e0e0; border-radius: 3px; }
+.webr-canvas-area canvas {
+  max-width: 100%;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
 </style>
+
+<div id="webr-loading-indicator">
+  <span id="webr-loading-text">⏳ Loading R engine…</span>
+</div>
 
 <script type="module">
 import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
@@ -183,65 +221,85 @@ import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
 let webR;
 let webRReady = false;
 
-function setGlobalStatus(msg, cssClass) {
-  document.querySelectorAll('.webr-status-bar').forEach(el => {
-    el.textContent = msg;
-    el.className = 'webr-status-bar ' + (cssClass || '');
-  });
+const indicator     = document.getElementById('webr-loading-indicator');
+const indicatorText = document.getElementById('webr-loading-text');
+
+function setStatus(msg, cssClass) {
+  if (!indicator) return;
+  indicatorText.textContent = msg;
+  indicator.className = cssClass || '';
 }
 
 async function initWebR() {
   try {
     webR = new WebR({ interactive: false });
     await webR.init();
-    setGlobalStatus('📦 Installing ggplot2… (first visit only, ~30 s)', '');
+    setStatus('📦 Installing packages… (first visit only)', '');
     await webR.installPackages(['ggplot2']);
     await webR.evalRVoid('suppressMessages(library(ggplot2))');
     webRReady = true;
-    setGlobalStatus('✅ R is ready — click ▶ Run to execute code', 'webr-ready');
-    document.querySelectorAll('.webr-run-btn').forEach(btn => { btn.disabled = false; });
+    setStatus('', 'webr-ready');
+    document.querySelectorAll('.webr-run-btn').forEach(btn => {
+      btn.disabled = false;
+      btn.textContent = '▶ Run';
+    });
   } catch (e) {
-    setGlobalStatus('❌ Failed to load R engine: ' + e.message, 'webr-error');
+    setStatus('❌ Failed to load R: ' + e.message, 'webr-error');
   }
 }
 
 function setupCell(cell) {
-  const editor    = cell.querySelector('.webr-editor');
+  const textarea  = cell.querySelector('.webr-editor');
   const runBtn    = cell.querySelector('.webr-run-btn');
   const resetBtn  = cell.querySelector('.webr-reset-btn');
   const outArea   = cell.querySelector('.webr-output-area');
   const canvasDiv = cell.querySelector('.webr-canvas-area');
   const canvas    = canvasDiv ? canvasDiv.querySelector('canvas') : null;
-  const origCode  = editor.value;
+  const header    = cell.querySelector('.webr-exercise-header');
+  const origCode  = textarea.value;
 
+  // Auto-size textarea to content
+  function fitHeight() {
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  }
+  fitHeight();
+  textarea.addEventListener('input', fitHeight);
+
+  // Move buttons into header
+  const btnGroup = document.createElement('div');
+  btnGroup.className = 'webr-btn-group';
+  btnGroup.appendChild(runBtn);
+  btnGroup.appendChild(resetBtn);
+  header.appendChild(btnGroup);
+
+  // Reset
   resetBtn.addEventListener('click', () => {
-    editor.value = origCode;
+    textarea.value = origCode;
+    fitHeight();
     outArea.textContent = '';
     outArea.className = 'webr-output-area';
     if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
   });
 
+  // Run
   runBtn.addEventListener('click', async () => {
     if (!webRReady) return;
     runBtn.disabled = true;
-    runBtn.textContent = '⏳ Running…';
+    runBtn.textContent = '⏳';
     outArea.textContent = '';
     outArea.className = 'webr-output-area';
     if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
 
     try {
-      const code = editor.value;
+      const code = textarea.value;
       const shelter = await new webR.Shelter();
-
       const captureOpts = { withAutoprint: true };
-      if (canvas) {
-        captureOpts.captureGraphics = { width: 504, height: 378, bg: 'white' };
-      }
+      if (canvas) captureOpts.captureGraphics = { width: 504, height: 378, bg: 'white' };
 
       const result = await shelter.captureR(code, captureOpts);
       await shelter.purge();
 
-      // Text output
       const lines = result.output
         .filter(x => x.type === 'stdout' || x.type === 'message')
         .map(x => x.data)
@@ -253,18 +311,13 @@ function setupCell(cell) {
         outArea.classList.add('webr-has-output');
       }
 
-      // Plot output
       if (canvas && result.images && result.images.length > 0) {
         canvasDiv.classList.add('webr-has-plot');
         const ctx = canvas.getContext('2d');
-        canvas.width  = 504;
-        canvas.height = 378;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (const img of result.images) {
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        }
+        canvas.width = 504; canvas.height = 378;
+        ctx.clearRect(0, 0, 504, 378);
+        for (const img of result.images) ctx.drawImage(img, 0, 0, 504, 378);
       }
-
     } catch (e) {
       outArea.textContent = 'Error: ' + e.message;
       outArea.classList.add('webr-has-output', 'webr-error-output');
@@ -275,7 +328,6 @@ function setupCell(cell) {
   });
 }
 
-// Wait for DOM then initialise
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.webr-exercise').forEach(setupCell);
   initWebR();
@@ -284,8 +336,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -295,7 +348,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -357,7 +410,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -869,132 +921,132 @@ The P -value is the area to the right of <span class="math inline">\(X^{2}\)</sp
 Expected Cell Frequency Condition: We should expect to see at least five individuals in each cell.
 The expected cell frequency condition sounds like the condition that <span class="math inline">\(n p\)</span> and <span class="math inline">\(n(1-p)\)</span> be at least 10 when we tested proportions, it is similar to that.</p>
 
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">
-Allaire, JJ, Yihui Xie, Christophe Dervieux, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, et al. 2024. <em><span class="nocase">rmarkdown: Dynamic Documents for R</span></em> (version 2.29). <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a>.
+Allaire, JJ, Yihui Xie, Christophe Dervieux, et al. 2024. <em><span class="nocase">rmarkdown: Dynamic Documents for R</span></em>. Version 2.29. <a href="https://github.com/rstudio/rmarkdown">https://github.com/rstudio/rmarkdown</a>.
 </div>
 <div class="csl-entry">
-Bates, Douglas, Martin Maechler, and Mikael Jagan. 2024. <em><span class="nocase">Matrix: Sparse and Dense Matrix Classes and Methods</span></em> (version 1.7-0). <a href="https://Matrix.R-forge.R-project.org">https://Matrix.R-forge.R-project.org</a>.
+Bates, Douglas, Martin Maechler, and Mikael Jagan. 2024. <em><span class="nocase">Matrix: Sparse and Dense Matrix Classes and Methods</span></em>. Versions 1.7-0. <a href="https://Matrix.R-forge.R-project.org">https://Matrix.R-forge.R-project.org</a>.
 </div>
 <div class="csl-entry">
 Csardi, Gabor, and Tamas Nepusz. 2006. <span>“<span class="nocase">The igraph software package for complex network research</span>.”</span> <em>InterJournal</em> Complex Systems: 1695. <a href="https://igraph.org">https://igraph.org</a>.
 </div>
 <div class="csl-entry">
-Csárdi, Gábor, and Jim Hester. 2025. <em><span class="nocase">pak: Another Approach to Package Installation</span></em> (version 0.8.0.1). <a href="https://pak.r-lib.org/">https://pak.r-lib.org/</a>.
+Csárdi, Gábor, and Jim Hester. 2025. <em><span class="nocase">pak: Another Approach to Package Installation</span></em>. Version 0.8.0.1. <a href="https://pak.r-lib.org/">https://pak.r-lib.org/</a>.
 </div>
 <div class="csl-entry">
-Csárdi, Gábor, Tamás Nepusz, Vincent Traag, Szabolcs Horvát, Fabio Zanini, Daniel Noom, and Kirill Müller. 2025. <em><span class="nocase">igraph: Network Analysis and Visualization</span></em> (version 2.1.4). <a href="https://r.igraph.org/">https://r.igraph.org/</a>.
+Csárdi, Gábor, Tamás Nepusz, Vincent Traag, et al. 2025. <em><span class="nocase">igraph: Network Analysis and Visualization</span></em>. Version 2.1.4. <a href="https://r.igraph.org/">https://r.igraph.org/</a>.
 </div>
 <div class="csl-entry">
-Genz, Alan, and Frank Bretz. 2009. <em><span class="nocase">Computation of Multivariate Normal and t Probabilities</span></em>. Lecture Notes in Statistics. Heidelberg: Springer-Verlag.
+Genz, Alan, and Frank Bretz. 2009. <em><span class="nocase">Computation of Multivariate Normal and t Probabilities</span></em>. Lecture Notes in Statistics. Springer-Verlag.
 </div>
 <div class="csl-entry">
-Genz, Alan, Frank Bretz, Tetsuhisa Miwa, Xuefei Mi, and Torsten Hothorn. 2025. <em><span class="nocase">mvtnorm: Multivariate Normal and t Distributions</span></em> (version 1.3-3). <a href="http://mvtnorm.R-forge.R-project.org">http://mvtnorm.R-forge.R-project.org</a>.
+Genz, Alan, Frank Bretz, Tetsuhisa Miwa, Xuefei Mi, and Torsten Hothorn. 2025. <em><span class="nocase">mvtnorm: Multivariate Normal and t Distributions</span></em>. Versions 1.3-3. <a href="http://mvtnorm.R-forge.R-project.org">http://mvtnorm.R-forge.R-project.org</a>.
 </div>
 <div class="csl-entry">
-Hlavac, Marek. 2022. <em>Stargazer: Well-Formatted Regression and Summary Statistics Tables</em>. Bratislava, Slovakia: Social Policy Institute. <a href="https://CRAN.R-project.org/package=stargazer">https://CRAN.R-project.org/package=stargazer</a>.
+Hlavac, Marek. 2022. <em>Stargazer: Well-Formatted Regression and Summary Statistics Tables</em>. Social Policy Institute. <a href="https://CRAN.R-project.org/package=stargazer">https://CRAN.R-project.org/package=stargazer</a>.
 </div>
 <div class="csl-entry">
-Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with <span>R</span></em>. New York: Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.
+Kleiber, Christian, and Achim Zeileis. 2008. <em>Applied Econometrics with <span>R</span></em>. Springer-Verlag. <a href="https://CRAN.R-project.org/package=AER">https://CRAN.R-project.org/package=AER</a>.
 </div>
 <div class="csl-entry">
 Landau, William Michael. 2021. <span>“<span class="nocase">The targets R package: a dynamic Make-like function-oriented pipeline toolkit for reproducibility and high-performance computing</span>.”</span> <em>Journal of Open Source Software</em> 6 (57): 2959. <a href="https://doi.org/10.21105/joss.02959">https://doi.org/10.21105/joss.02959</a>.
 </div>
 <div class="csl-entry">
-———. 2025. <em><span class="nocase">targets: Dynamic Function-Oriented Make-Like Declarative Pipelines</span></em> (version 1.11.3). <a href="https://docs.ropensci.org/targets/">https://docs.ropensci.org/targets/</a>.
+Landau, William Michael. 2025. <em><span class="nocase">targets: Dynamic Function-Oriented Make-Like Declarative Pipelines</span></em>. Version 1.11.3. <a href="https://docs.ropensci.org/targets/">https://docs.ropensci.org/targets/</a>.
 </div>
 <div class="csl-entry">
-Murdoch, Duncan, and Daniel Adler. 2025. <em><span class="nocase">rgl: 3D Visualization Using OpenGL</span></em> (version 1.3.24). <a href="https://github.com/dmurdoch/rgl">https://github.com/dmurdoch/rgl</a>.
+Murdoch, Duncan, and Daniel Adler. 2025. <em><span class="nocase">rgl: 3D Visualization Using OpenGL</span></em>. Version 1.3.24. <a href="https://github.com/dmurdoch/rgl">https://github.com/dmurdoch/rgl</a>.
 </div>
 <div class="csl-entry">
 Ooms, Jeroen. 2014. <span>“<span class="nocase">The jsonlite Package: A Practical and Consistent Mapping Between JSON Data and R Objects</span>.”</span> <em>arXiv:1403.2805 [Stat.CO]</em>. <a href="https://arxiv.org/abs/1403.2805">https://arxiv.org/abs/1403.2805</a>.
 </div>
 <div class="csl-entry">
-———. 2025. <em><span class="nocase">jsonlite: A Simple and Robust JSON Parser and Generator for R</span></em> (version 2.0.0). <a href="https://jeroen.r-universe.dev/jsonlite">https://jeroen.r-universe.dev/jsonlite</a>.
+Ooms, Jeroen. 2025. <em><span class="nocase">jsonlite: A Simple and Robust JSON Parser and Generator for R</span></em>. Version 2.0.0. <a href="https://jeroen.r-universe.dev/jsonlite">https://jeroen.r-universe.dev/jsonlite</a>.
 </div>
 <div class="csl-entry">
-Ooms, Jeroen, Kornel Lesiński, and Authors of the dependency Rust crates. 2025. <em><span class="nocase">gifski: Highest Quality GIF Encoder</span></em> (version 1.32.0-2). <a href="https://r-rust.r-universe.dev/gifski">https://r-rust.r-universe.dev/gifski</a>.
+Ooms, Jeroen, Kornel Lesiński, and Authors of the dependency Rust crates. 2025. <em><span class="nocase">gifski: Highest Quality GIF Encoder</span></em>. Versions 1.32.0-2. <a href="https://r-rust.r-universe.dev/gifski">https://r-rust.r-universe.dev/gifski</a>.
 </div>
 <div class="csl-entry">
-Pedersen, Thomas Lin. 2024. <em><span class="nocase">patchwork: The Composer of Plots</span></em> (version 1.3.0). <a href="https://patchwork.data-imaginist.com">https://patchwork.data-imaginist.com</a>.
+Pedersen, Thomas Lin. 2024. <em><span class="nocase">patchwork: The Composer of Plots</span></em>. Version 1.3.0. <a href="https://patchwork.data-imaginist.com">https://patchwork.data-imaginist.com</a>.
 </div>
 <div class="csl-entry">
-Pedersen, Thomas Lin, and David Robinson. 2025. <em><span class="nocase">gganimate: A Grammar of Animated Graphics</span></em> (version 1.0.10). <a href="https://gganimate.com">https://gganimate.com</a>.
+Pedersen, Thomas Lin, and David Robinson. 2025. <em><span class="nocase">gganimate: A Grammar of Animated Graphics</span></em>. Version 1.0.10. <a href="https://gganimate.com">https://gganimate.com</a>.
 </div>
 <div class="csl-entry">
-Pfaff, B. 2008. <em>Analysis of Integrated and Cointegrated Time Series with r</em>. Second. New York: Springer. <a href="https://www.pfaffikus.de">https://www.pfaffikus.de</a>.
+Pfaff, B. 2008. <em>Analysis of Integrated and Cointegrated Time Series with r</em>. Second. Springer. <a href="https://www.pfaffikus.de">https://www.pfaffikus.de</a>.
 </div>
 <div class="csl-entry">
-R Core Team. 2024. <em><span class="nocase">R: A Language and Environment for Statistical Computing</span></em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+R Core Team. 2024. <em><span class="nocase">R: A Language and Environment for Statistical Computing</span></em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
 </div>
 <div class="csl-entry">
 Sievert, Carson. 2020. <em><span class="nocase">Interactive Web-Based Data Visualization with R, plotly, and shiny</span></em>. Chapman; Hall/CRC. <a href="https://plotly-r.com">https://plotly-r.com</a>.
 </div>
 <div class="csl-entry">
-Sievert, Carson, Chris Parmer, Toby Hocking, Scott Chamberlain, Karthik Ram, Marianne Corvellec, and Pedro Despouy. 2025. <em><span class="nocase">plotly: Create Interactive Web Graphics via plotly.js</span></em> (version 4.11.0). <a href="https://plotly-r.com">https://plotly-r.com</a>.
+Sievert, Carson, Chris Parmer, Toby Hocking, et al. 2025. <em><span class="nocase">plotly: Create Interactive Web Graphics via plotly.js</span></em>. Version 4.11.0. <a href="https://plotly-r.com">https://plotly-r.com</a>.
 </div>
 <div class="csl-entry">
 Stefano, Spada, Matteo Quartagno, Marco Tamburini, and David Robinson. 2018. <em><span class="nocase">orcutt</span>: Estimate Procedure in Case of First Order Autocorrelation</em>. <a href="https://CRAN.R-project.org/package=orcutt">https://CRAN.R-project.org/package=orcutt</a>.
 </div>
 <div class="csl-entry">
-Temple Lang, Duncan. 2025. <em><span class="nocase">RCurl: General Network (HTTP/FTP/...) Client Interface for R</span></em> (version 1.98-1.17). <a href="https://CRAN.R-project.org/package=RCurl">https://CRAN.R-project.org/package=RCurl</a>.
+Temple Lang, Duncan. 2025. <em><span class="nocase">RCurl: General Network (HTTP/FTP/...) Client Interface for R</span></em>. Versions 1.98-1.17. <a href="https://CRAN.R-project.org/package=RCurl">https://CRAN.R-project.org/package=RCurl</a>.
 </div>
 <div class="csl-entry">
 Tierney, Nicholas. 2017. <span>“<span class="nocase">visdat: Visualising Whole Data Frames</span>.”</span> <em>JOSS</em> 2 (16): 355. <a href="https://doi.org/10.21105/joss.00355">https://doi.org/10.21105/joss.00355</a>.
 </div>
 <div class="csl-entry">
-———. 2023. <em><span class="nocase">visdat: Preliminary Visualisation of Data</span></em> (version 0.6.0). <a href="https://docs.ropensci.org/visdat/">https://docs.ropensci.org/visdat/</a>.
+Tierney, Nicholas. 2023. <em><span class="nocase">visdat: Preliminary Visualisation of Data</span></em>. Version 0.6.0. <a href="https://docs.ropensci.org/visdat/">https://docs.ropensci.org/visdat/</a>.
 </div>
 <div class="csl-entry">
-Urbanek, Simon. 2022. <em><span class="nocase">png: Read and write PNG images</span></em> (version 0.1-8). <a href="http://www.rforge.net/png/">http://www.rforge.net/png/</a>.
+Urbanek, Simon. 2022. <em><span class="nocase">png: Read and write PNG images</span></em>. Versions 0.1-8. <a href="http://www.rforge.net/png/">http://www.rforge.net/png/</a>.
 </div>
 <div class="csl-entry">
-Walker, Kyle, and Matt Herman. 2025. <em><span class="nocase">tidycensus: Load US Census Boundary and Attribute Data as tidyverse and sf-Ready Data Frames</span></em> (version 1.7.3). <a href="https://walker-data.com/tidycensus/">https://walker-data.com/tidycensus/</a>.
+Walker, Kyle, and Matt Herman. 2025. <em><span class="nocase">tidycensus: Load US Census Boundary and Attribute Data as tidyverse and sf-Ready Data Frames</span></em>. Version 1.7.3. <a href="https://walker-data.com/tidycensus/">https://walker-data.com/tidycensus/</a>.
 </div>
 <div class="csl-entry">
 Wickham, Hadley. 2016. <em><span class="nocase">ggplot2: Elegant Graphics for Data Analysis</span></em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
 </div>
 <div class="csl-entry">
-———. 2024. <em><span class="nocase">httr2: Perform HTTP Requests and Process the Responses</span></em> (version 1.0.5). <a href="https://httr2.r-lib.org">https://httr2.r-lib.org</a>.
+Wickham, Hadley. 2024. <em><span class="nocase">httr2: Perform HTTP Requests and Process the Responses</span></em>. Version 1.0.5. <a href="https://httr2.r-lib.org">https://httr2.r-lib.org</a>.
 </div>
 <div class="csl-entry">
-Wickham, Hadley, and Jennifer Bryan. 2023. <em><span class="nocase">readxl: Read Excel Files</span></em> (version 1.4.3). <a href="https://readxl.tidyverse.org">https://readxl.tidyverse.org</a>.
+Wickham, Hadley, and Jennifer Bryan. 2023. <em><span class="nocase">readxl: Read Excel Files</span></em>. Version 1.4.3. <a href="https://readxl.tidyverse.org">https://readxl.tidyverse.org</a>.
 </div>
 <div class="csl-entry">
-Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, Dewey Dunnington, and Teun van den Brand. 2025. <em><span class="nocase">ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</span></em> (version 3.5.2). <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+<span class="nocase">Wickham, Hadley, Winston Chang, Lionel Henry, et al.</span> 2025. <em><span class="nocase">ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</span></em>. Version 3.5.2. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
 </div>
 <div class="csl-entry">
-Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em><span class="nocase">dplyr: A Grammar of Data Manipulation</span></em> (version 1.1.4). <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em><span class="nocase">dplyr: A Grammar of Data Manipulation</span></em>. Version 1.1.4. <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.
 </div>
 <div class="csl-entry">
-Wickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2024. <em><span class="nocase">tidyr: Tidy Messy Data</span></em> (version 1.3.1). <a href="https://tidyr.tidyverse.org">https://tidyr.tidyverse.org</a>.
+Wickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2024. <em><span class="nocase">tidyr: Tidy Messy Data</span></em>. Version 1.3.1. <a href="https://tidyr.tidyverse.org">https://tidyr.tidyverse.org</a>.
 </div>
 <div class="csl-entry">
-Xie, Yihui. 2014. <span>“<span class="nocase">knitr: A Comprehensive Tool for Reproducible Research in <span>R</span></span>.”</span> In <em><span>Implementing Reproducible Computational Research</span></em>, edited by Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman; Hall/CRC.
+Xie, Yihui. 2014. <span>“<span class="nocase">knitr: A Comprehensive Tool for Reproducible Research in <span>R</span></span>.”</span> In <em><span>Implementing Reproducible Computational Research</span></em>, versions ISBN 978-1466561595, edited by Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman; Hall/CRC.
 </div>
 <div class="csl-entry">
-———. 2015. <em><span class="nocase">Dynamic Documents with <span>R</span> and knitr</span></em> (version ISBN 978-1498716963). 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
+Xie, Yihui. 2015. <em><span class="nocase">Dynamic Documents with <span>R</span> and knitr</span></em>. Versions ISBN 978-1498716963. 2nd ed. Chapman; Hall/CRC. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
 </div>
 <div class="csl-entry">
-———. 2016. <em><span class="nocase">bookdown: Authoring Books and Technical Documents with <span>R</span> Markdown</span></em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/bookdown">https://bookdown.org/yihui/bookdown</a>.
+Xie, Yihui. 2016. <em><span class="nocase">bookdown: Authoring Books and Technical Documents with <span>R</span> Markdown</span></em>. Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/bookdown">https://bookdown.org/yihui/bookdown</a>.
 </div>
 <div class="csl-entry">
-———. 2025a. <em><span class="nocase">bookdown: Authoring Books and Technical Documents with R Markdown</span></em> (version 0.43). <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
+Xie, Yihui. 2025a. <em><span class="nocase">bookdown: Authoring Books and Technical Documents with R Markdown</span></em>. Version 0.43. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.
 </div>
 <div class="csl-entry">
-———. 2025b. <em><span class="nocase">knitr: A General-Purpose Package for Dynamic Report Generation in R</span></em> (version 1.50). <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
+Xie, Yihui. 2025b. <em><span class="nocase">knitr: A General-Purpose Package for Dynamic Report Generation in R</span></em>. Version 1.50. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
 </div>
 <div class="csl-entry">
-Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. <em><span>R Markdown: The Definitive Guide</span></em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown">https://bookdown.org/yihui/rmarkdown</a>.
+Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. <em><span>R Markdown: The Definitive Guide</span></em>. Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown">https://bookdown.org/yihui/rmarkdown</a>.
 </div>
 <div class="csl-entry">
-Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em><span>R Markdown Cookbook</span></em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown-cookbook">https://bookdown.org/yihui/rmarkdown-cookbook</a>.
+Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em><span>R Markdown Cookbook</span></em>. Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown-cookbook">https://bookdown.org/yihui/rmarkdown-cookbook</a>.
 </div>
 <div class="csl-entry">
 Zeileis, Achim. 2019. <em><span class="nocase">dynlm</span>: Dynamic Linear Regression</em>. <a href="https://CRAN.R-project.org/package=dynlm">https://CRAN.R-project.org/package=dynlm</a>.
 </div>
 <div class="csl-entry">
-Zhu, Hao. 2024. <em><span class="nocase">kableExtra: Construct Complex Table with kable and Pipe Syntax</span></em> (version 1.4.0). <a href="http://haozhu233.github.io/kableExtra/">http://haozhu233.github.io/kableExtra/</a>.
+Zhu, Hao. 2024. <em><span class="nocase">kableExtra: Construct Complex Table with kable and Pipe Syntax</span></em>. Version 1.4.0. <a href="http://haozhu233.github.io/kableExtra/">http://haozhu233.github.io/kableExtra/</a>.
 </div>
 </div>
 </div>

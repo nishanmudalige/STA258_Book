@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STA258 Book — Documentation</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    color: #1a1a2e;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  h1 { font-size: 2em; border-bottom: 2px solid #1565c0; padding-bottom: 10px; color: #1565c0; }
+  h2 { font-size: 1.4em; margin-top: 2.2em; border-left: 4px solid #1565c0; padding-left: 12px; color: #1a237e; }
+  h3 { font-size: 1.1em; margin-top: 1.6em; color: #37474f; }
+  a { color: #1565c0; }
+  code {
+    background: #f0f4ff;
+    border: 1px solid #c5cae9;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+  pre {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 6px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-size: 0.88em;
+    line-height: 1.6;
+  }
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+  .toc {
+    background: #f5faff;
+    border: 1px solid #b3d4fb;
+    border-radius: 6px;
+    padding: 16px 24px;
+    margin: 24px 0;
+  }
+  .toc h3 { margin-top: 0; color: #1565c0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { margin: 4px 0; }
+  .file-tree {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.88em;
+    line-height: 1.8;
+  }
+  .tag {
+    display: inline-block;
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 3px;
+    padding: 1px 7px;
+    font-size: 0.82em;
+    color: #1565c0;
+    font-weight: 600;
+  }
+  .tag.done { background: #e8f5e9; border-color: #a5d6a7; color: #2e7d32; }
+  .tag.partial { background: #fff8e1; border-color: #ffe082; color: #f57f17; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0;
+    font-size: 0.93em;
+  }
+  th {
+    background: #1565c0;
+    color: #fff;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  td { padding: 7px 12px; border-bottom: 1px solid #e0e0e0; }
+  tr:nth-child(even) { background: #f5f5f5; }
+  .note {
+    background: #fff8e1;
+    border-left: 4px solid #ffc107;
+    padding: 10px 14px;
+    border-radius: 0 4px 4px 0;
+    margin: 12px 0;
+  }
+  .authors { color: #546e7a; font-size: 0.95em; margin-top: -8px; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+
+<h1>STA258 Book — Documentation</h1>
+<p class="authors">Authors: Janice Chen &nbsp;|&nbsp; Contributors: Nishan Mudalige</p>
+
+<div class="toc">
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#prerequisites">Pre-requisites</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#how-to-use">How to Use This Help File</a></li>
+    <li><a href="#folder-structure">Folder Structure</a></li>
+    <li><a href="#rendering">Rendering the Book</a></li>
+    <li><a href="#exercise-boxes">Exercise Box Structure</a></li>
+    <li><a href="#webr">webR Interactive Exercise Structure</a></li>
+    <li><a href="#what-we-built">What We Built / Custom Changes Made</a></li>
+    <li><a href="#apps">Interactive Apps (Chapter 4)</a></li>
+    <li><a href="#chapters">Chapter Summary</a></li>
+    <li><a href="#github">GitHub Workflow</a></li>
+    <li><a href="#errors">Common Errors &amp; Known Issues</a></li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="prerequisites">1. Pre-requisites</h2>
+
+<table>
+  <tr><th>Tool</th><th>Required Version / Notes</th></tr>
+  <tr><td>R</td><td>≥ 4.2</td></tr>
+  <tr><td>RStudio</td><td>Any recent version</td></tr>
+  <tr><td>bookdown</td><td><code>install.packages("bookdown")</code></td></tr>
+  <tr><td>ggplot2, knitr, kableExtra, plotly</td><td><code>install.packages(c("ggplot2","knitr","kableExtra","plotly"))</code></td></tr>
+  <tr><td>pandoc</td><td>Use the one bundled with RStudio — see <a href="#rendering">Rendering</a></td></tr>
+  <tr><td>LaTeX (for PDF output only)</td><td>TinyTeX or MacTeX</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="introduction">2. Introduction</h2>
+
+<p>
+  This project is an interactive e-book for <strong>STA258: Statistics with Applied Probability</strong>
+  at the University of Toronto Mississauga, built with
+  <a href="https://bookdown.org/" target="_blank">R Bookdown</a> (gitbook format).
+</p>
+<p>
+  The rendered book is hosted on GitHub Pages at:<br>
+  <a href="https://nishanmudalige.github.io/STA258_Book/" target="_blank">https://nishanmudalige.github.io/STA258_Book/</a>
+</p>
+<p>
+  Key features of this book:
+</p>
+<ul>
+  <li><strong>Exercise boxes</strong> with collapsible hints and answers (custom HTML/CSS)</li>
+  <li><strong>webR cells</strong> — live, in-browser R sessions students run without installing anything</li>
+  <li><strong>Interactive Plotly apps</strong> for distribution calculators and simulations (Chapter 4)</li>
+  <li>Output goes to the <code>docs/</code> folder, which GitHub Pages serves directly</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="how-to-use">3. How to Use This Help File</h2>
+
+<p>
+  This document is intended for <strong>future maintainers and professors</strong> who want to
+  update the STA258 book, understand what was customized, or troubleshoot a broken feature.
+  It explains the non-obvious decisions made during development so you do not have to
+  re-discover them from scratch. In particular, read §8 before touching webR, read §11 before
+  touching Git, and read the Common Errors section (§12) before assuming something is broken.
+</p>
+
+<h3>Quick Guide: If You Want to Update the Book</h3>
+<ol>
+  <li><strong>Edit the source <code>.Rmd</code> file</strong> in <code>Chapters/</code> — never edit files inside <code>docs/</code>.</li>
+  <li><strong>Render locally</strong> using the command in §5 (Rendering).</li>
+  <li><strong>Test in Chrome or Firefox</strong> — Safari blocks webR on local <code>file://</code> URLs (see §12).</li>
+  <li><strong>Commit both the <code>.Rmd</code> source and the <code>docs/</code> output</strong>.</li>
+  <li><strong>Push to GitHub</strong> — GitHub Pages will update within a minute.</li>
+  <li><strong>After any merge, confirm <code>_output.yml</code> still has <code>in_header: webr-exercises.html</code></strong> — this line is sometimes lost in merge conflicts.</li>
+</ol>
+
+<h3>Where to Edit What</h3>
+<table>
+  <tr><th>If you want to…</th><th>Edit this file</th></tr>
+  <tr>
+    <td>Add or change chapter text, examples, or theory</td>
+    <td><code>Chapters/XX-ChapterName.Rmd</code> (body, above the Exercises section)</td>
+  </tr>
+  <tr>
+    <td>Add or edit written exercises (with hints and answers)</td>
+    <td><code>Chapters/XX-ChapterName.Rmd</code> (Exercises section, raw HTML exercise-box divs)</td>
+  </tr>
+  <tr>
+    <td>Add or edit webR interactive coding exercises</td>
+    <td><code>Chapters/XX-ChapterName.Rmd</code> (Exercises section, raw HTML webr-exercise divs — see §7 for the template)</td>
+  </tr>
+  <tr>
+    <td>Change fonts, colours, spacing, or layout of the book</td>
+    <td><code>style.css</code></td>
+  </tr>
+  <tr>
+    <td>Change the chapter order, book title, or output folder</td>
+    <td><code>_bookdown.yml</code></td>
+  </tr>
+  <tr>
+    <td>Change which CSS files load or which files are injected in the header</td>
+    <td><code>_output.yml</code></td>
+  </tr>
+  <tr>
+    <td>Fix or update how webR exercise cells work (buttons, output, plots)</td>
+    <td><code>webr-exercises.html</code> (the CSS + JavaScript that powers all webR cells)</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="folder-structure">4. Folder Structure</h2>
+
+<div class="file-tree">
+STA258_Book/<br>
+├── index.Rmd                  &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Book title page and preface</span><br>
+├── _bookdown.yml              &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Chapter order, output folder (docs/)</span><br>
+├── _output.yml                &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># gitbook config; loads webr-exercises.html in header</span><br>
+├── style.css                  &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Main book styles</span><br>
+├── box.css                    &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Exercise box / hint / answer styles</span><br>
+├── webr-exercises.html        &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># CSS + JS that powers all webR cells (see §7)</span><br>
+├── help.html                  &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># This file</span><br>
+│<br>
+├── Chapters/<br>
+│   ├── 01-Introduction.Rmd<br>
+│   ├── 02-An_Introduction_to_R.Rmd<br>
+│   ├── 03-Descriptive_Statistics.Rmd<br>
+│   ├── 04-Foundations_of_Inference.Rmd<br>
+│   ├── 05-Confidence_Intervals.Rmd<br>
+│   ├── 06-Hypothesis_Tests.Rmd<br>
+│   ├── 07-Statistical_Power.Rmd<br>
+│   ├── 08-Analysis_of_Variance.Rmd<br>
+│   ├── 09-Simple_Linear_Regression.Rmd<br>
+│   └── 10-Analysis_of_Categorical_Data.Rmd<br>
+│<br>
+├── Apps/<br>
+│   ├── distribution_calculator.html  &nbsp;<span style="color:#90a4ae"># F/T/χ² calculator (Plotly)</span><br>
+│   ├── lln_simulation.html           &nbsp;<span style="color:#90a4ae"># Law of Large Numbers simulator</span><br>
+│   └── clt_simulation.html           &nbsp;<span style="color:#90a4ae"># Central Limit Theorem simulator</span><br>
+│<br>
+├── latex/                     &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># LaTeX preamble files for PDF output</span><br>
+├── Book_Files/figure-html/    &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Cached R plot outputs</span><br>
+└── docs/                      &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Rendered HTML — served by GitHub Pages</span>
+</div>
+
+<div class="note">
+  <strong>Important:</strong> The <code>docs/</code> folder is auto-generated when you render the book.
+  Do not edit files inside <code>docs/</code> directly. Always edit the source <code>.Rmd</code> files
+  and re-render.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="rendering">5. Rendering the Book</h2>
+
+<p>
+  The system pandoc may not work. Use the pandoc bundled with RStudio instead.
+  Run this command from the <code>STA258_Book/</code> root directory:
+</p>
+
+<pre><code>PANDOC=/Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64/pandoc \
+  Rscript -e '
+    rmarkdown::find_pandoc(
+      dir="/Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64"
+    )
+    bookdown::render_book("index.Rmd", output_format="bookdown::gitbook", quiet=TRUE)
+  '</code></pre>
+
+<p>Or from inside RStudio console:</p>
+
+<pre><code>bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook")</code></pre>
+
+<p>The output goes to <code>docs/</code>. After rendering, commit and push to GitHub — Pages will update automatically within a minute.</p>
+
+<!-- ============================================================ -->
+<h2 id="exercise-boxes">6. Exercise Box Structure</h2>
+
+<p>
+  All exercises use a consistent HTML structure. The three components — question box,
+  hint, and answer — are written directly in the <code>.Rmd</code> file as raw HTML.
+</p>
+
+<h3>Question Box</h3>
+<pre><code>&lt;div class="exercise-box"&gt;
+&lt;div class="exercise-label"&gt;Question 1&lt;/div&gt;
+Your question text here. You can use **Markdown**, $\LaTeX$ math, and R code chunks.
+
+(a) Part a...
+(b) Part b...
+&lt;/div&gt;</code></pre>
+
+<h3>Hint (collapsible)</h3>
+<pre><code>&lt;details data-type="hint"&gt;
+&lt;summary&gt;💡 Hint&lt;/summary&gt;
+&lt;div class="content"&gt;
+- Bullet point hint here.
+- Another hint.
+&lt;/div&gt;
+&lt;/details&gt;</code></pre>
+
+<h3>Answer (collapsible)</h3>
+<pre><code>&lt;details data-type="answer"&gt;
+&lt;summary&gt;✅ Answer&lt;/summary&gt;
+&lt;div class="content"&gt;
+**(a)** Full solution with working...
+
+$$\bar{x} = \frac{\sum x_i}{n} = \frac{35}{7} = 5$$
+&lt;/div&gt;
+&lt;/details&gt;</code></pre>
+
+<div class="note">
+  <strong>Rule:</strong> Never modify the original chapter body content
+  (the textbook exposition before the Exercises section).
+  Only add or edit content in the Exercises section at the bottom of each chapter file.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="webr">7. webR Interactive Exercise Structure</h2>
+
+<h3>How webR works</h3>
+<p>
+  <a href="https://docs.r-wasm.org/webr/latest/" target="_blank">webR</a> runs a full R engine
+  inside the browser using WebAssembly — no server needed. The CSS and JavaScript that
+  power all webR cells are loaded from a single file:
+</p>
+<pre><code>webr-exercises.html</code></pre>
+<p>
+  This file is injected into every page's <code>&lt;head&gt;</code> via <code>_output.yml</code>:
+</p>
+<pre><code>bookdown::gitbook:
+  css: [style.css]
+  includes:
+    in_header: webr-exercises.html</code></pre>
+
+<div class="note">
+  <strong>If webR stops working after a merge:</strong> check that <code>_output.yml</code> still
+  has the <code>includes: in_header: webr-exercises.html</code> lines — they can be accidentally
+  removed during a merge conflict.
+</div>
+
+<h3>Editor choice — native <code>&lt;textarea&gt;</code></h3>
+<p>
+  The final implementation uses a <strong>native HTML <code>&lt;textarea class="webr-editor"&gt;</code></strong>
+  as the code input area. It does <strong>not</strong> use CodeMirror, Ace editor, or Quarto
+  live-runtime. This choice was intentional for stability inside bookdown/gitbook:
+</p>
+<ul>
+  <li>CodeMirror 5 caused cursor/text alignment bugs inside the bookdown/gitbook CSS environment
+      that could not be fixed with CSS overrides. (See §12 for details.)</li>
+  <li>Quarto live-runtime (<code>live-runtime.js</code>) requires the full Quarto OJS environment
+      and cannot be dropped into bookdown by simply loading the script. (See §12.)</li>
+  <li>A plain <code>&lt;textarea&gt;</code> has no line numbers or syntax highlighting, but it
+      is completely stable, has no cursor issues, and is easy to maintain.</li>
+</ul>
+
+<h3>webR cell HTML template</h3>
+<p>
+  Place a webR cell inside (or after) an exercise box. The <code>&lt;textarea&gt;</code> holds
+  the starter code students will see. Include a <code>&lt;canvas&gt;</code> element only
+  if the question produces a plot. The textarea auto-resizes to fit its content.
+</p>
+
+<pre><code>&lt;div class="webr-exercise"&gt;
+&lt;div class="webr-exercise-header"&gt;Exercise&lt;/div&gt;
+&lt;textarea class="webr-editor" rows="5"&gt;x &lt;- c(1, 2, 3, 4, 5)
+# (a) Compute the mean
+mean(x)
+# (b) Compute the standard deviation
+sd(x)
+&lt;/textarea&gt;
+&lt;div class="webr-controls"&gt;
+  &lt;button class="webr-run-btn" disabled&gt;▶ Run&lt;/button&gt;
+  &lt;button class="webr-reset-btn"&gt;↺ Reset&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="webr-output-area"&gt;&lt;/div&gt;
+&lt;div class="webr-canvas-area"&gt;&lt;canvas&gt;&lt;/canvas&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Key rules for webR exercises</h3>
+<ul>
+  <li>Use only R syntax taught in <strong>Chapter 2</strong>: <code>c()</code>, <code>mean()</code>, <code>sd()</code>, <code>var()</code>, <code>sum()</code>, <code>sort()</code>, <code>hist()</code>, <code>boxplot()</code>, <code>summary()</code>, <code>IQR()</code>, etc.</li>
+  <li>Do <strong>not</strong> use <code>cat()</code> — use separate function calls on individual lines instead.</li>
+  <li>Use <code>hist()</code> and <code>boxplot()</code> (base R) — not ggplot2 — in Chapter 3 exercises.</li>
+  <li>For Chapter 5–6 exercises: <code>qnorm()</code>, <code>qt()</code>, <code>t.test()</code>, <code>prop.test()</code>, <code>pnorm()</code>, <code>pt()</code> are appropriate.</li>
+  <li>The scaffold (starter code in the textarea) should be <em>incomplete</em> — students fill in the blanks.</li>
+  <li>The <strong>Answer</strong> section must contain the complete runnable R code.</li>
+  <li>Omit the <code>&lt;canvas&gt;</code> div if the question has no plot output.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="what-we-built">8. What We Built / Custom Changes Made</h2>
+
+<p>
+  This section documents the non-obvious changes made to the project that are not derivable
+  from reading a standard bookdown tutorial. This is the "what did you guys do" section the professor can consult before making updates.
+</p>
+
+<h3>webR in bookdown — how we got it to work</h3>
+<p>
+  Bookdown does not natively support webR. The standard approach (used in Quarto or standalone HTML)
+  does not plug in directly. To make it work we:
+</p>
+<ol>
+  <li>
+    <strong>Created <code>webr-exercises.html</code> from scratch.</strong>
+    This file contains all CSS styling for the exercise cards, buttons, output area,
+    and canvas (for plots), plus a <code>&lt;script type="module"&gt;</code> block that:
+    <ul>
+      <li>Imports WebR from the CDN: <code>https://webr.r-wasm.org/latest/webr.mjs</code></li>
+      <li>Initialises the R engine on page load</li>
+      <li>Installs ggplot2 on first visit (~30 s, cached after that)</li>
+      <li>Wires up Run and Reset buttons for every <code>.webr-exercise</code> div on the page</li>
+      <li>Reads code directly from <code>textarea.value</code> when Run is clicked</li>
+      <li>Auto-resizes the textarea to fit the starter code height on load</li>
+      <li>Renders text output into <code>.webr-output-area</code></li>
+      <li>Renders plot output onto the <code>&lt;canvas&gt;</code> inside <code>.webr-canvas-area</code> when present</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Added <code>in_header</code> to <code>_output.yml</code></strong> so that
+    <code>webr-exercises.html</code> is injected into the <code>&lt;head&gt;</code> of every
+    rendered HTML page:
+<pre><code>bookdown::gitbook:
+  css: [style.css]
+  includes:
+    in_header: webr-exercises.html</code></pre>
+  </li>
+  <li>
+    <strong>Wrote the webR cell HTML directly in each <code>.Rmd</code> file</strong>
+    (see §7 for the template). Because bookdown passes raw HTML through to the output,
+    this works without any special plugin.
+  </li>
+</ol>
+<div class="note">
+  <strong>Editor:</strong> The code input area is a styled native <code>&lt;textarea&gt;</code>.
+  We deliberately do not use CodeMirror or Ace — see §12 for why. Do not add a third-party
+  code editor library back without reading the known issues section first.
+</div>
+
+<h3>Exercise box CSS</h3>
+<p>
+  The exercise boxes, collapsible hints, and collapsible answers are styled via <code>style.css</code>
+  and <code>box.css</code>. The collapsible behaviour uses the native HTML
+  <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> elements — no JavaScript needed.
+  The <code>data-type="hint"</code> and <code>data-type="answer"</code> attributes on
+  <code>&lt;details&gt;</code> trigger different colours via CSS attribute selectors.
+</p>
+
+<h3>Datasets</h3>
+<p>
+  We are <strong>not</strong> including local CSV files. All datasets used in exercises are either:
+</p>
+<ul>
+  <li>Hard-coded inline as <code>c(...)</code> vectors in the exercise text, or</li>
+  <li>Built-in R datasets (e.g., <code>mtcars</code>, <code>faithful</code>).</li>
+</ul>
+<p>
+  This avoids file-path issues when the book runs in the browser via webR or is
+  served from GitHub Pages.
+</p>
+
+<h3>RGL removed</h3>
+<p>
+  An early version of the book used the <code>rgl</code> package for 3D plots.
+  It was removed because of <strong>version conflicts</strong> — <code>rgl</code> requires
+  specific system libraries and caused render failures on some machines.
+  If you see any leftover <code>rgl</code> references in the code, they can be deleted.
+</p>
+
+<!-- ============================================================ -->
+<h2 id="apps">9. Interactive Apps (Chapter 4)</h2>
+
+<p>
+  Because F-distribution tables get unwieldy, Professor Mudalige built three
+  self-contained HTML apps using Plotly/Shiny, stored in <code>Apps/</code>
+  and embedded via <code>knitr::include_app()</code> in the chapter body.
+</p>
+
+<table>
+  <tr><th>File</th><th>Purpose</th><th>Use in questions</th></tr>
+  <tr>
+    <td><code>Apps/distribution_calculator.html</code></td>
+    <td>Compute F, T, χ² critical values and probabilities</td>
+    <td>Verify numeric answers in Ch4–Ch6 questions</td>
+  </tr>
+  <tr>
+    <td><code>Apps/lln_simulation.html</code></td>
+    <td>Law of Large Numbers simulator</td>
+    <td>Conceptual questions on convergence</td>
+  </tr>
+  <tr>
+    <td><code>Apps/clt_simulation.html</code></td>
+    <td>Central Limit Theorem simulator (adjustable n, distribution)</td>
+    <td>Questions on what happens as n increases</td>
+  </tr>
+</table>
+
+<p>
+  To link a question to the distribution calculator, you can add a line like:
+</p>
+<pre><code>You may use the [distribution calculator](#link-to-chapter4-app) to verify your answer.</code></pre>
+
+<!-- ============================================================ -->
+<h2 id="chapters">10. Chapter Summary</h2>
+
+<table>
+  <tr><th>Chapter</th><th>Topic</th><th>Exercises</th><th>webR</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Introduction &amp; Overview</td>
+    <td>~10 questions</td>
+    <td><span class="tag">None</span></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Introduction to R</td>
+    <td>No exercises (R tutorial chapter)</td>
+    <td><span class="tag partial">Planned</span></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Descriptive Statistics</td>
+    <td>Q1–Q27 (hand calc + R coding)</td>
+    <td><span class="tag done">Done</span> Q6, Q9, Q11, Q12 (inside boxes); Q19–Q23 (standalone R)</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Foundations of Inference</td>
+    <td>In progress</td>
+    <td><span class="tag">Apps embedded</span></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Confidence Intervals</td>
+    <td>Q1–Q27</td>
+    <td><span class="tag done">Done</span> Q20–Q27 (Z CI, t CI, proportion CI, two-sample Welch, ratio of variances, paired t)</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Hypothesis Tests</td>
+    <td>Q1–Q20</td>
+    <td><span class="tag done">Done</span> Q1–Q5 (z test, p-value, t test, proportion test, prop.test)</td>
+  </tr>
+  <tr>
+    <td>7–10</td>
+    <td>Power, ANOVA, Regression, Categorical</td>
+    <td>Existing content</td>
+    <td><span class="tag">None yet</span></td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="github">11. GitHub Workflow</h2>
+
+<p>The repository is at: <a href="https://github.com/nishanmudalige/STA258_Book" target="_blank">github.com/nishanmudalige/STA258_Book</a></p>
+
+<h3>Branch strategy</h3>
+<ul>
+  <li>Work on your own branch (e.g., <code>janice-ch5</code>), not directly on <code>main</code>.</li>
+  <li>Only merge to <code>main</code> when a chapter is ready — merging too early causes conflicts.</li>
+  <li>After merging, always check that <code>_output.yml</code> still contains <code>in_header: webr-exercises.html</code>.</li>
+</ul>
+
+<h3>Typical workflow</h3>
+<pre><code># Create a new branch
+git checkout -b janice-ch6
+
+# Edit .Rmd files, then render to check output
+bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook")
+
+# Stage, commit, push
+git add Chapters/06-Hypothesis_Tests.Rmd docs/
+git commit -m "Add Ch6 hypothesis test exercises with webR"
+git push origin janice-ch6
+
+# Open a pull request on GitHub, then merge into main</code></pre>
+
+<div class="note">
+  <strong>Hidden file (.nojekyll):</strong> The <code>docs/</code> folder must contain an empty
+  file called <code>.nojekyll</code> for GitHub Pages to serve images correctly.
+  This file is hidden on Mac (starts with a dot). Do not delete it.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="errors">12. Common Errors &amp; Known Issues</h2>
+
+<h3>⚠️ Safari: Run button does not work locally</h3>
+<p>
+  <strong>Known issue.</strong> When you open the rendered HTML files directly from your local
+  <code>docs/</code> folder in Safari, the webR Run button does not respond. This is a browser
+  security restriction on local <code>file://</code> URLs — Safari blocks the WebAssembly module
+  from loading.
+</p>
+<p><strong>Workaround:</strong> webR works correctly once the book is pushed to GitHub Pages.
+  For local testing, use Chrome or Firefox instead of Safari.</p>
+
+<h3>webR not loading / Run button stays grey (on GitHub Pages)</h3>
+<p>Check that <code>_output.yml</code> still has:</p>
+<pre><code>bookdown::gitbook:
+  css: [style.css]
+  includes:
+    in_header: webr-exercises.html</code></pre>
+<p>
+  This line is sometimes silently dropped during a git merge conflict.
+  Re-add it and re-render. This has happened before — always double-check after merging.
+</p>
+
+<h3>Render warnings that can be ignored</h3>
+<p>The following warnings appear during every render and are <strong>safe to ignore</strong>:</p>
+<pre><code>[WARNING] Citeproc: citation BryanSu426 not found
+[WARNING] Citeproc: citation chimera1001 not found
+[WARNING] Citeproc: citation nishanmudalige not found
+[WARNING] Citeproc: citation nurlanaalili not found
+[WARNING] Deprecated: --highlight-style. Use --syntax-highlighting instead.
+Warning in snapshot3d(...): webshot = TRUE requires the webshot2 package and Chrome browser</code></pre>
+<p>None of these affect the output. The citation warnings are for references not yet in the
+<code>.bib</code> file; the snapshot warning is from an rgl leftover that does not affect HTML output.</p>
+
+<h3>Pandoc not found when rendering</h3>
+<p>Use the full PANDOC path pointing to RStudio's bundled pandoc:</p>
+<pre><code>PANDOC=/Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64/pandoc \
+  Rscript -e 'bookdown::render_book("index.Rmd", "bookdown::gitbook")'</code></pre>
+
+<h3>Images not showing on GitHub Pages</h3>
+<p>
+  Make sure <code>docs/.nojekyll</code> exists — it must be an empty file with exactly that name.
+  Without it, Jekyll (GitHub's default processor) ignores files in folders starting with
+  underscore, causing images to disappear.
+</p>
+<pre><code>touch docs/.nojekyll
+git add docs/.nojekyll
+git commit -m "Restore .nojekyll"
+git push</code></pre>
+
+<h3>Merge conflict in docs/ folder</h3>
+<p>
+  The <code>docs/</code> folder is generated — never edit it by hand.
+  If there is a merge conflict inside <code>docs/</code>, accept either version,
+  then re-render the book to regenerate <code>docs/</code> cleanly from source.
+</p>
+
+<h3>R chunk label conflict</h3>
+<p>
+  Every <code>```{r label}</code> chunk label must be unique across the entire book.
+  If you copy a chunk from one chapter to another, rename its label.
+  Duplicate labels cause the render to fail:
+  <code>Error in parse_block: duplicate label 'xyz'</code>.
+</p>
+
+<h3>RGL / 3D plot errors</h3>
+<p>
+  The <code>rgl</code> package was removed from this project due to version conflicts.
+  If you see errors mentioning <code>rgl</code>, <code>rglWebGL</code>, or
+  <code>CanvasMatrix</code>, delete the relevant code chunk — rgl is no longer used.
+</p>
+
+<h3>webR editor cursor / text misalignment</h3>
+<p>
+  If a code editor inside a webR exercise shows the cursor in the wrong position,
+  typed text that does not line up with the background rows, or the cursor floating
+  above or below the current line — <strong>this is a browser/CSS rendering issue,
+  not an RStudio or VS Code issue.</strong> Switching editors will not fix it because
+  the bug happens in the browser after the book has been rendered.
+</p>
+<p>
+  History of the problem in this project:
+</p>
+<ul>
+  <li>An earlier version used <strong>CodeMirror 5</strong> (loaded from cdnjs) as the code editor.</li>
+  <li>CodeMirror 5's JavaScript positions the cursor by measuring line height at initialisation time.
+      When the bookdown/gitbook CSS overrides <code>line-height</code> on CodeMirror elements,
+      the cursor position calculated by JS and the lines rendered by CSS become inconsistent —
+      producing the visible misalignment.</li>
+  <li>Multiple CSS workarounds were attempted (<code>line-height: 17px</code>,
+      <code>height: 18px !important</code> on <code>.CodeMirror-cursor</code>, multiple
+      <code>cm.refresh()</code> calls) — none reliably fixed the issue across browsers.</li>
+  <li>The final decision was to <strong>replace CodeMirror with a native <code>&lt;textarea&gt;</code></strong>.
+      The browser's built-in textarea cursor is always correct.</li>
+</ul>
+<div class="note">
+  <strong>Do not reintroduce CodeMirror or Ace</strong> unless the root cause (line-height
+  conflict with the gitbook CSS) is properly resolved. Do not attempt to fix cursor alignment
+  by adding CSS hacks such as <code>.CodeMirror-cursor { transform: translateY(...) }</code>
+  or <code>.CodeMirror-cursor { top: ... }</code> — these do not address the underlying measurement
+  inconsistency and will break on other browsers or screen sizes.
+</div>
+
+<h3>Do not directly replace bookdown webR with Quarto live-runtime</h3>
+<p>
+  The Quarto <code>live-html</code> format (powered by the <code>r-wasm/quarto-live</code>
+  extension and its <code>live-runtime.js</code>) produces clean, well-aligned webR exercise cells.
+  However, you <strong>cannot</strong> drop it into this bookdown project by only loading
+  <code>live-runtime.css</code> and <code>live-runtime.js</code>.
+</p>
+<p>Quarto live-runtime requires:</p>
+<ul>
+  <li>A specific generated HTML structure: <code>&lt;div class="exercise-cell"&gt;</code> divs
+      with corresponding <code>&lt;script type="webr-N-contents"&gt;</code> blocks containing
+      base64-encoded JSON payloads</li>
+  <li>The full Quarto OJS runtime environment for initialisation</li>
+  <li>Additional <code>webr-data</code> attributes and OJS variable bindings that Quarto
+      generates at compile time from <code>{webr}</code> code chunks</li>
+</ul>
+<p>
+  The current bookdown implementation uses <code>.webr-exercise</code> divs,
+  <code>&lt;textarea class="webr-editor"&gt;</code>, and custom JavaScript in
+  <code>webr-exercises.html</code>. These are completely different structures.
+</p>
+<div class="note">
+  <strong>If you only load live-runtime CSS/JS without converting the HTML structure</strong>,
+  the editable R exercise cells will disappear from the page — the textarea will be hidden
+  but nothing will replace it. This was tested and confirmed during development.
+  If you want to migrate to Quarto live-runtime in the future, you must also convert all
+  <code>.Rmd</code> exercise HTML to the <code>exercise-cell</code> format AND provide
+  the full Quarto OJS runtime context.
+</div>
+
+<h3>Cannot switch branches because docs/ has generated changes</h3>
+<p>
+  The <code>docs/</code> folder is generated output. If Git refuses to switch branches
+  because files in <code>docs/</code> would be overwritten, you have two options:
+</p>
+<p><strong>Option A — discard the generated changes and switch:</strong></p>
+<pre><code>git restore docs/
+git clean -fd docs/
+git switch main
+git pull</code></pre>
+<p><strong>Option B — commit the generated output first:</strong></p>
+<pre><code>git add docs/
+git commit -m "Render book output"
+git switch main
+git pull</code></pre>
+<div class="note">
+  Never manually edit files inside <code>docs/</code> — always edit source <code>.Rmd</code>
+  files and re-render. Any manual edits in <code>docs/</code> will be overwritten on the
+  next render.
+</div>
+
+<hr style="margin-top:40px; border-color:#e0e0e0;">
+<p style="color:#90a4ae; font-size:0.85em;">
+  Last updated: June 2026 &nbsp;|&nbsp; STA258: Statistics with Applied Probability, University of Toronto Mississauga
+</p>
+
+</body>
+</html>

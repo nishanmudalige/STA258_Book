@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-05-31" />
+<meta name="date" content="2026-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,113 +69,151 @@
 <!-- Loaded via _output.yml in_header for bookdown::gitbook -->
 
 <style>
-.webr-status-bar {
-  background: #fff8e1;
-  border: 1px solid #ffe082;
-  border-radius: 4px;
-  padding: 7px 14px;
-  margin: 10px 0 6px 0;
-  font-size: 0.85em;
-  color: #5d4037;
+/* ── Loading indicator ── */
+#webr-loading-indicator {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid #dee2e6;
+  background-color: #f8f8f8;
+  border-top-left-radius: 5px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #212529;
   font-family: sans-serif;
 }
-.webr-status-bar.webr-ready {
-  background: #e8f5e9;
-  border-color: #a5d6a7;
-  color: #2e7d32;
-}
-.webr-status-bar.webr-error {
-  background: #ffebee;
-  border-color: #ef9a9a;
-  color: #b71c1c;
+#webr-loading-indicator.webr-ready { display: none; }
+#webr-loading-indicator.webr-error {
+  background-color: #f8d7da;
+  border-color: #f1aeb5;
+  color: #58151c;
 }
 
+/* ── Exercise card ── */
 .webr-exercise {
-  margin: 12px 0 4px 0;
-  border: 1px solid #b3d4fb;
-  border-radius: 6px;
+  margin: 0.5rem 0;
+  border: 1px solid rgba(0,0,0,0.175);
+  border-radius: 0.375rem;
   overflow: hidden;
   font-family: sans-serif;
-  background: #f5faff;
+  font-size: 0.85em;
+  background: #fff;
 }
+
+/* ── Card header ── */
 .webr-exercise-header {
-  background: #1565c0;
-  color: #fff;
-  padding: 5px 12px;
-  font-size: 0.78em;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid rgba(0,0,0,0.175);
+  font-weight: 600;
+  color: #212529;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
 }
+
+.webr-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+/* ── Run button ── */
+.webr-run-btn {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8em;
+  color: #fff;
+  background-color: #0d6efd;
+  border: 1px solid #0d6efd;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-family: sans-serif;
+  white-space: nowrap;
+  transition: background-color 0.15s;
+}
+.webr-run-btn:hover:not(:disabled) { background-color: #0b5ed7; }
+.webr-run-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* ── Reset button ── */
+.webr-reset-btn {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8em;
+  color: #6c757d;
+  background-color: transparent;
+  border: 1px solid #6c757d;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-family: sans-serif;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s;
+}
+.webr-reset-btn:hover { background-color: #6c757d; color: #fff; }
+
+/* ── Textarea code editor ── */
 .webr-editor {
   display: block;
   width: 100%;
-  min-height: 160px;
-  padding: 10px 12px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.88em;
+  box-sizing: border-box;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
   line-height: 1.5;
-  border: none;
-  border-bottom: 1px solid #b3d4fb;
+  padding: 0.4rem 0.6rem;
   background: #fff;
+  color: #212529;
+  border: none;
+  border-bottom: 1px solid #dee2e6;
   resize: vertical;
   outline: none;
-  box-sizing: border-box;
-  color: #1a1a2e;
+  overflow: auto;
 }
-.webr-controls {
-  padding: 6px 12px;
-  background: #e8f1fd;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.webr-editor:focus {
+  background: #fafcff;
 }
-.webr-run-btn {
-  background: #1565c0;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 18px;
-  cursor: pointer;
-  font-size: 0.85em;
-  font-weight: 700;
-  transition: background 0.15s;
-}
-.webr-run-btn:hover:not(:disabled) { background: #0d47a1; }
-.webr-run-btn:disabled { background: #90a4ae; cursor: not-allowed; }
-.webr-reset-btn {
-  background: none;
-  border: 1px solid #90a4ae;
-  border-radius: 4px;
-  padding: 5px 14px;
-  cursor: pointer;
-  font-size: 0.83em;
-  color: #546e7a;
-  transition: background 0.12s;
-}
-.webr-reset-btn:hover { background: #eceff1; }
+
+/* ── Hide original controls (moved to header by JS) ── */
+.webr-controls { display: none; }
+
+/* ── Output area ── */
 .webr-output-area {
-  padding: 10px 14px;
-  background: #1e1e2e;
-  color: #cdd6f4;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.85em;
-  line-height: 1.6;
+  padding: 0.3rem 0.6rem;
+  background: #fff;
+  color: #212529;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;
+  border-top: 1px solid #dee2e6;
   display: none;
 }
 .webr-output-area.webr-has-output { display: block; }
-.webr-output-area.webr-error-output { color: #f38ba8; }
+.webr-output-area.webr-error-output { color: #ad0000; background: #fff8f8; }
+
+/* ── Plot area ── */
 .webr-canvas-area {
-  padding: 10px;
+  padding: 0.5rem;
   background: #fff;
   text-align: center;
   display: none;
-  border-top: 1px solid #b3d4fb;
+  border-top: 1px solid #dee2e6;
 }
 .webr-canvas-area.webr-has-plot { display: block; }
-.webr-canvas-area canvas { max-width: 100%; border: 1px solid #e0e0e0; border-radius: 3px; }
+.webr-canvas-area canvas {
+  max-width: 100%;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+}
 </style>
+
+<div id="webr-loading-indicator">
+  <span id="webr-loading-text">⏳ Loading R engine…</span>
+</div>
 
 <script type="module">
 import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
@@ -183,65 +221,85 @@ import { WebR } from 'https://webr.r-wasm.org/latest/webr.mjs';
 let webR;
 let webRReady = false;
 
-function setGlobalStatus(msg, cssClass) {
-  document.querySelectorAll('.webr-status-bar').forEach(el => {
-    el.textContent = msg;
-    el.className = 'webr-status-bar ' + (cssClass || '');
-  });
+const indicator     = document.getElementById('webr-loading-indicator');
+const indicatorText = document.getElementById('webr-loading-text');
+
+function setStatus(msg, cssClass) {
+  if (!indicator) return;
+  indicatorText.textContent = msg;
+  indicator.className = cssClass || '';
 }
 
 async function initWebR() {
   try {
     webR = new WebR({ interactive: false });
     await webR.init();
-    setGlobalStatus('📦 Installing ggplot2… (first visit only, ~30 s)', '');
+    setStatus('📦 Installing packages… (first visit only)', '');
     await webR.installPackages(['ggplot2']);
     await webR.evalRVoid('suppressMessages(library(ggplot2))');
     webRReady = true;
-    setGlobalStatus('✅ R is ready — click ▶ Run to execute code', 'webr-ready');
-    document.querySelectorAll('.webr-run-btn').forEach(btn => { btn.disabled = false; });
+    setStatus('', 'webr-ready');
+    document.querySelectorAll('.webr-run-btn').forEach(btn => {
+      btn.disabled = false;
+      btn.textContent = '▶ Run';
+    });
   } catch (e) {
-    setGlobalStatus('❌ Failed to load R engine: ' + e.message, 'webr-error');
+    setStatus('❌ Failed to load R: ' + e.message, 'webr-error');
   }
 }
 
 function setupCell(cell) {
-  const editor    = cell.querySelector('.webr-editor');
+  const textarea  = cell.querySelector('.webr-editor');
   const runBtn    = cell.querySelector('.webr-run-btn');
   const resetBtn  = cell.querySelector('.webr-reset-btn');
   const outArea   = cell.querySelector('.webr-output-area');
   const canvasDiv = cell.querySelector('.webr-canvas-area');
   const canvas    = canvasDiv ? canvasDiv.querySelector('canvas') : null;
-  const origCode  = editor.value;
+  const header    = cell.querySelector('.webr-exercise-header');
+  const origCode  = textarea.value;
 
+  // Auto-size textarea to content
+  function fitHeight() {
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  }
+  fitHeight();
+  textarea.addEventListener('input', fitHeight);
+
+  // Move buttons into header
+  const btnGroup = document.createElement('div');
+  btnGroup.className = 'webr-btn-group';
+  btnGroup.appendChild(runBtn);
+  btnGroup.appendChild(resetBtn);
+  header.appendChild(btnGroup);
+
+  // Reset
   resetBtn.addEventListener('click', () => {
-    editor.value = origCode;
+    textarea.value = origCode;
+    fitHeight();
     outArea.textContent = '';
     outArea.className = 'webr-output-area';
     if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
   });
 
+  // Run
   runBtn.addEventListener('click', async () => {
     if (!webRReady) return;
     runBtn.disabled = true;
-    runBtn.textContent = '⏳ Running…';
+    runBtn.textContent = '⏳';
     outArea.textContent = '';
     outArea.className = 'webr-output-area';
     if (canvasDiv) canvasDiv.className = 'webr-canvas-area';
 
     try {
-      const code = editor.value;
+      const code = textarea.value;
       const shelter = await new webR.Shelter();
-
       const captureOpts = { withAutoprint: true };
-      if (canvas) {
-        captureOpts.captureGraphics = { width: 504, height: 378, bg: 'white' };
-      }
+      if (canvas) captureOpts.captureGraphics = { width: 504, height: 378, bg: 'white' };
 
       const result = await shelter.captureR(code, captureOpts);
       await shelter.purge();
 
-      // Text output
       const lines = result.output
         .filter(x => x.type === 'stdout' || x.type === 'message')
         .map(x => x.data)
@@ -253,18 +311,13 @@ function setupCell(cell) {
         outArea.classList.add('webr-has-output');
       }
 
-      // Plot output
       if (canvas && result.images && result.images.length > 0) {
         canvasDiv.classList.add('webr-has-plot');
         const ctx = canvas.getContext('2d');
-        canvas.width  = 504;
-        canvas.height = 378;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (const img of result.images) {
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        }
+        canvas.width = 504; canvas.height = 378;
+        ctx.clearRect(0, 0, 504, 378);
+        for (const img of result.images) ctx.drawImage(img, 0, 0, 504, 378);
       }
-
     } catch (e) {
       outArea.textContent = 'Error: ' + e.message;
       outArea.classList.add('webr-has-output', 'webr-error-output');
@@ -275,7 +328,6 @@ function setupCell(cell) {
   });
 }
 
-// Wait for DOM then initialise
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.webr-exercise').forEach(setupCell);
   initWebR();
@@ -284,8 +336,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -295,7 +348,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -357,7 +410,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -739,19 +791,19 @@ Common distributions which thetest statistic follows are the standard normal dis
 <!-- It quantifies the evidence against the null hypothesis. -->
 <p>We use the test statistic, reference distribution, and refer back to <span class="math inline">\(H_a\)</span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-10-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-10-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
+<img src="Book_files/figure-html/unnamed-chunk-10-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-10-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.1: Right-tailed test: p-value is the area to the right of the test statistic
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-11-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-11-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
+<img src="Book_files/figure-html/unnamed-chunk-11-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-11-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.2: Left-tailed test: p-value is the area to the left of the test statistic
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-12-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
+<img src="Book_files/figure-html/unnamed-chunk-12-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
 <p class="caption">
 Figure 6.3: Two-tailed test: p-value is the total area in both tails beyond ±test statistic
 </p>
@@ -931,7 +983,7 @@ decreased. Assume the standard deviation is known to be 5.25 kg.</p>
 <p><strong>4. Calculate p-value</strong></p>
 <span class="math display">\[\text{p-value} = P(Z &lt; -2.82) \approx 0.0024\]</span>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-13-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
+<img src="Book_files/figure-html/unnamed-chunk-13-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
 <p class="caption">
 Figure 6.4: Left-tailed p-value for the test statistic <span class="math inline">\(z^* = -2.82\)</span>
 </p>
@@ -943,35 +995,35 @@ conclusion:</strong></p>
 the null that does this winter weigh the same as in the past and to
 conclude the alternative that does this winter weigh less than 45 kg.</p>
 <p><strong>R code:</strong></p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="hypothesis-tests.html#cb52-1" tabindex="-1"></a>    <span class="co"># Find test stat</span></span>
-<span id="cb52-2"><a href="hypothesis-tests.html#cb52-2" tabindex="-1"></a>    z_test_stat <span class="ot">=</span> (<span class="fl">42.53</span> <span class="sc">-</span> <span class="dv">45</span>) <span class="sc">/</span> (<span class="fl">5.25</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">36</span>))</span>
-<span id="cb52-3"><a href="hypothesis-tests.html#cb52-3" tabindex="-1"></a>    z_test_stat</span>
-<span id="cb52-4"><a href="hypothesis-tests.html#cb52-4" tabindex="-1"></a>    [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">2.822857</span></span>
-<span id="cb52-5"><a href="hypothesis-tests.html#cb52-5" tabindex="-1"></a></span>
-<span id="cb52-6"><a href="hypothesis-tests.html#cb52-6" tabindex="-1"></a>    <span class="co"># Find the p-value</span></span>
-<span id="cb52-7"><a href="hypothesis-tests.html#cb52-7" tabindex="-1"></a>    <span class="co"># Since the alternative is Ha : mu &lt; 45</span></span>
-<span id="cb52-8"><a href="hypothesis-tests.html#cb52-8" tabindex="-1"></a>    p<span class="sc">-</span>value <span class="ot">=</span> <span class="fu">pnorm</span>(z_test_stat)</span>
-<span id="cb52-9"><a href="hypothesis-tests.html#cb52-9" tabindex="-1"></a>    [<span class="dv">1</span>] <span class="fl">0.00237989</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="hypothesis-tests.html#cb57-1" tabindex="-1"></a>    <span class="co"># Find test stat</span></span>
+<span id="cb57-2"><a href="hypothesis-tests.html#cb57-2" tabindex="-1"></a>    z_test_stat <span class="ot">=</span> (<span class="fl">42.53</span> <span class="sc">-</span> <span class="dv">45</span>) <span class="sc">/</span> (<span class="fl">5.25</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">36</span>))</span>
+<span id="cb57-3"><a href="hypothesis-tests.html#cb57-3" tabindex="-1"></a>    z_test_stat</span>
+<span id="cb57-4"><a href="hypothesis-tests.html#cb57-4" tabindex="-1"></a>    [<span class="dv">1</span>] <span class="sc">-</span><span class="fl">2.822857</span></span>
+<span id="cb57-5"><a href="hypothesis-tests.html#cb57-5" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="hypothesis-tests.html#cb57-6" tabindex="-1"></a>    <span class="co"># Find the p-value</span></span>
+<span id="cb57-7"><a href="hypothesis-tests.html#cb57-7" tabindex="-1"></a>    <span class="co"># Since the alternative is Ha : mu &lt; 45</span></span>
+<span id="cb57-8"><a href="hypothesis-tests.html#cb57-8" tabindex="-1"></a>    p<span class="sc">-</span>value <span class="ot">=</span> <span class="fu">pnorm</span>(z_test_stat)</span>
+<span id="cb57-9"><a href="hypothesis-tests.html#cb57-9" tabindex="-1"></a>    [<span class="dv">1</span>] <span class="fl">0.00237989</span></span></code></pre></div>
 <p><em>Note:</em> The <code>pnorm()</code> function in R, by default, returns the cumulative
 probability (area) to the left of the given value.<br />
 </p>
 <p><strong>R code: Using BSDA package</strong></p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="hypothesis-tests.html#cb53-1" tabindex="-1"></a>    <span class="co"># Using the BSDA library. install BSDA if it is not already installed.</span></span>
-<span id="cb53-2"><a href="hypothesis-tests.html#cb53-2" tabindex="-1"></a>    <span class="co"># install.packages(&quot;BSDA&quot;)</span></span>
-<span id="cb53-3"><a href="hypothesis-tests.html#cb53-3" tabindex="-1"></a>    <span class="sc">&gt;</span> <span class="fu">library</span>(BSDA)</span>
-<span id="cb53-4"><a href="hypothesis-tests.html#cb53-4" tabindex="-1"></a>    <span class="sc">&gt;</span> <span class="co"># Conduct the z-test with the zsum.test function</span></span>
-<span id="cb53-5"><a href="hypothesis-tests.html#cb53-5" tabindex="-1"></a>    <span class="er">&gt;</span> <span class="fu">zsum.test</span>(<span class="at">mean.x =</span> <span class="fl">42.53</span>, <span class="at">sigma.x =</span> <span class="fl">5.24</span>, <span class="at">n.x =</span> <span class="dv">36</span>, <span class="at">mu =</span> <span class="dv">45</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
-<span id="cb53-6"><a href="hypothesis-tests.html#cb53-6" tabindex="-1"></a></span>
-<span id="cb53-7"><a href="hypothesis-tests.html#cb53-7" tabindex="-1"></a>            One<span class="sc">-</span>sample z<span class="sc">-</span>Test</span>
-<span id="cb53-8"><a href="hypothesis-tests.html#cb53-8" tabindex="-1"></a></span>
-<span id="cb53-9"><a href="hypothesis-tests.html#cb53-9" tabindex="-1"></a>    data<span class="sc">:</span>  Summarized x</span>
-<span id="cb53-10"><a href="hypothesis-tests.html#cb53-10" tabindex="-1"></a>    z <span class="ot">=</span> <span class="sc">-</span><span class="fl">2.8282</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.00234</span></span>
-<span id="cb53-11"><a href="hypothesis-tests.html#cb53-11" tabindex="-1"></a>    alternative hypothesis<span class="sc">:</span> true mean is less than <span class="dv">45</span></span>
-<span id="cb53-12"><a href="hypothesis-tests.html#cb53-12" tabindex="-1"></a>    <span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
-<span id="cb53-13"><a href="hypothesis-tests.html#cb53-13" tabindex="-1"></a>     <span class="cn">NA</span> <span class="fl">43.96651</span></span>
-<span id="cb53-14"><a href="hypothesis-tests.html#cb53-14" tabindex="-1"></a>    sample estimates<span class="sc">:</span></span>
-<span id="cb53-15"><a href="hypothesis-tests.html#cb53-15" tabindex="-1"></a>    mean of x </span>
-<span id="cb53-16"><a href="hypothesis-tests.html#cb53-16" tabindex="-1"></a>        <span class="fl">42.53</span> </span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="hypothesis-tests.html#cb58-1" tabindex="-1"></a>    <span class="co"># Using the BSDA library. install BSDA if it is not already installed.</span></span>
+<span id="cb58-2"><a href="hypothesis-tests.html#cb58-2" tabindex="-1"></a>    <span class="co"># install.packages(&quot;BSDA&quot;)</span></span>
+<span id="cb58-3"><a href="hypothesis-tests.html#cb58-3" tabindex="-1"></a>    <span class="sc">&gt;</span> <span class="fu">library</span>(BSDA)</span>
+<span id="cb58-4"><a href="hypothesis-tests.html#cb58-4" tabindex="-1"></a>    <span class="sc">&gt;</span> <span class="co"># Conduct the z-test with the zsum.test function</span></span>
+<span id="cb58-5"><a href="hypothesis-tests.html#cb58-5" tabindex="-1"></a>    <span class="er">&gt;</span> <span class="fu">zsum.test</span>(<span class="at">mean.x =</span> <span class="fl">42.53</span>, <span class="at">sigma.x =</span> <span class="fl">5.24</span>, <span class="at">n.x =</span> <span class="dv">36</span>, <span class="at">mu =</span> <span class="dv">45</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb58-6"><a href="hypothesis-tests.html#cb58-6" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="hypothesis-tests.html#cb58-7" tabindex="-1"></a>            One<span class="sc">-</span>sample z<span class="sc">-</span>Test</span>
+<span id="cb58-8"><a href="hypothesis-tests.html#cb58-8" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="hypothesis-tests.html#cb58-9" tabindex="-1"></a>    data<span class="sc">:</span>  Summarized x</span>
+<span id="cb58-10"><a href="hypothesis-tests.html#cb58-10" tabindex="-1"></a>    z <span class="ot">=</span> <span class="sc">-</span><span class="fl">2.8282</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.00234</span></span>
+<span id="cb58-11"><a href="hypothesis-tests.html#cb58-11" tabindex="-1"></a>    alternative hypothesis<span class="sc">:</span> true mean is less than <span class="dv">45</span></span>
+<span id="cb58-12"><a href="hypothesis-tests.html#cb58-12" tabindex="-1"></a>    <span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb58-13"><a href="hypothesis-tests.html#cb58-13" tabindex="-1"></a>     <span class="cn">NA</span> <span class="fl">43.96651</span></span>
+<span id="cb58-14"><a href="hypothesis-tests.html#cb58-14" tabindex="-1"></a>    sample estimates<span class="sc">:</span></span>
+<span id="cb58-15"><a href="hypothesis-tests.html#cb58-15" tabindex="-1"></a>    mean of x </span>
+<span id="cb58-16"><a href="hypothesis-tests.html#cb58-16" tabindex="-1"></a>        <span class="fl">42.53</span> </span></code></pre></div>
 <p><strong>Interpretation:</strong></p>
 <p>There is sufficient evidence at the 5% level of significance to reject
 the null hypothesis. We conclude that the average mass of does this
@@ -1009,50 +1061,50 @@ if <span class="math inline">\(H_0\)</span> were true. The small p-value provide
 <span class="math inline">\(H_0\)</span>, supporting <span class="math inline">\(H_a: \mu &gt; 0\)</span>. That is, the mean sweetness loss is
 likely positive.</p>
 <p><strong>R code (Simulation)</strong></p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="hypothesis-tests.html#cb54-1" tabindex="-1"></a>    <span class="co"># n = sample size;</span></span>
-<span id="cb54-2"><a href="hypothesis-tests.html#cb54-2" tabindex="-1"></a>    n<span class="ot">&lt;-</span><span class="dv">10</span>;</span>
-<span id="cb54-3"><a href="hypothesis-tests.html#cb54-3" tabindex="-1"></a>    mu.zero<span class="ot">&lt;-</span><span class="dv">0</span>;</span>
-<span id="cb54-4"><a href="hypothesis-tests.html#cb54-4" tabindex="-1"></a>    sigma<span class="ot">&lt;-</span><span class="dv">1</span>;</span>
-<span id="cb54-5"><a href="hypothesis-tests.html#cb54-5" tabindex="-1"></a>    sigma.xbar<span class="ot">&lt;-</span>sigma<span class="sc">/</span><span class="fu">sqrt</span>(n);</span>
-<span id="cb54-6"><a href="hypothesis-tests.html#cb54-6" tabindex="-1"></a></span>
-<span id="cb54-7"><a href="hypothesis-tests.html#cb54-7" tabindex="-1"></a>    <span class="co"># x bar = sample mean with 10 obs;</span></span>
-<span id="cb54-8"><a href="hypothesis-tests.html#cb54-8" tabindex="-1"></a>    x.bar<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="at">mean=</span>mu.zero,<span class="at">sd=</span>sigma.xbar);</span>
-<span id="cb54-9"><a href="hypothesis-tests.html#cb54-9" tabindex="-1"></a>    x.bar;</span>
-<span id="cb54-10"><a href="hypothesis-tests.html#cb54-10" tabindex="-1"></a></span>
-<span id="cb54-11"><a href="hypothesis-tests.html#cb54-11" tabindex="-1"></a>    <span class="do">## [1] 0.3265859</span></span>
-<span id="cb54-12"><a href="hypothesis-tests.html#cb54-12" tabindex="-1"></a></span>
-<span id="cb54-13"><a href="hypothesis-tests.html#cb54-13" tabindex="-1"></a>    <span class="co"># z.star = test statistic;</span></span>
-<span id="cb54-14"><a href="hypothesis-tests.html#cb54-14" tabindex="-1"></a>    z.star<span class="ot">&lt;-</span>(x.bar<span class="sc">-</span>mu.zero)<span class="sc">/</span>sigma.xbar;</span>
-<span id="cb54-15"><a href="hypothesis-tests.html#cb54-15" tabindex="-1"></a>    z.star;</span>
-<span id="cb54-16"><a href="hypothesis-tests.html#cb54-16" tabindex="-1"></a></span>
-<span id="cb54-17"><a href="hypothesis-tests.html#cb54-17" tabindex="-1"></a>    <span class="do">## [1] 1.032755</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="hypothesis-tests.html#cb59-1" tabindex="-1"></a>    <span class="co"># n = sample size;</span></span>
+<span id="cb59-2"><a href="hypothesis-tests.html#cb59-2" tabindex="-1"></a>    n<span class="ot">&lt;-</span><span class="dv">10</span>;</span>
+<span id="cb59-3"><a href="hypothesis-tests.html#cb59-3" tabindex="-1"></a>    mu.zero<span class="ot">&lt;-</span><span class="dv">0</span>;</span>
+<span id="cb59-4"><a href="hypothesis-tests.html#cb59-4" tabindex="-1"></a>    sigma<span class="ot">&lt;-</span><span class="dv">1</span>;</span>
+<span id="cb59-5"><a href="hypothesis-tests.html#cb59-5" tabindex="-1"></a>    sigma.xbar<span class="ot">&lt;-</span>sigma<span class="sc">/</span><span class="fu">sqrt</span>(n);</span>
+<span id="cb59-6"><a href="hypothesis-tests.html#cb59-6" tabindex="-1"></a></span>
+<span id="cb59-7"><a href="hypothesis-tests.html#cb59-7" tabindex="-1"></a>    <span class="co"># x bar = sample mean with 10 obs;</span></span>
+<span id="cb59-8"><a href="hypothesis-tests.html#cb59-8" tabindex="-1"></a>    x.bar<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="at">mean=</span>mu.zero,<span class="at">sd=</span>sigma.xbar);</span>
+<span id="cb59-9"><a href="hypothesis-tests.html#cb59-9" tabindex="-1"></a>    x.bar;</span>
+<span id="cb59-10"><a href="hypothesis-tests.html#cb59-10" tabindex="-1"></a></span>
+<span id="cb59-11"><a href="hypothesis-tests.html#cb59-11" tabindex="-1"></a>    <span class="do">## [1] 0.3265859</span></span>
+<span id="cb59-12"><a href="hypothesis-tests.html#cb59-12" tabindex="-1"></a></span>
+<span id="cb59-13"><a href="hypothesis-tests.html#cb59-13" tabindex="-1"></a>    <span class="co"># z.star = test statistic;</span></span>
+<span id="cb59-14"><a href="hypothesis-tests.html#cb59-14" tabindex="-1"></a>    z.star<span class="ot">&lt;-</span>(x.bar<span class="sc">-</span>mu.zero)<span class="sc">/</span>sigma.xbar;</span>
+<span id="cb59-15"><a href="hypothesis-tests.html#cb59-15" tabindex="-1"></a>    z.star;</span>
+<span id="cb59-16"><a href="hypothesis-tests.html#cb59-16" tabindex="-1"></a></span>
+<span id="cb59-17"><a href="hypothesis-tests.html#cb59-17" tabindex="-1"></a>    <span class="do">## [1] 1.032755</span></span></code></pre></div>
 <p><strong>R code (10,000 Simulations)</strong></p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="hypothesis-tests.html#cb55-1" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="dv">10</span>;</span>
-<span id="cb55-2"><a href="hypothesis-tests.html#cb55-2" tabindex="-1"></a>    mu.zero <span class="ot">&lt;-</span> <span class="dv">0</span>;</span>
-<span id="cb55-3"><a href="hypothesis-tests.html#cb55-3" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> <span class="dv">1</span>;</span>
-<span id="cb55-4"><a href="hypothesis-tests.html#cb55-4" tabindex="-1"></a>    sigma.xbar <span class="ot">&lt;-</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n);</span>
-<span id="cb55-5"><a href="hypothesis-tests.html#cb55-5" tabindex="-1"></a>    <span class="co"># x bar = sample mean with 10 obs;</span></span>
-<span id="cb55-6"><a href="hypothesis-tests.html#cb55-6" tabindex="-1"></a>    <span class="co"># m = number of simulations;</span></span>
-<span id="cb55-7"><a href="hypothesis-tests.html#cb55-7" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="dv">10000</span>;</span>
-<span id="cb55-8"><a href="hypothesis-tests.html#cb55-8" tabindex="-1"></a>    x.bar <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(m, <span class="at">mean =</span> mu.zero, <span class="at">sd =</span> sigma.xbar);</span>
-<span id="cb55-9"><a href="hypothesis-tests.html#cb55-9" tabindex="-1"></a></span>
-<span id="cb55-10"><a href="hypothesis-tests.html#cb55-10" tabindex="-1"></a>    <span class="co"># z.star = test statistic;</span></span>
-<span id="cb55-11"><a href="hypothesis-tests.html#cb55-11" tabindex="-1"></a>    z.star <span class="ot">&lt;-</span> (x.bar <span class="sc">-</span> mu.zero) <span class="sc">/</span> sigma.xbar;</span>
-<span id="cb55-12"><a href="hypothesis-tests.html#cb55-12" tabindex="-1"></a>    <span class="fu">hist</span>(z.star, <span class="at">xlab =</span> <span class="st">&quot;differences&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="hypothesis-tests.html#cb60-1" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="dv">10</span>;</span>
+<span id="cb60-2"><a href="hypothesis-tests.html#cb60-2" tabindex="-1"></a>    mu.zero <span class="ot">&lt;-</span> <span class="dv">0</span>;</span>
+<span id="cb60-3"><a href="hypothesis-tests.html#cb60-3" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> <span class="dv">1</span>;</span>
+<span id="cb60-4"><a href="hypothesis-tests.html#cb60-4" tabindex="-1"></a>    sigma.xbar <span class="ot">&lt;-</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n);</span>
+<span id="cb60-5"><a href="hypothesis-tests.html#cb60-5" tabindex="-1"></a>    <span class="co"># x bar = sample mean with 10 obs;</span></span>
+<span id="cb60-6"><a href="hypothesis-tests.html#cb60-6" tabindex="-1"></a>    <span class="co"># m = number of simulations;</span></span>
+<span id="cb60-7"><a href="hypothesis-tests.html#cb60-7" tabindex="-1"></a>    m <span class="ot">&lt;-</span> <span class="dv">10000</span>;</span>
+<span id="cb60-8"><a href="hypothesis-tests.html#cb60-8" tabindex="-1"></a>    x.bar <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(m, <span class="at">mean =</span> mu.zero, <span class="at">sd =</span> sigma.xbar);</span>
+<span id="cb60-9"><a href="hypothesis-tests.html#cb60-9" tabindex="-1"></a></span>
+<span id="cb60-10"><a href="hypothesis-tests.html#cb60-10" tabindex="-1"></a>    <span class="co"># z.star = test statistic;</span></span>
+<span id="cb60-11"><a href="hypothesis-tests.html#cb60-11" tabindex="-1"></a>    z.star <span class="ot">&lt;-</span> (x.bar <span class="sc">-</span> mu.zero) <span class="sc">/</span> sigma.xbar;</span>
+<span id="cb60-12"><a href="hypothesis-tests.html#cb60-12" tabindex="-1"></a>    <span class="fu">hist</span>(z.star, <span class="at">xlab =</span> <span class="st">&quot;differences&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-14-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
+<img src="Book_files/figure-html/unnamed-chunk-14-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
 <p class="caption">
 Figure 6.5: Histogram of <span class="math inline">\(z^\star\)</span> values from 10,000 simulations under <span class="math inline">\(H_0\)</span>
 </p>
 </div>
 <p><strong>R code (Empirical p-value)</strong></p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="hypothesis-tests.html#cb56-1" tabindex="-1"></a>    <span class="do">## P-value</span></span>
-<span id="cb56-2"><a href="hypothesis-tests.html#cb56-2" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="hypothesis-tests.html#cb56-3" tabindex="-1"></a>    p_value <span class="ot">&lt;-</span> <span class="fu">length</span>(z.star[z.star <span class="sc">&gt;</span> <span class="fl">3.23</span>]) <span class="sc">/</span> m;</span>
-<span id="cb56-4"><a href="hypothesis-tests.html#cb56-4" tabindex="-1"></a></span>
-<span id="cb56-5"><a href="hypothesis-tests.html#cb56-5" tabindex="-1"></a>    p_value</span>
-<span id="cb56-6"><a href="hypothesis-tests.html#cb56-6" tabindex="-1"></a></span>
-<span id="cb56-7"><a href="hypothesis-tests.html#cb56-7" tabindex="-1"></a>    <span class="do">## [1] 8e-04</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="hypothesis-tests.html#cb61-1" tabindex="-1"></a>    <span class="do">## P-value</span></span>
+<span id="cb61-2"><a href="hypothesis-tests.html#cb61-2" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="hypothesis-tests.html#cb61-3" tabindex="-1"></a>    p_value <span class="ot">&lt;-</span> <span class="fu">length</span>(z.star[z.star <span class="sc">&gt;</span> <span class="fl">3.23</span>]) <span class="sc">/</span> m;</span>
+<span id="cb61-4"><a href="hypothesis-tests.html#cb61-4" tabindex="-1"></a></span>
+<span id="cb61-5"><a href="hypothesis-tests.html#cb61-5" tabindex="-1"></a>    p_value</span>
+<span id="cb61-6"><a href="hypothesis-tests.html#cb61-6" tabindex="-1"></a></span>
+<span id="cb61-7"><a href="hypothesis-tests.html#cb61-7" tabindex="-1"></a>    <span class="do">## [1] 8e-04</span></span></code></pre></div>
 </div>
 <div class="example">
 <p><span id="exm:unlabeled-div-62" class="example"><strong>Example 6.3  </strong></span>The National Center for Health Statistics reports that the systolic
@@ -1255,24 +1307,24 @@ There is not sufficient evidence to conclude that the average price
 of 2-star motels has decreased this year.</p></li>
 </ol>
 <p><strong>R code (One Sample t-test)</strong></p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="hypothesis-tests.html#cb57-1" tabindex="-1"></a>    <span class="co"># Step 1. Entering data;</span></span>
-<span id="cb57-2"><a href="hypothesis-tests.html#cb57-2" tabindex="-1"></a>    prices<span class="ot">=</span><span class="fu">c</span>(<span class="fl">85.00</span>, <span class="fl">92.50</span>, <span class="fl">87.50</span>, <span class="fl">89.90</span>, <span class="fl">90.00</span>, <span class="fl">82.50</span>,</span>
-<span id="cb57-3"><a href="hypothesis-tests.html#cb57-3" tabindex="-1"></a>             <span class="fl">87.50</span>, <span class="fl">90.00</span>, <span class="fl">85.00</span>, <span class="fl">89.00</span>, <span class="fl">91.50</span>, <span class="fl">87.50</span>);</span>
-<span id="cb57-4"><a href="hypothesis-tests.html#cb57-4" tabindex="-1"></a></span>
-<span id="cb57-5"><a href="hypothesis-tests.html#cb57-5" tabindex="-1"></a>    <span class="co"># Step 2. Hypothesis test;</span></span>
-<span id="cb57-6"><a href="hypothesis-tests.html#cb57-6" tabindex="-1"></a>    <span class="fu">t.test</span>(prices, <span class="at">alternative=</span><span class="st">&quot;less&quot;</span>, <span class="at">mu=</span><span class="fl">89.5</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="hypothesis-tests.html#cb62-1" tabindex="-1"></a>    <span class="co"># Step 1. Entering data;</span></span>
+<span id="cb62-2"><a href="hypothesis-tests.html#cb62-2" tabindex="-1"></a>    prices<span class="ot">=</span><span class="fu">c</span>(<span class="fl">85.00</span>, <span class="fl">92.50</span>, <span class="fl">87.50</span>, <span class="fl">89.90</span>, <span class="fl">90.00</span>, <span class="fl">82.50</span>,</span>
+<span id="cb62-3"><a href="hypothesis-tests.html#cb62-3" tabindex="-1"></a>             <span class="fl">87.50</span>, <span class="fl">90.00</span>, <span class="fl">85.00</span>, <span class="fl">89.00</span>, <span class="fl">91.50</span>, <span class="fl">87.50</span>);</span>
+<span id="cb62-4"><a href="hypothesis-tests.html#cb62-4" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="hypothesis-tests.html#cb62-5" tabindex="-1"></a>    <span class="co"># Step 2. Hypothesis test;</span></span>
+<span id="cb62-6"><a href="hypothesis-tests.html#cb62-6" tabindex="-1"></a>    <span class="fu">t.test</span>(prices, <span class="at">alternative=</span><span class="st">&quot;less&quot;</span>, <span class="at">mu=</span><span class="fl">89.5</span>);</span></code></pre></div>
 <p><strong>R output</strong></p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="hypothesis-tests.html#cb58-1" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb58-2"><a href="hypothesis-tests.html#cb58-2" tabindex="-1"></a>    <span class="do">##  One Sample t-test</span></span>
-<span id="cb58-3"><a href="hypothesis-tests.html#cb58-3" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb58-4"><a href="hypothesis-tests.html#cb58-4" tabindex="-1"></a>    <span class="do">## data:  prices</span></span>
-<span id="cb58-5"><a href="hypothesis-tests.html#cb58-5" tabindex="-1"></a>    <span class="do">## t = -1.5915, df = 11, p-value = 0.0699</span></span>
-<span id="cb58-6"><a href="hypothesis-tests.html#cb58-6" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true mean is less than 89.5</span></span>
-<span id="cb58-7"><a href="hypothesis-tests.html#cb58-7" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb58-8"><a href="hypothesis-tests.html#cb58-8" tabindex="-1"></a>    <span class="do">##  -Inf 89.67229</span></span>
-<span id="cb58-9"><a href="hypothesis-tests.html#cb58-9" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
-<span id="cb58-10"><a href="hypothesis-tests.html#cb58-10" tabindex="-1"></a>    <span class="do">## mean of x </span></span>
-<span id="cb58-11"><a href="hypothesis-tests.html#cb58-11" tabindex="-1"></a>    <span class="do">##  88.15833 </span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="hypothesis-tests.html#cb63-1" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb63-2"><a href="hypothesis-tests.html#cb63-2" tabindex="-1"></a>    <span class="do">##  One Sample t-test</span></span>
+<span id="cb63-3"><a href="hypothesis-tests.html#cb63-3" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb63-4"><a href="hypothesis-tests.html#cb63-4" tabindex="-1"></a>    <span class="do">## data:  prices</span></span>
+<span id="cb63-5"><a href="hypothesis-tests.html#cb63-5" tabindex="-1"></a>    <span class="do">## t = -1.5915, df = 11, p-value = 0.0699</span></span>
+<span id="cb63-6"><a href="hypothesis-tests.html#cb63-6" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true mean is less than 89.5</span></span>
+<span id="cb63-7"><a href="hypothesis-tests.html#cb63-7" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb63-8"><a href="hypothesis-tests.html#cb63-8" tabindex="-1"></a>    <span class="do">##  -Inf 89.67229</span></span>
+<span id="cb63-9"><a href="hypothesis-tests.html#cb63-9" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
+<span id="cb63-10"><a href="hypothesis-tests.html#cb63-10" tabindex="-1"></a>    <span class="do">## mean of x </span></span>
+<span id="cb63-11"><a href="hypothesis-tests.html#cb63-11" tabindex="-1"></a>    <span class="do">##  88.15833 </span></span></code></pre></div>
 </div>
 <div class="tcolorbox">
 <p>Draw an SRS of size <span class="math inline">\(n\)</span> from a large population having unknown mean
@@ -1313,10 +1365,10 @@ satisfies: <span class="math display">\[0.05 &lt; \text{p-value} &lt; 0.10\]</sp
 <li><p>At the 5% level: <strong>No</strong>, since the p-value <span class="math inline">\(&gt; 0.05\)</span></p></li>
 </ul>
 <p><strong>d) Exact two-sided p-value using R:</strong></p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="hypothesis-tests.html#cb59-1" tabindex="-1"></a>    <span class="co"># Compute exact two-sided p-value for t* = 2.12 with df = 14</span></span>
-<span id="cb59-2"><a href="hypothesis-tests.html#cb59-2" tabindex="-1"></a>    <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fl">2.12</span>, <span class="at">df =</span> <span class="dv">14</span>))</span>
-<span id="cb59-3"><a href="hypothesis-tests.html#cb59-3" tabindex="-1"></a></span>
-<span id="cb59-4"><a href="hypothesis-tests.html#cb59-4" tabindex="-1"></a>    <span class="do">## [1] 0.05235683</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="hypothesis-tests.html#cb64-1" tabindex="-1"></a>    <span class="co"># Compute exact two-sided p-value for t* = 2.12 with df = 14</span></span>
+<span id="cb64-2"><a href="hypothesis-tests.html#cb64-2" tabindex="-1"></a>    <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fl">2.12</span>, <span class="at">df =</span> <span class="dv">14</span>))</span>
+<span id="cb64-3"><a href="hypothesis-tests.html#cb64-3" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="hypothesis-tests.html#cb64-4" tabindex="-1"></a>    <span class="do">## [1] 0.05235683</span></span></code></pre></div>
 <p>Thus, the exact two-sided p-value is approximately <strong>0.0524</strong>,
 confirming the bracketing result.</p>
 </div>
@@ -1687,19 +1739,19 @@ statistically significant at <span class="math inline">\(\alpha = 0.05\)</span>.
 There is very strong evidence that more than 5% of children have genetic
 abnormalities.</p>
 <p><strong>R code (1-sample proportion test)</strong></p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="hypothesis-tests.html#cb60-1" tabindex="-1"></a>    <span class="fu">prop.test</span>(<span class="at">x=</span><span class="dv">46</span>, <span class="at">n =</span> <span class="dv">384</span> ,<span class="at">p=</span><span class="fl">0.05</span>,<span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="at">correct=</span><span class="cn">FALSE</span>);</span>
-<span id="cb60-2"><a href="hypothesis-tests.html#cb60-2" tabindex="-1"></a></span>
-<span id="cb60-3"><a href="hypothesis-tests.html#cb60-3" tabindex="-1"></a>    <span class="do">##</span></span>
-<span id="cb60-4"><a href="hypothesis-tests.html#cb60-4" tabindex="-1"></a>    <span class="do">## 1-sample proportions test without continuity correction</span></span>
-<span id="cb60-5"><a href="hypothesis-tests.html#cb60-5" tabindex="-1"></a>    <span class="do">##</span></span>
-<span id="cb60-6"><a href="hypothesis-tests.html#cb60-6" tabindex="-1"></a>    <span class="do">## data:  46 out of 384, null probability 0.05</span></span>
-<span id="cb60-7"><a href="hypothesis-tests.html#cb60-7" tabindex="-1"></a>    <span class="do">## X-squared = 39.377, df = 1, p-value = 1.747e-10</span></span>
-<span id="cb60-8"><a href="hypothesis-tests.html#cb60-8" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true p is greater than 0.05</span></span>
-<span id="cb60-9"><a href="hypothesis-tests.html#cb60-9" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb60-10"><a href="hypothesis-tests.html#cb60-10" tabindex="-1"></a>    <span class="do">##  0.09516097 1.00000000</span></span>
-<span id="cb60-11"><a href="hypothesis-tests.html#cb60-11" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
-<span id="cb60-12"><a href="hypothesis-tests.html#cb60-12" tabindex="-1"></a>    <span class="do">##        p </span></span>
-<span id="cb60-13"><a href="hypothesis-tests.html#cb60-13" tabindex="-1"></a>    <span class="do">## 0.1197917 </span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="hypothesis-tests.html#cb65-1" tabindex="-1"></a>    <span class="fu">prop.test</span>(<span class="at">x=</span><span class="dv">46</span>, <span class="at">n =</span> <span class="dv">384</span> ,<span class="at">p=</span><span class="fl">0.05</span>,<span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="at">correct=</span><span class="cn">FALSE</span>);</span>
+<span id="cb65-2"><a href="hypothesis-tests.html#cb65-2" tabindex="-1"></a></span>
+<span id="cb65-3"><a href="hypothesis-tests.html#cb65-3" tabindex="-1"></a>    <span class="do">##</span></span>
+<span id="cb65-4"><a href="hypothesis-tests.html#cb65-4" tabindex="-1"></a>    <span class="do">## 1-sample proportions test without continuity correction</span></span>
+<span id="cb65-5"><a href="hypothesis-tests.html#cb65-5" tabindex="-1"></a>    <span class="do">##</span></span>
+<span id="cb65-6"><a href="hypothesis-tests.html#cb65-6" tabindex="-1"></a>    <span class="do">## data:  46 out of 384, null probability 0.05</span></span>
+<span id="cb65-7"><a href="hypothesis-tests.html#cb65-7" tabindex="-1"></a>    <span class="do">## X-squared = 39.377, df = 1, p-value = 1.747e-10</span></span>
+<span id="cb65-8"><a href="hypothesis-tests.html#cb65-8" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true p is greater than 0.05</span></span>
+<span id="cb65-9"><a href="hypothesis-tests.html#cb65-9" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb65-10"><a href="hypothesis-tests.html#cb65-10" tabindex="-1"></a>    <span class="do">##  0.09516097 1.00000000</span></span>
+<span id="cb65-11"><a href="hypothesis-tests.html#cb65-11" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
+<span id="cb65-12"><a href="hypothesis-tests.html#cb65-12" tabindex="-1"></a>    <span class="do">##        p </span></span>
+<span id="cb65-13"><a href="hypothesis-tests.html#cb65-13" tabindex="-1"></a>    <span class="do">## 0.1197917 </span></span></code></pre></div>
 </div>
 <div class="example">
 <p><span id="exm:unlabeled-div-70" class="example"><strong>Example 6.11  </strong></span>Consider the following hypothesis test:</p>
@@ -1775,19 +1827,19 @@ Using Normal table, P-value =
 has been an increase in union membership.</p></li>
 </ul>
 <p><strong>R code</strong></p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="hypothesis-tests.html#cb61-1" tabindex="-1"></a>    <span class="fu">prop.test</span>(<span class="dv">52</span>, <span class="dv">400</span>, <span class="at">p=</span><span class="fl">0.125</span>, <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="at">correct=</span><span class="cn">FALSE</span>);</span>
-<span id="cb61-2"><a href="hypothesis-tests.html#cb61-2" tabindex="-1"></a></span>
-<span id="cb61-3"><a href="hypothesis-tests.html#cb61-3" tabindex="-1"></a>    <span class="do">##</span></span>
-<span id="cb61-4"><a href="hypothesis-tests.html#cb61-4" tabindex="-1"></a>    <span class="do">## 1-sample proportions test without continuity correction</span></span>
-<span id="cb61-5"><a href="hypothesis-tests.html#cb61-5" tabindex="-1"></a>    <span class="do">##</span></span>
-<span id="cb61-6"><a href="hypothesis-tests.html#cb61-6" tabindex="-1"></a>    <span class="do">## data:  52 out of 400, null probability 0.125</span></span>
-<span id="cb61-7"><a href="hypothesis-tests.html#cb61-7" tabindex="-1"></a>    <span class="do">## X-squared = 0.091429, df = 1, p-value = 0.3812</span></span>
-<span id="cb61-8"><a href="hypothesis-tests.html#cb61-8" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true p is greater than 0.125</span></span>
-<span id="cb61-9"><a href="hypothesis-tests.html#cb61-9" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb61-10"><a href="hypothesis-tests.html#cb61-10" tabindex="-1"></a>    <span class="do">##  0.1048085 1.0000000</span></span>
-<span id="cb61-11"><a href="hypothesis-tests.html#cb61-11" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
-<span id="cb61-12"><a href="hypothesis-tests.html#cb61-12" tabindex="-1"></a>    <span class="do">##        p </span></span>
-<span id="cb61-13"><a href="hypothesis-tests.html#cb61-13" tabindex="-1"></a>    <span class="do">##    0.13 </span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="hypothesis-tests.html#cb66-1" tabindex="-1"></a>    <span class="fu">prop.test</span>(<span class="dv">52</span>, <span class="dv">400</span>, <span class="at">p=</span><span class="fl">0.125</span>, <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="at">correct=</span><span class="cn">FALSE</span>);</span>
+<span id="cb66-2"><a href="hypothesis-tests.html#cb66-2" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="hypothesis-tests.html#cb66-3" tabindex="-1"></a>    <span class="do">##</span></span>
+<span id="cb66-4"><a href="hypothesis-tests.html#cb66-4" tabindex="-1"></a>    <span class="do">## 1-sample proportions test without continuity correction</span></span>
+<span id="cb66-5"><a href="hypothesis-tests.html#cb66-5" tabindex="-1"></a>    <span class="do">##</span></span>
+<span id="cb66-6"><a href="hypothesis-tests.html#cb66-6" tabindex="-1"></a>    <span class="do">## data:  52 out of 400, null probability 0.125</span></span>
+<span id="cb66-7"><a href="hypothesis-tests.html#cb66-7" tabindex="-1"></a>    <span class="do">## X-squared = 0.091429, df = 1, p-value = 0.3812</span></span>
+<span id="cb66-8"><a href="hypothesis-tests.html#cb66-8" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true p is greater than 0.125</span></span>
+<span id="cb66-9"><a href="hypothesis-tests.html#cb66-9" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb66-10"><a href="hypothesis-tests.html#cb66-10" tabindex="-1"></a>    <span class="do">##  0.1048085 1.0000000</span></span>
+<span id="cb66-11"><a href="hypothesis-tests.html#cb66-11" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
+<span id="cb66-12"><a href="hypothesis-tests.html#cb66-12" tabindex="-1"></a>    <span class="do">##        p </span></span>
+<span id="cb66-13"><a href="hypothesis-tests.html#cb66-13" tabindex="-1"></a>    <span class="do">##    0.13 </span></span></code></pre></div>
 </div>
 </div>
 <div id="on-a-population-variance-1" class="section level3 hasAnchor" number="6.2.3">
@@ -1854,8 +1906,8 @@ H_a &amp;: \sigma^2 &gt; 1.2^2
 <p><span class="math display">\[\chi^2_* = \frac{(n-1)s^2}{\sigma^2} = \frac{(25-1) \cdot 1.5^2}{1.2^2} = 37.5\]</span></p>
 <p><span class="math display">\[\text{P-value} = P[\chi^2_{24} &gt; 37.5] \approx 0.0389\]</span></p>
 <p><strong>R Code</strong></p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="hypothesis-tests.html#cb62-1" tabindex="-1"></a>    <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(<span class="fl">37.5</span>, <span class="at">df =</span> <span class="dv">24</span>);</span>
-<span id="cb62-2"><a href="hypothesis-tests.html#cb62-2" tabindex="-1"></a>    <span class="do">## [1] 0.0389818</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="hypothesis-tests.html#cb67-1" tabindex="-1"></a>    <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(<span class="fl">37.5</span>, <span class="at">df =</span> <span class="dv">24</span>);</span>
+<span id="cb67-2"><a href="hypothesis-tests.html#cb67-2" tabindex="-1"></a>    <span class="do">## [1] 0.0389818</span></span></code></pre></div>
 <p><strong>Conclusion</strong><br />
 We reject <span class="math inline">\(H_0 : \sigma^2 \leq 1.2^2\)</span>. We have evidence to indicate that
 the variance of the length of metal pipes is more than <span class="math inline">\(1.2^2\)</span>.</p>
@@ -1904,7 +1956,7 @@ H_a &amp;: \sigma^2 &gt; 0.81
 From the chi-squared table, the null hypothesis is rejected when
 <span class="math inline">\(\chi^2 &gt; 16.919\)</span>, where <span class="math inline">\(\nu = 9\)</span> degrees of freedom.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-15-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
+<img src="Book_files/figure-html/unnamed-chunk-15-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
 <p class="caption">
 Figure 6.6: Right-tailed chi-squared distribution with critical value at 16.919
 </p>
@@ -2096,97 +2148,97 @@ continuous, 0–100 scale)</p>
 <p><strong>Explanatory variable:</strong> Type of group (nominal categorical: <em>Group 1 =
 interaction with outsiders</em>, <em>Group 2 = fewer interactions</em>)</p>
 <p><strong>R Code</strong></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="hypothesis-tests.html#cb63-1" tabindex="-1"></a>    <span class="co"># Importing data file into R</span></span>
-<span id="cb63-2"><a href="hypothesis-tests.html#cb63-2" tabindex="-1"></a>    success <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&quot;success.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>);</span>
-<span id="cb63-3"><a href="hypothesis-tests.html#cb63-3" tabindex="-1"></a></span>
-<span id="cb63-4"><a href="hypothesis-tests.html#cb63-4" tabindex="-1"></a>    <span class="co"># Getting names of variables</span></span>
-<span id="cb63-5"><a href="hypothesis-tests.html#cb63-5" tabindex="-1"></a>    <span class="fu">names</span>(success);</span>
-<span id="cb63-6"><a href="hypothesis-tests.html#cb63-6" tabindex="-1"></a></span>
-<span id="cb63-7"><a href="hypothesis-tests.html#cb63-7" tabindex="-1"></a>    <span class="co"># Seeing first few observations</span></span>
-<span id="cb63-8"><a href="hypothesis-tests.html#cb63-8" tabindex="-1"></a>    <span class="fu">head</span>(success);</span>
-<span id="cb63-9"><a href="hypothesis-tests.html#cb63-9" tabindex="-1"></a></span>
-<span id="cb63-10"><a href="hypothesis-tests.html#cb63-10" tabindex="-1"></a>    <span class="co"># Attaching data file</span></span>
-<span id="cb63-11"><a href="hypothesis-tests.html#cb63-11" tabindex="-1"></a>    <span class="fu">attach</span>(success);</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="hypothesis-tests.html#cb68-1" tabindex="-1"></a>    <span class="co"># Importing data file into R</span></span>
+<span id="cb68-2"><a href="hypothesis-tests.html#cb68-2" tabindex="-1"></a>    success <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&quot;success.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>);</span>
+<span id="cb68-3"><a href="hypothesis-tests.html#cb68-3" tabindex="-1"></a></span>
+<span id="cb68-4"><a href="hypothesis-tests.html#cb68-4" tabindex="-1"></a>    <span class="co"># Getting names of variables</span></span>
+<span id="cb68-5"><a href="hypothesis-tests.html#cb68-5" tabindex="-1"></a>    <span class="fu">names</span>(success);</span>
+<span id="cb68-6"><a href="hypothesis-tests.html#cb68-6" tabindex="-1"></a></span>
+<span id="cb68-7"><a href="hypothesis-tests.html#cb68-7" tabindex="-1"></a>    <span class="co"># Seeing first few observations</span></span>
+<span id="cb68-8"><a href="hypothesis-tests.html#cb68-8" tabindex="-1"></a>    <span class="fu">head</span>(success);</span>
+<span id="cb68-9"><a href="hypothesis-tests.html#cb68-9" tabindex="-1"></a></span>
+<span id="cb68-10"><a href="hypothesis-tests.html#cb68-10" tabindex="-1"></a>    <span class="co"># Attaching data file</span></span>
+<span id="cb68-11"><a href="hypothesis-tests.html#cb68-11" tabindex="-1"></a>    <span class="fu">attach</span>(success);</span></code></pre></div>
 <p><strong>R Code</strong></p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="hypothesis-tests.html#cb64-1" tabindex="-1"></a>    <span class="do">## [1] &quot;Success_Index&quot; &quot;Group&quot;</span></span>
-<span id="cb64-2"><a href="hypothesis-tests.html#cb64-2" tabindex="-1"></a>    <span class="do">##   Success_Index Group</span></span>
-<span id="cb64-3"><a href="hypothesis-tests.html#cb64-3" tabindex="-1"></a>    <span class="do">## 1            65     1</span></span>
-<span id="cb64-4"><a href="hypothesis-tests.html#cb64-4" tabindex="-1"></a>    <span class="do">## 2            66     1</span></span>
-<span id="cb64-5"><a href="hypothesis-tests.html#cb64-5" tabindex="-1"></a>    <span class="do">## 3            58     1</span></span>
-<span id="cb64-6"><a href="hypothesis-tests.html#cb64-6" tabindex="-1"></a>    <span class="do">## 4            70     1</span></span>
-<span id="cb64-7"><a href="hypothesis-tests.html#cb64-7" tabindex="-1"></a>    <span class="do">## 5            78     1</span></span>
-<span id="cb64-8"><a href="hypothesis-tests.html#cb64-8" tabindex="-1"></a>    <span class="do">## 6            53     1</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="hypothesis-tests.html#cb69-1" tabindex="-1"></a>    <span class="do">## [1] &quot;Success_Index&quot; &quot;Group&quot;</span></span>
+<span id="cb69-2"><a href="hypothesis-tests.html#cb69-2" tabindex="-1"></a>    <span class="do">##   Success_Index Group</span></span>
+<span id="cb69-3"><a href="hypothesis-tests.html#cb69-3" tabindex="-1"></a>    <span class="do">## 1            65     1</span></span>
+<span id="cb69-4"><a href="hypothesis-tests.html#cb69-4" tabindex="-1"></a>    <span class="do">## 2            66     1</span></span>
+<span id="cb69-5"><a href="hypothesis-tests.html#cb69-5" tabindex="-1"></a>    <span class="do">## 3            58     1</span></span>
+<span id="cb69-6"><a href="hypothesis-tests.html#cb69-6" tabindex="-1"></a>    <span class="do">## 4            70     1</span></span>
+<span id="cb69-7"><a href="hypothesis-tests.html#cb69-7" tabindex="-1"></a>    <span class="do">## 5            78     1</span></span>
+<span id="cb69-8"><a href="hypothesis-tests.html#cb69-8" tabindex="-1"></a>    <span class="do">## 6            53     1</span></span></code></pre></div>
 <p><strong>R code (Descriptive Statistics)</strong></p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="hypothesis-tests.html#cb65-1" tabindex="-1"></a>    <span class="co"># loading library mosaic</span></span>
-<span id="cb65-2"><a href="hypothesis-tests.html#cb65-2" tabindex="-1"></a>    <span class="fu">library</span>(mosaic)</span>
-<span id="cb65-3"><a href="hypothesis-tests.html#cb65-3" tabindex="-1"></a></span>
-<span id="cb65-4"><a href="hypothesis-tests.html#cb65-4" tabindex="-1"></a>    <span class="fu">favstats</span>(Success_Index <span class="sc">~</span> Group)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="hypothesis-tests.html#cb70-1" tabindex="-1"></a>    <span class="co"># loading library mosaic</span></span>
+<span id="cb70-2"><a href="hypothesis-tests.html#cb70-2" tabindex="-1"></a>    <span class="fu">library</span>(mosaic)</span>
+<span id="cb70-3"><a href="hypothesis-tests.html#cb70-3" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="hypothesis-tests.html#cb70-4" tabindex="-1"></a>    <span class="fu">favstats</span>(Success_Index <span class="sc">~</span> Group)</span></code></pre></div>
 <p><strong>R Code (Descriptive Statistics)</strong></p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="hypothesis-tests.html#cb66-1" tabindex="-1"></a>    <span class="do">## .group min   Q1 median   Q3 max     mean       sd  n</span></span>
-<span id="cb66-2"><a href="hypothesis-tests.html#cb66-2" tabindex="-1"></a>    <span class="do">##       1  53 62.25  65.50 69.25  78 65.33333 6.610368 12</span></span>
-<span id="cb66-3"><a href="hypothesis-tests.html#cb66-3" tabindex="-1"></a>    <span class="do">##       2  34 42.50  50.00 54.50  68 49.46667 9.334014 15</span></span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="hypothesis-tests.html#cb71-1" tabindex="-1"></a>    <span class="do">## .group min   Q1 median   Q3 max     mean       sd  n</span></span>
+<span id="cb71-2"><a href="hypothesis-tests.html#cb71-2" tabindex="-1"></a>    <span class="do">##       1  53 62.25  65.50 69.25  78 65.33333 6.610368 12</span></span>
+<span id="cb71-3"><a href="hypothesis-tests.html#cb71-3" tabindex="-1"></a>    <span class="do">##       2  34 42.50  50.00 54.50  68 49.46667 9.334014 15</span></span></code></pre></div>
 <p><strong>R Code (Descriptive Statistics)</strong></p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="hypothesis-tests.html#cb67-1" tabindex="-1"></a>    <span class="fu">summary</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
-<span id="cb67-2"><a href="hypothesis-tests.html#cb67-2" tabindex="-1"></a>    <span class="fu">length</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
-<span id="cb67-3"><a href="hypothesis-tests.html#cb67-3" tabindex="-1"></a>    <span class="fu">sd</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
-<span id="cb67-4"><a href="hypothesis-tests.html#cb67-4" tabindex="-1"></a></span>
-<span id="cb67-5"><a href="hypothesis-tests.html#cb67-5" tabindex="-1"></a>    <span class="fu">summary</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span>
-<span id="cb67-6"><a href="hypothesis-tests.html#cb67-6" tabindex="-1"></a>    <span class="fu">length</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span>
-<span id="cb67-7"><a href="hypothesis-tests.html#cb67-7" tabindex="-1"></a>    <span class="fu">sd</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="hypothesis-tests.html#cb72-1" tabindex="-1"></a>    <span class="fu">summary</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
+<span id="cb72-2"><a href="hypothesis-tests.html#cb72-2" tabindex="-1"></a>    <span class="fu">length</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
+<span id="cb72-3"><a href="hypothesis-tests.html#cb72-3" tabindex="-1"></a>    <span class="fu">sd</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
+<span id="cb72-4"><a href="hypothesis-tests.html#cb72-4" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="hypothesis-tests.html#cb72-5" tabindex="-1"></a>    <span class="fu">summary</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span>
+<span id="cb72-6"><a href="hypothesis-tests.html#cb72-6" tabindex="-1"></a>    <span class="fu">length</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span>
+<span id="cb72-7"><a href="hypothesis-tests.html#cb72-7" tabindex="-1"></a>    <span class="fu">sd</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span></code></pre></div>
 <p>Note: Group 1 = “interaction with outsiders” and Group 2 = “fewer
 interactions”.</p>
 <p><strong>R Output</strong></p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="hypothesis-tests.html#cb68-1" tabindex="-1"></a>    <span class="do">##  Min.  1st Qu.  Median    Mean  3rd Qu.    Max. </span></span>
-<span id="cb68-2"><a href="hypothesis-tests.html#cb68-2" tabindex="-1"></a>    <span class="do">##  53.00   62.25   65.50   65.33   69.25   78.00 </span></span>
-<span id="cb68-3"><a href="hypothesis-tests.html#cb68-3" tabindex="-1"></a>    <span class="do">## [1] 12</span></span>
-<span id="cb68-4"><a href="hypothesis-tests.html#cb68-4" tabindex="-1"></a>    <span class="do">## [1] 6.610368</span></span>
-<span id="cb68-5"><a href="hypothesis-tests.html#cb68-5" tabindex="-1"></a></span>
-<span id="cb68-6"><a href="hypothesis-tests.html#cb68-6" tabindex="-1"></a>    <span class="do">##  Min.  1st Qu.  Median    Mean  3rd Qu.    Max. </span></span>
-<span id="cb68-7"><a href="hypothesis-tests.html#cb68-7" tabindex="-1"></a>    <span class="do">##  34.00   42.50   50.00   49.47   54.50   68.00 </span></span>
-<span id="cb68-8"><a href="hypothesis-tests.html#cb68-8" tabindex="-1"></a>    <span class="do">## [1] 15</span></span>
-<span id="cb68-9"><a href="hypothesis-tests.html#cb68-9" tabindex="-1"></a>    <span class="do">## [1] 9.334014</span></span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="hypothesis-tests.html#cb73-1" tabindex="-1"></a>    <span class="do">##  Min.  1st Qu.  Median    Mean  3rd Qu.    Max. </span></span>
+<span id="cb73-2"><a href="hypothesis-tests.html#cb73-2" tabindex="-1"></a>    <span class="do">##  53.00   62.25   65.50   65.33   69.25   78.00 </span></span>
+<span id="cb73-3"><a href="hypothesis-tests.html#cb73-3" tabindex="-1"></a>    <span class="do">## [1] 12</span></span>
+<span id="cb73-4"><a href="hypothesis-tests.html#cb73-4" tabindex="-1"></a>    <span class="do">## [1] 6.610368</span></span>
+<span id="cb73-5"><a href="hypothesis-tests.html#cb73-5" tabindex="-1"></a></span>
+<span id="cb73-6"><a href="hypothesis-tests.html#cb73-6" tabindex="-1"></a>    <span class="do">##  Min.  1st Qu.  Median    Mean  3rd Qu.    Max. </span></span>
+<span id="cb73-7"><a href="hypothesis-tests.html#cb73-7" tabindex="-1"></a>    <span class="do">##  34.00   42.50   50.00   49.47   54.50   68.00 </span></span>
+<span id="cb73-8"><a href="hypothesis-tests.html#cb73-8" tabindex="-1"></a>    <span class="do">## [1] 15</span></span>
+<span id="cb73-9"><a href="hypothesis-tests.html#cb73-9" tabindex="-1"></a>    <span class="do">## [1] 9.334014</span></span></code></pre></div>
 <p><strong>Nearly Normal Condition (Group 1: “interaction with outsiders”):</strong></p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="hypothesis-tests.html#cb69-1" tabindex="-1"></a>    <span class="fu">stem</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="hypothesis-tests.html#cb74-1" tabindex="-1"></a>    <span class="fu">stem</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span></code></pre></div>
 <p><strong>R Output</strong></p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="hypothesis-tests.html#cb70-1" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb70-2"><a href="hypothesis-tests.html#cb70-2" tabindex="-1"></a>    <span class="do">##  The decimal point is 1 digit(s) to the right of the |</span></span>
-<span id="cb70-3"><a href="hypothesis-tests.html#cb70-3" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb70-4"><a href="hypothesis-tests.html#cb70-4" tabindex="-1"></a>    <span class="do">##  5 | 38</span></span>
-<span id="cb70-5"><a href="hypothesis-tests.html#cb70-5" tabindex="-1"></a>    <span class="do">##  6 | 0335689</span></span>
-<span id="cb70-6"><a href="hypothesis-tests.html#cb70-6" tabindex="-1"></a>    <span class="do">##  7 | 018</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="hypothesis-tests.html#cb75-1" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb75-2"><a href="hypothesis-tests.html#cb75-2" tabindex="-1"></a>    <span class="do">##  The decimal point is 1 digit(s) to the right of the |</span></span>
+<span id="cb75-3"><a href="hypothesis-tests.html#cb75-3" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb75-4"><a href="hypothesis-tests.html#cb75-4" tabindex="-1"></a>    <span class="do">##  5 | 38</span></span>
+<span id="cb75-5"><a href="hypothesis-tests.html#cb75-5" tabindex="-1"></a>    <span class="do">##  6 | 0335689</span></span>
+<span id="cb75-6"><a href="hypothesis-tests.html#cb75-6" tabindex="-1"></a>    <span class="do">##  7 | 018</span></span></code></pre></div>
 <p><strong>Nearly Normal Condition (Group 2: “fewer interactions”):</strong></p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="hypothesis-tests.html#cb71-1" tabindex="-1"></a>    <span class="fu">stem</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="hypothesis-tests.html#cb76-1" tabindex="-1"></a>    <span class="fu">stem</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span></code></pre></div>
 <p><strong>R Output</strong></p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="hypothesis-tests.html#cb72-1" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb72-2"><a href="hypothesis-tests.html#cb72-2" tabindex="-1"></a>    <span class="do">##  The decimal point is 1 digit(s) to the right of the |</span></span>
-<span id="cb72-3"><a href="hypothesis-tests.html#cb72-3" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb72-4"><a href="hypothesis-tests.html#cb72-4" tabindex="-1"></a>    <span class="do">##  3 | 46</span></span>
-<span id="cb72-5"><a href="hypothesis-tests.html#cb72-5" tabindex="-1"></a>    <span class="do">##  4 | 22368</span></span>
-<span id="cb72-6"><a href="hypothesis-tests.html#cb72-6" tabindex="-1"></a>    <span class="do">##  5 | 023367</span></span>
-<span id="cb72-7"><a href="hypothesis-tests.html#cb72-7" tabindex="-1"></a>    <span class="do">##  6 | 28</span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="hypothesis-tests.html#cb77-1" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb77-2"><a href="hypothesis-tests.html#cb77-2" tabindex="-1"></a>    <span class="do">##  The decimal point is 1 digit(s) to the right of the |</span></span>
+<span id="cb77-3"><a href="hypothesis-tests.html#cb77-3" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb77-4"><a href="hypothesis-tests.html#cb77-4" tabindex="-1"></a>    <span class="do">##  3 | 46</span></span>
+<span id="cb77-5"><a href="hypothesis-tests.html#cb77-5" tabindex="-1"></a>    <span class="do">##  4 | 22368</span></span>
+<span id="cb77-6"><a href="hypothesis-tests.html#cb77-6" tabindex="-1"></a>    <span class="do">##  5 | 023367</span></span>
+<span id="cb77-7"><a href="hypothesis-tests.html#cb77-7" tabindex="-1"></a>    <span class="do">##  6 | 28</span></span></code></pre></div>
 <p><strong>Nearly Normal Condition (Group 1: “interaction with outsiders”):</strong></p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="hypothesis-tests.html#cb73-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
-<span id="cb73-2"><a href="hypothesis-tests.html#cb73-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="hypothesis-tests.html#cb78-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
+<span id="cb78-2"><a href="hypothesis-tests.html#cb78-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-16-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
+<img src="Book_files/figure-html/unnamed-chunk-16-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
 <p class="caption">
 Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
 </p>
 </div>
 <p><strong>Nearly Normal Condition (Group 2: “fewer interactions”):</strong></p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="hypothesis-tests.html#cb74-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span>
-<span id="cb74-2"><a href="hypothesis-tests.html#cb74-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="hypothesis-tests.html#cb79-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span>
+<span id="cb79-2"><a href="hypothesis-tests.html#cb79-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-17-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
+<img src="Book_files/figure-html/unnamed-chunk-17-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
 <p class="caption">
 Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
 </p>
 </div>
 </div>
 <p><strong>Nearly Normal Condition:</strong></p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="hypothesis-tests.html#cb75-1" tabindex="-1"></a>    <span class="fu">boxplot</span>(Success_Index <span class="sc">~</span> Group, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="hypothesis-tests.html#cb80-1" tabindex="-1"></a>    <span class="fu">boxplot</span>(Success_Index <span class="sc">~</span> Group, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-18-1.png" alt="Boxplot of Success Index by Group" width="60%" />
+<img src="Book_files/figure-html/unnamed-chunk-18-1.png" alt="Boxplot of Success Index by Group" width="60%" />
 <p class="caption">
 Figure 6.9: Boxplot of Success Index by Group
 </p>
@@ -2194,21 +2246,21 @@ Figure 6.9: Boxplot of Success Index by Group
 <p><span id="fig:boxplot-success" label="fig:boxplot-success"></span>
 :::</p>
 <p><strong>Boxplot with <code>ggplot2</code>:</strong></p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="hypothesis-tests.html#cb76-1" tabindex="-1"></a>    <span class="co"># loading library;</span></span>
-<span id="cb76-2"><a href="hypothesis-tests.html#cb76-2" tabindex="-1"></a>    <span class="fu">library</span>(ggplot2);</span>
-<span id="cb76-3"><a href="hypothesis-tests.html#cb76-3" tabindex="-1"></a></span>
-<span id="cb76-4"><a href="hypothesis-tests.html#cb76-4" tabindex="-1"></a>    <span class="co"># converting a numeric variable into factor (categorical data)</span></span>
-<span id="cb76-5"><a href="hypothesis-tests.html#cb76-5" tabindex="-1"></a>    group <span class="ot">&lt;-</span> <span class="fu">factor</span>(Group);</span>
-<span id="cb76-6"><a href="hypothesis-tests.html#cb76-6" tabindex="-1"></a></span>
-<span id="cb76-7"><a href="hypothesis-tests.html#cb76-7" tabindex="-1"></a>    <span class="co"># bp: just a name (not code) to store boxplots;</span></span>
-<span id="cb76-8"><a href="hypothesis-tests.html#cb76-8" tabindex="-1"></a>    bp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(success,</span>
-<span id="cb76-9"><a href="hypothesis-tests.html#cb76-9" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> Success_Index, <span class="at">fill =</span> group));</span>
-<span id="cb76-10"><a href="hypothesis-tests.html#cb76-10" tabindex="-1"></a></span>
-<span id="cb76-11"><a href="hypothesis-tests.html#cb76-11" tabindex="-1"></a>    our.labs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Interaction with Outsiders&quot;</span>, <span class="st">&quot;Fewer Interactions&quot;</span>);</span>
-<span id="cb76-12"><a href="hypothesis-tests.html#cb76-12" tabindex="-1"></a></span>
-<span id="cb76-13"><a href="hypothesis-tests.html#cb76-13" tabindex="-1"></a>    bp <span class="sc">+</span></span>
-<span id="cb76-14"><a href="hypothesis-tests.html#cb76-14" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb76-15"><a href="hypothesis-tests.html#cb76-15" tabindex="-1"></a>      <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> our.labs);</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="hypothesis-tests.html#cb81-1" tabindex="-1"></a>    <span class="co"># loading library;</span></span>
+<span id="cb81-2"><a href="hypothesis-tests.html#cb81-2" tabindex="-1"></a>    <span class="fu">library</span>(ggplot2);</span>
+<span id="cb81-3"><a href="hypothesis-tests.html#cb81-3" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="hypothesis-tests.html#cb81-4" tabindex="-1"></a>    <span class="co"># converting a numeric variable into factor (categorical data)</span></span>
+<span id="cb81-5"><a href="hypothesis-tests.html#cb81-5" tabindex="-1"></a>    group <span class="ot">&lt;-</span> <span class="fu">factor</span>(Group);</span>
+<span id="cb81-6"><a href="hypothesis-tests.html#cb81-6" tabindex="-1"></a></span>
+<span id="cb81-7"><a href="hypothesis-tests.html#cb81-7" tabindex="-1"></a>    <span class="co"># bp: just a name (not code) to store boxplots;</span></span>
+<span id="cb81-8"><a href="hypothesis-tests.html#cb81-8" tabindex="-1"></a>    bp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(success,</span>
+<span id="cb81-9"><a href="hypothesis-tests.html#cb81-9" tabindex="-1"></a>                 <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> Success_Index, <span class="at">fill =</span> group));</span>
+<span id="cb81-10"><a href="hypothesis-tests.html#cb81-10" tabindex="-1"></a></span>
+<span id="cb81-11"><a href="hypothesis-tests.html#cb81-11" tabindex="-1"></a>    our.labs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Interaction with Outsiders&quot;</span>, <span class="st">&quot;Fewer Interactions&quot;</span>);</span>
+<span id="cb81-12"><a href="hypothesis-tests.html#cb81-12" tabindex="-1"></a></span>
+<span id="cb81-13"><a href="hypothesis-tests.html#cb81-13" tabindex="-1"></a>    bp <span class="sc">+</span></span>
+<span id="cb81-14"><a href="hypothesis-tests.html#cb81-14" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb81-15"><a href="hypothesis-tests.html#cb81-15" tabindex="-1"></a>      <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> our.labs);</span></code></pre></div>
 <p><strong>Checking the Assumptions and Conditions</strong></p>
 <p><strong>Independent Group Assumption:</strong> The success index in group 1 is
 unrelated to the success index in group 2.</p>
@@ -2389,52 +2441,52 @@ following table.</p>
 <p>Because we hope to show that the treatment (Group 1) is better than the
 control (Group 2), the hypotheses are:</p>
 <p><span class="math display">\[H_0 : \mu_1 = \mu_2\]</span> <span class="math display">\[H_a : \mu_1 &gt; \mu_2\]</span></p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="hypothesis-tests.html#cb77-1" tabindex="-1"></a>    <span class="co"># Step 1. Entering data</span></span>
-<span id="cb77-2"><a href="hypothesis-tests.html#cb77-2" tabindex="-1"></a>    treatment <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">61</span>, <span class="dv">59</span>, <span class="dv">46</span>, <span class="dv">43</span>, <span class="dv">44</span>, <span class="dv">52</span>, <span class="dv">43</span>, <span class="dv">58</span>, <span class="dv">67</span>, <span class="dv">62</span>, <span class="dv">57</span>, </span>
-<span id="cb77-3"><a href="hypothesis-tests.html#cb77-3" tabindex="-1"></a>                  <span class="dv">71</span>, <span class="dv">49</span>, <span class="dv">54</span>, <span class="dv">43</span>, <span class="dv">53</span>, <span class="dv">57</span>, <span class="dv">49</span>, <span class="dv">56</span>, <span class="dv">33</span>);</span>
-<span id="cb77-4"><a href="hypothesis-tests.html#cb77-4" tabindex="-1"></a>    control <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">33</span>, <span class="dv">46</span>, <span class="dv">37</span>, <span class="dv">43</span>, <span class="dv">41</span>, <span class="dv">10</span>, <span class="dv">42</span>, <span class="dv">55</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">55</span>, </span>
-<span id="cb77-5"><a href="hypothesis-tests.html#cb77-5" tabindex="-1"></a>                <span class="dv">26</span>, <span class="dv">54</span>, <span class="dv">60</span>, <span class="dv">28</span>, <span class="dv">62</span>, <span class="dv">20</span>, <span class="dv">53</span>, <span class="dv">48</span>, <span class="dv">37</span>, <span class="dv">85</span>, <span class="dv">42</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="hypothesis-tests.html#cb82-1" tabindex="-1"></a>    <span class="co"># Step 1. Entering data</span></span>
+<span id="cb82-2"><a href="hypothesis-tests.html#cb82-2" tabindex="-1"></a>    treatment <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">61</span>, <span class="dv">59</span>, <span class="dv">46</span>, <span class="dv">43</span>, <span class="dv">44</span>, <span class="dv">52</span>, <span class="dv">43</span>, <span class="dv">58</span>, <span class="dv">67</span>, <span class="dv">62</span>, <span class="dv">57</span>, </span>
+<span id="cb82-3"><a href="hypothesis-tests.html#cb82-3" tabindex="-1"></a>                  <span class="dv">71</span>, <span class="dv">49</span>, <span class="dv">54</span>, <span class="dv">43</span>, <span class="dv">53</span>, <span class="dv">57</span>, <span class="dv">49</span>, <span class="dv">56</span>, <span class="dv">33</span>);</span>
+<span id="cb82-4"><a href="hypothesis-tests.html#cb82-4" tabindex="-1"></a>    control <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">33</span>, <span class="dv">46</span>, <span class="dv">37</span>, <span class="dv">43</span>, <span class="dv">41</span>, <span class="dv">10</span>, <span class="dv">42</span>, <span class="dv">55</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">55</span>, </span>
+<span id="cb82-5"><a href="hypothesis-tests.html#cb82-5" tabindex="-1"></a>                <span class="dv">26</span>, <span class="dv">54</span>, <span class="dv">60</span>, <span class="dv">28</span>, <span class="dv">62</span>, <span class="dv">20</span>, <span class="dv">53</span>, <span class="dv">48</span>, <span class="dv">37</span>, <span class="dv">85</span>, <span class="dv">42</span>);</span></code></pre></div>
 <p><strong>Nearly Normal Condition (treatment):</strong></p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="hypothesis-tests.html#cb78-1" tabindex="-1"></a>    <span class="co"># Making stemplot;</span></span>
-<span id="cb78-2"><a href="hypothesis-tests.html#cb78-2" tabindex="-1"></a></span>
-<span id="cb78-3"><a href="hypothesis-tests.html#cb78-3" tabindex="-1"></a>    <span class="fu">stem</span>(treatment);</span></code></pre></div>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="hypothesis-tests.html#cb79-1" tabindex="-1"></a>    <span class="do">##</span></span>
-<span id="cb79-2"><a href="hypothesis-tests.html#cb79-2" tabindex="-1"></a>    <span class="do">## The decimal point is 1 digit(s) to the right of the |</span></span>
-<span id="cb79-3"><a href="hypothesis-tests.html#cb79-3" tabindex="-1"></a>    <span class="do">##</span></span>
-<span id="cb79-4"><a href="hypothesis-tests.html#cb79-4" tabindex="-1"></a>    <span class="do">## 2 | 4</span></span>
-<span id="cb79-5"><a href="hypothesis-tests.html#cb79-5" tabindex="-1"></a>    <span class="do">## 3 | 3</span></span>
-<span id="cb79-6"><a href="hypothesis-tests.html#cb79-6" tabindex="-1"></a>    <span class="do">## 4 | 3334699</span></span>
-<span id="cb79-7"><a href="hypothesis-tests.html#cb79-7" tabindex="-1"></a>    <span class="do">## 5 | 23467789</span></span>
-<span id="cb79-8"><a href="hypothesis-tests.html#cb79-8" tabindex="-1"></a>    <span class="do">## 6 | 127</span></span>
-<span id="cb79-9"><a href="hypothesis-tests.html#cb79-9" tabindex="-1"></a>    <span class="do">## 7 | 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="hypothesis-tests.html#cb83-1" tabindex="-1"></a>    <span class="co"># Making stemplot;</span></span>
+<span id="cb83-2"><a href="hypothesis-tests.html#cb83-2" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="hypothesis-tests.html#cb83-3" tabindex="-1"></a>    <span class="fu">stem</span>(treatment);</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="hypothesis-tests.html#cb84-1" tabindex="-1"></a>    <span class="do">##</span></span>
+<span id="cb84-2"><a href="hypothesis-tests.html#cb84-2" tabindex="-1"></a>    <span class="do">## The decimal point is 1 digit(s) to the right of the |</span></span>
+<span id="cb84-3"><a href="hypothesis-tests.html#cb84-3" tabindex="-1"></a>    <span class="do">##</span></span>
+<span id="cb84-4"><a href="hypothesis-tests.html#cb84-4" tabindex="-1"></a>    <span class="do">## 2 | 4</span></span>
+<span id="cb84-5"><a href="hypothesis-tests.html#cb84-5" tabindex="-1"></a>    <span class="do">## 3 | 3</span></span>
+<span id="cb84-6"><a href="hypothesis-tests.html#cb84-6" tabindex="-1"></a>    <span class="do">## 4 | 3334699</span></span>
+<span id="cb84-7"><a href="hypothesis-tests.html#cb84-7" tabindex="-1"></a>    <span class="do">## 5 | 23467789</span></span>
+<span id="cb84-8"><a href="hypothesis-tests.html#cb84-8" tabindex="-1"></a>    <span class="do">## 6 | 127</span></span>
+<span id="cb84-9"><a href="hypothesis-tests.html#cb84-9" tabindex="-1"></a>    <span class="do">## 7 | 1</span></span></code></pre></div>
 <p><strong>Nearly Normal Condition (control):</strong></p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="hypothesis-tests.html#cb80-1" tabindex="-1"></a>    <span class="co"># Making stemplot;</span></span>
-<span id="cb80-2"><a href="hypothesis-tests.html#cb80-2" tabindex="-1"></a></span>
-<span id="cb80-3"><a href="hypothesis-tests.html#cb80-3" tabindex="-1"></a>    <span class="fu">stem</span>(control);</span></code></pre></div>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="hypothesis-tests.html#cb81-1" tabindex="-1"></a>    <span class="do">##</span></span>
-<span id="cb81-2"><a href="hypothesis-tests.html#cb81-2" tabindex="-1"></a>    <span class="do">## The decimal point is 1 digit(s) to the right of the |</span></span>
-<span id="cb81-3"><a href="hypothesis-tests.html#cb81-3" tabindex="-1"></a>    <span class="do">##</span></span>
-<span id="cb81-4"><a href="hypothesis-tests.html#cb81-4" tabindex="-1"></a>    <span class="do">## 0 | 079</span></span>
-<span id="cb81-5"><a href="hypothesis-tests.html#cb81-5" tabindex="-1"></a>    <span class="do">## 2 | 068377</span></span>
-<span id="cb81-6"><a href="hypothesis-tests.html#cb81-6" tabindex="-1"></a>    <span class="do">## 4 | 12223683455</span></span>
-<span id="cb81-7"><a href="hypothesis-tests.html#cb81-7" tabindex="-1"></a>    <span class="do">## 6 | 02</span></span>
-<span id="cb81-8"><a href="hypothesis-tests.html#cb81-8" tabindex="-1"></a>    <span class="do">## 8 | 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="hypothesis-tests.html#cb85-1" tabindex="-1"></a>    <span class="co"># Making stemplot;</span></span>
+<span id="cb85-2"><a href="hypothesis-tests.html#cb85-2" tabindex="-1"></a></span>
+<span id="cb85-3"><a href="hypothesis-tests.html#cb85-3" tabindex="-1"></a>    <span class="fu">stem</span>(control);</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="hypothesis-tests.html#cb86-1" tabindex="-1"></a>    <span class="do">##</span></span>
+<span id="cb86-2"><a href="hypothesis-tests.html#cb86-2" tabindex="-1"></a>    <span class="do">## The decimal point is 1 digit(s) to the right of the |</span></span>
+<span id="cb86-3"><a href="hypothesis-tests.html#cb86-3" tabindex="-1"></a>    <span class="do">##</span></span>
+<span id="cb86-4"><a href="hypothesis-tests.html#cb86-4" tabindex="-1"></a>    <span class="do">## 0 | 079</span></span>
+<span id="cb86-5"><a href="hypothesis-tests.html#cb86-5" tabindex="-1"></a>    <span class="do">## 2 | 068377</span></span>
+<span id="cb86-6"><a href="hypothesis-tests.html#cb86-6" tabindex="-1"></a>    <span class="do">## 4 | 12223683455</span></span>
+<span id="cb86-7"><a href="hypothesis-tests.html#cb86-7" tabindex="-1"></a>    <span class="do">## 6 | 02</span></span>
+<span id="cb86-8"><a href="hypothesis-tests.html#cb86-8" tabindex="-1"></a>    <span class="do">## 8 | 5</span></span></code></pre></div>
 <p><strong>Nearly Normal Condition (treatment):</strong></p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="hypothesis-tests.html#cb82-1" tabindex="-1"></a>    <span class="co"># Making Q-Q plot;</span></span>
-<span id="cb82-2"><a href="hypothesis-tests.html#cb82-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Treatment&quot;</span>);</span>
-<span id="cb82-3"><a href="hypothesis-tests.html#cb82-3" tabindex="-1"></a>    <span class="fu">qqline</span>(treatment, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="hypothesis-tests.html#cb87-1" tabindex="-1"></a>    <span class="co"># Making Q-Q plot;</span></span>
+<span id="cb87-2"><a href="hypothesis-tests.html#cb87-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Treatment&quot;</span>);</span>
+<span id="cb87-3"><a href="hypothesis-tests.html#cb87-3" tabindex="-1"></a>    <span class="fu">qqline</span>(treatment, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-19-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
+<img src="Book_files/figure-html/unnamed-chunk-19-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
 <p class="caption">
 Figure 6.10: Q-Q Plot for Treatment Group
 </p>
 </div>
 <p><strong>Nearly Normal Condition (control):</strong></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="hypothesis-tests.html#cb83-1" tabindex="-1"></a>    <span class="co"># Making Q-Q plot;</span></span>
-<span id="cb83-2"><a href="hypothesis-tests.html#cb83-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Control&quot;</span>);</span>
-<span id="cb83-3"><a href="hypothesis-tests.html#cb83-3" tabindex="-1"></a>    <span class="fu">qqline</span>(control, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="hypothesis-tests.html#cb88-1" tabindex="-1"></a>    <span class="co"># Making Q-Q plot;</span></span>
+<span id="cb88-2"><a href="hypothesis-tests.html#cb88-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Control&quot;</span>);</span>
+<span id="cb88-3"><a href="hypothesis-tests.html#cb88-3" tabindex="-1"></a>    <span class="fu">qqline</span>(control, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
-<img src="Book_Files/figure-html/unnamed-chunk-20-1.png" alt="Q-Q Plot for Control Group" width="60%" />
+<img src="Book_files/figure-html/unnamed-chunk-20-1.png" alt="Q-Q Plot for Control Group" width="60%" />
 <p class="caption">
 Figure 6.11: Q-Q Plot for Control Group
 </p>
@@ -2443,54 +2495,54 @@ Figure 6.11: Q-Q Plot for Control Group
 no deviation from Normality serious enough to prevent us from using t
 procedures. Normal Q-Q plots for both groups confirm that both are
 roughly Normal. The summary statistics are:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="hypothesis-tests.html#cb84-1" tabindex="-1"></a>    <span class="fu">summary</span>(treatment);</span>
-<span id="cb84-2"><a href="hypothesis-tests.html#cb84-2" tabindex="-1"></a></span>
-<span id="cb84-3"><a href="hypothesis-tests.html#cb84-3" tabindex="-1"></a>    <span class="do">## Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb84-4"><a href="hypothesis-tests.html#cb84-4" tabindex="-1"></a>    <span class="do">## 24.00   44.00   53.00   51.48   58.00   71.00</span></span>
-<span id="cb84-5"><a href="hypothesis-tests.html#cb84-5" tabindex="-1"></a></span>
-<span id="cb84-6"><a href="hypothesis-tests.html#cb84-6" tabindex="-1"></a>    <span class="fu">summary</span>(control);</span>
-<span id="cb84-7"><a href="hypothesis-tests.html#cb84-7" tabindex="-1"></a></span>
-<span id="cb84-8"><a href="hypothesis-tests.html#cb84-8" tabindex="-1"></a>    <span class="do">## Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb84-9"><a href="hypothesis-tests.html#cb84-9" tabindex="-1"></a>    <span class="do">## 10.00   30.50   42.00   41.52   53.50   85.00</span></span></code></pre></div>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="hypothesis-tests.html#cb85-1" tabindex="-1"></a>    <span class="co"># Step 1. Entering data;</span></span>
-<span id="cb85-2"><a href="hypothesis-tests.html#cb85-2" tabindex="-1"></a></span>
-<span id="cb85-3"><a href="hypothesis-tests.html#cb85-3" tabindex="-1"></a>    treatment <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">61</span>, <span class="dv">59</span>, <span class="dv">46</span>, <span class="dv">43</span>, <span class="dv">44</span>, <span class="dv">52</span>, <span class="dv">43</span>, <span class="dv">58</span>, <span class="dv">67</span>, <span class="dv">62</span>, <span class="dv">57</span>, </span>
-<span id="cb85-4"><a href="hypothesis-tests.html#cb85-4" tabindex="-1"></a>                  <span class="dv">71</span>, <span class="dv">49</span>, <span class="dv">54</span>, <span class="dv">43</span>, <span class="dv">53</span>, <span class="dv">57</span>, <span class="dv">49</span>, <span class="dv">56</span>, <span class="dv">33</span>);</span>
-<span id="cb85-5"><a href="hypothesis-tests.html#cb85-5" tabindex="-1"></a>                  </span>
-<span id="cb85-6"><a href="hypothesis-tests.html#cb85-6" tabindex="-1"></a>    control <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">33</span>, <span class="dv">46</span>, <span class="dv">37</span>, <span class="dv">43</span>, <span class="dv">41</span>, <span class="dv">10</span>, <span class="dv">42</span>, <span class="dv">55</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">55</span>, </span>
-<span id="cb85-7"><a href="hypothesis-tests.html#cb85-7" tabindex="-1"></a>                <span class="dv">26</span>, <span class="dv">54</span>, <span class="dv">60</span>, <span class="dv">28</span>, <span class="dv">62</span>, <span class="dv">20</span>, <span class="dv">53</span>, <span class="dv">48</span>, <span class="dv">37</span>, <span class="dv">85</span>, <span class="dv">42</span>);</span>
-<span id="cb85-8"><a href="hypothesis-tests.html#cb85-8" tabindex="-1"></a></span>
-<span id="cb85-9"><a href="hypothesis-tests.html#cb85-9" tabindex="-1"></a>    <span class="co"># Step 2. Hypothesis Test</span></span>
-<span id="cb85-10"><a href="hypothesis-tests.html#cb85-10" tabindex="-1"></a></span>
-<span id="cb85-11"><a href="hypothesis-tests.html#cb85-11" tabindex="-1"></a>    <span class="fu">t.test</span>(treatment, control, <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="hypothesis-tests.html#cb89-1" tabindex="-1"></a>    <span class="fu">summary</span>(treatment);</span>
+<span id="cb89-2"><a href="hypothesis-tests.html#cb89-2" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="hypothesis-tests.html#cb89-3" tabindex="-1"></a>    <span class="do">## Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb89-4"><a href="hypothesis-tests.html#cb89-4" tabindex="-1"></a>    <span class="do">## 24.00   44.00   53.00   51.48   58.00   71.00</span></span>
+<span id="cb89-5"><a href="hypothesis-tests.html#cb89-5" tabindex="-1"></a></span>
+<span id="cb89-6"><a href="hypothesis-tests.html#cb89-6" tabindex="-1"></a>    <span class="fu">summary</span>(control);</span>
+<span id="cb89-7"><a href="hypothesis-tests.html#cb89-7" tabindex="-1"></a></span>
+<span id="cb89-8"><a href="hypothesis-tests.html#cb89-8" tabindex="-1"></a>    <span class="do">## Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb89-9"><a href="hypothesis-tests.html#cb89-9" tabindex="-1"></a>    <span class="do">## 10.00   30.50   42.00   41.52   53.50   85.00</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="hypothesis-tests.html#cb90-1" tabindex="-1"></a>    <span class="co"># Step 1. Entering data;</span></span>
+<span id="cb90-2"><a href="hypothesis-tests.html#cb90-2" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="hypothesis-tests.html#cb90-3" tabindex="-1"></a>    treatment <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">61</span>, <span class="dv">59</span>, <span class="dv">46</span>, <span class="dv">43</span>, <span class="dv">44</span>, <span class="dv">52</span>, <span class="dv">43</span>, <span class="dv">58</span>, <span class="dv">67</span>, <span class="dv">62</span>, <span class="dv">57</span>, </span>
+<span id="cb90-4"><a href="hypothesis-tests.html#cb90-4" tabindex="-1"></a>                  <span class="dv">71</span>, <span class="dv">49</span>, <span class="dv">54</span>, <span class="dv">43</span>, <span class="dv">53</span>, <span class="dv">57</span>, <span class="dv">49</span>, <span class="dv">56</span>, <span class="dv">33</span>);</span>
+<span id="cb90-5"><a href="hypothesis-tests.html#cb90-5" tabindex="-1"></a>                  </span>
+<span id="cb90-6"><a href="hypothesis-tests.html#cb90-6" tabindex="-1"></a>    control <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">33</span>, <span class="dv">46</span>, <span class="dv">37</span>, <span class="dv">43</span>, <span class="dv">41</span>, <span class="dv">10</span>, <span class="dv">42</span>, <span class="dv">55</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">55</span>, </span>
+<span id="cb90-7"><a href="hypothesis-tests.html#cb90-7" tabindex="-1"></a>                <span class="dv">26</span>, <span class="dv">54</span>, <span class="dv">60</span>, <span class="dv">28</span>, <span class="dv">62</span>, <span class="dv">20</span>, <span class="dv">53</span>, <span class="dv">48</span>, <span class="dv">37</span>, <span class="dv">85</span>, <span class="dv">42</span>);</span>
+<span id="cb90-8"><a href="hypothesis-tests.html#cb90-8" tabindex="-1"></a></span>
+<span id="cb90-9"><a href="hypothesis-tests.html#cb90-9" tabindex="-1"></a>    <span class="co"># Step 2. Hypothesis Test</span></span>
+<span id="cb90-10"><a href="hypothesis-tests.html#cb90-10" tabindex="-1"></a></span>
+<span id="cb90-11"><a href="hypothesis-tests.html#cb90-11" tabindex="-1"></a>    <span class="fu">t.test</span>(treatment, control, <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <p><strong>Hypothesis Test (using R)</strong></p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="hypothesis-tests.html#cb86-1" tabindex="-1"></a>    <span class="do">##</span></span>
-<span id="cb86-2"><a href="hypothesis-tests.html#cb86-2" tabindex="-1"></a>    <span class="do">##  Welch Two Sample t-test</span></span>
-<span id="cb86-3"><a href="hypothesis-tests.html#cb86-3" tabindex="-1"></a>    <span class="do">## </span></span>
-<span id="cb86-4"><a href="hypothesis-tests.html#cb86-4" tabindex="-1"></a>    <span class="do">## data:  treatment and control</span></span>
-<span id="cb86-5"><a href="hypothesis-tests.html#cb86-5" tabindex="-1"></a>    <span class="do">## t = 2.3106, df = 37.855, p-value = 0.01305</span></span>
-<span id="cb86-6"><a href="hypothesis-tests.html#cb86-6" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true difference in means is greater than 0</span></span>
-<span id="cb86-7"><a href="hypothesis-tests.html#cb86-7" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb86-8"><a href="hypothesis-tests.html#cb86-8" tabindex="-1"></a>    <span class="do">##  2.333784      Inf</span></span>
-<span id="cb86-9"><a href="hypothesis-tests.html#cb86-9" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
-<span id="cb86-10"><a href="hypothesis-tests.html#cb86-10" tabindex="-1"></a>    <span class="do">## mean of x mean of y </span></span>
-<span id="cb86-11"><a href="hypothesis-tests.html#cb86-11" tabindex="-1"></a>    <span class="do">##    51.47619 41.52174 </span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="hypothesis-tests.html#cb91-1" tabindex="-1"></a>    <span class="do">##</span></span>
+<span id="cb91-2"><a href="hypothesis-tests.html#cb91-2" tabindex="-1"></a>    <span class="do">##  Welch Two Sample t-test</span></span>
+<span id="cb91-3"><a href="hypothesis-tests.html#cb91-3" tabindex="-1"></a>    <span class="do">## </span></span>
+<span id="cb91-4"><a href="hypothesis-tests.html#cb91-4" tabindex="-1"></a>    <span class="do">## data:  treatment and control</span></span>
+<span id="cb91-5"><a href="hypothesis-tests.html#cb91-5" tabindex="-1"></a>    <span class="do">## t = 2.3106, df = 37.855, p-value = 0.01305</span></span>
+<span id="cb91-6"><a href="hypothesis-tests.html#cb91-6" tabindex="-1"></a>    <span class="do">## alternative hypothesis: true difference in means is greater than 0</span></span>
+<span id="cb91-7"><a href="hypothesis-tests.html#cb91-7" tabindex="-1"></a>    <span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb91-8"><a href="hypothesis-tests.html#cb91-8" tabindex="-1"></a>    <span class="do">##  2.333784      Inf</span></span>
+<span id="cb91-9"><a href="hypothesis-tests.html#cb91-9" tabindex="-1"></a>    <span class="do">## sample estimates:</span></span>
+<span id="cb91-10"><a href="hypothesis-tests.html#cb91-10" tabindex="-1"></a>    <span class="do">## mean of x mean of y </span></span>
+<span id="cb91-11"><a href="hypothesis-tests.html#cb91-11" tabindex="-1"></a>    <span class="do">##    51.47619 41.52174 </span></span></code></pre></div>
 <p><strong>Hypothesis Test (using table)</strong></p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="hypothesis-tests.html#cb87-1" tabindex="-1"></a>    <span class="fu">round</span> (<span class="fu">mean</span>(treatment) ,<span class="dv">2</span>);</span>
-<span id="cb87-2"><a href="hypothesis-tests.html#cb87-2" tabindex="-1"></a></span>
-<span id="cb87-3"><a href="hypothesis-tests.html#cb87-3" tabindex="-1"></a>    <span class="do">##[1] 51.48</span></span>
-<span id="cb87-4"><a href="hypothesis-tests.html#cb87-4" tabindex="-1"></a></span>
-<span id="cb87-5"><a href="hypothesis-tests.html#cb87-5" tabindex="-1"></a>    <span class="fu">round</span> (<span class="fu">sd</span>(treatment) ,<span class="dv">2</span>);</span>
-<span id="cb87-6"><a href="hypothesis-tests.html#cb87-6" tabindex="-1"></a></span>
-<span id="cb87-7"><a href="hypothesis-tests.html#cb87-7" tabindex="-1"></a>    <span class="do">##[1] 11.01</span></span>
-<span id="cb87-8"><a href="hypothesis-tests.html#cb87-8" tabindex="-1"></a></span>
-<span id="cb87-9"><a href="hypothesis-tests.html#cb87-9" tabindex="-1"></a>    <span class="fu">round</span> (<span class="fu">mean</span>(control) ,<span class="dv">2</span>);</span>
-<span id="cb87-10"><a href="hypothesis-tests.html#cb87-10" tabindex="-1"></a></span>
-<span id="cb87-11"><a href="hypothesis-tests.html#cb87-11" tabindex="-1"></a>    <span class="do">##[1] 41.52</span></span>
-<span id="cb87-12"><a href="hypothesis-tests.html#cb87-12" tabindex="-1"></a></span>
-<span id="cb87-13"><a href="hypothesis-tests.html#cb87-13" tabindex="-1"></a>    <span class="fu">round</span> (<span class="fu">sd</span>(control) ,<span class="dv">2</span>);</span>
-<span id="cb87-14"><a href="hypothesis-tests.html#cb87-14" tabindex="-1"></a></span>
-<span id="cb87-15"><a href="hypothesis-tests.html#cb87-15" tabindex="-1"></a>    <span class="do">##[1] 17.15</span></span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="hypothesis-tests.html#cb92-1" tabindex="-1"></a>    <span class="fu">round</span> (<span class="fu">mean</span>(treatment) ,<span class="dv">2</span>);</span>
+<span id="cb92-2"><a href="hypothesis-tests.html#cb92-2" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="hypothesis-tests.html#cb92-3" tabindex="-1"></a>    <span class="do">##[1] 51.48</span></span>
+<span id="cb92-4"><a href="hypothesis-tests.html#cb92-4" tabindex="-1"></a></span>
+<span id="cb92-5"><a href="hypothesis-tests.html#cb92-5" tabindex="-1"></a>    <span class="fu">round</span> (<span class="fu">sd</span>(treatment) ,<span class="dv">2</span>);</span>
+<span id="cb92-6"><a href="hypothesis-tests.html#cb92-6" tabindex="-1"></a></span>
+<span id="cb92-7"><a href="hypothesis-tests.html#cb92-7" tabindex="-1"></a>    <span class="do">##[1] 11.01</span></span>
+<span id="cb92-8"><a href="hypothesis-tests.html#cb92-8" tabindex="-1"></a></span>
+<span id="cb92-9"><a href="hypothesis-tests.html#cb92-9" tabindex="-1"></a>    <span class="fu">round</span> (<span class="fu">mean</span>(control) ,<span class="dv">2</span>);</span>
+<span id="cb92-10"><a href="hypothesis-tests.html#cb92-10" tabindex="-1"></a></span>
+<span id="cb92-11"><a href="hypothesis-tests.html#cb92-11" tabindex="-1"></a>    <span class="do">##[1] 41.52</span></span>
+<span id="cb92-12"><a href="hypothesis-tests.html#cb92-12" tabindex="-1"></a></span>
+<span id="cb92-13"><a href="hypothesis-tests.html#cb92-13" tabindex="-1"></a>    <span class="fu">round</span> (<span class="fu">sd</span>(control) ,<span class="dv">2</span>);</span>
+<span id="cb92-14"><a href="hypothesis-tests.html#cb92-14" tabindex="-1"></a></span>
+<span id="cb92-15"><a href="hypothesis-tests.html#cb92-15" tabindex="-1"></a>    <span class="do">##[1] 17.15</span></span></code></pre></div>
 <p>Test statistic.<br />
 <span class="math display">\[t^* = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}} = 2.31\]</span>
 <span class="math display">\[\quad
@@ -2912,21 +2964,18 @@ Question 1
 </ol>
 <div class="webr-exercise">
 <div class="webr-exercise-header">
-Interactive R — One-Sample z Test (Known σ)
+Exercise
 </div>
-<textarea class="webr-editor" rows="13">n     <- 64
+<textarea class="webr-editor" rows="11">n     <- 64
 xbar  <- 353.2
 mu0   <- 355
 sigma <- 4
-
 # (a) Compute the z test statistic
 z_star <- (xbar - mu0) / (sigma / sqrt(n))
 z_star
-
 # (b) Compute the p-value for Ha: mu < mu0  (lower-tailed)
 p_value <- pnorm(___)
-p_value
-</textarea>
+p_value</textarea>
 <div class="webr-controls">
 <p><button class="webr-run-btn" disabled>▶ Run</button>
 <button class="webr-reset-btn">↺ Reset</button></p>
@@ -2957,20 +3006,20 @@ p_value
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="hypothesis-tests.html#cb90-1" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">64</span></span>
-<span id="cb90-2"><a href="hypothesis-tests.html#cb90-2" tabindex="-1"></a>xbar  <span class="ot">&lt;-</span> <span class="fl">353.2</span></span>
-<span id="cb90-3"><a href="hypothesis-tests.html#cb90-3" tabindex="-1"></a>mu0   <span class="ot">&lt;-</span> <span class="dv">355</span></span>
-<span id="cb90-4"><a href="hypothesis-tests.html#cb90-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb90-5"><a href="hypothesis-tests.html#cb90-5" tabindex="-1"></a></span>
-<span id="cb90-6"><a href="hypothesis-tests.html#cb90-6" tabindex="-1"></a><span class="co"># (a) z test statistic</span></span>
-<span id="cb90-7"><a href="hypothesis-tests.html#cb90-7" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
-<span id="cb90-8"><a href="hypothesis-tests.html#cb90-8" tabindex="-1"></a>z_star</span>
-<span id="cb90-9"><a href="hypothesis-tests.html#cb90-9" tabindex="-1"></a><span class="co"># [1] -3.6</span></span>
-<span id="cb90-10"><a href="hypothesis-tests.html#cb90-10" tabindex="-1"></a></span>
-<span id="cb90-11"><a href="hypothesis-tests.html#cb90-11" tabindex="-1"></a><span class="co"># (b) p-value (lower-tailed)</span></span>
-<span id="cb90-12"><a href="hypothesis-tests.html#cb90-12" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z_star)</span>
-<span id="cb90-13"><a href="hypothesis-tests.html#cb90-13" tabindex="-1"></a>p_value</span>
-<span id="cb90-14"><a href="hypothesis-tests.html#cb90-14" tabindex="-1"></a><span class="co"># [1] 0.0001591086</span></span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="hypothesis-tests.html#cb95-1" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">64</span></span>
+<span id="cb95-2"><a href="hypothesis-tests.html#cb95-2" tabindex="-1"></a>xbar  <span class="ot">&lt;-</span> <span class="fl">353.2</span></span>
+<span id="cb95-3"><a href="hypothesis-tests.html#cb95-3" tabindex="-1"></a>mu0   <span class="ot">&lt;-</span> <span class="dv">355</span></span>
+<span id="cb95-4"><a href="hypothesis-tests.html#cb95-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb95-5"><a href="hypothesis-tests.html#cb95-5" tabindex="-1"></a></span>
+<span id="cb95-6"><a href="hypothesis-tests.html#cb95-6" tabindex="-1"></a><span class="co"># (a) z test statistic</span></span>
+<span id="cb95-7"><a href="hypothesis-tests.html#cb95-7" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu0) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb95-8"><a href="hypothesis-tests.html#cb95-8" tabindex="-1"></a>z_star</span>
+<span id="cb95-9"><a href="hypothesis-tests.html#cb95-9" tabindex="-1"></a><span class="co"># [1] -3.6</span></span>
+<span id="cb95-10"><a href="hypothesis-tests.html#cb95-10" tabindex="-1"></a></span>
+<span id="cb95-11"><a href="hypothesis-tests.html#cb95-11" tabindex="-1"></a><span class="co"># (b) p-value (lower-tailed)</span></span>
+<span id="cb95-12"><a href="hypothesis-tests.html#cb95-12" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z_star)</span>
+<span id="cb95-13"><a href="hypothesis-tests.html#cb95-13" tabindex="-1"></a>p_value</span>
+<span id="cb95-14"><a href="hypothesis-tests.html#cb95-14" tabindex="-1"></a><span class="co"># [1] 0.0001591086</span></span></code></pre></div>
 <p><strong>(a)</strong> <span class="math inline">\(z^* = \dfrac{353.2 - 355}{4 / \sqrt{64}} = \dfrac{-1.8}{0.5} = -3.6\)</span></p>
 <p><strong>(b)</strong> p-value <span class="math inline">\(= P(Z &lt; -3.6) \approx 0.00016\)</span></p>
 <p><strong>(c)</strong> Since p-value <span class="math inline">\(\approx 0.00016 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level of significance to conclude that the mean fill volume has decreased below 355 mL.</p>
@@ -2989,19 +3038,15 @@ Question 2
 </ol>
 <div class="webr-exercise">
 <div class="webr-exercise-header">
-Interactive R — P-Value Calculations for Three Alternatives
+Exercise
 </div>
-<textarea class="webr-editor" rows="10">z_star <- 1.75
-
+<textarea class="webr-editor" rows="8">z_star <- 1.75
 # (a) Ha: mu > mu0   (upper-tailed)
 p_value_a <- ___
-
 # (b) Ha: mu < mu0   (lower-tailed)
 p_value_b <- ___
-
 # (c) Ha: mu != mu0  (two-tailed)
-p_value_c <- ___
-</textarea>
+p_value_c <- ___</textarea>
 <div class="webr-controls">
 <p><button class="webr-run-btn" disabled>▶ Run</button>
 <button class="webr-reset-btn">↺ Reset</button></p>
@@ -3032,22 +3077,22 @@ p_value_c <- ___
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="hypothesis-tests.html#cb91-1" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fl">1.75</span></span>
-<span id="cb91-2"><a href="hypothesis-tests.html#cb91-2" tabindex="-1"></a></span>
-<span id="cb91-3"><a href="hypothesis-tests.html#cb91-3" tabindex="-1"></a><span class="co"># (a) upper-tailed</span></span>
-<span id="cb91-4"><a href="hypothesis-tests.html#cb91-4" tabindex="-1"></a>p_value_a <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z_star)</span>
-<span id="cb91-5"><a href="hypothesis-tests.html#cb91-5" tabindex="-1"></a>p_value_a</span>
-<span id="cb91-6"><a href="hypothesis-tests.html#cb91-6" tabindex="-1"></a><span class="co"># [1] 0.04005916</span></span>
-<span id="cb91-7"><a href="hypothesis-tests.html#cb91-7" tabindex="-1"></a></span>
-<span id="cb91-8"><a href="hypothesis-tests.html#cb91-8" tabindex="-1"></a><span class="co"># (b) lower-tailed</span></span>
-<span id="cb91-9"><a href="hypothesis-tests.html#cb91-9" tabindex="-1"></a>p_value_b <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z_star)</span>
-<span id="cb91-10"><a href="hypothesis-tests.html#cb91-10" tabindex="-1"></a>p_value_b</span>
-<span id="cb91-11"><a href="hypothesis-tests.html#cb91-11" tabindex="-1"></a><span class="co"># [1] 0.9599408</span></span>
-<span id="cb91-12"><a href="hypothesis-tests.html#cb91-12" tabindex="-1"></a></span>
-<span id="cb91-13"><a href="hypothesis-tests.html#cb91-13" tabindex="-1"></a><span class="co"># (c) two-tailed</span></span>
-<span id="cb91-14"><a href="hypothesis-tests.html#cb91-14" tabindex="-1"></a>p_value_c <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_star)))</span>
-<span id="cb91-15"><a href="hypothesis-tests.html#cb91-15" tabindex="-1"></a>p_value_c</span>
-<span id="cb91-16"><a href="hypothesis-tests.html#cb91-16" tabindex="-1"></a><span class="co"># [1] 0.08011832</span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="hypothesis-tests.html#cb96-1" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fl">1.75</span></span>
+<span id="cb96-2"><a href="hypothesis-tests.html#cb96-2" tabindex="-1"></a></span>
+<span id="cb96-3"><a href="hypothesis-tests.html#cb96-3" tabindex="-1"></a><span class="co"># (a) upper-tailed</span></span>
+<span id="cb96-4"><a href="hypothesis-tests.html#cb96-4" tabindex="-1"></a>p_value_a <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z_star)</span>
+<span id="cb96-5"><a href="hypothesis-tests.html#cb96-5" tabindex="-1"></a>p_value_a</span>
+<span id="cb96-6"><a href="hypothesis-tests.html#cb96-6" tabindex="-1"></a><span class="co"># [1] 0.04005916</span></span>
+<span id="cb96-7"><a href="hypothesis-tests.html#cb96-7" tabindex="-1"></a></span>
+<span id="cb96-8"><a href="hypothesis-tests.html#cb96-8" tabindex="-1"></a><span class="co"># (b) lower-tailed</span></span>
+<span id="cb96-9"><a href="hypothesis-tests.html#cb96-9" tabindex="-1"></a>p_value_b <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z_star)</span>
+<span id="cb96-10"><a href="hypothesis-tests.html#cb96-10" tabindex="-1"></a>p_value_b</span>
+<span id="cb96-11"><a href="hypothesis-tests.html#cb96-11" tabindex="-1"></a><span class="co"># [1] 0.9599408</span></span>
+<span id="cb96-12"><a href="hypothesis-tests.html#cb96-12" tabindex="-1"></a></span>
+<span id="cb96-13"><a href="hypothesis-tests.html#cb96-13" tabindex="-1"></a><span class="co"># (c) two-tailed</span></span>
+<span id="cb96-14"><a href="hypothesis-tests.html#cb96-14" tabindex="-1"></a>p_value_c <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_star)))</span>
+<span id="cb96-15"><a href="hypothesis-tests.html#cb96-15" tabindex="-1"></a>p_value_c</span>
+<span id="cb96-16"><a href="hypothesis-tests.html#cb96-16" tabindex="-1"></a><span class="co"># [1] 0.08011832</span></span></code></pre></div>
 <p><strong>(a)</strong> <span class="math inline">\(P(Z &gt; 1.75) \approx 0.0401\)</span></p>
 <p><strong>(b)</strong> <span class="math inline">\(P(Z &lt; 1.75) \approx 0.9599\)</span></p>
 <p><strong>(c)</strong> <span class="math inline">\(2 \times P(Z &gt; 1.75) \approx 0.0801\)</span></p>
@@ -3064,10 +3109,9 @@ Question 3
 <p>Assume calorie intake is approximately normally distributed. Use <code>t.test()</code> to test <span class="math inline">\(H_0: \mu = 2000\)</span> vs. <span class="math inline">\(H_a: \mu &lt; 2000\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>. Fill in the correct values for <code>mu</code> and <code>alternative</code>.</p>
 <div class="webr-exercise">
 <div class="webr-exercise-header">
-Interactive R — One-Sample t Test (Unknown σ)
+Exercise
 </div>
 <textarea class="webr-editor" rows="6">calories <- c(1850, 1920, 1780, 1960, 1840, 1990, 1870, 1930, 1800, 1910)
-
 # Run a one-sample t-test
 # H0: mu = 2000  vs  Ha: mu < 2000
 result <- t.test(calories, mu = ___, alternative = "___")
@@ -3102,21 +3146,21 @@ result</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="hypothesis-tests.html#cb92-1" tabindex="-1"></a>calories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1850</span>, <span class="dv">1920</span>, <span class="dv">1780</span>, <span class="dv">1960</span>, <span class="dv">1840</span>, <span class="dv">1990</span>, <span class="dv">1870</span>, <span class="dv">1930</span>, <span class="dv">1800</span>, <span class="dv">1910</span>)</span>
-<span id="cb92-2"><a href="hypothesis-tests.html#cb92-2" tabindex="-1"></a></span>
-<span id="cb92-3"><a href="hypothesis-tests.html#cb92-3" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(calories, <span class="at">mu =</span> <span class="dv">2000</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
-<span id="cb92-4"><a href="hypothesis-tests.html#cb92-4" tabindex="-1"></a>result</span>
-<span id="cb92-5"><a href="hypothesis-tests.html#cb92-5" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb92-6"><a href="hypothesis-tests.html#cb92-6" tabindex="-1"></a><span class="co">#   One Sample t-test</span></span>
-<span id="cb92-7"><a href="hypothesis-tests.html#cb92-7" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb92-8"><a href="hypothesis-tests.html#cb92-8" tabindex="-1"></a><span class="co"># data:  calories</span></span>
-<span id="cb92-9"><a href="hypothesis-tests.html#cb92-9" tabindex="-1"></a><span class="co"># t = -5.3083, df = 9, p-value = 0.0002386</span></span>
-<span id="cb92-10"><a href="hypothesis-tests.html#cb92-10" tabindex="-1"></a><span class="co"># alternative hypothesis: true mean is less than 2000</span></span>
-<span id="cb92-11"><a href="hypothesis-tests.html#cb92-11" tabindex="-1"></a><span class="co"># 95 percent confidence interval:</span></span>
-<span id="cb92-12"><a href="hypothesis-tests.html#cb92-12" tabindex="-1"></a><span class="co">#      -Inf 1921.699</span></span>
-<span id="cb92-13"><a href="hypothesis-tests.html#cb92-13" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
-<span id="cb92-14"><a href="hypothesis-tests.html#cb92-14" tabindex="-1"></a><span class="co"># mean of x</span></span>
-<span id="cb92-15"><a href="hypothesis-tests.html#cb92-15" tabindex="-1"></a><span class="co">#      1885</span></span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="hypothesis-tests.html#cb97-1" tabindex="-1"></a>calories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1850</span>, <span class="dv">1920</span>, <span class="dv">1780</span>, <span class="dv">1960</span>, <span class="dv">1840</span>, <span class="dv">1990</span>, <span class="dv">1870</span>, <span class="dv">1930</span>, <span class="dv">1800</span>, <span class="dv">1910</span>)</span>
+<span id="cb97-2"><a href="hypothesis-tests.html#cb97-2" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="hypothesis-tests.html#cb97-3" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(calories, <span class="at">mu =</span> <span class="dv">2000</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span>
+<span id="cb97-4"><a href="hypothesis-tests.html#cb97-4" tabindex="-1"></a>result</span>
+<span id="cb97-5"><a href="hypothesis-tests.html#cb97-5" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb97-6"><a href="hypothesis-tests.html#cb97-6" tabindex="-1"></a><span class="co">#   One Sample t-test</span></span>
+<span id="cb97-7"><a href="hypothesis-tests.html#cb97-7" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb97-8"><a href="hypothesis-tests.html#cb97-8" tabindex="-1"></a><span class="co"># data:  calories</span></span>
+<span id="cb97-9"><a href="hypothesis-tests.html#cb97-9" tabindex="-1"></a><span class="co"># t = -5.3083, df = 9, p-value = 0.0002386</span></span>
+<span id="cb97-10"><a href="hypothesis-tests.html#cb97-10" tabindex="-1"></a><span class="co"># alternative hypothesis: true mean is less than 2000</span></span>
+<span id="cb97-11"><a href="hypothesis-tests.html#cb97-11" tabindex="-1"></a><span class="co"># 95 percent confidence interval:</span></span>
+<span id="cb97-12"><a href="hypothesis-tests.html#cb97-12" tabindex="-1"></a><span class="co">#      -Inf 1921.699</span></span>
+<span id="cb97-13"><a href="hypothesis-tests.html#cb97-13" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
+<span id="cb97-14"><a href="hypothesis-tests.html#cb97-14" tabindex="-1"></a><span class="co"># mean of x</span></span>
+<span id="cb97-15"><a href="hypothesis-tests.html#cb97-15" tabindex="-1"></a><span class="co">#      1885</span></span></code></pre></div>
 <p>The sample mean is <span class="math inline">\(\bar{x} = 1885\)</span> kcal. With <span class="math inline">\(t^* \approx -5.31\)</span> and <span class="math inline">\(df = 9\)</span>, the p-value <span class="math inline">\(\approx 0.00024 &lt; \alpha = 0.05\)</span>. We <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that the mean daily calorie intake under the new diet plan is less than 2000 kcal.</p>
 </div>
 </details>
@@ -3133,23 +3177,19 @@ Question 4
 </ol>
 <div class="webr-exercise">
 <div class="webr-exercise-header">
-Interactive R — One-Sample z Test for a Proportion
+Exercise
 </div>
-<textarea class="webr-editor" rows="14">x  <- 42
+<textarea class="webr-editor" rows="12">x  <- 42
 n  <- 120
 p0 <- 0.25
-
 # (a) Compute sample proportion
 phat <- ___ / ___
-
 # (b) Compute z test statistic
 z_star <- (phat - p0) / sqrt(p0 * (1 - p0) / n)
 z_star
-
 # (c) Compute p-value for Ha: p > p0  (upper-tailed)
 p_value <- 1 - pnorm(___)
-p_value
-</textarea>
+p_value</textarea>
 <div class="webr-controls">
 <p><button class="webr-run-btn" disabled>▶ Run</button>
 <button class="webr-reset-btn">↺ Reset</button></p>
@@ -3180,24 +3220,24 @@ p_value
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="hypothesis-tests.html#cb93-1" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="dv">42</span></span>
-<span id="cb93-2"><a href="hypothesis-tests.html#cb93-2" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">120</span></span>
-<span id="cb93-3"><a href="hypothesis-tests.html#cb93-3" tabindex="-1"></a>p0 <span class="ot">&lt;-</span> <span class="fl">0.25</span></span>
-<span id="cb93-4"><a href="hypothesis-tests.html#cb93-4" tabindex="-1"></a></span>
-<span id="cb93-5"><a href="hypothesis-tests.html#cb93-5" tabindex="-1"></a><span class="co"># (a) Sample proportion</span></span>
-<span id="cb93-6"><a href="hypothesis-tests.html#cb93-6" tabindex="-1"></a>phat <span class="ot">&lt;-</span> x <span class="sc">/</span> n</span>
-<span id="cb93-7"><a href="hypothesis-tests.html#cb93-7" tabindex="-1"></a>phat</span>
-<span id="cb93-8"><a href="hypothesis-tests.html#cb93-8" tabindex="-1"></a><span class="co"># [1] 0.35</span></span>
-<span id="cb93-9"><a href="hypothesis-tests.html#cb93-9" tabindex="-1"></a></span>
-<span id="cb93-10"><a href="hypothesis-tests.html#cb93-10" tabindex="-1"></a><span class="co"># (b) z test statistic</span></span>
-<span id="cb93-11"><a href="hypothesis-tests.html#cb93-11" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> (phat <span class="sc">-</span> p0) <span class="sc">/</span> <span class="fu">sqrt</span>(p0 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p0) <span class="sc">/</span> n)</span>
-<span id="cb93-12"><a href="hypothesis-tests.html#cb93-12" tabindex="-1"></a>z_star</span>
-<span id="cb93-13"><a href="hypothesis-tests.html#cb93-13" tabindex="-1"></a><span class="co"># [1] 2.529822</span></span>
-<span id="cb93-14"><a href="hypothesis-tests.html#cb93-14" tabindex="-1"></a></span>
-<span id="cb93-15"><a href="hypothesis-tests.html#cb93-15" tabindex="-1"></a><span class="co"># (c) p-value (upper-tailed)</span></span>
-<span id="cb93-16"><a href="hypothesis-tests.html#cb93-16" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z_star)</span>
-<span id="cb93-17"><a href="hypothesis-tests.html#cb93-17" tabindex="-1"></a>p_value</span>
-<span id="cb93-18"><a href="hypothesis-tests.html#cb93-18" tabindex="-1"></a><span class="co"># [1] 0.005713023</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="hypothesis-tests.html#cb98-1" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="dv">42</span></span>
+<span id="cb98-2"><a href="hypothesis-tests.html#cb98-2" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">120</span></span>
+<span id="cb98-3"><a href="hypothesis-tests.html#cb98-3" tabindex="-1"></a>p0 <span class="ot">&lt;-</span> <span class="fl">0.25</span></span>
+<span id="cb98-4"><a href="hypothesis-tests.html#cb98-4" tabindex="-1"></a></span>
+<span id="cb98-5"><a href="hypothesis-tests.html#cb98-5" tabindex="-1"></a><span class="co"># (a) Sample proportion</span></span>
+<span id="cb98-6"><a href="hypothesis-tests.html#cb98-6" tabindex="-1"></a>phat <span class="ot">&lt;-</span> x <span class="sc">/</span> n</span>
+<span id="cb98-7"><a href="hypothesis-tests.html#cb98-7" tabindex="-1"></a>phat</span>
+<span id="cb98-8"><a href="hypothesis-tests.html#cb98-8" tabindex="-1"></a><span class="co"># [1] 0.35</span></span>
+<span id="cb98-9"><a href="hypothesis-tests.html#cb98-9" tabindex="-1"></a></span>
+<span id="cb98-10"><a href="hypothesis-tests.html#cb98-10" tabindex="-1"></a><span class="co"># (b) z test statistic</span></span>
+<span id="cb98-11"><a href="hypothesis-tests.html#cb98-11" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> (phat <span class="sc">-</span> p0) <span class="sc">/</span> <span class="fu">sqrt</span>(p0 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p0) <span class="sc">/</span> n)</span>
+<span id="cb98-12"><a href="hypothesis-tests.html#cb98-12" tabindex="-1"></a>z_star</span>
+<span id="cb98-13"><a href="hypothesis-tests.html#cb98-13" tabindex="-1"></a><span class="co"># [1] 2.529822</span></span>
+<span id="cb98-14"><a href="hypothesis-tests.html#cb98-14" tabindex="-1"></a></span>
+<span id="cb98-15"><a href="hypothesis-tests.html#cb98-15" tabindex="-1"></a><span class="co"># (c) p-value (upper-tailed)</span></span>
+<span id="cb98-16"><a href="hypothesis-tests.html#cb98-16" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(z_star)</span>
+<span id="cb98-17"><a href="hypothesis-tests.html#cb98-17" tabindex="-1"></a>p_value</span>
+<span id="cb98-18"><a href="hypothesis-tests.html#cb98-18" tabindex="-1"></a><span class="co"># [1] 0.005713023</span></span></code></pre></div>
 <p><strong>(a)</strong> <span class="math inline">\(\hat{p} = 42/120 = 0.35\)</span></p>
 <p><strong>(b)</strong> <span class="math inline">\(z^* = \dfrac{0.35 - 0.25}{\sqrt{0.25 \times 0.75 / 120}} = \dfrac{0.10}{0.03953} \approx 2.53\)</span></p>
 <p><strong>(c)</strong> p-value <span class="math inline">\(= P(Z &gt; 2.53) \approx 0.0057 &lt; \alpha = 0.05\)</span></p>
@@ -3213,11 +3253,10 @@ Question 5
 <p>Use <code>prop.test()</code> with <code>correct = FALSE</code>. Fill in the arguments, then state a conclusion by comparing the p-value to <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <div class="webr-exercise">
 <div class="webr-exercise-header">
-Interactive R — One-Sample Proportion Test with prop.test()
+Exercise
 </div>
 <textarea class="webr-editor" rows="6"># One-sample proportion test
 # H0: p = 0.20  vs  Ha: p != 0.20
-
 result <- prop.test(x = ___, n = ___, p = ___,
                     alternative = "___", correct = ___)
 result</textarea>
@@ -3252,20 +3291,20 @@ result</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="hypothesis-tests.html#cb94-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">72</span>, <span class="at">n =</span> <span class="dv">300</span>, <span class="at">p =</span> <span class="fl">0.20</span>,</span>
-<span id="cb94-2"><a href="hypothesis-tests.html#cb94-2" tabindex="-1"></a>                    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb94-3"><a href="hypothesis-tests.html#cb94-3" tabindex="-1"></a>result</span>
-<span id="cb94-4"><a href="hypothesis-tests.html#cb94-4" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb94-5"><a href="hypothesis-tests.html#cb94-5" tabindex="-1"></a><span class="co">#   1-sample proportions test without continuity correction</span></span>
-<span id="cb94-6"><a href="hypothesis-tests.html#cb94-6" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb94-7"><a href="hypothesis-tests.html#cb94-7" tabindex="-1"></a><span class="co"># data:  72 out of 300, null probability 0.2</span></span>
-<span id="cb94-8"><a href="hypothesis-tests.html#cb94-8" tabindex="-1"></a><span class="co"># X-squared = 3, df = 1, p-value = 0.08327</span></span>
-<span id="cb94-9"><a href="hypothesis-tests.html#cb94-9" tabindex="-1"></a><span class="co"># alternative hypothesis: two.sided</span></span>
-<span id="cb94-10"><a href="hypothesis-tests.html#cb94-10" tabindex="-1"></a><span class="co"># 95 percent confidence interval:</span></span>
-<span id="cb94-11"><a href="hypothesis-tests.html#cb94-11" tabindex="-1"></a><span class="co">#  0.1912025 0.2940115</span></span>
-<span id="cb94-12"><a href="hypothesis-tests.html#cb94-12" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
-<span id="cb94-13"><a href="hypothesis-tests.html#cb94-13" tabindex="-1"></a><span class="co">#    p</span></span>
-<span id="cb94-14"><a href="hypothesis-tests.html#cb94-14" tabindex="-1"></a><span class="co"># 0.24</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="hypothesis-tests.html#cb99-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(<span class="at">x =</span> <span class="dv">72</span>, <span class="at">n =</span> <span class="dv">300</span>, <span class="at">p =</span> <span class="fl">0.20</span>,</span>
+<span id="cb99-2"><a href="hypothesis-tests.html#cb99-2" tabindex="-1"></a>                    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb99-3"><a href="hypothesis-tests.html#cb99-3" tabindex="-1"></a>result</span>
+<span id="cb99-4"><a href="hypothesis-tests.html#cb99-4" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb99-5"><a href="hypothesis-tests.html#cb99-5" tabindex="-1"></a><span class="co">#   1-sample proportions test without continuity correction</span></span>
+<span id="cb99-6"><a href="hypothesis-tests.html#cb99-6" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb99-7"><a href="hypothesis-tests.html#cb99-7" tabindex="-1"></a><span class="co"># data:  72 out of 300, null probability 0.2</span></span>
+<span id="cb99-8"><a href="hypothesis-tests.html#cb99-8" tabindex="-1"></a><span class="co"># X-squared = 3, df = 1, p-value = 0.08327</span></span>
+<span id="cb99-9"><a href="hypothesis-tests.html#cb99-9" tabindex="-1"></a><span class="co"># alternative hypothesis: two.sided</span></span>
+<span id="cb99-10"><a href="hypothesis-tests.html#cb99-10" tabindex="-1"></a><span class="co"># 95 percent confidence interval:</span></span>
+<span id="cb99-11"><a href="hypothesis-tests.html#cb99-11" tabindex="-1"></a><span class="co">#  0.1912025 0.2940115</span></span>
+<span id="cb99-12"><a href="hypothesis-tests.html#cb99-12" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
+<span id="cb99-13"><a href="hypothesis-tests.html#cb99-13" tabindex="-1"></a><span class="co">#    p</span></span>
+<span id="cb99-14"><a href="hypothesis-tests.html#cb99-14" tabindex="-1"></a><span class="co"># 0.24</span></span></code></pre></div>
 <p><span class="math inline">\(\hat{p} = 72/300 = 0.24\)</span>. The p-value <span class="math inline">\(\approx 0.083 &gt; \alpha = 0.05\)</span>, so we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence at the 5% level to conclude that the local rate of high blood pressure differs from the national figure of 20%.</p>
 </div>
 </details>
