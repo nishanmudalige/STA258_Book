@@ -5,6 +5,7 @@
 - Fix minor issues in previous chapters
 - Include some questions on sample size for chapter 5
 - Finish two sample exercises for chapter 6 including exercises in R
+- Update help file to include information on the yml files (_bookdown.yml, _output.yml), continuing working help file in the docs folder
 
 ## Things to do for June 4
 - Add webR exercises for chapter5
