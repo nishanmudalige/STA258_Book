@@ -1,5 +1,11 @@
 # STA258: Statistics with Applied Probability
 
+
+## Things to do for June 11
+- Fix minor issues in previous chapters
+- Include some questions on sample size for chapter 5
+- Finish two sample exercises for chapter 6 including exercises in R
+
 ## Things to do for June 4
 - Add webR exercises for chapter5
   - Make corrections for two sample using Welch
