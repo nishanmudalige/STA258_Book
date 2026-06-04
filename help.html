@@ -240,14 +240,24 @@ STA258_Book/<br>
 │   └── clt_simulation.html           &nbsp;<span style="color:#90a4ae"># Central Limit Theorem simulator</span><br>
 │<br>
 ├── latex/                     &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># LaTeX preamble files for PDF output</span><br>
-├── Book_Files/figure-html/    &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Cached R plot outputs</span><br>
-└── docs/                      &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Rendered HTML — served by GitHub Pages</span>
+└── docs/                      &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Rendered HTML — served by GitHub Pages</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;└── Book_files/figure-html/ &nbsp;<span style="color:#90a4ae"># Rendered figure outputs referenced by the live website</span>
 </div>
 
 <div class="note">
   <strong>Important:</strong> The <code>docs/</code> folder is auto-generated when you render the book.
   Do not edit files inside <code>docs/</code> directly. Always edit the source <code>.Rmd</code> files
   and re-render.
+</div>
+
+<div class="note">
+  <strong>Book_Files vs Book_files — case matters on GitHub.</strong>
+  GitHub Pages runs on Linux, which is case-sensitive. <code>Book_Files/</code> (capital F) and
+  <code>Book_files/</code> (lowercase f) are two different folders on GitHub even though macOS
+  treats them as the same. The rendered website uses <code>docs/Book_files/figure-html/</code>
+  (lowercase f) — this is what bookdown generates and what every HTML page references.
+  Do not manually delete or rename <code>docs/Book_files/</code> unless you have first confirmed
+  that no rendered HTML file references it.
 </div>
 
 <!-- ============================================================ -->
@@ -513,9 +523,9 @@ sd(x)
   </tr>
   <tr>
     <td>2</td>
-    <td>Introduction to R</td>
-    <td>No exercises (R tutorial chapter)</td>
-    <td><span class="tag partial">Planned</span></td>
+    <td>An Introduction to R</td>
+    <td>R tutorial exercises</td>
+    <td><span class="tag done">Done</span> webR calculator, vectors, functions, packages, and data frame practice</td>
   </tr>
   <tr>
     <td>3</td>
