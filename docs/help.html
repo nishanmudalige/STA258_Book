@@ -109,6 +109,7 @@
     <li><a href="#introduction">Introduction</a></li>
     <li><a href="#how-to-use">How to Use This Help File</a></li>
     <li><a href="#folder-structure">Folder Structure</a></li>
+    <li><a href="#yml-files">Important YML Files</a></li>
     <li><a href="#rendering">Rendering the Book</a></li>
     <li><a href="#exercise-boxes">Exercise Box Structure</a></li>
     <li><a href="#webr">webR Interactive Exercise Structure</a></li>
@@ -162,15 +163,15 @@
   This document is intended for <strong>future maintainers and professors</strong> who want to
   update the STA258 book, understand what was customized, or troubleshoot a broken feature.
   It explains the non-obvious decisions made during development so you do not have to
-  re-discover them from scratch. In particular, read §8 before touching webR, read §11 before
-  touching Git, and read the Common Errors section (§12) before assuming something is broken.
+  re-discover them from scratch. In particular, read §9 before touching webR, read §12 before
+  touching Git, and read the Common Errors section (§13) before assuming something is broken.
 </p>
 
 <h3>Quick Guide: If You Want to Update the Book</h3>
 <ol>
   <li><strong>Edit the source <code>.Rmd</code> file</strong> in <code>Chapters/</code> — never edit files inside <code>docs/</code>.</li>
-  <li><strong>Render locally</strong> using the command in §5 (Rendering).</li>
-  <li><strong>Test in Chrome or Firefox</strong> — Safari blocks webR on local <code>file://</code> URLs (see §12).</li>
+  <li><strong>Render locally</strong> using the command in §6 (Rendering).</li>
+  <li><strong>Test in Chrome or Firefox</strong> — Safari blocks webR on local <code>file://</code> URLs (see §13).</li>
   <li><strong>Commit both the <code>.Rmd</code> source and the <code>docs/</code> output</strong>.</li>
   <li><strong>Push to GitHub</strong> — GitHub Pages will update within a minute.</li>
   <li><strong>After any merge, confirm <code>_output.yml</code> still has <code>in_header: webr-exercises.html</code></strong> — this line is sometimes lost in merge conflicts.</li>
@@ -189,7 +190,7 @@
   </tr>
   <tr>
     <td>Add or edit webR interactive coding exercises</td>
-    <td><code>Chapters/XX-ChapterName.Rmd</code> (Exercises section, raw HTML webr-exercise divs — see §7 for the template)</td>
+    <td><code>Chapters/XX-ChapterName.Rmd</code> (Exercises section, raw HTML webr-exercise divs — see §8 for the template)</td>
   </tr>
   <tr>
     <td>Change fonts, colours, spacing, or layout of the book</td>
@@ -219,7 +220,7 @@ STA258_Book/<br>
 ├── _output.yml                &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># gitbook config; loads webr-exercises.html in header</span><br>
 ├── style.css                  &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Main book styles</span><br>
 ├── box.css                    &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># Exercise box / hint / answer styles</span><br>
-├── webr-exercises.html        &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># CSS + JS that powers all webR cells (see §7)</span><br>
+├── webr-exercises.html        &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># CSS + JS that powers all webR cells (see §8)</span><br>
 ├── help.html                  &nbsp;&nbsp;&nbsp;<span style="color:#90a4ae"># This file</span><br>
 │<br>
 ├── Chapters/<br>
@@ -261,7 +262,55 @@ STA258_Book/<br>
 </div>
 
 <!-- ============================================================ -->
-<h2 id="rendering">5. Rendering the Book</h2>
+<h2 id="yml-files">5. Important YML Files</h2>
+
+<p>
+  Two YAML configuration files control how the book is built and deployed.
+  You must understand both before making structural changes to the project.
+</p>
+
+<h3><code>_bookdown.yml</code></h3>
+<p>
+  Controls the book's build settings — the chapter order, the output folder, and the merged filename.
+  The most important lines are:
+</p>
+<pre><code>book_filename: "Book"       # merged R Markdown filename (internal)
+output_dir: "docs"          # rendered HTML goes into docs/
+rmd_files:                  # explicit chapter order
+  - "index.Rmd"
+  - "Chapters/01-Introduction.Rmd"
+  - "Chapters/02-An_Introduction_to_R.Rmd"
+  - ...</code></pre>
+<ul>
+  <li>To <strong>add a new chapter</strong>, add its path to <code>rmd_files</code> in the correct position.</li>
+  <li>To <strong>render only one chapter</strong> for testing, comment out the others with <code>#</code> — this speeds up rendering significantly.</li>
+  <li>The <code>output_dir: "docs"</code> line is what makes GitHub Pages work — it tells bookdown to write all output into <code>docs/</code>, which is the folder GitHub Pages is configured to serve.</li>
+</ul>
+
+<h3><code>_output.yml</code></h3>
+<p>
+  Controls the gitbook appearance and what extra files are loaded into each page's
+  <code>&lt;head&gt;</code>. The most critical lines for this project are:
+</p>
+<pre><code>bookdown::gitbook:
+  css: [style.css]
+  includes:
+    in_header: webr-exercises.html</code></pre>
+<ul>
+  <li><code>css: [style.css]</code> — loads the main stylesheet on every page.</li>
+  <li><code>in_header: webr-exercises.html</code> — injects the webR CSS and JavaScript into every rendered page. <strong>If this line is missing or removed, all webR exercise cells will stop working.</strong> Always check this line after a git merge.</li>
+</ul>
+
+<div class="note">
+  <strong>Why <code>output_dir: "docs"</code> and <code>in_header: webr-exercises.html</code> must not be removed:</strong>
+  The GitHub Pages deployment for this repository is configured to serve files from the <code>docs/</code> folder.
+  The <code>output_dir: "docs"</code> line makes bookdown write there; without it the output goes to <code>_book/</code>
+  and the live website will not update. Similarly, removing <code>in_header: webr-exercises.html</code>
+  silently breaks all interactive R exercises — no error is shown at render time.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="rendering">6. Rendering the Book</h2>
 
 <p>
   The system pandoc may not work. Use the pandoc bundled with RStudio instead.
@@ -283,7 +332,7 @@ STA258_Book/<br>
 <p>The output goes to <code>docs/</code>. After rendering, commit and push to GitHub — Pages will update automatically within a minute.</p>
 
 <!-- ============================================================ -->
-<h2 id="exercise-boxes">6. Exercise Box Structure</h2>
+<h2 id="exercise-boxes">7. Exercise Box Structure</h2>
 
 <p>
   All exercises use a consistent HTML structure. The three components — question box,
@@ -325,7 +374,7 @@ $$\bar{x} = \frac{\sum x_i}{n} = \frac{35}{7} = 5$$
 </div>
 
 <!-- ============================================================ -->
-<h2 id="webr">7. webR Interactive Exercise Structure</h2>
+<h2 id="webr">8. webR Interactive Exercise Structure</h2>
 
 <h3>How webR works</h3>
 <p>
@@ -356,9 +405,9 @@ $$\bar{x} = \frac{\sum x_i}{n} = \frac{35}{7} = 5$$
 </p>
 <ul>
   <li>CodeMirror 5 caused cursor/text alignment bugs inside the bookdown/gitbook CSS environment
-      that could not be fixed with CSS overrides. (See §12 for details.)</li>
+      that could not be fixed with CSS overrides. (See §13 for details.)</li>
   <li>Quarto live-runtime (<code>live-runtime.js</code>) requires the full Quarto OJS environment
-      and cannot be dropped into bookdown by simply loading the script. (See §12.)</li>
+      and cannot be dropped into bookdown by simply loading the script. (See §13.)</li>
   <li>A plain <code>&lt;textarea&gt;</code> has no line numbers or syntax highlighting, but it
       is completely stable, has no cursor issues, and is easy to maintain.</li>
 </ul>
@@ -398,7 +447,7 @@ sd(x)
 </ul>
 
 <!-- ============================================================ -->
-<h2 id="what-we-built">8. What We Built / Custom Changes Made</h2>
+<h2 id="what-we-built">9. What We Built / Custom Changes Made</h2>
 
 <p>
   This section documents the non-obvious changes made to the project that are not derivable
@@ -437,13 +486,13 @@ sd(x)
   </li>
   <li>
     <strong>Wrote the webR cell HTML directly in each <code>.Rmd</code> file</strong>
-    (see §7 for the template). Because bookdown passes raw HTML through to the output,
+    (see §8 for the template). Because bookdown passes raw HTML through to the output,
     this works without any special plugin.
   </li>
 </ol>
 <div class="note">
   <strong>Editor:</strong> The code input area is a styled native <code>&lt;textarea&gt;</code>.
-  We deliberately do not use CodeMirror or Ace — see §12 for why. Do not add a third-party
+  We deliberately do not use CodeMirror or Ace — see §13 for why. Do not add a third-party
   code editor library back without reading the known issues section first.
 </div>
 
@@ -478,7 +527,7 @@ sd(x)
 </p>
 
 <!-- ============================================================ -->
-<h2 id="apps">9. Interactive Apps (Chapter 4)</h2>
+<h2 id="apps">10. Interactive Apps (Chapter 4)</h2>
 
 <p>
   Because F-distribution tables get unwieldy, Professor Mudalige built three
@@ -511,7 +560,7 @@ sd(x)
 <pre><code>You may use the [distribution calculator](#link-to-chapter4-app) to verify your answer.</code></pre>
 
 <!-- ============================================================ -->
-<h2 id="chapters">10. Chapter Summary</h2>
+<h2 id="chapters">11. Chapter Summary</h2>
 
 <table>
   <tr><th>Chapter</th><th>Topic</th><th>Exercises</th><th>webR</th></tr>
@@ -560,7 +609,7 @@ sd(x)
 </table>
 
 <!-- ============================================================ -->
-<h2 id="github">11. GitHub Workflow</h2>
+<h2 id="github">12. GitHub Workflow</h2>
 
 <p>The repository is at: <a href="https://github.com/nishanmudalige/STA258_Book" target="_blank">github.com/nishanmudalige/STA258_Book</a></p>
 
@@ -592,7 +641,7 @@ git push origin janice-ch6
 </div>
 
 <!-- ============================================================ -->
-<h2 id="errors">12. Common Errors &amp; Known Issues</h2>
+<h2 id="errors">13. Common Errors &amp; Known Issues</h2>
 
 <h3>⚠️ Safari: Run button does not work locally</h3>
 <p>
