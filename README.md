@@ -5,6 +5,7 @@
 - Chapter5 and 6 include plots for questions (both one and two sample)
 - Start Chapter9 (Calculation, plots, webR, inference, interpretation, transformations)
 - Update help file
+- Try working on different branch and merging
   
 ## June 18th NO MEETING
 
