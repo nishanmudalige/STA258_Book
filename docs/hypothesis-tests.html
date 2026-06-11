@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-06-04" />
+<meta name="date" content="2026-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -336,9 +336,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -348,7 +347,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -410,6 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -791,19 +791,19 @@ Common distributions which thetest statistic follows are the standard normal dis
 <!-- It quantifies the evidence against the null hypothesis. -->
 <p>We use the test statistic, reference distribution, and refer back to <span class="math inline">\(H_a\)</span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="Book_files/figure-html/unnamed-chunk-10-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-10-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
+<img src="Book_Files/figure-html/unnamed-chunk-10-1.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-10-2.png" alt="Right-tailed test: p-value is the area to the right of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.1: Right-tailed test: p-value is the area to the right of the test statistic
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
-<img src="Book_files/figure-html/unnamed-chunk-11-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_files/figure-html/unnamed-chunk-11-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
+<img src="Book_Files/figure-html/unnamed-chunk-11-1.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" /><img src="Book_Files/figure-html/unnamed-chunk-11-2.png" alt="Left-tailed test: p-value is the area to the left of the test statistic" width="48%" />
 <p class="caption">
 Figure 6.2: Left-tailed test: p-value is the area to the left of the test statistic
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="Book_files/figure-html/unnamed-chunk-12-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
+<img src="Book_Files/figure-html/unnamed-chunk-12-1.png" alt="Two-tailed test: p-value is the total area in both tails beyond ±test statistic" width="70%" />
 <p class="caption">
 Figure 6.3: Two-tailed test: p-value is the total area in both tails beyond ±test statistic
 </p>
@@ -983,7 +983,7 @@ decreased. Assume the standard deviation is known to be 5.25 kg.</p>
 <p><strong>4. Calculate p-value</strong></p>
 <span class="math display">\[\text{p-value} = P(Z &lt; -2.82) \approx 0.0024\]</span>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
-<img src="Book_files/figure-html/unnamed-chunk-13-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
+<img src="Book_Files/figure-html/unnamed-chunk-13-1.png" alt="Left-tailed p-value for the test statistic \( z^* = -2.82 \)" width="70%" />
 <p class="caption">
 Figure 6.4: Left-tailed p-value for the test statistic <span class="math inline">\(z^* = -2.82\)</span>
 </p>
@@ -1092,7 +1092,7 @@ likely positive.</p>
 <span id="cb55-11"><a href="hypothesis-tests.html#cb55-11" tabindex="-1"></a>    z.star <span class="ot">&lt;-</span> (x.bar <span class="sc">-</span> mu.zero) <span class="sc">/</span> sigma.xbar;</span>
 <span id="cb55-12"><a href="hypothesis-tests.html#cb55-12" tabindex="-1"></a>    <span class="fu">hist</span>(z.star, <span class="at">xlab =</span> <span class="st">&quot;differences&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
-<img src="Book_files/figure-html/unnamed-chunk-14-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
+<img src="Book_Files/figure-html/unnamed-chunk-14-1.png" alt="Histogram of \( z^\star \) values from 10,000 simulations under \( H_0 \)" width="672" />
 <p class="caption">
 Figure 6.5: Histogram of <span class="math inline">\(z^\star\)</span> values from 10,000 simulations under <span class="math inline">\(H_0\)</span>
 </p>
@@ -1956,7 +1956,7 @@ H_a &amp;: \sigma^2 &gt; 0.81
 From the chi-squared table, the null hypothesis is rejected when
 <span class="math inline">\(\chi^2 &gt; 16.919\)</span>, where <span class="math inline">\(\nu = 9\)</span> degrees of freedom.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
-<img src="Book_files/figure-html/unnamed-chunk-15-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
+<img src="Book_Files/figure-html/unnamed-chunk-15-1.png" alt="Right-tailed chi-squared distribution with critical value at 16.919" width="70%" />
 <p class="caption">
 Figure 6.6: Right-tailed chi-squared distribution with critical value at 16.919
 </p>
@@ -2220,7 +2220,7 @@ interactions”.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="hypothesis-tests.html#cb73-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span>
 <span id="cb73-2"><a href="hypothesis-tests.html#cb73-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">1</span>]);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
-<img src="Book_files/figure-html/unnamed-chunk-16-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-16-1.png" alt="Q-Q Plot for Group 1: Interaction with Outsiders" width="60%" />
 <p class="caption">
 Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
 </p>
@@ -2229,7 +2229,7 @@ Figure 6.7: Q-Q Plot for Group 1: Interaction with Outsiders
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="hypothesis-tests.html#cb74-1" tabindex="-1"></a>    <span class="fu">qqnorm</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span>
 <span id="cb74-2"><a href="hypothesis-tests.html#cb74-2" tabindex="-1"></a>    <span class="fu">qqline</span>(Success_Index[Group <span class="sc">==</span> <span class="dv">2</span>]);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
-<img src="Book_files/figure-html/unnamed-chunk-17-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-17-1.png" alt="Q-Q Plot for Group 2: Fewer Interactions" width="60%" />
 <p class="caption">
 Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
 </p>
@@ -2238,7 +2238,7 @@ Figure 6.8: Q-Q Plot for Group 2: Fewer Interactions
 <p><strong>Nearly Normal Condition:</strong></p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="hypothesis-tests.html#cb75-1" tabindex="-1"></a>    <span class="fu">boxplot</span>(Success_Index <span class="sc">~</span> Group, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
-<img src="Book_files/figure-html/unnamed-chunk-18-1.png" alt="Boxplot of Success Index by Group" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-18-1.png" alt="Boxplot of Success Index by Group" width="60%" />
 <p class="caption">
 Figure 6.9: Boxplot of Success Index by Group
 </p>
@@ -2476,7 +2476,7 @@ control (Group 2), the hypotheses are:</p>
 <span id="cb82-2"><a href="hypothesis-tests.html#cb82-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Treatment&quot;</span>);</span>
 <span id="cb82-3"><a href="hypothesis-tests.html#cb82-3" tabindex="-1"></a>    <span class="fu">qqline</span>(treatment, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
-<img src="Book_files/figure-html/unnamed-chunk-19-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-19-1.png" alt="Q-Q Plot for Treatment Group" width="60%" />
 <p class="caption">
 Figure 6.10: Q-Q Plot for Treatment Group
 </p>
@@ -2486,7 +2486,7 @@ Figure 6.10: Q-Q Plot for Treatment Group
 <span id="cb83-2"><a href="hypothesis-tests.html#cb83-2" tabindex="-1"></a>    <span class="fu">qqnorm</span>(treatment, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">main=</span><span class="st">&quot;Control&quot;</span>);</span>
 <span id="cb83-3"><a href="hypothesis-tests.html#cb83-3" tabindex="-1"></a>    <span class="fu">qqline</span>(control, <span class="at">lty=</span><span class="dv">2</span>);</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
-<img src="Book_files/figure-html/unnamed-chunk-20-1.png" alt="Q-Q Plot for Control Group" width="60%" />
+<img src="Book_Files/figure-html/unnamed-chunk-20-1.png" alt="Q-Q Plot for Control Group" width="60%" />
 <p class="caption">
 Figure 6.11: Q-Q Plot for Control Group
 </p>
@@ -3353,46 +3353,6 @@ Question 6
 <div class="exercise-label">
 Question 7
 </div>
-<p>An athletics coach believes the mean sprint time of her athletes has improved (i.e., decreased) from the historical mean of <span class="math inline">\(\mu_0 = 12.5\)</span> seconds over a 100-metre course. She records sprint times for a random sample of <span class="math inline">\(n = 36\)</span> athletes and obtains a sample mean of <span class="math inline">\(\bar{x} = 12.1\)</span> s. From many years of records, the population standard deviation is known to be <span class="math inline">\(\sigma = 1.2\)</span> s.</p>
-<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
-<ol style="list-style-type: lower-alpha">
-<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
-<li>Compute the test statistic.</li>
-<li>Find the p-value.</li>
-<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
-</ol>
-</div>
-<details data-type="hint">
-<summary>
-💡 Hint
-</summary>
-<div class="content">
-<ul>
-<li>“Improved” in sprint time means a lower time, so the alternative is lower-tailed.</li>
-<li><span class="math inline">\(\sigma\)</span> is known, so use the <span class="math inline">\(z\)</span> test statistic.</li>
-<li>The p-value for <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span> is <span class="math inline">\(P(Z &lt; z^*)\)</span>.</li>
-</ul>
-</div>
-</details>
-<details data-type="answer">
-<summary>
-✅ Answer
-</summary>
-<div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 12.5\)</span> s <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &lt; 12.5\)</span> s</p>
-<p><strong>(b)</strong>
-<span class="math display">\[z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{12.1 - 12.5}{1.2 / \sqrt{36}} = \frac{-0.4}{0.2} = -2.000\]</span></p>
-<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &lt; 12.5\)</span> (lower-tailed):
-<span class="math display">\[\text{p-value} = P(Z &lt; -2.000) \approx 0.0228\]</span>
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
-<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0228 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the mean sprint time has decreased from 12.5 seconds.</p>
-</div>
-</details>
-<hr />
-<div class="exercise-box">
-<div class="exercise-label">
-Question 8
-</div>
 <p>A professor claims the average midterm score in her large statistics course is <span class="math inline">\(\mu_0 = 70\)</span> points. The population standard deviation is known from past semesters to be <span class="math inline">\(\sigma = 9.1\)</span> points. After a curriculum redesign, a random sample of <span class="math inline">\(n = 49\)</span> students yields a sample mean of <span class="math inline">\(\bar{x} = 72.6\)</span> points. Is there evidence that the mean score has increased?</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
 <ol style="list-style-type: lower-alpha">
@@ -3431,7 +3391,7 @@ Question 8
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question 9
+Question 8
 </div>
 <p>A road-safety researcher claims the mean reaction time for licensed drivers is <span class="math inline">\(\mu_0 = 0.65\)</span> seconds. The population standard deviation is known to be <span class="math inline">\(\sigma = 0.10\)</span> s. A random sample of <span class="math inline">\(n = 100\)</span> drivers is tested and the sample mean reaction time is <span class="math inline">\(\bar{x} = 0.672\)</span> s. The researcher wants to test whether the mean reaction time differs from the claimed value.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
@@ -3470,46 +3430,7 @@ Question 9
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question 10
-</div>
-<p>A cosmetics company claims its face cream reduces mean skin roughness to <span class="math inline">\(\mu_0 = 3.0\)</span> on a 0–10 scale (higher = rougher). Dermatologists apply the cream to a random sample of <span class="math inline">\(n = 64\)</span> volunteers and measure a sample mean roughness of <span class="math inline">\(\bar{x} = 3.4\)</span>. The population standard deviation is known to be <span class="math inline">\(\sigma = 1.6\)</span>. Test whether the true mean roughness exceeds the company’s claim.</p>
-<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
-<ol style="list-style-type: lower-alpha">
-<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
-<li>Compute the test statistic.</li>
-<li>Find the p-value.</li>
-<li>State a conclusion at <span class="math inline">\(\alpha = 0.01\)</span>.</li>
-</ol>
-</div>
-<details data-type="hint">
-<summary>
-💡 Hint
-</summary>
-<div class="content">
-<ul>
-<li>The question asks whether the mean is <em>higher</em> than claimed, so use an upper-tailed test.</li>
-<li>Note that <span class="math inline">\(\alpha = 0.01\)</span> here — compare the p-value to 0.01, not 0.05.</li>
-</ul>
-</div>
-</details>
-<details data-type="answer">
-<summary>
-✅ Answer
-</summary>
-<div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 3.0 \quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &gt; 3.0\)</span></p>
-<p><strong>(b)</strong>
-<span class="math display">\[z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{3.4 - 3.0}{1.6 / \sqrt{64}} = \frac{0.4}{0.2} = 2.000\]</span></p>
-<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &gt; 3.0\)</span> (upper-tailed):
-<span class="math display">\[\text{p-value} = P(Z &gt; 2.000) \approx 0.0228\]</span>
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
-<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0228 &gt; \alpha = 0.01\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence at the 1% level to conclude that the true mean skin roughness exceeds 3.0. <em>(Note: the result would be significant at <span class="math inline">\(\alpha = 0.05\)</span>, but not at the stricter <span class="math inline">\(\alpha = 0.01\)</span>.)</em></p>
-</div>
-</details>
-<hr />
-<div class="exercise-box">
-<div class="exercise-label">
-Question 11
+Question 9
 </div>
 <p>A health study reports that adults sleep a mean of <span class="math inline">\(\mu_0 = 7.0\)</span> hours per night. A nutritionist administers a dietary supplement to a random sample of <span class="math inline">\(n = 16\)</span> volunteers for four weeks. At the end of the study the sample mean sleep time is <span class="math inline">\(\bar{x} = 7.8\)</span> hours with a sample standard deviation of <span class="math inline">\(s = 1.2\)</span> hours. The nutritionist believes the supplement increases sleep time. Assume sleep times are approximately normally distributed.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
@@ -3550,48 +3471,7 @@ From the <span class="math inline">\(t\)</span>-table: <span class="math inline"
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question 12
-</div>
-<p>A fast-food chain states its drive-through service takes a mean of <span class="math inline">\(\mu_0 = 3.5\)</span> minutes. A regional manager suspects service has slowed at a particular outlet. She times <span class="math inline">\(n = 20\)</span> randomly selected customers and records <span class="math inline">\(\bar{x} = 3.9\)</span> minutes and <span class="math inline">\(s = 0.8\)</span> minutes. Assume service times are approximately normally distributed.</p>
-<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
-<ol style="list-style-type: lower-alpha">
-<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
-<li>Compute the test statistic.</li>
-<li>Find the p-value.</li>
-<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
-</ol>
-</div>
-<details data-type="hint">
-<summary>
-💡 Hint
-</summary>
-<div class="content">
-<ul>
-<li>The manager suspects the mean has <em>increased</em>, so use an upper-tailed test: <span class="math inline">\(H_a: \mu &gt; \mu_0\)</span>.</li>
-<li><span class="math inline">\(\sigma\)</span> is unknown, so use the <span class="math inline">\(t\)</span> statistic with <span class="math inline">\(df = n - 1 = 19\)</span>.</li>
-<li>Upper-tailed p-value <span class="math inline">\(= P(T_{19} &gt; t^*)\)</span>.</li>
-</ul>
-</div>
-</details>
-<details data-type="answer">
-<summary>
-✅ Answer
-</summary>
-<div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(H_0: \mu = 3.5\)</span> min <span class="math inline">\(\quad\)</span> vs. <span class="math inline">\(\quad H_a: \mu &gt; 3.5\)</span> min</p>
-<p><strong>(b)</strong> With <span class="math inline">\(df = n - 1 = 19\)</span>:
-<span class="math display">\[t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{3.9 - 3.5}{0.8 / \sqrt{20}} = \frac{0.4}{0.1789} \approx 2.236\]</span></p>
-<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu &gt; 3.5\)</span> (upper-tailed), using <span class="math inline">\(T \sim t_{19}\)</span>:
-<span class="math display">\[\text{p-value} = P(T_{19} &gt; 2.236) \approx 0.0188\]</span>
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
-From the <span class="math inline">\(t\)</span>-table: <span class="math inline">\(t_{19,\,0.025} = 2.093 &lt; 2.236 &lt; 2.539 = t_{19,\,0.01}\)</span>, so <span class="math inline">\(0.01 &lt; \text{p-value} &lt; 0.025\)</span>.</p>
-<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.019 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the mean drive-through service time at this outlet has increased above 3.5 minutes.</p>
-</div>
-</details>
-<hr />
-<div class="exercise-box">
-<div class="exercise-label">
-Question 13
+Question 10
 </div>
 <p>A psychologist claims the population mean anxiety score on a standardised scale is <span class="math inline">\(\mu_0 = 15\)</span>. She collects a random sample of <span class="math inline">\(n = 10\)</span> patients and records <span class="math inline">\(\bar{x} = 17.2\)</span> with <span class="math inline">\(s = 3.6\)</span>. She wants to test whether the mean anxiety score differs from 15. Assume scores are approximately normally distributed.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
@@ -3632,7 +3512,7 @@ From the <span class="math inline">\(t\)</span>-table: <span class="math inline"
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question 14
+Question 11
 </div>
 <p>A botanist claims that a new plant food reduces the mean germination time of seeds below the standard <span class="math inline">\(\mu_0 = 8.0\)</span> days. She plants <span class="math inline">\(n = 12\)</span> seeds treated with the food and records <span class="math inline">\(\bar{x} = 7.0\)</span> days and <span class="math inline">\(s = 1.5\)</span> days. Assume germination times are approximately normally distributed.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
@@ -3673,7 +3553,7 @@ From the <span class="math inline">\(t\)</span>-table: <span class="math inline"
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question 15
+Question 12
 </div>
 <p>A university registrar claims that 40% of students live off campus. A housing researcher believes the true proportion is lower. In a random sample of <span class="math inline">\(n = 200\)</span> students, <span class="math inline">\(x = 65\)</span> reported living off campus.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
@@ -3715,89 +3595,7 @@ Test statistic:
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question 16
-</div>
-<p>A candy manufacturer claims that 30% of candies in each bag are red. A consumer randomly selects <span class="math inline">\(n = 100\)</span> candies from several bags and finds <span class="math inline">\(x = 26\)</span> that are red. Test whether the true proportion of red candies differs from 30%.</p>
-<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
-<ol style="list-style-type: lower-alpha">
-<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
-<li>Compute <span class="math inline">\(\hat{p}\)</span> and the test statistic.</li>
-<li>Find the p-value.</li>
-<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
-</ol>
-</div>
-<details data-type="hint">
-<summary>
-💡 Hint
-</summary>
-<div class="content">
-<ul>
-<li>“Differs from” calls for a two-tailed test: <span class="math inline">\(H_a: p \ne p_0\)</span>.</li>
-<li>Two-tailed p-value <span class="math inline">\(= 2 \times P(Z &gt; |z^*|) = 2(1 - P(Z \le |z^*|))\)</span>.</li>
-</ul>
-</div>
-</details>
-<details data-type="answer">
-<summary>
-✅ Answer
-</summary>
-<div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(H_0: p = 0.30 \quad\)</span> vs. <span class="math inline">\(\quad H_a: p \ne 0.30\)</span></p>
-<p><strong>(b)</strong> Sample proportion:
-<span class="math display">\[\hat{p} = \frac{26}{100} = 0.26\]</span>
-Test statistic:
-<span class="math display">\[z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.26 - 0.30}{\sqrt{0.30 \times 0.70 / 100}} = \frac{-0.04}{0.04583} \approx -0.873\]</span></p>
-<p><strong>(c)</strong> For <span class="math inline">\(H_a: p \ne 0.30\)</span> (two-tailed):
-<span class="math display">\[\text{p-value} = 2 \times P(Z &gt; 0.873) = 2(1 - P(Z \le 0.873)) \approx 2(0.1913) = 0.3827\]</span>
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
-<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.383 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence to conclude that the true proportion of red candies differs from 30%.</p>
-</div>
-</details>
-<hr />
-<div class="exercise-box">
-<div class="exercise-label">
-Question 17
-</div>
-<p>A manufacturer claims fewer than 5% of its electronic components are defective. A quality inspector samples <span class="math inline">\(n = 500\)</span> components and finds <span class="math inline">\(x = 15\)</span> that are defective. Test whether the defective rate is below 5%.</p>
-<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
-<ol style="list-style-type: lower-alpha">
-<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
-<li>Compute <span class="math inline">\(\hat{p}\)</span> and the test statistic.</li>
-<li>Find the p-value.</li>
-<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
-</ol>
-</div>
-<details data-type="hint">
-<summary>
-💡 Hint
-</summary>
-<div class="content">
-<ul>
-<li>The claim is that the defect rate is <em>below</em> 5%, so use <span class="math inline">\(H_a: p &lt; 0.05\)</span>.</li>
-<li>Lower-tailed p-value <span class="math inline">\(= P(Z &lt; z^*)\)</span>.</li>
-</ul>
-</div>
-</details>
-<details data-type="answer">
-<summary>
-✅ Answer
-</summary>
-<div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(H_0: p = 0.05 \quad\)</span> vs. <span class="math inline">\(\quad H_a: p &lt; 0.05\)</span></p>
-<p><strong>(b)</strong> Sample proportion:
-<span class="math display">\[\hat{p} = \frac{15}{500} = 0.030\]</span>
-Test statistic:
-<span class="math display">\[z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.030 - 0.05}{\sqrt{0.05 \times 0.95 / 500}} = \frac{-0.020}{0.009747} \approx -2.052\]</span></p>
-<p><strong>(c)</strong> For <span class="math inline">\(H_a: p &lt; 0.05\)</span> (lower-tailed):
-<span class="math display">\[\text{p-value} = P(Z &lt; -2.052) \approx 0.0201\]</span>
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
-<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.020 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the true defective rate is below 5%.</p>
-</div>
-</details>
-<hr />
-<div class="exercise-box">
-<div class="exercise-label">
-Question 18
+Question 13
 </div>
 <p>A national survey reports that 60% of households own at least one pet. A researcher randomly selects <span class="math inline">\(n = 150\)</span> households in one city. Of these, <span class="math inline">\(x = 102\)</span> report owning at least one pet. Is the local pet-ownership rate higher than the national rate?</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
@@ -3838,48 +3636,7 @@ Test statistic:
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question 19
-</div>
-<p>A statistics professor conjectures that more than 50% of students pass a particularly challenging midterm. Out of <span class="math inline">\(n = 80\)</span> students, <span class="math inline">\(x = 46\)</span> passed. Test the professor’s conjecture.</p>
-<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
-<ol style="list-style-type: lower-alpha">
-<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
-<li>Compute <span class="math inline">\(\hat{p}\)</span> and the test statistic.</li>
-<li>Find the p-value.</li>
-<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
-</ol>
-</div>
-<details data-type="hint">
-<summary>
-💡 Hint
-</summary>
-<div class="content">
-<ul>
-<li>“More than 50%” means <span class="math inline">\(H_a: p &gt; 0.50\)</span>.</li>
-<li>Upper-tailed p-value <span class="math inline">\(= P(Z &gt; z^*)\)</span>.</li>
-</ul>
-</div>
-</details>
-<details data-type="answer">
-<summary>
-✅ Answer
-</summary>
-<div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(H_0: p = 0.50 \quad\)</span> vs. <span class="math inline">\(\quad H_a: p &gt; 0.50\)</span></p>
-<p><strong>(b)</strong> Sample proportion:
-<span class="math display">\[\hat{p} = \frac{46}{80} = 0.575\]</span>
-Test statistic:
-<span class="math display">\[z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.575 - 0.50}{\sqrt{0.50 \times 0.50 / 80}} = \frac{0.075}{0.05590} \approx 1.342\]</span></p>
-<p><strong>(c)</strong> For <span class="math inline">\(H_a: p &gt; 0.50\)</span> (upper-tailed):
-<span class="math display">\[\text{p-value} = P(Z &gt; 1.342) \approx 0.0899\]</span>
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
-<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.090 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence at the 5% level to conclude that more than 50% of students pass the midterm.</p>
-</div>
-</details>
-<hr />
-<div class="exercise-box">
-<div class="exercise-label">
-Question 20
+Question 14
 </div>
 <p>Three independent research scenarios are given below. For <strong>each scenario</strong>: (i) identify the appropriate test (one-sample <span class="math inline">\(z\)</span> test for a mean, one-sample <span class="math inline">\(t\)</span> test for a mean, or one-sample <span class="math inline">\(z\)</span> test for a proportion); (ii) state <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>; (iii) compute the test statistic; (iv) find the p-value; and (v) state a conclusion at the given <span class="math inline">\(\alpha\)</span>.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find required tail probabilities.</p>
@@ -3925,6 +3682,1615 @@ Question 20
 <p><span class="math display">\[\text{p-value} = P(Z &lt; -2.200) \approx 0.0139\]</span>
 <a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
 <p>Since p-value <span class="math inline">\(\approx 0.014 &lt; \alpha = 0.05\)</span>, <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that mean daily exercise time for app users is less than 46.0 minutes.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 15
+</div>
+<p>A statistics professor expects the standard deviation of final exam scores in her course to be <span class="math inline">\(\sigma_0 = 10\)</span> points. After implementing a new teaching method, she randomly samples <span class="math inline">\(n = 21\)</span> students and finds a sample standard deviation of <span class="math inline">\(s = 13\)</span> points. Test whether score variability has increased. Use <span class="math inline">\(\alpha = 0.05\)</span>. Assume exam scores are approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the <span class="math inline">\(\chi^2\)</span> test statistic using <span class="math inline">\(\chi^{2*} = \dfrac{(n-1)s^2}{\sigma_0^2}\)</span>.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The test statistic for a population variance is <span class="math inline">\(\chi^{2*} = \dfrac{(n-1)s^2}{\sigma_0^2}\)</span> with <span class="math inline">\(df = n - 1\)</span>.</li>
+<li>Since we are testing whether variability has <em>increased</em>, use a right-tailed test: <span class="math inline">\(H_a: \sigma^2 &gt; \sigma_0^2\)</span>.</li>
+<li>The p-value for <span class="math inline">\(H_a: \sigma^2 &gt; \sigma_0^2\)</span> is <span class="math inline">\(P(\chi^2_{n-1} &gt; \chi^{2*})\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \sigma^2 = 100 \qquad H_a: \sigma^2 &gt; 100\]</span>
+(where <span class="math inline">\(\sigma_0^2 = 10^2 = 100\)</span>)</p>
+<p><strong>(b)</strong>
+<span class="math display">\[\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(21 - 1)(13^2)}{10^2} = \frac{(20)(169)}{100} = 33.8\]</span></p>
+<p><strong>(c)</strong> Degrees of freedom: <span class="math inline">\(df = n - 1 = 20\)</span>.</p>
+<p>For <span class="math inline">\(H_a: \sigma^2 &gt; 100\)</span> (right-tailed):
+<span class="math display">\[\text{p-value} = P(\chi^2_{20} &gt; 33.8) \approx 0.0278\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the <span class="math inline">\(\chi^2\)</span>-table: <span class="math inline">\(\chi^2_{20,\,0.05} = 31.41 &lt; 33.8 &lt; 34.17 = \chi^2_{20,\,0.025}\)</span>, so <span class="math inline">\(0.025 &lt; \text{p-value} &lt; 0.05\)</span>.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.028 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the variance of exam scores has increased above <span class="math inline">\(\sigma_0^2 = 100\)</span> (i.e., <span class="math inline">\(\sigma &gt; 10\)</span> points).</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 16
+</div>
+<p>A packaging machine is designed to fill bags of flour with a standard deviation of <span class="math inline">\(\sigma_0 = 5\)</span> g. After scheduled maintenance, a quality engineer randomly samples <span class="math inline">\(n = 16\)</span> bags and finds a sample standard deviation of <span class="math inline">\(s = 3.2\)</span> g. The engineer believes the maintenance may have reduced variability. Test at <span class="math inline">\(\alpha = 0.05\)</span>. Assume fill weights are approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the <span class="math inline">\(\chi^2\)</span> test statistic.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The engineer believes variability has <em>decreased</em>, so use a left-tailed test: <span class="math inline">\(H_a: \sigma^2 &lt; \sigma_0^2\)</span>.</li>
+<li>The p-value for <span class="math inline">\(H_a: \sigma^2 &lt; \sigma_0^2\)</span> is <span class="math inline">\(P(\chi^2_{n-1} &lt; \chi^{2*})\)</span>.</li>
+<li>Note that <span class="math inline">\(\sigma_0^2 = 5^2 = 25\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \sigma^2 = 25 \qquad H_a: \sigma^2 &lt; 25\]</span>
+(where <span class="math inline">\(\sigma_0^2 = 5^2 = 25\)</span>)</p>
+<p><strong>(b)</strong>
+<span class="math display">\[\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(16 - 1)(3.2^2)}{5^2} = \frac{(15)(10.24)}{25} = \frac{153.6}{25} = 6.144\]</span></p>
+<p><strong>(c)</strong> Degrees of freedom: <span class="math inline">\(df = n - 1 = 15\)</span>.</p>
+<p>For <span class="math inline">\(H_a: \sigma^2 &lt; 25\)</span> (left-tailed):
+<span class="math display">\[\text{p-value} = P(\chi^2_{15} &lt; 6.144) \approx 0.0204\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the <span class="math inline">\(\chi^2\)</span>-table: the lower 5th percentile of <span class="math inline">\(\chi^2_{15}\)</span> is <span class="math inline">\(7.26\)</span>. Since <span class="math inline">\(6.144 &lt; 7.26\)</span>, the p-value <span class="math inline">\(&lt; 0.05\)</span>.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.020 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the variance of fill weights has decreased below <span class="math inline">\(\sigma_0^2 = 25\)</span> g<span class="math inline">\(^2\)</span> (i.e., <span class="math inline">\(\sigma &lt; 5\)</span> g).</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 17
+</div>
+<p>A university study reports that the standard deviation of weekly study hours among undergraduates is <span class="math inline">\(\sigma_0 = 4\)</span> hours. A researcher surveys a random sample of <span class="math inline">\(n = 25\)</span> students in an engineering program and finds a sample standard deviation of <span class="math inline">\(s = 6\)</span> hours. Test whether the variance of study hours for engineering students differs from the university-wide value. Use <span class="math inline">\(\alpha = 0.05\)</span>. Assume study hours are approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the <span class="math inline">\(\chi^2\)</span> test statistic.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Differs from” calls for a two-tailed test: <span class="math inline">\(H_a: \sigma^2 \ne \sigma_0^2\)</span>.</li>
+<li>Since <span class="math inline">\(s &gt; \sigma_0\)</span>, the test statistic will be in the upper tail. The two-tailed p-value is <span class="math inline">\(2 \times P(\chi^2_{n-1} &gt; \chi^{2*})\)</span>.</li>
+<li>Note that <span class="math inline">\(\sigma_0^2 = 4^2 = 16\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \sigma^2 = 16 \qquad H_a: \sigma^2 \ne 16\]</span>
+(where <span class="math inline">\(\sigma_0^2 = 4^2 = 16\)</span>)</p>
+<p><strong>(b)</strong>
+<span class="math display">\[\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(25 - 1)(6^2)}{4^2} = \frac{(24)(36)}{16} = \frac{864}{16} = 54\]</span></p>
+<p><strong>(c)</strong> Degrees of freedom: <span class="math inline">\(df = n - 1 = 24\)</span>.</p>
+<p>Since <span class="math inline">\(s &gt; \sigma_0\)</span>, the statistic lies in the upper tail. For <span class="math inline">\(H_a: \sigma^2 \ne 16\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(\chi^2_{24} &gt; 54) \approx 2(0.0003) = 0.0006\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0006 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the variance of weekly study hours for engineering students differs from the university-wide value of <span class="math inline">\(\sigma_0^2 = 16\)</span> hr<span class="math inline">\(^2\)</span>.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 18
+</div>
+<p>City records show that daily commute times have a standard deviation of <span class="math inline">\(\sigma_0 = 8\)</span> minutes. A city planner suspects that ongoing road construction has increased commute time variability. She randomly samples <span class="math inline">\(n = 31\)</span> commuters and records a sample standard deviation of <span class="math inline">\(s = 10\)</span> minutes. Test at <span class="math inline">\(\alpha = 0.01\)</span>. Assume commute times are approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the <span class="math inline">\(\chi^2\)</span> test statistic.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.01\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The planner suspects variability has <em>increased</em>, so use <span class="math inline">\(H_a: \sigma^2 &gt; \sigma_0^2\)</span>.</li>
+<li>Note that <span class="math inline">\(\sigma_0^2 = 8^2 = 64\)</span>.</li>
+<li>Right-tailed p-value <span class="math inline">\(= P(\chi^2_{n-1} &gt; \chi^{2*})\)</span>.</li>
+<li>Here <span class="math inline">\(\alpha = 0.01\)</span>; compare the p-value to 0.01.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \sigma^2 = 64 \qquad H_a: \sigma^2 &gt; 64\]</span>
+(where <span class="math inline">\(\sigma_0^2 = 8^2 = 64\)</span>)</p>
+<p><strong>(b)</strong>
+<span class="math display">\[\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(31 - 1)(10^2)}{8^2} = \frac{(30)(100)}{64} = \frac{3000}{64} \approx 46.875\]</span></p>
+<p><strong>(c)</strong> Degrees of freedom: <span class="math inline">\(df = n - 1 = 30\)</span>.</p>
+<p>For <span class="math inline">\(H_a: \sigma^2 &gt; 64\)</span> (right-tailed):
+<span class="math display">\[\text{p-value} = P(\chi^2_{30} &gt; 46.875) \approx 0.0248\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the <span class="math inline">\(\chi^2\)</span>-table: <span class="math inline">\(\chi^2_{30,\,0.05} = 43.77 &lt; 46.875 &lt; 50.89 = \chi^2_{30,\,0.01}\)</span>, so <span class="math inline">\(0.01 &lt; \text{p-value} &lt; 0.05\)</span>.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.025 &gt; \alpha = 0.01\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is not sufficient evidence at the 1% level to conclude that commute time variability has increased. <em>(Note: the result would be significant at <span class="math inline">\(\alpha = 0.05\)</span>, but not at the stricter <span class="math inline">\(\alpha = 0.01\)</span>.)</em></p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 19
+</div>
+<p>A dairy company claims the standard deviation of fat content in its milk cartons is <span class="math inline">\(\sigma_0 = 0.3\)</span> g per 100 mL. A quality auditor randomly samples <span class="math inline">\(n = 11\)</span> cartons and measures a sample standard deviation of <span class="math inline">\(s = 0.45\)</span> g per 100 mL. Test whether the variance differs from the company’s claim. Use <span class="math inline">\(\alpha = 0.05\)</span>. Assume fat content is approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the <span class="math inline">\(\chi^2\)</span> test statistic.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Differs from” calls for a two-tailed test: <span class="math inline">\(H_a: \sigma^2 \ne \sigma_0^2\)</span>.</li>
+<li>Note that <span class="math inline">\(\sigma_0^2 = 0.3^2 = 0.09\)</span>.</li>
+<li>Since <span class="math inline">\(s &gt; \sigma_0\)</span>, the test statistic lies in the upper tail. The two-tailed p-value is <span class="math inline">\(2 \times P(\chi^2_{n-1} &gt; \chi^{2*})\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \sigma^2 = 0.09 \qquad H_a: \sigma^2 \ne 0.09\]</span>
+(where <span class="math inline">\(\sigma_0^2 = 0.3^2 = 0.09\)</span>)</p>
+<p><strong>(b)</strong>
+<span class="math display">\[\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(11 - 1)(0.45^2)}{0.3^2} = \frac{(10)(0.2025)}{0.09} = \frac{2.025}{0.09} = 22.5\]</span></p>
+<p><strong>(c)</strong> Degrees of freedom: <span class="math inline">\(df = n - 1 = 10\)</span>.</p>
+<p>Since <span class="math inline">\(s &gt; \sigma_0\)</span>, the statistic lies in the upper tail. For <span class="math inline">\(H_a: \sigma^2 \ne 0.09\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(\chi^2_{10} &gt; 22.5) \approx 2(0.013) = 0.026\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the <span class="math inline">\(\chi^2\)</span>-table: <span class="math inline">\(\chi^2_{10,\,0.025} = 20.48 &lt; 22.5 &lt; 23.21 = \chi^2_{10,\,0.01}\)</span>, so <span class="math inline">\(P(\chi^2_{10} &gt; 22.5)\)</span> is between 0.01 and 0.025, giving a two-tailed p-value between 0.02 and 0.05.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.026 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the variance of fat content in the company’s milk cartons differs from the claimed value of <span class="math inline">\(\sigma_0^2 = 0.09\)</span> g<span class="math inline">\(^2\)</span> per 100 mL<span class="math inline">\(^2\)</span>.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 20
+</div>
+<p>A fitness centre manager claims that the standard deviation of the number of daily visits is <span class="math inline">\(\sigma_0 = 15\)</span> visits. After introducing a new membership promotion, she randomly records daily attendance for <span class="math inline">\(n = 26\)</span> days and finds a sample standard deviation of <span class="math inline">\(s = 20\)</span> visits. Test whether the variance of daily visits has changed from the claimed level. Use <span class="math inline">\(\alpha = 0.05\)</span>. Assume daily visit counts are approximately normally distributed.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the <span class="math inline">\(\chi^2\)</span> test statistic.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Has the variance <em>changed</em>?” calls for a two-tailed test: <span class="math inline">\(H_a: \sigma^2 \ne \sigma_0^2\)</span>.</li>
+<li>Note that <span class="math inline">\(\sigma_0^2 = 15^2 = 225\)</span>.</li>
+<li>Since <span class="math inline">\(s &gt; \sigma_0\)</span>, the test statistic lies in the upper tail. The two-tailed p-value is <span class="math inline">\(2 \times P(\chi^2_{n-1} &gt; \chi^{2*})\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \sigma^2 = 225 \qquad H_a: \sigma^2 \ne 225\]</span>
+(where <span class="math inline">\(\sigma_0^2 = 15^2 = 225\)</span>)</p>
+<p><strong>(b)</strong>
+<span class="math display">\[\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(26 - 1)(20^2)}{15^2} = \frac{(25)(400)}{225} = \frac{10000}{225} \approx 44.44\]</span></p>
+<p><strong>(c)</strong> Degrees of freedom: <span class="math inline">\(df = n - 1 = 25\)</span>.</p>
+<p>Since <span class="math inline">\(s &gt; \sigma_0\)</span>, the statistic lies in the upper tail. For <span class="math inline">\(H_a: \sigma^2 \ne 225\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(\chi^2_{25} &gt; 44.44) \approx 2(0.0082) = 0.0164\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the <span class="math inline">\(\chi^2\)</span>-table: <span class="math inline">\(\chi^2_{25,\,0.025} = 40.65 &lt; 44.44 &lt; 46.93 = \chi^2_{25,\,0.01}\)</span>, so <span class="math inline">\(P(\chi^2_{25} &gt; 44.44)\)</span> is between 0.01 and 0.025, giving a two-tailed p-value between 0.02 and 0.05.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.016 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 5% level to conclude that the variance of daily visits at the fitness centre has changed from the claimed value of <span class="math inline">\(\sigma_0^2 = 225\)</span> visits<span class="math inline">\(^2\)</span>.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 21
+</div>
+<p>A transportation researcher believes that morning commute times differ between two cities. She randomly samples commuters from City A (<span class="math inline">\(n_1 = 8\)</span>) and City B (<span class="math inline">\(n_2 = 10\)</span>) and records commute times (in minutes):</p>
+<p><strong>City A:</strong> 35, 42, 28, 51, 38, 44, 30, 47</p>
+<p><strong>City B:</strong> 22, 27, 31, 19, 25, 28, 23, 26, 21, 30</p>
+<p>Test whether City A commuters have longer average commute times than City B commuters at <span class="math inline">\(\alpha = 0.05\)</span>. Use the Welch two-sample <span class="math inline">\(t\)</span>-test (unequal variances).</p>
+<ol style="list-style-type: lower-alpha">
+<li>Fill in the blanks to run a Welch two-sample <span class="math inline">\(t\)</span>-test with <code>t.test()</code>.</li>
+<li>Read the output: state the test statistic, degrees of freedom, and p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="13">city_a <- c(35, 42, 28, 51, 38, 44, 30, 47)
+city_b <- c(22, 27, 31, 19, 25, 28, 23, 26, 21, 30)
+
+# (a) Welch two-sample t-test: Ha: mu_A > mu_B
+result <- t.test(city_a, city_b,
+                 alternative = "___",
+                 var.equal   = ___)
+result</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>For <span class="math inline">\(H_a: \mu_A &gt; \mu_B\)</span> (City A has <em>longer</em> commutes), use <code>alternative = "greater"</code>.</li>
+<li>The Welch <span class="math inline">\(t\)</span>-test does <strong>not</strong> assume equal variances: set <code>var.equal = FALSE</code>.</li>
+<li><code>t.test(x, y, alternative, var.equal)</code> — the first argument is the group you expect to have the larger mean when using <code>"greater"</code>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="hypothesis-tests.html#cb95-1" tabindex="-1"></a>city_a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">35</span>, <span class="dv">42</span>, <span class="dv">28</span>, <span class="dv">51</span>, <span class="dv">38</span>, <span class="dv">44</span>, <span class="dv">30</span>, <span class="dv">47</span>)</span>
+<span id="cb95-2"><a href="hypothesis-tests.html#cb95-2" tabindex="-1"></a>city_b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">27</span>, <span class="dv">31</span>, <span class="dv">19</span>, <span class="dv">25</span>, <span class="dv">28</span>, <span class="dv">23</span>, <span class="dv">26</span>, <span class="dv">21</span>, <span class="dv">30</span>)</span>
+<span id="cb95-3"><a href="hypothesis-tests.html#cb95-3" tabindex="-1"></a></span>
+<span id="cb95-4"><a href="hypothesis-tests.html#cb95-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(city_a, city_b,</span>
+<span id="cb95-5"><a href="hypothesis-tests.html#cb95-5" tabindex="-1"></a>                 <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>,</span>
+<span id="cb95-6"><a href="hypothesis-tests.html#cb95-6" tabindex="-1"></a>                 <span class="at">var.equal   =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb95-7"><a href="hypothesis-tests.html#cb95-7" tabindex="-1"></a>result</span>
+<span id="cb95-8"><a href="hypothesis-tests.html#cb95-8" tabindex="-1"></a><span class="co"># Welch Two Sample t-test</span></span>
+<span id="cb95-9"><a href="hypothesis-tests.html#cb95-9" tabindex="-1"></a><span class="co"># t = 4.5359, df = 9.6278, p-value = 0.0006</span></span>
+<span id="cb95-10"><a href="hypothesis-tests.html#cb95-10" tabindex="-1"></a><span class="co"># alternative hypothesis: true difference in means is greater than 0</span></span>
+<span id="cb95-11"><a href="hypothesis-tests.html#cb95-11" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
+<span id="cb95-12"><a href="hypothesis-tests.html#cb95-12" tabindex="-1"></a><span class="co"># mean of x  mean of y</span></span>
+<span id="cb95-13"><a href="hypothesis-tests.html#cb95-13" tabindex="-1"></a><span class="co">#    39.375     25.200</span></span></code></pre></div>
+<p><strong>(b)</strong> <span class="math inline">\(t^* \approx 4.54\)</span>, <span class="math inline">\(df \approx 9.63\)</span>, p-value <span class="math inline">\(\approx 0.0006\)</span>.</p>
+<p><strong>(c)</strong> Since p-value <span class="math inline">\(\approx 0.0006 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that City A commuters have significantly longer average commute times than City B commuters.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 22
+</div>
+<p>A political analyst surveys residents in two regions about support for a new infrastructure policy. In Region A, 68 out of 120 surveyed residents support the policy. In Region B, 52 out of 100 residents support it. Test whether the proportions of support differ between the two regions.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Fill in the blanks to run a two-proportion <span class="math inline">\(z\)</span>-test using <code>prop.test()</code>.</li>
+<li>Read the output: state the test statistic and p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="12">x1 <- 68;  n1 <- 120   # Region A
+x2 <- 52;  n2 <- 100   # Region B
+
+# (a) Two-proportion z-test: Ha: p1 != p2
+result <- prop.test(c(x1, x2), c(n1, n2),
+                    alternative = "___",
+                    correct     = ___)
+result</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>For a two-sided test (<span class="math inline">\(H_a: p_1 \ne p_2\)</span>), use <code>alternative = "two.sided"</code>.</li>
+<li>Use the formula without continuity correction: set <code>correct = FALSE</code>.</li>
+<li><code>prop.test()</code> reports a <span class="math inline">\(\chi^2\)</span> statistic; <span class="math inline">\(\sqrt{\chi^2} = |z^*|\)</span> from the two-proportion <span class="math inline">\(z\)</span>-formula.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="hypothesis-tests.html#cb96-1" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">68</span>;  n1 <span class="ot">&lt;-</span> <span class="dv">120</span></span>
+<span id="cb96-2"><a href="hypothesis-tests.html#cb96-2" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">52</span>;  n2 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb96-3"><a href="hypothesis-tests.html#cb96-3" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="hypothesis-tests.html#cb96-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(<span class="fu">c</span>(x1, x2), <span class="fu">c</span>(n1, n2),</span>
+<span id="cb96-5"><a href="hypothesis-tests.html#cb96-5" tabindex="-1"></a>                    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb96-6"><a href="hypothesis-tests.html#cb96-6" tabindex="-1"></a>                    <span class="at">correct     =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb96-7"><a href="hypothesis-tests.html#cb96-7" tabindex="-1"></a>result</span>
+<span id="cb96-8"><a href="hypothesis-tests.html#cb96-8" tabindex="-1"></a><span class="co"># 2-sample test for equality of proportions without continuity correction</span></span>
+<span id="cb96-9"><a href="hypothesis-tests.html#cb96-9" tabindex="-1"></a><span class="co"># X-squared = 0.4789, df = 1, p-value = 0.4890</span></span>
+<span id="cb96-10"><a href="hypothesis-tests.html#cb96-10" tabindex="-1"></a><span class="co"># alternative hypothesis: two.sided</span></span>
+<span id="cb96-11"><a href="hypothesis-tests.html#cb96-11" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
+<span id="cb96-12"><a href="hypothesis-tests.html#cb96-12" tabindex="-1"></a><span class="co"># prop 1  prop 2</span></span>
+<span id="cb96-13"><a href="hypothesis-tests.html#cb96-13" tabindex="-1"></a><span class="co"># 0.5667  0.5200</span></span></code></pre></div>
+<p><strong>(b)</strong> <span class="math inline">\(\chi^2 \approx 0.479\)</span> (equivalently <span class="math inline">\(|z^*| \approx 0.692\)</span>), p-value <span class="math inline">\(\approx 0.489\)</span>.</p>
+<p><strong>(c)</strong> Since p-value <span class="math inline">\(\approx 0.489 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is insufficient evidence to conclude that the proportions of support differ between the two regions.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 23
+</div>
+<p>An instructor teaches two sections of the same course and suspects that Section A has more variable test scores than Section B. Scores from the two sections are:</p>
+<p><strong>Section A (<span class="math inline">\(n_1 = 12\)</span>):</strong> 78, 85, 72, 91, 68, 88, 75, 82, 95, 70, 84, 77</p>
+<p><strong>Section B (<span class="math inline">\(n_2 = 10\)</span>):</strong> 82, 84, 79, 85, 81, 83, 80, 86, 82, 84</p>
+<p>Test whether Section A has greater score variance than Section B at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Fill in the blank to run an <span class="math inline">\(F\)</span>-test using <code>var.test()</code>.</li>
+<li>Read the output: state <span class="math inline">\(F^*\)</span>, the degrees of freedom, and the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="12">sec_a <- c(78, 85, 72, 91, 68, 88, 75, 82, 95, 70, 84, 77)
+sec_b <- c(82, 84, 79, 85, 81, 83, 80, 86, 82, 84)
+
+# (a) F-test: Ha: sigma_A^2 > sigma_B^2
+result <- var.test(sec_a, sec_b,
+                   alternative = "___")
+result</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>For <span class="math inline">\(H_a: \sigma_A^2 &gt; \sigma_B^2\)</span> (Section A is <em>more</em> variable), use <code>alternative = "greater"</code>.</li>
+<li><code>var.test(x, y)</code> computes <span class="math inline">\(F^* = s_x^2 / s_y^2\)</span>, so put the group hypothesised to have the <em>larger</em> variance first.</li>
+<li>The output gives the <span class="math inline">\(F\)</span>-statistic, numerator df, denominator df, and p-value.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="hypothesis-tests.html#cb97-1" tabindex="-1"></a>sec_a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">78</span>, <span class="dv">85</span>, <span class="dv">72</span>, <span class="dv">91</span>, <span class="dv">68</span>, <span class="dv">88</span>, <span class="dv">75</span>, <span class="dv">82</span>, <span class="dv">95</span>, <span class="dv">70</span>, <span class="dv">84</span>, <span class="dv">77</span>)</span>
+<span id="cb97-2"><a href="hypothesis-tests.html#cb97-2" tabindex="-1"></a>sec_b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">82</span>, <span class="dv">84</span>, <span class="dv">79</span>, <span class="dv">85</span>, <span class="dv">81</span>, <span class="dv">83</span>, <span class="dv">80</span>, <span class="dv">86</span>, <span class="dv">82</span>, <span class="dv">84</span>)</span>
+<span id="cb97-3"><a href="hypothesis-tests.html#cb97-3" tabindex="-1"></a></span>
+<span id="cb97-4"><a href="hypothesis-tests.html#cb97-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">var.test</span>(sec_a, sec_b,</span>
+<span id="cb97-5"><a href="hypothesis-tests.html#cb97-5" tabindex="-1"></a>                   <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb97-6"><a href="hypothesis-tests.html#cb97-6" tabindex="-1"></a>result</span>
+<span id="cb97-7"><a href="hypothesis-tests.html#cb97-7" tabindex="-1"></a><span class="co"># F test to compare two variances</span></span>
+<span id="cb97-8"><a href="hypothesis-tests.html#cb97-8" tabindex="-1"></a><span class="co"># F = 14.726, num df = 11, denom df = 9, p-value = 0.0002</span></span>
+<span id="cb97-9"><a href="hypothesis-tests.html#cb97-9" tabindex="-1"></a><span class="co"># alternative hypothesis: true ratio of variances is greater than 1</span></span>
+<span id="cb97-10"><a href="hypothesis-tests.html#cb97-10" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
+<span id="cb97-11"><a href="hypothesis-tests.html#cb97-11" tabindex="-1"></a><span class="co"># ratio of variances</span></span>
+<span id="cb97-12"><a href="hypothesis-tests.html#cb97-12" tabindex="-1"></a><span class="co">#          14.7263</span></span></code></pre></div>
+<p><strong>(b)</strong> <span class="math inline">\(F^* \approx 14.73\)</span>, <span class="math inline">\(df = (11,\,9)\)</span>, p-value <span class="math inline">\(\approx 0.0002\)</span>.</p>
+<p><strong>(c)</strong> Since p-value <span class="math inline">\(\approx 0.0002 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that Section A has significantly greater score variability than Section B.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 24
+</div>
+<p>A cardiologist measures the systolic blood pressure (mmHg) of 8 patients <strong>before</strong> and <strong>after</strong> a new medication. The same patients are measured twice, making this a paired study.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Patient</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>148</td>
+<td>138</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>162</td>
+<td>149</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>155</td>
+<td>147</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>141</td>
+<td>136</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>170</td>
+<td>158</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>158</td>
+<td>148</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>145</td>
+<td>141</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>152</td>
+<td>143</td>
+</tr>
+</tbody>
+</table>
+<p>Test whether the medication significantly reduces systolic blood pressure at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Fill in the blanks to run a paired <span class="math inline">\(t\)</span>-test. Define <span class="math inline">\(d_i = \text{Before}_i - \text{After}_i\)</span>.</li>
+<li>Read the output and state the test statistic, degrees of freedom, and p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="14">before <- c(148, 162, 155, 141, 170, 158, 145, 152)
+after  <- c(138, 149, 147, 136, 158, 148, 141, 143)
+
+# Define differences d = before - after
+d <- before - after
+d
+
+# (a) One-sample t-test on d: Ha: mu_d > 0
+result <- t.test(d, mu = ___, alternative = "___")
+result</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>With <span class="math inline">\(d_i = \text{Before}_i - \text{After}_i\)</span>, a positive <span class="math inline">\(\bar{x}_d\)</span> means BP decreased — which is what the medication should do.</li>
+<li>The null value is <span class="math inline">\(\mu_d = 0\)</span> (no change): set <code>mu = 0</code>.</li>
+<li>Since we test whether the mean difference is <em>positive</em> (<span class="math inline">\(H_a: \mu_d &gt; 0\)</span>), use <code>alternative = "greater"</code>.</li>
+<li>Equivalently, <code>t.test(before, after, paired = TRUE, alternative = "greater")</code> gives the same result.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="hypothesis-tests.html#cb98-1" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">148</span>, <span class="dv">162</span>, <span class="dv">155</span>, <span class="dv">141</span>, <span class="dv">170</span>, <span class="dv">158</span>, <span class="dv">145</span>, <span class="dv">152</span>)</span>
+<span id="cb98-2"><a href="hypothesis-tests.html#cb98-2" tabindex="-1"></a>after  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">138</span>, <span class="dv">149</span>, <span class="dv">147</span>, <span class="dv">136</span>, <span class="dv">158</span>, <span class="dv">148</span>, <span class="dv">141</span>, <span class="dv">143</span>)</span>
+<span id="cb98-3"><a href="hypothesis-tests.html#cb98-3" tabindex="-1"></a></span>
+<span id="cb98-4"><a href="hypothesis-tests.html#cb98-4" tabindex="-1"></a>d <span class="ot">&lt;-</span> before <span class="sc">-</span> after</span>
+<span id="cb98-5"><a href="hypothesis-tests.html#cb98-5" tabindex="-1"></a><span class="co"># [1] 10 13  8  5 12 10  4  9</span></span>
+<span id="cb98-6"><a href="hypothesis-tests.html#cb98-6" tabindex="-1"></a></span>
+<span id="cb98-7"><a href="hypothesis-tests.html#cb98-7" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(d, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb98-8"><a href="hypothesis-tests.html#cb98-8" tabindex="-1"></a>result</span>
+<span id="cb98-9"><a href="hypothesis-tests.html#cb98-9" tabindex="-1"></a><span class="co"># One Sample t-test</span></span>
+<span id="cb98-10"><a href="hypothesis-tests.html#cb98-10" tabindex="-1"></a><span class="co"># t = 7.9946, df = 7, p-value = 0.00003</span></span>
+<span id="cb98-11"><a href="hypothesis-tests.html#cb98-11" tabindex="-1"></a><span class="co"># alternative hypothesis: true mean is greater than 0</span></span>
+<span id="cb98-12"><a href="hypothesis-tests.html#cb98-12" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
+<span id="cb98-13"><a href="hypothesis-tests.html#cb98-13" tabindex="-1"></a><span class="co"># mean of x</span></span>
+<span id="cb98-14"><a href="hypothesis-tests.html#cb98-14" tabindex="-1"></a><span class="co">#    8.875</span></span></code></pre></div>
+<p><strong>(b)</strong> <span class="math inline">\(t^* \approx 7.99\)</span>, <span class="math inline">\(df = 7\)</span>, p-value <span class="math inline">\(&lt; 0.0001\)</span>.</p>
+<p><strong>(c)</strong> Since p-value <span class="math inline">\(&lt; 0.0001 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is very strong evidence that the medication significantly reduces systolic blood pressure.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 25
+</div>
+<p>An agronomist divides 10 farm plots in half. One half of each plot receives a new fertilizer (Treated); the other half receives standard fertilizer (Control). Yield (kg per half-plot) is recorded.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Plot</th>
+<th>Treated</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>45.2</td>
+<td>42.1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>38.7</td>
+<td>36.5</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>52.1</td>
+<td>48.9</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>41.5</td>
+<td>40.2</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>48.3</td>
+<td>44.7</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>36.9</td>
+<td>35.8</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>55.0</td>
+<td>51.3</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>43.8</td>
+<td>42.0</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>40.2</td>
+<td>38.9</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>47.6</td>
+<td>45.1</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>Explain why this is a <strong>paired</strong> study rather than a two-sample study.</li>
+<li>Fill in the blanks to test <span class="math inline">\(H_0: \mu_d = 0\)</span> vs. <span class="math inline">\(H_a: \mu_d &gt; 0\)</span> (new fertilizer increases yield) at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+<li>State a conclusion based on the R output.</li>
+</ol>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="13">treated <- c(45.2, 38.7, 52.1, 41.5, 48.3, 36.9, 55.0, 43.8, 40.2, 47.6)
+control <- c(42.1, 36.5, 48.9, 40.2, 44.7, 35.8, 51.3, 42.0, 38.9, 45.1)
+
+# (b) Paired t-test: fill in the blanks
+result <- t.test(treated, control,
+                 paired      = ___,
+                 alternative = "___")
+result</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><ol style="list-style-type: lower-alpha">
+<li>Each plot contributes <em>one pair</em> of observations. The two half-plots within a plot share the same soil, sunlight, and drainage, so they are not independent.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: lower-alpha">
+<li>Since observations are paired (same plot), set <code>paired = TRUE</code>.</li>
+</ol></li>
+<li>With <span class="math inline">\(d_i = \text{Treated}_i - \text{Control}_i\)</span>, “new fertilizer yields more” means <span class="math inline">\(\mu_d &gt; 0\)</span>: use <code>alternative = "greater"</code>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> Each plot is divided in half so that the two measurements (treated and control) share the same soil quality, drainage, sunlight, and microclimate. Treating each plot as a matched pair removes this background variability and gives a more powerful test of the fertilizer effect.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="hypothesis-tests.html#cb99-1" tabindex="-1"></a>treated <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">45.2</span>, <span class="fl">38.7</span>, <span class="fl">52.1</span>, <span class="fl">41.5</span>, <span class="fl">48.3</span>, <span class="fl">36.9</span>, <span class="fl">55.0</span>, <span class="fl">43.8</span>, <span class="fl">40.2</span>, <span class="fl">47.6</span>)</span>
+<span id="cb99-2"><a href="hypothesis-tests.html#cb99-2" tabindex="-1"></a>control <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">42.1</span>, <span class="fl">36.5</span>, <span class="fl">48.9</span>, <span class="fl">40.2</span>, <span class="fl">44.7</span>, <span class="fl">35.8</span>, <span class="fl">51.3</span>, <span class="fl">42.0</span>, <span class="fl">38.9</span>, <span class="fl">45.1</span>)</span>
+<span id="cb99-3"><a href="hypothesis-tests.html#cb99-3" tabindex="-1"></a></span>
+<span id="cb99-4"><a href="hypothesis-tests.html#cb99-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(treated, control,</span>
+<span id="cb99-5"><a href="hypothesis-tests.html#cb99-5" tabindex="-1"></a>                 <span class="at">paired      =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb99-6"><a href="hypothesis-tests.html#cb99-6" tabindex="-1"></a>                 <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb99-7"><a href="hypothesis-tests.html#cb99-7" tabindex="-1"></a>result</span>
+<span id="cb99-8"><a href="hypothesis-tests.html#cb99-8" tabindex="-1"></a><span class="co"># Paired t-test</span></span>
+<span id="cb99-9"><a href="hypothesis-tests.html#cb99-9" tabindex="-1"></a><span class="co"># t = 7.6215, df = 9, p-value = 0.00002</span></span>
+<span id="cb99-10"><a href="hypothesis-tests.html#cb99-10" tabindex="-1"></a><span class="co"># alternative hypothesis: true mean difference is greater than 0</span></span>
+<span id="cb99-11"><a href="hypothesis-tests.html#cb99-11" tabindex="-1"></a><span class="co"># sample estimates:</span></span>
+<span id="cb99-12"><a href="hypothesis-tests.html#cb99-12" tabindex="-1"></a><span class="co"># mean difference</span></span>
+<span id="cb99-13"><a href="hypothesis-tests.html#cb99-13" tabindex="-1"></a><span class="co">#            2.38</span></span></code></pre></div>
+<p><strong>(c)</strong> <span class="math inline">\(t^* \approx 7.62\)</span>, <span class="math inline">\(df = 9\)</span>, p-value <span class="math inline">\(&lt; 0.0001\)</span>. Since p-value <span class="math inline">\(&lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. The new fertilizer produces significantly higher yields than the standard fertilizer.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 26
+</div>
+<p>A manufacturer compares the lifetimes of two brands of LED light bulbs. Both brands are known from extensive prior testing to have a population standard deviation of <span class="math inline">\(\sigma = 80\)</span> hours. A random sample of <span class="math inline">\(n_1 = 36\)</span> Brand X bulbs gives <span class="math inline">\(\bar{x}_1 = 1{,}250\)</span> hours, and a sample of <span class="math inline">\(n_2 = 36\)</span> Brand Y bulbs gives <span class="math inline">\(\bar{x}_2 = 1{,}180\)</span> hours. Is there evidence that Brand X bulbs last longer on average?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the two-sample <span class="math inline">\(z\)</span> test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Since both <span class="math inline">\(\sigma\)</span> values are known, use <span class="math inline">\(z^* = (\bar{x}_1 - \bar{x}_2) \,/\, \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}\)</span>.</li>
+<li>“Brand X lasts <em>longer</em>” gives <span class="math inline">\(H_a: \mu_1 &gt; \mu_2\)</span> (upper-tailed).</li>
+<li>The p-value is <span class="math inline">\(P(Z &gt; z^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \mu_1 = \mu_2 \qquad H_a: \mu_1 &gt; \mu_2\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[z^* = \frac{(1250 - 1180) - 0}{\sqrt{80^2/36 + 80^2/36}} = \frac{70}{\sqrt{177.78 + 177.78}} = \frac{70}{\sqrt{355.56}} = \frac{70}{18.856} \approx 3.71\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu_1 &gt; \mu_2\)</span> (upper-tailed):
+<span class="math display">\[\text{p-value} = P(Z &gt; 3.71) \approx 0.0001\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.0001 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that Brand X LED bulbs last significantly longer on average than Brand Y bulbs.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 27
+</div>
+<p>A school district compares two teaching methods for a mathematics unit. Method A is used with <span class="math inline">\(n_1 = 12\)</span> students (<span class="math inline">\(\bar{x}_1 = 82.5\)</span>, <span class="math inline">\(s_1 = 6.2\)</span>); Method B is used with <span class="math inline">\(n_2 = 10\)</span> students (<span class="math inline">\(\bar{x}_2 = 79.3\)</span>, <span class="math inline">\(s_2 = 5.8\)</span>). Assume equal population variances. Is there a significant difference in mean scores between the two methods?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the pooled sample variance <span class="math inline">\(s_p^2\)</span> and the <span class="math inline">\(t\)</span> test statistic.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Pool the variances: <span class="math inline">\(s_p^2 = [(n_1-1)s_1^2 + (n_2-1)s_2^2] / (n_1+n_2-2)\)</span>.</li>
+<li>The test statistic is <span class="math inline">\(t^* = (\bar{x}_1 - \bar{x}_2) \,/\, (s_p\sqrt{1/n_1 + 1/n_2})\)</span>, with <span class="math inline">\(df = n_1+n_2-2\)</span>.</li>
+<li>A two-tailed p-value is <span class="math inline">\(2 \times P(t_{df} &gt; |t^*|)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \mu_1 = \mu_2 \qquad H_a: \mu_1 \ne \mu_2\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[s_p^2 = \frac{(11)(6.2^2) + (9)(5.8^2)}{12+10-2} = \frac{(11)(38.44)+(9)(33.64)}{20} = \frac{422.84+302.76}{20} = \frac{725.60}{20} = 36.28\]</span></p>
+<p><span class="math display">\[s_p = \sqrt{36.28} \approx 6.023\]</span></p>
+<p><span class="math display">\[t^* = \frac{82.5 - 79.3}{6.023\,\sqrt{1/12+1/10}} = \frac{3.2}{6.023 \times 0.4282} = \frac{3.2}{2.580} \approx 1.240\]</span></p>
+<p><strong>(c)</strong> <span class="math inline">\(df = 12+10-2 = 20\)</span>.</p>
+<p>For <span class="math inline">\(H_a: \mu_1 \ne \mu_2\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(t_{20} &gt; 1.240) \approx 2(0.115) = 0.230\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.230 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is insufficient evidence to conclude that the two teaching methods produce different mean scores.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 28
+</div>
+<p>A researcher compares nightly sleep duration between competitive athletes (<span class="math inline">\(n_1 = 15\)</span>, <span class="math inline">\(\bar{x}_1 = 8.2\)</span> hr, <span class="math inline">\(s_1 = 0.9\)</span> hr) and non-athletes (<span class="math inline">\(n_2 = 12\)</span>, <span class="math inline">\(\bar{x}_2 = 7.1\)</span> hr, <span class="math inline">\(s_2 = 1.5\)</span> hr). The sample standard deviations differ substantially, so use the Welch (unequal-variance) <span class="math inline">\(t\)</span>-test with the conservative approximation <span class="math inline">\(df = \min(n_1-1,\,n_2-1)\)</span>. Do athletes sleep significantly more than non-athletes?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the Welch <span class="math inline">\(t\)</span> test statistic.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The Welch statistic is <span class="math inline">\(t^* = (\bar{x}_1 - \bar{x}_2) \,/\, \sqrt{s_1^2/n_1 + s_2^2/n_2}\)</span>.</li>
+<li>Conservative <span class="math inline">\(df = \min(n_1-1,\,n_2-1)\)</span>.</li>
+<li>“Athletes sleep <em>more</em>” means <span class="math inline">\(H_a: \mu_1 &gt; \mu_2\)</span>; p-value <span class="math inline">\(= P(t_{df} &gt; t^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \mu_1 = \mu_2 \qquad H_a: \mu_1 &gt; \mu_2\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[t^* = \frac{8.2 - 7.1}{\sqrt{0.9^2/15 + 1.5^2/12}} = \frac{1.1}{\sqrt{0.054 + 0.1875}} = \frac{1.1}{\sqrt{0.2415}} = \frac{1.1}{0.4914} \approx 2.239\]</span></p>
+<p><strong>(c)</strong> Conservative <span class="math inline">\(df = \min(14,\,11) = 11\)</span>.</p>
+<p>For <span class="math inline">\(H_a: \mu_1 &gt; \mu_2\)</span> (upper-tailed):
+<span class="math display">\[\text{p-value} = P(t_{11} &gt; 2.239) \approx 0.023\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.023 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that competitive athletes sleep significantly longer on average than non-athletes.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 29
+</div>
+<p>A nutritionist measures the sodium content of canned soup from two brands. From industry records, <span class="math inline">\(\sigma_A = 60\)</span> mg and <span class="math inline">\(\sigma_B = 55\)</span> mg are known. A sample of <span class="math inline">\(n_1 = 50\)</span> cans of Brand A gives <span class="math inline">\(\bar{x}_1 = 895\)</span> mg; a sample of <span class="math inline">\(n_2 = 50\)</span> cans of Brand B gives <span class="math inline">\(\bar{x}_2 = 862\)</span> mg. Is there a significant difference in mean sodium content?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the two-sample <span class="math inline">\(z\)</span> test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.01\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Both <span class="math inline">\(\sigma\)</span> values are known, so use <span class="math inline">\(z^* = (\bar{x}_1-\bar{x}_2)\,/\,\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}\)</span>.</li>
+<li>A two-tailed p-value is <span class="math inline">\(2 \times P(Z &gt; |z^*|)\)</span>.</li>
+<li>Compare to <span class="math inline">\(\alpha = 0.01\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \mu_A = \mu_B \qquad H_a: \mu_A \ne \mu_B\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[z^* = \frac{895 - 862}{\sqrt{60^2/50 + 55^2/50}} = \frac{33}{\sqrt{72.0 + 60.5}} = \frac{33}{\sqrt{132.5}} = \frac{33}{11.511} \approx 2.867\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \mu_A \ne \mu_B\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(Z &gt; 2.867) \approx 2(0.00207) = 0.00414\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.004 &lt; \alpha = 0.01\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 1% level that the two brands differ significantly in mean sodium content.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 30
+</div>
+<p>A policy researcher surveys residents in two cities about support for a new environmental regulation. In City A, 118 out of 200 residents are in favour; in City B, 81 out of 180 residents are in favour. Is there a significant difference in the proportions supporting the regulation?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the pooled proportion <span class="math inline">\(\hat{p}\)</span> and the <span class="math inline">\(z\)</span> test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Pool the two samples: <span class="math inline">\(\hat{p} = (x_1+x_2)/(n_1+n_2)\)</span>.</li>
+<li>The test statistic is <span class="math inline">\(z^* = (\hat{p}_1-\hat{p}_2)\,/\,\sqrt{\hat{p}(1-\hat{p})(1/n_1+1/n_2)}\)</span>.</li>
+<li>Two-tailed p-value <span class="math inline">\(= 2 \times P(Z &gt; |z^*|)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: p_1 = p_2 \qquad H_a: p_1 \ne p_2\]</span></p>
+<p><strong>(b)</strong> <span class="math inline">\(\hat{p}_1 = 118/200 = 0.590\)</span>, <span class="math inline">\(\hat{p}_2 = 81/180 = 0.450\)</span>.</p>
+<p><span class="math display">\[\hat{p} = \frac{118+81}{200+180} = \frac{199}{380} \approx 0.5237\]</span></p>
+<p><span class="math display">\[z^* = \frac{0.590-0.450}{\sqrt{0.5237(1-0.5237)(1/200+1/180)}} = \frac{0.140}{\sqrt{0.5237 \times 0.4763 \times 0.01056}} = \frac{0.140}{\sqrt{0.002633}} = \frac{0.140}{0.05131} \approx 2.729\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: p_1 \ne p_2\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(Z &gt; 2.729) \approx 2(0.00318) = 0.00636\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.006 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence to conclude that the proportions supporting the regulation differ significantly between the two cities.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 31
+</div>
+<p>A college reports that 111 of 150 students in its online section (<span class="math inline">\(n_1 = 150\)</span>) and 96 of 120 students in its in-person section (<span class="math inline">\(n_2 = 120\)</span>) completed the course. Is the online completion rate significantly lower than the in-person rate?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the pooled proportion <span class="math inline">\(\hat{p}\)</span> and the <span class="math inline">\(z\)</span> test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Let Group 1 = online, Group 2 = in-person. “Online rate <em>lower</em>” gives <span class="math inline">\(H_a: p_1 &lt; p_2\)</span>.</li>
+<li>For a lower-tailed test, p-value <span class="math inline">\(= P(Z &lt; z^*)\)</span>.</li>
+<li>Pool the proportions: <span class="math inline">\(\hat{p} = (x_1+x_2)/(n_1+n_2)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: p_1 = p_2 \qquad H_a: p_1 &lt; p_2\]</span></p>
+<p><strong>(b)</strong> <span class="math inline">\(\hat{p}_1 = 111/150 = 0.740\)</span>, <span class="math inline">\(\hat{p}_2 = 96/120 = 0.800\)</span>.</p>
+<p><span class="math display">\[\hat{p} = \frac{111+96}{150+120} = \frac{207}{270} \approx 0.7667\]</span></p>
+<p><span class="math display">\[z^* = \frac{0.740-0.800}{\sqrt{0.7667 \times 0.2333 \times (1/150+1/120)}} = \frac{-0.060}{\sqrt{0.1789 \times 0.01500}} = \frac{-0.060}{\sqrt{0.002683}} = \frac{-0.060}{0.05180} \approx -1.159\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: p_1 &lt; p_2\)</span> (lower-tailed):
+<span class="math display">\[\text{p-value} = P(Z &lt; -1.159) \approx 0.123\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.123 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is insufficient evidence to conclude that the online section has a lower completion rate than the in-person section.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 32
+</div>
+<p>A factory has two production shifts. The day shift (<span class="math inline">\(n_1 = 300\)</span>) produces 24 defective items; the night shift (<span class="math inline">\(n_2 = 250\)</span>) produces 40 defective items. Do the two shifts have significantly different defect rates?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the pooled proportion <span class="math inline">\(\hat{p}\)</span> and the <span class="math inline">\(z\)</span> test statistic.</li>
+<li>Find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.01\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Do the rates <em>differ</em>?” implies <span class="math inline">\(H_a: p_1 \ne p_2\)</span> (two-tailed).</li>
+<li>Since <span class="math inline">\(z^*\)</span> will be negative (day shift has a lower observed rate), the two-tailed p-value is <span class="math inline">\(2 \times P(Z &lt; z^*)\)</span>.</li>
+<li>Compare the p-value to <span class="math inline">\(\alpha = 0.01\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: p_1 = p_2 \qquad H_a: p_1 \ne p_2\]</span></p>
+<p><strong>(b)</strong> <span class="math inline">\(\hat{p}_1 = 24/300 = 0.080\)</span>, <span class="math inline">\(\hat{p}_2 = 40/250 = 0.160\)</span>.</p>
+<p><span class="math display">\[\hat{p} = \frac{24+40}{300+250} = \frac{64}{550} \approx 0.1164\]</span></p>
+<p><span class="math display">\[z^* = \frac{0.080-0.160}{\sqrt{0.1164 \times 0.8836 \times (1/300+1/250)}} = \frac{-0.080}{\sqrt{0.10283 \times 0.007333}} = \frac{-0.080}{\sqrt{0.000754}} = \frac{-0.080}{0.02745} \approx -2.915\]</span></p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: p_1 \ne p_2\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(Z &lt; -2.915) \approx 2(0.00178) = 0.00356\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.004 &lt; \alpha = 0.01\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence at the 1% level to conclude that the day and night shifts have significantly different defect rates.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 33
+</div>
+<p>A quality control team suspects that Laboratory 1 produces more variable blood-glucose readings than Laboratory 2. A sample of <span class="math inline">\(n_1 = 15\)</span> readings from Lab 1 gives <span class="math inline">\(s_1 = 8.4\)</span> mg/dL; a sample of <span class="math inline">\(n_2 = 12\)</span> readings from Lab 2 gives <span class="math inline">\(s_2 = 4.1\)</span> mg/dL. Test whether Lab 1’s variance is significantly greater than Lab 2’s variance.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the <span class="math inline">\(F\)</span> test statistic.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The <span class="math inline">\(F\)</span> statistic is <span class="math inline">\(F^* = s_1^2/s_2^2\)</span>, with <span class="math inline">\(df_1 = n_1-1\)</span> and <span class="math inline">\(df_2 = n_2-1\)</span>.</li>
+<li>For <span class="math inline">\(H_a: \sigma_1^2 &gt; \sigma_2^2\)</span> (right-tailed), p-value <span class="math inline">\(= P(F_{df_1,df_2} &gt; F^*)\)</span>.</li>
+<li>Compare <span class="math inline">\(F^*\)</span> to the critical value <span class="math inline">\(F_{0.05}(14,11) \approx 2.739\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \sigma_1^2 = \sigma_2^2 \qquad H_a: \sigma_1^2 &gt; \sigma_2^2\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[F^* = \frac{s_1^2}{s_2^2} = \frac{8.4^2}{4.1^2} = \frac{70.56}{16.81} \approx 4.198\]</span></p>
+<p><strong>(c)</strong> <span class="math inline">\(df_1 = 15-1 = 14\)</span>, <span class="math inline">\(df_2 = 12-1 = 11\)</span>.</p>
+<p>For <span class="math inline">\(H_a: \sigma_1^2 &gt; \sigma_2^2\)</span> (right-tailed):
+<span class="math display">\[\text{p-value} = P(F_{14,11} &gt; 4.198) \approx 0.014\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p>The critical value <span class="math inline">\(F_{0.05}(14,11) \approx 2.739\)</span>. Since <span class="math inline">\(F^* = 4.198 &gt; 2.739\)</span>, we confirm rejection.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.014 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence to conclude that Laboratory 1 produces significantly more variable blood-glucose readings than Laboratory 2.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 34
+</div>
+<p>Two quality inspectors each rate the same set of parts on a scale from 1 to 10. Inspector A rates <span class="math inline">\(n_1 = 20\)</span> parts (<span class="math inline">\(s_A = 2.3\)</span> points); Inspector B rates <span class="math inline">\(n_2 = 18\)</span> parts (<span class="math inline">\(s_B = 1.9\)</span> points). Is there a significant difference in the variability of their ratings?</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the <span class="math inline">\(F\)</span> test statistic, placing the larger <span class="math inline">\(s^2\)</span> in the numerator.</li>
+<li>State the degrees of freedom and find the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.10\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Is there a <em>difference</em>?” implies <span class="math inline">\(H_a: \sigma_A^2 \ne \sigma_B^2\)</span> (two-tailed).</li>
+<li>Placing the larger <span class="math inline">\(s^2\)</span> in the numerator keeps <span class="math inline">\(F^* &gt; 1\)</span>, making the upper-tail lookup straightforward.</li>
+<li>Two-tailed p-value <span class="math inline">\(= 2 \times P(F_{df_1,df_2} &gt; F^*)\)</span>.</li>
+<li>The critical value for a two-tailed <span class="math inline">\(\alpha = 0.10\)</span> test uses <span class="math inline">\(\alpha/2 = 0.05\)</span> in each tail.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \sigma_A^2 = \sigma_B^2 \qquad H_a: \sigma_A^2 \ne \sigma_B^2\]</span></p>
+<p><strong>(b)</strong> Since <span class="math inline">\(s_A = 2.3 &gt; s_B = 1.9\)</span>, place <span class="math inline">\(s_A^2\)</span> in the numerator:
+<span class="math display">\[F^* = \frac{s_A^2}{s_B^2} = \frac{2.3^2}{1.9^2} = \frac{5.29}{3.61} \approx 1.465\]</span></p>
+<p>with <span class="math inline">\(df_1 = 20-1 = 19\)</span> and <span class="math inline">\(df_2 = 18-1 = 17\)</span>.</p>
+<p><strong>(c)</strong> For <span class="math inline">\(H_a: \sigma_A^2 \ne \sigma_B^2\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(F_{19,17} &gt; 1.465) \approx 2(0.219) = 0.438\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p>The critical value <span class="math inline">\(F_{0.05}(19,17) \approx 2.23\)</span>. Since <span class="math inline">\(F^* = 1.465 &lt; 2.23\)</span>, we confirm failure to reject.</p>
+<p><strong>(d)</strong> Since p-value <span class="math inline">\(\approx 0.438 &gt; \alpha = 0.10\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is insufficient evidence to conclude that the two inspectors differ in the variability of their ratings.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 35
+</div>
+<p>An engineer tests whether Machine A produces components with smaller dimensional variability than Machine B. A sample of <span class="math inline">\(n_A = 10\)</span> components from Machine A has <span class="math inline">\(s_A = 0.12\)</span> mm; a sample of <span class="math inline">\(n_B = 13\)</span> components from Machine B has <span class="math inline">\(s_B = 0.31\)</span> mm. Test <span class="math inline">\(H_a: \sigma_A^2 &lt; \sigma_B^2\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(F^* = s_A^2/s_B^2\)</span> and use the symmetry property <span class="math inline">\(P(F_{df_A,df_B} &lt; c) = P(F_{df_B,df_A} &gt; 1/c)\)</span> to evaluate the p-value.</li>
+<li>State a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Form <span class="math inline">\(F^* = s_A^2/s_B^2\)</span>. A very <em>small</em> value of <span class="math inline">\(F^*\)</span> is evidence in favour of <span class="math inline">\(H_a: \sigma_A^2 &lt; \sigma_B^2\)</span>.</li>
+<li>p-value <span class="math inline">\(= P(F_{df_A,df_B} &lt; F^*)\)</span>. By symmetry, this equals <span class="math inline">\(P(F_{df_B,df_A} &gt; 1/F^*)\)</span>, which is a right-tail lookup.</li>
+<li>Compare <span class="math inline">\(1/F^*\)</span> with <span class="math inline">\(F_{0.05}(df_B,\,df_A)\)</span> from the Distribution Calculator.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \sigma_A^2 = \sigma_B^2 \qquad H_a: \sigma_A^2 &lt; \sigma_B^2\]</span></p>
+<p><strong>(b)</strong> <span class="math inline">\(df_A = 9\)</span>, <span class="math inline">\(df_B = 12\)</span>.</p>
+<p><span class="math display">\[F^* = \frac{s_A^2}{s_B^2} = \frac{0.12^2}{0.31^2} = \frac{0.0144}{0.0961} \approx 0.1498\]</span></p>
+<p>By symmetry of the <span class="math inline">\(F\)</span> distribution:
+<span class="math display">\[\text{p-value} = P(F_{9,12} &lt; 0.1498) = P\!\left(F_{12,9} &gt; \frac{1}{0.1498}\right) = P(F_{12,9} &gt; 6.676)\]</span></p>
+<p><a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p>Since <span class="math inline">\(F_{0.01}(12,9) \approx 4.39\)</span> and <span class="math inline">\(6.676 &gt; 4.39\)</span>, the p-value <span class="math inline">\(&lt; 0.01\)</span>.</p>
+<p><strong>(c)</strong> Since p-value <span class="math inline">\(&lt; 0.01 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence to conclude that Machine A produces components with significantly smaller dimensional variability than Machine B.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 36
+</div>
+<p>Six recreational runners complete a 5-km time trial before and after a 12-week training programme. Their finishing times (minutes) are:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Runner</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>28.5</td>
+<td>27.7</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>30.2</td>
+<td>30.5</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>27.1</td>
+<td>25.0</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>31.4</td>
+<td>29.2</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>29.8</td>
+<td>27.4</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>26.3</td>
+<td>24.9</td>
+</tr>
+</tbody>
+</table>
+<p>Test whether the training programme significantly reduces finishing time, at <span class="math inline">\(\alpha = 0.05\)</span>. Define <span class="math inline">\(d_i = \text{Before}_i - \text{After}_i\)</span> (positive = improvement).</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(\bar{x}_d\)</span> and <span class="math inline">\(s_d\)</span>.</li>
+<li>Compute the <span class="math inline">\(t\)</span> test statistic and state the degrees of freedom.</li>
+<li>Find the p-value and state a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>With <span class="math inline">\(d_i = \text{Before}_i - \text{After}_i\)</span>, a positive <span class="math inline">\(\bar{x}_d\)</span> means runners improved.</li>
+<li><span class="math inline">\(H_a: \mu_d &gt; 0\)</span> (upper-tailed). The test statistic is <span class="math inline">\(t^* = \bar{x}_d\,/\,(s_d/\sqrt{n})\)</span>, <span class="math inline">\(df = n-1 = 5\)</span>.</li>
+<li>p-value <span class="math inline">\(= P(t_5 &gt; t^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \mu_d = 0 \qquad H_a: \mu_d &gt; 0\]</span></p>
+<p><strong>(b)</strong> Differences <span class="math inline">\(d_i = \text{Before}_i - \text{After}_i\)</span>: <span class="math inline">\(\;0.8,\;{-0.3},\;2.1,\;2.2,\;2.4,\;1.4\)</span>.</p>
+<p><span class="math display">\[\bar{x}_d = \frac{0.8-0.3+2.1+2.2+2.4+1.4}{6} = \frac{8.6}{6} \approx 1.433\]</span></p>
+<p>Deviations from 1.433: <span class="math inline">\(-0.633,\;{-1.733},\;0.667,\;0.767,\;0.967,\;{-0.033}\)</span>.</p>
+<p><span class="math display">\[\text{SS} = 0.401+3.003+0.445+0.588+0.935+0.001 = 5.373\]</span></p>
+<p><span class="math display">\[s_d^2 = \frac{5.373}{5} = 1.075, \qquad s_d \approx 1.037\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[t^* = \frac{1.433}{1.037/\sqrt{6}} = \frac{1.433}{0.4233} \approx 3.386, \qquad df = 5\]</span></p>
+<p><strong>(d)</strong> For <span class="math inline">\(H_a: \mu_d &gt; 0\)</span> (upper-tailed):
+<span class="math display">\[\text{p-value} = P(t_5 &gt; 3.386) \approx 0.010\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p>Since p-value <span class="math inline">\(\approx 0.010 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence to conclude that the 12-week training programme significantly improves 5-km finishing times.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 37
+</div>
+<p>Seven university students complete a self-reported anxiety questionnaire (scored 0–50; higher = more anxious) before and after a six-week mindfulness course. Their scores are:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Student</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>34</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>41</td>
+<td>29</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>28</td>
+<td>23</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>37</td>
+<td>28</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>22</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>45</td>
+<td>34</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>31</td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+<p>Test whether anxiety scores decreased after the course, at <span class="math inline">\(\alpha = 0.05\)</span>. Define <span class="math inline">\(d_i = \text{After}_i - \text{Before}_i\)</span>.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(\bar{x}_d\)</span> and <span class="math inline">\(s_d\)</span>.</li>
+<li>Compute the <span class="math inline">\(t\)</span> test statistic and state the degrees of freedom.</li>
+<li>Find the p-value and state a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>With <span class="math inline">\(d_i = \text{After}_i - \text{Before}_i\)</span>, a decrease in anxiety gives <span class="math inline">\(d_i &lt; 0\)</span>.</li>
+<li><span class="math inline">\(H_a: \mu_d &lt; 0\)</span> (lower-tailed). p-value <span class="math inline">\(= P(t_{n-1} &lt; t^*)\)</span>.</li>
+<li>Verify that <span class="math inline">\(\bar{x}_d &lt; 0\)</span> and <span class="math inline">\(t^* &lt; 0\)</span> before computing the p-value.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \mu_d = 0 \qquad H_a: \mu_d &lt; 0\]</span></p>
+<p><strong>(b)</strong> Differences <span class="math inline">\(d_i = \text{After}_i - \text{Before}_i\)</span>: <span class="math inline">\(\;{-8},\;{-12},\;{-5},\;{-9},\;{-3},\;{-11},\;{-7}\)</span>.</p>
+<p><span class="math display">\[\bar{x}_d = \frac{-8-12-5-9-3-11-7}{7} = \frac{-55}{7} \approx -7.857\]</span></p>
+<p>Deviations from <span class="math inline">\(-7.857\)</span>: <span class="math inline">\(\;{-0.143},\;{-4.143},\;2.857,\;{-1.143},\;4.857,\;{-3.143},\;0.857\)</span>.</p>
+<p><span class="math display">\[\text{SS} = 0.020+17.164+8.163+1.306+23.591+9.878+0.734 = 60.856\]</span></p>
+<p><span class="math display">\[s_d^2 = \frac{60.856}{6} \approx 10.143, \qquad s_d \approx 3.185\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[t^* = \frac{-7.857}{3.185/\sqrt{7}} = \frac{-7.857}{1.204} \approx -6.526, \qquad df = 6\]</span></p>
+<p><strong>(d)</strong> For <span class="math inline">\(H_a: \mu_d &lt; 0\)</span> (lower-tailed):
+<span class="math display">\[\text{p-value} = P(t_6 &lt; -6.526) &lt; 0.001\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p>Since p-value <span class="math inline">\(&lt; 0.001 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is very strong evidence that the mindfulness course significantly reduces student anxiety scores.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 38
+</div>
+<p>Eight cars are each tested with two brands of gasoline (Brand A and Brand B) on identical courses, and fuel efficiency (km/L) is recorded. Define <span class="math inline">\(d_i = \text{Brand B}_i - \text{Brand A}_i\)</span>.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Car</th>
+<th>Brand A</th>
+<th>Brand B</th>
+<th><span class="math inline">\(d_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>12.4</td>
+<td>12.7</td>
+<td>0.3</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>11.8</td>
+<td>11.3</td>
+<td>−0.5</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>13.2</td>
+<td>14.0</td>
+<td>0.8</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>10.9</td>
+<td>11.1</td>
+<td>0.2</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>14.1</td>
+<td>14.0</td>
+<td>−0.1</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>12.0</td>
+<td>12.4</td>
+<td>0.4</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>13.5</td>
+<td>12.9</td>
+<td>−0.6</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>11.5</td>
+<td>12.0</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+<p>Test whether there is a significant difference in fuel efficiency between the two brands, at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(\bar{x}_d\)</span> and <span class="math inline">\(s_d\)</span> from the given differences.</li>
+<li>Compute the <span class="math inline">\(t\)</span> test statistic and state the degrees of freedom.</li>
+<li>Find the p-value and state a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Is there a <em>difference</em>?” implies <span class="math inline">\(H_a: \mu_d \ne 0\)</span> (two-tailed).</li>
+<li>With the differences already provided, compute <span class="math inline">\(\bar{x}_d\)</span> directly, then find <span class="math inline">\(s_d\)</span> from the deviations.</li>
+<li>Two-tailed p-value <span class="math inline">\(= 2 \times P(t_{n-1} &gt; |t^*|)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \mu_d = 0 \qquad H_a: \mu_d \ne 0\]</span></p>
+<p><strong>(b)</strong> Differences: <span class="math inline">\(\;0.3,\;{-0.5},\;0.8,\;0.2,\;{-0.1},\;0.4,\;{-0.6},\;0.5\)</span>.</p>
+<p><span class="math display">\[\bar{x}_d = \frac{0.3-0.5+0.8+0.2-0.1+0.4-0.6+0.5}{8} = \frac{1.0}{8} = 0.125\]</span></p>
+<p>Deviations from 0.125: <span class="math inline">\(\;0.175,\;{-0.625},\;0.675,\;0.075,\;{-0.225},\;0.275,\;{-0.725},\;0.375\)</span>.</p>
+<p><span class="math display">\[\text{SS} = 0.031+0.391+0.456+0.006+0.051+0.076+0.526+0.141 = 1.675\]</span></p>
+<p><span class="math display">\[s_d^2 = \frac{1.675}{7} \approx 0.239, \qquad s_d \approx 0.489\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[t^* = \frac{0.125}{0.489/\sqrt{8}} = \frac{0.125}{0.173} \approx 0.723, \qquad df = 7\]</span></p>
+<p><strong>(d)</strong> For <span class="math inline">\(H_a: \mu_d \ne 0\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(t_7 &gt; 0.723) \approx 2(0.245) = 0.490\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p>Since p-value <span class="math inline">\(\approx 0.490 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is insufficient evidence to conclude that the two gasoline brands produce different fuel efficiency.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 39
+</div>
+<p>A sales manager implements a new training programme and records monthly sales (units) for 9 sales representatives, both in the month before and the month after training.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Rep</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>48</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>55</td>
+<td>63</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>62</td>
+<td>77</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>44</td>
+<td>49</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>71</td>
+<td>81</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>38</td>
+<td>41</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>59</td>
+<td>77</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>50</td>
+<td>57</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>66</td>
+<td>75</td>
+</tr>
+</tbody>
+</table>
+<p>Test whether the training programme significantly increases sales at <span class="math inline">\(\alpha = 0.05\)</span>. Define <span class="math inline">\(d_i = \text{After}_i - \text{Before}_i\)</span>.</p>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
+<ol style="list-style-type: lower-alpha">
+<li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(\bar{x}_d\)</span> and <span class="math inline">\(s_d\)</span>.</li>
+<li>Compute the <span class="math inline">\(t\)</span> test statistic and state the degrees of freedom.</li>
+<li>Find the p-value and state a conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>With <span class="math inline">\(d_i = \text{After}_i - \text{Before}_i\)</span>, “sales <em>increase</em>” means <span class="math inline">\(\mu_d &gt; 0\)</span>: use <span class="math inline">\(H_a: \mu_d &gt; 0\)</span>.</li>
+<li>The test statistic is <span class="math inline">\(t^* = \bar{x}_d\,/\,(s_d/\sqrt{n})\)</span>, with <span class="math inline">\(df = n-1 = 8\)</span>.</li>
+<li>p-value <span class="math inline">\(= P(t_8 &gt; t^*)\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \mu_d = 0 \qquad H_a: \mu_d &gt; 0\]</span></p>
+<p><strong>(b)</strong> Differences <span class="math inline">\(d_i = \text{After}_i - \text{Before}_i\)</span>: <span class="math inline">\(\;12,\;8,\;15,\;5,\;10,\;3,\;18,\;7,\;9\)</span>.</p>
+<p><span class="math display">\[\bar{x}_d = \frac{12+8+15+5+10+3+18+7+9}{9} = \frac{87}{9} \approx 9.667\]</span></p>
+<p>Deviations from 9.667: <span class="math inline">\(\;2.333,\;{-1.667},\;5.333,\;{-4.667},\;0.333,\;{-6.667},\;8.333,\;{-2.667},\;{-0.667}\)</span>.</p>
+<p><span class="math display">\[\text{SS} = 5.444+2.779+28.441+21.781+0.111+44.449+69.441+7.113+0.445 = 180.004\]</span></p>
+<p><span class="math display">\[s_d^2 = \frac{180.004}{8} \approx 22.5, \qquad s_d \approx 4.743\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[t^* = \frac{9.667}{4.743/\sqrt{9}} = \frac{9.667}{1.581} \approx 6.115, \qquad df = 8\]</span></p>
+<p><strong>(d)</strong> For <span class="math inline">\(H_a: \mu_d &gt; 0\)</span> (upper-tailed):
+<span class="math display">\[\text{p-value} = P(t_8 &gt; 6.115) &lt; 0.0002\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p>Since p-value <span class="math inline">\(&lt; 0.0002 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is very strong evidence that the training programme significantly increases monthly sales.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 40
+</div>
+<p>A sports scientist compares resting heart rates (bpm) of athletes from two training regimes: Regime A (<span class="math inline">\(n_1 = 20\)</span>, <span class="math inline">\(\bar{x}_1 = 62.4\)</span> bpm, <span class="math inline">\(s_1 = 5.8\)</span> bpm) and Regime B (<span class="math inline">\(n_2 = 18\)</span>, <span class="math inline">\(\bar{x}_2 = 66.1\)</span> bpm, <span class="math inline">\(s_2 = 7.2\)</span> bpm).</p>
+<p><strong>Part 1 — F-test for equal variances</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li>Apply the <strong>Fold Rule</strong>: compute <span class="math inline">\(\max(s_1,s_2)\,/\,\min(s_1,s_2)\)</span> and compare it to <span class="math inline">\(\sqrt{2} \approx 1.414\)</span>.</li>
+<li>Formally test <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs. <span class="math inline">\(H_a: \sigma_1^2 \ne \sigma_2^2\)</span> at <span class="math inline">\(\alpha = 0.10\)</span> using an <span class="math inline">\(F\)</span>-test.</li>
+</ol>
+<p><strong>Part 2 — Two-sample t-test</strong></p>
+<p>Based on your conclusion from Part 1, test <span class="math inline">\(H_0: \mu_1 = \mu_2\)</span> vs. <span class="math inline">\(H_a: \mu_1 \ne \mu_2\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Compute the pooled variance <span class="math inline">\(s_p^2\)</span> and the <span class="math inline">\(t\)</span> test statistic.</li>
+<li>State the degrees of freedom, find the p-value, and state a conclusion.</li>
+</ol>
+<p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probabilities.</p>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><strong>Fold Rule</strong>: if <span class="math inline">\(\max(s)/\min(s) &lt; \sqrt{2}\)</span>, the variances are considered approximately equal and you may use the pooled <span class="math inline">\(t\)</span>-test.</li>
+<li>For the <span class="math inline">\(F\)</span>-test, place the larger <span class="math inline">\(s^2\)</span> in the numerator. Two-tailed p-value <span class="math inline">\(= 2 \times P(F_{df_1,df_2} &gt; F^*)\)</span>.</li>
+<li>If the <span class="math inline">\(F\)</span>-test does not reject equal variances, use <span class="math inline">\(s_p^2 = [(n_1-1)s_1^2+(n_2-1)s_2^2]/(n_1+n_2-2)\)</span> and <span class="math inline">\(df = n_1+n_2-2\)</span> for the pooled <span class="math inline">\(t\)</span>-test.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>Part 1 — F-test</strong></p>
+<p><strong>(a)</strong> Fold Rule:
+<span class="math display">\[\frac{\max(s_1,s_2)}{\min(s_1,s_2)} = \frac{7.2}{5.8} \approx 1.241 &lt; \sqrt{2} \approx 1.414\]</span></p>
+<p>The Fold Rule suggests the population variances may be approximately equal.</p>
+<p><strong>(b)</strong> <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs. <span class="math inline">\(H_a: \sigma_1^2 \ne \sigma_2^2\)</span>. Place <span class="math inline">\(s_2^2\)</span> (larger) in the numerator:
+<span class="math display">\[F^* = \frac{s_2^2}{s_1^2} = \frac{7.2^2}{5.8^2} = \frac{51.84}{33.64} \approx 1.541, \quad df_1 = 17,\ df_2 = 19\]</span></p>
+<p><span class="math display">\[\text{p-value} = 2 \times P(F_{17,19} &gt; 1.541) \approx 2(0.204) = 0.408\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p>Since p-value <span class="math inline">\(\approx 0.408 &gt; \alpha = 0.10\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. Equal variances are supported; proceed with the pooled <span class="math inline">\(t\)</span>-test.</p>
+<p><strong>Part 2 — Pooled t-test</strong></p>
+<p><strong>(c)</strong>
+<span class="math display">\[s_p^2 = \frac{(19)(5.8^2)+(17)(7.2^2)}{20+18-2} = \frac{(19)(33.64)+(17)(51.84)}{36} = \frac{639.16+881.28}{36} = \frac{1520.44}{36} \approx 42.235\]</span></p>
+<p><span class="math display">\[s_p = \sqrt{42.235} \approx 6.499\]</span></p>
+<p><span class="math display">\[t^* = \frac{62.4-66.1}{6.499\,\sqrt{1/20+1/18}} = \frac{-3.7}{6.499 \times 0.3249} = \frac{-3.7}{2.112} \approx -1.752\]</span></p>
+<p><strong>(d)</strong> <span class="math inline">\(df = 20+18-2 = 36\)</span>.</p>
+<p>For <span class="math inline">\(H_a: \mu_1 \ne \mu_2\)</span> (two-tailed):
+<span class="math display">\[\text{p-value} = 2 \times P(t_{36} &lt; -1.752) \approx 2(0.044) = 0.088\]</span>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
+<p>Since p-value <span class="math inline">\(\approx 0.088 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is insufficient evidence at the 5% significance level to conclude that athletes from the two training regimes have different mean resting heart rates.</p>
 </div>
 </details>
 

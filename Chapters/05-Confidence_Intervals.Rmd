@@ -2037,6 +2037,8 @@ $$\frac{s_1^2}{n_1} = \frac{70.56}{25} = 2.8224, \qquad \frac{s_2^2}{n_2} = \fra
 **Welch degrees of freedom:**
 $$df = \frac{(2.8224 + 4.6368)^2}{\dfrac{2.8224^2}{24} + \dfrac{4.6368^2}{21}} = \frac{(7.4592)^2}{0.3319 + 1.0238} = \frac{55.6397}{1.3557} \approx 41.04 \approx 41$$
 
+> 💡 **Exam tip:** If the Welch formula is too tedious, use the conservative approximation $df = \min(n_1-1,\ n_2-1) = \min(24,\ 21) = 21$. This gives a slightly larger $t^*$ and a wider (safer) interval.
+
 **Critical value:** $t_{41,\,0.05} \approx 1.683$
 <a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
@@ -2895,5 +2897,243 @@ t.test(A, B,
        conf.level = 0.90)
 ```
 The `$conf.int` output gives the 90% CI for $\mu_A - \mu_B$.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 28</div>
+A pilot study of 20 students found that the sample standard deviation of daily study time is $s = 7.5$ hours per week. A researcher wants to estimate the true mean study time within $E = 2$ hours with **95% confidence**. The population standard deviation $\sigma$ is unknown.
+
+How large should the sample be? Use the iterative $t$-based method.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Because $\sigma$ is unknown, use $s$ from the pilot study and the $t$-distribution:
+$$n = \left(\frac{t_{n-1,\,\alpha/2}\cdot s}{E}\right)^2$$
+- Since $n$ appears on both sides, iterate:
+  1. Start with $z_{0.025} = 1.96$ to get an initial $n_0$.
+  2. Use $\text{df} = n_0 - 1$ to find $t_{\text{df},\,0.025}$.
+  3. Recompute $n$ and repeat until convergence.
+- Always round up.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$n = \left(\frac{t_{n-1,\,\alpha/2}\cdot s}{E}\right)^2$$
+
+**Given:** $s = 7.5$, $E = 2$, 95% confidence ($\alpha/2 = 0.025$)
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**Step 1 — Initial estimate using $z_{0.025} = 1.96$:**
+$$n_0 = \left(\frac{1.96 \times 7.5}{2}\right)^2 = (7.35)^2 = 54.0225 \implies n_0 = 55$$
+
+**Step 2 — Refine with $t_{54,\,0.025} \approx 2.005$:**
+$$n_1 = \left(\frac{2.005 \times 7.5}{2}\right)^2 = (7.51875)^2 = 56.5316 \implies n_1 = 57$$
+
+**Step 3 — Check convergence with $t_{56,\,0.025} \approx 2.003$:**
+$$n_2 = \left(\frac{2.003 \times 7.5}{2}\right)^2 = (7.51125)^2 \approx 56.42 \implies n_2 = 57$$
+
+The value has stabilized at $n = 57$.
+
+$$\boxed{n = 57}$$
+
+The researcher should survey at least **57 students** to estimate the mean study time within 2 hours with 95% confidence.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 29</div>
+A small pilot survey estimates that the sample standard deviation of monthly grocery spending is $s = 14$ dollars. How large a sample is needed to estimate the population mean monthly grocery spending within $E = 3$ dollars with **90% confidence**? The population standard deviation $\sigma$ is unknown.
+
+Use the iterative $t$-based method.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the iterative formula:
+$$n = \left(\frac{t_{n-1,\,\alpha/2}\cdot s}{E}\right)^2$$
+- For 90% confidence, $\alpha/2 = 0.05$, so start with $z_{0.05} = 1.645$.
+- Always round up after each step and iterate until consecutive $n$ values agree.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$n = \left(\frac{t_{n-1,\,\alpha/2}\cdot s}{E}\right)^2$$
+
+**Given:** $s = 14$, $E = 3$, 90% confidence ($\alpha/2 = 0.05$)
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**Step 1 — Initial estimate using $z_{0.05} = 1.645$:**
+$$n_0 = \left(\frac{1.645 \times 14}{3}\right)^2 = (7.6767)^2 = 58.9317 \implies n_0 = 59$$
+
+**Step 2 — Refine with $t_{58,\,0.05} \approx 1.672$:**
+$$n_1 = \left(\frac{1.672 \times 14}{3}\right)^2 = (7.8027)^2 = 60.8821 \implies n_1 = 61$$
+
+**Step 3 — Check convergence with $t_{60,\,0.05} \approx 1.671$:**
+$$n_2 = \left(\frac{1.671 \times 14}{3}\right)^2 = (7.798)^2 \approx 60.81 \implies n_2 = 61$$
+
+The value has stabilized at $n = 61$.
+
+$$\boxed{n = 61}$$
+
+A sample of at least **61 customers** is needed to estimate the mean monthly grocery spending within \$3 with 90% confidence.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 30</div>
+A university wants to estimate the proportion of students who use public transit to commute to campus. **No previous estimate is available.** How many students should be surveyed to estimate the proportion within $E = 0.04$ with **95% confidence**?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- When no prior estimate of $p$ is available, use the **conservative** value $p^* = 0.5$, which maximises $p(1-p)$ and therefore the required sample size.
+- The formula is:
+$$n = \frac{z_{\alpha/2}^2\,p^*(1-p^*)}{E^2}$$
+- For 95% confidence, $z_{0.025} = 1.96$.
+- Always round up.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$n = \frac{z_{\alpha/2}^2\,p^*(1-p^*)}{E^2}$$
+
+**Given:** $p^* = 0.5$ (no prior estimate), $E = 0.04$, $z_{0.025} = 1.96$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**Calculation:**
+$$n = \frac{(1.96)^2(0.5)(0.5)}{(0.04)^2} = \frac{3.8416 \times 0.25}{0.0016} = \frac{0.9604}{0.0016} = 600.25$$
+
+Since $n$ must be a whole number and we always **round up**:
+$$\boxed{n = 601}$$
+
+The university should survey at least **601 students** to estimate the proportion within 0.04 with 95% confidence.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 31</div>
+A shopping mall wants to estimate the proportion of customers who prefer self-checkout. **No prior estimate is available.** How many customers should be surveyed to estimate the proportion within $E = 0.025$ with **90% confidence**?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- With no prior estimate, use $p^* = 0.5$.
+- For 90% confidence, $z_{0.05} = 1.645$.
+$$n = \frac{z_{\alpha/2}^2\,p^*(1-p^*)}{E^2}$$
+- Always round up.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$n = \frac{z_{\alpha/2}^2\,p^*(1-p^*)}{E^2}$$
+
+**Given:** $p^* = 0.5$ (no prior estimate), $E = 0.025$, $z_{0.05} = 1.645$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**Calculation:**
+$$n = \frac{(1.645)^2(0.5)(0.5)}{(0.025)^2} = \frac{2.7060 \times 0.25}{0.000625} = \frac{0.6765}{0.000625} = 1082.4$$
+
+Since $n$ must be a whole number and we always **round up**:
+$$\boxed{n = 1083}$$
+
+The mall should survey at least **1083 customers** to estimate the proportion within 0.025 with 90% confidence.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 32</div>
+A health center wants to estimate the proportion of students who sleep less than 7 hours per night. A **previous survey** found that about 32% of students sleep less than 7 hours. How many students should be surveyed to estimate the true proportion within $E = 0.03$ with **95% confidence**?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Because a prior estimate exists, use $p^* = 0.32$ instead of 0.5.
+$$n = \frac{z_{\alpha/2}^2\,p^*(1-p^*)}{E^2}$$
+- For 95% confidence, $z_{0.025} = 1.96$.
+- Using the actual prior estimate (rather than 0.5) gives a **smaller** required sample size.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$n = \frac{z_{\alpha/2}^2\,p^*(1-p^*)}{E^2}$$
+
+**Given:** $p^* = 0.32$, $1 - p^* = 0.68$, $E = 0.03$, $z_{0.025} = 1.96$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**Calculation:**
+$$n = \frac{(1.96)^2(0.32)(0.68)}{(0.03)^2} = \frac{3.8416 \times 0.2176}{0.0009} = \frac{0.8359}{0.0009} = 928.7\overline{7}$$
+
+Since $n$ must be a whole number and we always **round up**:
+$$\boxed{n = 929}$$
+
+The health center should survey at least **929 students** to estimate the proportion within 0.03 with 95% confidence.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 33</div>
+A government agency wants to estimate the proportion of households without home internet access. A **previous report** estimated this proportion to be 18%. How many households should be surveyed to estimate the true proportion within $E = 0.02$ with **99% confidence**?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the prior estimate $p^* = 0.18$.
+$$n = \frac{z_{\alpha/2}^2\,p^*(1-p^*)}{E^2}$$
+- For 99% confidence, $z_{0.005} = 2.576$.
+- Always round up.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Key formula:**
+$$n = \frac{z_{\alpha/2}^2\,p^*(1-p^*)}{E^2}$$
+
+**Given:** $p^* = 0.18$, $1 - p^* = 0.82$, $E = 0.02$, $z_{0.005} = 2.576$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**Calculation:**
+$$n = \frac{(2.576)^2(0.18)(0.82)}{(0.02)^2} = \frac{6.6358 \times 0.1476}{0.0004} = \frac{0.9795}{0.0004} = 2448.75$$
+
+Since $n$ must be a whole number and we always **round up**:
+$$\boxed{n = 2449}$$
+
+The agency should survey at least **2449 households** to estimate the proportion within 0.02 with 99% confidence.
 </div>
 </details>
