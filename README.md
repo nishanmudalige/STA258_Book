@@ -1,5 +1,14 @@
 # STA258: Statistics with Applied Probability
 
+## Things to do for June 25
+- Chapter5 include more variety of datasets for some questions
+- Chapter5 and 6 include plots for questions (both one and two sample)
+- Start Chapter9 (Calculation, plots, webR, inference, interpretation, transformations)
+- Update help file
+- Try working on different branch and merging
+  
+## June 18th NO MEETING
+
 
 ## Things to do for June 11
 - Fix minor issues in previous chapters
