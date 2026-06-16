@@ -1,0 +1,2551 @@
+# Descriptive Statistics
+
+## Representing Data
+
+Data comes to us in the form of \textit{observations} (i.e. measurements) which we write symbolically as a lower case letter along with a subscript. For example, suppose we have taken a total of $n$ observations. We have observation 1, observation 2, observation 3, $\ldots$, observation $n-1$ and observation $n$. By letting $x$ represent an observation, all $n$ observations can be represented as:
+
+$$x_1,~x_2,~ \ldots ,~ x_n$$ 
+
+where $x_i$ is an individual observation, and the index $i=1, \ldots , n$. Here $n$ is referred to as the \textit{sample size}. We can also represent this data in condensed form as:
+
+$$x_i:\ i=1, \ldots , n$$
+
+or in tabular form as:
+
+::: {#smalltbl .smalltbl}
+| Index       | 1     | 2     | $\ldots$  | $n$   |
+| :---------- | :-:   | :-:   | :-:       | :-:   |
+| Observation | $x_1$ | $x_2$ | $\ldots$  | $x_n$ |
+:::
+
+
+
+## Numerical Measures 
+
+The most common numerical measures of central tendency are the mean, median, and mode. These measures summarize a set of data by identifying the central point within that data.
+
+The \textit{mean} (or more precisely the arithmetic mean) of a data set is obtained by adding up all of the observations and dividing by the sample size (number of observations). The mean is the typical average that we are all familiar with. 
+We use the symbol $\bar{x}$ to represent the sample mean.
+
+
+### Mean
+
+::: {.definition name="Mean" #Mean}
+Let $x_{1}, ~x_{2}, ~x_{3}, ~\ldots , ~x_{n}$ represent a sample of $n$ observations.
+The sample mean is defined as:
+	$$\bar{x} = \frac{ \displaystyle\sum_{i = 1}^{n} x_{i} }{n} = \frac{ x_{1} + x_{2} + \dots + x _{n} }{n}$$
+:::
+
+### Median
+
+::: {.definition name="Median" #Median}
+The median is the middle value of a data set when the observations are arranged in ascending order.
+:::
+
+The calculation of the median depends on whether the sample size is odd or even.
+If the sample size is odd, the median is the middle observation. If the sample size is even, the median is the average of the two middle observations.
+
+Consider $n$ ordered observations $x_{(1)},x_{(2)},~\cdots~,x_{(n)}$.
+
+- If $n$ is odd
+    $$\text{Median} = \text{observation} \> \left( \frac{n + 1}{2} \right) $$
+- If $n$ is even,
+    $$\text{Median} = \text{average of observation} ~ \left(\frac{n}{2} \right) ~\text{and observation} ~ \left( \frac{n}{2} + 1 \right)$$
+    
+### Mode
+
+::: {.definition name="Mode" #Mode}
+The mode is the most frequently occurring observation in a data set.
+:::
+
+We are also interested in how the data is spread out or dispersed.
+The most common numerical measures of the dispersion are the range, variance, and standard deviation. These measures summarize a set of data by identifying the spread or variability within that data.
+
+
+### Variance
+
+::: {.definition name="Variance" #Var}
+The sample variance is the average squared deviation of each observation from the sample mean.
+
+Let $x_{1}, ~x_{2}, ~x_{3}, ~\ldots , ~x_{n}$ represent a sample of $n$ observations.
+The sample Variance is defined as:
+	$$s^{2} = \frac{ \displaystyle\sum_{i=1}^{n} (x_{i} - \bar{x})^{2} }{n - 1}  = \frac{ (x_{1} - \bar{x})^{2} +  (x_{2} - \bar{x})^{2} + \ldots + (x_{n} - \bar{x})^{2} }{n-1}$$
+where $\bar{x}$ is the sample mean in Definition \@ref(def:Mean).
+:::
+
+
+In the Definition \@ref(def:Var), we divide by $n-1$ instead of $n$ since we are estimating the
+value of the population variance using sample data, and this calculation already includes utilizing
+the sample mean $\bar{x}$ which itself is an estimate of the population mean $\mu$. 
+This division by $n-1$ is known as Bessel's correction.
+
+Another reason for dividing by $n-1$ is because the sample variance is an unbiased estimator of the population variance, which is a topic covered in [STA260](https://utm.calendar.utoronto.ca/course/sta260h5) and beyond the scope of this course.
+
+In the calculation of the sample variance, notice each term is squared, which means that the variance is always a non-negative number. 
+When this occurs, the units of the variance are the square of the units of the original data.
+To return to the original units, we take the square root of the variance to obtain the standard deviation.
+
+
+### Standard Deviation
+
+::: {.definition name="Standard Deviation" #StDev}
+Let $x_{1}, x_{2}, ~x_{3}, ~\ldots , ~x_{n}$ represent a sample of $n$ observations.
+The sample standard deviation is defined as:
+$$s = + \sqrt{s^{2}}$$
+where $s^{2}$ is the sample variance in Definition \@ref(def:Var).
+:::
+
+
+When we analyze data we typically describe the data in terms of the mean and standard deviation
+as the units are the same. However, the calculation of the sample variance is an important
+intermediate step.
+
+One of the measures of central tendency and dispersion on their own will not give as a complete picture
+of the data, however when analyzed collectively, we are able to get a better overall understanding of the data.
+
+
+### Range
+
+The range is the difference between the largest and smallest observations in a data set.
+
+::: {.definition name="Range" #Range}
+Let $x_{1}, ~x_{2}, ~x_{3}, ~\ldots , ~x_{n}$ represent a sample of $n$ observations.
+The range is
+$$\text{Range} = \max(x_{1}, x_{2}, ~x_{3}, ~\ldots , ~x_{n}) - \min(x_{1}, x_{2}, ~x_{3}, ~\ldots , ~x_{n}) $$
+:::
+
+### Percentiles
+
+::: {.definition name="Percentile" #Percentile}
+In an ordered data set, the $p^{th}$ percentile is the value such that $p\%$ of all observations lie below it.
+:::
+
+Percentiles are a value that are relative to the rest of the data.
+
+::: {.example}
+A class writes a difficult test and a student obtained a mark of 70\% on this test.
+Although 72\% is a B-, since the test was difficult, this may be a good score. 
+In fact, the student who scored 72\% is in the $90^{th}$ percentile for this test. 
+This means that they scored better than 90\% of the rest of the class.
+:::
+
+
+### Quartiles
+
+Quartiles are special cases of percentiles.
+
+::: {.definition name="Quartiles" #Quartiles}
+In an ordered data set, quartiles are three values which divide the data into four groups such that each group consists of one fourth of the data. The three quartiles are the:
+
+-	First Quartile (Q$_{1}$)	:	A value such that 25\% (i.e. a quarter) of all observations lie below it.
+-	Second Quartile (Q$_{2}$)	:	A value such that 50\% (i.e. two quarters) of all observations lie below it.
+-	Third Quartile (Q$_{3}$)	:	A value such that 75\% (i.e. three quarters) of all observations lie below it.
+:::
+
+
+::: {.remark}
+The second quartile ($Q_2$) in Definition \@ref(def:Quartiles) is the same as the *median* in Definition \@ref(def:Median)
+:::
+
+<!-- ::: {#note:skewnote .note name="Skewness Note"} -->
+<!-- **Note:** The second quartile ($Q_2$) in Definition \@ref(def:Quartiles) is the same as the *median* in Definition \@ref(def:Median). -->
+<!-- ::: -->
+
+We work with quartiles since they provide an intuitive way to partition data into quarters, and quartiles are also used in graphical summaries discussed in Section \@ref(sec:GraphicalTechniques).
+
+A measure of dispersion involving quartiles is the interquartile range (IQR).
+
+::: {.definition name="Interquartile Range" #IQR}
+The interquartile range (IQR) is the difference between the third quartile and the first quartile.
+$$\text{IQR} = Q_{3} - Q_{1}$$
+where $Q_{1}$ and $Q_{3}$ are the first and third quartiles respectively in Definition \@ref(def:Quartiles).
+:::
+
+## Graphical Techniques {#sec:GraphicalTechniques} 
+
+Raw values on their own can be difficult to interpret, especially with very large data sets. 
+Graphical representations can be very useful for representing information. 
+When implemented correctly, graphical plots can provide more intuitive and direct method to interpret information being analyzed.
+
+We begin this section by introducing a term to describe the shape of a distribution of data.
+
+::: {.definition name="Skewness" }
+Skewness refers to such a measure of symmetry or lack of symmetry in the distribution of data.
+:::
+
+We can describe data as being left skewed, right skewed or symmetric. If the data is
+described as symmetric, this implies that most observations are concentrated around the
+mean and tail off fairly evenly on both sides of the mean. If the data is described as right
+skewed, this implies that more observations are concentrated on smaller
+values and we observe a longer tail to the right side of the mean. If the data is described
+as left skewed, this implies that more observations are concentrated on
+large values and we observe a longer tail to the left side of the mean. 
+We also may have data that is bimodal, which means that there are two distinct peaks in the distribution of the data.
+
+
+::: {.remark}
+*Right* skewed data is also referred to as *positively* skewed and *left* skewed data is also referred to as *negatively* skewed.
+:::
+
+Figures \@ref(fig:LeftSkewExample), \@ref(fig:RightSkewExample) and \@ref(fig:SymmetryExample) illustrate types of skewness.
+
+```{r LeftSkewExample, fig.cap="An illustration of a left (negative) skewed distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+# style‑guide colors
+# fill_blue   <- "#529EFF"
+# line_blue   <- "#1F4E8C"
+# median_blue <- "#00C1AA"
+# mean_pink   <- "#FF62BC"
+fill_blue   <- "#619CFF"
+line_blue   <- "#0064c8"
+median_blue <- "#0064c8"
+mean_pink   <- "#FF68A1"
+
+# simulate a true left‑skewed sample (Beta(5,1))
+set.seed(2025)
+df <- data.frame(x = rbeta(1000, 5, 1))
+
+# density estimate (for annotation positions)
+dens     <- density(df$x, adjust = 4)    # smoother density now
+med_val  <- median(df$x)
+mean_val <- mean(df$x) - 0.15
+
+# y‑positions for labels
+y_tail <- approx(dens$x, dens$y, xout = 0.2)$y + 0.005
+y_med  <- approx(dens$x, dens$y, xout = med_val)$y + 0.3
+y_mean <- approx(dens$x, dens$y, xout = mean_val)$y + 0.3
+
+# determine top of plot to clip exactly
+y_max <- max(y_tail, y_med, y_mean)
+
+ggplot(df, aes(x = x)) +
+  # shaded density
+  geom_density(
+    fill   = fill_blue,
+    color  = line_blue,
+    size   = 1.2,
+    adjust = 4    # increased from 2 for extra smoothness
+  ) +
+  # median & mean lines
+  geom_vline(xintercept = med_val,  color = median_blue, size = 1) +
+  geom_vline(xintercept = mean_val, color = mean_pink,   size = 1, linetype = "dashed") +
+  # tail label (left tail)
+  annotate(
+    "text",
+    x      = 0.2,
+    y      = y_tail + 0.1,
+    label  = "Left Tail",
+    size    = 5,
+    # fontface= "bold",
+    hjust   = 0.5,
+    vjust   = -1.5
+  ) +
+  # median label to left of line
+  annotate(
+    "text",
+    x      = med_val - 0.025,
+    y      = y_med - 0.1,
+    label  = "median",
+    # fontface= "bold",
+    hjust   = -0.5,
+    size    = 5,
+    color   = median_blue
+  ) +
+  # mean label to right of line
+  annotate(
+    "text",
+    x      = mean_val - 0.020,
+    y      = y_mean - 0.1,
+    label  = "mean",
+    size    = 5,
+    # fontface= "bold",
+    hjust   = 1.1,
+    color   = mean_pink
+  ) +
+  # exact axis limits, no extra padding
+  scale_x_continuous(limits = c(-0.0, 1.35), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, y_max), expand = c(0, 0)) +
+  # clean theme, no fixed aspect
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid       = element_blank(),
+    panel.background = element_blank(),
+    plot.title       = element_text(face = "bold", hjust = 0.5),
+    axis.title       = element_text(face = "bold")
+  ) +
+  labs(
+    title = "Left-Skewed Density",
+    x     = "Value",
+    y     = "Density"
+  )
+```
+
+
+```{r RightSkewExample, fig.cap="An illustration of a right (positive) skewed distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+
+# style‑guide colors
+fill_blue   <- "#619CFF"
+line_blue   <- "#0064c8"
+median_blue <- "#0064c8"
+mean_pink   <- "#FF68A1"
+
+# simulate right‑skewed data
+set.seed(2025)
+df <- data.frame(x = rbeta(1000, 2, 5))
+
+# density estimate for positioning & y‑limit
+dens     <- density(df$x, adjust = 2)
+med_val  <- median(df$x)
+mean_val <- mean(df$x) + 0.15
+
+# compute annotation y‑positions
+y_tail <- approx(dens$x, dens$y, xout = 0.8)$y + 0.01
+y_med  <- approx(dens$x, dens$y, xout = med_val)$y + 0.3
+y_mean <- approx(dens$x, dens$y, xout = mean_val)$y + 0.3
+
+# find top of plot
+y_max <- max(y_tail, y_med, y_mean)
+
+ggplot(df, aes(x = x)) +
+  # shaded density
+  geom_density(
+    fill   = fill_blue,
+    color  = line_blue,
+    size   = 1.2,
+    adjust = 2
+  ) +
+  # median & mean lines
+  geom_vline(xintercept = med_val,  color = median_blue, size = 1) +
+  geom_vline(xintercept = mean_val, color = mean_pink,   size = 1, linetype = "dashed") +
+  # annotations
+  annotate("text",
+           x      = 0.8, y      = y_tail,
+           label  = "Right Tail",
+           # fontface= "bold", 
+           size    = 5,
+           hjust = 0.25, 
+           vjust = -1.5) +
+  annotate("text",
+           x      = med_val - 0.025, y = y_med - 0.1,
+           label  = "median",
+           # fontface= "bold", 
+           hjust = 1.1, 
+           size    = 5,
+           color = median_blue) +
+  annotate("text",
+           x      = mean_val + 0.025, y = y_mean,
+           label  = "mean",
+           # fontface= "bold",
+           size    = 5,
+           hjust = -0.1, color = mean_pink) +
+  # exact axis limits, no extra padding
+  scale_x_continuous(limits = c(-0.15, 1),   expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, y_max),   expand = c(0, 0)) +
+  # clean theme
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid       = element_blank(),
+    panel.background = element_blank(),
+    plot.title       = element_text(face = "bold", hjust = 0.5),
+    axis.title       = element_text(face = "bold")
+  ) +
+  labs(
+    title = "Right-Skewed Density",
+    x     = "Value",
+    y     = "Density"
+  )
+```
+
+<!-- rgba(0,100,200,1) #00C19A -->
+
+```{r SymmetryExample, fig.cap="An illustration of an approximately symmetric distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+
+# style‑guide colors
+fill_blue   <- "#619CFF"
+line_blue   <- "#0064c8"
+median_blue <- "#0064c8"
+mean_pink   <- "#FF68A1"
+
+# simulate a symmetric sample (Beta(5,5) is symmetric on [0,1])
+set.seed(2025)
+df <- data.frame(x = rbeta(1000, 5, 5))
+
+# density estimate (for annotation positions)
+dens     <- density(df$x, adjust = 2)
+med_val  <- median(df$x) - 0.01
+mean_val <- mean(df$x) + 0.01
+
+# y‑positions for labels
+y_med  <- approx(dens$x, dens$y, xout = med_val)$y + 0.3
+y_mean <- approx(dens$x, dens$y, xout = mean_val)$y + 0.3
+
+# determine top of plot to clip exactly
+y_max <- max(y_med, y_mean)
+
+ggplot(df, aes(x = x)) +
+  # shaded density
+  geom_density(
+    fill   = fill_blue,
+    color  = line_blue,
+    size   = 1.2,
+    adjust = 2
+  ) +
+  # median & mean lines
+  geom_vline(xintercept = med_val,  color = median_blue, size = 1) +
+  geom_vline(xintercept = mean_val, color = mean_pink,   size = 1, linetype = "dashed") +
+  # median label to left of line
+  annotate(
+    "text",
+    x       = med_val - 0.025,
+    y       = y_med - 0.1,
+    label   = "median",
+    size    = 5,
+    # fontface= "bold",
+    hjust   = 1.1,
+    color   = median_blue
+  ) +
+  # mean label to right of line
+  annotate(
+    "text",
+    x       = mean_val + 0.025,
+    y       = y_mean - 0.1,
+    label   = "mean",
+    size    = 5,
+    # fontface= "bold",
+    hjust   = -0.1,
+    color   = mean_pink
+  ) +
+  # exact axis limits, no extra padding
+  scale_x_continuous(limits = c(0, 1),    expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, y_max), expand = c(0, 0)) +
+  # clean theme, no fixed aspect ratio
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid       = element_blank(),
+    panel.background = element_blank(),
+    plot.title       = element_text(face = "bold", hjust = 0.5),
+    axis.title       = element_text(face = "bold")
+  ) +
+  labs(
+    title = "Symmetric Density",
+    x     = "Value",
+    y     = "Density"
+  )
+```
+
+<!-- ::: {#note:skewnote .note name="Skewness Note"} -->
+<!-- **Note:** *Right* skewed data is also referred to as *positively* skewed and *left* skewed data is also referred to as *negatively* skewed. -->
+<!-- ::: -->
+
+Data sets can have points in it which may be unusual or unexpected. 
+These terms are called *outliers*.
+
+::: {.definition name="Outlier" }
+An outlier is an unusual data point which appears to lie outside the overall pattern of the
+rest of the data.
+:::
+
+In other words, an outlier falls outside the range in which we would expect to see “typical”
+data values. Outliers may be present in data for a variety of reasons such as transcription
+error, measurement error, or we may have just measured a rare and unusual observation. In
+any case it is not a good practice to simply ignore outliers. All outliers should be investigated
+before deciding whether the observation should be included in data analysis or discarded.
+
+
+### Histograms
+
+Histograms and boxplots are useful tools which can allow us to visually determine
+the skewness of a distribution. By noting skewness, we get even more information about
+our data. Note however that we may not always be able to determine skewness by visually
+observing a histogram. A histogram is similar to a bar chart with the distinction that his-
+tograms can only be created for quantitative data.
+
+The width of the bars does not have any numerical meaning for bar charts, however bar
+width matters for histograms. They are an important factor in the creation of histograms.
+Interval width selection (or bin size selection) is an advanced topic that can be studied ex-
+tensively and there are several rules available to select interval widths. However for the scope
+of this course we will keep things simple and allow the reader to intuitively choose bin size.
+After constructing a histogram, we can change the interval widths until we feel that we have
+a picture that is a good representation of our data.
+
+A histogram is constructed by dividing the range of the data into intervals (or bins) and counting how many observations fall into each interval. The intervals are usually of equal width, but this is not a requirement. 
+
+<!-- | Class Interval       | Frequency | Relative Freq.           |        | Cumulative Freq.             | Cumulative Relative Freq.    | -->
+<!-- |----------------------|:---------:|--------------------------|--------|------------------------------|------------------------------| -->
+<!-- | $[a_{1}, b_{1})$     | $f_{1}$   | $r_{1} = f_{1} / F$      |        | $f_{1}$                      | $r_{1}$                      | -->
+<!-- | $[a_{2}, b_{2})$     | $f_{2}$   | $r_{2} = f_{2} / F$      |        | $f_{1} + f_{2}$              | $r_{1} + r_{2}$              | -->
+<!-- | $[a_{3}, b_{3})$     | $f_{3}$   | $r_{3} = f_{3} / F$      |        | $f_{1} + f_{2} + f_{3}$      | $r_{1} + r_{2} + r_{3}$      | -->
+<!-- | $\vdots$             | $\vdots$  | $\vdots$                 |        | $\vdots$                     | $\vdots$                     | -->
+<!-- | $[a_{m}, b_{m}]$     | $f_{m}$   | $r_{m} = f_{m} / F$      |        | $f_{1} + \ldots + f_{m} = F$ | $r_{1} + \ldots + r_{m} = 1$ | -->
+<!-- |                      | $F = \displaystyle\sum_{i=1}^{m} f_{i}$       | $1$ | |                      |                              | -->
+
+```{r histconstruct, echo=FALSE, results='asis', warning = FALSE}
+library(knitr)
+library(kableExtra)
+class_int = c("$[a_{1}, b_{1})$", 
+              "$[a_{2}, b_{2})$", 
+              "$[a_{3}, b_{3})$",
+              "$\\vdots$",
+              "$[a_{m}, b_{m}]$",
+              "")
+
+Frequency = c("$f_{1}$",
+              "$f_{2}$",
+              "$f_{3}$",
+              "$\\vdots$",
+              "$f_{m}$",
+              "$F = \\displaystyle\\sum_{i=1}^{m} f_{i}$")
+
+Rel_Freq = c("$r_{1} = f_{1} / F$",
+             "$r_{2} = f_{2} / F$",
+             "$r_{3} = f_{3} / F$",
+             "\\vdots",
+             "$r_{m} = f_{m} / F$",
+             "1")
+
+hist_tab = data.frame(class_int, Frequency, Rel_Freq)
+
+colnames(hist_tab) = c("Class Interval", "Frequency", "Relative Freq.")
+
+# hist_tab %>%
+#   knitr::kable(full_width = F, caption = "How a histogram is constructed")
+
+kbl(hist_tab, caption = "How a histogram is constructed") %>%
+  kable_styling(full_width = F, bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+
+The histogram is then created by plotting the intervals on the $x$-axis and the frequency or relative frequency of observations in each interval on the $y$-axis.
+When frequency is plotted on the $y$-axis, the histogram is referred to as a frequency histogram and
+when relative frequency is plotted on the $y$-axis, the histogram is referred to as a relative frequency histogram.
+
+::: {.remark}
+The bin size in table \@ref(tab:histconstruct) is often chosen to be equal size, however it does not necessarily have to be the case and we can have bin sizes of unequal widths.
+:::
+
+::: {.remark}
+When we use the term *histogram*, we often refer to a frequency histogram unless otherwise specified.
+:::
+
+<!-- ::: {#note:histnote .note name="Note"} -->
+<!-- **Note:** When we use the term *histogram*, we often refer to a frequency histogram unless otherwise specified. -->
+<!-- ::: -->
+
+Some examples of histograms which also illustrate the concept of skewness are shown in Figures \@ref(fig:HistExampleLeft), \@ref(fig:HistExampleRight), and \@ref(fig:HistExampleSymm). The histograms show how the distribution of data can be skewed to the left, skewed to the right, or approximately symmetric.
+
+```{r HistExampleLeft, fig.cap="An illustration of a histogram to have a left (or negative) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(plotly)
+
+set.seed(5)
+x <- rbeta(6000, shape1 = 5, shape2 = 1.5) * 100
+
+binwidth <- 5
+
+# 1) Scaled density
+dens     <- density(x, adjust = 1.2)
+y_scaled <- dens$y * length(x) * binwidth
+
+# 2) Compute max y (histogram + density)
+hist_data <- hist(x,
+                  breaks = seq(0, 120, by = binwidth),
+                  plot   = FALSE)
+max_y     <- max(max(hist_data$counts), max(y_scaled))
+
+plot_ly() %>%
+  # histogram (always on)
+  add_histogram(
+    x          = x,
+    xbins      = list(size = binwidth),
+    marker     = list(color = "#c6adff", line = list(color = "white", width = 1)),
+    showlegend = FALSE
+  ) %>%
+  # density (start hidden)
+  add_lines(
+    x          = dens$x,
+    y          = y_scaled,
+    line       = list(color = "#0064c8", width = 3),
+    visible    = FALSE,
+    showlegend = FALSE
+  ) %>%
+  layout(
+    title = list(text = "Histogram with Left‑Skewed Data"),
+    xaxis = list(title = "Value", range = c(0, 110)),
+    yaxis = list(title = "Frequency", range = c(0, 900), fixedrange = TRUE),
+    bargap = 0.02,
+    updatemenus = list(
+      list(
+        type      = "buttons",
+        direction = "right",
+        xanchor   = "left",
+        x         = 0.10,
+        y         = 0.70,
+        buttons = list(
+          list(
+            method  = "restyle",
+            args    = list("visible", list(TRUE, FALSE)),
+            args2   = list("visible", list(TRUE, TRUE)),
+            label   = "Show/Hide Density",
+            execute = TRUE      # ← ensures first click toggles on
+          )
+        )
+      )
+    )
+  )
+```
+
+```{r HistExampleRight, fig.cap="An illustration of a histogram to have a right (or positive) skew probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(plotly)
+
+set.seed(5)
+x        <- rbeta(6000, shape1 = 1.5, shape2 = 5) * 100
+binwidth <- 5
+
+# 1) Compute & scale density
+dens     <- density(x, adjust = 1.2)
+y_scaled <- dens$y * length(x) * binwidth
+
+# 2) Find max y
+hist_data <- hist(x,
+                  breaks = seq(0, 120, by = binwidth),
+                  plot   = FALSE)
+max_y     <- max(max(hist_data$counts), max(y_scaled))
+
+fig <- plot_ly() %>%
+  # histogram with equal-width bins from 0 to 120
+  add_histogram(
+    x          = x,
+    xbins      = list(start = 0, end = 90, size = binwidth),
+    marker     = list(color = "#c6adff", line = list(color = "white", width = 1)),
+    showlegend = FALSE
+  ) %>%
+  # density (starts hidden)
+  add_lines(
+    x          = dens$x,
+    y          = y_scaled,
+    line       = list(color = "#0064c8", width = 3),
+    visible    = FALSE,
+    showlegend = FALSE
+  ) %>%
+  layout(
+    title   = list(text = "Histogram with Right‑Skewed Data"),
+    xaxis   = list(title = "Value", range = c(0, 90)),
+    yaxis   = list(title = "Frequency", range = c(0, 900), fixedrange = TRUE),
+    bargap  = 0.02,
+    updatemenus = list(
+      list(
+        type      = "buttons",
+        direction = "right",
+        xanchor   = "left",
+        x         = 0.80,
+        y         = 0.70,
+        buttons = list(
+          list(
+            method  = "restyle",
+            args    = list("visible", list(TRUE, FALSE)),
+            args2   = list("visible", list(TRUE, TRUE)),
+            label   = "Show/Hide Density",
+            execute = TRUE      # ← ensures first click toggles on
+          )
+        )
+      )
+    )
+  )
+
+fig
+```
+
+
+```{r HistExampleSymm, fig.cap="An illustration of a histogram to have a symmetric probability distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+library(plotly)
+
+set.seed(12)
+
+# Generate approximately symmetric data
+x        <- rnorm(6000, mean = 60, sd = 15)
+binwidth <- 5
+
+# 1) Compute & scale density
+dens     <- density(x, adjust = 1.25)
+y_scaled <- dens$y * length(x) * binwidth
+
+# 2) Find the maximum y‑value (histogram + density) for a locked y‑axis
+hist_data <- hist(x,
+                  breaks = seq(0, 120, by = binwidth),
+                  plot   = FALSE)
+max_y     <- max(max(hist_data$counts), max(y_scaled))
+
+# 3) Build the Plotly figure
+fig <- plot_ly() %>%
+  # A: histogram trace (always visible)
+  add_histogram(
+    x          = x,
+    xbins      = list(start = 0, end = 120, size = binwidth),
+    marker     = list(color = "#c6adff", line = list(color = "white", width = 1)),
+    showlegend = FALSE
+  ) %>%
+  # B: density trace (starts hidden)
+  add_lines(
+    x          = dens$x,
+    y          = y_scaled,
+    line       = list(color = "#0064c8", width = 3),
+    visible    = FALSE,
+    showlegend = FALSE
+  ) %>%
+  layout(
+    title   = list(text = "Histogram with Approximately Symmetric Data"),
+    xaxis   = list(title = "Value", range = c(0, 120)),
+    yaxis   = list(title = "Frequency", range = c(0, max_y), fixedrange = TRUE),
+    bargap  = 0.02,
+    updatemenus = list(
+      list(
+        type      = "buttons",
+        direction = "right",
+        xanchor   = "left",
+        x         = 0.80,
+        y         = 0.70,
+        buttons = list(
+          list(
+            method  = "restyle",
+            args    = list("visible", list(TRUE, FALSE)),
+            args2   = list("visible", list(TRUE, TRUE)),
+            label   = "Show/Hide Density",
+            execute = TRUE      # ← ensures first click toggles on
+          )
+        )
+      )
+    )
+  )
+
+fig
+```
+
+
+The bin widths selected can change the appearance of histograms
+The interactive application below allows us to examine the effect of bin size on a histogram from the [faithful](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/faithful.html) data set which measures the waiting time between eruptions of the Old Faithful geyser in Yellowstone National Park, Wyoming, USA.
+
+<h3 style="text-align: center; color: #FF2C21;">Fix appearance of shiny app</h3>
+
+<center>
+```{r HistShinyApp, echo=FALSE, out.width='100%', warning=FALSE}
+knitr::include_app("https://nishan-mudalige.shinyapps.io/Histogram-Shiny-App/", height = "810")
+```
+</center>
+
+
+### Boxplots
+
+Boxplots are another visual aid we can use to present and interpret data. They are one
+of the most simple graphical techniques to analyze visually and are therefore usually relatively immediate to interpret. 
+Boxplots are also known as *box-and-whisker* plots since they consist of figures resembling boxes along with a series of
+lines called whiskers. The whiskers extend from the box to the most extreme observed values that are not considered outliers.
+To decide which values are outliers, we compute lower and upper **outlier cutoffs** (also called **fences**) using the $1.5 \times IQR$ rule:
+
+::: {.definition name="Outlier Cutoffs (Fences)" #OutlierCutoffs}
+Let $Q_{1}$, $Q_{3}$ and $IQR$ represent the first quartile, third quartile and
+interquartile range respectively as defined in \@ref(def:Quartiles) and \@ref(def:IQR) respectively.
+Then the **lower cutoff** and **upper cutoff** are:
+\[ \text{Lower cutoff} ~ = ~ Q_{1} - 1.5 \times IQR \]
+\[ \text{Upper cutoff} ~ = ~ Q_{3} + 1.5 \times IQR \]
+Any observed value below the lower cutoff or above the upper cutoff is flagged as a potential **outlier** and plotted as an individual dot beyond the whisker.
+The **lower whisker** extends to the smallest observed value still within the lower cutoff, and the **upper whisker** extends to the largest observed value still within the upper cutoff.
+:::
+
+The box in a boxplot is divided into two parts, the lower and upper quartiles. The lower quartile is represented by the bottom of the box and the upper quartile is represented by the top of the box. The line inside the box represents the median of the data set.
+Box plots can be used to to get a sense of a data set.
+
+Consider the following summary data
+
+```{r BoxplotData, echo=FALSE, results='asis', warning = FALSE}
+# Load required libraries
+library(knitr)
+library(kableExtra)
+
+# Create summary as a named numeric vector
+summary_stats <- c(
+  Min = 0.500,
+  `1st Qu.` = 8.782,
+  Median = 9.855,
+  Mean = 10.036,
+  `3rd Qu.` = 11.521,
+  Max = 19.000
+)
+
+# Convert to one-row wide format data frame
+summary_wide <- as.data.frame(t(summary_stats))
+
+# Create formatted table (HTML for Bookdown)
+kable(summary_wide, format = "html", booktabs = TRUE, caption = "Summary Statistics") %>%
+  kable_styling(full_width = FALSE, position = "center")
+```
+
+The summary statistics in Table \@ref(tab:BoxplotData) is represented visually as an interactive boxplot in Figure \@ref(fig:BoxplotExample). 
+Hover over the boxplot to identify the median, quartiles and whiskers.
+
+```{r BoxplotExample, fig.cap="An illustration of an annotated box-plot with whiskers and potential outliers.", echo=FALSE, fig.align='center', warning=FALSE}
+# Load Plotly
+library(plotly)
+
+# Base data
+set.seed(123)
+x <- rnorm(50, mean = 10, sd = 2)
+
+# Define outliers
+outliers <- c(0.5, 1, 18, 19)
+
+x = c(x, outliers)
+
+outlier_labels <- rep("potential outlier", length(outliers))
+x_position <- rep(1, length(outliers))  # Align with boxplot
+
+# Create plot
+p <- plot_ly() %>%
+  # Boxplot
+  add_trace(
+    x = rep(1, length(x)),
+    y = ~x,
+    type = "box",
+    boxpoints = "none",
+    name = "",
+    hoverinfo = "y",
+    fillcolor = "#00C19A",
+    marker = list(color = "#00C19A"),
+    line = list(color = 'rgba(0,100,200,1)')
+  ) %>%
+  # Custom outliers
+  add_trace(
+    x = ~x_position,
+    y = ~outliers,
+    type = "scatter",
+    mode = "markers",
+    marker = list(
+      color = "#F8766D",
+      size = 8,
+      line = list(color = "#FF68A1", width = 1)
+    ),
+    hoverinfo = "text",
+    hovertext = outlier_labels,
+    showlegend = FALSE
+  ) %>%
+  layout(
+    title = "Interactive Boxplot<br>(Hover over outliers)",
+    yaxis = list(
+      title = "Values",
+      range = c(0, 21)        # Set y-axis limits
+    ),
+    xaxis = list(
+      showticklabels = FALSE,
+      title = NA,
+      range = c(0.5, 1.5)
+    )
+  )
+
+# Disable lasso and box select tools
+config(
+  p,
+  modeBarButtonsToRemove = c("select2d", "lasso2d")
+)
+```
+
+Boxplots can also efficiently be used to compare multiple distributions and highlight skewness, spread, and outliers from each of them.
+If the median cuts the box with upper area smaller than lower area,
+then we say that box-plot with left skew probability distribution. Or,
+if the median cuts the box with upper area larger than lower area,
+then we say that box-plot with right skew probability distribution.
+Otherwise, if the median cuts the box with upper area equal to
+lower area, then we say that box-plot with symmetric probability
+distribution.
+
+```{r BoxplotNegativeExample, fig.cap="An illustration of a boxplot with a left (negative) skew.", echo=FALSE, fig.align='center', warning=FALSE}
+# Load Plotly
+library(plotly)
+
+# Generate left-skewed data by flipping right-skewed log-normal
+set.seed(123)
+raw_right <- c(rlnorm(35, meanlog = 2, sdlog = 0.75), runif(5, 14, 18) )
+raw <- max(raw_right) - raw_right  # flip for left skew
+
+# Remove statistical outliers
+q1 <- quantile(raw, 0.25)
+q3 <- quantile(raw, 0.75)
+iqr <- q3 - q1
+upper_whisker <- q3 + 1.5 * iqr
+lower_whisker <- q1 - 1.5 * iqr
+x <- raw[raw >= lower_whisker & raw <= upper_whisker]
+x <- x + 2
+
+mean_x <- mean(x)
+median_x <- median(x)
+
+# Plot
+p <- plot_ly() %>%
+  add_trace(
+    x = rep(1, length(x)),
+    y = ~x,
+    type = "box",
+    boxpoints = "none",  # hide all points
+    name = "",
+    hoverinfo = "skip",
+    fillcolor = "#00C19A",
+    marker = list(color = "#00C19A"),
+    line = list(color = 'rgba(0,100,200,1)')
+  ) %>%
+  layout(
+    title = "Boxplot suggesting left skewed data<br>(Mean < Median)",
+    yaxis = list(
+      title = "Values",
+      range = c(0, max(x) * 1.1)
+    ),
+    xaxis = list(
+      showticklabels = FALSE,
+      title = NA,
+      range = c(0.5, 1.5)
+    ),
+    shapes = list(
+      list(
+        type = "line",
+        xref = "x",
+        yref = "y",
+        x0 = 0.757,
+        x1 = 1.247,
+        y0 = mean_x - 0.5, 
+        y1 = mean_x - 0.5 ,
+        line = list(
+          dash = "dash",
+          color = "#FF68A1",
+          width = 2
+        )
+      )
+    ),
+    annotations = list(
+      list(
+        x = 1.325,
+        y = mean_x - 0.50,
+        text = "mean",
+        xref = "x",
+        yref = "y",
+        showarrow = FALSE,
+        font = list(color = "#FF68A1", size = 18)
+      ),
+      list(
+        x = 1.325,
+        y = median_x + 0.25,
+        text = "median",
+        xref = "x",
+        yref = "y",
+        showarrow = FALSE,
+        font = list(color = "rgba(0,100,200,1)", size = 18)
+      )
+    )
+  )
+
+# Remove all interactivity
+config(
+  p,
+  displayModeBar = FALSE,
+  staticPlot = TRUE
+)
+
+```
+
+```{r BoxplotpositiveExample, fig.cap="An illustration of a boxplot with a right (positive) skew.", echo=FALSE, fig.align='center', warning=FALSE}
+# Load Plotly
+library(plotly)
+
+# Generate right-skewed data WITHOUT outliers (control max values)
+set.seed(123)
+raw <- rlnorm(35, meanlog = 2, sdlog = 0.5)
+q1 <- quantile(raw, 0.25)
+q3 <- quantile(raw, 0.75)
+iqr <- q3 - q1
+upper_whisker <- q3 + 1.5 * iqr
+lower_whisker <- q1 - 1.5 * iqr
+x <- raw[raw >= lower_whisker & raw <= upper_whisker]  # trim outliers
+
+mean_x <- mean(x)
+median_x <- median(x)
+
+# Plot
+p <- plot_ly() %>%
+  add_trace(
+    x = rep(1, length(x)),
+    y = ~x,
+    type = "box",
+    boxpoints = "none",  # no visible points
+    name = "",
+    hoverinfo = "skip",
+    fillcolor = "#00C19A",
+    marker = list(color = "#00C19A"),
+    line = list(color = 'rgba(0,100,200,1)')
+  ) %>%
+  layout(
+    title = "Boxplot suggesting right skewed data<br>(Mean > Median)",
+    yaxis = list(
+      title = "Values",
+      range = c(0, max(x) * 1.1)
+    ),
+    xaxis = list(
+      showticklabels = FALSE,
+      title = NA,
+      range = c(0.5, 1.5)
+    ),
+    shapes = list(
+      list(
+        type = "line",
+        xref = "x",
+        yref = "y",
+        x0 = 0.757,
+        x1 = 1.247,
+        y0 = mean_x + 1, 
+        y1 = mean_x + 1,
+        line = list(
+          dash = "dash",
+          color = "#FF68A1",
+          width = 2
+        )
+      )
+    ),
+    annotations = list(
+      list(
+        x = 1.325,
+        y = mean_x + 0.8 + 0.25,
+        text = "mean",
+        xref = "x",
+        yref = "y",
+        showarrow = FALSE,
+        font = list(color = "#FF68A1", size = 18)
+      ),
+      list(
+        x = 1.325,
+        y = median_x - 0.25,
+        text = "median",
+        xref = "x",
+        yref = "y",
+        showarrow = FALSE,
+        font = list(color = "rgba(0,100,200,1)", size = 18)
+      )
+    )
+  )
+
+# Remove all interactivity
+config(
+  p,
+  displayModeBar = FALSE,
+  staticPlot = TRUE
+)
+```
+
+```{r BoxplotSymmetryExample, fig.cap="An illustration of a boxplot with an approximately symmetric distribution.", echo=FALSE, fig.align='center', warning=FALSE}
+# Load Plotly
+library(plotly)
+
+# Base data
+set.seed(123)
+x <- rnorm(50, mean = 10, sd = 4)
+mean_x <- mean(x)
+median_x <- median(x)
+
+# Create plot
+p <- plot_ly() %>%
+  # Boxplot
+  add_trace(
+    x = rep(1, length(x)),
+    y = ~x,
+    type = "box",
+    boxpoints = "none",
+    name = "",
+    hoverinfo = "skip",  # <-- disables hover labels
+    fillcolor = "#00C19A",
+    marker = list(color = "#00C19A"),
+    line = list(color = 'rgba(0,100,200,1)')
+  ) %>%
+  layout(
+    title = "Boxplot suggesting symmetric data<br>(Mean ≈ Median)",
+    yaxis = list(
+      title = "Values",
+      range = c(0, 21)
+    ),
+    xaxis = list(
+      showticklabels = FALSE,
+      title = NA,
+      range = c(0.5, 1.5)
+    ),
+    shapes = list(
+      list(
+        type = "line",
+        xref = "x",
+        yref = "y",
+        x0 = 0.757, 
+        x1 = 1.247,
+        y0 = mean_x, y1 = mean_x,
+        line = list(
+          dash = "dash",
+          color = "#FF68A1",
+          width = 2
+        )
+      )
+    ),
+    annotations = list(
+      list(
+        x = 1.325,
+        y = mean_x + 0.25,
+        text = "mean",
+        xref = "x",
+        yref = "y",
+        showarrow = FALSE,
+        font = list(color = "#FF68A1", size = 18)
+      ),
+      list(
+        x = 1.325,
+        y = median_x - 0.25,
+        text = "median",
+        xref = "x",
+        yref = "y",
+        showarrow = FALSE,
+        font = list(color = "rgba(0,100,200,1)", size = 18)
+      )
+    )
+  )
+
+# Remove all interactive tools and mode bar
+config(
+  p,
+  displayModeBar = FALSE,
+  staticPlot = TRUE
+)
+```
+
+## Exercises {#sec:ch3exercises}
+
+```{r ch3-ex-setup, include=FALSE}
+library(ggplot2)
+```
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+The dot plot below shows the number of steps (in thousands) walked by 10 UTM students on a randomly selected day. **Each dot represents one student.**
+
+```{r ch3-new-q1-dot, echo=FALSE, fig.height=2.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+steps1 <- c(3, 4, 4, 5, 5, 5, 6, 6, 8, 12)
+df_steps1 <- data.frame(steps = steps1)
+ggplot(df_steps1, aes(x = steps)) +
+  geom_dotplot(binwidth = 0.5, fill = "#0984e3", color = "white", dotsize = 1.0) +
+  scale_x_continuous(breaks = 1:13, limits = c(1.5, 13.5)) +
+  labs(x = "Steps per day (thousands)", y = NULL,
+       caption = "Each dot = 1 student") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        plot.caption = element_text(color = "#555", size = 10))
+```
+
+(a) (1 mark) Based on the dot plot, does the distribution appear **left-skewed, right-skewed, or roughly symmetric**? Justify briefly.
+(b) (2 marks) Using the values shown in the dot plot, calculate the **mean** $\bar{x}$ and find the **median**.
+(c) (1 mark) Identify the **mode**.
+(d) (2 marks) The value 12 is unusually large. If it is removed from the dataset, recalculate the mean and state whether the median changes. What does this tell you about the **sensitivity** of the mean vs. the median to extreme values?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Read off all 10 values from the x-axis — count stacked dots carefully.
+- For $n = 10$ (even), median $=$ average of the 5th and 6th ordered values.
+- Removing an extreme value changes the sum and hence the mean; the median depends only on rank.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Data from dot plot (sorted):** 3, 4, 4, 5, 5, 5, 6, 6, 8, 12
+
+**(a)** **Right-skewed** — most students walk 3–6 thousand steps, but the values 8 and 12 form a long tail to the right.
+
+**(b)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 10$:
+$$\bar{x} = \frac{3+4+4+5+5+5+6+6+8+12}{10} = \frac{58}{10} = \mathbf{5.8} \text{ thousand steps}$$
+Median $=$ average of 5th and 6th ordered values $= \dfrac{5+5}{2} = \mathbf{5}$ thousand steps.
+
+**(c)** Mode $= \mathbf{5}$ (appears 3 times).
+
+**(d)** Without the value 12, new sum $= 58 - 12 = 46$ and $n = 9$:
+$$\bar{x}_{\text{new}} = \frac{46}{9} \approx 5.11 \text{ thousand steps} \quad \text{(decreased by } \approx 0.69\text{)}$$
+New sorted data: 3, 4, 4, 5, **5**, 5, 6, 6, 8 → Median $= 5$th value $= \mathbf{5}$ (unchanged).
+**Conclusion:** removing the extreme value noticeably changed the mean but not the median — the mean is more sensitive to outliers; the median is robust.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+The histogram below shows the distribution of **weekly exercise hours** for 50 UTM students. **Each bar covers a 2-hour interval; bar height = frequency.**
+
+```{r ch3-new-q2-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(21)
+exercise2 <- c(round(rlnorm(44, log(4), 0.65)), round(rlnorm(6, log(14), 0.25)))
+exercise2 <- pmin(pmax(exercise2, 0), 25)
+df_ex2 <- data.frame(hours = exercise2)
+ggplot(df_ex2, aes(x = hours)) +
+  geom_histogram(binwidth = 2, fill = "#00cec9", color = "white", boundary = 0) +
+  scale_x_continuous(breaks = seq(0, 26, 2)) +
+  labs(x = "Weekly exercise (hours)", y = "Frequency",
+       caption = "n = 50 students  |  Bar width = 2 hours") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Describe the **shape** of this distribution. Justify using features of the histogram.
+(b) (2 marks) **Estimate the proportion** of students who exercise **more than 10 hours** per week. All reasonable estimated answers will be marked correct.
+(c) (1 mark) Based on the shape, would you expect the **mean** to be greater than, less than, or approximately equal to the **median**? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Right-skewed**: most bars are tall on the left, with a long tail of shorter bars to the right.
+- For (b), add the bar heights for all intervals above 10 hours and divide by 50.
+- In a right-skewed distribution, the long tail pulls the mean upward while the median is less affected.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The distribution is **right-skewed** — most students exercise between 0 and 8 hours per week (the tall bars on the left), while a few students exercise much more, creating a long tail extending to the right toward 20+ hours.
+
+**(b)** Add bar heights for intervals 10–12, 12–14, 14–16, and beyond. Reading from the histogram, approximately 5–8 students exercise more than 10 hours per week.
+$$\text{Proportion} \approx \frac{6}{50} \approx 0.12 \quad (12\%)$$
+All reasonable estimates will be marked correct.
+
+**(c)** **Mean > median** — in a right-skewed distribution, the long right tail pulls the mean toward larger values while the median (middle observation) is less affected by extreme values.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+The boxplot below shows the **weekly grocery spending** (in dollars) for 23 households near UTM. **The box spans $Q_1$ to $Q_3$; the line inside the box is the median; whiskers extend to the most extreme non-outlier values; dots beyond the whiskers are outliers.**
+
+```{r ch3-new-q3-box, echo=FALSE, fig.height=3.8, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE}
+grocery3 <- c(52, 61, 68, 72, 75, 78, 80, 82, 85, 87, 88, 90,
+              91, 93, 95, 97, 100, 103, 108, 115, 145, 158, 170)
+df_groc <- data.frame(spend = grocery3)
+ggplot(df_groc, aes(x = "", y = spend)) +
+  geom_boxplot(fill = "#fd79a8", color = "#e84393", width = 0.35,
+               outlier.shape = 19, outlier.size = 2.5, outlier.color = "grey30") +
+  scale_y_continuous(breaks = seq(40, 180, 20)) +
+  labs(x = NULL, y = "Weekly spending ($)",
+       caption = "Box = Q1 to Q3  |  Line = median  |  Dots = outliers") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Read the following values from the plot: $Q_1$, Median, $Q_3$, the **lower whisker** tip, the **upper whisker** tip, and the values of any **visible outlier dots**. All reasonable estimated answers will be marked correct.
+(b) (1 mark) Calculate the **IQR** using your answer to (a).
+(c) (2 marks) Using the $1.5 \times \text{IQR}$ rule, identify any **outliers**.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Bottom whisker tip = Min; top whisker tip = Max within the cutoffs; bottom of box = $Q_1$; top of box = $Q_3$; line inside = Median.
+- Dots appearing beyond a whisker are observations flagged by the $1.5 \times \text{IQR}$ outlier rule.
+- The lower cutoff is $Q_1 - 1.5 \times \text{IQR}$ and the upper cutoff is $Q_3 + 1.5 \times \text{IQR}$. Values below the lower cutoff or above the upper cutoff are considered outliers.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** From the plot: $Q_1 = 79$, Median $= 90$, $Q_3 = 101.5$. The lower whisker extends to Min $= 52$ (the smallest value, which is within the cutoffs). The **upper whisker** extends to $\mathbf{115}$ — the largest non-outlier value. The actual data maximum is **170**, visible as the topmost outlier dot (not the whisker tip). All reasonable estimates will be marked correct.
+
+**(b)** $\text{IQR} = Q_3 - Q_1 = 101.5 - 79 = \mathbf{22.5}$
+
+**(c)** Apply the $1.5 \times \text{IQR}$ outlier rule:
+$$\text{Lower cutoff} = Q_1 - 1.5 \times \text{IQR} = 79 - 1.5(22.5) = 79 - 33.75 = \mathbf{45.25}$$
+$$\text{Upper cutoff} = Q_3 + 1.5 \times \text{IQR} = 101.5 + 1.5(22.5) = 101.5 + 33.75 = \mathbf{135.25}$$
+The three dots above the upper whisker — at approximately **\$145, \$158, and \$170** — all exceed the upper cutoff and are **high outliers**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+The dot plot below shows the quiz scores (out of 10) for 8 students. **Each dot represents one student.**
+
+```{r ch3-new-q4-dot, echo=FALSE, fig.height=2.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+quiz4 <- c(4, 5, 5, 6, 6, 7, 7, 8)
+df_quiz4 <- data.frame(score = quiz4)
+ggplot(df_quiz4, aes(x = score)) +
+  geom_dotplot(binwidth = 0.4, fill = "#a29bfe", color = "white", dotsize = 1.0) +
+  scale_x_continuous(breaks = 1:10, limits = c(2.5, 9.5)) +
+  labs(x = "Quiz score (out of 10)", y = NULL,
+       caption = "Each dot = 1 student") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        plot.caption = element_text(color = "#555", size = 10))
+```
+
+(a) (1 mark) List all 8 values from the dot plot and calculate the **mean** $\bar{x}$.
+(b) (3 marks) Calculate the **sample variance** $s^2$ using the formula
+$$s^2 = \frac{\displaystyle\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$$
+Show your work using a table with columns $x_i$, $(x_i - \bar{x})$, and $(x_i - \bar{x})^2$.
+(c) (1 mark) Calculate the **sample standard deviation** $s$.
+(d) (2 marks) If every student's score is increased by **2 marks**, what happens to the **mean**? What happens to the **standard deviation**? Explain without recalculating.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Count stacked dots carefully — two dots at the same position means the value appears twice.
+- For (d), think about what adding a constant does to each deviation $(x_i - \bar{x})$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Values from dot plot:** 4, 5, 5, 6, 6, 7, 7, 8
+
+**(a)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 8$:
+$$\bar{x} = \frac{4+5+5+6+6+7+7+8}{8} = \frac{48}{8} = \mathbf{6}$$
+
+**(b)**
+
+| $x_i$ | $x_i - \bar{x}$ | $(x_i - \bar{x})^2$ |
+|--------|-----------------|----------------------|
+| 4 | $-2$ | $4$ |
+| 5 | $-1$ | $1$ |
+| 5 | $-1$ | $1$ |
+| 6 | $0$ | $0$ |
+| 6 | $0$ | $0$ |
+| 7 | $1$ | $1$ |
+| 7 | $1$ | $1$ |
+| 8 | $2$ | $4$ |
+| | **Sum** | **12** |
+
+$$s^2 = \frac{12}{8-1} = \frac{12}{7} \approx \mathbf{1.714}$$
+
+**(c)** $s = \sqrt{12/7} \approx \mathbf{1.309}$
+
+**(d)**
+- **Mean increases by 2:** new $\bar{x} = 6 + 2 = 8$.
+- **Standard deviation is unchanged:** adding a constant shifts every $x_i$ and $\bar{x}$ equally, so every deviation $(x_i - \bar{x})$ stays the same — the spread around the mean does not change.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+Two sections of STA258 wrote the same midterm exam (out of 100). The histograms below show the score distribution for each section. **Each bar covers a 10-point interval; bar height = frequency.**
+
+```{r ch3-new-q5-hist, echo=FALSE, fig.height=4.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(23)
+morning_sc <- pmax(pmin(round(rnorm(35, 68, 9)), 100), 35)
+set.seed(24)
+evening_raw <- pmax(pmin(round(rlnorm(30, log(62), 0.45)), 100), 30)
+evening_sc  <- c(evening_raw, 88, 93, 97)
+df_sections <- data.frame(
+  score   = c(morning_sc, evening_sc),
+  section = factor(rep(c("Morning Section", "Evening Section"),
+                       times = c(length(morning_sc), length(evening_sc))))
+)
+ggplot(df_sections, aes(x = score, fill = section)) +
+  geom_histogram(binwidth = 10, color = "white", alpha = 0.85, boundary = 0) +
+  facet_wrap(~ section, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = c("Morning Section" = "#6c5ce7", "Evening Section" = "#e17055")) +
+  scale_x_continuous(breaks = seq(20, 110, 10)) +
+  labs(x = "Exam score (out of 100)", y = "Frequency",
+       caption = "Bar width = 10 points") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        strip.text = element_text(face = "bold", size = 11),
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Describe the **shape** of the score distribution for each section. Justify using features of the histogram.
+(b) (1 mark) Based on the shapes, which section would you expect to have **mean > median**? Explain.
+(c) (2 marks) **Estimate the proportion** of Morning Section students who scored **60 or above**. All reasonable estimated answers will be marked correct.
+(d) (2 marks) Which section appears to have **greater variability** in exam scores? Justify using a feature of the histogram.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Symmetric**: bars are roughly mirror images around the centre peak.
+- **Right-skewed**: most bars are tall on the left, with a long low tail to the right.
+- For (c), add bar heights for 60–70, 70–80, 80–90, and 90–100, then divide by 35.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The **Morning Section** distribution is roughly **symmetric** — bars are spread in a bell shape centred around 65–70. The **Evening Section** distribution is **right-skewed** — most students score in the 40–70 range, but a long right tail extends toward 90+.
+
+**(b)** The **Evening Section** — its right skew means the long tail of high scores pulls the mean above the median. The Morning Section's symmetric shape means mean $\approx$ median.
+
+**(c)** Add bar heights for 60–70, 70–80, 80–90, and 90–100 in the Morning Section. Reading from the histogram, approximately 24–28 students score 60 or above.
+$$\text{Proportion} \approx \frac{26}{35} \approx 0.74 \quad (74\%)$$
+All reasonable estimates will be marked correct.
+
+**(d)** The **Evening Section** appears to have greater variability — its histogram spans a wider overall range (approximately 30 to 100) with scores spread across many intervals, while the Morning Section is more tightly clustered around its centre. A wider spread in the histogram indicates greater variability.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 6</div>
+The following data show the number of hours that 10 students spent studying for a quiz:
+
+$$2,\ 3,\ 3,\ 4,\ 4,\ 5,\ 5,\ 5,\ 6,\ 8$$
+
+(a) (1 mark) Find the **mean**.
+(b) (2 marks) Find the **median**.
+(c) (1 mark) Find the **mode**.
+(d) (1 mark) Find the **range**.
+(e) (2 marks) Is the mean larger than the median? Briefly explain why this may happen.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">x <- c(2, 3, 3, 4, 4, 5, 5, 5, 6, 8)
+# (a) Compute the mean
+# (b) Find the median
+# (c) Find the mode using table()
+# (d) Compute the range</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+The mean uses all observations, while the median is the middle value after ordering the data.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 10$:
+$$\bar{x} = \frac{2+3+3+4+4+5+5+5+6+8}{10} = \frac{45}{10} = \mathbf{4.5}$$
+
+**(b)** With $n = 10$ (even), median $=$ average of the $\dfrac{n}{2} = 5$th and $\dfrac{n}{2}+1 = 6$th ordered values:
+$$\text{Median} = \frac{x_{(5)} + x_{(6)}}{2} = \frac{4 + 5}{2} = \mathbf{4.5}$$
+
+**(c)** Mode $= \mathbf{5}$ (appears 3 times — the most frequent value).
+
+**(d)** $\text{Range} = x_{\max} - x_{\min} = 8 - 2 = \mathbf{6}$.
+
+**(e)** Here $\bar{x} = \text{Median} = 4.5$. When the mean and median are equal (or very close), the distribution is fairly balanced with no strong skew in either direction.
+
+**R code:**
+
+```r
+x <- c(2, 3, 3, 4, 4, 5, 5, 5, 6, 8)
+
+# (a) Compute the mean
+mean(x)
+# [1] 4.5
+
+# (b) Find the median
+median(x)
+# [1] 4.5
+
+# (c) Find the mode using table()
+table(x)
+# x
+# 2 3 4 5 6 8
+# 1 2 2 3 1 1
+# → 5 appears 3 times, so mode = 5
+
+# (d) Compute the range
+max(x) - min(x)
+# [1] 6
+```
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 7</div>
+The dot plot below shows the number of cups of coffee consumed daily by 11 students. **Each dot represents one student.**
+
+```{r ch3-coffee-dot, echo=FALSE, fig.height=2.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+coffee2 <- c(0, 0, 0, 1, 1, 1, 1, 2, 2, 4, 7)
+df_coffee <- data.frame(cups = coffee2)
+ggplot(df_coffee, aes(x = cups)) +
+  geom_dotplot(binwidth = 0.4, fill = "#e67e22", color = "white", dotsize = 1.0) +
+  scale_x_continuous(breaks = 0:7, limits = c(-0.5, 7.5)) +
+  labs(x = "Cups of coffee per day", y = NULL,
+       caption = "Each dot = 1 student") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        plot.caption = element_text(color = "#555", size = 10))
+```
+
+(a) (1 mark) Based on the dot plot, does the distribution appear **left-skewed, right-skewed, or roughly symmetric**? Justify briefly.
+(b) (2 marks) Calculate the **mean** $\bar{x}$ and find the **median**.
+(c) (1 mark) Identify the **mode**.
+(d) (2 marks) If the value of 7 is changed to 12, which measure — mean or median — changes more? What does this tell you about the effect of **outliers** on these measures?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Each dot represents one observation. Sort the 11 values first — for $n = 11$ (odd), the median is the $\frac{11+1}{2} = 6$th value.
+- The mean uses all observations, while the median is based only on position. Extreme values usually affect the mean more than the median.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Sorted data:** $0, 0, 0, 1, 1, 1, 1, 2, 2, 4, 7$
+
+**(a)** **Right-skewed** — most students drink 0–2 cups, but the values 4 and 7 form a long tail to the right.
+
+**(b)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 11$:
+$$\bar{x} = \frac{0+0+0+1+1+1+1+2+2+4+7}{11} = \frac{19}{11} \approx \mathbf{1.73} \text{ cups}$$
+For $n = 11$ (odd), median position $= \dfrac{n+1}{2} = \dfrac{12}{2} = 6$th value $=$ **1 cup**.
+
+**(c)** Mode $=$ **1** (appears 4 times — the tallest stack of dots).
+
+**(d)** Replacing 7 with 12: new sum $= 19 - 7 + 12 = 24$, so $\bar{x} = 24/11 \approx 2.18$ (increased by $\approx 0.45$); the median remains **1** (the 6th ranked value is unchanged). **Conclusion:** the mean is sensitive to outliers; the median is **robust** because it depends only on rank, not magnitude.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
+Two data sets are shown below.
+
+**Data Set A:**
+$$6,\ 7,\ 7,\ 8,\ 8,\ 9,\ 9$$
+
+**Data Set B:**
+$$6,\ 7,\ 7,\ 8,\ 8,\ 9,\ 30$$
+
+(a) (2 marks) Find the **mean** of each data set.
+(b) (2 marks) Find the **median** of each data set.
+(c) (1 mark) Which measure, mean or median, is more **affected** by the value 30?
+(d) (1 mark) Which measure better **represents the centre** of Data Set B? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+Compare how much the mean and median change when 9 is replaced by 30.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Using $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$ with $n = 7$:
+$$\bar{x}_A = \frac{6+7+7+8+8+9+9}{7} = \frac{54}{7} \approx \mathbf{7.71}$$
+$$\bar{x}_B = \frac{6+7+7+8+8+9+30}{7} = \frac{75}{7} \approx \mathbf{10.71}$$
+
+**(b)** With $n = 7$ (odd), median position $= \dfrac{n+1}{2} = 4$th ordered value.
+
+- Data Set A sorted: 6, 7, 7, **8**, 8, 9, 9 → Median$_A = \mathbf{8}$
+- Data Set B sorted: 6, 7, 7, **8**, 8, 9, 30 → Median$_B = \mathbf{8}$
+
+**(c)** The **mean** is more affected by 30 — it increased from $\approx 7.71$ to $\approx 10.71$ (a change of $\approx +3$), while the median did not change at all.
+
+**(d)** The **median** better represents the centre of Data Set B because 30 is an unusually large value that pulls the mean well above the majority of the data.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 9</div>
+The following data represent the number of hours 6 students spent studying for a midterm:
+
+$$x_1 = 2,\quad x_2 = 4,\quad x_3 = 4,\quad x_4 = 6,\quad x_5 = 6,\quad x_6 = 8$$
+
+(a) (1 mark) Calculate the **mean** $\bar{x}$.
+(b) (3 marks) Calculate the **sample variance** $s^2$ using the formula
+$$s^2 = \frac{\displaystyle\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$$
+Show your work using a table with columns $x_i$, $(x_i - \bar{x})$, and $(x_i - \bar{x})^2$.
+(c) (1 mark) Calculate the **sample standard deviation** $s$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="5">x <- c(2, 4, 4, 6, 6, 8)
+# Compute the sample mean
+# Compute the sample variance s²
+# Compute the sample standard deviation s</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compute $\bar{x}$ first, then find each deviation $(x_i - \bar{x})$, square it, sum all squared deviations, and divide by $n - 1$.
+- $s = \sqrt{s^2}$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $\bar{x} = (2+4+4+6+6+8)/6 = 30/6 = \mathbf{5}$
+
+**(b)**
+
+| $x_i$ | $x_i - \bar{x}$ | $(x_i - \bar{x})^2$ |
+|--------|-----------------|----------------------|
+| 2 | $-3$ | 9 |
+| 4 | $-1$ | 1 |
+| 4 | $-1$ | 1 |
+| 6 | $1$ | 1 |
+| 6 | $1$ | 1 |
+| 8 | $3$ | 9 |
+| | **Sum** | **22** |
+
+$$s^2 = \frac{22}{6-1} = \frac{22}{5} = \mathbf{4.4}$$
+
+**(c)** $s = \sqrt{4.4} \approx \mathbf{2.098}$ hours
+
+**R code:**
+
+```r
+x <- c(2, 4, 4, 6, 6, 8)
+
+# Compute the sample mean
+mean(x)
+# [1] 5
+
+# Compute the sample variance s²
+var(x)
+# [1] 4.4
+
+# Compute the sample standard deviation s
+sd(x)
+# [1] 2.097618
+```
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 10</div>
+The boxplot below shows the age distribution of 12 participants in a research study. **Each dot is one participant's age. The bottom and top of the box are $Q_1$ and $Q_3$; the line inside the box is the median; whiskers extend to the most extreme non-outlier values; the red dashed lines mark the IQR outlier cutoffs.**
+
+```{r ch3-q9-box, echo=FALSE, fig.height=3.8, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE}
+ages9 <- c(22, 25, 19, 31, 28, 35, 24, 22, 30, 27, 40, 23)
+df_q9 <- data.frame(ages = ages9)
+q1_9 <- quantile(ages9, 0.25); q3_9 <- quantile(ages9, 0.75)
+iqr_9 <- q3_9 - q1_9
+ggplot(df_q9, aes(x = "", y = ages)) +
+  geom_boxplot(fill = "#a29bfe", color = "#6c5ce7", width = 0.35, outlier.shape = NA) +
+  geom_jitter(width = 0.06, size = 2.5, alpha = 0.7, color = "grey25") +
+  geom_hline(aes(yintercept = q1_9 - 1.5*iqr_9, linetype = "IQR cutoff"),
+             color = "#d63031", linewidth = 0.8) +
+  geom_hline(aes(yintercept = q3_9 + 1.5*iqr_9, linetype = "IQR cutoff"),
+             color = "#d63031", linewidth = 0.8) +
+  scale_linetype_manual(name = NULL, values = c("IQR cutoff" = "dashed")) +
+  scale_y_continuous(breaks = seq(10, 45, by = 5)) +
+  labs(x = NULL, y = "Age (years)",
+       caption = "Each dot = 1 participant  |  Box = Q1 to Q3  |  Red dashes = IQR cutoffs") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "top", axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Read the **five-number summary** (Min, $Q_1$, Median, $Q_3$, Max) from the plot. All reasonable estimated answers will be marked correct.
+(b) (1 mark) Compute the **IQR** using your answer to (a).
+(c) (2 marks) Using the $1.5 \times \text{IQR}$ rule, identify any **outliers**. Do any dots fall outside the red dashed cutoff lines?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Bottom whisker tip = Min; top whisker tip = Max (within the cutoffs); bottom edge of box = $Q_1$; top edge = $Q_3$; line inside = Median.
+- The lower cutoff is $Q_1 - 1.5 \times \text{IQR}$ and the upper cutoff is $Q_3 + 1.5 \times \text{IQR}$. Values outside these cutoffs are considered outliers.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Using the equal-halves method: Min $= 19$, $Q_1 = 22.5$, Median $= 26$, $Q_3 = 30.5$, Max $= 40$.
+
+**(b)** $\text{IQR} = Q_3 - Q_1 = 30.5 - 22.5 = \mathbf{8}$
+
+**(c)** Apply the $1.5 \times \text{IQR}$ outlier rule:
+$$\text{Lower cutoff} = Q_1 - 1.5 \times \text{IQR} = 22.5 - 1.5(8) = 22.5 - 12 = \mathbf{10.5}$$
+$$\text{Upper cutoff} = Q_3 + 1.5 \times \text{IQR} = 30.5 + 1.5(8) = 30.5 + 12 = \mathbf{42.5}$$
+All values lie within $[10.5,\ 42.5]$, so there are **no outliers** — even the oldest participant (age 40) falls inside the upper cutoff.
+
+*Note: Different quartile methods can give slightly different values for $Q_1$ and $Q_3$, so the red dashed lines on the plot may not align exactly with your calculated cutoffs. The conclusion — no outliers — is the same regardless of method.*
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 11</div>
+Two groups of students were given the same statistics quiz (out of 20). Their scores are:
+
+- **Group A:** 14, 15, 14, 16, 15, 14, 16, 15, 15, 16
+- **Group B:** 8, 12, 15, 19, 18, 11, 17, 20, 20, 10
+
+(a) (1 mark) Without calculating, which group do you expect to have a **larger standard deviation**? Justify using the spread of the values.
+(b) (2 marks) Verify by calculating $\bar{x}$ and $s$ for each group. Use R or show your working.
+(c) (2 marks) Both groups have the same mean. What does this tell you about the **usefulness of the mean alone** as a summary of a dataset?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="5">groupA <- c(14, 15, 14, 16, 15, 14, 16, 15, 15, 16)
+groupB <- c( 8, 12, 15, 19, 18, 11, 17, 20, 20, 10)
+# Compute mean and SD for each group
+# Create a side-by-side boxplot to compare the spread</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+Standard deviation measures how far values are from the mean *on average*. Look at whether the scores are tightly packed or spread widely.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** **Group B** — its scores range from 8 to 20 (wide spread), while Group A's scores cluster tightly between 14 and 16.
+
+**(b)** Using $s^2 = \dfrac{\displaystyle\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$ and $s = \sqrt{s^2}$:
+
+**Group A** ($n = 10$, $\bar{x}_A = 150/10 = 15$):
+
+| $x_i$ | $x_i - 15$ | $(x_i - 15)^2$ |
+|--------|------------|----------------|
+| 14 | $-1$ | $1$ |
+| 15 | $0$ | $0$ |
+| 14 | $-1$ | $1$ |
+| 16 | $1$ | $1$ |
+| 15 | $0$ | $0$ |
+| 14 | $-1$ | $1$ |
+| 16 | $1$ | $1$ |
+| 15 | $0$ | $0$ |
+| 15 | $0$ | $0$ |
+| 16 | $1$ | $1$ |
+| | **Sum** | **6** |
+
+$$s_A^2 = \frac{6}{9} \approx 0.667 \quad \Rightarrow \quad s_A = \sqrt{0.667} \approx \mathbf{0.816}$$
+
+**Group B** ($n = 10$, $\bar{x}_B = 150/10 = 15$):
+
+| $x_i$ | $x_i - 15$ | $(x_i - 15)^2$ |
+|--------|------------|----------------|
+| 8 | $-7$ | $49$ |
+| 12 | $-3$ | $9$ |
+| 15 | $0$ | $0$ |
+| 19 | $4$ | $16$ |
+| 18 | $3$ | $9$ |
+| 11 | $-4$ | $16$ |
+| 17 | $2$ | $4$ |
+| 20 | $5$ | $25$ |
+| 20 | $5$ | $25$ |
+| 10 | $-5$ | $25$ |
+| | **Sum** | **178** |
+
+$$s_B^2 = \frac{178}{9} \approx 19.78 \quad \Rightarrow \quad s_B = \sqrt{19.78} \approx \mathbf{4.45}$$
+
+Group B's standard deviation is much larger, confirming the visual observation.
+
+**(c)** Both groups have the **same mean** ($\bar{x}_A = \bar{x}_B = 15$), yet their standard deviations are very different ($s_A \approx 0.816$, $s_B \approx 4.45$). This illustrates that the mean alone is **insufficient** to fully describe a dataset — the standard deviation is also needed to capture how spread out the values are.
+
+**R code:**
+
+```r
+groupA <- c(14, 15, 14, 16, 15, 14, 16, 15, 15, 16)
+groupB <- c( 8, 12, 15, 19, 18, 11, 17, 20, 20, 10)
+
+# Compute mean and SD for each group
+mean(groupA)   # [1] 15
+sd(groupA)     # [1] 0.8164966
+mean(groupB)   # [1] 15
+sd(groupB)     # [1] 4.452478
+
+# Create a side-by-side boxplot to compare the spread
+boxplot(groupA, groupB,
+        names = c("Group A", "Group B"),
+        main  = "Quiz Scores: Group A vs Group B",
+        ylab  = "Score (out of 20)",
+        col   = c("#74b9ff", "#fd79a8"))
+```
+
+Both groups have mean $= 15$, confirming Q11(c). The side-by-side boxplot makes the difference in spread immediately visible — Group B's box is far wider than Group A's.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
+The following data show the number of minutes that 12 students spent waiting for a bus:
+
+$$3,\ 4,\ 5,\ 5,\ 6,\ 7,\ 8,\ 9,\ 10,\ 12,\ 13,\ 30$$
+
+(a) (1 mark) Find the **median**.
+(b) (2 marks) Find $Q_1$ and $Q_3$.
+(c) (1 mark) Calculate the **IQR**.
+(d) (2 marks) Use the $1.5 \times \text{IQR}$ rule to determine whether there are any **outliers**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">x <- c(3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30)
+# Compute Q1, Q3, and IQR
+# Compute lower and upper cutoffs
+# Identify any outliers
+# Create a horizontal boxplot</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- First order the data. Then use $\text{IQR} = Q_3 - Q_1$.
+- The lower cutoff is $Q_1 - 1.5 \times \text{IQR}$, and the upper cutoff is $Q_3 + 1.5 \times \text{IQR}$.
+- Any observation outside these cutoffs is flagged as an outlier.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Sorted data:** 3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30
+
+**(a)** With $n = 12$ (even), median $=$ average of the $\dfrac{n}{2} = 6$th and $\dfrac{n}{2}+1 = 7$th ordered values:
+$$\text{Median} = \frac{x_{(6)} + x_{(7)}}{2} = \frac{7 + 8}{2} = \mathbf{7.5} \text{ minutes}$$
+
+**(b)** Split the 12 sorted values into two halves of 6:
+
+- Lower half: 3, 4, 5, 5, 6, 7 → $Q_1 = \dfrac{5+5}{2} = \mathbf{5}$
+- Upper half: 8, 9, 10, 12, 13, 30 → $Q_3 = \dfrac{10+12}{2} = \mathbf{11}$
+
+**(c)** $\text{IQR} = Q_3 - Q_1 = 11 - 5 = \mathbf{6}$ minutes.
+
+**(d)** Apply the $1.5 \times \text{IQR}$ outlier rule:
+$$\text{Lower cutoff} = Q_1 - 1.5 \times \text{IQR} = 5 - 1.5(6) = 5 - 9 = \mathbf{-4}$$
+$$\text{Upper cutoff} = Q_3 + 1.5 \times \text{IQR} = 11 + 1.5(6) = 11 + 9 = \mathbf{20}$$
+Since $30 > 20$, the value **30 is a high outlier**.
+
+**R code:**
+
+```r
+x <- c(3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30)
+
+# Six-number summary (Min, Q1, Median, Mean, Q3, Max)
+summary(x)
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+#    3.00    5.25    7.50   10.58   11.25   30.00
+
+# IQR and outlier cutoffs
+IQR(x)                    # [1] 6
+5.25 - 1.5 * IQR(x)       # lower cutoff: -3.75
+11.25 + 1.5 * IQR(x)      # upper cutoff: 20.25
+
+# Create a horizontal boxplot
+boxplot(x, horizontal = TRUE,
+        main = "Bus Waiting Times (minutes)",
+        xlab = "Minutes", col = "#00cec9")
+```
+
+R's `summary()` gives $Q_1 = 5.25$ and $Q_3 = 11.25$ (slightly different from the textbook split-halves values of 5 and 11), but both methods give IQR $= 6$ and both flag **30 as an outlier**. The boxplot shows 30 as an isolated dot above the upper whisker.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 13</div>
+The histogram below shows the distribution of daily commute times (in minutes) for a random sample of 60 UTM students. **Each bar covers a 10-minute interval; bar height = frequency.**
+
+```{r ch3-q12-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(11)
+commute <- round(rlnorm(60, log(28), 0.45))
+commute <- pmin(commute, 80)
+df_q11 <- data.frame(commute = commute)
+ggplot(df_q11, aes(x = commute)) +
+  geom_histogram(binwidth = 10, fill = "#00b894", color = "white", boundary = 0) +
+  scale_x_continuous(breaks = seq(0, 80, 10)) +
+  labs(x = "Commute time (minutes)", y = "Frequency",
+       caption = "n = 60 students  |  Bar height = frequency") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Describe the **shape** of this distribution (skewness or symmetry). Justify using features of the histogram.
+(b) (2 marks) Based on the histogram, **estimate the proportion** of students with a commute time of **30 minutes or less**. All reasonable estimated answers will be marked correct.
+(c) (1 mark) Based on the shape of the distribution, would you expect the **mean** to be greater than, less than, or approximately equal to the **median**? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Right-skewed**: long tail to the right; the mean is pulled toward the tail, so mean > median.
+- For (b), add up the frequencies (bar heights) for bars covering 0–30 minutes, then divide by 60.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The distribution is **right-skewed** — most commute times are short (10–30 minutes) and the histogram has a long tail extending to the right toward 70–80 minutes.
+
+**(b)** Sum the frequencies (bar heights) for bars covering 0–10, 10–20, and 20–30 minutes. Reading from the histogram, approximately 40–45 students have commute times $\le 30$ minutes.
+$$\text{Proportion} \approx \frac{42}{60} \approx 0.70 \quad (70\%)$$
+All reasonable estimates will be marked correct.
+
+**(c)** For a **right-skewed** distribution, the **mean > median** — the long right tail pulls the mean toward larger values while the median (middle value) is less affected.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 14</div>
+The boxplot below shows the distribution of exam scores (out of 100) for 30 students in a statistics course. **The box spans $Q_1$ to $Q_3$; the line inside the box is the median; whiskers extend to the most extreme non-outlier values; any dots beyond the whiskers are outliers.**
+
+```{r ch3-q13-box, echo=FALSE, fig.height=3.5, fig.width=4, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(12)
+scores12 <- c(round(rnorm(27, 72, 10)), 38, 42, 95)
+scores12 <- pmax(pmin(scores12, 100), 0)
+df_q12 <- data.frame(score = scores12)
+ggplot(df_q12, aes(x = "", y = score)) +
+  geom_boxplot(fill = "#74b9ff", color = "#0984e3", width = 0.35,
+               outlier.shape = 19, outlier.size = 2.5, outlier.color = "grey30") +
+  scale_y_continuous(breaks = seq(30, 100, 10)) +
+  labs(x = NULL, y = "Exam score (out of 100)",
+       caption = "Box = Q1 to Q3  |  Line = median  |  Dots = outliers") +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) **Estimate** the five-number summary from the plot. All reasonable estimated answers will be marked correct.
+(b) (1 mark) **Estimate** the IQR.
+(c) (2 marks) Are there any **outliers** visible in the plot? If so, estimate their values and state whether they are low or high outliers.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Dots that appear *beyond* the whiskers are flagged as outliers.
+- Read the scale on the y-axis carefully to estimate each summary value.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Approximate values: Min $\approx 38$–$42$, $Q_1 \approx 64$–$68$, Median $\approx 72$–$74$, $Q_3 \approx 78$–$82$, Max $\approx 95$–$98$. All reasonable estimates will be marked correct.
+
+**(b)** $\text{IQR} = Q_3 - Q_1 \approx 80 - 66 = \mathbf{14}$.
+
+**(c)** Yes — there are **3 outlier dots**: two low outliers (approximately 38 and 42) below the lower whisker, and one high outlier (approximately 95) above the upper whisker.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 15</div>
+Two sections of STA258 each wrote the same midterm exam (out of 100). Side-by-side boxplots of their scores are shown below. **Each dot is one student's score; the box spans $Q_1$ to $Q_3$; the line inside is the median.**
+
+```{r ch3-q14-box, echo=FALSE, fig.height=3.5, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(13)
+secA <- pmax(pmin(round(rnorm(35, 74, 6)), 100), 40)
+secB_main <- round(rnorm(32, 74, 14))
+secB <- c(pmax(pmin(secB_main, 100), 30), 22, 25, 98)
+df_q13 <- data.frame(
+  score   = c(secA, secB),
+  section = factor(rep(c("Section A", "Section B"),
+                       times = c(length(secA), length(secB))))
+)
+ggplot(df_q13, aes(x = section, y = score, fill = section)) +
+  geom_boxplot(width = 0.4, alpha = 0.75, outlier.size = 2.5,
+               outlier.shape = 19, outlier.colour = "grey30") +
+  geom_jitter(width = 0.07, size = 1.8, alpha = 0.5, color = "grey30") +
+  scale_fill_manual(values = c("Section A" = "#fd79a8", "Section B" = "#fdcb6e")) +
+  scale_y_continuous(breaks = seq(20, 100, 10)) +
+  labs(x = NULL, y = "Exam score (out of 100)",
+       caption = "Each dot = 1 student  |  Box = Q1 to Q3  |  Line = median") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Which section (A or B) appears to have **greater variability** in exam scores? Justify your answer using a feature of the boxplot.
+(b) (2 marks) **Estimate the median** exam score for both Section A and Section B. All reasonable estimated answers will be marked correct.
+(c) (2 marks) Do any of the boxplots show **outliers**? If outliers exist, state which section and estimate the value of the **most extreme outlier**. All reasonable estimated answers will be marked correct.
+(d) (1 mark) Both sections have approximately the same median. What does this suggest about comparing two groups using the **median alone**?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Variability** is shown by the height of the box (IQR) and the overall span of the whiskers.
+- Outliers appear as **dots beyond the whiskers**.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** **Section B** — its box (IQR) is taller and the whiskers extend further, indicating a wider spread of exam scores compared to Section A.
+
+**(b)** Both sections: median ≈ **73–75**. All reasonable estimates will be marked correct.
+
+**(c)** Yes — **Section B** has outliers; the most extreme low outlier is approximately **22–25**.
+
+**(d)** The **median alone is insufficient** — both sections have a similar median, but Section B has much greater variability. A complete comparison requires measures of both centre *and* spread.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 16</div>
+A researcher recorded the delivery times (in minutes) for a random sample of 80 orders from two restaurants near UTM: **Restaurant A** and **Restaurant B**.
+
+Side-by-side boxplots and histograms of the delivery times are shown below. **The box spans $Q_1$ to $Q_3$; the line inside is the median; whiskers extend to the most extreme non-outlier values; dots beyond the whiskers are outliers.**
+
+```{r ch3-q15-box, echo=FALSE, fig.height=3.2, fig.width=5, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(258)
+n14 <- 80
+rA14 <- pmax(pmin(round(rnorm(n14, 35, 7)), 56), 14)
+rB14 <- c(round(rlnorm(n14 - 2, log(25), 0.40)), 60, 73)
+df14 <- data.frame(
+  time       = c(rA14, rB14),
+  restaurant = factor(rep(c("Restaurant A", "Restaurant B"), each = n14))
+)
+ggplot(df14, aes(x = restaurant, y = time, fill = restaurant)) +
+  geom_boxplot(width = 0.4, alpha = 0.75, outlier.size = 2.5,
+               outlier.shape = 19, outlier.colour = "grey30") +
+  scale_fill_manual(values = c("Restaurant A" = "#5b9bd5", "Restaurant B" = "#ed7d31")) +
+  scale_y_continuous(breaks = seq(0, 80, 10)) +
+  labs(x = NULL, y = "Delivery time (minutes)",
+       caption = "Box = Q1 to Q3  |  Line = median  |  Dots = outliers") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+```{r ch3-q15-hist, echo=FALSE, fig.height=3.8, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
+ggplot(df14, aes(x = time, fill = restaurant)) +
+  geom_histogram(binwidth = 5, color = "white", alpha = 0.85) +
+  facet_wrap(~ restaurant, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = c("Restaurant A" = "#5b9bd5", "Restaurant B" = "#ed7d31")) +
+  scale_x_continuous(breaks = seq(0, 80, 10)) +
+  labs(x = "Delivery time (minutes)", y = "Frequency") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        strip.text = element_text(face = "bold", size = 11))
+```
+
+**(a)** Use the **boxplots** to answer the following.
+
+(i) (2 marks) Which restaurant (A or B) appears to have **greater variability** in delivery time? Justify your answer using a feature of the boxplot.
+
+(ii) (2 marks) **Estimate the median** delivery time for both Restaurant A and Restaurant B. All reasonable estimated answers will be marked correct.
+
+(iii) (2 marks) Do any of the boxplots show **outliers**? If outliers exist, state which restaurant has them and estimate the value of the **largest outlier**. All reasonable estimated answers will be marked correct.
+
+**(b)** Use the **histograms** to answer the following.
+
+(i) (2 marks) Describe the **shape** (skewness or symmetry) of the delivery time distribution for Restaurant A and for Restaurant B.
+
+(ii) (3 marks) Estimate the **proportion** of deliveries from each restaurant that were completed in **40 minutes or less**. All reasonable estimated answers will be marked correct.
+
+(iii) (2 marks) One of these restaurants is a sushi restaurant known for careful, consistent preparation; the other is a pizza restaurant that occasionally receives large rush orders. Based on the plots and your previous answers, which restaurant (A or B) is the **sushi restaurant**? Explain your reasoning.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Variability** in a boxplot is shown by the height of the box (IQR) and the whisker span.
+- **Skewness**: a longer tail to the right → right-skewed; roughly bell-shaped → symmetric.
+- For (b)(ii), count bars to the left of 40 and divide by the total count.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)(i)** **Restaurant B** — its box (IQR) is taller and whiskers span a wider range.
+
+**(a)(ii)** Restaurant A median ≈ **35 min**; Restaurant B median ≈ **25 min**.
+
+**(a)(iii)** Yes — **Restaurant B** has outlier dots above the upper whisker; the largest outlier is approximately **70–75 minutes**.
+
+**(b)(i)** Restaurant A is roughly **symmetric** (approximately bell-shaped); Restaurant B is **right-skewed** (most deliveries are fast but a long right tail extends toward 70+ minutes).
+
+**(b)(ii)** Restaurant A ≈ **75–80%** of deliveries ≤ 40 min; Restaurant B ≈ **85–90%** of deliveries ≤ 40 min.
+
+**(b)(iii)** **Restaurant A** is the sushi restaurant — its symmetric distribution reflects **consistent preparation times**, characteristic of careful sushi preparation. Restaurant B's right-skewed distribution with outliers is consistent with pizza delivery, where most orders are fast but large rush orders occasionally cause extreme delays.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 17</div>
+The histogram below shows the annual salaries (in thousands of dollars) of employees at a tech company.
+
+```{r ch3-q16-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+set.seed(15)
+salaries <- c(round(rlnorm(70, log(75), 0.35)), round(rlnorm(10, log(200), 0.25)))
+salaries <- pmin(salaries, 400)
+df_q15 <- data.frame(salary = salaries)
+ggplot(df_q15, aes(x = salary)) +
+  geom_histogram(binwidth = 25, fill = "#a29bfe", color = "white", boundary = 0) +
+  scale_x_continuous(breaks = seq(0, 400, 50)) +
+  labs(x = "Annual salary ($thousands)", y = "Frequency",
+       caption = "n = 80 employees  |  Bar width = $25,000") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
+
+(a) (2 marks) Describe the **shape** of this salary distribution. Identify the direction of skew and justify using features of the histogram.
+(b) (2 marks) Based on the shape, would you expect the **mean salary** to be greater than, less than, or approximately equal to the **median salary**? Explain.
+(c) (1 mark) A reporter states: *"The average salary at this company is \$95,000, so most employees earn around that amount."* Is this statement likely to be **misleading**? Explain why.
+(d) (2 marks) Which single measure — **mean** or **median** — would better represent a **typical** employee's salary in this company? Justify your answer.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- In a **right-skewed** distribution, a small number of very high values pull the **mean** above the **median**.
+- The "average" (mean) can be misleading when data are skewed because it does not reflect where most data points fall.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The distribution is **right-skewed** — most employees earn between \$50,000 and \$125,000 (the tall bars on the left), but a small number of high earners (possibly executives) create a long tail extending to the right toward \$300,000–\$400,000.
+
+**(b)** We would expect the **mean > median** — the high-earning outliers in the long right tail pull the mean upward, while the median (the middle value) is not affected as strongly.
+
+**(c)** Yes, this is likely **misleading**. If the distribution is right-skewed, most employees earn *less* than the mean. The mean is inflated by a small number of very high earners (executives), so it does not represent a "typical" employee's salary.
+
+**(d)** The **median** better represents a typical employee's salary — it is robust to the influence of high-earning outliers and accurately reflects where the middle of the salary distribution falls.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 18</div>
+For each situation below, choose the most appropriate graph: **bar chart**, **histogram**, or **boxplot**. Briefly explain your choice.
+
+*Recall: a **bar chart** displays counts or frequencies for the categories of a qualitative (categorical) variable — bar width has no numerical meaning. A **histogram** displays the distribution of a quantitative variable by grouping values into intervals.*
+
+(a) (1 mark) A professor wants to display the number of students enrolled in each program: Statistics, Computer Science, Biology, and Psychology.
+(b) (1 mark) A researcher wants to show the distribution of commute times for 200 students.
+(c) (2 marks) A teaching assistant wants to compare the distribution of test scores between two tutorial sections.
+(d) (1 mark) A student wants to display the frequency of different eye colours in a class.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Think about whether the variable is **categorical** or **quantitative**.
+- When the goal is to **compare distributions between groups**, which graph type makes this easiest?
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** **Bar chart** — program is a categorical variable, and a bar chart displays the count or frequency for each category.
+
+**(b)** **Histogram** — commute time is a quantitative variable; a histogram shows the shape, centre, and spread of its distribution.
+
+**(c)** **Boxplot** — side-by-side boxplots are ideal for comparing the centre, spread, and outliers of a quantitative variable across two or more groups.
+
+**(d)** **Bar chart** — eye colour is categorical with no natural ordering, so a bar chart is appropriate.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 19</div>
+The following data show the number of cups of coffee consumed per week by 10 UTM students:
+
+$$2,\ 3,\ 1,\ 5,\ 4,\ 3,\ 6,\ 2,\ 4,\ 5$$
+
+(a) Write R code using `mean()` to compute the sample mean $\bar{x}$.
+(b) Verify your answer by computing `sum(coffee) / length(coffee)`. Do the two results agree?
+(c) Suppose one student actually drinks **20** cups per week, not 2. Create a corrected vector and recompute the mean. How much does $\bar{x}$ change?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+# (a) Compute the sample mean
+# (b) Verify using the formula sum / length
+# (c) Replace the first 2 with 20 and recompute
+coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `mean(x)` computes $\bar{x} = \dfrac{\displaystyle\sum_{i=1}^{n} x_i}{n}$.
+- `sum(x)` adds all values; `length(x)` counts how many there are.
+- Run `mean(coffee)` and `mean(coffee_new)` on separate lines to compare both means.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+
+# (a) Sample mean
+mean(coffee)
+# [1] 3.5
+
+# (b) Verify using formula
+sum(coffee) / length(coffee)
+# [1] 3.5
+
+# (c) Replace first 2 with 20 and recompute
+coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+mean(coffee_new)
+# [1] 5.3
+```
+
+**(a)** `mean(coffee)` $= 35/10 = \mathbf{3.5}$ cups per week.
+
+**(b)** `sum(coffee) / length(coffee)` $= 35/10 = 3.5$. ✓ Both give the same result.
+
+**(c)** `mean(coffee_new)` $= 53/10 = \mathbf{5.3}$. The mean increased by **1.8** cups (from 3.5 to 5.3) because of a single extreme value. This illustrates that the mean is sensitive to outliers.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 20</div>
+Use the same coffee data from Question 19:
+
+$$2,\ 3,\ 1,\ 5,\ 4,\ 3,\ 6,\ 2,\ 4,\ 5$$
+
+(a) Write R code using `median()` to find the sample median.
+(b) Use `sort(coffee)` to list the values in ascending order. For $n = 10$ (even), which two values does R average to find the median? Verify this matches `median()`.
+(c) Replace the first 2 with 20 to make `coffee_new`. Compare `mean()` and `median()` before and after. Which measure changes less?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">coffee     <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+# (a) Median of original data
+# (b) Sort to see the order
+# (c) Compare mean and median — before and after the outlier</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For $n = 10$ (even), the median $=$ average of the 5th and 6th sorted values.
+- `sort(x)` returns values from smallest to largest — count along to find positions 5 and 6.
+- Run `mean(coffee)` and `median(coffee)` on separate lines to compare both measures.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+coffee     <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+coffee_new <- c(20, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+
+# (a) Median of original data
+median(coffee)
+# [1] 3.5
+
+# (b) Sort to see the order
+sort(coffee)
+# [1] 1 2 2 3 3 4 4 5 5 6
+
+# (c) Compare mean and median before and after outlier
+mean(coffee)        # [1] 3.5
+median(coffee)      # [1] 3.5
+mean(coffee_new)    # [1] 5.3
+median(coffee_new)  # [1] 4
+```
+
+**(a)** `median(coffee)` $= \mathbf{3.5}$
+
+**(b)** Sorted: $1, 2, 2, 3, \mathbf{3, 4}, 4, 5, 5, 6$. The 5th value is 3 and the 6th is 4, so median $= (3 + 4)/2 = 3.5$.
+
+**(c)**
+
+| | Original | With outlier 20 | Change |
+|---|---|---|---|
+| Mean | 3.5 | 5.3 | +1.8 |
+| Median | 3.5 | 4.0 | +0.5 |
+
+The median changes much less (+0.5 vs +1.8). The median is **robust** to extreme values because it depends only on the rank of observations, not their magnitude.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 21</div>
+Use the same coffee data from Questions 19–20:
+
+$$2,\ 3,\ 1,\ 5,\ 4,\ 3,\ 6,\ 2,\ 4,\ 5$$
+
+(a) Run `summary(coffee)`. It returns six values: Min, 1st Qu. ($Q_1$), Median, Mean, 3rd Qu. ($Q_3$), and Max. Record each value and compare the Mean and Median — are they the same?
+(b) Compute `IQR(coffee)`. Using $Q_1$ and $Q_3$ from part (a), calculate the lower cutoff $Q_1 - 1.5\times\text{IQR}$ and upper cutoff $Q_3 + 1.5\times\text{IQR}$.
+(c) Would the outlier value 20 (from Q19/Q20) be flagged by the IQR rule?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+# (a) Six-number summary
+# (b) IQR and outlier cutoffs
+iqr <- IQR(coffee)
+# (c) Is 20 an outlier? Compare to the upper cutoff</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `summary(x)` returns Min, 1st Qu. ($Q_1$), Median, Mean, 3rd Qu. ($Q_3$), and Max — six numbers in total.
+- `IQR(x)` directly returns $Q_3 - Q_1$.
+- Lower cutoff $= Q_1 - 1.5\times\text{IQR}$; upper cutoff $= Q_3 + 1.5\times\text{IQR}$. Read $Q_1$ and $Q_3$ from the `summary()` output.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+coffee <- c(2, 3, 1, 5, 4, 3, 6, 2, 4, 5)
+
+# (a) Six-number summary
+summary(coffee)
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+#    1.00    2.25    3.50    3.50    4.75    6.00
+
+# (b) IQR and outlier cutoffs
+iqr <- IQR(coffee)
+iqr              # [1] 2.5
+2.25 - 1.5 * iqr   # lower cutoff: -1.5
+4.75 + 1.5 * iqr   # upper cutoff: 8.5
+
+# (c) Is 20 an outlier?
+20 > 4.75 + 1.5 * iqr   # [1] TRUE
+```
+
+**(a)** `summary(coffee)` gives: Min = 1, $Q_1$ = 2.25, Median = 3.5, **Mean = 3.5**, $Q_3$ = 4.75, Max = 6. The mean and median are equal here, suggesting a roughly symmetric distribution.
+
+**(b)** IQR $= 4.75 - 2.25 = 2.5$.
+$$\text{Lower cutoff} = 2.25 - 1.5(2.5) = -1.5 \qquad \text{Upper cutoff} = 4.75 + 1.5(2.5) = 8.5$$
+
+**(c)** Since $20 > 8.5$, the value 20 **is** flagged as an outlier.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 22</div>
+Two groups of students took the same quiz (out of 100). Their scores are:
+
+- **Group A:** 78, 79, 80, 80, 81, 82, 80
+- **Group B:** 60, 70, 80, 80, 90, 100, 80
+
+(a) Write R code using `mean()`, `var()`, and `sd()` to compute the sample mean, sample variance $s^2$, and sample standard deviation $s$ for each group.
+(b) Both groups have the same mean. What does the difference in standard deviations tell you about the two distributions?
+(c) Add 5 to every score in Group A: `group_a + 5`. Recompute `var()` and `sd()`. Does the result change? Explain why or why not.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="5">group_a <- c(78, 79, 80, 80, 81, 82, 80)
+group_b <- c(60, 70, 80, 80, 90, 100, 80)
+# (a) Mean, variance, SD for each group
+# (c) Add 5 to group_a — does variance change?</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `mean(x)`, `var(x)`, and `sd(x)` each return a single number — run them on separate lines.
+- `var(x)` computes $s^2 = \dfrac{\sum(x_i - \bar{x})^2}{n-1}$; `sd(x)` $= \sqrt{s^2}$.
+- When you add a constant $c$ to every value, both each $x_i$ and $\bar{x}$ shift by $c$, so every deviation $(x_i - \bar{x})$ is unchanged — and therefore $s^2$ and $s$ are unchanged.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+group_a <- c(78, 79, 80, 80, 81, 82, 80)
+group_b <- c(60, 70, 80, 80, 90, 100, 80)
+
+# (a) Mean, variance, SD for each group
+mean(group_a)   # [1] 80
+var(group_a)    # [1] 1.666667
+sd(group_a)     # [1] 1.290994
+
+mean(group_b)   # [1] 80
+var(group_b)    # [1] 166.6667
+sd(group_b)     # [1] 12.90994
+
+# (c) Add 5 to group_a — does variance change?
+var(group_a + 5)   # [1] 1.666667  (unchanged)
+sd(group_a + 5)    # [1] 1.290994  (unchanged)
+```
+
+**(a)**
+
+| | Mean | $s^2$ | $s$ |
+|---|---|---|---|
+| Group A | 80 | $\approx 1.667$ | $\approx 1.291$ |
+| Group B | 80 | $\approx 166.7$ | $\approx 12.91$ |
+
+**(b)** Both groups have mean $= 80$, yet Group B's standard deviation is **10 times larger** than Group A's. The mean alone completely hides this difference in spread — the standard deviation is essential to describe how variable the scores are.
+
+**(c)** `var(group_a + 5)` $\approx 1.667$ and `sd(group_a + 5)` $\approx 1.291$ — **unchanged**. Adding a constant shifts every score and the mean by the same amount, so every deviation $(x_i - \bar{x})$ stays the same.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 23</div>
+The following data show exam scores for 20 students:
+
+$$40,\ 61,\ 65,\ 68,\ 70,\ 72,\ 74,\ 75,\ 76,\ 78,\ 79,\ 80,\ 82,\ 84,\ 85,\ 87,\ 88,\ 90,\ 92,\ 97$$
+
+(a) Create a **histogram** using `hist(score)`. Describe the shape of the distribution. Is it symmetric, left-skewed, or right-skewed? Does any value look like an outlier?
+(b) Create a **boxplot** using `boxplot(score)`. From the plot, identify the approximate median. Is there an outlier dot? Does this match what you saw in the histogram?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">score <- c(40, 61, 65, 68, 70, 72, 74, 75,
+           76, 78, 79, 80, 82, 84, 85, 87,
+           88, 90, 92, 97)
+# (a) Create a histogram
+# (b) Create a boxplot</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `hist(x)` draws a histogram; `hist(x, main = "...", xlab = "...")` adds a title and axis label.
+- `boxplot(x)` draws a boxplot; the line inside the box is the median, and dots beyond the whiskers are outliers.
+- You can run both commands in the same cell — R will display both plots.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+score <- c(40, 61, 65, 68, 70, 72, 74, 75,
+           76, 78, 79, 80, 82, 84, 85, 87,
+           88, 90, 92, 97)
+
+# (a) Create a histogram
+hist(score, main = "Distribution of Exam Scores",
+     xlab = "Score", col = "lightblue")
+
+# (b) Create a boxplot
+boxplot(score, main = "Boxplot of Exam Scores",
+        ylab = "Score", col = "lightblue")
+```
+
+**(a)** The histogram is roughly **bell-shaped and symmetric** for scores between 60 and 97. The score of **40** appears as an isolated bar far to the left — the distribution is mildly **left-skewed** with one potential low outlier.
+
+**(b)** The **median** (line inside the box) is approximately **79**. The box spans roughly $Q_1 \approx 71$ to $Q_3 \approx 86$. The value **40** appears as an isolated dot below the lower whisker — it is flagged as an **outlier** by the IQR rule. This is consistent with what the histogram showed.
+</div>
+</details>

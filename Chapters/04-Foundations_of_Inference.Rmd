@@ -1,0 +1,1116 @@
+# Foundations of Inference
+
+The aim of statistical inference is to produce estimators of the population parameters
+based on a smaller sample and to quantify the accuracy of these estimators in terms of a
+probability statement. In other words we are interested in the values of unknown parameters
+for a population thus we collect data from a sample and calculate statistics to estimate the
+parameters of interest. We then quantify our confidence that the statistic is representative
+of the parameter.
+
+Statistical inference is concerned primarily with understanding the
+quality of parameter estimates. For example, a classic inferential
+question is, "How sure are we that the estimated mean, $\bar{x}$, is
+near the true population mean, $\mu$?" While the equations and details
+change depending on the setting, the foundations for inference are the
+same throughout all of statistics. 
+
+## Some Important Statistical Distributions {#sec:inference}
+
+### Introduction to the Normal Distribution {#sec:IntroNormalDist}
+
+In probability theory and statistics, the normal distribution is one of the most
+important distribution used to model many populations and processes which occur in reality.
+
+::: {.definition name="Normal distribution" #NormalDist}
+Let $X$ be a random variable with mean $-\infty < \mu < +\infty$ and variance $\sigma^2 > 0$.
+We say that $X$ folowes a normal distribution if the probability density function of $X$ is:
+$$f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} \cdot e^{-\displaystyle\frac{(x - \mu)^2}{2\sigma^2}}, \text{ for $-\infty < x < \infty$.}$$
+:::
+
+::: {.remark}
+The normal distribution is also called Gaussian distribution since it was 
+discovered Johann Carl Friedrich Gauss in 1809. 
+Gauss is one of the most influential and important mathematicians in history.
+:::
+
+The normal distribution is symmetric about its mean $\mu$ and has a bell-shaped curve.
+It is completely characterized by two parameters which are the the mean $\mu$ and the standard deviation $\sigma$.
+Some examples are shown in Figure \@ref(fig:NormalExample).
+
+```{r NormalExample, fig.cap="Some examples of normal distrubution curves with different means and variances", echo=FALSE, fig.align='center', warning=FALSE}
+library(ggplot2)
+library(grid)
+
+# 1) Define your parameters
+mu1  <- -2; sd1  <- 0.5; col1 <- "#00BA38"; lab1 <- "N(-2, 0.5²)"
+mu2  <-  0; sd2  <- 1.0; col2 <- "#F8766D"; lab2 <- "N(0, 1²)"
+mu3  <-  3; sd3  <- 1.5; col3 <- "#619CFF"; lab3 <- "N(3, 1.5²)"
+
+# 2) Base plot with no default axis lines or grid
+p <- ggplot(data.frame(x = c(-6, 10)), aes(x = x)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid      = element_blank(),
+    axis.line       = element_blank(),
+    axis.ticks      = element_blank(),
+    axis.text       = element_blank(),
+    axis.title      = element_text(face = "bold")
+  ) +
+  labs(x = "x", y = "Density")
+
+# 3) Add arrow‐tipped axes via geom_segment
+p <- p +
+  # x-axis from x=-6→10
+  geom_segment(
+    aes(x = -6, y = 0, xend = 10, yend = 0),
+    arrow = arrow(length = unit(0.2, "cm")), inherit.aes = FALSE
+  ) +
+  # y-axis from y=0→max density (~0.8)
+  geom_segment(
+    aes(x = -6, y = 0, xend = -6, yend = 0.85),
+    arrow = arrow(length = unit(0.2, "cm")), inherit.aes = FALSE
+  )
+
+# 4) Shade area and draw first curve + label
+p <- p +
+  stat_function(
+    fun       = dnorm,
+    args      = list(mean = mu1, sd = sd1),
+    geom      = "area",
+    fill      = col1,
+    alpha     = 0.61,
+    n         = 801,
+    inherit.aes = TRUE
+  ) +
+  stat_function(
+    fun       = dnorm,
+    args      = list(mean = mu1, sd = sd1),
+    colour    = col1,
+    size      = 1.2,
+    n         = 801,
+    inherit.aes = TRUE
+  ) +
+  annotate(
+    "text",
+    x        = mu1,
+    y        = dnorm(mu1, mu1, sd1) * 1.05,
+    label    = lab1,
+    colour   = col1,
+    fontface = "bold",
+    hjust    = 0.5
+  )
+
+# 5) Shade area and draw second curve + label
+p <- p +
+  stat_function(
+    fun       = dnorm,
+    args      = list(mean = mu2, sd = sd2),
+    geom      = "area",
+    fill      = col2,
+    alpha     = 0.61,
+    n         = 801
+  ) +
+  stat_function(
+    fun       = dnorm,
+    args      = list(mean = mu2, sd = sd2),
+    colour    = col2,
+    size      = 1.2,
+    n         = 801
+  ) +
+  annotate(
+    "text",
+    x        = mu2,
+    y        = dnorm(mu2, mu2, sd2) * 1.05,
+    label    = lab2,
+    colour   = col2,
+    fontface = "bold",
+    hjust    = 0.50,
+    vjust    = -0.15
+  )
+
+# 6) Shade area and draw third curve + label
+p <- p +
+  stat_function(
+    fun       = dnorm,
+    args      = list(mean = mu3, sd = sd3),
+    geom      = "area",
+    fill      = col3,
+    alpha     = 0.61,
+    n         = 801
+  ) +
+  stat_function(
+    fun       = dnorm,
+    args      = list(mean = mu3, sd = sd3),
+    colour    = col3,
+    size      = 1.2,
+    n         = 801
+  ) +
+  annotate(
+    "text",
+    x        = mu3,
+    y        = dnorm(mu3, mu3, sd3) * 1.05,
+    label    = lab3,
+    colour   = col3,
+    fontface = "bold",
+    hjust    = 0.5,
+    vjust    = -0.25
+  )
+
+# 7) Render the final plot
+p
+```
+
+A special case of normal distribution is standard normal distribution which is explained in Definition \@ref(def:StandardNormalDist).
+
+::: {.definition name="Standard normal distribution" #StandardNormalDist}
+Let $Z \sim N( \mu = 0, \sigma^2 = 1)$, then $Z$ has
+probability density function as:
+$$f(y) = \frac{1}{\sqrt{2\pi}} \cdot e^{-\displaystyle\frac{z^2}{2}}.$$
+which is called the standard normal distribution.
+:::
+
+::: {.remark}
+Standard normal random variables are often denoted by $Z$.
+:::
+
+
+A useful property of the normal distribution is that it is symmetric about its mean $\mu$.
+
+::: {.remark}
+The Empirical Rule informs us that for any symmetric (bell-shaped) curve, let $\mu$ be its mean and
+$\sigma$ be its standard deviation, the following probability set
+function is true:
+
+- $1.$ $P(\mu - \sigma < X < \mu + \sigma) = 68.27\%;$
+
+- $2.$ $P(\mu - 2\sigma < X < \mu + 2\sigma) = 95.45\%;$
+
+- $3.$ $P(\mu - 3\sigma < X < \mu + 3\sigma) = 99.73\%.$
+:::
+
+
+
+
+<!--
+```{r EmpiricalRuleExample, fig.cap="An illustration of the empirical rule.", echo=FALSE, fig.align='center', warning=FALSE}
+library(plotly)
+library(plotly)
+
+# Standard normal distribution
+x <- seq(-4, 4, length.out = 1000)
+y <- dnorm(x)
+
+# Shaded segments under curve
+segments <- list(
+  list(start = -4, end = -3, color = "#F066EA"),
+  list(start = -3, end = -2, color = "#7997FF"),
+  list(start = -2, end = -1, color = "#00B0F6"),
+  list(start = -1, end = 1,  color = "#00C0B8"),
+  list(start = 1,  end = 2,  color = "#00B0F6"),
+  list(start = 2,  end = 3,  color = "#7997FF"),
+  list(start = 3,  end = 4,  color = "#F066EA")
+)
+
+# Base plot
+p <- plot_ly(showlegend = FALSE) %>%
+  add_trace(
+    x = x,
+    y = y,
+    type = "scatter",
+    mode = "lines",
+    line = list(color = "black")
+  )
+
+# Add filled segments
+for (s in segments) {
+  xs <- seq(s$start, s$end, length.out = 200)
+  ys <- dnorm(xs)
+  p <- add_trace(
+    p,
+    x = c(xs, rev(xs)),
+    y = c(ys, rep(0, length(ys))),
+    type = "scatter",
+    mode = "none",
+    fill = "toself",
+    fillcolor = s$color,
+    hoverinfo = "skip"
+  )
+}
+
+# Vertical dashed lines ending at the curve
+segment_bounds <- c(-3, -2, -1, 0, 1, 2, 3)
+dashed_lines <- lapply(segment_bounds, function(xpos) {
+  list(
+    type = "line",
+    x0 = xpos, x1 = xpos,
+    y0 = 0, y1 = dnorm(xpos),
+    xref = "x", yref = "y",
+    line = list(color = "black", dash = "dash", width = 1)
+  )
+})
+
+# Annotations
+annotations <- list(
+  list(x = -2.35, y = 0.01, text = "0.15%", font = list(size = 12, color = "black"), showarrow = FALSE),
+  list(x = -1.5, y = 0.05, text = "13.5%", font = list(size = 12, color = "black"), showarrow = FALSE),
+  list(x =  0,   y = 0.1, text = "<b>68%</b>", font = list(size = 16, color = "black"), showarrow = FALSE),
+  list(x =  1.5, y = 0.05, text = "13.5%", font = list(size = 12, color = "black"), showarrow = FALSE),
+  list(x =  2.35, y = 0.01, text = "0.15%", font = list(size = 12, color = "black"), showarrow = FALSE),
+  list(x = -3, y = -0.01, text = "-3σ", font = list(size = 12), showarrow = FALSE),
+  list(x = -2, y = -0.01, text = "-2σ", font = list(size = 12), showarrow = FALSE),
+  list(x = -1, y = -0.01, text = "-1σ", font = list(size = 12), showarrow = FALSE),
+  list(x =  0, y = -0.01, text = "0", font = list(size = 12), showarrow = FALSE),
+  list(x =  1, y = -0.01, text = "1σ", font = list(size = 12), showarrow = FALSE),
+  list(x =  2, y = -0.01, text = "2σ", font = list(size = 12), showarrow = FALSE),
+  list(x =  3, y = -0.01, text = "3σ", font = list(size = 12), showarrow = FALSE),
+  list(x = 0, y = max(y) + 0.01, text = "f(x)", font = list(size = 14), showarrow = FALSE)
+)
+
+# Final layout with lowered title
+p <- layout(
+  p,
+  title = list(
+    text = "Empirical Rule: 68%–95%–99.7%",
+    y = 0.90
+  ),
+  xaxis = list(
+    title = NULL,
+    showticklabels = FALSE,
+    showgrid = FALSE,
+    zeroline = FALSE
+  ),
+  yaxis = list(
+    title = NULL,
+    showticklabels = FALSE,
+    showgrid = FALSE,
+    zeroline = FALSE,
+    range = c(-0.02, max(y) + 0.10)
+  ),
+  shapes = dashed_lines,
+  annotations = annotations
+)
+
+# Interactivity options
+config(p, displayModeBar = TRUE)
+```
+-->
+
+
+The interactive application below illustrates the empirical rule.
+
+<h3 style="text-align: center; color: #FF2C21;">Fix appearance of shiny app</h3>
+
+<center>
+```{r HistEmpRuleApp, echo=FALSE, out.width='100%'}
+knitr::include_app("https://nishan-mudalige.shinyapps.io/Empirical_Rule_Shiny_App/", height = "750")
+```
+</center>
+
+
+
+
+::: {.remark}
+A consequence of the Empirical Rule from \@ref(sec:IntroNormalDist) is that for a sample drawn from a population that is 
+approximately normal, we can roughly estimate the standard deviation using the _crude_ approximate :
+
+$$\hat{\sigma} \approx \frac{\text{Sample Range}}{4}.$$
+:::
+
+
+
+### Introduction to the Chi-Square distribution
+
+Before we introduce the chi-Square square distribution, we recall the gamma distribution.
+
+::: {.definition name="Gamma distribution" #GammaFunction}
+A random variable \(X\) is said to follow a Gamma distribution with shape parameter \(\alpha > 0\) and scale parameter \(\beta > 0\) (denoted \(X \sim \mathrm{Gamma}(\alpha,\beta)\)) if its probability density function is
+\[
+f_{X}(x; \alpha, \beta)
+\;=\;
+\begin{cases}
+\dfrac{1}{\Gamma(\alpha)\,\beta^{\alpha}}\,x^{\alpha - 1}\,e^{-x/\beta}, 
+& x > 0, \\[1em]
+0, 
+& \text{otherwise},
+\end{cases}
+\]
+where 
+\(\Gamma(\alpha) = \displaystyle\int_{0}^{\infty} t^{\alpha - 1} e^{-t}\,dt\)
+is the Gamma function.
+:::
+
+
+The Chi-square random variable follows a Chi-square distribution with $k$ degrees of freedom if it is defined as the sum of the squares of $k$ independent standard normal random variables.
+
+::: {.definition name="Chi-square random variable" #ChiSquareRV}
+A chi-square random variable with \(k\) degrees of freedom is defined as the sum of the squares of \(k\) independent standard normal random variables.  Formally, if
+\[
+Z_{1}, Z_{2}, \dots, Z_{k} \;\overset{\mathrm{iid}}{\sim}\; N(0,1),
+\]
+then
+\[
+X \;=\;\sum_{i=1}^{k} Z_{i}^{2}
+\]
+follows a chi-square distribution with \(k\) degrees of freedom, denoted $X \sim \chi^{2}_{k}$ and has the probability density function 
+\[
+f_{X}(x; k)
+\;=\;
+\begin{cases}
+\dfrac{1}{2^{\,k/2}\,\Gamma\!\bigl(\tfrac{k}{2}\bigr)}\,x^{\,\tfrac{k}{2}-1}\,e^{-x/2}, 
+& x > 0, \\[1em]
+0, 
+& \text{otherwise}.
+\end{cases}
+\]
+Where \(\Gamma(\cdot)\) is the Gamma function in Definition \@ref(def:GammaFunction).
+:::
+
+The definition of a chi-square random variable can be proven using moment generating functions.
+
+::: {.remark}
+The Chi-square distribution is also a special case of the gamma distribution,
+however we will not be covering the gamma distribution in this course.
+:::
+
+
+The shape of the chi-square distribution is determined by its degrees of freedom.
+Some examples of chi-square distributions are shown in Figure \@ref(fig:ChiSqExample).
+
+```{r ChiSqExample, fig.cap="Some examples of chi-square distrubution curves with different degrees of freedom", echo=FALSE, fig.align='center', warning=FALSE}
+# 1) Define your parameters for chi-square dfs
+df1   <- 2; df2   <- 5; df3   <- 10
+col1  <- "#00BA38"; lab1 <- expression(chi[2]^2)
+col2  <- "#F8766D"; lab2 <- expression(chi[5]^2)
+col3  <- "#619CFF"; lab3 <- expression(chi[10]^2)
+
+# 2) Base plot with no default grid or axes
+p <- ggplot(data.frame(x = c(0, 30)), aes(x = x)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid   = element_blank(),
+    axis.line    = element_blank(),
+    axis.ticks   = element_blank(),
+    axis.text    = element_blank(),
+    axis.title   = element_text(face = "bold")
+  ) +
+  labs(x = expression(x), y = "Density") +
+  # arrow-tipped axes
+  geom_segment(aes(x = 0, y = 0, xend = 30, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE) +
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = 0.55),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE)
+
+# 3) Shade & draw χ²(df=2)
+p <- p +
+  stat_function(fun = dchisq, args = list(df = df1),
+                geom = "area", fill = col1, alpha = 0.61, n = 801) +
+  stat_function(fun = dchisq, args = list(df = df1),
+                colour = col1, size = 1.2, n = 801) +
+  annotate("text",
+           x       = df1,
+           y       = dchisq(df1, df1) * 1.05,
+           label   = lab1,
+           parse   = TRUE,
+           colour  = col1,
+           fontface= "bold",
+           vjust   = -0.75,
+           hjust   = -0.5)
+
+# 4) Shade & draw χ²(df=5)
+p <- p +
+  stat_function(fun = dchisq, args = list(df = df2),
+                geom = "area", fill = col2, alpha = 0.61, n = 801) +
+  stat_function(fun = dchisq, args = list(df = df2),
+                colour = col2, size = 1.2, n = 801) +
+  annotate("text",
+           x       = df2,
+           y       = dchisq(df2, df2) * 1.05,
+           label   = lab2,
+           parse   = TRUE,
+           colour  = col2,
+           fontface= "bold",
+           vjust   = -0.75,
+           hjust   = 0.5)
+
+# 5) Shade & draw χ²(df=10)
+p <- p +
+  stat_function(fun = dchisq, args = list(df = df3),
+                geom = "area", fill = col3, alpha = 0.61, n = 801) +
+  stat_function(fun = dchisq, args = list(df = df3),
+                colour = col3, size = 1.2, n = 801) +
+  annotate("text",
+           x       = df3,
+           y       = dchisq(df3, df3) * 1.05,
+           label   = lab3,
+           parse   = TRUE,
+           colour  = col3,
+           fontface= "bold",
+           vjust   = -0.5,
+           hjust   = 0.5)
+
+# 6) Render the plot
+p
+```
+
+### Introduction to the t-Distribution
+
+::: {.definition name="Student’s \(t\) Distribution" #TDist}
+A **Student’s \(t\) random variable** with \(\nu\) degrees of freedom is defined as the ratio of a standard normal variate and the square root of a scaled chi-square variate.  Formally, if
+\[
+Z \;\overset{\mathrm{iid}}{\sim}\; N(0,1)
+\quad\text{and}\quad
+U \;\overset{\mathrm{iid}}{\sim}\; \chi^{2}_{\nu}
+\]
+are independent, then
+\[
+T \;=\;\frac{Z}{\sqrt{\,U / \nu\,}}
+\]
+follows a Student’s \(t\) distribution with \(\nu\) degrees of freedom, denoted
+\[
+T \sim t_{\nu},
+\]
+and has the probability density function
+\[
+f_{T}(t; \nu)
+\;=\;
+\frac{\Gamma\!\bigl(\tfrac{\nu+1}{2}\bigr)}{\sqrt{\pi\,\nu}\,\Gamma\!\bigl(\tfrac{\nu}{2}\bigr)}
+\Bigl(1 + \tfrac{t^{2}}{\nu}\Bigr)^{-\tfrac{\nu+1}{2}},
+\quad
+-\infty < t < \infty.
+\]
+Here \(\Gamma(\cdot)\) is the Gamma function as in Definition \@ref(def:GammaFunction).
+:::
+
+The t-distribution resembles the normal distribution but with heavier tails.
+
+
+```{r fig.cap="Comparison of the standard normal distribution and t-distributions with 2 and 9 degrees of freedom", echo=FALSE, fig.align='center', warning=FALSE, message=FALSE}
+library(ggplot2)
+library(dplyr)
+
+# Generate x values and compute densities
+# Generate x values
+x_vals <- seq(-4, 4, length.out = 300)
+
+# Create data frame for all distributions
+df <- tibble(
+  x = rep(x_vals, 3),  # Repeat x_vals for each distribution
+  y = c(dnorm(x_vals), dt(x_vals, df = 2), dt(x_vals, df = 9)),  # All y values
+  dist = factor(rep(c("Standard Normal", "t(2)", "t(9)"), each = length(x_vals)),
+                levels = c("Standard Normal", "t(2)", "t(9)"))
+)
+
+
+
+# Create the plot
+ggplot(df, aes(x = x, y = y, color = dist, linetype = dist)) +
+  geom_line(size = 1.2) +
+  scale_color_manual(values = c("#F8766D", "#00BA38", "#619CFF")) +
+
+  scale_linetype_manual(values = c("solid", "dashed", "dashed")) +
+  labs(
+    x = "t",
+    y = "Density"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.title = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+
+<!--
+```{r t-densities, echo=FALSE, fig.align='center', fig.cap='The $t-$Distributions at different degrees of freedom.', out.width='90%', warning=FALSE}
+library(ggplot2)
+library(grid)   # for unit()
+
+## 1) Degrees of freedom, colours, labels ------------------------------------
+df1  <-  2;  col1 <- "#00BA38"; lab1 <- expression(t[2])
+df2  <-  5;  col2 <- "#F8766D"; lab2 <- expression(t[5])
+df3  <- 10;  col3 <- "#619CFF"; lab3 <- expression(t[10])
+
+## 2) Base plot (no default grid or axes) ------------------------------------
+p <- ggplot(data.frame(x = c(-6,  6)), aes(x = x)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid   = element_blank(),
+    axis.line    = element_blank(),
+    axis.ticks   = element_blank(),
+    axis.text    = element_blank(),
+    axis.title   = element_text(face = "bold")
+  ) +
+  labs(x = expression(x), y = "Density") +
+  # arrow-tipped axes
+  geom_segment(aes(x = -6, y = 0, xend =  6, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE) +
+  geom_segment(aes(x =  0, y = 0, xend =  0, yend = 0.40),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE)
+
+## 3) Shade & draw t(df = 2) --------------------------------------------------
+p <- p +
+  stat_function(fun = dt, args = list(df = df1),
+                geom = "area", fill = col1, alpha = 0.61, n = 801) +
+  stat_function(fun = dt, args = list(df = df1),
+                colour = col1, size = 1.2, n = 801) +
+  annotate("text",
+           x       = 0,
+           y       = dt(0, df1) * 1.05,
+           label   = lab1,      # t[2]
+           parse   = TRUE,
+           colour  = col1,
+           fontface = "bold",
+           hjust   = 0.5) +
+  annotate("text",
+           x       = 2.5,       # a little to the right of the curve
+           y       = dt(2.5, df1),
+           label   = "df = 2",
+           colour  = col1,
+           fontface = "bold",
+           hjust   = 0)         # left-aligned for readability
+
+## 4) Shade & draw t(df = 5) --------------------------------------------------
+p <- p +
+  stat_function(fun = dt, args = list(df = df2),
+                geom = "area", fill = col2, alpha = 0.34, n = 801) +
+  stat_function(fun = dt, args = list(df = df2),
+                colour = col2, size = 1.2, n = 801) +
+  annotate("text",
+           x       = 0,
+           y       = dt(0, df2) * 1.05,
+           label   = lab2,      # t[5]
+           parse   = TRUE,
+           colour  = col2,
+           fontface = "bold",
+           hjust   = 0.5,
+           vjust   = -0.35) +
+  annotate("text",
+           x       = 3,
+           y       = dt(3, df2),
+           label   = "df = 5",
+           colour  = col2,
+           fontface = "bold",
+           hjust   = 0)
+
+## 5) Shade & draw t(df = 10) -------------------------------------------------
+p <- p +
+  stat_function(fun = dt, args = list(df = df3),
+                geom = "area", fill = col3, alpha = 0.25, n = 801) +
+  stat_function(fun = dt, args = list(df = df3),
+                colour = col3, size = 1.2, n = 801) +
+  annotate("text",
+           x       = 0,
+           y       = dt(0, df3) * 1.05,
+           label   = lab3,      # t[10]
+           parse   = TRUE,
+           colour  = col3,
+           fontface = "bold",
+           hjust   = 0.5,
+           vjust   = -0.70) +
+  annotate("text",
+           x       = 3.5,
+           y       = dt(3.5, df3),
+           label   = "df = 10",
+           colour  = col3,
+           fontface = "bold",
+           hjust   = 0)
+
+## 6) Render the combined plot -----------------------------------------------
+print(p)
+```
+-->
+
+
+### Introduction to the F-Distribution
+
+::: {.definition name="Beta function" #BetaFunction}
+The **Beta function**, also called the Euler integral of the first kind, is defined for complex numbers \(\;z_{1}, z_{2}\) with \(\Re(z_{1}), \Re(z_{2})>0\) by the integral
+$$
+B(z_{1}, z_{2})
+=
+\int_{0}^{1} t^{\,z_{1}-1}\,(1 - t)^{\,z_{2}-1}\,\mathrm{d}t.
+$$
+
+<!-- It is symmetric in its arguments, i.e. -->
+<!-- $$ -->
+<!-- B(z_{1}, z_{2}) = B(z_{2}, z_{1}), -->
+<!-- $$ -->
+<!-- and satisfies the relationship with the Gamma function: -->
+<!-- $$ -->
+<!-- B(z_{1}, z_{2}) -->
+<!-- = -->
+<!-- \frac{\Gamma(z_{1})\,\Gamma(z_{2})}{\Gamma(z_{1} + z_{2})}. -->
+<!-- $$ -->
+:::
+
+
+::: {.definition name="F random variable" #dist}
+An \(F\) random variable with \(\nu_{1}\) and \(\nu_{2}\) degrees of freedom is defined as the ratio of two independent chi-square variates, each divided by its degrees of freedom.  Formally, if  
+$$
+U \;\overset{\mathrm{iid}}{\sim}\;\chi^{2}_{\nu_{1}}
+\quad\text{and}\quad
+V \;\overset{\mathrm{iid}}{\sim}\;\chi^{2}_{\nu_{2}}
+$$
+are independent, then
+$$
+F \;=\;\frac{\,U / \nu_{1}\,}{\,V / \nu_{2}\,}
+$$
+follows an \(F\) distribution with \(\nu_{1}\) and \(\nu_{2}\) degrees of freedom, denoted
+$$
+F \sim F_{\nu_{1},\nu_{2}},
+$$
+and has probability density function
+$$
+f_{F}(x; \nu_{1}, \nu_{2})
+=
+\begin{cases}
+\displaystyle
+\frac{\bigl(\tfrac{\nu_{1}}{\nu_{2}}\bigr)^{\!\nu_{1}/2}
+      \,x^{\,\tfrac{\nu_{1}}{2}-1}}
+     {B\!\bigl(\tfrac{\nu_{1}}{2},\,\tfrac{\nu_{2}}{2}\bigr)}
+\,
+\Bigl(1 + \tfrac{\nu_{1}}{\nu_{2}}\,x\Bigr)^{-\tfrac{\nu_{1}+\nu_{2}}{2}},
+& x > 0 \\[1em]
+0,
+& \text{otherwise}.
+\end{cases}
+$$
+where $B(\cdot,\cdot)$ is the Beta function (see Definition \@ref(def:BetaFunction)).
+:::
+
+
+```{r f-densities, echo=FALSE, fig.align='center', fig.cap='The F-Distribution at different degrees of freedom.', out.width='90%', warning=FALSE}
+library(ggplot2)
+library(grid)   # for arrow()
+
+# 1) Parameters for the three F distributions
+nu1a <-  2; nu2a <-  5; colA <- "#00BA38"; labA <- expression(bold(F[2][", "][5]))
+nu1b <-  5; nu2b <- 10; colB <- "#F8766D"; labB <- expression(bold(F[5][", "][10]))
+nu1c <- 10; nu2c <- 30; colC <- "#619CFF"; labC <- expression(bold(F[10][", "][30]))
+
+# 2) Common x‐axis values
+x_vals <- seq(0, 5, length.out = 1000)
+
+# 3) Compute densities
+f_dens_a <- df(x_vals, df1 = nu1a, df2 = nu2a)
+f_dens_b <- df(x_vals, df1 = nu1b, df2 = nu2b)
+f_dens_c <- df(x_vals, df1 = nu1c, df2 = nu2c)
+
+# 4) Single data frame with grouping
+f_data <- data.frame(
+  x       = rep(x_vals, 3),
+  density = c(f_dens_a, f_dens_b, f_dens_c),
+  group   = factor(rep(c("2,5", "5,10", "10,20"), each = length(x_vals)))
+)
+
+# 5) Base ggplot
+f_plot <- ggplot(f_data, aes(x = x, y = density, group = group)) +
+  
+  # F(2,5)
+  geom_area(data = subset(f_data, group == "2,5"),
+            fill = colA, alpha = 0.61) +
+  geom_line(data = subset(f_data, group == "2,5"),
+            colour = colA, size = 1.2) +
+  annotate("text",
+           x      = nu1a/(nu2a-2),
+           y      = df(nu1a/(nu2a-2), df1 = nu1a, df2 = nu2a)*1.05,
+           label  = labA,
+           parse  = TRUE,
+           colour = colA,
+           vjust  = -10, 
+           hjust  = 2.0) +
+  
+  # F(5,10)
+  geom_area(data = subset(f_data, group == "5,10"),
+            fill = colB, alpha = 0.61) +
+  geom_line(data = subset(f_data, group == "5,10"),
+            colour = colB, size = 1.2) +
+  annotate("text",
+           x      = nu1b/(nu2b-2),
+           y      = df(nu1b/(nu2b-2), df1 = nu1b, df2 = nu2b)*1.05,
+           label  = labB,
+           parse  = TRUE,
+           colour = colB,
+           vjust  = -0.5,
+           hjust  = 1.0) +
+  
+  # F(10,20)
+  geom_area(data = subset(f_data, group == "10,20"),
+            fill = colC, alpha = 0.61) +
+  geom_line(data = subset(f_data, group == "10,20"),
+            colour = colC, size = 1.2) +
+  annotate("text",
+           x      = nu1c/(nu2c-2),
+           y      = df(nu1c/(nu2c-2), df1 = nu1c, df2 = nu2c)*1.05,
+           label  = labC,
+           parse  = TRUE,
+           colour = colC,
+           hjust  = -3.75) +
+  
+  # Arrow‐tipped axes
+  geom_segment(aes(x = 0, y = 0, xend = 5, yend = 0),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE) +
+  geom_segment(aes(x = 0, y = 0, xend = 0, yend = max(f_dens_a, f_dens_b, f_dens_c)*1.1),
+               arrow = arrow(length = unit(0.2, "cm")),
+               inherit.aes = FALSE) +
+  
+  # Axis labels
+  labs(x = "x", y = "Density") +
+  
+  # Clean theme: only axes, no grid/box/ticks/text
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid     = element_blank(),
+    panel.border   = element_blank(),
+    axis.ticks     = element_blank(),
+    axis.text      = element_blank(),
+    axis.title.x   = element_text(face = "plain"),
+    axis.title.y   = element_text(face = "bold"),
+    axis.line      = element_blank()
+  )
+
+# 6) Render
+print(f_plot)
+```
+
+
+
+<!-- Both student's t-distribution and F-distribution are highly used in -->
+<!-- inferential statistics, until confidence interval, testing hypothesis -->
+<!-- and ANOVA analysis, these two distributions will come to play a lot. At -->
+<!-- this point, just guarantee that you know how to obtain those -->
+<!-- distribution from random given information is sufficient. -->
+
+
+### Distribution Calculator
+
+```{=html}
+<iframe 
+  src="Apps/distribution_calculator.html"
+  width="100%" 
+  height="750px"
+  style="border: 1px solid #ddd; border-radius: 8px;">
+</iframe>
+```
+
+<!--
+### Arithmetics of RV's
+
+**To be completed**
+-->
+
+## Sampling Distributions
+
+Although this may be a new concept, a statistic can follow a distribution. The distribution of a statistic is called its sampling distribution.
+
+::: {.definition name="Sampling distribution" #SamplingDist}
+The sampling distribution of a statistic is the probability distribution of that statistic computed from all possible random samples of a given size drawn from the same population.
+:::
+
+In other words, Definition \@ref(def:SamplingDist) in informing us that if we repeatedly draw samples of size \(n\) and compute the statistic (e.g.\ the sample mean \(\bar X\)), then the values of \(\bar X\) across those samples form a distribution, which is its sampling distribution.
+The sampling distribution is important because it allows us to understand the variability of a statistic from sample to sample, and it forms the basis for inferential statistics, such as confidence intervals and hypothesis tests.
+
+
+
+
+## The Central Limit Theorem
+
+The central limit theorem (CLT) explains why the distribution of a properly
+standardized sample mean becomes approximately normal as the sample size
+grows—even when the underlying population is not normal.  
+
+Suppose \(X_1,X_2,\dots,X_n\) are independent and identically distributed
+(i.i.d.) with finite mean \(\mu\) and variance \(\sigma^{2}\). Define the sample mean \(\bar X_n = \tfrac{1}{n}\sum_{i=1}^{n} X_i\). The Centrel Limit Theorem tells us that the random fluctuation of \(\bar X_n\) around the
+population mean \(\mu\) (after appropriate scaling) behaves more and more like
+a standard normal variable as \(n\) increases.
+
+::: {.theorem name="Central Limit Theorem" #CLT}
+Let \(X_{1},X_{2},\dots,X_{n}\) be i.i.d.\ random variables with  
+\(E[X_i]=\mu\) and \(\operatorname{Var}(X_i)=\sigma^{2}<\infty\).
+Then, as \(n\to\infty\),
+
+$$
+\frac{\sqrt{n}\,(\bar X_{n}-\mu)}{\sigma}
+\;\overset{d}{\longrightarrow}\;
+N(0,1).
+$$
+
+<!-- i.e.\ for every real \(z\), -->
+
+<!-- $$ -->
+<!-- \lim_{n\to\infty} -->
+<!-- P\!\Bigl(\frac{\sqrt{n}(\bar X_{n}-\mu)}{\sigma}\le z\Bigr) -->
+<!-- = -->
+<!-- \Phi(z), -->
+<!-- $$ -->
+<!-- where \(\Phi(\cdot)\) is the standard normal cumulative distribution function. -->
+:::
+
+A practical consequence is that for large \(n\) we can use normal‐based
+confidence intervals and hypothesis tests for \(\mu\) even when the parent
+distribution of the data is unknown or skewed; the accuracy of this normal
+approximation improves as the sample size grows.
+
+The interactive app below can be used to illustrate the central limit theorem by sampling from various distributions.
+
+```{=html}
+<iframe 
+  src="Apps/clt_simulation.html"
+  width="100%" 
+  height="1575px"
+  style="border: 1px solid #ddd; border-radius: 8px;">
+</iframe>
+```
+
+
+
+## Law of Large Numbers
+
+The law of large numbers (LLN) says that sample averages settle down near their common expected value as the sample size grows. This idea is an foundational component statistical inference with for large samples.
+
+### Convergence in Probability
+
+::: {.definition name="Convergence in Probability"}
+The sequence of random variables $X_1, X_2, \ldots$ is
+said to converge in probability to the constant $c$, if for every
+$\varepsilon > 0$,
+$$\lim_{n \to \infty} P\left( |X_n - c| \leq \varepsilon \right) = 1$$ or
+equivalently,
+$$\lim_{n \to \infty} P\left( |X_n - c| > \varepsilon \right) = 0$$
+:::
+
+::: {.remark}
+If a sequence of random variables $X_n = \{X_1, X_2, \ldots \}$ converges in probability to $c$, we denote this as $X_n \overset{p}{\longrightarrow} c$.
+:::
+
+This concept plays a key role in the Law of Large Numbers, where the
+sample mean of independent and identically distributed random variables
+converges in probability to the population mean as the sample size
+grows.
+
+Recall Chebyshev's Inequality, which provides a bound on the probability that a random variable deviates from its mean.
+
+::: {.theorem name="Chebyshev's Inequality" #Chebyshev}
+Let $X$ be a random variable with finite mean $\mu$ and variance
+$\sigma^2$. Then, for any $k > 0$,
+$$P\left( |X - \mu| \geq k \right) \leq \frac{\sigma^2}{k^2}$$
+
+*Using complements:*
+$$P\left( |X - \mu| < k \right) \geq 1 - \frac{\sigma^2}{k^2}$$
+:::
+
+### Weak Law of Large Numbers (WLLN)
+
+::: definition
+Let $X_1, X_2, \ldots$ be a sequence of independent and identically
+distributed random variables, each having finite mean $E(X_i) = \mu$ and
+variance $\mathrm{Var}(X_i) = \sigma^2$. Then, for any $\varepsilon > 0$,
+$$P\left( \left| \frac{X_1 + X_2 + \cdots + X_n}{n} - \mu \right| \geq \varepsilon \right) \longrightarrow 0 \quad \text{as } n \longrightarrow \infty.$$
+
+This is denoted as $\bar{X}_n \overset{p}{\longrightarrow} \mu$
+:::
+
+#### Proof of the Weak Law of Large Numbers (WLLN) {#proof-of-the-weak-law-of-large-numbers-wlln .unnumbered}
+
+<!-- First recall Chebchev's inequality -->
+
+<!-- ::: {.theorem} -->
+<!-- Chebyshev's Inequality states that for any random variable $X$ with mean $\mu$ and variance $\sigma^2$, -->
+<!-- $$P\left( |X - \mu| > k \right) \leq \frac{\sigma^2}{k^2} \quad \text{for } k > 0.$$ -->
+<!-- ::: -->
+
+We aim to show that for every $\varepsilon > 0$,
+$$\lim_{n \to \infty} P\left( \left| \bar{X}_n - \mu \right| > \varepsilon \right) = 0$$
+where $\bar{X}_n$ is the sample mean of $n$ independent and identically
+distributed (i.i.d.) random variables with
+$$E(X_i) = \mu, \quad \text{and} \quad \mathrm{Var}(X_i) = \sigma^2.$$
+
+Let $$\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i.$$
+
+By the Central Limit Theorem (CLT), we know that
+$$\bar{X}_n \sim \mathcal{N} \left( \mu, \frac{\sigma^2}{n} \right).$$
+
+Now, applying Chebyshev's Inequality from Theorem \@ref(thm:Chebyshev) to $\bar{X}_n$, we set $k = \varepsilon$, and obtain:
+$$P\left( \left| \bar{X}_n - \mu \right| > \varepsilon \right) \leq \frac{\mathrm{Var}(\bar{X}_n)}{\varepsilon^2} = \frac{\sigma^2 / n}{\varepsilon^2} = \frac{\sigma^2}{n \varepsilon^2}.$$
+
+Taking the limit as $n \to \infty$, we have:
+$$\lim_{n \to \infty} P\left( \left| \bar{X}_n - \mu \right| > \varepsilon \right) \leq \lim_{n \to \infty} \frac{\sigma^2}{n \varepsilon^2} = 0.$$
+
+Since probabilities are always non-negative, we conclude:
+$$\lim_{n \to \infty} P\left( \left| \bar{X}_n - \mu \right| > \varepsilon \right) = 0.$$
+
+By the definition of convergence in probability,
+$$\bar{X}_n \overset{p}{\longrightarrow} \mu.$$
+
+::: example
+Let $X_i$, for $i = 1, 2, 3, \ldots$, be independent Poisson random
+variables with rate parameter $\lambda = 3$. Prove that:
+$$\bar{X}_n \xrightarrow{P} 3$$
+
+**Properties of Poisson Distribution:**
+$$E(X_i) = \lambda, \quad \mathrm{Var}(X_i) = \lambda$$ In this case,
+$\lambda = 3$, so: $$E(X_i) = \mathrm{Var}(X_i) = 3$$
+
+**Proof:**
+
+We know:
+$$E\left( \frac{X_1 + X_2 + \cdots + X_n}{n} \right) = 3, \quad \text{and} \quad
+\mathrm{Var}\left( \frac{X_1 + X_2 + \cdots + X_n}{n} \right) = \frac{3}{n}$$
+
+Applying Chebyshev's Inequality:
+$$P\left( \left| \frac{X_1 + X_2 + \cdots + X_n}{n} - 3 \right| \geq \varepsilon \right) \leq \frac{3}{n \varepsilon^2}$$
+
+Taking the limit as $n \to \infty$:
+$$P\left( \left| \frac{X_1 + X_2 + \cdots + X_n}{n} - 3 \right| \geq \varepsilon \right) \to 0$$
+
+**Conclusion:** $$\bar{X}_n \xrightarrow{P} 3$$
+:::
+
+```{r fig.cap="Simulation of running sample mean of Bernoulli \\(p = 0.5\\) trials over time", echo=FALSE, fig.align='center'}
+library(ggplot2)
+
+set.seed(123)
+n  <- 10; p  <- 0.5
+df <- data.frame(
+  trial        = 1:n,
+  running_mean = cumsum(rbinom(n, 1, p)) / (1:n)
+)
+
+# Pick two lovely colors from ColorBrewer Set2
+line_col  <- "#619CFF"
+point_col <- "#F8766D"
+
+ggplot(df, aes(x = trial, y = running_mean)) +
+  geom_hline(yintercept = p, linetype = "dashed", colour = "grey50") +
+  geom_line(colour = line_col, size = 1.2) +
+  geom_point(colour = point_col, size = 3) +
+  scale_x_continuous(breaks = 1:n) +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(
+    x = "trial",
+    y = "(Cumulative sum of sample)/(Trial number)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.major = element_line(colour = "grey90"),
+    panel.grid.minor = element_blank(),
+    axis.ticks       = element_line(colour = "grey80"),
+    axis.text        = element_text(colour = "grey30")
+  )
+```
+
+### Simulation
+
+```{=html}
+<iframe 
+  src="Apps/lln_simulation.html"
+  width="100%" 
+  height="1625px"
+  style="border: 1px solid #ddd; border-radius: 8px;">
+</iframe>
+```
+
+<br>
+**R Simulation Code (Single Sample Path):**
+
+::: {.example}
+    n = 10
+    trial = seq(1, n, by = 1)
+    sample = rbinom(n, 1, 1/2)
+
+    plot(trial, cumsum(sample)/trial, type = "l", ylim = c(0,1), col = "blue")
+    points(trial, cumsum(sample)/trial, col = "red")
+    abline(h = 0.5, lty = 2, col = "black")
+:::
+
+```{r fig.cap="A Simulation of 20 running sample means of Bernoulli \\(p = 0.5\\) trials converging over 100 trials", echo=FALSE, fig.align='center'}
+library(ggplot2)
+library(tidyr)
+
+set.seed(123)
+
+# 1) Simulate eight independent Bernoulli(½) streams and compute running means
+n       <- 100
+p       <- 0.5
+trial   <- 1:n
+samples <- replicate(8, rbinom(n, 1, p))
+runs    <- apply(samples, 2, function(x) cumsum(x) / trial)
+
+# 2) Pivot to long format
+df        <- as.data.frame(runs)
+df$trial  <- trial
+df_long   <- pivot_longer(
+  df,
+  cols      = starts_with("V"),
+  names_to  = "series",
+  values_to = "running_mean"
+)
+
+# 3) Plot with thinner, lighter lines and no legend
+ggplot(df_long, aes(x = trial, y = running_mean, color = series)) +
+  geom_line(size = 0.75, alpha = 0.61) +             # thinner and semi-transparent :contentReference[oaicite:0]{index=0}
+  geom_hline(yintercept = p, linetype = "dashed", color = "black") +
+  scale_x_continuous(breaks = seq(0, n, by = 10)) +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(
+    x     = "Trial",
+    y     = "Cumulative Proportion of Ones"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "grey90"),
+    axis.ticks       = element_line(color = "grey80"),
+    legend.position  = "none"
+  )
+```
+
+**R Simulation Code (Multiple Sample Paths):**
+
+::: {.example}
+    n = 100
+    trial = seq(1, 100, by = 1)
+
+    sample1 = rbinom(n, 1, 1/2)
+    sample2 = rbinom(n, 1, 1/2)
+    sample3 = rbinom(n, 1, 1/2)
+    sample4 = rbinom(n, 1, 1/2)
+    sample5 = rbinom(n, 1, 1/2)
+    sample6 = rbinom(n, 1, 1/2)
+    sample7 = rbinom(n, 1, 1/2)
+    sample8 = rbinom(n, 1, 1/2)
+
+    colors = rainbow(8)
+
+
+    plot(trial, cumsum(sample1)/trial, type = "l", col = colors[1], ylim = c(0,1))
+    lines(trial, cumsum(sample2)/trial, col = colors[2])
+    lines(trial, cumsum(sample3)/trial, col = colors[3])
+    lines(trial, cumsum(sample4)/trial, col = colors[4])
+    lines(trial, cumsum(sample5)/trial, col = colors[5])
+    lines(trial, cumsum(sample6)/trial, col = colors[6])
+    lines(trial, cumsum(sample7)/trial, col = colors[7])
+    lines(trial, cumsum(sample8)/trial, col = colors[8])
+    abline(h = 0.5, lty = 2, col = "black")
+:::
+
+### Empirical Probability Insight {.unlisted .unnumbered #empirical-probability-insight}
+
+The Law of Large Numbers gives us empirical probabilities. Consider
+tossing a fair coin. Define the random variable $X$ as:
+
+$$X = \begin{cases}
+1 & \text{heads up} \\
+0 & \text{tails up}
+\end{cases}$$
+
+Then as we sample more and more values of $X$, the sample mean
+$\bar{X}_n$ converges in probability to $P(\text{heads up})$, that is:
+
+$$\bar{X}_n \overset{p}{\longrightarrow} P(\text{heads up}).$$
+
