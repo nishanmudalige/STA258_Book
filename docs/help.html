@@ -124,6 +124,8 @@
 <!-- ============================================================ -->
 <h2 id="prerequisites">1. Pre-requisites</h2>
 
+<p>The following are required for anyone working on or maintaining this project (not for students reading the book).</p>
+
 <table>
   <tr><th>Tool</th><th>Required Version / Notes</th></tr>
   <tr><td>R</td><td>≥ 4.2</td></tr>
@@ -131,7 +133,9 @@
   <tr><td>bookdown</td><td><code>install.packages("bookdown")</code></td></tr>
   <tr><td>ggplot2, knitr, kableExtra, plotly</td><td><code>install.packages(c("ggplot2","knitr","kableExtra","plotly"))</code></td></tr>
   <tr><td>pandoc</td><td>Use the one bundled with RStudio — see <a href="#rendering">Rendering</a></td></tr>
-  <tr><td>LaTeX (for PDF output only)</td><td>TinyTeX or MacTeX</td></tr>
+  <tr><td>TinyTeX (for PDF output)</td><td>Check if installed: open Terminal and type <code>latex -v</code>. If not found, install from inside R: <code>install.packages("tinytex"); tinytex::install_tinytex()</code></td></tr>
+  <tr><td>rgl (3D plots, maintainers only)</td><td><code>install.packages("rgl")</code> — only needed if working on 3D visualisations. Not required for students.</td></tr>
+  <tr><td>XQuartz (Mac only, for rgl)</td><td>Required for rgl to render on macOS. Download from <a href="https://www.xquartz.org" target="_blank">xquartz.org</a>. Install before rgl.</td></tr>
 </table>
 
 <!-- ============================================================ -->
@@ -793,6 +797,24 @@ git pull</code></pre>
   Never manually edit files inside <code>docs/</code> — always edit source <code>.Rmd</code>
   files and re-render. Any manual edits in <code>docs/</code> will be overwritten on the
   next render.
+</div>
+
+<h3>Two folders with the same name but different capitalisation (Book_Files vs Book_files)</h3>
+<p>
+  GitHub runs on Linux, which is case-sensitive. If at some point <code>Book_Files/</code> (capital F)
+  and <code>Book_files/</code> (lowercase f) both appear in the repository, Git treats them as two
+  separate folders. On macOS they look identical locally (same inode), which makes this hard to notice.
+</p>
+<p><strong>Symptom:</strong> You see two folders with nearly identical names in the GitHub web UI or in <code>git status</code>.</p>
+<p><strong>Fix:</strong></p>
+<ol>
+  <li>In RStudio's Files pane (or Finder), delete the <code>Book_Files/</code> folder with the capital F.</li>
+  <li>Re-render the book: <code>bookdown::render_book("index.Rmd", "bookdown::gitbook")</code></li>
+  <li>Bookdown will regenerate <code>Book_files/</code> (lowercase f) correctly.</li>
+  <li>Commit and push.</li>
+</ol>
+<div class="note">
+  This happened because at some point the folder was created or renamed with a capital F (possibly on Windows or through a manual operation). Bookdown always generates <code>Book_files/</code> (lowercase). The fix is always to delete the wrong-case folder and re-render.
 </div>
 
 <hr style="margin-top:40px; border-color:#e0e0e0;">
