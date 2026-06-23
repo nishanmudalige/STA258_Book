@@ -23,7 +23,11 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
+<<<<<<< HEAD
+<meta name="date" content="2026-06-16" />
+=======
 <meta name="date" content="2026-06-14" />
+>>>>>>> origin/main
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -237,6 +241,23 @@ async function initWebR() {
     setStatus('📦 Installing packages… (first visit only)', '');
     await webR.installPackages(['ggplot2']);
     await webR.evalRVoid('suppressMessages(library(ggplot2))');
+<<<<<<< HEAD
+
+    // Inline CSV data — no fetch() needed, works with file:// and http://
+    const csvData = {
+      'Academic_Performance_A.csv': `student_id,Exam_Score\n1,72\n2,68\n3,85\n4,79\n5,91\n6,74\n7,66\n8,83\n9,77\n10,88\n11,70\n12,65\n13,82\n14,76\n15,90\n16,73\n17,69\n18,84\n19,78\n20,87\n21,71\n22,80\n23,75\n24,92\n25,67`,
+      'sleep_study.csv': `subject_id,hours\n1,7.2\n2,6.8\n3,8.1\n4,7.5\n5,6.5\n6,7.9\n7,7.0\n8,8.3\n9,6.7\n10,7.4\n11,8.0\n12,7.2\n13,6.9\n14,7.8\n15,8.2\n16,7.1\n17,6.6\n18,7.7\n19,8.0\n20,7.3`,
+      'student_admission.csv': `student_id,admitted\n1,1\n2,1\n3,0\n4,1\n5,1\n6,0\n7,1\n8,1\n9,0\n10,1\n11,1\n12,0\n13,1\n14,1\n15,1\n16,0\n17,1\n18,1\n19,0\n20,1\n21,1\n22,1\n23,0\n24,1\n25,1\n26,0\n27,1\n28,1\n29,1\n30,0\n31,1\n32,1\n33,0\n34,1\n35,1\n36,1\n37,0\n38,1\n39,1\n40,0\n41,1\n42,1\n43,1\n44,0\n45,1\n46,1\n47,0\n48,1\n49,1\n50,1\n51,0\n52,1\n53,1\n54,1\n55,0\n56,1\n57,1\n58,0\n59,1\n60,1\n61,1\n62,0\n63,1\n64,1\n65,0\n66,1\n67,1\n68,1\n69,0\n70,1\n71,1\n72,0\n73,1\n74,1\n75,1\n76,0\n77,1\n78,1\n79,0\n80,1`,
+      'plant_yield.csv': `fertilizer_a,fertilizer_b\n52.1,45.3\n48.7,42.8\n55.3,48.1\n49.2,43.6\n53.8,46.9\n47.5,41.2\n56.1,49.4\n50.4,44.7\n54.6,47.5\n48.1,42.3\n51.9,45.8\n53.2,46.1\n49.8,43.9\n55.7,48.6\n50.0,44.2`,
+      'braking_dist.csv': `distance,car\n34.2,X\n36.1,X\n33.8,X\n35.4,X\n34.9,X\n36.7,X\n33.5,X\n35.2,X\n34.6,X\n36.3,X\n33.9,X\n35.8,X\n31.5,Y\n38.4,Y\n29.8,Y\n40.2,Y\n33.1,Y\n37.6,Y\n30.4,Y\n39.7,Y\n32.8,Y\n38.1,Y\n31.2,Y\n40.5,Y`
+    };
+    const enc = new TextEncoder();
+    for (const [fname, content] of Object.entries(csvData)) {
+      await webR.FS.writeFile('/home/web_user/' + fname, enc.encode(content));
+    }
+
+=======
+>>>>>>> origin/main
     webRReady = true;
     setStatus('', 'webr-ready');
     document.querySelectorAll('.webr-run-btn').forEach(btn => {

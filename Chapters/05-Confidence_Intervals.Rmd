@@ -1,3 +1,12 @@
+---
+resources:
+  - Academic_Performance_A.csv
+  - sleep_study.csv
+  - student_admission.csv
+  - plant_yield.csv
+  - braking_dist.csv
+---
+
 # Confidence Intervals
 
 
@@ -2591,7 +2600,7 @@ sigma <- 10
 z     <- qnorm(0.96)
 
 lower <- xbar - z * sigma / sqrt(n)
-lower
+lower   # [1] 74.17863
 ```
 </div>
 </details>
@@ -2600,14 +2609,14 @@ lower
 
 <div class="exercise-box">
 <div class="exercise-label">Question 22</div>
-Using the dataset `Academic_Performance_A.csv`, consider the variable `Final_Exam_Score`. What is the 95% two-sided $t^*$ critical value?
+Using the dataset `sleep_study.csv`, consider the variable `hours`. What is the 95% two-sided $t^*$ critical value?
 
 Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
-<textarea class="webr-editor" rows="6">df <- read.csv("Academic_Performance_A.csv")
-x <- df$Final_Exam_Score
+<textarea class="webr-editor" rows="6">df <- read.csv("sleep_study.csv")
+x <- df$hours
 n     <- ___
 tstar <- qt(___, df = ___)
 tstar</textarea>
@@ -2633,12 +2642,12 @@ tstar</textarea>
 <summary>✅ Answer</summary>
 <div class="content">
 ```r
-df <- read.csv("Academic_Performance_A.csv")
-x <- df$Final_Exam_Score
+df <- read.csv("sleep_study.csv")
+x <- df$hours
 
 n     <- length(x)
 tstar <- qt(0.975, df = n - 1)
-tstar
+tstar   # [1] 2.093024
 ```
 </div>
 </details>
@@ -2647,14 +2656,14 @@ tstar
 
 <div class="exercise-box">
 <div class="exercise-label">Question 23</div>
-Using the dataset `Academic_Performance_A.csv`, construct a 95% $t$-confidence interval for the true mean final exam score. Assume the population variance is **unknown**.
+Using the dataset `sleep_study.csv`, construct a 95% $t$-confidence interval for the true mean sleep duration. Assume the population variance is **unknown**.
 
 What is the **lower bound** of this interval? Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
-<textarea class="webr-editor" rows="9">df <- read.csv("Academic_Performance_A.csv")
-x <- df$Final_Exam_Score
+<textarea class="webr-editor" rows="9">df <- read.csv("sleep_study.csv")
+x <- df$hours
 xbar  <- ___
 s     <- ___
 n     <- ___
@@ -2683,8 +2692,8 @@ lower</textarea>
 <summary>✅ Answer</summary>
 <div class="content">
 ```r
-df <- read.csv("Academic_Performance_A.csv")
-x <- df$Final_Exam_Score
+df <- read.csv("sleep_study.csv")
+x <- df$hours
 
 xbar  <- mean(x)
 s     <- sd(x)
@@ -2692,7 +2701,7 @@ n     <- length(x)
 tstar <- qt(0.975, df = n - 1)
 
 lower <- xbar - tstar * s / sqrt(n)
-lower
+lower   # [1] 7.14573
 ```
 </div>
 </details>
@@ -2701,14 +2710,14 @@ lower
 
 <div class="exercise-box">
 <div class="exercise-label">Question 24</div>
-Using the dataset `Academic_Performance_A.csv`, construct a 95% $z$-confidence interval for the true **admission proportion**.
+Using the dataset `student_admission.csv`, construct a 95% $z$-confidence interval for the true **admission proportion**.
 
 What is the **lower bound** of this interval? Fill in the blanks and click **▶ Run**.
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
-<textarea class="webr-editor" rows="8">df <- read.csv("Academic_Performance_A.csv")
-x <- df$Admitted
+<textarea class="webr-editor" rows="8">df <- read.csv("student_admission.csv")
+x <- df$admitted
 n    <- ___
 phat <- ___
 z    <- ___
@@ -2726,7 +2735,7 @@ lower</textarea>
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- If `Admitted` is coded 0/1, then `mean(x)` gives $\hat{p}$ directly.
+- `admitted` is coded 0/1, so `mean(x)` gives $\hat{p}$ directly.
 - The standard error for a proportion is $\sqrt{\hat{p}(1-\hat{p})/n}$.
 - For 95% confidence: `qnorm(0.975)`.
 </div>
@@ -2736,15 +2745,15 @@ lower</textarea>
 <summary>✅ Answer</summary>
 <div class="content">
 ```r
-df <- read.csv("Academic_Performance_A.csv")
-x <- df$Admitted
+df <- read.csv("student_admission.csv")
+x <- df$admitted
 
 n    <- length(x)
 phat <- mean(x)
 z    <- qnorm(0.975)
 
 lower <- phat - z * sqrt(phat * (1 - phat) / n)
-lower
+lower   # [1] 0.6133222
 ```
 </div>
 </details>
@@ -2793,7 +2802,7 @@ boxplot(yield_df$fertilizer_a, yield_df$fertilizer_b)
 
 t.test(yield_df$fertilizer_a, yield_df$fertilizer_b,
        var.equal  = FALSE,
-       conf.level = 0.95)
+       conf.level = 0.95)  # 95% CI for μ_A − μ_B: (4.40, 8.40)
 ```
 </div>
 </details>
@@ -2841,7 +2850,7 @@ x <- brake_df$distance[brake_df$car == "X"]
 y <- brake_df$distance[brake_df$car == "Y"]
 
 var.test(y, x,
-         conf.level = 0.95)
+         conf.level = 0.95)  # 95% CI for σ²_Y/σ²_X: (4.43, 53.47)
 ```
 The `$conf.int` output gives the 95% CI for $\sigma_Y^2 / \sigma_X^2$.
 </div>
