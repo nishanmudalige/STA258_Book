@@ -170,6 +170,7 @@ async function initWebR() {
     setStatus('📦 Installing packages… (first visit only)', '');
     await webR.installPackages(['ggplot2']);
     await webR.evalRVoid('suppressMessages(library(ggplot2))');
+<<<<<<< HEAD
 
     // Inline CSV data — no fetch() needed, works with file:// and http://
     const csvData = {
@@ -184,6 +185,8 @@ async function initWebR() {
       await webR.FS.writeFile('/home/web_user/' + fname, enc.encode(content));
     }
 
+=======
+>>>>>>> origin/main
     webRReady = true;
     setStatus('', 'webr-ready');
     document.querySelectorAll('.webr-run-btn').forEach(btn => {
