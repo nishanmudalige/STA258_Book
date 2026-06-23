@@ -3146,3 +3146,556 @@ $$\boxed{n = 2449}$$
 The agency should survey at least **2449 households** to estimate the proportion within 0.02 with 99% confidence.
 </div>
 </details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 34</div>
+A researcher wants to estimate the average exam score of students. Assume the population standard deviation is known to be $\sigma = 12$. The researcher wants a **95% confidence interval** with margin of error no more than **3 points**.
+
+What is the minimum sample size required? Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">sigma <- ___
+ME    <- ___
+z     <- qnorm(___)
+
+n <- (z * sigma / ME)^2
+ceiling(n)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The sample size formula when $\sigma$ is known is $n = \left(\dfrac{z^* \cdot \sigma}{ME}\right)^2$.
+- For 95% confidence (two-sided), the upper tail probability is $1 - 0.05/2 = 0.975$, so use `qnorm(0.975)`.
+- Always round up with `ceiling()`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+sigma <- 12
+ME    <- 3
+z     <- qnorm(0.975)
+
+n <- (z * sigma / ME)^2
+ceiling(n)   # [1] 62
+```
+At least **62 students** are required.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 35</div>
+A pilot sample suggests that the sample standard deviation of daily study time is $s = 8.5$ minutes. A researcher wants to estimate the true mean daily study time with a **90% confidence interval** and margin of error no more than **2 minutes**.
+
+What is the minimum sample size required? Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">s  <- ___
+ME <- ___
+z  <- qnorm(___)
+
+n <- (z * s / ME)^2
+ceiling(n)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- When $\sigma$ is unknown, substitute the pilot sample standard deviation $s$ into the formula: $n = \left(\dfrac{z^* \cdot s}{ME}\right)^2$.
+- For 90% confidence (two-sided), the upper tail probability is $1 - 0.10/2 = 0.95$, so use `qnorm(0.95)`.
+- Note: this is an approximation; strictly speaking the final CI would use a $t$-distribution, but $z$ is standard for the planning stage.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+s  <- 8.5
+ME <- 2
+z  <- qnorm(0.95)
+
+n <- (z * s / ME)^2
+ceiling(n)   # [1] 49
+```
+At least **49 students** are required.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 36</div>
+A survey wants to estimate the proportion of students who use public transportation to campus. From a previous survey, the estimated proportion is $\hat{p} = 0.42$. The researcher wants a **95% confidence interval** with margin of error no more than **0.04**.
+
+What is the minimum sample size required? Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">p_hat <- ___
+ME    <- ___
+z     <- qnorm(___)
+
+n <- z^2 * p_hat * (1 - p_hat) / ME^2
+ceiling(n)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The sample size formula for a proportion is $n = \dfrac{z^{*2}\,\hat{p}(1-\hat{p})}{ME^2}$.
+- Use the prior estimate $\hat{p} = 0.42$ (using an actual prior estimate gives a smaller $n$ than the conservative $\hat{p} = 0.5$).
+- For 95% confidence: `qnorm(0.975)`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+p_hat <- 0.42
+ME    <- 0.04
+z     <- qnorm(0.975)
+
+n <- z^2 * p_hat * (1 - p_hat) / ME^2
+ceiling(n)   # [1] 585
+```
+At least **585 students** are required.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 37</div>
+A researcher wants to compare the average weekly exercise time between two groups of students. Based on previous studies, the standard deviations are approximately $s_1 = 8$ minutes and $s_2 = 10$ minutes. The researcher wants a **95% confidence interval** for the difference in means with margin of error no more than **4 minutes**. Assume equal sample sizes in both groups.
+
+What is the minimum sample size required **per group**? Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="7">s1 <- ___
+s2 <- ___
+ME <- ___
+z  <- qnorm(___)
+
+n <- z^2 * (s1^2 + s2^2) / ME^2
+ceiling(n)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For two independent groups with equal $n$, the formula is $n = \dfrac{z^{*2}(s_1^2 + s_2^2)}{ME^2}$.
+- This $n$ is the required size **per group**; total sample size is $2n$.
+- For 95% confidence: `qnorm(0.975)`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+s1 <- 8
+s2 <- 10
+ME <- 4
+z  <- qnorm(0.975)
+
+n <- z^2 * (s1^2 + s2^2) / ME^2
+ceiling(n)   # [1] 40
+```
+At least **40 students per group** (80 total) are required.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 38</div>
+A researcher wants to study whether a tutoring program changes students' quiz scores. Each student takes a quiz before and after the program. From a pilot study, the standard deviation of the **paired differences** is $s_d = 6$ points. The researcher wants a **95% confidence interval** for the true mean difference with margin of error no more than **2.5 points**.
+
+What is the minimum number of pairs required? Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">sd_diff <- ___
+ME      <- ___
+z       <- qnorm(___)
+
+n <- (z * sd_diff / ME)^2
+ceiling(n)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For paired samples, treat the differences $d_i = A_i - B_i$ as a single sample. The formula is $n = \left(\dfrac{z^* \cdot s_d}{ME}\right)^2$.
+- $n$ here is the number of **pairs**, not the total number of observations.
+- For 95% confidence: `qnorm(0.975)`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+sd_diff <- 6
+ME      <- 2.5
+z       <- qnorm(0.975)
+
+n <- (z * sd_diff / ME)^2
+ceiling(n)   # [1] 23
+```
+At least **23 pairs** (23 students measured before and after) are required.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 39</div>
+A researcher wants to compare the proportion of students who pass a statistics quiz under two different teaching methods. Based on previous data, the estimated passing rates are $p_1 = 0.35$ and $p_2 = 0.50$. The researcher wants a **95% confidence interval** for the difference in proportions with margin of error no more than **0.06**. Assume equal sample sizes in the two groups.
+
+What is the minimum sample size required **per group**? Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="7">p1 <- ___
+p2 <- ___
+ME <- ___
+z  <- qnorm(___)
+
+n <- z^2 * (p1 * (1 - p1) + p2 * (1 - p2)) / ME^2
+ceiling(n)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For two proportions with equal $n$, the formula is $n = \dfrac{z^{*2}\left[p_1(1-p_1) + p_2(1-p_2)\right]}{ME^2}$.
+- This $n$ is the required size **per group**; total sample size is $2n$.
+- For 95% confidence: `qnorm(0.975)`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+p1 <- 0.35
+p2 <- 0.50
+ME <- 0.06
+z  <- qnorm(0.975)
+
+n <- z^2 * (p1 * (1 - p1) + p2 * (1 - p2)) / ME^2
+ceiling(n)   # [1] 510
+```
+At least **510 students per group** (1020 total) are required.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 40</div>
+A researcher records the exam scores of $n = 25$ students. The histogram below shows the distribution of scores, with the dashed line marking the sample mean.
+
+```{r ch5-q40-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+scores <- c(75,82,68,90,77,85,71,88,64,79,83,70,93,76,87,66,81,74,89,72,84,69,78,91,73)
+df_scores <- data.frame(score = scores)
+ggplot(df_scores, aes(x = score)) +
+  geom_histogram(binwidth = 5, fill = "#619CFF", color = "white", boundary = 60) +
+  geom_vline(xintercept = mean(scores), linetype = "dashed", color = "#e17055", linewidth = 0.9) +
+  annotate("text", x = mean(scores) + 1, y = 6.4, label = paste0("bar(x) == ", round(mean(scores),1)),
+           parse = TRUE, color = "#e17055", size = 4, hjust = 0) +
+  scale_x_continuous(breaks = seq(60, 100, 5)) +
+  labs(x = "Exam Score", y = "Frequency",
+       caption = "n = 25 students  |  Dashed line = sample mean") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
+
+**(a)** Describe the shape of the distribution shown in the histogram.
+
+**(b)** Construct a **95% $t$-confidence interval** for the true mean exam score. Assume the population variance is unknown.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The $t$-interval formula is $\bar{x} \pm t^*_{n-1} \cdot s/\sqrt{n}$.
+- With $n = 25$: $\bar{x} = 78.6$, $s \approx 8.40$, $t^*_{24} \approx 2.064$.
+- For 95% confidence use `qt(0.975, df = 24)`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The histogram is roughly symmetric and bell-shaped, centred around 78–79 with no strong skew or outliers.
+
+**(b)**
+
+```r
+scores <- c(75,82,68,90,77,85,71,88,64,79,83,70,93,76,87,66,81,74,89,72,84,69,78,91,73)
+t.test(scores, conf.level = 0.95)$conf.int
+# [1] 75.1341  82.0659
+```
+
+With $\bar{x} = 78.6$, $s \approx 8.40$, $n = 25$, and $t^*_{24} \approx 2.064$:
+$$78.6 \pm 2.064 \times \frac{8.40}{\sqrt{25}} = 78.6 \pm 3.47$$
+
+The 95% $t$-CI for the true mean exam score is approximately $\mathbf{(75.13,\ 82.07)}$.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 41</div>
+Researchers record braking distances (metres) for two car models under identical conditions. The side-by-side boxplots below compare the distributions for Car X ($n = 12$) and Car Y ($n = 12$).
+
+```{r ch5-q41-box, echo=FALSE, fig.height=3.5, fig.width=5, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+x_X <- c(34.2,36.1,33.8,35.4,34.9,36.7,33.5,35.2,34.6,36.3,33.9,35.8)
+x_Y <- c(31.5,38.4,29.8,40.2,33.1,37.6,30.4,39.7,32.8,38.1,31.2,40.5)
+df_brake <- data.frame(
+  distance = c(x_X, x_Y),
+  car = rep(c("Car X", "Car Y"), each = 12)
+)
+ggplot(df_brake, aes(x = car, y = distance, fill = car)) +
+  geom_boxplot(width = 0.45, color = "grey30", outlier.shape = 16, outlier.size = 2) +
+  scale_fill_manual(values = c("Car X" = "#74b9ff", "Car Y" = "#fd79a8")) +
+  labs(x = NULL, y = "Braking distance (m)",
+       caption = "n = 12 per group  |  Car X: low variance, Car Y: high variance") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+**(a)** What does the boxplot suggest about the variability of the two car models?
+
+**(b)** Construct a **95% Welch $t$-CI** for $\mu_X - \mu_Y$. Do not assume equal variances.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Car Y's box is much wider, indicating greater spread — this justifies **not** assuming equal variances.
+- Use `t.test(x_X, x_Y, var.equal = FALSE, conf.level = 0.95)$conf.int`.
+- The CI includes zero if there is no evidence of a difference in means.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Car X has a very compact box (low variance, $s_X \approx 1.06$ m), while Car Y's box is much wider (high variance, $s_Y \approx 4.15$ m), suggesting Car Y's braking distance is far less consistent.
+
+**(b)**
+
+```r
+x_X <- c(34.2,36.1,33.8,35.4,34.9,36.7,33.5,35.2,34.6,36.3,33.9,35.8)
+x_Y <- c(31.5,38.4,29.8,40.2,33.1,37.6,30.4,39.7,32.8,38.1,31.2,40.5)
+t.test(x_X, x_Y, var.equal = FALSE, conf.level = 0.95)$conf.int
+# 95% CI for μ_X − μ_Y: (-2.9273, 2.4440)
+```
+
+The 95% Welch CI for $\mu_X - \mu_Y$ is approximately $\mathbf{(-2.93,\ 2.44)}$. Because the interval contains zero, there is no significant evidence of a difference in mean braking distance between the two models.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 42</div>
+The histogram below shows the distribution of nightly sleep durations (hours) for $n = 20$ participants in `sleep_study.csv`. The dashed line marks the sample mean.
+
+```{r ch5-q42-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+sleep_hrs <- c(7.2,6.8,8.1,7.5,6.5,7.9,7.0,8.3,6.7,7.4,8.0,7.2,6.9,7.8,8.2,7.1,6.6,7.7,8.0,7.3)
+df_sleep <- data.frame(hours = sleep_hrs)
+ggplot(df_sleep, aes(x = hours)) +
+  geom_histogram(binwidth = 0.3, fill = "#55efc4", color = "white", boundary = 6.4) +
+  geom_vline(xintercept = mean(sleep_hrs), linetype = "dashed", color = "#e17055", linewidth = 0.9) +
+  annotate("text", x = mean(sleep_hrs) + 0.05, y = 4.4,
+           label = paste0("bar(x) == ", round(mean(sleep_hrs), 2)),
+           parse = TRUE, color = "#e17055", size = 4, hjust = 0) +
+  scale_x_continuous(breaks = seq(6.4, 8.4, 0.3)) +
+  labs(x = "Sleep duration (hours)", y = "Frequency",
+       caption = "n = 20 participants  |  Dashed line = sample mean") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
+
+Using the dataset `sleep_study.csv`, construct a **95% $t$-confidence interval** for the true mean sleep duration. Assume the population variance is unknown.
+
+Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="7">df    <- read.csv("sleep_study.csv")
+x     <- df$hours
+xbar  <- mean(x)
+s     <- sd(x)
+n     <- length(x)
+tstar <- qt(___, df = ___)
+c(xbar - tstar * s / sqrt(n), xbar + tstar * s / sqrt(n))</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For a 95% two-sided CI, the upper tail probability is 0.975: `qt(0.975, df = n - 1)`.
+- The formula is $\bar{x} \pm t^* \cdot s/\sqrt{n}$.
+- With $n = 20$: $\bar{x} = 7.41$, $s \approx 0.565$, $t^*_{19} \approx 2.093$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+df    <- read.csv("sleep_study.csv")
+x     <- df$hours
+xbar  <- mean(x)
+s     <- sd(x)
+n     <- length(x)
+tstar <- qt(0.975, df = n - 1)
+c(xbar - tstar * s / sqrt(n), xbar + tstar * s / sqrt(n))
+# [1] 7.1457  7.6743
+```
+The 95% $t$-CI for the true mean sleep duration is approximately $\mathbf{(7.15,\ 7.67)}$ hours.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 43</div>
+The side-by-side boxplots below compare plant yields (kg) under two fertiliser treatments from `plant_yield.csv` ($n_A = n_B = 15$).
+
+```{r ch5-q43-box, echo=FALSE, fig.height=3.5, fig.width=5, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+fa <- c(52.1,48.7,55.3,49.2,53.8,47.5,56.1,50.4,54.6,48.1,51.9,53.2,49.8,55.7,50.0)
+fb <- c(45.3,42.8,48.1,43.6,46.9,41.2,49.4,44.7,47.5,42.3,45.8,46.1,43.9,48.6,44.2)
+df_yield <- data.frame(
+  yield = c(fa, fb),
+  group = rep(c("Fertiliser A", "Fertiliser B"), each = 15)
+)
+ggplot(df_yield, aes(x = group, y = yield, fill = group)) +
+  geom_boxplot(width = 0.45, color = "grey30", outlier.shape = 16, outlier.size = 2) +
+  scale_fill_manual(values = c("Fertiliser A" = "#74b9ff", "Fertiliser B" = "#fd79a8")) +
+  labs(x = NULL, y = "Yield (kg)",
+       caption = "n = 15 per group") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+Based on the boxplots, the two groups appear to have different means. Using the dataset `plant_yield.csv`, construct a **90% Welch $t$-CI** for $\mu_A - \mu_B$. Do not assume equal variances.
+
+Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="7">yield_df <- read.csv("plant_yield.csv")
+a <- yield_df$fertilizer_a
+b <- yield_df$fertilizer_b
+
+t.test(___, ___,
+       var.equal  = ___,
+       conf.level = ___)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Pass `a` and `b` as the first two arguments to `t.test()`.
+- Set `var.equal = FALSE` for Welch's (unequal-variance) test.
+- Set `conf.level = 0.90` for a 90% CI.
+- The `$conf.int` component of the output gives the two bounds.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+yield_df <- read.csv("plant_yield.csv")
+a <- yield_df$fertilizer_a
+b <- yield_df$fertilizer_b
+
+t.test(a, b,
+       var.equal  = FALSE,
+       conf.level = 0.90)  # 90% CI for μ_A − μ_B: (4.7388, 8.0612)
+```
+The 90% Welch CI for $\mu_A - \mu_B$ is approximately $\mathbf{(4.74,\ 8.06)}$. Since the entire interval lies above zero, we are 90% confident that Fertiliser A produces higher yields on average.
+</div>
+</details>

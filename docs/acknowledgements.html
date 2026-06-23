@@ -23,11 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<<<<<<< HEAD
-<meta name="date" content="2026-06-16" />
-=======
-<meta name="date" content="2026-06-14" />
->>>>>>> origin/main
+<meta name="date" content="2026-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -241,7 +237,6 @@ async function initWebR() {
     setStatus('📦 Installing packages… (first visit only)', '');
     await webR.installPackages(['ggplot2']);
     await webR.evalRVoid('suppressMessages(library(ggplot2))');
-<<<<<<< HEAD
 
     // Inline CSV data — no fetch() needed, works with file:// and http://
     const csvData = {
@@ -256,8 +251,6 @@ async function initWebR() {
       await webR.FS.writeFile('/home/web_user/' + fname, enc.encode(content));
     }
 
-=======
->>>>>>> origin/main
     webRReady = true;
     setStatus('', 'webr-ready');
     document.querySelectorAll('.webr-run-btn').forEach(btn => {
