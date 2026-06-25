@@ -2140,3 +2140,1180 @@ $\varepsilon \sim \mathcal{N}(0, \sigma^2)$
 
   These assumptions can be verified using residual plots.
 :::
+
+## Exercises
+
+<!-- Q1 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+
+An agronomist records the amount of rainfall ($x$, in mm) and the corresponding wheat yield ($y$, in tonnes per hectare) for 6 growing seasons:
+
+| Rainfall ($x$) | 200 | 250 | 300 | 350 | 400 | 450 |
+|----------------|-----|-----|-----|-----|-----|-----|
+| Yield ($y$)    | 2.1 | 2.8 | 3.4 | 3.9 | 4.5 | 5.0 |
+
+(a) Compute $\bar{x}$, $\bar{y}$, $S_{xx}$, and $S_{xy}$.
+(b) Find $\hat{\beta}_1$ and $\hat{\beta}_0$. Write the fitted regression equation.
+(c) Predict the wheat yield when rainfall is 320 mm.
+(d) Interpret $\hat{\beta}_1$ in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $S_{xx} = \sum x_i^2 - n\bar{x}^2$ and $S_{xy} = \sum x_i y_i - n\bar{x}\bar{y}$
+- $\hat{\beta}_1 = S_{xy}/S_{xx}$ and $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}$
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\bar{x} = 325$, $\bar{y} \approx 3.617$
+
+$S_{xx} = 200^2+250^2+\cdots+450^2 - 6(325)^2 = 43{,}750$
+
+$S_{xy} = 200(2.1)+\cdots+450(5.0) - 6(325)(3.617) \approx 502.5$
+
+**(b)** $\hat{\beta}_1 = 502.5/43{,}750 \approx 0.01149$; $\hat{\beta}_0 = 3.617 - 0.01149(325) \approx -0.116$
+
+$\hat{y} = -0.116 + 0.01149\,x$
+
+**(c)** $\hat{y} = -0.116 + 0.01149(320) \approx 3.56$ tonnes/ha
+
+**(d)** For each additional mm of rainfall, the predicted wheat yield increases by approximately 0.0115 tonnes per hectare.
+
+</div>
+</details>
+
+---
+
+<!-- Q2 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+
+A physiologist studying cardiovascular fitness measures resting heart rate ($y$, bpm) and weekly exercise duration ($x$, hours) for 5 participants:
+
+| Exercise ($x$) | 1 | 3 | 5 | 7 | 9 |
+|----------------|---|---|---|---|---|
+| Heart rate ($y$) | 80 | 74 | 70 | 65 | 62 |
+
+(a) Compute $\hat{\beta}_0$ and $\hat{\beta}_1$.
+(b) Compute the residuals $e_i = y_i - \hat{y}_i$ for each observation. Verify $\sum e_i = 0$.
+(c) A participant exercises 6 hours per week and has a heart rate of 68 bpm. Compute their residual and state whether their actual heart rate is above or below the predicted value.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- First find $\bar{x}$, $\bar{y}$, $S_{xx}$, $S_{xy}$, then compute the estimates.
+- Residuals are $e_i = y_i - \hat{y}_i$; for part (c) compute $\hat{y}$ at $x = 6$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+$\bar{x} = 5$, $\bar{y} = 70.2$, $S_{xx} = 40$, $S_{xy} = -90$
+
+**(a)** $\hat{\beta}_1 = -90/40 = -2.25$; $\hat{\beta}_0 = 70.2 - (-2.25)(5) = 81.45$
+
+Fitted line: $\hat{y} = 81.45 - 2.25x$
+
+**(b)**
+
+| $x$ | $y$ | $\hat{y}$ | $e_i$ |
+|-----|-----|-----------|--------|
+| 1 | 80 | 79.20 | 0.80 |
+| 3 | 74 | 74.70 | −0.70 |
+| 5 | 70 | 70.20 | −0.20 |
+| 7 | 65 | 65.70 | −0.70 |
+| 9 | 62 | 61.20 | 0.80 |
+
+$\sum e_i = 0$ ✓
+
+**(c)** $\hat{y} = 81.45 - 2.25(6) = 67.95$; residual $= 68 - 67.95 = 0.05$ bpm. The participant's heart rate is (slightly) above the predicted value.
+
+</div>
+</details>
+
+---
+
+<!-- Q3 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+
+The R dataset `women` contains the average height (inches) and weight (pounds) of American women aged 30–39. The data consist of 15 observations.
+
+(a) State the regression model you would fit to predict weight from height.
+(b) Using the summary statistics $\bar{x} = 65$, $\bar{y} \approx 136.73$, $S_{xx} = 280$, $S_{xy} = 966$: find $\hat{\beta}_0$ and $\hat{\beta}_1$.
+(c) Compute $R^2$ given $S_{yy} \approx 3362.93$ and $\text{SSE} \approx 30.23$.
+(d) Interpret $R^2$ in one sentence.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $R^2 = 1 - \text{SSE}/\text{SST}$ where $\text{SST} = S_{yy}$
+- Alternatively, $R^2 = \hat{\beta}_1 S_{xy} / S_{yy}$
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\text{weight}_i = \beta_0 + \beta_1 \cdot \text{height}_i + \varepsilon_i$, $\varepsilon_i \sim N(0, \sigma^2)$
+
+**(b)** $\hat{\beta}_1 = 966/280 = 3.45$; $\hat{\beta}_0 = 136.73 - 3.45(65) \approx -87.52$
+
+**(c)** $R^2 = 1 - 30.23/3362.93 \approx 0.991$
+
+**(d)** About 99.1% of the variability in women's weight is explained by the linear relationship with height — an excellent linear fit.
+
+</div>
+</details>
+
+---
+
+<!-- Q4 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+
+The R dataset `faithful` records eruption duration (minutes) and waiting time to the next eruption (minutes) for Old Faithful geyser in Yellowstone National Park.
+
+Use R to fit a regression of `waiting` on `eruptions`, produce a scatter plot with the regression line, and report the coefficients.
+
+(a) Report $\hat{\beta}_0$ and $\hat{\beta}_1$. Interpret $\hat{\beta}_1$ in context.
+(b) Predict the waiting time after an eruption lasting 3.5 minutes.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="8">data(faithful)
+# Fit the model
+model <- lm(___ ~ ___, data = faithful)
+coef(model)
+
+# Scatter plot with regression line
+plot(faithful$eruptions, faithful$waiting,
+     xlab = "Eruption Duration (min)", ylab = "Waiting Time (min)")
+abline(___, col = "blue")
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `lm(waiting ~ eruptions, data = faithful)` fits the model.
+- `abline(model, col = "blue")` adds the line to the plot.
+- Use `predict(model, newdata = data.frame(eruptions = 3.5))` for part (b).
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+model <- lm(waiting ~ eruptions, data = faithful)
+coef(model)
+plot(faithful$eruptions, faithful$waiting,
+     xlab = "Eruption Duration (min)", ylab = "Waiting Time (min)")
+abline(model, col = "blue")
+predict(model, newdata = data.frame(eruptions = 3.5))
+```
+
+**(a)** $\hat{\beta}_0 \approx 33.47$, $\hat{\beta}_1 \approx 10.73$. For each additional minute of eruption duration, the predicted waiting time increases by about 10.73 minutes.
+
+**(b)** $\hat{y} = 33.47 + 10.73(3.5) \approx 71.0$ minutes.
+
+</div>
+</details>
+
+---
+
+<!-- Q5 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+
+A marketing analyst fits a regression of monthly sales ($y$, \$1000s) on advertising spend ($x$, \$1000s) using $n = 20$ observations. The following summary statistics are available:
+
+$$\bar{x} = 8, \quad \bar{y} = 150, \quad S_{xx} = 400, \quad S_{xy} = 2000, \quad S_{yy} = 12{,}500$$
+
+(a) Find $\hat{\beta}_0$ and $\hat{\beta}_1$.
+(b) Compute SSE, $\hat{\sigma}^2$, and $\hat{\sigma}$.
+(c) Compute $R^2$ and $|r|$.
+(d) Compute $\text{SE}(\hat{\beta}_1) = \hat{\sigma}/\sqrt{S_{xx}}$ and construct a 95% CI for $\beta_1$ using $t_{0.025,\,18} \approx 2.101$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy}$
+- $\hat{\sigma}^2 = \text{SSE}/(n-2)$
+- $R^2 = 1 - \text{SSE}/S_{yy}$
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\hat{\beta}_1 = 2000/400 = 5$; $\hat{\beta}_0 = 150 - 5(8) = 110$
+
+**(b)** SSE $= 12{,}500 - 5(2000) = 2500$; $\hat{\sigma}^2 = 2500/18 \approx 138.9$; $\hat{\sigma} \approx 11.79$
+
+**(c)** $R^2 = 1 - 2500/12{,}500 = 0.80$; $|r| = \sqrt{0.80} \approx 0.894$
+
+**(d)** $\text{SE}(\hat{\beta}_1) = 11.79/\sqrt{400} = 11.79/20 \approx 0.589$
+
+95% CI: $5 \pm 2.101(0.589) = 5 \pm 1.238 = (3.762,\ 6.238)$
+
+</div>
+</details>
+
+---
+
+<!-- Q6 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 6</div>
+
+For the data in Question 1 (rainfall and wheat yield):
+
+(a) Compute SSE, SSR, and SST. Verify $\text{SST} = \text{SSR} + \text{SSE}$.
+(b) Fill in the ANOVA table:
+
+| Source | df | SS | MS |
+|--------|----|----|-----|
+| Regression | | | |
+| Error | | | |
+| Total | | | |
+
+(c) Compute $R^2$ and interpret it.
+(d) Compute the F-statistic. State the null and alternative hypotheses being tested.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- SST $= S_{yy}$; SSR $= \hat{\beta}_1 S_{xy}$; SSE $= S_{yy} - \hat{\beta}_1 S_{xy}$
+- In SLR with one predictor: df(Regression) $= 1$, df(Error) $= n - 2$, df(Total) $= n - 1$
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+From Q1: $\hat{\beta}_1 \approx 0.01149$, $S_{xy} = 502.5$, $S_{yy} \approx 5.788$
+
+**(a)** SSR $= 0.01149(502.5) \approx 5.772$; SSE $= 5.788 - 5.772 \approx 0.017$; SST $= 5.788$
+
+$5.772 + 0.017 \approx 5.788 = $ SST ✓
+
+**(b)**
+
+| Source | df | SS | MS |
+|--------|----|----|-----|
+| Regression | 1 | 5.772 | 5.772 |
+| Error | 4 | 0.017 | 0.00419 |
+| Total | 5 | 5.788 | |
+
+**(c)** $R^2 = 5.772/5.788 \approx 0.997$. About 99.7% of the variability in wheat yield is explained by the linear relationship with rainfall.
+
+**(d)** $F = 5.772/0.00419 \approx 1377$. $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$. This extremely large F-statistic provides overwhelming evidence of a linear relationship.
+
+</div>
+</details>
+
+---
+
+<!-- Q7 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 7</div>
+
+The R dataset `pressure` records temperature (°C) and vapor pressure of mercury (mm Hg) at various temperatures. A researcher fits a regression of `pressure` on `temperature`.
+
+Use R to:
+
+(a) Fit the model, report $R^2$ and $\hat{\sigma}$, and produce a scatter plot with the fitted line.
+(b) Generate the residuals-vs-fitted plot (`which = 1`). Comment on whether the linearity and constant variance assumptions appear satisfied.
+(c) From the `summary()` output, report $\hat{\sigma}^2$ and $\text{SE}(\hat{\beta}_1)$. Carry out the t-test of $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$ at $\alpha = 0.05$ and state your conclusion.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="10">data(pressure)
+m1 <- lm(pressure ~ temperature, data = pressure)
+summary(m1)
+
+# Scatter plot with fitted line
+plot(pressure$temperature, pressure$pressure,
+     xlab = "Temperature (°C)", ylab = "Pressure (mm Hg)")
+abline(m1, col = "blue")
+
+# Residuals-vs-fitted plot
+plot(m1, which = 1)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- A curved pattern in the residuals-vs-fitted plot indicates the linearity assumption is violated; a fan shape indicates non-constant variance.
+- The t-statistic and its p-value for `temperature` are reported directly in the `summary()` output.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+m1 <- lm(pressure ~ temperature, data = pressure)
+summary(m1)
+plot(m1, which = 1)
+```
+
+**(a)** $R^2 \approx 0.574$, $\hat{\sigma} \approx 150.8$.
+
+**(b)** The residuals-vs-fitted plot shows a strong curved (U-shaped) pattern with the spread of residuals changing across fitted values. Both the linearity assumption and the constant variance assumption appear to be violated — a straight-line model is not a good description of these data.
+
+**(c)** From the output: $\hat{\sigma} \approx 150.8$, so $\hat{\sigma}^2 \approx 22{,}740$; $\text{SE}(\hat{\beta}_1) \approx 0.316$; $t = 1.512/0.316 \approx 4.79$ with $n - 2 = 17$ df, p-value $\approx 0.00017 < 0.05$. We reject $H_0$. There is strong evidence that the slope is non-zero. (Note from (b): although the test is highly significant, the linear model is clearly mis-specified, so the slope estimate should be interpreted with caution.)
+
+</div>
+</details>
+
+---
+
+<!-- Q8 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
+
+A regression with $n = 25$ observations produces the following partial ANOVA table:
+
+| Source | df | SS | MS |
+|--------|----|----|-----|
+| Regression | 1 | 640 | |
+| Error | | | |
+| Total | | 800 | |
+
+(a) Fill in all missing entries.
+(b) Compute $R^2$, $\hat{\sigma}$, and the F-statistic.
+(c) Test $H_0: \beta_1 = 0$ at $\alpha = 0.05$ using $F_{0.05,\,1,\,23} \approx 4.28$. State your conclusion.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- SSE $=$ SST $-$ SSR; df(Error) $= n - 2$; df(Total) $= n - 1$
+- $F = \text{MSR}/\text{MSE}$; reject $H_0$ if $F > F_{\alpha,\,1,\,n-2}$
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)**
+
+| Source | df | SS | MS |
+|--------|----|----|-----|
+| Regression | 1 | 640 | 640 |
+| Error | 23 | 160 | 6.96 |
+| Total | 24 | 800 | |
+
+**(b)** $R^2 = 640/800 = 0.80$; $\hat{\sigma} = \sqrt{6.96} \approx 2.64$; $F = 640/6.96 \approx 92.0$
+
+**(c)** $F = 92.0 \gg 4.28$. Reject $H_0$. There is strong evidence of a linear relationship between $x$ and $y$.
+
+</div>
+</details>
+
+---
+
+<!-- Q9 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 9</div>
+
+The R dataset `airquality` contains daily air quality measurements in New York (May–September 1973). Consider predicting ozone concentration (`Ozone`, ppb) from temperature (`Temp`, °F).
+
+Use R to fit the regression, report the full `summary()`, and test whether temperature is a significant predictor of ozone at $\alpha = 0.01$.
+
+(a) State $H_0$ and $H_1$.
+(b) Report the t-statistic and p-value for `Temp` from the output.
+(c) State your conclusion. Interpret $\hat{\beta}_1$ in context.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="6">data(airquality)
+# Remove rows with missing Ozone values
+aq <- na.omit(airquality[, c("Ozone", "Temp")])
+model <- lm(___ ~ ___, data = aq)
+summary(model)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Use `na.omit()` to remove missing values before fitting.
+- The p-value for `Temp` in `summary()` tests $H_0: \beta_1 = 0$.
+- Reject $H_0$ if p-value $< \alpha = 0.01$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+aq <- na.omit(airquality[, c("Ozone", "Temp")])
+model <- lm(Ozone ~ Temp, data = aq)
+summary(model)
+```
+
+**(a)** $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$
+
+**(b)** $t \approx 10.4$, p-value $< 2 \times 10^{-16}$
+
+**(c)** Reject $H_0$ at $\alpha = 0.01$. There is very strong evidence that temperature is a significant predictor of ozone. Each 1°F increase in temperature is associated with an average increase of about 2.43 ppb in ozone concentration.
+
+</div>
+</details>
+
+---
+
+<!-- Q10 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 10</div>
+
+A forestry researcher records the girth ($x$, inches) and volume ($y$, cubic feet) of 31 black cherry trees (the R dataset `trees`).
+
+(a) Using summary statistics: $\bar{x} = 13.25$, $\bar{y} = 30.17$, $S_{xx} = 295.44$, $S_{xy} = 1496.64$: find $\hat{\beta}_0$ and $\hat{\beta}_1$.
+(b) Compute SSE given $S_{yy} = 8106.08$.
+(c) Compute $\hat{\sigma}^2$, $R^2$, and $\text{SE}(\hat{\beta}_1)$.
+(d) Test $H_0: \beta_1 = 0$ vs $H_1: \beta_1 > 0$ at $\alpha = 0.05$ using $t_{0.05,\,29} \approx 1.699$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- SSE $= S_{yy} - \hat{\beta}_1 S_{xy}$
+- $\text{SE}(\hat{\beta}_1) = \hat{\sigma}/\sqrt{S_{xx}}$
+- Reject $H_0$ if the observed $t > t_{0.05,\,29}$
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\hat{\beta}_1 = 1496.64/295.44 \approx 5.066$; $\hat{\beta}_0 = 30.17 - 5.066(13.25) \approx -36.94$
+
+**(b)** SSE $= 8106.08 - 5.066(1496.64) \approx 524.1$
+
+**(c)** $\hat{\sigma}^2 = 524.1/29 \approx 18.07$; $\hat{\sigma} \approx 4.251$; $R^2 \approx 1 - 524.1/8106.08 \approx 0.935$
+
+$\text{SE}(\hat{\beta}_1) = 4.251/\sqrt{295.44} \approx 0.247$
+
+**(d)** $t = 5.066/0.247 \approx 20.51 > 1.699$. Reject $H_0$. There is strong evidence that tree girth is positively linearly related to volume.
+
+</div>
+</details>
+
+---
+
+<!-- Q11 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 11</div>
+
+Use R to fit a regression of `Volume` on `Girth` using the `trees` dataset. Verify the results from Question 10 and compute 95% confidence and prediction intervals for a tree with girth 14 inches.
+
+(a) Confirm $\hat{\beta}_0$, $\hat{\beta}_1$, and $R^2$ match Question 10.
+(b) Report the 95% CI for the mean volume and the 95% PI for a single new tree at `Girth = 14`.
+(c) Which interval is wider? Why?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="10">data(trees)
+model <- lm(___ ~ ___, data = trees)
+summary(model)
+
+# CI for mean response at Girth = 14
+predict(model, newdata = data.frame(Girth = 14),
+        interval = "confidence", level = 0.95)
+
+# PI for a new observation at Girth = 14
+predict(model, newdata = data.frame(Girth = 14),
+        interval = "prediction", level = 0.95)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Use `interval = "confidence"` for the mean response and `interval = "prediction"` for a new observation.
+- The prediction interval is always wider because it also captures the variability of an individual observation around the mean.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+model <- lm(Volume ~ Girth, data = trees)
+summary(model)
+predict(model, newdata = data.frame(Girth = 14), interval = "confidence", level = 0.95)
+predict(model, newdata = data.frame(Girth = 14), interval = "prediction", level = 0.95)
+```
+
+**(a)** Output gives $\hat{\beta}_0 \approx -36.94$, $\hat{\beta}_1 \approx 5.066$, $R^2 \approx 0.935$. These agree with the Q10 manual calculations up to normal rounding.
+
+**(b)** 95% CI for the mean volume at `Girth = 14`: approximately $(32.4,\ 35.6)$ cubic feet.
+
+95% PI for a new tree at `Girth = 14`: approximately $(25.1,\ 42.8)$ cubic feet.
+
+**(c)** The PI is much wider. It must account for both the uncertainty in the estimated mean and the additional variability of any single new tree around that mean.
+
+</div>
+</details>
+
+---
+
+<!-- Q12 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
+
+An environmental scientist records annual average temperature ($x$, °C) and the number of glacier advance events ($y$) across 8 mountain ranges:
+
+| Temperature ($x$) | −2 | −1 | 0 | 1 | 2 | 3 | 4 | 5 |
+|-------------------|----|----|---|---|---|---|---|---|
+| Glacier events ($y$) | 18 | 15 | 13 | 10 | 8 | 6 | 4 | 2 |
+
+(a) Compute $\hat{\beta}_0$, $\hat{\beta}_1$, SSE, and $R^2$.
+(b) Test $H_0: \beta_1 = 0$ vs $H_1: \beta_1 < 0$ at $\alpha = 0.01$ using $t_{0.01,\,6} \approx 3.143$.
+(c) Compute a 99% CI for $\beta_1$ using $t_{0.005,\,6} \approx 3.707$.
+(d) Interpret the CI in the context of climate and glacier retreat.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- For a one-sided test $H_1: \beta_1 < 0$: reject $H_0$ if $t < -t_{\alpha,\,n-2}$.
+- A 99% CI uses $t_{0.005,\,n-2}$ (half of 1% in each tail).
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+$\bar{x} = 1.5$, $\bar{y} = 9.5$, $S_{xx} = 42$, $S_{xy} = -95$, $S_{yy} = 216$
+
+**(a)** $\hat{\beta}_1 = -95/42 \approx -2.262$; $\hat{\beta}_0 = 9.5 - (-2.262)(1.5) \approx 12.893$
+
+SSE $= 216 - (-2.262)(-95) \approx 1.119$; $R^2 \approx 1 - 1.119/216 \approx 0.995$
+
+**(b)** $\hat{\sigma}^2 = 1.119/6 \approx 0.187$; $\hat{\sigma} \approx 0.432$; $\text{SE}(\hat{\beta}_1) = 0.432/\sqrt{42} \approx 0.0666$
+
+$t = -2.262/0.0666 \approx -33.94 < -3.143$. Reject $H_0$. Very strong evidence that warmer temperatures are associated with fewer glacier advance events.
+
+**(c)** $-2.262 \pm 3.707(0.0666) = -2.262 \pm 0.247 = (-2.509,\ -2.015)$
+
+**(d)** We are 99% confident that each 1°C increase in average temperature is associated with between 2.01 and 2.51 fewer glacier advance events per year, consistent with the effects of warming on glacier retreat.
+
+</div>
+</details>
+
+---
+
+<!-- Q13 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 13</div>
+
+Use R to explore Anscombe's quartet, a famous collection of four datasets that have nearly identical simple regression statistics but very different underlying patterns.
+
+(a) Fit `lm(y1 ~ x1)`, `lm(y2 ~ x2)`, `lm(y3 ~ x3)`, and `lm(y4 ~ x4)` from the `anscombe` dataset. Compare $\hat{\beta}_0$, $\hat{\beta}_1$, $R^2$, and $\hat{\sigma}$ across the four models.
+(b) Produce scatter plots with regression lines for all four datasets.
+(c) What does this exercise demonstrate about the importance of looking at the data (and residual plots) rather than relying on summary statistics alone?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="14">data(anscombe)
+# Fit all four models
+m1 <- lm(y1 ~ x1, data = anscombe)
+m2 <- lm(y2 ~ x2, data = anscombe)
+m3 <- lm(y3 ~ x3, data = anscombe)
+m4 <- lm(y4 ~ x4, data = anscombe)
+
+# Compare statistics
+sapply(list(m1, m2, m3, m4), function(m)
+  c(b0 = coef(m)[1], b1 = coef(m)[2],
+    R2 = summary(m)$r.squared, sigma = summary(m)$sigma))
+
+# Scatter plots
+par(mfrow = c(2, 2))
+for (i in 1:4) {
+  plot(anscombe[, i], anscombe[, i+4], main = paste("Dataset", i),
+       xlab = paste0("x", i), ylab = paste0("y", i))
+  abline(list(m1, m2, m3, m4)[[i]], col = "blue")
+}
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Despite nearly identical regression statistics, the four datasets have very different structures (linear, curved, outlier-driven, etc.).
+- `sapply()` applies a function across a list and returns a matrix of results.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+data(anscombe)
+m1 <- lm(y1~x1, data=anscombe); m2 <- lm(y2~x2, data=anscombe)
+m3 <- lm(y3~x3, data=anscombe); m4 <- lm(y4~x4, data=anscombe)
+sapply(list(m1,m2,m3,m4), function(m)
+  c(b0=coef(m)[1], b1=coef(m)[2], R2=summary(m)$r.squared, sigma=summary(m)$sigma))
+```
+
+**(a)** All four models give $\hat{\beta}_0 \approx 3.0$, $\hat{\beta}_1 \approx 0.5$, $R^2 \approx 0.667$, $\hat{\sigma} \approx 1.24$ — almost identical.
+
+**(c)** The scatter plots reveal that only Dataset 1 is actually linear; Dataset 2 is curved, Dataset 3 has an outlier distorting an otherwise perfect fit, and Dataset 4 has a vertical cluster with one leverage point. This illustrates that **summary statistics alone are insufficient** — scatter plots and residuals-vs-fitted plots must always be examined.
+
+</div>
+</details>
+
+---
+
+<!-- Q14 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 14</div>
+
+Use R to fit a regression of `Ozone` on `Solar.R` in the `airquality` dataset (remove rows with missing values in either variable).
+
+(a) Report $\hat{\beta}_1$, $R^2$, $\hat{\sigma}$, and the p-value for the slope.
+(b) Compute a 95% CI for $\beta_1$ using `confint()`.
+(c) Generate the residuals-vs-fitted plot and comment on whether the linearity and constant variance assumptions appear satisfied.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="9">data(airquality)
+aq <- na.omit(airquality[, c("Ozone", "Solar.R")])
+model <- lm(Ozone ~ Solar.R, data = aq)
+summary(model)
+confint(model)
+
+# Residuals-vs-fitted plot
+plot(model, which = 1)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- A clear curved pattern in the residuals-vs-fitted plot indicates non-linearity.
+- A fan-shaped pattern (spread increasing with fitted values) indicates non-constant variance.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+aq <- na.omit(airquality[, c("Ozone", "Solar.R")])
+model <- lm(Ozone ~ Solar.R, data = aq)
+summary(model); confint(model)
+plot(model, which = 1)
+```
+
+**(a)** $\hat{\beta}_1 \approx 0.127$, $R^2 \approx 0.121$, $\hat{\sigma} \approx 31.3$, p-value $\approx 0.00018$.
+
+**(b)** 95% CI for $\beta_1$: approximately $(0.062,\ 0.192)$.
+
+**(c)** The residuals-vs-fitted plot shows the residuals fanning out — the spread is small at low fitted values and grows substantially at higher fitted values. The constant variance assumption does not appear satisfied; the linearity assumption is roughly tenable but the relationship is weak ($R^2$ only ~12%).
+
+</div>
+</details>
+
+---
+
+<!-- Q15 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 15</div>
+
+Use R to fit a regression of `Volume` on `Girth` in the `trees` dataset and perform the full ANOVA F-test.
+
+(a) State $H_0$ and $H_1$.
+(b) Report the F-statistic and p-value from `anova()`.
+(c) State your conclusion at $\alpha = 0.01$.
+(d) Verify that the F-statistic equals the square of the t-statistic for `Girth` from `summary()`.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="8">data(trees)
+model <- lm(Volume ~ Girth, data = trees)
+anova(model)
+
+# t-statistic for Girth
+t_val <- summary(model)$coefficients["Girth", "t value"]
+c(t = t_val, t_squared = t_val^2)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- In SLR, $F = t^2$ always holds — the ANOVA F-test and the two-sided t-test for $\beta_1$ are equivalent.
+- Reject $H_0$ at $\alpha = 0.01$ if the p-value $< 0.01$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+model <- lm(Volume ~ Girth, data = trees)
+anova(model)
+t_val <- summary(model)$coefficients["Girth", "t value"]
+c(t = t_val, t_squared = t_val^2)
+```
+
+**(a)** $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$
+
+**(b)** $F \approx 419.4$, p-value $< 2 \times 10^{-16}$
+
+**(c)** Reject $H_0$ at $\alpha = 0.01$. There is very strong evidence that tree girth is linearly associated with volume.
+
+**(d)** $t \approx 20.48$, $t^2 \approx 419.4 = F$ ✓
+
+</div>
+</details>
+
+---
+
+<!-- Q16 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 16</div>
+
+A city records the average daily temperature ($x$, °C) and the number of ice cream units sold ($y$, hundreds) at a popular stand over 8 summer days:
+
+| Temperature ($x$) | 18 | 20 | 22 | 24 | 26 | 28 | 30 | 32 |
+|-------------------|----|----|----|----|----|----|----|----|
+| Units sold ($y$)  | 12 | 14 | 15 | 16 | 18 | 20 | 22 | 25 |
+
+(a) Compute $\bar{x}$, $\bar{y}$, $S_{xx}$, $S_{xy}$, $S_{yy}$, $\hat{\beta}_0$, $\hat{\beta}_1$, and $R^2$.
+(b) Compute $\hat{\sigma}^2$ and $\text{SE}(\hat{\beta}_1)$.
+(c) Test $H_0: \beta_1 = 0$ vs $H_1: \beta_1 > 0$ at $\alpha = 0.05$ using $t_{0.05,\,6} \approx 1.943$.
+(d) Compute a 95% CI for the mean number of units sold on a day when the temperature is 25°C. Use $\text{SE}_{\text{mean}} = \hat{\sigma}\sqrt{1/n + (x^* - \bar{x})^2/S_{xx}}$ and $t_{0.025,\,6} \approx 2.447$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Work through parts (a)–(b) systematically; each result is needed for the next.
+- 95% CI for the mean response: $\hat{y}^* \pm t_{0.025,\,n-2} \cdot \text{SE}_{\text{mean}}$
+- Note that $x^* = 25$ is very close to $\bar{x}$, so the term $(x^* - \bar{x})^2/S_{xx}$ is essentially zero.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+$\bar{x} = 25$, $\bar{y} = 17.75$, $S_{xx} = 168$, $S_{xy} = 148$, $S_{yy} = 133.5$
+
+**(a)** $\hat{\beta}_1 = 148/168 \approx 0.881$; $\hat{\beta}_0 = 17.75 - 0.881(25) \approx -4.274$; $R^2 = 1 - \text{SSE}/S_{yy} \approx 0.977$
+
+**(b)** SSE $= 133.5 - 0.881(148) \approx 3.119$; $\hat{\sigma}^2 = 3.119/6 \approx 0.520$; $\hat{\sigma} \approx 0.721$
+
+$\text{SE}(\hat{\beta}_1) = 0.721/\sqrt{168} \approx 0.0556$
+
+**(c)** $t = 0.881/0.0556 \approx 15.84 > 1.943$. Reject $H_0$. Very strong evidence that temperature is positively associated with ice cream sales.
+
+**(d)** $\hat{y}^* = -4.274 + 0.881(25) = 17.75$
+
+$\text{SE}_{\text{mean}} = 0.721\sqrt{1/8 + (25-25)^2/168} = 0.721/\sqrt{8} \approx 0.255$
+
+95% CI: $17.75 \pm 2.447(0.255) = 17.75 \pm 0.624 = (17.13,\ 18.37)$ hundred units.
+
+</div>
+</details>
+
+---
+
+<!-- Q17 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 17</div>
+
+A horticulturalist measures the age ($x$, years) and trunk diameter ($y$, cm) of 7 olive trees of the same variety planted in similar conditions:
+
+| Age ($x$)      | 5   | 10  | 15   | 20   | 25   | 30   | 35   |
+|----------------|-----|-----|------|------|------|------|------|
+| Diameter ($y$) | 4.1 | 6.8 | 9.2  | 11.0 | 13.8 | 15.5 | 17.2 |
+
+(a) Compute $\hat{\beta}_0$, $\hat{\beta}_1$, and $R^2$.
+(b) Compute the residuals. Verify $\sum e_i = 0$.
+(c) Construct a 95% CI for $\beta_1$ using $t_{0.025,\,5} \approx 2.571$. Compute $\text{SE}(\hat{\beta}_1)$ from $\hat{\sigma}$ and $S_{xx}$.
+(d) Predict the trunk diameter of an olive tree aged 40 years. Comment on whether this is extrapolation.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Use $\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy}$ to find SSE, then $\hat{\sigma}^2 = \text{SSE}/(n-2)$.
+- $\text{SE}(\hat{\beta}_1) = \hat{\sigma}/\sqrt{S_{xx}}$.
+- Extrapolation: any prediction at $x^*$ outside the range of the observed data carries more uncertainty.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+$\bar{x} = 20$, $\bar{y} \approx 11.086$, $S_{xx} = 700$, $S_{xy} = 306.5$, $S_{yy} \approx 134.97$
+
+**(a)** $\hat{\beta}_1 = 306.5/700 \approx 0.4379$; $\hat{\beta}_0 = 11.086 - 0.4379(20) \approx 2.329$
+
+SSE $= 134.97 - 0.4379(306.5) \approx 0.765$; $R^2 \approx 1 - 0.765/134.97 \approx 0.994$ — an excellent linear fit.
+
+**(b)** Residuals: $-0.418, 0.093, 0.304, -0.086, 0.525, 0.036, -0.454$ (approximate). $\sum e_i \approx 0$ ✓
+
+**(c)** $\hat{\sigma}^2 = 0.765/5 \approx 0.153$; $\hat{\sigma} \approx 0.391$; $\text{SE}(\hat{\beta}_1) = 0.391/\sqrt{700} \approx 0.0148$
+
+95% CI: $0.4379 \pm 2.571(0.0148) = 0.4379 \pm 0.0380 = (0.400,\ 0.476)$
+
+**(d)** $\hat{y} = 2.329 + 0.4379(40) \approx 19.84$ cm. Since the oldest observed tree is 35 years, predicting at $x = 40$ is extrapolation — the result should be used with caution.
+
+</div>
+</details>
+
+---
+
+<!-- Q18 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 18</div>
+
+A health researcher records resting heart rate ($y$, bpm) and weekly aerobic exercise duration ($x$, hours) for 12 adult volunteers:
+
+```r
+exercise  <- c(1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 9)
+heartrate <- c(82, 79, 81, 77, 75, 74, 72, 70, 68, 67, 65, 63)
+```
+
+Use R to carry out a complete regression analysis.
+
+(a) Fit the model and report $\hat{\beta}_0$, $\hat{\beta}_1$, $R^2$, $\hat{\sigma}$, and the p-value for $\hat{\beta}_1$.
+(b) Interpret $\hat{\beta}_1$ in context.
+(c) Produce a scatter plot with the regression line.
+(d) Examine the residuals-vs-fitted plot. Does the linearity assumption appear satisfied?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="13">exercise  <- c(1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 9)
+heartrate <- c(82, 79, 81, 77, 75, 74, 72, 70, 68, 67, 65, 63)
+
+model <- lm(heartrate ~ exercise)
+summary(model)
+
+# Scatter plot
+plot(exercise, heartrate,
+     xlab = "Weekly Exercise (hours)", ylab = "Resting Heart Rate (bpm)")
+abline(model, col = "blue")
+
+# Residual plot
+plot(model, which = 1)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `lm(heartrate ~ exercise)` fits the model (no `data =` needed since the vectors are in the workspace).
+- `plot(model, which = 1)` gives the residuals-vs-fitted plot.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+model <- lm(heartrate ~ exercise)
+summary(model)
+plot(exercise, heartrate, xlab = "Weekly Exercise (hours)", ylab = "Resting Heart Rate (bpm)")
+abline(model, col = "blue")
+plot(model, which = 1)
+```
+
+**(a)** $\hat{\beta}_0 \approx 84.50$, $\hat{\beta}_1 \approx -2.473$, $R^2 \approx 0.985$, $\hat{\sigma} \approx 0.807$, p-value $\approx 1.8 \times 10^{-10}$.
+
+**(b)** Each additional hour of aerobic exercise per week is associated with a decrease of approximately 2.47 bpm in resting heart rate, on average.
+
+**(c)** The scatterplot shows a strong negative, approximately linear association between weekly exercise duration and resting heart rate — participants who exercise more tend to have noticeably lower resting heart rates.
+
+**(d)** The residuals-vs-fitted plot shows random scatter around zero with no obvious curvature or fanning. The linearity and constant variance assumptions appear reasonably satisfied.
+
+</div>
+</details>
+
+---
+
+<!-- Q19 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 19</div>
+
+An environmental monitoring station records annual mean CO$_2$ concentration ($y$, ppm) starting from the year 2000. The year is coded so that year 2000 $= 0$:
+
+| Year code ($x$) | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|-----------------|---|---|---|---|---|---|---|---|---|---|
+| CO$_2$ ($y$)   | 369.5 | 371.1 | 373.2 | 375.8 | 377.5 | 379.8 | 381.9 | 383.8 | 385.6 | 387.4 |
+
+(a) Compute $\hat{\beta}_0$ and $\hat{\beta}_1$. Interpret each in context.
+(b) Use R to verify your estimates, produce a scatter plot with the regression line, and compute a 95% prediction interval for CO$_2$ in year 2012 ($x = 12$).
+(c) $R^2 \approx 0.998$. Does this high value guarantee the linear trend will continue indefinitely? Explain.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="10">x <- 0:9
+y <- c(369.5, 371.1, 373.2, 375.8, 377.5, 379.8, 381.9, 383.8, 385.6, 387.4)
+
+model <- lm(y ~ x)
+summary(model)
+
+plot(x, y, xlab = "Year (0 = 2000)", ylab = expression(CO[2]~"(ppm)"))
+abline(model, col = "blue")
+
+# 95% prediction interval for x = 12 (year 2012)
+predict(model, newdata = data.frame(x = 12), interval = "prediction", level = 0.95)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\hat{\beta}_0$ is the estimated CO$_2$ at $x = 0$ (year 2000); $\hat{\beta}_1$ is the estimated annual increase.
+- Even a very high $R^2$ only reflects fit within the observed range — it does not validate extrapolation.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\bar{x} = 4.5$, $\bar{y} = 378.56$, $S_{xx} = 82.5$, $S_{xy} = 168.1$
+
+$\hat{\beta}_1 = 168.1/82.5 \approx 2.038$; $\hat{\beta}_0 = 378.56 - 2.038(4.5) \approx 369.391$
+
+$\hat{\beta}_0 \approx 369.39$ ppm: the estimated CO$_2$ concentration in year 2000. $\hat{\beta}_1 \approx 2.04$ ppm/year: the estimated annual increase in CO$_2$.
+
+**(b)** R confirms $\hat{\beta}_0 \approx 369.39$, $\hat{\beta}_1 \approx 2.038$.
+
+95% PI at $x = 12$: $\hat{y} = 369.39 + 2.038(12) \approx 393.84$ ppm; interval approximately $(393.04,\ 394.65)$ ppm.
+
+**(c)** No. A high $R^2$ reflects a strong linear fit within the data range (years 0–9). Extrapolating to year 2012 ($x = 12$) and beyond assumes the linear trend continues, which may not hold in the long run — CO$_2$ growth could accelerate or decelerate due to various factors.
+
+</div>
+</details>
+
+---
+
+<!-- Q20 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 20</div>
+
+A real estate analyst records the floor area ($x$, hundreds of sq ft) and selling price ($y$, \$1000s) of 10 recently sold homes in a Toronto suburb:
+
+```r
+size  <- c(10, 12, 13, 15, 16, 18, 20, 22, 23, 25)
+price <- c(185, 205, 215, 240, 255, 275, 310, 335, 345, 370)
+```
+
+Use R to carry out a complete regression analysis.
+
+(a) Fit the model. Report $\hat{\beta}_0$, $\hat{\beta}_1$, $R^2$, $\hat{\sigma}$, and the p-value for the slope.
+(b) Interpret $\hat{\beta}_1$ and $R^2$ in context.
+(c) Produce a scatter plot with the regression line and generate the residuals-vs-fitted plot.
+(d) Compute a 95% CI for the mean price of a 1700 sq ft home ($x = 17$) and a 95% PI for a single new home of the same size.
+(e) Based on the residuals-vs-fitted plot, do the linearity and constant variance assumptions appear satisfied?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="16">size  <- c(10, 12, 13, 15, 16, 18, 20, 22, 23, 25)
+price <- c(185, 205, 215, 240, 255, 275, 310, 335, 345, 370)
+
+model <- lm(price ~ size)
+summary(model)
+
+# Scatter plot with regression line
+plot(size, price, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
+abline(model, col = "blue")
+
+# Residuals-vs-fitted plot
+plot(model, which = 1)
+
+# CI and PI at x = 17
+predict(model, newdata = data.frame(size = 17), interval = "confidence", level = 0.95)
+predict(model, newdata = data.frame(size = 17), interval = "prediction",  level = 0.95)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The CI answers: "Where is the **average** price for all 1700 sq ft homes?"
+- The PI answers: "Where might the price of **one specific** 1700 sq ft home fall?"
+- The PI is always wider than the CI.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+size  <- c(10, 12, 13, 15, 16, 18, 20, 22, 23, 25)
+price <- c(185, 205, 215, 240, 255, 275, 310, 335, 345, 370)
+model <- lm(price ~ size)
+summary(model)
+plot(size, price, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
+abline(model, col = "blue")
+plot(model, which = 1)
+predict(model, newdata = data.frame(size = 17), interval = "confidence", level = 0.95)
+predict(model, newdata = data.frame(size = 17), interval = "prediction",  level = 0.95)
+```
+
+**(a)** $\hat{\beta}_0 \approx 52.50$, $\hat{\beta}_1 \approx 12.70$, $R^2 \approx 0.9971$, $\hat{\sigma} \approx 3.64$, p-value $\approx 1.8 \times 10^{-11}$.
+
+**(b)** Each additional 100 sq ft of floor area is associated with an average price increase of approximately \$12,700. The model explains about 99.7% of the variability in selling price — an excellent linear fit for this neighbourhood.
+
+**(d)** $\hat{y}^* = 52.50 + 12.70(17) \approx 268.4$ (thousand dollars).
+
+95% CI for mean price at $x = 17$: approximately $(265.8,\ 271.1)$, i.e. about \$265.8k to \$271.1k.
+
+95% PI for a new home at $x = 17$: approximately $(259.6,\ 277.2)$, i.e. about \$259.6k to \$277.2k — wider, as expected.
+
+**(e)** The residuals-vs-fitted plot shows approximately random scatter around zero, with no obvious curvature or systematic change in spread across the range of fitted values. The linearity and constant variance assumptions appear reasonably satisfied.
+
+</div>
+</details>
