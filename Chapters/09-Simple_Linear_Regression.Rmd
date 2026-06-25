@@ -3953,36 +3953,71 @@ A survey of 40 university students measures the average daily hours spent on soc
 <div class="exercise-box">
 <div class="exercise-label">Question 33</div>
 
-The following R code computes the least-squares estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ **without** using `lm()`, by applying the formula $\hat{\beta}_1 = r\,(s_y/s_x)$ directly. Fill in the four blanks (marked `___`) to complete the code.
+A health researcher records the weekly exercise hours ($x$, from 1 to 10 hours per week) and a composite well-being score ($y$, on a 0–10 scale) for ten participants.
 
-::: tcolorbox
-    speed    <- c(20, 40, 60, 80, 100)
-    distance <- c(45, 73, 98, 130, 158)
+| $x$ (hours/week) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $y$ (well-being) | 4.23 | 4.80 | 6.60 | 7.96 | 8.61 | 9.14 | 9.98 | 9.43 | 8.98 | 8.88 |
 
-    x_bar <- mean(speed)
-    y_bar <- mean(___)          # Blank 1
+A simple linear regression of $y$ on $x$ was fitted, giving $\hat{\beta}_0 = 4.80$ and $\hat{\beta}_1 = 0.557$. Figure \@ref(fig:ch9q33resid) shows the scatterplot with the fitted regression line **(a)** and the residual plot (residuals vs. fitted values) **(b)**.
 
-    r  <- cor(speed, distance)
-    sx <- sd(___)               # Blank 2
-    sy <- sd(distance)
+```{r ch9q33resid, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="(a) Scatterplot of well-being score ($y$) against weekly exercise hours ($x$) with the fitted regression line. (b) Residual plot: residuals plotted against fitted values; the dashed line marks zero.", fig.width=8.5, fig.height=3.8}
+library(ggplot2)
+library(patchwork)
+set.seed(7)
+x_q33 <- 1:10
+y_q33 <- round(1 + 2.5 * x_q33 - 0.18 * x_q33^2 + rnorm(10, 0, 0.4), 2)
+m_q33 <- lm(y_q33 ~ x_q33)
 
-    b1 <- ___ * (sy / sx)      # Blank 3
-    b0 <- y_bar - b1 * ___     # Blank 4
+df33 <- data.frame(
+  x     = x_q33,
+  y     = y_q33,
+  fits  = fitted(m_q33),
+  resid = residuals(m_q33)
+)
 
-    cat("Slope:", b1, "\nIntercept:", b0)
-:::
+p_scatter <- ggplot(df33, aes(x, y)) +
+  geom_abline(intercept = coef(m_q33)[1], slope = coef(m_q33)[2],
+              color = "#F8766D", linewidth = 1.2) +
+  geom_point(size = 3.5, color = "#619CFF") +
+  scale_x_continuous(breaks = 1:10) +
+  labs(x = "Weekly exercise hours (x)",
+       y = "Well-being score (y)",
+       title = "(a)") +
+  theme_minimal(base_size = 14)
 
-After filling in the blanks, state the numerical values of `b1` and `b0` (rounded to two decimal places), and write the fitted regression equation.
+p_resid <- ggplot(df33, aes(fits, resid)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+  geom_point(size = 3.5, color = "#619CFF") +
+  labs(x = "Fitted values",
+       y = "Residuals",
+       title = "(b)") +
+  theme_minimal(base_size = 14)
+
+p_scatter + p_resid
+```
+
+(a) Examine Panel (a). Describe the shape of the relationship between $y$ and $x$. Based on the scatterplot alone, does a simple linear model appear fully appropriate? Explain briefly.
+
+(b) Examine Panel (b). Describe the pattern you observe in the residuals. Which assumption of simple linear regression does this pattern suggest may be violated?
+
+(c) The fitted model has $\text{SST} = 35.59$ and $\text{SSE} = 10.03$. Compute $R^2$ and write a one-sentence interpretation in context.
+
+(d) Given $\hat{\beta}_1 = 0.557$ and $\text{SE}(\hat{\beta}_1) = 0.123$, test $H_0\colon \beta_1 = 0$ versus $H_1\colon \beta_1 \neq 0$ at $\alpha = 0.05$. State the test statistic, the approximate $p$-value (use $df = 8$), and your conclusion.
+
+(e) A classmate argues: *"Since $R^2 = 0.72$ and the slope is significant at $\alpha = 0.05$, the linear model fits these data well."* Using evidence from both panels of Figure \@ref(fig:ch9q33resid), explain whether you agree or disagree.
+
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
 
-- Blank 1: the mean of the response variable.
-- Blank 2: the standard deviation of the predictor.
-- Blank 3: the correlation object computed in the line above.
-- Blank 4: the mean of the predictor (since $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$).
+- **(a)** Look carefully at whether the data follows a straight line or whether there is curvature (does the data rise then fall, or steadily increase throughout?).
+- **(b)** A systematic curved pattern in the residual plot — rather than random scatter — signals a violation of the **linearity** assumption.
+- **(c)** $R^2 = 1 - \dfrac{\text{SSE}}{\text{SST}}$.
+- **(d)** $t = \hat{\beta}_1 / \text{SE}(\hat{\beta}_1)$. Compare $|t|$ to $t_{0.025,\,8} \approx 2.306$.
+- **(e)** A significant slope and a high $R^2$ tell you that $x$ is a useful linear predictor — but they do *not* confirm that a linear model is the *correct* form. The residual plot provides additional diagnostic information.
 
 </div>
 </details>
@@ -3991,30 +4026,19 @@ After filling in the blanks, state the numerical values of `b1` and `b0` (rounde
 <summary>✅ Answer</summary>
 <div class="content">
 
-**Completed code:**
+**(a)** The data shows an **inverted-U (arch) shape**: well-being scores rise from $x = 1$ to approximately $x = 7$, then decline for $x = 8, 9, 10$. A straight line cannot capture this pattern, so a simple linear model does not appear fully appropriate. The curvature visible in the scatterplot suggests the true relationship may be quadratic (or otherwise non-linear).
 
-::: tcolorbox
-    speed    <- c(20, 40, 60, 80, 100)
-    distance <- c(45, 73, 98, 130, 158)
+**(b)** The residuals show an **inverted-U pattern**: they are negative at small fitted values (low $x$), positive in the middle range, and negative again at large fitted values (high $x$). This systematic arch — rather than random scatter around zero — suggests that the **linearity assumption is violated**: the true relationship between $x$ and $y$ is curved, not linear.
 
-    x_bar <- mean(speed)
-    y_bar <- mean(distance)     # Blank 1: distance
+**(c)**
+$$R^2 = 1 - \frac{\text{SSE}}{\text{SST}} = 1 - \frac{10.03}{35.59} = 1 - 0.282 = 0.718.$$
+About **71.8%** of the variability in well-being scores is explained by the linear relationship with weekly exercise hours.
 
-    r  <- cor(speed, distance)
-    sx <- sd(speed)             # Blank 2: speed
-    sy <- sd(distance)
+**(d)** Test statistic:
+$$t = \frac{\hat{\beta}_1}{\text{SE}(\hat{\beta}_1)} = \frac{0.557}{0.123} \approx 4.53.$$
+With $df = 8$ and $|t| = 4.53 > t_{0.025,\,8} \approx 2.306$, the $p$-value $\approx 0.002 < 0.05$. We **reject** $H_0$: there is statistically significant evidence of a linear relationship between exercise hours and well-being score.
 
-    b1 <- r * (sy / sx)        # Blank 3: r
-    b0 <- y_bar - b1 * x_bar  # Blank 4: x_bar
-
-    cat("Slope:", b1, "\nIntercept:", b0)
-:::
-
-**Numerical results:** $\bar{x} = 60$, $\bar{y} = 100.8$, $s_x \approx 31.62$, $s_y \approx 44.77$, $r \approx 1.000$.
-
-$$\hat{\beta}_1 \approx 1.415, \qquad \hat{\beta}_0 \approx 100.8 - 1.415(60) \approx 15.9$$
-
-**Fitted equation:** $\hat{y} = 15.9 + 1.415\,x$ (slope $\approx 1.42$, intercept $\approx 15.9$).
+**(e)** **Disagree.** Although $R^2 = 0.72$ and the slope is statistically significant ($p \approx 0.002$), these measures only confirm that $x$ is a useful *linear* predictor — they do **not** imply the linear model is *appropriate*. Panel (a) shows a clear arch in the data, and Panel (b) reveals a systematic curved pattern in the residuals. Both indicate the linearity assumption is violated. A quadratic or other non-linear model would be more suitable for these data. A high $R^2$ and a significant $t$-test cannot substitute for residual diagnostics when assessing model adequacy.
 
 </div>
 </details>

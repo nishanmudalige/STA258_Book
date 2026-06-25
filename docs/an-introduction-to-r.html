@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-06-23" />
+<meta name="date" content="2026-06-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -592,6 +592,7 @@ div.csl-indent {
 <li class="chapter" data-level="9.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#anova-table-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2.3</b> ANOVA Table for Simple Linear Regression</a></li>
 <li class="chapter" data-level="9.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>9.2.4</b> Residual Plots</a></li>
 </ul></li>
+<li class="chapter" data-level="9.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#exercises"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>10</b> Analysis of Categorical Data</a>
 <ul>
@@ -723,59 +724,59 @@ While not required for this course, Positron may become relevant in future workf
 <h3><span class="header-section-number">2.3.1</span> R as a Powerful Calculator<a href="an-introduction-to-r.html#r-as-a-powerful-calculator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R is a powerful language for numerical and statistical computing, and it supports a wide range of mathematical operations out of the box. You can perform basic arithmetic such as addition, subtraction, multiplication, and division, as well as more advanced operations like exponentiation, logarithms, and trigonometric functions. These operations work seamlessly with individual numbers, vectors, and matrices. R also provides built-in functions to compute summary statistics like mean, standard deviation, and variance, making it ideal for data analysis and scientific computing. In the following section, we will explore how to use these operations with simple examples.</p>
 <p>Firstly, let’s begin with basic arithmetic:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="an-introduction-to-r.html#cb1-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span>, addition → <span class="dv">5</span>;</span>
-<span id="cb1-2"><a href="an-introduction-to-r.html#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="an-introduction-to-r.html#cb1-3" tabindex="-1"></a><span class="dv">4</span> <span class="sc">-</span> <span class="dv">1</span>, subtraction → <span class="dv">3</span>;</span>
-<span id="cb1-4"><a href="an-introduction-to-r.html#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="an-introduction-to-r.html#cb1-5" tabindex="-1"></a><span class="dv">6</span> <span class="sc">*</span> <span class="dv">2</span>, multiplication → <span class="dv">12</span>;</span>
-<span id="cb1-6"><a href="an-introduction-to-r.html#cb1-6" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="an-introduction-to-r.html#cb1-7" tabindex="-1"></a><span class="dv">8</span> <span class="sc">/</span> <span class="dv">2</span>, division → <span class="dv">4</span>;</span>
-<span id="cb1-8"><a href="an-introduction-to-r.html#cb1-8" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="an-introduction-to-r.html#cb1-9" tabindex="-1"></a><span class="dv">5</span><span class="sc">^</span><span class="dv">2</span>, exponentiation → <span class="dv">25</span>;</span>
-<span id="cb1-10"><a href="an-introduction-to-r.html#cb1-10" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="an-introduction-to-r.html#cb1-11" tabindex="-1"></a><span class="dv">9</span> <span class="sc">%%</span> <span class="dv">4</span>, <span class="fu">modulo</span> (remainder) → <span class="dv">1</span>;</span>
-<span id="cb1-12"><a href="an-introduction-to-r.html#cb1-12" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="an-introduction-to-r.html#cb1-13" tabindex="-1"></a><span class="dv">9</span> <span class="sc">%/%</span> <span class="dv">4</span>, integer division → <span class="fl">2.</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="an-introduction-to-r.html#cb6-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span>, addition → <span class="dv">5</span>;</span>
+<span id="cb6-2"><a href="an-introduction-to-r.html#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="an-introduction-to-r.html#cb6-3" tabindex="-1"></a><span class="dv">4</span> <span class="sc">-</span> <span class="dv">1</span>, subtraction → <span class="dv">3</span>;</span>
+<span id="cb6-4"><a href="an-introduction-to-r.html#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="an-introduction-to-r.html#cb6-5" tabindex="-1"></a><span class="dv">6</span> <span class="sc">*</span> <span class="dv">2</span>, multiplication → <span class="dv">12</span>;</span>
+<span id="cb6-6"><a href="an-introduction-to-r.html#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="an-introduction-to-r.html#cb6-7" tabindex="-1"></a><span class="dv">8</span> <span class="sc">/</span> <span class="dv">2</span>, division → <span class="dv">4</span>;</span>
+<span id="cb6-8"><a href="an-introduction-to-r.html#cb6-8" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="an-introduction-to-r.html#cb6-9" tabindex="-1"></a><span class="dv">5</span><span class="sc">^</span><span class="dv">2</span>, exponentiation → <span class="dv">25</span>;</span>
+<span id="cb6-10"><a href="an-introduction-to-r.html#cb6-10" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="an-introduction-to-r.html#cb6-11" tabindex="-1"></a><span class="dv">9</span> <span class="sc">%%</span> <span class="dv">4</span>, <span class="fu">modulo</span> (remainder) → <span class="dv">1</span>;</span>
+<span id="cb6-12"><a href="an-introduction-to-r.html#cb6-12" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="an-introduction-to-r.html#cb6-13" tabindex="-1"></a><span class="dv">9</span> <span class="sc">%/%</span> <span class="dv">4</span>, integer division → <span class="fl">2.</span></span></code></pre></div>
 <p>Then, it’s going to be vector operations:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="an-introduction-to-r.html#cb2-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), assigning a vector variable on x;</span>
-<span id="cb2-2"><a href="an-introduction-to-r.html#cb2-2" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="an-introduction-to-r.html#cb2-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), assigning a vector variable on y;</span>
-<span id="cb2-4"><a href="an-introduction-to-r.html#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="an-introduction-to-r.html#cb2-5" tabindex="-1"></a>x <span class="sc">+</span> y, element<span class="sc">-</span>wise addition → <span class="dv">5</span> <span class="dv">7</span> <span class="dv">9</span>;</span>
-<span id="cb2-6"><a href="an-introduction-to-r.html#cb2-6" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="an-introduction-to-r.html#cb2-7" tabindex="-1"></a>x <span class="sc">*</span> y, element<span class="sc">-</span>wise multiplication → <span class="dv">4</span> <span class="dv">10</span> <span class="dv">18</span>;</span>
-<span id="cb2-8"><a href="an-introduction-to-r.html#cb2-8" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="an-introduction-to-r.html#cb2-9" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span>, square each element → <span class="dv">1</span> <span class="dv">4</span> <span class="fl">9.</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="an-introduction-to-r.html#cb7-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), assigning a vector variable on x;</span>
+<span id="cb7-2"><a href="an-introduction-to-r.html#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="an-introduction-to-r.html#cb7-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), assigning a vector variable on y;</span>
+<span id="cb7-4"><a href="an-introduction-to-r.html#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="an-introduction-to-r.html#cb7-5" tabindex="-1"></a>x <span class="sc">+</span> y, element<span class="sc">-</span>wise addition → <span class="dv">5</span> <span class="dv">7</span> <span class="dv">9</span>;</span>
+<span id="cb7-6"><a href="an-introduction-to-r.html#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="an-introduction-to-r.html#cb7-7" tabindex="-1"></a>x <span class="sc">*</span> y, element<span class="sc">-</span>wise multiplication → <span class="dv">4</span> <span class="dv">10</span> <span class="dv">18</span>;</span>
+<span id="cb7-8"><a href="an-introduction-to-r.html#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="an-introduction-to-r.html#cb7-9" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span>, square each element → <span class="dv">1</span> <span class="dv">4</span> <span class="fl">9.</span></span></code></pre></div>
 <p>We are able to do math functions as well:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="an-introduction-to-r.html#cb3-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>), square root → <span class="dv">4</span>;</span>
-<span id="cb3-2"><a href="an-introduction-to-r.html#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="an-introduction-to-r.html#cb3-3" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>), satural log → <span class="sc">~</span><span class="fl">2.3</span>;</span>
-<span id="cb3-4"><a href="an-introduction-to-r.html#cb3-4" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="an-introduction-to-r.html#cb3-5" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">100</span>), log base <span class="dv">10</span> → <span class="dv">2</span>;</span>
-<span id="cb3-6"><a href="an-introduction-to-r.html#cb3-6" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="an-introduction-to-r.html#cb3-7" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>), e<span class="sc">^</span><span class="dv">1</span> → <span class="sc">~</span><span class="fl">2.718</span>;</span>
-<span id="cb3-8"><a href="an-introduction-to-r.html#cb3-8" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="an-introduction-to-r.html#cb3-9" tabindex="-1"></a><span class="fu">abs</span>(<span class="sc">-</span><span class="dv">5</span>), absolute value → <span class="dv">5</span>;</span>
-<span id="cb3-10"><a href="an-introduction-to-r.html#cb3-10" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="an-introduction-to-r.html#cb3-11" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="dv">2</span>), round to <span class="dv">2</span> decimals → <span class="fl">3.14</span>;</span>
-<span id="cb3-12"><a href="an-introduction-to-r.html#cb3-12" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="an-introduction-to-r.html#cb3-13" tabindex="-1"></a><span class="fu">sin</span>(pi <span class="sc">/</span> <span class="dv">2</span>) → <span class="dv">1</span>;</span>
-<span id="cb3-14"><a href="an-introduction-to-r.html#cb3-14" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="an-introduction-to-r.html#cb3-15" tabindex="-1"></a><span class="fu">cos</span>(<span class="dv">0</span>) → <span class="dv">1</span>;</span>
-<span id="cb3-16"><a href="an-introduction-to-r.html#cb3-16" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="an-introduction-to-r.html#cb3-17" tabindex="-1"></a><span class="fu">tan</span>(pi <span class="sc">/</span> <span class="dv">4</span>) → <span class="fl">1.</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="an-introduction-to-r.html#cb8-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>), square root → <span class="dv">4</span>;</span>
+<span id="cb8-2"><a href="an-introduction-to-r.html#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="an-introduction-to-r.html#cb8-3" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>), satural log → <span class="sc">~</span><span class="fl">2.3</span>;</span>
+<span id="cb8-4"><a href="an-introduction-to-r.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="an-introduction-to-r.html#cb8-5" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">100</span>), log base <span class="dv">10</span> → <span class="dv">2</span>;</span>
+<span id="cb8-6"><a href="an-introduction-to-r.html#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="an-introduction-to-r.html#cb8-7" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>), e<span class="sc">^</span><span class="dv">1</span> → <span class="sc">~</span><span class="fl">2.718</span>;</span>
+<span id="cb8-8"><a href="an-introduction-to-r.html#cb8-8" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="an-introduction-to-r.html#cb8-9" tabindex="-1"></a><span class="fu">abs</span>(<span class="sc">-</span><span class="dv">5</span>), absolute value → <span class="dv">5</span>;</span>
+<span id="cb8-10"><a href="an-introduction-to-r.html#cb8-10" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="an-introduction-to-r.html#cb8-11" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.1415</span>, <span class="dv">2</span>), round to <span class="dv">2</span> decimals → <span class="fl">3.14</span>;</span>
+<span id="cb8-12"><a href="an-introduction-to-r.html#cb8-12" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="an-introduction-to-r.html#cb8-13" tabindex="-1"></a><span class="fu">sin</span>(pi <span class="sc">/</span> <span class="dv">2</span>) → <span class="dv">1</span>;</span>
+<span id="cb8-14"><a href="an-introduction-to-r.html#cb8-14" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="an-introduction-to-r.html#cb8-15" tabindex="-1"></a><span class="fu">cos</span>(<span class="dv">0</span>) → <span class="dv">1</span>;</span>
+<span id="cb8-16"><a href="an-introduction-to-r.html#cb8-16" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="an-introduction-to-r.html#cb8-17" tabindex="-1"></a><span class="fu">tan</span>(pi <span class="sc">/</span> <span class="dv">4</span>) → <span class="fl">1.</span></span></code></pre></div>
 <p>Finally, there are some useful summery functions in R:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="an-introduction-to-r.html#cb4-1" tabindex="-1"></a><span class="fu">mean</span>(x), average;</span>
-<span id="cb4-2"><a href="an-introduction-to-r.html#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="an-introduction-to-r.html#cb4-3" tabindex="-1"></a><span class="fu">sum</span>(x), total;</span>
-<span id="cb4-4"><a href="an-introduction-to-r.html#cb4-4" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="an-introduction-to-r.html#cb4-5" tabindex="-1"></a><span class="fu">min</span>(x), minimum;</span>
-<span id="cb4-6"><a href="an-introduction-to-r.html#cb4-6" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="an-introduction-to-r.html#cb4-7" tabindex="-1"></a><span class="fu">max</span>(x), maximum;</span>
-<span id="cb4-8"><a href="an-introduction-to-r.html#cb4-8" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="an-introduction-to-r.html#cb4-9" tabindex="-1"></a><span class="fu">sd</span>(x), standard deviation;</span>
-<span id="cb4-10"><a href="an-introduction-to-r.html#cb4-10" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="an-introduction-to-r.html#cb4-11" tabindex="-1"></a><span class="fu">var</span>(x), variance.</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="an-introduction-to-r.html#cb9-1" tabindex="-1"></a><span class="fu">mean</span>(x), average;</span>
+<span id="cb9-2"><a href="an-introduction-to-r.html#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="an-introduction-to-r.html#cb9-3" tabindex="-1"></a><span class="fu">sum</span>(x), total;</span>
+<span id="cb9-4"><a href="an-introduction-to-r.html#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="an-introduction-to-r.html#cb9-5" tabindex="-1"></a><span class="fu">min</span>(x), minimum;</span>
+<span id="cb9-6"><a href="an-introduction-to-r.html#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="an-introduction-to-r.html#cb9-7" tabindex="-1"></a><span class="fu">max</span>(x), maximum;</span>
+<span id="cb9-8"><a href="an-introduction-to-r.html#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="an-introduction-to-r.html#cb9-9" tabindex="-1"></a><span class="fu">sd</span>(x), standard deviation;</span>
+<span id="cb9-10"><a href="an-introduction-to-r.html#cb9-10" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="an-introduction-to-r.html#cb9-11" tabindex="-1"></a><span class="fu">var</span>(x), variance.</span></code></pre></div>
 </div>
 <div id="basic-r-data-structures" class="section level3 hasAnchor" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Basic R Data Structures<a href="an-introduction-to-r.html#basic-r-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -783,93 +784,93 @@ While not required for this course, Positron may become relevant in future workf
 <p><strong>Vectors</strong></p>
 <p>In R, vectors are the fundamental building blocks for data storage and manipulation. A vector is a one-dimensional sequence that contains elements of the same type, such as numbers, characters, or logical values. They are widely used in R for performing calculations, storing results, and processing data efficiently. Vectors support a variety of operations including indexing, filtering, and element-wise arithmetic, making them essential for both basic programming tasks and advanced statistical analysis. Understanding how to create and work with vectors is a crucial first step in learning R programming.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="an-introduction-to-r.html#cb5-1" tabindex="-1"></a>Assigning a variable be a vector</span>
-<span id="cb5-2"><a href="an-introduction-to-r.html#cb5-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="an-introduction-to-r.html#cb10-1" tabindex="-1"></a>Assigning a variable be a vector</span>
+<span id="cb10-2"><a href="an-introduction-to-r.html#cb10-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code></pre></div>
 <p><strong>Lists</strong></p>
 <p>In R, a list is a flexible data structure that can store elements of different types and sizes, such as numbers, strings, vectors, or even other lists. Unlike vectors, which require all elements to be of the same type, lists allow you to group together a variety of data types in a single object. This makes lists especially useful for organizing complex or mixed data, returning multiple results from functions, and building structured objects like data frames. Understanding how to create, access, and manipulate lists is essential for working effectively with more advanced R data structures.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="an-introduction-to-r.html#cb6-1" tabindex="-1"></a>Creating a list contains some random elements</span>
-<span id="cb6-2"><a href="an-introduction-to-r.html#cb6-2" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">&quot;Alice&quot;</span>, <span class="at">age =</span> <span class="dv">25</span>, <span class="at">scores =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>), <span class="at">passed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-3"><a href="an-introduction-to-r.html#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="an-introduction-to-r.html#cb6-4" tabindex="-1"></a>Accessing code<span class="sc">:</span></span>
-<span id="cb6-5"><a href="an-introduction-to-r.html#cb6-5" tabindex="-1"></a>my_list<span class="sc">$</span>name         <span class="co"># Access by name</span></span>
-<span id="cb6-6"><a href="an-introduction-to-r.html#cb6-6" tabindex="-1"></a>my_list[[<span class="dv">2</span>]]         <span class="co"># Access by index</span></span>
-<span id="cb6-7"><a href="an-introduction-to-r.html#cb6-7" tabindex="-1"></a>my_list[[<span class="st">&quot;scores&quot;</span>]]  <span class="co"># Another way to access &#39;scores&#39;</span></span>
-<span id="cb6-8"><a href="an-introduction-to-r.html#cb6-8" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="an-introduction-to-r.html#cb6-9" tabindex="-1"></a>Modifying an element of the list<span class="sc">:</span></span>
-<span id="cb6-10"><a href="an-introduction-to-r.html#cb6-10" tabindex="-1"></a>my_list<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="dv">26</span></span>
-<span id="cb6-11"><a href="an-introduction-to-r.html#cb6-11" tabindex="-1"></a>my_list<span class="sc">$</span>new_field <span class="ot">&lt;-</span> <span class="st">&quot;Added!&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="an-introduction-to-r.html#cb11-1" tabindex="-1"></a>Creating a list contains some random elements</span>
+<span id="cb11-2"><a href="an-introduction-to-r.html#cb11-2" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">&quot;Alice&quot;</span>, <span class="at">age =</span> <span class="dv">25</span>, <span class="at">scores =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>), <span class="at">passed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-3"><a href="an-introduction-to-r.html#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="an-introduction-to-r.html#cb11-4" tabindex="-1"></a>Accessing code<span class="sc">:</span></span>
+<span id="cb11-5"><a href="an-introduction-to-r.html#cb11-5" tabindex="-1"></a>my_list<span class="sc">$</span>name         <span class="co"># Access by name</span></span>
+<span id="cb11-6"><a href="an-introduction-to-r.html#cb11-6" tabindex="-1"></a>my_list[[<span class="dv">2</span>]]         <span class="co"># Access by index</span></span>
+<span id="cb11-7"><a href="an-introduction-to-r.html#cb11-7" tabindex="-1"></a>my_list[[<span class="st">&quot;scores&quot;</span>]]  <span class="co"># Another way to access &#39;scores&#39;</span></span>
+<span id="cb11-8"><a href="an-introduction-to-r.html#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="an-introduction-to-r.html#cb11-9" tabindex="-1"></a>Modifying an element of the list<span class="sc">:</span></span>
+<span id="cb11-10"><a href="an-introduction-to-r.html#cb11-10" tabindex="-1"></a>my_list<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="dv">26</span></span>
+<span id="cb11-11"><a href="an-introduction-to-r.html#cb11-11" tabindex="-1"></a>my_list<span class="sc">$</span>new_field <span class="ot">&lt;-</span> <span class="st">&quot;Added!&quot;</span></span></code></pre></div>
 <p><strong>Matrices</strong></p>
 <p>In R, a matrix is a two-dimensional data structure that stores elements of the same type, typically numeric or logical values. Matrices are widely used in mathematical computations, especially in linear algebra, statistics, and data analysis. They are essentially vectors with a specified number of rows and columns, and support a wide range of operations such as addition, multiplication, transposition, and inversion. R provides straightforward functions to create, access, and manipulate matrices, making them a fundamental tool for performing structured data analysis and mathematical modeling.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="an-introduction-to-r.html#cb7-1" tabindex="-1"></a><span class="co"># Create a 3x2 matrix filled by column (default)</span></span>
-<span id="cb7-2"><a href="an-introduction-to-r.html#cb7-2" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb7-3"><a href="an-introduction-to-r.html#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="an-introduction-to-r.html#cb7-4" tabindex="-1"></a>Accessing elements <span class="cf">in</span> the matrix above<span class="sc">:</span></span>
-<span id="cb7-5"><a href="an-introduction-to-r.html#cb7-5" tabindex="-1"></a>m[<span class="dv">1</span>, <span class="dv">2</span>]     <span class="co"># Element in row 1, column 2</span></span>
-<span id="cb7-6"><a href="an-introduction-to-r.html#cb7-6" tabindex="-1"></a>m[ , <span class="dv">1</span>]     <span class="co"># All rows of column 1</span></span>
-<span id="cb7-7"><a href="an-introduction-to-r.html#cb7-7" tabindex="-1"></a>m[<span class="dv">2</span>, ]      <span class="co"># All columns of row 2</span></span>
-<span id="cb7-8"><a href="an-introduction-to-r.html#cb7-8" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="an-introduction-to-r.html#cb7-9" tabindex="-1"></a>Basic matrices operations<span class="sc">:</span></span>
-<span id="cb7-10"><a href="an-introduction-to-r.html#cb7-10" tabindex="-1"></a><span class="fu">t</span>(m)        <span class="co"># Transpose</span></span>
-<span id="cb7-11"><a href="an-introduction-to-r.html#cb7-11" tabindex="-1"></a>m <span class="sc">%*%</span> <span class="fu">t</span>(m)  <span class="co"># Matrix multiplication</span></span>
-<span id="cb7-12"><a href="an-introduction-to-r.html#cb7-12" tabindex="-1"></a><span class="fu">det</span>(m)      <span class="co"># Determinant (square matrix only)</span></span>
-<span id="cb7-13"><a href="an-introduction-to-r.html#cb7-13" tabindex="-1"></a><span class="fu">solve</span>(m)    <span class="co"># Inverse (if square and invertible)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="an-introduction-to-r.html#cb12-1" tabindex="-1"></a><span class="co"># Create a 3x2 matrix filled by column (default)</span></span>
+<span id="cb12-2"><a href="an-introduction-to-r.html#cb12-2" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb12-3"><a href="an-introduction-to-r.html#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="an-introduction-to-r.html#cb12-4" tabindex="-1"></a>Accessing elements <span class="cf">in</span> the matrix above<span class="sc">:</span></span>
+<span id="cb12-5"><a href="an-introduction-to-r.html#cb12-5" tabindex="-1"></a>m[<span class="dv">1</span>, <span class="dv">2</span>]     <span class="co"># Element in row 1, column 2</span></span>
+<span id="cb12-6"><a href="an-introduction-to-r.html#cb12-6" tabindex="-1"></a>m[ , <span class="dv">1</span>]     <span class="co"># All rows of column 1</span></span>
+<span id="cb12-7"><a href="an-introduction-to-r.html#cb12-7" tabindex="-1"></a>m[<span class="dv">2</span>, ]      <span class="co"># All columns of row 2</span></span>
+<span id="cb12-8"><a href="an-introduction-to-r.html#cb12-8" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="an-introduction-to-r.html#cb12-9" tabindex="-1"></a>Basic matrices operations<span class="sc">:</span></span>
+<span id="cb12-10"><a href="an-introduction-to-r.html#cb12-10" tabindex="-1"></a><span class="fu">t</span>(m)        <span class="co"># Transpose</span></span>
+<span id="cb12-11"><a href="an-introduction-to-r.html#cb12-11" tabindex="-1"></a>m <span class="sc">%*%</span> <span class="fu">t</span>(m)  <span class="co"># Matrix multiplication</span></span>
+<span id="cb12-12"><a href="an-introduction-to-r.html#cb12-12" tabindex="-1"></a><span class="fu">det</span>(m)      <span class="co"># Determinant (square matrix only)</span></span>
+<span id="cb12-13"><a href="an-introduction-to-r.html#cb12-13" tabindex="-1"></a><span class="fu">solve</span>(m)    <span class="co"># Inverse (if square and invertible)</span></span></code></pre></div>
 <p><strong>Arrays</strong></p>
 <p>In R, an array is a multi-dimensional data structure that stores elements of the same type, such as numeric or logical values. Unlike matrices, which are limited to two dimensions, arrays can have two or more dimensions, making them suitable for representing more complex data like multiple matrices or higher-dimensional datasets. Arrays are useful in simulations, image processing, and situations where data varies across multiple levels, such as time, location, or category. Understanding how to create and work with arrays allows you to efficiently manage and analyze structured data in higher dimensions.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="an-introduction-to-r.html#cb8-1" tabindex="-1"></a><span class="co"># Create a 3D array (2 rows × 3 columns × 2 layers)</span></span>
-<span id="cb8-2"><a href="an-introduction-to-r.html#cb8-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb8-3"><a href="an-introduction-to-r.html#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="an-introduction-to-r.html#cb8-4" tabindex="-1"></a>Accessing elements <span class="cf">in</span> the array above<span class="sc">:</span></span>
-<span id="cb8-5"><a href="an-introduction-to-r.html#cb8-5" tabindex="-1"></a>a[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>]     <span class="co"># Element at row 1, column 2, layer 1</span></span>
-<span id="cb8-6"><a href="an-introduction-to-r.html#cb8-6" tabindex="-1"></a>a[ , , <span class="dv">2</span>]      <span class="co"># All rows and columns in layer 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="an-introduction-to-r.html#cb13-1" tabindex="-1"></a><span class="co"># Create a 3D array (2 rows × 3 columns × 2 layers)</span></span>
+<span id="cb13-2"><a href="an-introduction-to-r.html#cb13-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb13-3"><a href="an-introduction-to-r.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="an-introduction-to-r.html#cb13-4" tabindex="-1"></a>Accessing elements <span class="cf">in</span> the array above<span class="sc">:</span></span>
+<span id="cb13-5"><a href="an-introduction-to-r.html#cb13-5" tabindex="-1"></a>a[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>]     <span class="co"># Element at row 1, column 2, layer 1</span></span>
+<span id="cb13-6"><a href="an-introduction-to-r.html#cb13-6" tabindex="-1"></a>a[ , , <span class="dv">2</span>]      <span class="co"># All rows and columns in layer 2</span></span></code></pre></div>
 <p><strong>Factors</strong></p>
 <p>In R, a factor is a data structure used to represent categorical variables, such as labels or groupings. Unlike regular character vectors, factors store both the unique values (called levels) and their underlying integer codes, making them more efficient and meaningful for statistical modeling and data analysis. Factors are especially useful when working with data that falls into fixed categories, like gender, education level, or survey responses. They are automatically treated as categorical variables in functions like linear models, making them an essential tool in R for handling qualitative data.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="an-introduction-to-r.html#cb9-1" tabindex="-1"></a>Creating a factor</span>
-<span id="cb9-2"><a href="an-introduction-to-r.html#cb9-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>))</span>
-<span id="cb9-3"><a href="an-introduction-to-r.html#cb9-3" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="an-introduction-to-r.html#cb9-4" tabindex="-1"></a>Check levels</span>
-<span id="cb9-5"><a href="an-introduction-to-r.html#cb9-5" tabindex="-1"></a><span class="fu">levels</span>(gender)</span>
-<span id="cb9-6"><a href="an-introduction-to-r.html#cb9-6" tabindex="-1"></a><span class="co"># [1] &quot;Female&quot; &quot;Male&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="an-introduction-to-r.html#cb14-1" tabindex="-1"></a>Creating a factor</span>
+<span id="cb14-2"><a href="an-introduction-to-r.html#cb14-2" tabindex="-1"></a>gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>))</span>
+<span id="cb14-3"><a href="an-introduction-to-r.html#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="an-introduction-to-r.html#cb14-4" tabindex="-1"></a>Check levels</span>
+<span id="cb14-5"><a href="an-introduction-to-r.html#cb14-5" tabindex="-1"></a><span class="fu">levels</span>(gender)</span>
+<span id="cb14-6"><a href="an-introduction-to-r.html#cb14-6" tabindex="-1"></a><span class="co"># [1] &quot;Female&quot; &quot;Male&quot;</span></span></code></pre></div>
 <p><strong>Data Frames</strong></p>
 <p>In R, a data frame is a fundamental data structure used for storing tabular data. It organizes data into rows and columns, where each column can hold a different type of variable—such as numbers, strings, or logical values—but all columns must have the same number of rows. Data frames are ideal for handling datasets in statistical analysis, machine learning, and data visualization. They closely resemble tables in spreadsheets or databases, making them intuitive and practical for real-world data manipulation. Mastering data frames is essential for effective data analysis in R.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="an-introduction-to-r.html#cb10-1" tabindex="-1"></a>Creating a data frame<span class="sc">:</span></span>
-<span id="cb10-2"><a href="an-introduction-to-r.html#cb10-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>), <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">28</span>), <span class="at">passed =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
-<span id="cb10-3"><a href="an-introduction-to-r.html#cb10-3" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="an-introduction-to-r.html#cb10-4" tabindex="-1"></a>Accessing data from the data frame above<span class="sc">:</span></span>
-<span id="cb10-5"><a href="an-introduction-to-r.html#cb10-5" tabindex="-1"></a>df<span class="sc">$</span>name        <span class="co"># Access &#39;name&#39; column</span></span>
-<span id="cb10-6"><a href="an-introduction-to-r.html#cb10-6" tabindex="-1"></a>df[<span class="dv">1</span>, ]        <span class="co"># First row</span></span>
-<span id="cb10-7"><a href="an-introduction-to-r.html#cb10-7" tabindex="-1"></a>df[ ,<span class="dv">2</span>]        <span class="co"># Second column</span></span>
-<span id="cb10-8"><a href="an-introduction-to-r.html#cb10-8" tabindex="-1"></a>df[<span class="dv">2</span>, <span class="dv">3</span>]       <span class="co"># Row 2, column 3</span></span>
-<span id="cb10-9"><a href="an-introduction-to-r.html#cb10-9" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="an-introduction-to-r.html#cb10-10" tabindex="-1"></a>Adding a new column or row<span class="sc">:</span></span>
-<span id="cb10-11"><a href="an-introduction-to-r.html#cb10-11" tabindex="-1"></a>df<span class="sc">$</span>score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>)  <span class="co"># Add new column</span></span>
-<span id="cb10-12"><a href="an-introduction-to-r.html#cb10-12" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, <span class="fu">data.frame</span>(<span class="at">name=</span><span class="st">&quot;David&quot;</span>, <span class="at">age=</span><span class="dv">27</span>, <span class="at">passed=</span><span class="cn">TRUE</span>, <span class="at">score=</span><span class="dv">92</span>))  <span class="co"># Add new row</span></span>
-<span id="cb10-13"><a href="an-introduction-to-r.html#cb10-13" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="an-introduction-to-r.html#cb10-14" tabindex="-1"></a>Some useful functions<span class="sc">:</span></span>
-<span id="cb10-15"><a href="an-introduction-to-r.html#cb10-15" tabindex="-1"></a><span class="fu">str</span>(df)        <span class="co"># Structure of the data frame</span></span>
-<span id="cb10-16"><a href="an-introduction-to-r.html#cb10-16" tabindex="-1"></a><span class="fu">summary</span>(df)    <span class="co"># Summary stats</span></span>
-<span id="cb10-17"><a href="an-introduction-to-r.html#cb10-17" tabindex="-1"></a><span class="fu">nrow</span>(df)       <span class="co"># Number of rows</span></span>
-<span id="cb10-18"><a href="an-introduction-to-r.html#cb10-18" tabindex="-1"></a><span class="fu">ncol</span>(df)       <span class="co"># Number of columns</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="an-introduction-to-r.html#cb15-1" tabindex="-1"></a>Creating a data frame<span class="sc">:</span></span>
+<span id="cb15-2"><a href="an-introduction-to-r.html#cb15-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Charlie&quot;</span>), <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">28</span>), <span class="at">passed =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb15-3"><a href="an-introduction-to-r.html#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="an-introduction-to-r.html#cb15-4" tabindex="-1"></a>Accessing data from the data frame above<span class="sc">:</span></span>
+<span id="cb15-5"><a href="an-introduction-to-r.html#cb15-5" tabindex="-1"></a>df<span class="sc">$</span>name        <span class="co"># Access &#39;name&#39; column</span></span>
+<span id="cb15-6"><a href="an-introduction-to-r.html#cb15-6" tabindex="-1"></a>df[<span class="dv">1</span>, ]        <span class="co"># First row</span></span>
+<span id="cb15-7"><a href="an-introduction-to-r.html#cb15-7" tabindex="-1"></a>df[ ,<span class="dv">2</span>]        <span class="co"># Second column</span></span>
+<span id="cb15-8"><a href="an-introduction-to-r.html#cb15-8" tabindex="-1"></a>df[<span class="dv">2</span>, <span class="dv">3</span>]       <span class="co"># Row 2, column 3</span></span>
+<span id="cb15-9"><a href="an-introduction-to-r.html#cb15-9" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="an-introduction-to-r.html#cb15-10" tabindex="-1"></a>Adding a new column or row<span class="sc">:</span></span>
+<span id="cb15-11"><a href="an-introduction-to-r.html#cb15-11" tabindex="-1"></a>df<span class="sc">$</span>score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">85</span>, <span class="dv">88</span>)  <span class="co"># Add new column</span></span>
+<span id="cb15-12"><a href="an-introduction-to-r.html#cb15-12" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df, <span class="fu">data.frame</span>(<span class="at">name=</span><span class="st">&quot;David&quot;</span>, <span class="at">age=</span><span class="dv">27</span>, <span class="at">passed=</span><span class="cn">TRUE</span>, <span class="at">score=</span><span class="dv">92</span>))  <span class="co"># Add new row</span></span>
+<span id="cb15-13"><a href="an-introduction-to-r.html#cb15-13" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="an-introduction-to-r.html#cb15-14" tabindex="-1"></a>Some useful functions<span class="sc">:</span></span>
+<span id="cb15-15"><a href="an-introduction-to-r.html#cb15-15" tabindex="-1"></a><span class="fu">str</span>(df)        <span class="co"># Structure of the data frame</span></span>
+<span id="cb15-16"><a href="an-introduction-to-r.html#cb15-16" tabindex="-1"></a><span class="fu">summary</span>(df)    <span class="co"># Summary stats</span></span>
+<span id="cb15-17"><a href="an-introduction-to-r.html#cb15-17" tabindex="-1"></a><span class="fu">nrow</span>(df)       <span class="co"># Number of rows</span></span>
+<span id="cb15-18"><a href="an-introduction-to-r.html#cb15-18" tabindex="-1"></a><span class="fu">ncol</span>(df)       <span class="co"># Number of columns</span></span></code></pre></div>
 </div>
 <div id="using-basic-functions-in-r" class="section level3 hasAnchor" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Using Basic Functions in R<a href="an-introduction-to-r.html#using-basic-functions-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R provides many built-in functions that allow you to perform calculations, transformations, or extract summary statistics from data. Here are some commonly used basic functions:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="an-introduction-to-r.html#cb11-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">25</span>, <span class="dv">7</span>)</span>
-<span id="cb11-2"><a href="an-introduction-to-r.html#cb11-2" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="an-introduction-to-r.html#cb11-3" tabindex="-1"></a><span class="co"># Find the maximum and minimum values</span></span>
-<span id="cb11-4"><a href="an-introduction-to-r.html#cb11-4" tabindex="-1"></a><span class="fu">max</span>(x)</span>
-<span id="cb11-5"><a href="an-introduction-to-r.html#cb11-5" tabindex="-1"></a><span class="fu">min</span>(x)</span>
-<span id="cb11-6"><a href="an-introduction-to-r.html#cb11-6" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="an-introduction-to-r.html#cb11-7" tabindex="-1"></a><span class="co"># Sort the vector</span></span>
-<span id="cb11-8"><a href="an-introduction-to-r.html#cb11-8" tabindex="-1"></a><span class="fu">sort</span>(x)     <span class="co"># ascending order</span></span>
-<span id="cb11-9"><a href="an-introduction-to-r.html#cb11-9" tabindex="-1"></a><span class="fu">sort</span>(x, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)  <span class="co"># descending order</span></span>
-<span id="cb11-10"><a href="an-introduction-to-r.html#cb11-10" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="an-introduction-to-r.html#cb11-11" tabindex="-1"></a><span class="co"># Find the order (ranks) of elements</span></span>
-<span id="cb11-12"><a href="an-introduction-to-r.html#cb11-12" tabindex="-1"></a><span class="fu">order</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="an-introduction-to-r.html#cb16-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">25</span>, <span class="dv">7</span>)</span>
+<span id="cb16-2"><a href="an-introduction-to-r.html#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="an-introduction-to-r.html#cb16-3" tabindex="-1"></a><span class="co"># Find the maximum and minimum values</span></span>
+<span id="cb16-4"><a href="an-introduction-to-r.html#cb16-4" tabindex="-1"></a><span class="fu">max</span>(x)</span>
+<span id="cb16-5"><a href="an-introduction-to-r.html#cb16-5" tabindex="-1"></a><span class="fu">min</span>(x)</span>
+<span id="cb16-6"><a href="an-introduction-to-r.html#cb16-6" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="an-introduction-to-r.html#cb16-7" tabindex="-1"></a><span class="co"># Sort the vector</span></span>
+<span id="cb16-8"><a href="an-introduction-to-r.html#cb16-8" tabindex="-1"></a><span class="fu">sort</span>(x)     <span class="co"># ascending order</span></span>
+<span id="cb16-9"><a href="an-introduction-to-r.html#cb16-9" tabindex="-1"></a><span class="fu">sort</span>(x, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)  <span class="co"># descending order</span></span>
+<span id="cb16-10"><a href="an-introduction-to-r.html#cb16-10" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="an-introduction-to-r.html#cb16-11" tabindex="-1"></a><span class="co"># Find the order (ranks) of elements</span></span>
+<span id="cb16-12"><a href="an-introduction-to-r.html#cb16-12" tabindex="-1"></a><span class="fu">order</span>(x)</span></code></pre></div>
 <p>These functions work on vectors, and many of them are also applicable to data frames or matrices when used with additional arguments.</p>
 </div>
 <div id="make-a-histogram-using-rstudio" class="section level3 hasAnchor" number="2.3.4">
@@ -880,26 +881,26 @@ While not required for this course, Positron may become relevant in future workf
 <li><p>First, decide which dataset you want to use. In this case, we use the built-in <code>faithful</code> dataset.</p></li>
 <li><p>To view the variable names in any dataset, use the <code>names()</code> function. This will display all available columns:</p></li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="an-introduction-to-r.html#cb12-1" tabindex="-1"></a><span class="co"># Display variable names in the dataset</span></span>
-<span id="cb12-2"><a href="an-introduction-to-r.html#cb12-2" tabindex="-1"></a><span class="fu">names</span>(faithful)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="an-introduction-to-r.html#cb17-1" tabindex="-1"></a><span class="co"># Display variable names in the dataset</span></span>
+<span id="cb17-2"><a href="an-introduction-to-r.html#cb17-2" tabindex="-1"></a><span class="fu">names</span>(faithful)</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>To create a histogram of one variable:</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="an-introduction-to-r.html#cb13-1" tabindex="-1"></a><span class="co"># Create a basic histogram</span></span>
-<span id="cb13-2"><a href="an-introduction-to-r.html#cb13-2" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="an-introduction-to-r.html#cb18-1" tabindex="-1"></a><span class="co"># Create a basic histogram</span></span>
+<span id="cb18-2"><a href="an-introduction-to-r.html#cb18-2" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting)</span></code></pre></div>
 <p>This will produce a simple histogram showing the distribution of values in the selected column.</p>
 <ol start="4" style="list-style-type: decimal">
 <li>You can also access the numeric components of the histogram using the <code>plot = FALSE</code> argument. This prevents the histogram from being drawn and instead returns a list of values used in the plot:</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="an-introduction-to-r.html#cb14-1" tabindex="-1"></a><span class="co"># View the histogram breakpoints</span></span>
-<span id="cb14-2"><a href="an-introduction-to-r.html#cb14-2" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>breaks</span>
-<span id="cb14-3"><a href="an-introduction-to-r.html#cb14-3" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="an-introduction-to-r.html#cb14-4" tabindex="-1"></a><span class="co"># View the counts in each interval</span></span>
-<span id="cb14-5"><a href="an-introduction-to-r.html#cb14-5" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="an-introduction-to-r.html#cb19-1" tabindex="-1"></a><span class="co"># View the histogram breakpoints</span></span>
+<span id="cb19-2"><a href="an-introduction-to-r.html#cb19-2" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>breaks</span>
+<span id="cb19-3"><a href="an-introduction-to-r.html#cb19-3" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="an-introduction-to-r.html#cb19-4" tabindex="-1"></a><span class="co"># View the counts in each interval</span></span>
+<span id="cb19-5"><a href="an-introduction-to-r.html#cb19-5" tabindex="-1"></a><span class="fu">hist</span>(faithful<span class="sc">$</span>waiting, <span class="at">plot =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>counts</span></code></pre></div>
 <p>These functions return numeric vectors. The first shows where each interval begins and ends, and the second shows how many values fall within each interval.</p>
 <p>Example output:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="an-introduction-to-r.html#cb15-1" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">40</span>  <span class="dv">45</span>  <span class="dv">50</span>  <span class="dv">55</span>  <span class="dv">60</span>  <span class="dv">65</span>  <span class="dv">70</span>  <span class="dv">75</span>  <span class="dv">80</span>  <span class="dv">85</span>  <span class="dv">90</span>  <span class="dv">95</span> <span class="dv">100</span></span>
-<span id="cb15-2"><a href="an-introduction-to-r.html#cb15-2" tabindex="-1"></a>[<span class="dv">1</span>]   <span class="dv">4</span>  <span class="dv">22</span>  <span class="dv">33</span>  <span class="dv">24</span>  <span class="dv">14</span>  <span class="dv">10</span>  <span class="dv">27</span>  <span class="dv">54</span>  <span class="dv">55</span>  <span class="dv">23</span>   <span class="dv">5</span>   <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="an-introduction-to-r.html#cb20-1" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">40</span>  <span class="dv">45</span>  <span class="dv">50</span>  <span class="dv">55</span>  <span class="dv">60</span>  <span class="dv">65</span>  <span class="dv">70</span>  <span class="dv">75</span>  <span class="dv">80</span>  <span class="dv">85</span>  <span class="dv">90</span>  <span class="dv">95</span> <span class="dv">100</span></span>
+<span id="cb20-2"><a href="an-introduction-to-r.html#cb20-2" tabindex="-1"></a>[<span class="dv">1</span>]   <span class="dv">4</span>  <span class="dv">22</span>  <span class="dv">33</span>  <span class="dv">24</span>  <span class="dv">14</span>  <span class="dv">10</span>  <span class="dv">27</span>  <span class="dv">54</span>  <span class="dv">55</span>  <span class="dv">23</span>   <span class="dv">5</span>   <span class="dv">1</span></span></code></pre></div>
 <p>These tools allow you to not only create visual summaries, but also work with the underlying values programmatically — which is useful for analysis, customization, or reporting.</p>
 <hr />
 </div>
@@ -909,21 +910,21 @@ While not required for this course, Positron may become relevant in future workf
 <ol style="list-style-type: decimal">
 <li><strong>Install the package</strong> (only once):</li>
 </ol>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="an-introduction-to-r.html#cb16-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="an-introduction-to-r.html#cb21-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Load the package into your R session</strong>:</li>
 </ol>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="an-introduction-to-r.html#cb17-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="an-introduction-to-r.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <p>Once loaded, you can use functions from that package — for example, <code>ggplot()</code> from the <strong>ggplot2</strong> package.</p>
 <blockquote>
 <p>Tip: You only need to install a package once, but you must load it with <code>library()</code> every time you restart RStudio.</p>
 </blockquote>
 <p>You can search for packages or view installed ones using:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="an-introduction-to-r.html#cb18-1" tabindex="-1"></a><span class="co"># View all installed packages</span></span>
-<span id="cb18-2"><a href="an-introduction-to-r.html#cb18-2" tabindex="-1"></a><span class="fu">installed.packages</span>()</span>
-<span id="cb18-3"><a href="an-introduction-to-r.html#cb18-3" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="an-introduction-to-r.html#cb18-4" tabindex="-1"></a><span class="co"># Search for packages by keyword</span></span>
-<span id="cb18-5"><a href="an-introduction-to-r.html#cb18-5" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;regression&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="an-introduction-to-r.html#cb23-1" tabindex="-1"></a><span class="co"># View all installed packages</span></span>
+<span id="cb23-2"><a href="an-introduction-to-r.html#cb23-2" tabindex="-1"></a><span class="fu">installed.packages</span>()</span>
+<span id="cb23-3"><a href="an-introduction-to-r.html#cb23-3" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="an-introduction-to-r.html#cb23-4" tabindex="-1"></a><span class="co"># Search for packages by keyword</span></span>
+<span id="cb23-5"><a href="an-introduction-to-r.html#cb23-5" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">&quot;regression&quot;</span>)</span></code></pre></div>
 <p>R packages are stored in CRAN (Comprehensive R Archive Network), which you accessed when installing R. There are also GitHub-hosted packages for advanced users.</p>
 </div>
 </div>
@@ -979,17 +980,17 @@ Exercise
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="an-introduction-to-r.html#cb19-1" tabindex="-1"></a><span class="co"># (a) Add 47 and 53</span></span>
-<span id="cb19-2"><a href="an-introduction-to-r.html#cb19-2" tabindex="-1"></a><span class="dv">47</span> <span class="sc">+</span> <span class="dv">53</span>        <span class="co"># [1] 100</span></span>
-<span id="cb19-3"><a href="an-introduction-to-r.html#cb19-3" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="an-introduction-to-r.html#cb19-4" tabindex="-1"></a><span class="co"># (b) Raise 6 to the power of 3</span></span>
-<span id="cb19-5"><a href="an-introduction-to-r.html#cb19-5" tabindex="-1"></a><span class="dv">6</span><span class="sc">^</span><span class="dv">3</span>            <span class="co"># [1] 216</span></span>
-<span id="cb19-6"><a href="an-introduction-to-r.html#cb19-6" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="an-introduction-to-r.html#cb19-7" tabindex="-1"></a><span class="co"># (c) Compute the square root of 144</span></span>
-<span id="cb19-8"><a href="an-introduction-to-r.html#cb19-8" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">144</span>)      <span class="co"># [1] 12</span></span>
-<span id="cb19-9"><a href="an-introduction-to-r.html#cb19-9" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="an-introduction-to-r.html#cb19-10" tabindex="-1"></a><span class="co"># (d) Find the remainder when 29 is divided by 4</span></span>
-<span id="cb19-11"><a href="an-introduction-to-r.html#cb19-11" tabindex="-1"></a><span class="dv">29</span> <span class="sc">%%</span> <span class="dv">4</span>        <span class="co"># [1] 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="an-introduction-to-r.html#cb24-1" tabindex="-1"></a><span class="co"># (a) Add 47 and 53</span></span>
+<span id="cb24-2"><a href="an-introduction-to-r.html#cb24-2" tabindex="-1"></a><span class="dv">47</span> <span class="sc">+</span> <span class="dv">53</span>        <span class="co"># [1] 100</span></span>
+<span id="cb24-3"><a href="an-introduction-to-r.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="an-introduction-to-r.html#cb24-4" tabindex="-1"></a><span class="co"># (b) Raise 6 to the power of 3</span></span>
+<span id="cb24-5"><a href="an-introduction-to-r.html#cb24-5" tabindex="-1"></a><span class="dv">6</span><span class="sc">^</span><span class="dv">3</span>            <span class="co"># [1] 216</span></span>
+<span id="cb24-6"><a href="an-introduction-to-r.html#cb24-6" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="an-introduction-to-r.html#cb24-7" tabindex="-1"></a><span class="co"># (c) Compute the square root of 144</span></span>
+<span id="cb24-8"><a href="an-introduction-to-r.html#cb24-8" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">144</span>)      <span class="co"># [1] 12</span></span>
+<span id="cb24-9"><a href="an-introduction-to-r.html#cb24-9" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="an-introduction-to-r.html#cb24-10" tabindex="-1"></a><span class="co"># (d) Find the remainder when 29 is divided by 4</span></span>
+<span id="cb24-11"><a href="an-introduction-to-r.html#cb24-11" tabindex="-1"></a><span class="dv">29</span> <span class="sc">%%</span> <span class="dv">4</span>        <span class="co"># [1] 1</span></span></code></pre></div>
 </div>
 </details>
 <hr />
@@ -1036,14 +1037,14 @@ scores <- c(72, 85, 91, 68, 79, 88, 95)
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="an-introduction-to-r.html#cb20-1" tabindex="-1"></a><span class="co"># Create the vector</span></span>
-<span id="cb20-2"><a href="an-introduction-to-r.html#cb20-2" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">72</span>, <span class="dv">85</span>, <span class="dv">91</span>, <span class="dv">68</span>, <span class="dv">79</span>, <span class="dv">88</span>, <span class="dv">95</span>)</span>
-<span id="cb20-3"><a href="an-introduction-to-r.html#cb20-3" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="an-introduction-to-r.html#cb20-4" tabindex="-1"></a><span class="co"># Compute the mean</span></span>
-<span id="cb20-5"><a href="an-introduction-to-r.html#cb20-5" tabindex="-1"></a><span class="fu">mean</span>(scores)   <span class="co"># [1] 82.57143</span></span>
-<span id="cb20-6"><a href="an-introduction-to-r.html#cb20-6" tabindex="-1"></a></span>
-<span id="cb20-7"><a href="an-introduction-to-r.html#cb20-7" tabindex="-1"></a><span class="co"># Find the maximum score</span></span>
-<span id="cb20-8"><a href="an-introduction-to-r.html#cb20-8" tabindex="-1"></a><span class="fu">max</span>(scores)    <span class="co"># [1] 95</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="an-introduction-to-r.html#cb25-1" tabindex="-1"></a><span class="co"># Create the vector</span></span>
+<span id="cb25-2"><a href="an-introduction-to-r.html#cb25-2" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">72</span>, <span class="dv">85</span>, <span class="dv">91</span>, <span class="dv">68</span>, <span class="dv">79</span>, <span class="dv">88</span>, <span class="dv">95</span>)</span>
+<span id="cb25-3"><a href="an-introduction-to-r.html#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="an-introduction-to-r.html#cb25-4" tabindex="-1"></a><span class="co"># Compute the mean</span></span>
+<span id="cb25-5"><a href="an-introduction-to-r.html#cb25-5" tabindex="-1"></a><span class="fu">mean</span>(scores)   <span class="co"># [1] 82.57143</span></span>
+<span id="cb25-6"><a href="an-introduction-to-r.html#cb25-6" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="an-introduction-to-r.html#cb25-7" tabindex="-1"></a><span class="co"># Find the maximum score</span></span>
+<span id="cb25-8"><a href="an-introduction-to-r.html#cb25-8" tabindex="-1"></a><span class="fu">max</span>(scores)    <span class="co"># [1] 95</span></span></code></pre></div>
 </div>
 </details>
 <hr />
@@ -1095,16 +1096,16 @@ Exercise
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="an-introduction-to-r.html#cb21-1" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">18.2</span>, <span class="fl">21.5</span>, <span class="fl">19.0</span>, <span class="fl">23.8</span>, <span class="fl">17.6</span>, <span class="fl">22.1</span>, <span class="fl">20.4</span>)</span>
-<span id="cb21-2"><a href="an-introduction-to-r.html#cb21-2" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="an-introduction-to-r.html#cb21-3" tabindex="-1"></a><span class="co"># (a) Extract the third element</span></span>
-<span id="cb21-4"><a href="an-introduction-to-r.html#cb21-4" tabindex="-1"></a>temps[<span class="dv">3</span>]              <span class="co"># [1] 19.0</span></span>
-<span id="cb21-5"><a href="an-introduction-to-r.html#cb21-5" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="an-introduction-to-r.html#cb21-6" tabindex="-1"></a><span class="co"># (b) Extract the first and fifth elements together</span></span>
-<span id="cb21-7"><a href="an-introduction-to-r.html#cb21-7" tabindex="-1"></a>temps[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)]        <span class="co"># [1] 18.2 17.6</span></span>
-<span id="cb21-8"><a href="an-introduction-to-r.html#cb21-8" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="an-introduction-to-r.html#cb21-9" tabindex="-1"></a><span class="co"># (c) Extract all elements except the second</span></span>
-<span id="cb21-10"><a href="an-introduction-to-r.html#cb21-10" tabindex="-1"></a>temps[<span class="sc">-</span><span class="dv">2</span>]             <span class="co"># [1] 18.2 19.0 23.8 17.6 22.1 20.4</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="an-introduction-to-r.html#cb26-1" tabindex="-1"></a>temps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">18.2</span>, <span class="fl">21.5</span>, <span class="fl">19.0</span>, <span class="fl">23.8</span>, <span class="fl">17.6</span>, <span class="fl">22.1</span>, <span class="fl">20.4</span>)</span>
+<span id="cb26-2"><a href="an-introduction-to-r.html#cb26-2" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="an-introduction-to-r.html#cb26-3" tabindex="-1"></a><span class="co"># (a) Extract the third element</span></span>
+<span id="cb26-4"><a href="an-introduction-to-r.html#cb26-4" tabindex="-1"></a>temps[<span class="dv">3</span>]              <span class="co"># [1] 19.0</span></span>
+<span id="cb26-5"><a href="an-introduction-to-r.html#cb26-5" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="an-introduction-to-r.html#cb26-6" tabindex="-1"></a><span class="co"># (b) Extract the first and fifth elements together</span></span>
+<span id="cb26-7"><a href="an-introduction-to-r.html#cb26-7" tabindex="-1"></a>temps[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)]        <span class="co"># [1] 18.2 17.6</span></span>
+<span id="cb26-8"><a href="an-introduction-to-r.html#cb26-8" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="an-introduction-to-r.html#cb26-9" tabindex="-1"></a><span class="co"># (c) Extract all elements except the second</span></span>
+<span id="cb26-10"><a href="an-introduction-to-r.html#cb26-10" tabindex="-1"></a>temps[<span class="sc">-</span><span class="dv">2</span>]             <span class="co"># [1] 18.2 19.0 23.8 17.6 22.1 20.4</span></span></code></pre></div>
 </div>
 </details>
 <hr />
@@ -1152,17 +1153,17 @@ students <- read.csv(text = "name,age,grade\nAlice,20,88\nBob,22,72\nCarol,19,95
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="an-introduction-to-r.html#cb22-1" tabindex="-1"></a><span class="co"># Load the datasets package (always available in base R)</span></span>
-<span id="cb22-2"><a href="an-introduction-to-r.html#cb22-2" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
-<span id="cb22-3"><a href="an-introduction-to-r.html#cb22-3" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="an-introduction-to-r.html#cb22-4" tabindex="-1"></a><span class="co"># Read CSV data using read.csv() with inline text</span></span>
-<span id="cb22-5"><a href="an-introduction-to-r.html#cb22-5" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">text =</span> <span class="st">&quot;name,age,grade</span><span class="sc">\n</span><span class="st">Alice,20,88</span><span class="sc">\n</span><span class="st">Bob,22,72</span><span class="sc">\n</span><span class="st">Carol,19,95&quot;</span>)</span>
-<span id="cb22-6"><a href="an-introduction-to-r.html#cb22-6" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="an-introduction-to-r.html#cb22-7" tabindex="-1"></a><span class="co"># Print the data frame</span></span>
-<span id="cb22-8"><a href="an-introduction-to-r.html#cb22-8" tabindex="-1"></a>students</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="an-introduction-to-r.html#cb27-1" tabindex="-1"></a><span class="co"># Load the datasets package (always available in base R)</span></span>
+<span id="cb27-2"><a href="an-introduction-to-r.html#cb27-2" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
+<span id="cb27-3"><a href="an-introduction-to-r.html#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="an-introduction-to-r.html#cb27-4" tabindex="-1"></a><span class="co"># Read CSV data using read.csv() with inline text</span></span>
+<span id="cb27-5"><a href="an-introduction-to-r.html#cb27-5" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">text =</span> <span class="st">&quot;name,age,grade</span><span class="sc">\n</span><span class="st">Alice,20,88</span><span class="sc">\n</span><span class="st">Bob,22,72</span><span class="sc">\n</span><span class="st">Carol,19,95&quot;</span>)</span>
+<span id="cb27-6"><a href="an-introduction-to-r.html#cb27-6" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="an-introduction-to-r.html#cb27-7" tabindex="-1"></a><span class="co"># Print the data frame</span></span>
+<span id="cb27-8"><a href="an-introduction-to-r.html#cb27-8" tabindex="-1"></a>students</span></code></pre></div>
 <p>In a full RStudio session with a real file you would instead write:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="an-introduction-to-r.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb23-2"><a href="an-introduction-to-r.html#cb23-2" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;students.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="an-introduction-to-r.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb28-2"><a href="an-introduction-to-r.html#cb28-2" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;students.csv&quot;</span>)</span></code></pre></div>
 </div>
 </details>
 <hr />
@@ -1212,22 +1213,22 @@ Exercise
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="an-introduction-to-r.html#cb24-1" tabindex="-1"></a>students <span class="ot">&lt;-</span> mtcars</span>
-<span id="cb24-2"><a href="an-introduction-to-r.html#cb24-2" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="an-introduction-to-r.html#cb24-3" tabindex="-1"></a><span class="co"># (a) View the first 6 rows</span></span>
-<span id="cb24-4"><a href="an-introduction-to-r.html#cb24-4" tabindex="-1"></a><span class="fu">head</span>(students)</span>
-<span id="cb24-5"><a href="an-introduction-to-r.html#cb24-5" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="an-introduction-to-r.html#cb24-6" tabindex="-1"></a><span class="co"># (b) Number of rows</span></span>
-<span id="cb24-7"><a href="an-introduction-to-r.html#cb24-7" tabindex="-1"></a><span class="fu">nrow</span>(students)     <span class="co"># [1] 32</span></span>
-<span id="cb24-8"><a href="an-introduction-to-r.html#cb24-8" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="an-introduction-to-r.html#cb24-9" tabindex="-1"></a><span class="co"># (c) Number of columns</span></span>
-<span id="cb24-10"><a href="an-introduction-to-r.html#cb24-10" tabindex="-1"></a><span class="fu">ncol</span>(students)     <span class="co"># [1] 11</span></span>
-<span id="cb24-11"><a href="an-introduction-to-r.html#cb24-11" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="an-introduction-to-r.html#cb24-12" tabindex="-1"></a><span class="co"># (d) Column names</span></span>
-<span id="cb24-13"><a href="an-introduction-to-r.html#cb24-13" tabindex="-1"></a><span class="fu">names</span>(students)</span>
-<span id="cb24-14"><a href="an-introduction-to-r.html#cb24-14" tabindex="-1"></a></span>
-<span id="cb24-15"><a href="an-introduction-to-r.html#cb24-15" tabindex="-1"></a><span class="co"># (e) Compact structure summary</span></span>
-<span id="cb24-16"><a href="an-introduction-to-r.html#cb24-16" tabindex="-1"></a><span class="fu">str</span>(students)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="an-introduction-to-r.html#cb29-1" tabindex="-1"></a>students <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb29-2"><a href="an-introduction-to-r.html#cb29-2" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="an-introduction-to-r.html#cb29-3" tabindex="-1"></a><span class="co"># (a) View the first 6 rows</span></span>
+<span id="cb29-4"><a href="an-introduction-to-r.html#cb29-4" tabindex="-1"></a><span class="fu">head</span>(students)</span>
+<span id="cb29-5"><a href="an-introduction-to-r.html#cb29-5" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="an-introduction-to-r.html#cb29-6" tabindex="-1"></a><span class="co"># (b) Number of rows</span></span>
+<span id="cb29-7"><a href="an-introduction-to-r.html#cb29-7" tabindex="-1"></a><span class="fu">nrow</span>(students)     <span class="co"># [1] 32</span></span>
+<span id="cb29-8"><a href="an-introduction-to-r.html#cb29-8" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="an-introduction-to-r.html#cb29-9" tabindex="-1"></a><span class="co"># (c) Number of columns</span></span>
+<span id="cb29-10"><a href="an-introduction-to-r.html#cb29-10" tabindex="-1"></a><span class="fu">ncol</span>(students)     <span class="co"># [1] 11</span></span>
+<span id="cb29-11"><a href="an-introduction-to-r.html#cb29-11" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="an-introduction-to-r.html#cb29-12" tabindex="-1"></a><span class="co"># (d) Column names</span></span>
+<span id="cb29-13"><a href="an-introduction-to-r.html#cb29-13" tabindex="-1"></a><span class="fu">names</span>(students)</span>
+<span id="cb29-14"><a href="an-introduction-to-r.html#cb29-14" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="an-introduction-to-r.html#cb29-15" tabindex="-1"></a><span class="co"># (e) Compact structure summary</span></span>
+<span id="cb29-16"><a href="an-introduction-to-r.html#cb29-16" tabindex="-1"></a><span class="fu">str</span>(students)</span></code></pre></div>
 </div>
 </details>
 <hr />
