@@ -343,7 +343,7 @@ print(p2)
 ```
 
 
-```{r fig.cap="Two-tailed test: p-value is the total area in both tails beyond 卤test statistic", echo=FALSE, fig.align='center', out.width='70%'}
+```{r fig.cap="Two-tailed test: p-value is the total area in both tails beyond ±test statistic", echo=FALSE, fig.align='center', out.width='70%'}
 library(ggplot2)
 
 # Generate bell curve
@@ -497,11 +497,11 @@ But how small is small p-value?\
 We would need to choose an $\alpha$-level (significance-level): a number
 such that if:
 
-- $P\text{�üvalue} \leq \alpha$-level, we reject $H_0$; We can conclude
+- $P\text{–value} \leq \alpha$-level, we reject $H_0$; We can conclude
   $H_a$ (we have evidence to support our claim). Often we phrase as a
   statistically significant result at that specified $\alpha$-level.
 
-- $P\text{�üvalue} > \alpha$-level, we fail to reject $H_0$; We cannot
+- $P\text{–value} > \alpha$-level, we fail to reject $H_0$; We cannot
   conclude $H_a$ (we have not enough evidence to support our claim;
   thus, $H_0$ is plausible - We do not accept $H_0$). Often we phrase as
   the result is not statistically significant at that specified
@@ -3039,11 +3039,11 @@ condition for each group.
 
 Let's begin this type of hypothesis test with a case. The question is:
 how do you know whether the homogeneity of variance assumption is
-satis铿ed? One simple method involves just looking at two sample
+satisﬁed? One simple method involves just looking at two sample
 variances. Logically, if two population variances are equal, then the
 two sample variances should be very similar. When the two sample
-variances are reasonably close, you can be reasonably con铿dent that the
-homogeneity assumption is satis铿ed and proceed with, for example,
+variances are reasonably close, you can be reasonably conﬁdent that the
+homogeneity assumption is satisﬁed and proceed with, for example,
 Student t-interval. However, when one sample variance is three or four
 times larger than the other, then there is reason for a concern. The
 common statistical procedure for comparing population variances
@@ -3148,7 +3148,7 @@ Independence Assumption:
   draw conclusions.
 
 - If samples are bigger than 10 % of the target population, we need to
-  acknowledge this and note in our report. When we sample from a 铿nite
+  acknowledge this and note in our report. When we sample from a ﬁnite
   population, we should be careful not to sample more than 10 % of that
   population. Sampling too large a fraction of the population calls the
   independence assumption into question.
@@ -3209,8 +3209,8 @@ fertilizer. Wheat was planted, and the crop yields were measured.
 | New     | 60 | 49 | 66 | 73 | 59 | 67 | 61 | 60 | 58 | 75 | 72 | 68 |
 :::
 
-Can we conclude at the 5% signi铿cance level that the new fertilizer is
-more e铿üective than the current one?
+Can we conclude at the 5% signiﬁcance level that the new fertilizer is
+more eﬀective than the current one?
 
 **Solution:**
 
@@ -3272,8 +3272,8 @@ z_star
 p_value <- pnorm(___)
 p_value</textarea>
 <div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
 </div>
 <div class="webr-output-area"></div>
 <div class="webr-canvas-area"><canvas></canvas></div>
@@ -3281,7 +3281,7 @@ p_value</textarea>
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - The $z$ statistic for a known-$\sigma$ test is $z^* = (\bar{x} - \mu_0) / (\sigma / \sqrt{n})$.
 - For a lower-tailed alternative $H_a: \mu < \mu_0$, the p-value is $P(Z < z^*) = $ `pnorm(z_star)`.
@@ -3290,7 +3290,7 @@ p_value</textarea>
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 
 ```r
@@ -3338,8 +3338,8 @@ p_value_b <- ___
 # (c) Ha: mu != mu0  (two-tailed)
 p_value_c <- ___</textarea>
 <div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
 </div>
 <div class="webr-output-area"></div>
 <div class="webr-canvas-area"><canvas></canvas></div>
@@ -3347,7 +3347,7 @@ p_value_c <- ___</textarea>
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - Upper-tailed: p-value $= P(Z > z^*) = $ `1 - pnorm(z_star)`
 - Lower-tailed: p-value $= P(Z < z^*) = $ `pnorm(z_star)`
@@ -3356,7 +3356,7 @@ p_value_c <- ___</textarea>
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 
 ```r
@@ -3406,8 +3406,8 @@ Assume calorie intake is approximately normally distributed. Use `t.test()` to t
 result <- t.test(calories, mu = ___, alternative = "___")
 result</textarea>
 <div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
 </div>
 <div class="webr-output-area"></div>
 <div class="webr-canvas-area"><canvas></canvas></div>
@@ -3415,7 +3415,7 @@ result</textarea>
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - `t.test(x, mu = mu0, alternative = "less")` tests $H_a: \mu < \mu_0$.
 - The `alternative` argument accepts `"less"`, `"greater"`, or `"two.sided"`.
@@ -3424,7 +3424,7 @@ result</textarea>
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 
 ```r
@@ -3473,8 +3473,8 @@ z_star
 p_value <- 1 - pnorm(___)
 p_value</textarea>
 <div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
 </div>
 <div class="webr-output-area"></div>
 <div class="webr-canvas-area"><canvas></canvas></div>
@@ -3482,16 +3482,16 @@ p_value</textarea>
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - $\hat{p} = x / n$ where $x$ is the number of successes and $n$ is the sample size.
-- The standard error under $H_0$ is $\sqrt{p_0(1-p_0)/n}$ �ü use $p_0$, not $\hat{p}$, here.
+- The standard error under $H_0$ is $\sqrt{p_0(1-p_0)/n}$ — use $p_0$, not $\hat{p}$, here.
 - For an upper-tailed test ($H_a: p > p_0$), the p-value is $P(Z > z^*) = $ `1 - pnorm(z_star)`.
 </div>
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 
 ```r
@@ -3541,8 +3541,8 @@ result <- prop.test(x = ___, n = ___, p = ___,
                     alternative = "___", correct = ___)
 result</textarea>
 <div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
 </div>
 <div class="webr-output-area"></div>
 <div class="webr-canvas-area"><canvas></canvas></div>
@@ -3550,7 +3550,7 @@ result</textarea>
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - `prop.test(x, n, p, alternative, correct)` tests a single proportion.
 - For a two-sided test use `alternative = "two.sided"`.
@@ -3560,7 +3560,7 @@ result</textarea>
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 
 ```r
@@ -3588,83 +3588,40 @@ $\hat{p} = 72/300 = 0.24$. The p-value $\approx 0.083 > \alpha = 0.05$, so we **
 
 <div class="exercise-box">
 <div class="exercise-label">Question 6</div>
-For each research scenario below, identify the **most appropriate hypothesis test** from the list, state the null and alternative hypotheses, and name the reference distribution.
+A bottled water plant fills bottles to a target mean weight of $\mu_0 = 500$ g. The population standard deviation is known to be $\sigma = 8$ g. A quality control inspector randomly selects $n = 25$ bottles and records a sample mean of $\bar{x} = 496.5$ g. The plant manager wants to know whether the mean fill weight has dropped below the target.
 
-Available tests:
-- One-sample $z$ test for a mean ($\sigma$ known)
-- One-sample $t$ test for a mean ($\sigma$ unknown)
-- One-sample $z$ test for a proportion
-- One-sample $\chi^2$ test for a variance
-- Two-sample $z$ test for two means ($\sigma_1, \sigma_2$ known)
-- Two-sample pooled $t$ test for two means (equal variances)
-- Welch $t$ test for two means (unequal variances)
-- Two-sample $z$ test for two proportions
-- $F$-test for two variances
-- Paired $t$ test
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
 
-**(a)** A public health agency reports that the historical standard deviation of systolic blood pressure in adult males is $\sigma_0 = 14$ mmHg. A researcher measures 40 adult males and wants to determine whether today's population is **more variable** than the historical norm.
-
-**(b)** An educator surveys a random sample of 180 first-year college students and asks whether they passed their high school calculus course. She wants to test whether the pass rate in her region exceeds the national figure of 68%.
-
-**(c)** A pharmaceutical company conducts a crossover trial in which each of 12 patients receives both Drug A and Drug B in random order (one week apart). The company wants to determine whether Drug A produces a higher mean pain-relief score than Drug B.
-
-**(d)** A factory runs two independent production lines. Line 1 uses equipment that has a known standard deviation of output of $\sigma_1 = 3.2$ kg, and Line 2 has a known standard deviation of $\sigma_2 = 2.8$ kg. Samples of sizes $n_1 = 50$ and $n_2 = 45$ are drawn. Management wants to test whether the two lines produce the same mean output.
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- To choose among tests for a **mean**, first ask: is $\sigma$ known or unknown? Then ask: one sample or two? If two, are observations paired or independent?
-- To choose between **pooled** and **Welch** $t$, ask whether the population variances can be assumed equal.
-- For a **proportion**, the parameter is $p$ and no variance assumption is needed.
-- For a **variance**, the parameter is $\sigma^2$ and the test statistic uses the $\chi^2$ distribution (one sample) or the $F$ distribution (two samples).
+- Since $\sigma$ is known and the question asks whether the mean has *dropped*, use a lower-tailed $z$ test.
+- The test statistic is $z^* = (\bar{x} - \mu_0) / (\sigma / \sqrt{n})$.
+- The p-value for $H_a: \mu < \mu_0$ is $P(Z < z^*)$.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a) One-sample $\chi^2$ test for a variance**
+**(a)** $H_0: \mu = 500$ g $\quad$ vs. $\quad H_a: \mu < 500$ g
 
-The parameter of interest is the population variance $\sigma^2$. The researcher wants to test whether variability has **increased**:
+**(b)** Since $\sigma$ is known, we use the $z$ statistic:
+$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{496.5 - 500}{8 / \sqrt{25}} = \frac{-3.5}{1.6} = -2.1875$$
 
-$$H_0: \sigma^2 = 196 \quad \text{vs.} \quad H_a: \sigma^2 > 196$$
+**(c)** For $H_a: \mu < 500$ (lower-tailed), using $Z \sim N(0,1)$:
+$$\text{p-value} = P(Z < -2.1875) \approx 0.0143$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
-(where $\sigma_0^2 = 14^2 = 196$). Reference distribution: $\chi^2_{n-1} = \chi^2_{39}$ (right-tailed test).
-
----
-
-**(b) One-sample $z$ test for a proportion**
-
-The parameter of interest is the population proportion $p$. The researcher wants to test whether the regional pass rate **exceeds** 68%:
-
-$$H_0: p = 0.68 \quad \text{vs.} \quad H_a: p > 0.68$$
-
-Reference distribution: $Z \sim N(0,1)$ (upper-tailed test). The large-sample condition ($n\hat{p}$ and $n(1-\hat{p})$ both $\geq 10$) should be verified.
-
----
-
-**(c) Paired $t$ test**
-
-Each patient provides **two** observations (Drug A and Drug B), so observations are not independent. The relevant parameter is $\mu_d = \mu_A - \mu_B$:
-
-$$H_0: \mu_d = 0 \quad \text{vs.} \quad H_a: \mu_d > 0$$
-
-Reference distribution: $t_{n-1} = t_{11}$ (upper-tailed test).
-
----
-
-**(d) Two-sample $z$ test for two means**
-
-Both population standard deviations are **known** ($\sigma_1 = 3.2$, $\sigma_2 = 2.8$), so we use the $z$ statistic:
-
-$$H_0: \mu_1 = \mu_2 \quad \text{vs.} \quad H_a: \mu_1 \ne \mu_2$$
-
-Reference distribution: $Z \sim N(0,1)$ (two-tailed test).
+**(d)** Since p-value $\approx 0.0143 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the mean fill weight has dropped below the target of 500 g.
 </div>
 </details>
-
----
 
 ---
 
@@ -3681,7 +3638,7 @@ You may use the Distribution Calculator in Section 4.1.5 to find the required ta
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - "Has the mean score *increased*?" calls for an upper-tailed alternative: $H_a: \mu > \mu_0$.
 - The p-value for $H_a: \mu > \mu_0$ is $P(Z > z^*) = 1 - P(Z \le z^*)$.
@@ -3690,7 +3647,7 @@ You may use the Distribution Calculator in Section 4.1.5 to find the required ta
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 **(a)** $H_0: \mu = 70 \quad$ vs. $\quad H_a: \mu > 70$
 
@@ -3699,7 +3656,7 @@ $$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{72.6 - 70}{9.1 / \sqrt
 
 **(c)** For $H_a: \mu > 70$ (upper-tailed):
 $$\text{p-value} = P(Z > 2.000) = 1 - P(Z \le 2.000) \approx 0.0228$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
 **(d)** Since p-value $\approx 0.0228 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the mean midterm score increased after the curriculum redesign.
 </div>
@@ -3720,7 +3677,7 @@ You may use the Distribution Calculator in Section 4.1.5 to find the required ta
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - "Differs from" means a two-tailed test: $H_a: \mu \ne \mu_0$.
 - For a two-tailed test, p-value $= 2 \times P(Z > |z^*|) = 2(1 - P(Z \le |z^*|))$.
@@ -3728,7 +3685,7 @@ You may use the Distribution Calculator in Section 4.1.5 to find the required ta
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 **(a)** $H_0: \mu = 0.65$ s $\quad$ vs. $\quad H_a: \mu \ne 0.65$ s
 
@@ -3737,7 +3694,7 @@ $$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{0.672 - 0.65}{0.10 / \
 
 **(c)** For $H_a: \mu \ne 0.65$ (two-tailed):
 $$\text{p-value} = 2 \times P(Z > 2.200) = 2(1 - P(Z \le 2.200)) \approx 2(0.0139) = 0.0278$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
 **(d)** Since p-value $\approx 0.0278 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the mean reaction time differs from 0.65 seconds.
 </div>
@@ -3747,1385 +3704,11 @@ $$\text{p-value} = 2 \times P(Z > 2.200) = 2(1 - P(Z \le 2.200)) \approx 2(0.013
 
 <div class="exercise-box">
 <div class="exercise-label">Question 9</div>
-A psychologist claims the population mean anxiety score on a standardised scale is $\mu_0 = 15$. She collects a random sample of $n = 10$ patients and records $\bar{x} = 17.2$ with $s = 3.6$. She wants to test whether the mean anxiety score differs from 15. Assume scores are approximately normally distributed.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the test statistic.
-(c) Find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- "Differs from" calls for a two-tailed test: $H_a: \mu \ne \mu_0$.
-- $\sigma$ is unknown, so use the $t$ statistic with $df = n - 1 = 9$.
-- Two-tailed p-value $= 2 \times P(T_9 > |t^*|)$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)** $H_0: \mu = 15 \quad$ vs. $\quad H_a: \mu \ne 15$
-
-**(b)** With $df = n - 1 = 9$:
-$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{17.2 - 15}{3.6 / \sqrt{10}} = \frac{2.2}{1.1384} \approx 1.933$$
-
-**(c)** For $H_a: \mu \ne 15$ (two-tailed), using $T \sim t_9$:
-$$\text{p-value} = 2 \times P(T_9 > 1.933) \approx 2(0.0427) = 0.0853$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-From the $t$-table: $t_{9,\,0.05} = 1.833 < 1.933 < 2.262 = t_{9,\,0.025}$, so $0.05 < \text{p-value} < 0.10$.
-
-**(d)** Since p-value $\approx 0.085 > \alpha = 0.05$, we **fail to reject $H_0$**. There is not sufficient evidence at the 5% level to conclude that the mean anxiety score differs from 15.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 10</div>
-A botanist claims that a new plant food reduces the mean germination time of seeds below the standard $\mu_0 = 8.0$ days. She plants $n = 12$ seeds treated with the food and records $\bar{x} = 7.0$ days and $s = 1.5$ days. Assume germination times are approximately normally distributed.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the test statistic.
-(c) Find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- The claim is that germination time has *decreased*, so use $H_a: \mu < \mu_0$.
-- $\sigma$ is unknown, so use the $t$ statistic with $df = n - 1 = 11$.
-- Lower-tailed p-value $= P(T_{11} < t^*)$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)** $H_0: \mu = 8.0$ days $\quad$ vs. $\quad H_a: \mu < 8.0$ days
-
-**(b)** With $df = n - 1 = 11$:
-$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{7.0 - 8.0}{1.5 / \sqrt{12}} = \frac{-1.0}{0.4330} \approx -2.309$$
-
-**(c)** For $H_a: \mu < 8.0$ (lower-tailed), using $T \sim t_{11}$:
-$$\text{p-value} = P(T_{11} < -2.309) \approx 0.0207$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-From the $t$-table: $t_{11,\,0.025} = 2.201 < 2.309 < 2.718 = t_{11,\,0.01}$, so $0.01 < \text{p-value} < 0.025$.
-
-**(d)** Since p-value $\approx 0.021 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the new plant food reduces mean germination time below 8.0 days.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 11</div>
-A university registrar claims that 40% of students live off campus. A housing researcher believes the true proportion is lower. In a random sample of $n = 200$ students, $x = 65$ reported living off campus.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the sample proportion $\hat{p}$ and the test statistic.
-(c) Find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- The researcher believes the proportion is *lower*, so use $H_a: p < p_0$.
-- The test statistic is $z^* = (\hat{p} - p_0) / \sqrt{p_0(1-p_0)/n}$, using $p_0$ in the denominator.
-- Lower-tailed p-value $= P(Z < z^*)$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)** $H_0: p = 0.40 \quad$ vs. $\quad H_a: p < 0.40$
-
-**(b)** Sample proportion:
-$$\hat{p} = \frac{x}{n} = \frac{65}{200} = 0.325$$
-Test statistic:
-$$z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.325 - 0.40}{\sqrt{0.40 \times 0.60 / 200}} = \frac{-0.075}{0.03464} \approx -2.165$$
-
-**(c)** For $H_a: p < 0.40$ (lower-tailed):
-$$\text{p-value} = P(Z < -2.165) \approx 0.0152$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-**(d)** Since p-value $\approx 0.0152 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that fewer than 40% of students live off campus.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 12</div>
-Three independent research scenarios are given below. For **each scenario**: (i) identify the appropriate test (one-sample $z$ test for a mean, one-sample $t$ test for a mean, or one-sample $z$ test for a proportion); (ii) state $H_0$ and $H_a$; (iii) compute the test statistic; (iv) find the p-value; and (v) state a conclusion at the given $\alpha$.
-
-You may use the Distribution Calculator in Section 4.1.5 to find required tail probabilities.
-
-**(a)** A physiotherapist records grip strength for $n = 25$ patients and reports $\bar{x} = 18.8$ kg and $s = 3.5$ kg. The population standard deviation is **unknown**. Historical data show the mean for healthy adults is $\mu_0 = 17.0$ kg. Test whether the sample mean differs from the historical norm at $\alpha = 0.05$.
-
-**(b)** A pollster claims 25% of voters support Candidate X. In a random sample of $n = 200$ voters, $x = 56$ indicate support for Candidate X. Test whether the true support level differs from 25% at $\alpha = 0.05$.
-
-**(c)** A fitness app reports its users average $\mu_0 = 46.0$ minutes of exercise per day. The population standard deviation is **known** to be $\sigma = 6$ minutes. A researcher samples $n = 36$ users and records $\bar{x} = 43.8$ minutes. Test whether the mean is lower than reported at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- Use the **$z$ test for a mean** when $\sigma$ is known.
-- Use the **$t$ test for a mean** when $\sigma$ is unknown and data are approximately normal.
-- Use the **$z$ test for a proportion** when the parameter of interest is a population proportion $p$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a) One-sample $t$ test for a mean** ($\sigma$ unknown)
-
-$H_0: \mu = 17.0$ kg $\quad$ vs. $\quad H_a: \mu \ne 17.0$ kg, with $df = 24$.
-
-$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{18.8 - 17.0}{3.5 / \sqrt{25}} = \frac{1.8}{0.7} \approx 2.571$$
-
-$$\text{p-value} = 2 \times P(T_{24} > 2.571) \approx 0.0167$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-From the $t$-table: $t_{24,\,0.01} = 2.492 < 2.571 < 2.797 = t_{24,\,0.005}$, so $0.01 < \text{p-value} < 0.02$.
-
-Since p-value $< \alpha = 0.05$, **reject $H_0$**. There is sufficient evidence that mean grip strength differs from 17.0 kg.
-
----
-
-**(b) One-sample $z$ test for a proportion**
-
-$H_0: p = 0.25 \quad$ vs. $\quad H_a: p \ne 0.25$.
-
-$$\hat{p} = \frac{56}{200} = 0.280, \qquad z^* = \frac{0.280 - 0.25}{\sqrt{0.25 \times 0.75 / 200}} = \frac{0.030}{0.03062} \approx 0.980$$
-
-$$\text{p-value} = 2 \times P(Z > 0.980) \approx 2(0.1635) = 0.3271$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-Since p-value $\approx 0.327 > \alpha = 0.05$, **fail to reject $H_0$**. There is not sufficient evidence that support for Candidate X differs from 25%.
-
----
-
-**(c) One-sample $z$ test for a mean** ($\sigma$ known)
-
-$H_0: \mu = 46.0$ min $\quad$ vs. $\quad H_a: \mu < 46.0$ min.
-
-$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{43.8 - 46.0}{6 / \sqrt{36}} = \frac{-2.2}{1.0} = -2.200$$
-
-$$\text{p-value} = P(Z < -2.200) \approx 0.0139$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-Since p-value $\approx 0.014 < \alpha = 0.05$, **reject $H_0$**. There is sufficient evidence that mean daily exercise time for app users is less than 46.0 minutes.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 13</div>
-A statistics professor expects the standard deviation of final exam scores in her course to be $\sigma_0 = 10$ points. After implementing a new teaching method, she randomly samples $n = 21$ students and finds a sample standard deviation of $s = 13$ points. Test whether score variability has increased. Use $\alpha = 0.05$. Assume exam scores are approximately normally distributed.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the $\chi^2$ test statistic using $\chi^{2*} = \dfrac{(n-1)s^2}{\sigma_0^2}$.
-(c) State the degrees of freedom and find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- The test statistic for a population variance is $\chi^{2*} = \dfrac{(n-1)s^2}{\sigma_0^2}$ with $df = n - 1$.
-- Since we are testing whether variability has *increased*, use a right-tailed test: $H_a: \sigma^2 > \sigma_0^2$.
-- The p-value for $H_a: \sigma^2 > \sigma_0^2$ is $P(\chi^2_{n-1} > \chi^{2*})$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \sigma^2 = 100 \qquad H_a: \sigma^2 > 100$$
-(where $\sigma_0^2 = 10^2 = 100$)
-
-**(b)**
-$$\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(21 - 1)(13^2)}{10^2} = \frac{(20)(169)}{100} = 33.8$$
-
-**(c)** Degrees of freedom: $df = n - 1 = 20$.
-
-For $H_a: \sigma^2 > 100$ (right-tailed):
-$$\text{p-value} = P(\chi^2_{20} > 33.8) \approx 0.0278$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-From the $\chi^2$-table: $\chi^2_{20,\,0.05} = 31.41 < 33.8 < 34.17 = \chi^2_{20,\,0.025}$, so $0.025 < \text{p-value} < 0.05$.
-
-**(d)** Since p-value $\approx 0.028 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the variance of exam scores has increased above $\sigma_0^2 = 100$ (i.e., $\sigma > 10$ points).
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 14</div>
-A packaging machine is designed to fill bags of flour with a standard deviation of $\sigma_0 = 5$ g. After scheduled maintenance, a quality engineer randomly samples $n = 16$ bags and finds a sample standard deviation of $s = 3.2$ g. The engineer believes the maintenance may have reduced variability. Test at $\alpha = 0.05$. Assume fill weights are approximately normally distributed.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the $\chi^2$ test statistic.
-(c) State the degrees of freedom and find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- The engineer believes variability has *decreased*, so use a left-tailed test: $H_a: \sigma^2 < \sigma_0^2$.
-- The p-value for $H_a: \sigma^2 < \sigma_0^2$ is $P(\chi^2_{n-1} < \chi^{2*})$.
-- Note that $\sigma_0^2 = 5^2 = 25$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \sigma^2 = 25 \qquad H_a: \sigma^2 < 25$$
-(where $\sigma_0^2 = 5^2 = 25$)
-
-**(b)**
-$$\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(16 - 1)(3.2^2)}{5^2} = \frac{(15)(10.24)}{25} = \frac{153.6}{25} = 6.144$$
-
-**(c)** Degrees of freedom: $df = n - 1 = 15$.
-
-For $H_a: \sigma^2 < 25$ (left-tailed):
-$$\text{p-value} = P(\chi^2_{15} < 6.144) \approx 0.0228$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-From the $\chi^2$-table: the lower 5th percentile of $\chi^2_{15}$ is $7.26$. Since $6.144 < 7.26$, the p-value $< 0.05$.
-
-**(d)** Since p-value $\approx 0.023 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the variance of fill weights has decreased below $\sigma_0^2 = 25$ g$^2$ (i.e., $\sigma < 5$ g).
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 15</div>
-A researcher reads the following four study descriptions and wants to apply a one-sample $\chi^2$ test for a population variance in each case. For **each description**, assess whether the key assumption for the $\chi^2$ variance test is reasonably satisfied, and explain your reasoning.
-
-The key assumption is: **the data come from a normally distributed population** (or the sample size is large enough for approximate normality of the chi-squared statistic, which for variance tests requires the underlying population to be normal — unlike the CLT, increasing $n$ alone does not rescue this test for non-normal data).
-
-**(a)** A researcher measures the lengths of 200 randomly selected salmon in a river. He plots a histogram which shows a unimodal, roughly symmetric, bell-shaped distribution with no extreme outliers. He wants to test whether $\sigma^2 = 4$ cm$^2$.
-
-**(b)** A hospital records the waiting times (minutes) of 15 patients in the emergency department. A stemplot of the data shows a strong right skew with one very large outlier (a patient who waited 6 hours while all others waited under 30 minutes). A researcher wants to test whether the variance of waiting times differs from a benchmark.
-
-**(c)** A quality inspector measures the diameter (mm) of 12 precision ball bearings from a newly calibrated machine. Subject-matter knowledge indicates that machined component diameters from a well-controlled process are highly normally distributed. She wants to test $H_0: \sigma^2 = 0.01$.
-
-**(d)** An economist records the annual income (\$) of 25 randomly chosen households in a city. A histogram shows a long right tail typical of income data. He wants to test whether $\sigma^2 = (15{,}000)^2$.
-</div>
-
-<details data-type="hint">
-<summary>💡 Hint</summary>
-<div class="content">
-- The $\chi^2$ test for a population variance requires the **population** to be normally distributed.
-- Unlike the $t$-test for a mean, this requirement is **not** relaxed by increasing $n$. Skewed or heavy-tailed populations make the chi-squared approximation unreliable even with large samples.
-- Check: Is the histogram bell-shaped and symmetric? Are there extreme outliers? Does subject-matter knowledge support normality?
-</div>
-</details>
-
-<details data-type="answer">
-<summary>✅ Answer</summary>
-<div class="content">
-**(a) Assumption appears satisfied.**
-
-A histogram showing a unimodal, symmetric, bell-shaped distribution with no extreme outliers is consistent with normality. With $n = 200$, we can also use a Q-Q plot or Shapiro–Wilk test to confirm. The $\chi^2$ variance test is appropriate here.
-
----
-
-**(b) Assumption is seriously violated.**
-
-Emergency-department waiting times with a strong right skew and a large outlier are far from normally distributed. A single extreme observation can dramatically inflate $s^2$, making the $\chi^2$ approximation unreliable. The test should **not** be applied without first addressing the outlier or using a non-parametric alternative.
-
----
-
-**(c) Assumption appears satisfied.**
-
-Diameters from a well-controlled machining process are typically normally distributed by design (small manufacturing tolerances arise from many independent small errors, invoking the CLT at the process level). With $n = 12$, the normality assumption is critical and is supported by domain knowledge. The $\chi^2$ test is appropriate.
-
----
-
-**(d) Assumption is likely violated.**
-
-Household income distributions are typically right-skewed (many moderate incomes, few very high incomes). A histogram showing a long right tail is inconsistent with normality. Despite the sample size of $n = 25$, the $\chi^2$ variance test is unreliable for skewed data. A logarithmic transformation of income may restore approximate normality before applying the test.
-</div>
-</details>
-
----
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 16</div>
-A dairy company claims the standard deviation of fat content in its milk cartons is $\sigma_0 = 0.3$ g per 100 mL. A quality auditor randomly samples $n = 11$ cartons and measures a sample standard deviation of $s = 0.45$ g per 100 mL. Test whether the variance differs from the company's claim. Use $\alpha = 0.05$. Assume fat content is approximately normally distributed.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the $\chi^2$ test statistic.
-(c) State the degrees of freedom and find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- "Differs from" calls for a two-tailed test: $H_a: \sigma^2 \ne \sigma_0^2$.
-- Note that $\sigma_0^2 = 0.3^2 = 0.09$.
-- Since $s > \sigma_0$, the test statistic lies in the upper tail. The two-tailed p-value is $2 \times P(\chi^2_{n-1} > \chi^{2*})$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \sigma^2 = 0.09 \qquad H_a: \sigma^2 \ne 0.09$$
-(where $\sigma_0^2 = 0.3^2 = 0.09$)
-
-**(b)**
-$$\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(11 - 1)(0.45^2)}{0.3^2} = \frac{(10)(0.2025)}{0.09} = \frac{2.025}{0.09} = 22.5$$
-
-**(c)** Degrees of freedom: $df = n - 1 = 10$.
-
-Since $s > \sigma_0$, the statistic lies in the upper tail. For $H_a: \sigma^2 \ne 0.09$ (two-tailed):
-$$\text{p-value} = 2 \times P(\chi^2_{10} > 22.5) \approx 2(0.013) = 0.026$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-From the $\chi^2$-table: $\chi^2_{10,\,0.025} = 20.48 < 22.5 < 23.21 = \chi^2_{10,\,0.01}$, so $P(\chi^2_{10} > 22.5)$ is between 0.01 and 0.025, giving a two-tailed p-value between 0.02 and 0.05.
-
-**(d)** Since p-value $\approx 0.026 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the variance of fat content in the company's milk cartons differs from the claimed value of $\sigma_0^2 = 0.09$ g$^2$ per 100 mL$^2$.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 17</div>
-A researcher constructs a 95% confidence interval for a population mean $\mu$ and obtains $(12.4,\ 17.8)$. She is also interested in the two-sided hypothesis test:
-$$H_0: \mu = \mu_0 \quad \text{vs.} \quad H_a: \mu \ne \mu_0$$
-at $\alpha = 0.05$.
-
-Use the duality between confidence intervals and two-sided hypothesis tests to answer the following questions **without computing any test statistic or p-value**.
-
-(a) If $\mu_0 = 10$, should $H_0$ be rejected at $\alpha = 0.05$? Justify your answer.
-
-(b) If $\mu_0 = 15$, should $H_0$ be rejected at $\alpha = 0.05$? Justify your answer.
-
-(c) If $\mu_0 = 18$, should $H_0$ be rejected at $\alpha = 0.05$? Justify your answer.
-
-(d) State the general rule that connects a 95% confidence interval to a two-sided test at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>💡 Hint</summary>
-<div class="content">
-- Recall the duality result: **a level $\alpha$ two-sided test rejects $H_0: \mu = \mu_0$ if and only if $\mu_0$ falls outside a level $(1-\alpha)$ confidence interval for $\mu$**.
-- Check whether $\mu_0$ is inside or outside the interval $(12.4,\ 17.8)$ for each part.
-- The result is a two-tailed test at $\alpha = 0.05$, so the corresponding CI has confidence level $1 - 0.05 = 0.95$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>✅ Answer</summary>
-<div class="content">
-**(a) Reject $H_0$ at $\alpha = 0.05$.**
-
-$\mu_0 = 10$ lies **outside** the 95% CI $(12.4,\ 17.8)$. By the duality principle, the two-sided test rejects $H_0: \mu = 10$ at the 5% level. Equivalently, the p-value of the test is less than 0.05.
-
----
-
-**(b) Fail to reject $H_0$ at $\alpha = 0.05$.**
-
-$\mu_0 = 15$ lies **inside** the 95% CI $(12.4,\ 17.8)$. By the duality principle, we fail to reject $H_0: \mu = 15$ at the 5% level. The p-value of the test exceeds 0.05.
-
----
-
-**(c) Reject $H_0$ at $\alpha = 0.05$.**
-
-$\mu_0 = 18$ lies **outside** the 95% CI $(12.4,\ 17.8)$ (since $18 > 17.8$). We reject $H_0: \mu = 18$ at the 5% level.
-
----
-
-**(d) General rule:**
-
-A level $\alpha$ **two-sided** significance test rejects $H_0: \mu = \mu_0$ at significance level $\alpha$ if and only if the value $\mu_0$ falls **outside** a $(1-\alpha) \times 100\%$ confidence interval for $\mu$. Equivalently, we fail to reject $H_0$ when $\mu_0$ lies inside the confidence interval.
-
-This duality makes confidence intervals especially useful: a single $(1-\alpha)$ CI allows us to simultaneously test $H_0: \mu = \mu_0$ for **every possible** $\mu_0$ at level $\alpha$, without computing a separate test statistic or p-value each time.
-</div>
-</details>
-
----
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 18</div>
-A transportation researcher believes that morning commute times differ between two cities. She randomly samples commuters from City A ($n_1 = 8$) and City B ($n_2 = 10$) and records commute times (in minutes):
-
-**City A:** 35, 42, 28, 51, 38, 44, 30, 47
-
-**City B:** 22, 27, 31, 19, 25, 28, 23, 26, 21, 30
-
-Test whether City A commuters have longer average commute times than City B commuters at $\alpha = 0.05$. Use the Welch two-sample $t$-test (unequal variances).
-
-(a) Fill in the blanks to run a Welch two-sample $t$-test with `t.test()`.
-(b) Read the output: state the test statistic, degrees of freedom, and p-value.
-(c) State a conclusion at $\alpha = 0.05$.
-
-<div class="webr-exercise">
-<div class="webr-exercise-header">Exercise</div>
-<textarea class="webr-editor" rows="13">city_a <- c(35, 42, 28, 51, 38, 44, 30, 47)
-city_b <- c(22, 27, 31, 19, 25, 28, 23, 26, 21, 30)
-
-# (a) Welch two-sample t-test: Ha: mu_A > mu_B
-result <- t.test(city_a, city_b,
-                 alternative = "___",
-                 var.equal   = ___)
-result</textarea>
-<div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
-</div>
-<div class="webr-output-area"></div>
-<div class="webr-canvas-area"><canvas></canvas></div>
-</div>
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- For $H_a: \mu_A > \mu_B$ (City A has *longer* commutes), use `alternative = "greater"`.
-- The Welch $t$-test does **not** assume equal variances: set `var.equal = FALSE`.
-- `t.test(x, y, alternative, var.equal)` �ü the first argument is the group you expect to have the larger mean when using `"greater"`.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-
-```r
-city_a <- c(35, 42, 28, 51, 38, 44, 30, 47)
-city_b <- c(22, 27, 31, 19, 25, 28, 23, 26, 21, 30)
-
-result <- t.test(city_a, city_b,
-                 alternative = "greater",
-                 var.equal   = FALSE)
-result
-# Welch Two Sample t-test
-# t = 4.5359, df = 9.6278, p-value = 0.0006
-# alternative hypothesis: true difference in means is greater than 0
-# sample estimates:
-# mean of x  mean of y
-#    39.375     25.200
-```
-
-**(b)** $t^* \approx 4.54$, $df \approx 9.63$, p-value $\approx 0.0006$.
-
-**(c)** Since p-value $\approx 0.0006 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that City A commuters have significantly longer average commute times than City B commuters.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 19</div>
-A political analyst surveys residents in two regions about support for a new infrastructure policy. In Region A, 68 out of 120 surveyed residents support the policy. In Region B, 52 out of 100 residents support it. Test whether the proportions of support differ between the two regions.
-
-(a) Fill in the blanks to run a two-proportion $z$-test using `prop.test()`.
-(b) Read the output: state the test statistic and p-value.
-(c) State a conclusion at $\alpha = 0.05$.
-
-<div class="webr-exercise">
-<div class="webr-exercise-header">Exercise</div>
-<textarea class="webr-editor" rows="12">x1 <- 68;  n1 <- 120   # Region A
-x2 <- 52;  n2 <- 100   # Region B
-
-# (a) Two-proportion z-test: Ha: p1 != p2
-result <- prop.test(c(x1, x2), c(n1, n2),
-                    alternative = "___",
-                    correct     = ___)
-result</textarea>
-<div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
-</div>
-<div class="webr-output-area"></div>
-<div class="webr-canvas-area"><canvas></canvas></div>
-</div>
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- For a two-sided test ($H_a: p_1 \ne p_2$), use `alternative = "two.sided"`.
-- Use the formula without continuity correction: set `correct = FALSE`.
-- `prop.test()` reports a $\chi^2$ statistic; $\sqrt{\chi^2} = |z^*|$ from the two-proportion $z$-formula.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-
-```r
-x1 <- 68;  n1 <- 120
-x2 <- 52;  n2 <- 100
-
-result <- prop.test(c(x1, x2), c(n1, n2),
-                    alternative = "two.sided",
-                    correct     = FALSE)
-result
-# 2-sample test for equality of proportions without continuity correction
-# X-squared = 0.4789, df = 1, p-value = 0.4890
-# alternative hypothesis: two.sided
-# sample estimates:
-# prop 1  prop 2
-# 0.5667  0.5200
-```
-
-**(b)** $\chi^2 \approx 0.479$ (equivalently $|z^*| \approx 0.692$), p-value $\approx 0.489$.
-
-**(c)** Since p-value $\approx 0.489 > \alpha = 0.05$, we **fail to reject $H_0$**. There is insufficient evidence to conclude that the proportions of support differ between the two regions.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 20</div>
-An instructor teaches two sections of the same course and suspects that Section A has more variable test scores than Section B. Scores from the two sections are:
-
-**Section A ($n_1 = 12$):** 78, 85, 72, 91, 68, 88, 75, 82, 95, 70, 84, 77
-
-**Section B ($n_2 = 10$):** 82, 84, 79, 85, 81, 83, 80, 86, 82, 84
-
-Test whether Section A has greater score variance than Section B at $\alpha = 0.05$.
-
-(a) Fill in the blank to run an $F$-test using `var.test()`.
-(b) Read the output: state $F^*$, the degrees of freedom, and the p-value.
-(c) State a conclusion at $\alpha = 0.05$.
-
-<div class="webr-exercise">
-<div class="webr-exercise-header">Exercise</div>
-<textarea class="webr-editor" rows="12">sec_a <- c(78, 85, 72, 91, 68, 88, 75, 82, 95, 70, 84, 77)
-sec_b <- c(82, 84, 79, 85, 81, 83, 80, 86, 82, 84)
-
-# (a) F-test: Ha: sigma_A^2 > sigma_B^2
-result <- var.test(sec_a, sec_b,
-                   alternative = "___")
-result</textarea>
-<div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
-</div>
-<div class="webr-output-area"></div>
-<div class="webr-canvas-area"><canvas></canvas></div>
-</div>
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- For $H_a: \sigma_A^2 > \sigma_B^2$ (Section A is *more* variable), use `alternative = "greater"`.
-- `var.test(x, y)` computes $F^* = s_x^2 / s_y^2$, so put the group hypothesised to have the *larger* variance first.
-- The output gives the $F$-statistic, numerator df, denominator df, and p-value.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-
-```r
-sec_a <- c(78, 85, 72, 91, 68, 88, 75, 82, 95, 70, 84, 77)
-sec_b <- c(82, 84, 79, 85, 81, 83, 80, 86, 82, 84)
-
-result <- var.test(sec_a, sec_b,
-                   alternative = "greater")
-result
-# F test to compare two variances
-# F = 14.726, num df = 11, denom df = 9, p-value = 0.0002
-# alternative hypothesis: true ratio of variances is greater than 1
-# sample estimates:
-# ratio of variances
-#          14.7263
-```
-
-**(b)** $F^* \approx 14.73$, $df = (11,\,9)$, p-value $\approx 0.0002$.
-
-**(c)** Since p-value $\approx 0.0002 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that Section A has significantly greater score variability than Section B.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 21</div>
-A clinical researcher runs a paired study to evaluate whether a new cognitive training programme improves working memory scores. Each of the $n = 20$ participants is tested **before** and **after** an 8-week programme using a standardised working memory battery (scored 0–100). The researcher performs a paired $t$-test and obtains:
-
-$$\bar{x}_d = 4.3 \text{ points},\quad s_d = 6.1 \text{ points},\quad t^* = 3.15,\quad df = 19,\quad \text{p-value} = 0.0054$$
-
-where $d_i = \text{After}_i - \text{Before}_i$.
-
-(a) State precisely what the p-value $0.0054$ means in the context of this study.
-
-(b) The researcher concludes: *"The p-value of 0.0054 means there is only a 0.54% probability that the cognitive training programme has no effect."* Is this conclusion correct? Explain.
-
-(c) At $\alpha = 0.05$, state the conclusion of the hypothesis test. Write your conclusion in the context of this study (do not just say "reject $H_0$").
-
-(d) A colleague argues that a mean improvement of 4.3 points is too small to matter clinically (the minimum clinically important difference is 10 points). How does this observation illustrate the difference between **statistical significance** and **practical significance**?
-</div>
-
-<details data-type="hint">
-<summary>💡 Hint</summary>
-<div class="content">
-- The p-value is a conditional probability: $P(\text{data at least as extreme as observed} \mid H_0 \text{ is true})$.
-- The p-value is **not** the probability that $H_0$ is true, nor the probability that the result was due to chance.
-- Statistical significance depends on $n$ as well as the size of the effect.
-- A result can be statistically significant without being practically meaningful (and vice versa).
-</div>
-</details>
-
-<details data-type="answer">
-<summary>✅ Answer</summary>
-<div class="content">
-**(a)** The p-value of 0.0054 means: **assuming the cognitive training programme has no true effect on working memory** (i.e., $H_0: \mu_d = 0$ is true), the probability of observing a mean paired difference of 4.3 points or larger in a random sample of 20 participants is approximately 0.0054 (about 0.54%). In other words, such a large improvement would be very unlikely by chance alone if the programme were truly ineffective.
-
----
-
-**(b) The researcher's conclusion is incorrect.**
-
-The p-value is a conditional probability — it is $P(\text{observed result or more extreme} \mid H_0 \text{ is true})$, **not** the probability that $H_0$ is true. The statement *"there is a 0.54% probability that the programme has no effect"* incorrectly treats the p-value as the probability of the null hypothesis itself. This is a common misinterpretation; the p-value says nothing directly about the probability that $H_0$ is true or false.
-
----
-
-**(c)** Since p-value $= 0.0054 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% significance level to conclude that the 8-week cognitive training programme produces a statistically significant improvement in working memory scores (estimated mean improvement: 4.3 points).
-
----
-
-**(d)** The hypothesis test finds a **statistically significant** result ($p = 0.0054$), meaning the improvement of 4.3 points is unlikely to be due to random chance. However, the improvement is **not practically significant** because 4.3 points is below the minimum clinically important difference of 10 points — it would not meaningfully improve a patient's daily functioning.
-
-This illustrates that with a sufficient sample size, even very small effects can be detected as statistically significant. A complete evaluation of an intervention must consider both the statistical test (is the effect real?) and the **effect size** (is the effect large enough to matter?).
-</div>
-</details>
-
----
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 22</div>
-An agronomist divides 10 farm plots in half. One half of each plot receives a new fertilizer (Treated); the other half receives standard fertilizer (Control). Yield (kg per half-plot) is recorded.
-
-| Plot | Treated | Control |
-|------|---------|---------|
-| 1    | 45.2    | 42.1    |
-| 2    | 38.7    | 36.5    |
-| 3    | 52.1    | 48.9    |
-| 4    | 41.5    | 40.2    |
-| 5    | 48.3    | 44.7    |
-| 6    | 36.9    | 35.8    |
-| 7    | 55.0    | 51.3    |
-| 8    | 43.8    | 42.0    |
-| 9    | 40.2    | 38.9    |
-| 10   | 47.6    | 45.1    |
-
-(a) Explain why this is a **paired** study rather than a two-sample study.
-(b) Fill in the blanks to test $H_0: \mu_d = 0$ vs. $H_a: \mu_d > 0$ (new fertilizer increases yield) at $\alpha = 0.05$.
-(c) State a conclusion based on the R output.
-
-<div class="webr-exercise">
-<div class="webr-exercise-header">Exercise</div>
-<textarea class="webr-editor" rows="13">treated <- c(45.2, 38.7, 52.1, 41.5, 48.3, 36.9, 55.0, 43.8, 40.2, 47.6)
-control <- c(42.1, 36.5, 48.9, 40.2, 44.7, 35.8, 51.3, 42.0, 38.9, 45.1)
-
-# (b) Paired t-test: fill in the blanks
-result <- t.test(treated, control,
-                 paired      = ___,
-                 alternative = "___")
-result</textarea>
-<div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
-</div>
-<div class="webr-output-area"></div>
-<div class="webr-canvas-area"><canvas></canvas></div>
-</div>
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- (a) Each plot contributes *one pair* of observations. The two half-plots within a plot share the same soil, sunlight, and drainage, so they are not independent.
-- (b) Since observations are paired (same plot), set `paired = TRUE`.
-- With $d_i = \text{Treated}_i - \text{Control}_i$, "new fertilizer yields more" means $\mu_d > 0$: use `alternative = "greater"`.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)** Each plot is divided in half so that the two measurements (treated and control) share the same soil quality, drainage, sunlight, and microclimate. Treating each plot as a matched pair removes this background variability and gives a more powerful test of the fertilizer effect.
-
-```r
-treated <- c(45.2, 38.7, 52.1, 41.5, 48.3, 36.9, 55.0, 43.8, 40.2, 47.6)
-control <- c(42.1, 36.5, 48.9, 40.2, 44.7, 35.8, 51.3, 42.0, 38.9, 45.1)
-
-result <- t.test(treated, control,
-                 paired      = TRUE,
-                 alternative = "greater")
-result
-# Paired t-test
-# t = 7.6215, df = 9, p-value = 0.00002
-# alternative hypothesis: true mean difference is greater than 0
-# sample estimates:
-# mean difference
-#            2.38
-```
-
-**(c)** $t^* \approx 7.62$, $df = 9$, p-value $< 0.0001$. Since p-value $< \alpha = 0.05$, we **reject $H_0$**. The new fertilizer produces significantly higher yields than the standard fertilizer.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 23</div>
-A manufacturer compares the lifetimes of two brands of LED light bulbs. Both brands are known from extensive prior testing to have a population standard deviation of $\sigma = 80$ hours. A random sample of $n_1 = 36$ Brand X bulbs gives $\bar{x}_1 = 1{,}250$ hours, and a sample of $n_2 = 36$ Brand Y bulbs gives $\bar{x}_2 = 1{,}180$ hours. Is there evidence that Brand X bulbs last longer on average?
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the two-sample $z$ test statistic.
-(c) Find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- Since both $\sigma$ values are known, use $z^* = (\bar{x}_1 - \bar{x}_2) \,/\, \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}$.
-- "Brand X lasts *longer*" gives $H_a: \mu_1 > \mu_2$ (upper-tailed).
-- The p-value is $P(Z > z^*)$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \mu_1 = \mu_2 \qquad H_a: \mu_1 > \mu_2$$
-
-**(b)**
-$$z^* = \frac{(1250 - 1180) - 0}{\sqrt{80^2/36 + 80^2/36}} = \frac{70}{\sqrt{177.78 + 177.78}} = \frac{70}{\sqrt{355.56}} = \frac{70}{18.856} \approx 3.71$$
-
-**(c)** For $H_a: \mu_1 > \mu_2$ (upper-tailed):
-$$\text{p-value} = P(Z > 3.71) \approx 0.0001$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-**(d)** Since p-value $\approx 0.0001 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that Brand X LED bulbs last significantly longer on average than Brand Y bulbs.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 24</div>
-A school district compares two teaching methods for a mathematics unit. Method A is used with $n_1 = 12$ students ($\bar{x}_1 = 82.5$, $s_1 = 6.2$); Method B is used with $n_2 = 10$ students ($\bar{x}_2 = 79.3$, $s_2 = 5.8$). Assume equal population variances. Is there a significant difference in mean scores between the two methods?
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the pooled sample variance $s_p^2$ and the $t$ test statistic.
-(c) State the degrees of freedom and find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- Pool the variances: $s_p^2 = [(n_1-1)s_1^2 + (n_2-1)s_2^2] / (n_1+n_2-2)$.
-- The test statistic is $t^* = (\bar{x}_1 - \bar{x}_2) \,/\, (s_p\sqrt{1/n_1 + 1/n_2})$, with $df = n_1+n_2-2$.
-- A two-tailed p-value is $2 \times P(t_{df} > |t^*|)$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \mu_1 = \mu_2 \qquad H_a: \mu_1 \ne \mu_2$$
-
-**(b)**
-$$s_p^2 = \frac{(11)(6.2^2) + (9)(5.8^2)}{12+10-2} = \frac{(11)(38.44)+(9)(33.64)}{20} = \frac{422.84+302.76}{20} = \frac{725.60}{20} = 36.28$$
-
-$$s_p = \sqrt{36.28} \approx 6.023$$
-
-$$t^* = \frac{82.5 - 79.3}{6.023\,\sqrt{1/12+1/10}} = \frac{3.2}{6.023 \times 0.4282} = \frac{3.2}{2.580} \approx 1.240$$
-
-**(c)** $df = 12+10-2 = 20$.
-
-For $H_a: \mu_1 \ne \mu_2$ (two-tailed):
-$$\text{p-value} = 2 \times P(t_{20} > 1.240) \approx 2(0.115) = 0.230$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-**(d)** Since p-value $\approx 0.230 > \alpha = 0.05$, we **fail to reject $H_0$**. There is insufficient evidence to conclude that the two teaching methods produce different mean scores.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 25</div>
-A researcher compares nightly sleep duration between competitive athletes ($n_1 = 15$, $\bar{x}_1 = 8.2$ hr, $s_1 = 0.9$ hr) and non-athletes ($n_2 = 12$, $\bar{x}_2 = 7.1$ hr, $s_2 = 1.5$ hr). The sample standard deviations differ substantially, so use the Welch (unequal-variance) $t$-test with the conservative approximation $df = \min(n_1-1,\,n_2-1)$. Do athletes sleep significantly more than non-athletes?
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the Welch $t$ test statistic.
-(c) State the degrees of freedom and find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- The Welch statistic is $t^* = (\bar{x}_1 - \bar{x}_2) \,/\, \sqrt{s_1^2/n_1 + s_2^2/n_2}$.
-- Conservative $df = \min(n_1-1,\,n_2-1)$.
-- "Athletes sleep *more*" means $H_a: \mu_1 > \mu_2$; p-value $= P(t_{df} > t^*)$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \mu_1 = \mu_2 \qquad H_a: \mu_1 > \mu_2$$
-
-**(b)**
-$$t^* = \frac{8.2 - 7.1}{\sqrt{0.9^2/15 + 1.5^2/12}} = \frac{1.1}{\sqrt{0.054 + 0.1875}} = \frac{1.1}{\sqrt{0.2415}} = \frac{1.1}{0.4914} \approx 2.239$$
-
-**(c)** Conservative $df = \min(14,\,11) = 11$.
-
-For $H_a: \mu_1 > \mu_2$ (upper-tailed):
-$$\text{p-value} = P(t_{11} > 2.239) \approx 0.023$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-**(d)** Since p-value $\approx 0.023 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that competitive athletes sleep significantly longer on average than non-athletes.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 26</div>
-A nutritionist measures the sodium content of canned soup from two brands. From industry records, $\sigma_A = 60$ mg and $\sigma_B = 55$ mg are known. A sample of $n_1 = 50$ cans of Brand A gives $\bar{x}_1 = 895$ mg; a sample of $n_2 = 50$ cans of Brand B gives $\bar{x}_2 = 862$ mg. Is there a significant difference in mean sodium content?
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the two-sample $z$ test statistic.
-(c) Find the p-value.
-(d) State a conclusion at $\alpha = 0.01$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- Both $\sigma$ values are known, so use $z^* = (\bar{x}_1-\bar{x}_2)\,/\,\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}$.
-- A two-tailed p-value is $2 \times P(Z > |z^*|)$.
-- Compare to $\alpha = 0.01$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \mu_A = \mu_B \qquad H_a: \mu_A \ne \mu_B$$
-
-**(b)**
-$$z^* = \frac{895 - 862}{\sqrt{60^2/50 + 55^2/50}} = \frac{33}{\sqrt{72.0 + 60.5}} = \frac{33}{\sqrt{132.5}} = \frac{33}{11.511} \approx 2.867$$
-
-**(c)** For $H_a: \mu_A \ne \mu_B$ (two-tailed):
-$$\text{p-value} = 2 \times P(Z > 2.867) \approx 2(0.00207) = 0.00414$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-**(d)** Since p-value $\approx 0.004 < \alpha = 0.01$, we **reject $H_0$**. There is sufficient evidence at the 1% level that the two brands differ significantly in mean sodium content.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 27</div>
-A policy researcher surveys residents in two cities about support for a new environmental regulation. In City A, 118 out of 200 residents are in favour; in City B, 81 out of 180 residents are in favour. Is there a significant difference in the proportions supporting the regulation?
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the pooled proportion $\hat{p}$ and the $z$ test statistic.
-(c) Find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- Pool the two samples: $\hat{p} = (x_1+x_2)/(n_1+n_2)$.
-- The test statistic is $z^* = (\hat{p}_1-\hat{p}_2)\,/\,\sqrt{\hat{p}(1-\hat{p})(1/n_1+1/n_2)}$.
-- Two-tailed p-value $= 2 \times P(Z > |z^*|)$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: p_1 = p_2 \qquad H_a: p_1 \ne p_2$$
-
-**(b)** $\hat{p}_1 = 118/200 = 0.590$, $\hat{p}_2 = 81/180 = 0.450$.
-
-$$\hat{p} = \frac{118+81}{200+180} = \frac{199}{380} \approx 0.5237$$
-
-$$z^* = \frac{0.590-0.450}{\sqrt{0.5237(1-0.5237)(1/200+1/180)}} = \frac{0.140}{\sqrt{0.5237 \times 0.4763 \times 0.01056}} = \frac{0.140}{\sqrt{0.002633}} = \frac{0.140}{0.05131} \approx 2.729$$
-
-**(c)** For $H_a: p_1 \ne p_2$ (two-tailed):
-$$\text{p-value} = 2 \times P(Z > 2.729) \approx 2(0.00318) = 0.00636$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-**(d)** Since p-value $\approx 0.006 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence to conclude that the proportions supporting the regulation differ significantly between the two cities.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 28</div>
-A social media company tests whether a small redesign of its "Like" button increases user engagement. In a randomised A/B test, $n_1 = 50{,}000$ users see the original button and $n_2 = 50{,}000$ see the redesigned button. The engagement rates are:
-
-- **Original:** 18 650 users clicked the button ($\hat{p}_1 = 0.3730$)
-- **Redesigned:** 18 800 users clicked the button ($\hat{p}_2 = 0.3760$)
-
-A two-proportion $z$-test yields $z^* \approx 2.19$ and p-value $\approx 0.029$.
-
-(a) At $\alpha = 0.05$, what is the conclusion of the hypothesis test?
-
-(b) The absolute difference in engagement rates is $\hat{p}_2 - \hat{p}_1 = 0.376 - 0.373 = 0.003$, or 0.3 percentage points. The product manager argues that a 0.3-percentage-point increase is too small to justify the cost of redesigning the button. Explain whether you agree with the manager's concern, in the context of **practical significance**.
-
-(c) Explain why this study found a statistically significant result even though the observed difference was so small.
-
-(d) Describe **one** other piece of information, beyond the p-value, that would help the company decide whether to adopt the new button design.
-</div>
-
-<details data-type="hint">
-<summary>💡 Hint</summary>
-<div class="content">
-- A small p-value only tells us that the effect is **unlikely to be zero** — it does not tell us that the effect is **large enough to matter**.
-- Very large sample sizes can make trivially small differences statistically significant.
-- Effect size measures (e.g., difference in proportions, relative risk, number needed to treat) help assess practical importance alongside p-values.
-- Confidence intervals quantify the uncertainty around the estimated effect size.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>✅ Answer</summary>
-<div class="content">
-**(a)** Since p-value $\approx 0.029 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% significance level that the redesigned button produces a higher engagement rate than the original button.
-
----
-
-**(b)** The product manager's concern is well-founded from a **practical significance** standpoint. An absolute difference of only 0.3 percentage points is extremely small in business terms. If implementing the redesign costs \$50{,}000, for example, the additional engagement may not generate enough revenue to justify the expense. Statistical significance does not guarantee that an effect is large enough to be worth acting on.
-
----
-
-**(c)** The study found a statistically significant result primarily because of the **enormous sample size** ($n = 100{,}000$ total users). With such a large $n$, the standard error of the difference $\hat{p}_2 - \hat{p}_1$ is very small (approximately $0.00137$), so even a tiny true difference of 0.3 percentage points is distinguishable from zero with high probability. In general, larger samples give more power to detect small effects.
-
----
-
-**(d)** One useful additional piece of information is a **confidence interval** for the true difference $p_2 - p_1$. For example, a 95% CI might be approximately $(0.0003,\ 0.0057)$, meaning the true effect is likely between 0.03 and 0.57 percentage points. This helps the company assess whether the **plausible range** of the effect size justifies the investment, beyond just knowing the direction of the effect.
-</div>
-</details>
-
----
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 29</div>
-A quality control team suspects that Laboratory 1 produces more variable blood-glucose readings than Laboratory 2. A sample of $n_1 = 15$ readings from Lab 1 gives $s_1 = 8.4$ mg/dL; a sample of $n_2 = 12$ readings from Lab 2 gives $s_2 = 4.1$ mg/dL. Test whether Lab 1's variance is significantly greater than Lab 2's variance.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute the $F$ test statistic.
-(c) State the degrees of freedom and find the p-value.
-(d) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- The $F$ statistic is $F^* = s_1^2/s_2^2$, with $df_1 = n_1-1$ and $df_2 = n_2-1$.
-- For $H_a: \sigma_1^2 > \sigma_2^2$ (right-tailed), p-value $= P(F_{df_1,df_2} > F^*)$.
-- Compare $F^*$ to the critical value $F_{0.05}(14,11) \approx 2.739$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \sigma_1^2 = \sigma_2^2 \qquad H_a: \sigma_1^2 > \sigma_2^2$$
-
-**(b)**
-$$F^* = \frac{s_1^2}{s_2^2} = \frac{8.4^2}{4.1^2} = \frac{70.56}{16.81} \approx 4.198$$
-
-**(c)** $df_1 = 15-1 = 14$, $df_2 = 12-1 = 11$.
-
-For $H_a: \sigma_1^2 > \sigma_2^2$ (right-tailed):
-$$\text{p-value} = P(F_{14,11} > 4.198) \approx 0.0109$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-The critical value $F_{0.05}(14,11) \approx 2.739$. Since $F^* = 4.198 > 2.739$, we confirm rejection.
-
-**(d)** Since p-value $\approx 0.011 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence to conclude that Laboratory 1 produces significantly more variable blood-glucose readings than Laboratory 2.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 30</div>
-An engineer tests whether Machine A produces components with smaller dimensional variability than Machine B. A sample of $n_A = 10$ components from Machine A has $s_A = 0.12$ mm; a sample of $n_B = 13$ components from Machine B has $s_B = 0.31$ mm. Test $H_a: \sigma_A^2 < \sigma_B^2$ at $\alpha = 0.05$.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute $F^* = s_A^2/s_B^2$ and use the symmetry property $P(F_{df_A,df_B} < c) = P(F_{df_B,df_A} > 1/c)$ to evaluate the p-value.
-(c) State a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- Form $F^* = s_A^2/s_B^2$. A very *small* value of $F^*$ is evidence in favour of $H_a: \sigma_A^2 < \sigma_B^2$.
-- p-value $= P(F_{df_A,df_B} < F^*)$. By symmetry, this equals $P(F_{df_B,df_A} > 1/F^*)$, which is a right-tail lookup.
-- Compare $1/F^*$ with $F_{0.05}(df_B,\,df_A)$ from the Distribution Calculator.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \sigma_A^2 = \sigma_B^2 \qquad H_a: \sigma_A^2 < \sigma_B^2$$
-
-**(b)** $df_A = 9$, $df_B = 12$.
-
-$$F^* = \frac{s_A^2}{s_B^2} = \frac{0.12^2}{0.31^2} = \frac{0.0144}{0.0961} \approx 0.1498$$
-
-By symmetry of the $F$ distribution:
-$$\text{p-value} = P(F_{9,12} < 0.1498) = P\!\left(F_{12,9} > \frac{1}{0.1498}\right) = P(F_{12,9} > 6.676)$$
-
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-Since $F_{0.01}(12,9) \approx 4.39$ and $6.676 > 4.39$, the exact p-value $\approx 0.0039 < 0.01$.
-
-**(c)** Since p-value $< 0.01 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence to conclude that Machine A produces components with significantly smaller dimensional variability than Machine B.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 31</div>
-Six recreational runners complete a 5-km time trial before and after a 12-week training programme. Their finishing times (minutes) are:
-
-| Runner | Before | After |
-|--------|--------|-------|
-| 1      | 28.5   | 27.7  |
-| 2      | 30.2   | 30.5  |
-| 3      | 27.1   | 25.0  |
-| 4      | 31.4   | 29.2  |
-| 5      | 29.8   | 27.4  |
-| 6      | 26.3   | 24.9  |
-
-Test whether the training programme significantly reduces finishing time, at $\alpha = 0.05$. Define $d_i = \text{Before}_i - \text{After}_i$ (positive = improvement).
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute $\bar{x}_d$ and $s_d$.
-(c) Compute the $t$ test statistic and state the degrees of freedom.
-(d) Find the p-value and state a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- With $d_i = \text{Before}_i - \text{After}_i$, a positive $\bar{x}_d$ means runners improved.
-- $H_a: \mu_d > 0$ (upper-tailed). The test statistic is $t^* = \bar{x}_d\,/\,(s_d/\sqrt{n})$, $df = n-1 = 5$.
-- p-value $= P(t_5 > t^*)$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \mu_d = 0 \qquad H_a: \mu_d > 0$$
-
-**(b)** Differences $d_i = \text{Before}_i - \text{After}_i$: $\;0.8,\;{-0.3},\;2.1,\;2.2,\;2.4,\;1.4$.
-
-$$\bar{x}_d = \frac{0.8-0.3+2.1+2.2+2.4+1.4}{6} = \frac{8.6}{6} \approx 1.433$$
-
-Deviations from 1.433: $-0.633,\;{-1.733},\;0.667,\;0.767,\;0.967,\;{-0.033}$.
-
-$$\text{SS} = 0.401+3.003+0.445+0.588+0.935+0.001 = 5.373$$
-
-$$s_d^2 = \frac{5.373}{5} = 1.075, \qquad s_d \approx 1.037$$
-
-**(c)**
-$$t^* = \frac{1.433}{1.037/\sqrt{6}} = \frac{1.433}{0.4233} \approx 3.386, \qquad df = 5$$
-
-**(d)** For $H_a: \mu_d > 0$ (upper-tailed):
-$$\text{p-value} = P(t_5 > 3.386) \approx 0.010$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-Since p-value $\approx 0.010 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence to conclude that the 12-week training programme significantly improves 5-km finishing times.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 32</div>
-Eight cars are each tested with two brands of gasoline (Brand A and Brand B) on identical courses, and fuel efficiency (km/L) is recorded. Define $d_i = \text{Brand B}_i - \text{Brand A}_i$.
-
-| Car | Brand A | Brand B | $d_i$ |
-|-----|---------|---------|--------|
-| 1   | 12.4    | 12.7    | 0.3    |
-| 2   | 11.8    | 11.3    | �0.5   |
-| 3   | 13.2    | 14.0    | 0.8    |
-| 4   | 10.9    | 11.1    | 0.2    |
-| 5   | 14.1    | 14.0    | �0.1   |
-| 6   | 12.0    | 12.4    | 0.4    |
-| 7   | 13.5    | 12.9    | �0.6   |
-| 8   | 11.5    | 12.0    | 0.5    |
-
-Test whether there is a significant difference in fuel efficiency between the two brands, at $\alpha = 0.05$.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
-
-(a) State $H_0$ and $H_a$.
-(b) Compute $\bar{x}_d$ and $s_d$ from the given differences.
-(c) Compute the $t$ test statistic and state the degrees of freedom.
-(d) Find the p-value and state a conclusion at $\alpha = 0.05$.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- "Is there a *difference*?" implies $H_a: \mu_d \ne 0$ (two-tailed).
-- With the differences already provided, compute $\bar{x}_d$ directly, then find $s_d$ from the deviations.
-- Two-tailed p-value $= 2 \times P(t_{n-1} > |t^*|)$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**(a)**
-$$H_0: \mu_d = 0 \qquad H_a: \mu_d \ne 0$$
-
-**(b)** Differences: $\;0.3,\;{-0.5},\;0.8,\;0.2,\;{-0.1},\;0.4,\;{-0.6},\;0.5$.
-
-$$\bar{x}_d = \frac{0.3-0.5+0.8+0.2-0.1+0.4-0.6+0.5}{8} = \frac{1.0}{8} = 0.125$$
-
-Deviations from 0.125: $\;0.175,\;{-0.625},\;0.675,\;0.075,\;{-0.225},\;0.275,\;{-0.725},\;0.375$.
-
-$$\text{SS} = 0.031+0.391+0.456+0.006+0.051+0.076+0.526+0.141 = 1.675$$
-
-$$s_d^2 = \frac{1.675}{7} \approx 0.239, \qquad s_d \approx 0.489$$
-
-**(c)**
-$$t^* = \frac{0.125}{0.489/\sqrt{8}} = \frac{0.125}{0.173} \approx 0.723, \qquad df = 7$$
-
-**(d)** For $H_a: \mu_d \ne 0$ (two-tailed):
-$$\text{p-value} = 2 \times P(t_7 > 0.723) \approx 2(0.245) = 0.490$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-Since p-value $\approx 0.490 > \alpha = 0.05$, we **fail to reject $H_0$**. There is insufficient evidence to conclude that the two gasoline brands produce different fuel efficiency.
-</div>
-</details>
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 33</div>
-A student attempts a hypothesis test for each scenario below, but makes **one error** in each attempt. Identify the error and explain how to correct it.
-
-**(a)** A researcher tests $H_0: \mu = 50$ vs. $H_a: \mu > 50$ using a one-sample $t$-test with $n = 20$ observations. He computes $t^* = 2.14$ and reports:
-
-$$\text{p-value} = P(T_{19} < 2.14) \approx 0.977$$
-
-**(b)** A student tests $H_0: \mu_d = 0$ vs. $H_a: \mu_d \ne 0$ on $n = 8$ pairs using a paired $t$-test. She computes $t^* = -2.45$, uses $df = 16$ (total observations minus 2), and reports: $\text{p-value} = 2 \times P(T_{16} > 2.45) \approx 0.026$.
-
-**(c)** An analyst tests $H_0: p = 0.30$ vs. $H_a: p \ne 0.30$ using a one-sample $z$-test for a proportion. With $n = 100$ and $x = 35$ successes, she computes:
-
-$$z^* = \frac{0.35 - 0.30}{\sqrt{0.35 \times 0.65 / 100}} \approx 1.054$$
-
-**(d)** A student tests $H_0: \sigma^2 = 25$ vs. $H_a: \sigma^2 < 25$ with $n = 12$ and $s = 3.8$. She computes $\chi^{2*} = 11(3.8^2)/25 = 6.33$, looks up the right-tail probability, and reports: $\text{p-value} = P(\chi^2_{11} > 6.33) \approx 0.850$.
-</div>
-
-<details data-type="hint">
-<summary>💡 Hint</summary>
-<div class="content">
-- (a) Check the direction of the tail used for the p-value. For $H_a: \mu > \mu_0$, the p-value is the **upper** tail.
-- (b) Check the degrees of freedom for a paired $t$-test. The paired test works on the **differences**, not the original observations.
-- (c) Check which proportion is used in the standard error formula under $H_0$.
-- (d) Check which tail is appropriate for $H_a: \sigma^2 < \sigma_0^2$.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>✅ Answer</summary>
-<div class="content">
-**(a) Error: wrong tail used for the p-value.**
-
-For $H_a: \mu > 50$ (upper-tailed test), the p-value is the **upper** tail probability: $P(T_{19} > 2.14)$, not the lower tail. The researcher computed $P(T_{19} < 2.14) \approx 0.977$, which is the probability of **not** rejecting $H_0$ under $H_a$, not the p-value.
-
-**Correction:** $\text{p-value} = P(T_{19} > 2.14) = 1 - 0.977 \approx 0.023$. Since $0.023 < 0.05$, we reject $H_0$.
-
----
-
-**(b) Error: wrong degrees of freedom for the paired $t$-test.**
-
-In a paired $t$-test, we work with the $n = 8$ **differences** (one per pair), not with the $2n = 16$ original observations. The degrees of freedom are $df = n - 1 = 7$, not $2n - 2 = 14$.
-
-**Correction:** $\text{p-value} = 2 \times P(T_{7} > 2.45) \approx 2(0.022) = 0.044$. Using $df = 7$ slightly increases the p-value compared to $df = 16$, but the conclusion at $\alpha = 0.05$ remains: reject $H_0$.
-
----
-
-**(c) Error: wrong proportion used in the standard error under $H_0$.**
-
-For the one-sample $z$-test for a proportion, the standard error in the denominator must be computed using the **null proportion $p_0$**, not the sample proportion $\hat{p}$. Using $\hat{p}$ in the SE conflates estimation with hypothesis testing.
-
-**Correction:**
-$$z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.35 - 0.30}{\sqrt{0.30 \times 0.70 / 100}} = \frac{0.05}{0.04583} \approx 1.091$$
-
-The p-value for the two-sided test is $2 \times P(Z > 1.091) \approx 0.275$.
-
----
-
-**(d) Error: used the right-tail probability for a left-tailed alternative.**
-
-For $H_a: \sigma^2 < 25$ (lower-tailed test), a small $\chi^{2*}$ provides evidence against $H_0$. The p-value should be the **lower** tail probability $P(\chi^2_{11} < 6.33)$, not the upper tail.
-
-**Correction:** $\text{p-value} = P(\chi^2_{11} < 6.33) \approx 0.150$. Since $0.150 > 0.05$, we fail to reject $H_0$. Note that the upper-tail value of approximately 0.850 is not the p-value — it is $1 - \text{p-value}$.
-</div>
-</details>
-
----
-
----
-
-<div class="exercise-box">
-<div class="exercise-label">Question 34</div>
-A sports scientist compares resting heart rates (bpm) of athletes from two training regimes: Regime A ($n_1 = 20$, $\bar{x}_1 = 62.4$ bpm, $s_1 = 5.8$ bpm) and Regime B ($n_2 = 18$, $\bar{x}_2 = 66.1$ bpm, $s_2 = 7.2$ bpm).
-
-**Part 1 �ü F-test for equal variances**
-
-(a) Apply the **Fold Rule**: compute $\max(s_1,s_2)\,/\,\min(s_1,s_2)$ and compare it to $\sqrt{2} \approx 1.414$.
-(b) Formally test $H_0: \sigma_1^2 = \sigma_2^2$ vs. $H_a: \sigma_1^2 \ne \sigma_2^2$ at $\alpha = 0.10$ using an $F$-test.
-
-**Part 2 �ü Two-sample t-test**
-
-Based on your conclusion from Part 1, test $H_0: \mu_1 = \mu_2$ vs. $H_a: \mu_1 \ne \mu_2$ at $\alpha = 0.05$.
-
-(c) Compute the pooled variance $s_p^2$ and the $t$ test statistic.
-(d) State the degrees of freedom, find the p-value, and state a conclusion.
-
-You may use the Distribution Calculator in Section 4.1.5 to find the required tail probabilities.
-</div>
-
-<details data-type="hint">
-<summary>�� Hint</summary>
-<div class="content">
-- **Fold Rule**: if $\max(s)/\min(s) < \sqrt{2}$, the variances are considered approximately equal and you may use the pooled $t$-test.
-- For the $F$-test, place the larger $s^2$ in the numerator. Two-tailed p-value $= 2 \times P(F_{df_1,df_2} > F^*)$.
-- If the $F$-test does not reject equal variances, use $s_p^2 = [(n_1-1)s_1^2+(n_2-1)s_2^2]/(n_1+n_2-2)$ and $df = n_1+n_2-2$ for the pooled $t$-test.
-</div>
-</details>
-
-<details data-type="answer">
-<summary>� Answer</summary>
-<div class="content">
-**Part 1 �ü F-test**
-
-**(a)** Fold Rule:
-$$\frac{\max(s_1,s_2)}{\min(s_1,s_2)} = \frac{7.2}{5.8} \approx 1.241 < \sqrt{2} \approx 1.414$$
-
-The Fold Rule suggests the population variances may be approximately equal.
-
-**(b)** $H_0: \sigma_1^2 = \sigma_2^2$ vs. $H_a: \sigma_1^2 \ne \sigma_2^2$. Place $s_2^2$ (larger) in the numerator:
-$$F^* = \frac{s_2^2}{s_1^2} = \frac{7.2^2}{5.8^2} = \frac{51.84}{33.64} \approx 1.541, \quad df_1 = 17,\ df_2 = 19$$
-
-$$\text{p-value} = 2 \times P(F_{17,19} > 1.541) \approx 2(0.204) = 0.408$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-Since p-value $\approx 0.408 > \alpha = 0.10$, we **fail to reject $H_0$**. Equal variances are supported; proceed with the pooled $t$-test.
-
-**Part 2 �ü Pooled t-test**
-
-**(c)**
-$$s_p^2 = \frac{(19)(5.8^2)+(17)(7.2^2)}{20+18-2} = \frac{(19)(33.64)+(17)(51.84)}{36} = \frac{639.16+881.28}{36} = \frac{1520.44}{36} \approx 42.235$$
-
-$$s_p = \sqrt{42.235} \approx 6.499$$
-
-$$t^* = \frac{62.4-66.1}{6.499\,\sqrt{1/20+1/18}} = \frac{-3.7}{6.499 \times 0.3249} = \frac{-3.7}{2.112} \approx -1.752$$
-
-**(d)** $df = 20+18-2 = 36$.
-
-For $H_a: \mu_1 \ne \mu_2$ (two-tailed):
-$$\text{p-value} = 2 \times P(t_{36} < -1.752) \approx 2(0.044) = 0.088$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
-
-Since p-value $\approx 0.088 > \alpha = 0.05$, we **fail to reject $H_0$**. There is insufficient evidence at the 5% significance level to conclude that athletes from the two training regimes have different mean resting heart rates.
-</div>
-</details>
-
-<div class="exercise-box">
-<div class="exercise-label">Question 35</div>
 A nutritionist administers a sleep supplement to a random sample of $n = 16$ volunteers for four weeks and records their nightly sleep duration (hours). A national health study reports the population mean sleep time is $\mu_0 = 7.0$ hours. The nutritionist believes the supplement increases sleep time. Assume sleep times are approximately normally distributed.
 
 The histogram below shows the distribution of nightly sleep durations for the 16 volunteers. The dashed line marks the hypothesized population mean $\mu_0 = 7.0$ hours.
 
-```{r ch6-q35-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch6-q9-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
 library(ggplot2)
 sleep_hrs <- c(6.4, 7.2, 7.7, 9.0, 8.5, 7.3, 6.6, 8.3, 9.2, 7.8, 8.8, 6.9, 8.1, 7.4, 9.6, 7.1)
 df_sleep <- data.frame(hours = sleep_hrs)
@@ -5137,7 +3720,7 @@ ggplot(df_sleep, aes(x = hours)) +
   scale_x_continuous(breaks = seq(6, 10, 0.5)) +
   scale_y_continuous(limits = c(0, 5)) +
   labs(x = "Nightly sleep duration (hours)", y = "Frequency",
-       caption = "n = 16 volunteers  |  Dashed line = 渭�ü = 7.0 hours") +
+       caption = "n = 16 volunteers  |  Dashed line = μ₀ = 7.0 hours") +
   theme_minimal(base_size = 12) +
   theme(plot.caption = element_text(color = "#555", size = 9))
 ```
@@ -5157,8 +3740,8 @@ Use the data provided to test $H_0: \mu = 7.0$ vs. $H_a: \mu > 7.0$ at $\alpha =
 result <- t.test(sleep_hrs, mu = ___, alternative = "___")
 result</textarea>
 <div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
 </div>
 <div class="webr-output-area"></div>
 <div class="webr-canvas-area"><canvas></canvas></div>
@@ -5166,7 +3749,7 @@ result</textarea>
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - Since $\sigma$ is unknown, `t.test()` automatically uses the one-sample $t$ statistic with $df = n - 1 = 15$.
 - The supplement is believed to *increase* sleep, so use `alternative = "greater"`.
@@ -5175,7 +3758,7 @@ result</textarea>
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 
 ```r
@@ -5223,10 +3806,131 @@ Since p-value $\approx 0.0013 < \alpha = 0.05$, we **reject $H_0$**. There is su
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 36</div>
+<div class="exercise-label">Question 10</div>
+A psychologist claims the population mean anxiety score on a standardised scale is $\mu_0 = 15$. She collects a random sample of $n = 10$ patients and records $\bar{x} = 17.2$ with $s = 3.6$. She wants to test whether the mean anxiety score differs from 15. Assume scores are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Differs from" calls for a two-tailed test: $H_a: \mu \ne \mu_0$.
+- $\sigma$ is unknown, so use the $t$ statistic with $df = n - 1 = 9$.
+- Two-tailed p-value $= 2 \times P(T_9 > |t^*|)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 15 \quad$ vs. $\quad H_a: \mu \ne 15$
+
+**(b)** With $df = n - 1 = 9$:
+$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{17.2 - 15}{3.6 / \sqrt{10}} = \frac{2.2}{1.1384} \approx 1.933$$
+
+**(c)** For $H_a: \mu \ne 15$ (two-tailed), using $T \sim t_9$:
+$$\text{p-value} = 2 \times P(T_9 > 1.933) \approx 2(0.0427) = 0.0853$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the $t$-table: $t_{9,\,0.05} = 1.833 < 1.933 < 2.262 = t_{9,\,0.025}$, so $0.05 < \text{p-value} < 0.10$.
+
+**(d)** Since p-value $\approx 0.085 > \alpha = 0.05$, we **fail to reject $H_0$**. There is not sufficient evidence at the 5% level to conclude that the mean anxiety score differs from 15.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 11</div>
+A botanist claims that a new plant food reduces the mean germination time of seeds below the standard $\mu_0 = 8.0$ days. She plants $n = 12$ seeds treated with the food and records $\bar{x} = 7.0$ days and $s = 1.5$ days. Assume germination times are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The claim is that germination time has *decreased*, so use $H_a: \mu < \mu_0$.
+- $\sigma$ is unknown, so use the $t$ statistic with $df = n - 1 = 11$.
+- Lower-tailed p-value $= P(T_{11} < t^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: \mu = 8.0$ days $\quad$ vs. $\quad H_a: \mu < 8.0$ days
+
+**(b)** With $df = n - 1 = 11$:
+$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{7.0 - 8.0}{1.5 / \sqrt{12}} = \frac{-1.0}{0.4330} \approx -2.309$$
+
+**(c)** For $H_a: \mu < 8.0$ (lower-tailed), using $T \sim t_{11}$:
+$$\text{p-value} = P(T_{11} < -2.309) \approx 0.0207$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the $t$-table: $t_{11,\,0.025} = 2.201 < 2.309 < 2.718 = t_{11,\,0.01}$, so $0.01 < \text{p-value} < 0.025$.
+
+**(d)** Since p-value $\approx 0.021 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the new plant food reduces mean germination time below 8.0 days.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
+A university registrar claims that 40% of students live off campus. A housing researcher believes the true proportion is lower. In a random sample of $n = 200$ students, $x = 65$ reported living off campus.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the sample proportion $\hat{p}$ and the test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The researcher believes the proportion is *lower*, so use $H_a: p < p_0$.
+- The test statistic is $z^* = (\hat{p} - p_0) / \sqrt{p_0(1-p_0)/n}$, using $p_0$ in the denominator.
+- Lower-tailed p-value $= P(Z < z^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $H_0: p = 0.40 \quad$ vs. $\quad H_a: p < 0.40$
+
+**(b)** Sample proportion:
+$$\hat{p} = \frac{x}{n} = \frac{65}{200} = 0.325$$
+Test statistic:
+$$z^* = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} = \frac{0.325 - 0.40}{\sqrt{0.40 \times 0.60 / 200}} = \frac{-0.075}{0.03464} \approx -2.165$$
+
+**(c)** For $H_a: p < 0.40$ (lower-tailed):
+$$\text{p-value} = P(Z < -2.165) \approx 0.0152$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**(d)** Since p-value $\approx 0.0152 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that fewer than 40% of students live off campus.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 13</div>
 A national survey reports that 60% of households own at least one pet ($p_0 = 0.60$). A researcher randomly selects $n = 150$ households in one city and records whether each household owns at least one pet. The bar chart below summarises the results.
 
-```{r ch6-q36-bar, echo=FALSE, fig.height=3.5, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch6-q13-bar, echo=FALSE, fig.height=3.5, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE}
 library(ggplot2)
 df_pets <- data.frame(
   outcome = factor(c("Own pets", "No pets"), levels = c("Own pets", "No pets")),
@@ -5241,7 +3945,7 @@ ggplot(df_pets, aes(x = outcome, y = count, fill = outcome)) +
   scale_fill_manual(values = c("Own pets" = "#6c5ce7", "No pets" = "#b2bec3")) +
   scale_y_continuous(breaks = seq(0, 110, 20)) +
   labs(x = NULL, y = "Number of households",
-       caption = "n = 150 households  |  Dashed line = national benchmark (p�ü � n = 90)") +
+       caption = "n = 150 households  |  Dashed line = national benchmark (p₀ × n = 90)") +
   theme_minimal(base_size = 12) +
   theme(legend.position = "none",
         plot.caption = element_text(color = "#555", size = 9))
@@ -5256,7 +3960,7 @@ Is the local pet-ownership rate higher than the national rate of 60%?
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - Read $x = 102$ (households owning pets) and $n = 150$ from the bar chart.
 - "Is the local rate *higher*?" calls for an upper-tailed test: $H_a: p > p_0$.
@@ -5266,7 +3970,7 @@ Is the local pet-ownership rate higher than the national rate of 60%?
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 **1. Level of significance.** $\alpha = 0.05$
 
@@ -5287,7 +3991,7 @@ Reference distribution: $Z \sim N(0,1)$.
 
 For $H_a: p > 0.60$ (upper-tailed):
 $$\text{p-value} = P(Z > 2.000) = 1 - P(Z \le 2.000) \approx 0.0228$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
 **5. Conclusion.**
 
@@ -5298,10 +4002,166 @@ Since p-value $\approx 0.0228 < \alpha = 0.05$, we **reject $H_0$**. There is su
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 37</div>
+<div class="exercise-label">Question 14</div>
+Three independent research scenarios are given below. For **each scenario**: (i) identify the appropriate test (one-sample $z$ test for a mean, one-sample $t$ test for a mean, or one-sample $z$ test for a proportion); (ii) state $H_0$ and $H_a$; (iii) compute the test statistic; (iv) find the p-value; and (v) state a conclusion at the given $\alpha$.
+
+You may use the Distribution Calculator in Section 4.1.5 to find required tail probabilities.
+
+**(a)** A physiotherapist records grip strength for $n = 25$ patients and reports $\bar{x} = 18.8$ kg and $s = 3.5$ kg. The population standard deviation is **unknown**. Historical data show the mean for healthy adults is $\mu_0 = 17.0$ kg. Test whether the sample mean differs from the historical norm at $\alpha = 0.05$.
+
+**(b)** A pollster claims 25% of voters support Candidate X. In a random sample of $n = 200$ voters, $x = 56$ indicate support for Candidate X. Test whether the true support level differs from 25% at $\alpha = 0.05$.
+
+**(c)** A fitness app reports its users average $\mu_0 = 46.0$ minutes of exercise per day. The population standard deviation is **known** to be $\sigma = 6$ minutes. A researcher samples $n = 36$ users and records $\bar{x} = 43.8$ minutes. Test whether the mean is lower than reported at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the **$z$ test for a mean** when $\sigma$ is known.
+- Use the **$t$ test for a mean** when $\sigma$ is unknown and data are approximately normal.
+- Use the **$z$ test for a proportion** when the parameter of interest is a population proportion $p$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a) One-sample $t$ test for a mean** ($\sigma$ unknown)
+
+$H_0: \mu = 17.0$ kg $\quad$ vs. $\quad H_a: \mu \ne 17.0$ kg, with $df = 24$.
+
+$$t^* = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} = \frac{18.8 - 17.0}{3.5 / \sqrt{25}} = \frac{1.8}{0.7} \approx 2.571$$
+
+$$\text{p-value} = 2 \times P(T_{24} > 2.571) \approx 0.0167$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+From the $t$-table: $t_{24,\,0.01} = 2.492 < 2.571 < 2.797 = t_{24,\,0.005}$, so $0.01 < \text{p-value} < 0.02$.
+
+Since p-value $< \alpha = 0.05$, **reject $H_0$**. There is sufficient evidence that mean grip strength differs from 17.0 kg.
+
+---
+
+**(b) One-sample $z$ test for a proportion**
+
+$H_0: p = 0.25 \quad$ vs. $\quad H_a: p \ne 0.25$.
+
+$$\hat{p} = \frac{56}{200} = 0.280, \qquad z^* = \frac{0.280 - 0.25}{\sqrt{0.25 \times 0.75 / 200}} = \frac{0.030}{0.03062} \approx 0.980$$
+
+$$\text{p-value} = 2 \times P(Z > 0.980) \approx 2(0.1635) = 0.3271$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+Since p-value $\approx 0.327 > \alpha = 0.05$, **fail to reject $H_0$**. There is not sufficient evidence that support for Candidate X differs from 25%.
+
+---
+
+**(c) One-sample $z$ test for a mean** ($\sigma$ known)
+
+$H_0: \mu = 46.0$ min $\quad$ vs. $\quad H_a: \mu < 46.0$ min.
+
+$$z^* = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} = \frac{43.8 - 46.0}{6 / \sqrt{36}} = \frac{-2.2}{1.0} = -2.200$$
+
+$$\text{p-value} = P(Z < -2.200) \approx 0.0139$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+Since p-value $\approx 0.014 < \alpha = 0.05$, **reject $H_0$**. There is sufficient evidence that mean daily exercise time for app users is less than 46.0 minutes.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 15</div>
+A statistics professor expects the standard deviation of final exam scores in her course to be $\sigma_0 = 10$ points. After implementing a new teaching method, she randomly samples $n = 21$ students and finds a sample standard deviation of $s = 13$ points. Test whether score variability has increased. Use $\alpha = 0.05$. Assume exam scores are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the $\chi^2$ test statistic using $\chi^{2*} = \dfrac{(n-1)s^2}{\sigma_0^2}$.
+(c) State the degrees of freedom and find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The test statistic for a population variance is $\chi^{2*} = \dfrac{(n-1)s^2}{\sigma_0^2}$ with $df = n - 1$.
+- Since we are testing whether variability has *increased*, use a right-tailed test: $H_a: \sigma^2 > \sigma_0^2$.
+- The p-value for $H_a: \sigma^2 > \sigma_0^2$ is $P(\chi^2_{n-1} > \chi^{2*})$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \sigma^2 = 100 \qquad H_a: \sigma^2 > 100$$
+(where $\sigma_0^2 = 10^2 = 100$)
+
+**(b)**
+$$\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(21 - 1)(13^2)}{10^2} = \frac{(20)(169)}{100} = 33.8$$
+
+**(c)** Degrees of freedom: $df = n - 1 = 20$.
+
+For $H_a: \sigma^2 > 100$ (right-tailed):
+$$\text{p-value} = P(\chi^2_{20} > 33.8) \approx 0.0278$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the $\chi^2$-table: $\chi^2_{20,\,0.05} = 31.41 < 33.8 < 34.17 = \chi^2_{20,\,0.025}$, so $0.025 < \text{p-value} < 0.05$.
+
+**(d)** Since p-value $\approx 0.028 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the variance of exam scores has increased above $\sigma_0^2 = 100$ (i.e., $\sigma > 10$ points).
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 16</div>
+A packaging machine is designed to fill bags of flour with a standard deviation of $\sigma_0 = 5$ g. After scheduled maintenance, a quality engineer randomly samples $n = 16$ bags and finds a sample standard deviation of $s = 3.2$ g. The engineer believes the maintenance may have reduced variability. Test at $\alpha = 0.05$. Assume fill weights are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the $\chi^2$ test statistic.
+(c) State the degrees of freedom and find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The engineer believes variability has *decreased*, so use a left-tailed test: $H_a: \sigma^2 < \sigma_0^2$.
+- The p-value for $H_a: \sigma^2 < \sigma_0^2$ is $P(\chi^2_{n-1} < \chi^{2*})$.
+- Note that $\sigma_0^2 = 5^2 = 25$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \sigma^2 = 25 \qquad H_a: \sigma^2 < 25$$
+(where $\sigma_0^2 = 5^2 = 25$)
+
+**(b)**
+$$\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(16 - 1)(3.2^2)}{5^2} = \frac{(15)(10.24)}{25} = \frac{153.6}{25} = 6.144$$
+
+**(c)** Degrees of freedom: $df = n - 1 = 15$.
+
+For $H_a: \sigma^2 < 25$ (left-tailed):
+$$\text{p-value} = P(\chi^2_{15} < 6.144) \approx 0.0204$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the $\chi^2$-table: the lower 5th percentile of $\chi^2_{15}$ is $7.26$. Since $6.144 < 7.26$, the p-value $< 0.05$.
+
+**(d)** Since p-value $\approx 0.020 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the variance of fill weights has decreased below $\sigma_0^2 = 25$ g$^2$ (i.e., $\sigma < 5$ g).
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 17</div>
 A university study reports that the standard deviation of weekly study hours among undergraduates is $\sigma_0 = 4$ hours ($\sigma_0^2 = 16$ hr$^2$). A researcher surveys a random sample of $n = 25$ engineering students and records their weekly study hours. The histogram below shows the distribution of study hours in this sample.
 
-```{r ch6-q37-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch6-q17-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
 library(ggplot2)
 study_hrs <- c(8, 10, 12, 13, 14, 15, 16, 17, 17, 18, 18,
                19, 19, 20, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 33)
@@ -5310,11 +4170,11 @@ ggplot(df_study, aes(x = hours)) +
   geom_histogram(binwidth = 3, fill = "#00cec9", color = "white", boundary = 6) +
   geom_vline(xintercept = c(19.8 - 4, 19.8 + 4), linetype = "dashed",
              color = "#e17055", linewidth = 0.8) +
-  annotate("text", x = 8.5, y = 6.4, label = "卤��ü = 卤4 from mean",
+  annotate("text", x = 8.5, y = 6.4, label = "±σ₀ = ±4 from mean",
            color = "#e17055", size = 3.5, hjust = 0) +
   scale_x_continuous(breaks = seq(6, 36, 3)) +
   labs(x = "Weekly study hours", y = "Frequency",
-       caption = "n = 25 engineering students  |  Dashed lines = mean 卤 ��ü") +
+       caption = "n = 25 engineering students  |  Dashed lines = mean ± σ₀") +
   theme_minimal(base_size = 12) +
   theme(plot.caption = element_text(color = "#555", size = 9))
 ```
@@ -5341,8 +4201,8 @@ chi2_star
 p_value <- 2 * pchisq(chi2_star, df = n - 1, lower.tail = ___)
 p_value</textarea>
 <div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
 </div>
 <div class="webr-output-area"></div>
 <div class="webr-canvas-area"><canvas></canvas></div>
@@ -5350,7 +4210,7 @@ p_value</textarea>
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - The hypothesized population standard deviation is $\sigma_0 = 4$, so $\sigma_0^2 = 16$. Set `sigma0_sq <- 4^2`.
 - The $\chi^2$ statistic is $\chi^{2*} = (n-1)s^2/\sigma_0^2$. Use `var(study_hrs)` for $s^2$.
@@ -5360,7 +4220,7 @@ p_value</textarea>
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 
 ```r
@@ -5406,10 +4266,713 @@ Since p-value $\approx 0.0002 < \alpha = 0.05$, we **reject $H_0$**. There is su
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 38</div>
+<div class="exercise-label">Question 18</div>
+City records show that daily commute times have a standard deviation of $\sigma_0 = 8$ minutes. A city planner suspects that ongoing road construction has increased commute time variability. She randomly samples $n = 31$ commuters and records a sample standard deviation of $s = 10$ minutes. Test at $\alpha = 0.01$. Assume commute times are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the $\chi^2$ test statistic.
+(c) State the degrees of freedom and find the p-value.
+(d) State a conclusion at $\alpha = 0.01$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The planner suspects variability has *increased*, so use $H_a: \sigma^2 > \sigma_0^2$.
+- Note that $\sigma_0^2 = 8^2 = 64$.
+- Right-tailed p-value $= P(\chi^2_{n-1} > \chi^{2*})$.
+- Here $\alpha = 0.01$; compare the p-value to 0.01.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \sigma^2 = 64 \qquad H_a: \sigma^2 > 64$$
+(where $\sigma_0^2 = 8^2 = 64$)
+
+**(b)**
+$$\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(31 - 1)(10^2)}{8^2} = \frac{(30)(100)}{64} = \frac{3000}{64} \approx 46.875$$
+
+**(c)** Degrees of freedom: $df = n - 1 = 30$.
+
+For $H_a: \sigma^2 > 64$ (right-tailed):
+$$\text{p-value} = P(\chi^2_{30} > 46.875) \approx 0.0248$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the $\chi^2$-table: $\chi^2_{30,\,0.05} = 43.77 < 46.875 < 50.89 = \chi^2_{30,\,0.01}$, so $0.01 < \text{p-value} < 0.05$.
+
+**(d)** Since p-value $\approx 0.025 > \alpha = 0.01$, we **fail to reject $H_0$**. There is not sufficient evidence at the 1% level to conclude that commute time variability has increased. *(Note: the result would be significant at $\alpha = 0.05$, but not at the stricter $\alpha = 0.01$.)*
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 19</div>
+A dairy company claims the standard deviation of fat content in its milk cartons is $\sigma_0 = 0.3$ g per 100 mL. A quality auditor randomly samples $n = 11$ cartons and measures a sample standard deviation of $s = 0.45$ g per 100 mL. Test whether the variance differs from the company's claim. Use $\alpha = 0.05$. Assume fat content is approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the $\chi^2$ test statistic.
+(c) State the degrees of freedom and find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Differs from" calls for a two-tailed test: $H_a: \sigma^2 \ne \sigma_0^2$.
+- Note that $\sigma_0^2 = 0.3^2 = 0.09$.
+- Since $s > \sigma_0$, the test statistic lies in the upper tail. The two-tailed p-value is $2 \times P(\chi^2_{n-1} > \chi^{2*})$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \sigma^2 = 0.09 \qquad H_a: \sigma^2 \ne 0.09$$
+(where $\sigma_0^2 = 0.3^2 = 0.09$)
+
+**(b)**
+$$\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(11 - 1)(0.45^2)}{0.3^2} = \frac{(10)(0.2025)}{0.09} = \frac{2.025}{0.09} = 22.5$$
+
+**(c)** Degrees of freedom: $df = n - 1 = 10$.
+
+Since $s > \sigma_0$, the statistic lies in the upper tail. For $H_a: \sigma^2 \ne 0.09$ (two-tailed):
+$$\text{p-value} = 2 \times P(\chi^2_{10} > 22.5) \approx 2(0.013) = 0.026$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the $\chi^2$-table: $\chi^2_{10,\,0.025} = 20.48 < 22.5 < 23.21 = \chi^2_{10,\,0.01}$, so $P(\chi^2_{10} > 22.5)$ is between 0.01 and 0.025, giving a two-tailed p-value between 0.02 and 0.05.
+
+**(d)** Since p-value $\approx 0.026 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the variance of fat content in the company's milk cartons differs from the claimed value of $\sigma_0^2 = 0.09$ g$^2$ per 100 mL$^2$.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 20</div>
+A fitness centre manager claims that the standard deviation of the number of daily visits is $\sigma_0 = 15$ visits. After introducing a new membership promotion, she randomly records daily attendance for $n = 26$ days and finds a sample standard deviation of $s = 20$ visits. Test whether the variance of daily visits has changed from the claimed level. Use $\alpha = 0.05$. Assume daily visit counts are approximately normally distributed.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the $\chi^2$ test statistic.
+(c) State the degrees of freedom and find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Has the variance *changed*?" calls for a two-tailed test: $H_a: \sigma^2 \ne \sigma_0^2$.
+- Note that $\sigma_0^2 = 15^2 = 225$.
+- Since $s > \sigma_0$, the test statistic lies in the upper tail. The two-tailed p-value is $2 \times P(\chi^2_{n-1} > \chi^{2*})$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \sigma^2 = 225 \qquad H_a: \sigma^2 \ne 225$$
+(where $\sigma_0^2 = 15^2 = 225$)
+
+**(b)**
+$$\chi^{2*} = \frac{(n-1)s^2}{\sigma_0^2} = \frac{(26 - 1)(20^2)}{15^2} = \frac{(25)(400)}{225} = \frac{10000}{225} \approx 44.44$$
+
+**(c)** Degrees of freedom: $df = n - 1 = 25$.
+
+Since $s > \sigma_0$, the statistic lies in the upper tail. For $H_a: \sigma^2 \ne 225$ (two-tailed):
+$$\text{p-value} = 2 \times P(\chi^2_{25} > 44.44) \approx 2(0.0082) = 0.0164$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+From the $\chi^2$-table: $\chi^2_{25,\,0.025} = 40.65 < 44.44 < 46.93 = \chi^2_{25,\,0.01}$, so $P(\chi^2_{25} > 44.44)$ is between 0.01 and 0.025, giving a two-tailed p-value between 0.02 and 0.05.
+
+**(d)** Since p-value $\approx 0.016 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence at the 5% level to conclude that the variance of daily visits at the fitness centre has changed from the claimed value of $\sigma_0^2 = 225$ visits$^2$.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 21</div>
+A transportation researcher believes that morning commute times differ between two cities. She randomly samples commuters from City A ($n_1 = 8$) and City B ($n_2 = 10$) and records commute times (in minutes):
+
+**City A:** 35, 42, 28, 51, 38, 44, 30, 47
+
+**City B:** 22, 27, 31, 19, 25, 28, 23, 26, 21, 30
+
+Test whether City A commuters have longer average commute times than City B commuters at $\alpha = 0.05$. Use the Welch two-sample $t$-test (unequal variances).
+
+(a) Fill in the blanks to run a Welch two-sample $t$-test with `t.test()`.
+(b) Read the output: state the test statistic, degrees of freedom, and p-value.
+(c) State a conclusion at $\alpha = 0.05$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="13">city_a <- c(35, 42, 28, 51, 38, 44, 30, 47)
+city_b <- c(22, 27, 31, 19, 25, 28, 23, 26, 21, 30)
+
+# (a) Welch two-sample t-test: Ha: mu_A > mu_B
+result <- t.test(city_a, city_b,
+                 alternative = "___",
+                 var.equal   = ___)
+result</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For $H_a: \mu_A > \mu_B$ (City A has *longer* commutes), use `alternative = "greater"`.
+- The Welch $t$-test does **not** assume equal variances: set `var.equal = FALSE`.
+- `t.test(x, y, alternative, var.equal)` — the first argument is the group you expect to have the larger mean when using `"greater"`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+city_a <- c(35, 42, 28, 51, 38, 44, 30, 47)
+city_b <- c(22, 27, 31, 19, 25, 28, 23, 26, 21, 30)
+
+result <- t.test(city_a, city_b,
+                 alternative = "greater",
+                 var.equal   = FALSE)
+result
+# Welch Two Sample t-test
+# t = 4.5359, df = 9.6278, p-value = 0.0006
+# alternative hypothesis: true difference in means is greater than 0
+# sample estimates:
+# mean of x  mean of y
+#    39.375     25.200
+```
+
+**(b)** $t^* \approx 4.54$, $df \approx 9.63$, p-value $\approx 0.0006$.
+
+**(c)** Since p-value $\approx 0.0006 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that City A commuters have significantly longer average commute times than City B commuters.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 22</div>
+A political analyst surveys residents in two regions about support for a new infrastructure policy. In Region A, 68 out of 120 surveyed residents support the policy. In Region B, 52 out of 100 residents support it. Test whether the proportions of support differ between the two regions.
+
+(a) Fill in the blanks to run a two-proportion $z$-test using `prop.test()`.
+(b) Read the output: state the test statistic and p-value.
+(c) State a conclusion at $\alpha = 0.05$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="12">x1 <- 68;  n1 <- 120   # Region A
+x2 <- 52;  n2 <- 100   # Region B
+
+# (a) Two-proportion z-test: Ha: p1 != p2
+result <- prop.test(c(x1, x2), c(n1, n2),
+                    alternative = "___",
+                    correct     = ___)
+result</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For a two-sided test ($H_a: p_1 \ne p_2$), use `alternative = "two.sided"`.
+- Use the formula without continuity correction: set `correct = FALSE`.
+- `prop.test()` reports a $\chi^2$ statistic; $\sqrt{\chi^2} = |z^*|$ from the two-proportion $z$-formula.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+x1 <- 68;  n1 <- 120
+x2 <- 52;  n2 <- 100
+
+result <- prop.test(c(x1, x2), c(n1, n2),
+                    alternative = "two.sided",
+                    correct     = FALSE)
+result
+# 2-sample test for equality of proportions without continuity correction
+# X-squared = 0.4789, df = 1, p-value = 0.4890
+# alternative hypothesis: two.sided
+# sample estimates:
+# prop 1  prop 2
+# 0.5667  0.5200
+```
+
+**(b)** $\chi^2 \approx 0.479$ (equivalently $|z^*| \approx 0.692$), p-value $\approx 0.489$.
+
+**(c)** Since p-value $\approx 0.489 > \alpha = 0.05$, we **fail to reject $H_0$**. There is insufficient evidence to conclude that the proportions of support differ between the two regions.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 23</div>
+An instructor teaches two sections of the same course and suspects that Section A has more variable test scores than Section B. Scores from the two sections are:
+
+**Section A ($n_1 = 12$):** 78, 85, 72, 91, 68, 88, 75, 82, 95, 70, 84, 77
+
+**Section B ($n_2 = 10$):** 82, 84, 79, 85, 81, 83, 80, 86, 82, 84
+
+Test whether Section A has greater score variance than Section B at $\alpha = 0.05$.
+
+(a) Fill in the blank to run an $F$-test using `var.test()`.
+(b) Read the output: state $F^*$, the degrees of freedom, and the p-value.
+(c) State a conclusion at $\alpha = 0.05$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="12">sec_a <- c(78, 85, 72, 91, 68, 88, 75, 82, 95, 70, 84, 77)
+sec_b <- c(82, 84, 79, 85, 81, 83, 80, 86, 82, 84)
+
+# (a) F-test: Ha: sigma_A^2 > sigma_B^2
+result <- var.test(sec_a, sec_b,
+                   alternative = "___")
+result</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For $H_a: \sigma_A^2 > \sigma_B^2$ (Section A is *more* variable), use `alternative = "greater"`.
+- `var.test(x, y)` computes $F^* = s_x^2 / s_y^2$, so put the group hypothesised to have the *larger* variance first.
+- The output gives the $F$-statistic, numerator df, denominator df, and p-value.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+sec_a <- c(78, 85, 72, 91, 68, 88, 75, 82, 95, 70, 84, 77)
+sec_b <- c(82, 84, 79, 85, 81, 83, 80, 86, 82, 84)
+
+result <- var.test(sec_a, sec_b,
+                   alternative = "greater")
+result
+# F test to compare two variances
+# F = 14.726, num df = 11, denom df = 9, p-value = 0.0002
+# alternative hypothesis: true ratio of variances is greater than 1
+# sample estimates:
+# ratio of variances
+#          14.7263
+```
+
+**(b)** $F^* \approx 14.73$, $df = (11,\,9)$, p-value $\approx 0.0002$.
+
+**(c)** Since p-value $\approx 0.0002 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that Section A has significantly greater score variability than Section B.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 24</div>
+A cardiologist measures the systolic blood pressure (mmHg) of 8 patients **before** and **after** a new medication. The same patients are measured twice, making this a paired study.
+
+| Patient | Before | After |
+|---------|--------|-------|
+| 1       | 148    | 138   |
+| 2       | 162    | 149   |
+| 3       | 155    | 147   |
+| 4       | 141    | 136   |
+| 5       | 170    | 158   |
+| 6       | 158    | 148   |
+| 7       | 145    | 141   |
+| 8       | 152    | 143   |
+
+Test whether the medication significantly reduces systolic blood pressure at $\alpha = 0.05$.
+
+(a) Fill in the blanks to run a paired $t$-test. Define $d_i = \text{Before}_i - \text{After}_i$.
+(b) Read the output and state the test statistic, degrees of freedom, and p-value.
+(c) State a conclusion at $\alpha = 0.05$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="14">before <- c(148, 162, 155, 141, 170, 158, 145, 152)
+after  <- c(138, 149, 147, 136, 158, 148, 141, 143)
+
+# Define differences d = before - after
+d <- before - after
+d
+
+# (a) One-sample t-test on d: Ha: mu_d > 0
+result <- t.test(d, mu = ___, alternative = "___")
+result</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- With $d_i = \text{Before}_i - \text{After}_i$, a positive $\bar{x}_d$ means BP decreased — which is what the medication should do.
+- The null value is $\mu_d = 0$ (no change): set `mu = 0`.
+- Since we test whether the mean difference is *positive* ($H_a: \mu_d > 0$), use `alternative = "greater"`.
+- Equivalently, `t.test(before, after, paired = TRUE, alternative = "greater")` gives the same result.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+before <- c(148, 162, 155, 141, 170, 158, 145, 152)
+after  <- c(138, 149, 147, 136, 158, 148, 141, 143)
+
+d <- before - after
+# [1] 10 13  8  5 12 10  4  9
+
+result <- t.test(d, mu = 0, alternative = "greater")
+result
+# One Sample t-test
+# t = 7.9946, df = 7, p-value = 0.00003
+# alternative hypothesis: true mean is greater than 0
+# sample estimates:
+# mean of x
+#    8.875
+```
+
+**(b)** $t^* \approx 7.99$, $df = 7$, p-value $< 0.0001$.
+
+**(c)** Since p-value $< 0.0001 < \alpha = 0.05$, we **reject $H_0$**. There is very strong evidence that the medication significantly reduces systolic blood pressure.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 25</div>
+An agronomist divides 10 farm plots in half. One half of each plot receives a new fertilizer (Treated); the other half receives standard fertilizer (Control). Yield (kg per half-plot) is recorded.
+
+| Plot | Treated | Control |
+|------|---------|---------|
+| 1    | 45.2    | 42.1    |
+| 2    | 38.7    | 36.5    |
+| 3    | 52.1    | 48.9    |
+| 4    | 41.5    | 40.2    |
+| 5    | 48.3    | 44.7    |
+| 6    | 36.9    | 35.8    |
+| 7    | 55.0    | 51.3    |
+| 8    | 43.8    | 42.0    |
+| 9    | 40.2    | 38.9    |
+| 10   | 47.6    | 45.1    |
+
+(a) Explain why this is a **paired** study rather than a two-sample study.
+(b) Fill in the blanks to test $H_0: \mu_d = 0$ vs. $H_a: \mu_d > 0$ (new fertilizer increases yield) at $\alpha = 0.05$.
+(c) State a conclusion based on the R output.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="13">treated <- c(45.2, 38.7, 52.1, 41.5, 48.3, 36.9, 55.0, 43.8, 40.2, 47.6)
+control <- c(42.1, 36.5, 48.9, 40.2, 44.7, 35.8, 51.3, 42.0, 38.9, 45.1)
+
+# (b) Paired t-test: fill in the blanks
+result <- t.test(treated, control,
+                 paired      = ___,
+                 alternative = "___")
+result</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- (a) Each plot contributes *one pair* of observations. The two half-plots within a plot share the same soil, sunlight, and drainage, so they are not independent.
+- (b) Since observations are paired (same plot), set `paired = TRUE`.
+- With $d_i = \text{Treated}_i - \text{Control}_i$, "new fertilizer yields more" means $\mu_d > 0$: use `alternative = "greater"`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Each plot is divided in half so that the two measurements (treated and control) share the same soil quality, drainage, sunlight, and microclimate. Treating each plot as a matched pair removes this background variability and gives a more powerful test of the fertilizer effect.
+
+```r
+treated <- c(45.2, 38.7, 52.1, 41.5, 48.3, 36.9, 55.0, 43.8, 40.2, 47.6)
+control <- c(42.1, 36.5, 48.9, 40.2, 44.7, 35.8, 51.3, 42.0, 38.9, 45.1)
+
+result <- t.test(treated, control,
+                 paired      = TRUE,
+                 alternative = "greater")
+result
+# Paired t-test
+# t = 7.6215, df = 9, p-value = 0.00002
+# alternative hypothesis: true mean difference is greater than 0
+# sample estimates:
+# mean difference
+#            2.38
+```
+
+**(c)** $t^* \approx 7.62$, $df = 9$, p-value $< 0.0001$. Since p-value $< \alpha = 0.05$, we **reject $H_0$**. The new fertilizer produces significantly higher yields than the standard fertilizer.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 26</div>
+A manufacturer compares the lifetimes of two brands of LED light bulbs. Both brands are known from extensive prior testing to have a population standard deviation of $\sigma = 80$ hours. A random sample of $n_1 = 36$ Brand X bulbs gives $\bar{x}_1 = 1{,}250$ hours, and a sample of $n_2 = 36$ Brand Y bulbs gives $\bar{x}_2 = 1{,}180$ hours. Is there evidence that Brand X bulbs last longer on average?
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the two-sample $z$ test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Since both $\sigma$ values are known, use $z^* = (\bar{x}_1 - \bar{x}_2) \,/\, \sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}$.
+- "Brand X lasts *longer*" gives $H_a: \mu_1 > \mu_2$ (upper-tailed).
+- The p-value is $P(Z > z^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \mu_1 = \mu_2 \qquad H_a: \mu_1 > \mu_2$$
+
+**(b)**
+$$z^* = \frac{(1250 - 1180) - 0}{\sqrt{80^2/36 + 80^2/36}} = \frac{70}{\sqrt{177.78 + 177.78}} = \frac{70}{\sqrt{355.56}} = \frac{70}{18.856} \approx 3.71$$
+
+**(c)** For $H_a: \mu_1 > \mu_2$ (upper-tailed):
+$$\text{p-value} = P(Z > 3.71) \approx 0.0001$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**(d)** Since p-value $\approx 0.0001 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that Brand X LED bulbs last significantly longer on average than Brand Y bulbs.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 27</div>
+A school district compares two teaching methods for a mathematics unit. Method A is used with $n_1 = 12$ students ($\bar{x}_1 = 82.5$, $s_1 = 6.2$); Method B is used with $n_2 = 10$ students ($\bar{x}_2 = 79.3$, $s_2 = 5.8$). Assume equal population variances. Is there a significant difference in mean scores between the two methods?
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the pooled sample variance $s_p^2$ and the $t$ test statistic.
+(c) State the degrees of freedom and find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Pool the variances: $s_p^2 = [(n_1-1)s_1^2 + (n_2-1)s_2^2] / (n_1+n_2-2)$.
+- The test statistic is $t^* = (\bar{x}_1 - \bar{x}_2) \,/\, (s_p\sqrt{1/n_1 + 1/n_2})$, with $df = n_1+n_2-2$.
+- A two-tailed p-value is $2 \times P(t_{df} > |t^*|)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \mu_1 = \mu_2 \qquad H_a: \mu_1 \ne \mu_2$$
+
+**(b)**
+$$s_p^2 = \frac{(11)(6.2^2) + (9)(5.8^2)}{12+10-2} = \frac{(11)(38.44)+(9)(33.64)}{20} = \frac{422.84+302.76}{20} = \frac{725.60}{20} = 36.28$$
+
+$$s_p = \sqrt{36.28} \approx 6.023$$
+
+$$t^* = \frac{82.5 - 79.3}{6.023\,\sqrt{1/12+1/10}} = \frac{3.2}{6.023 \times 0.4282} = \frac{3.2}{2.580} \approx 1.240$$
+
+**(c)** $df = 12+10-2 = 20$.
+
+For $H_a: \mu_1 \ne \mu_2$ (two-tailed):
+$$\text{p-value} = 2 \times P(t_{20} > 1.240) \approx 2(0.115) = 0.230$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**(d)** Since p-value $\approx 0.230 > \alpha = 0.05$, we **fail to reject $H_0$**. There is insufficient evidence to conclude that the two teaching methods produce different mean scores.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 28</div>
+A researcher compares nightly sleep duration between competitive athletes ($n_1 = 15$, $\bar{x}_1 = 8.2$ hr, $s_1 = 0.9$ hr) and non-athletes ($n_2 = 12$, $\bar{x}_2 = 7.1$ hr, $s_2 = 1.5$ hr). The sample standard deviations differ substantially, so use the Welch (unequal-variance) $t$-test with the conservative approximation $df = \min(n_1-1,\,n_2-1)$. Do athletes sleep significantly more than non-athletes?
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the Welch $t$ test statistic.
+(c) State the degrees of freedom and find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The Welch statistic is $t^* = (\bar{x}_1 - \bar{x}_2) \,/\, \sqrt{s_1^2/n_1 + s_2^2/n_2}$.
+- Conservative $df = \min(n_1-1,\,n_2-1)$.
+- "Athletes sleep *more*" means $H_a: \mu_1 > \mu_2$; p-value $= P(t_{df} > t^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \mu_1 = \mu_2 \qquad H_a: \mu_1 > \mu_2$$
+
+**(b)**
+$$t^* = \frac{8.2 - 7.1}{\sqrt{0.9^2/15 + 1.5^2/12}} = \frac{1.1}{\sqrt{0.054 + 0.1875}} = \frac{1.1}{\sqrt{0.2415}} = \frac{1.1}{0.4914} \approx 2.239$$
+
+**(c)** Conservative $df = \min(14,\,11) = 11$.
+
+For $H_a: \mu_1 > \mu_2$ (upper-tailed):
+$$\text{p-value} = P(t_{11} > 2.239) \approx 0.023$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**(d)** Since p-value $\approx 0.023 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that competitive athletes sleep significantly longer on average than non-athletes.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 29</div>
+A nutritionist measures the sodium content of canned soup from two brands. From industry records, $\sigma_A = 60$ mg and $\sigma_B = 55$ mg are known. A sample of $n_1 = 50$ cans of Brand A gives $\bar{x}_1 = 895$ mg; a sample of $n_2 = 50$ cans of Brand B gives $\bar{x}_2 = 862$ mg. Is there a significant difference in mean sodium content?
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the two-sample $z$ test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.01$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Both $\sigma$ values are known, so use $z^* = (\bar{x}_1-\bar{x}_2)\,/\,\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}$.
+- A two-tailed p-value is $2 \times P(Z > |z^*|)$.
+- Compare to $\alpha = 0.01$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \mu_A = \mu_B \qquad H_a: \mu_A \ne \mu_B$$
+
+**(b)**
+$$z^* = \frac{895 - 862}{\sqrt{60^2/50 + 55^2/50}} = \frac{33}{\sqrt{72.0 + 60.5}} = \frac{33}{\sqrt{132.5}} = \frac{33}{11.511} \approx 2.867$$
+
+**(c)** For $H_a: \mu_A \ne \mu_B$ (two-tailed):
+$$\text{p-value} = 2 \times P(Z > 2.867) \approx 2(0.00207) = 0.00414$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**(d)** Since p-value $\approx 0.004 < \alpha = 0.01$, we **reject $H_0$**. There is sufficient evidence at the 1% level that the two brands differ significantly in mean sodium content.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 30</div>
+A policy researcher surveys residents in two cities about support for a new environmental regulation. In City A, 118 out of 200 residents are in favour; in City B, 81 out of 180 residents are in favour. Is there a significant difference in the proportions supporting the regulation?
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the pooled proportion $\hat{p}$ and the $z$ test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Pool the two samples: $\hat{p} = (x_1+x_2)/(n_1+n_2)$.
+- The test statistic is $z^* = (\hat{p}_1-\hat{p}_2)\,/\,\sqrt{\hat{p}(1-\hat{p})(1/n_1+1/n_2)}$.
+- Two-tailed p-value $= 2 \times P(Z > |z^*|)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: p_1 = p_2 \qquad H_a: p_1 \ne p_2$$
+
+**(b)** $\hat{p}_1 = 118/200 = 0.590$, $\hat{p}_2 = 81/180 = 0.450$.
+
+$$\hat{p} = \frac{118+81}{200+180} = \frac{199}{380} \approx 0.5237$$
+
+$$z^* = \frac{0.590-0.450}{\sqrt{0.5237(1-0.5237)(1/200+1/180)}} = \frac{0.140}{\sqrt{0.5237 \times 0.4763 \times 0.01056}} = \frac{0.140}{\sqrt{0.002633}} = \frac{0.140}{0.05131} \approx 2.729$$
+
+**(c)** For $H_a: p_1 \ne p_2$ (two-tailed):
+$$\text{p-value} = 2 \times P(Z > 2.729) \approx 2(0.00318) = 0.00636$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**(d)** Since p-value $\approx 0.006 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence to conclude that the proportions supporting the regulation differ significantly between the two cities.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 31</div>
 A college tracks course completion across two delivery formats. The bar chart below shows the number of students who completed and did not complete the course for the online section ($n_1 = 150$) and the in-person section ($n_2 = 120$).
 
-```{r ch6-q38-bar, echo=FALSE, fig.height=3.5, fig.width=6.5, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch6-q31-bar, echo=FALSE, fig.height=3.5, fig.width=6.5, fig.align='center', message=FALSE, warning=FALSE}
 library(ggplot2)
 df_complete <- data.frame(
   section  = factor(rep(c("Online", "In-person"), each = 2),
@@ -5423,7 +4986,7 @@ ggplot(df_complete, aes(x = section, y = count, fill = outcome)) +
   scale_fill_manual(values = c("Completed" = "#0984e3", "Did not complete" = "#b2bec3")) +
   scale_y_continuous(breaks = seq(0, 120, 20)) +
   labs(x = NULL, y = "Number of students", fill = NULL,
-       caption = "Online: n� = 150 (111 completed)  |  In-person: n� = 120 (96 completed)") +
+       caption = "Online: n₁ = 150 (111 completed)  |  In-person: n₂ = 120 (96 completed)") +
   theme_minimal(base_size = 12) +
   theme(legend.position = "top",
         plot.caption = element_text(color = "#555", size = 9))
@@ -5440,7 +5003,7 @@ You may use the Distribution Calculator in Section 4.1.5 to find the required ta
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - Let Group 1 = online, Group 2 = in-person. "Online rate *lower*" gives $H_a: p_1 < p_2$.
 - For a lower-tailed test, p-value $= P(Z < z^*)$.
@@ -5449,7 +5012,7 @@ You may use the Distribution Calculator in Section 4.1.5 to find the required ta
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 **1. Level of significance.** $\alpha = 0.05$
 
@@ -5469,7 +5032,7 @@ Reference distribution: $Z \sim N(0,1)$.
 
 **4. P-value.** For $H_a: p_1 < p_2$ (lower-tailed):
 $$\text{p-value} = P(Z < -1.159) \approx 0.123$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
 **5. Conclusion.**
 
@@ -5480,10 +5043,97 @@ Since p-value $\approx 0.123 > \alpha = 0.05$, we **fail to reject $H_0$**. Ther
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 39</div>
+<div class="exercise-label">Question 32</div>
+A factory has two production shifts. The day shift ($n_1 = 300$) produces 24 defective items; the night shift ($n_2 = 250$) produces 40 defective items. Do the two shifts have significantly different defect rates?
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the pooled proportion $\hat{p}$ and the $z$ test statistic.
+(c) Find the p-value.
+(d) State a conclusion at $\alpha = 0.01$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Do the rates *differ*?" implies $H_a: p_1 \ne p_2$ (two-tailed).
+- Since $z^*$ will be negative (day shift has a lower observed rate), the two-tailed p-value is $2 \times P(Z < z^*)$.
+- Compare the p-value to $\alpha = 0.01$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: p_1 = p_2 \qquad H_a: p_1 \ne p_2$$
+
+**(b)** $\hat{p}_1 = 24/300 = 0.080$, $\hat{p}_2 = 40/250 = 0.160$.
+
+$$\hat{p} = \frac{24+40}{300+250} = \frac{64}{550} \approx 0.1164$$
+
+$$z^* = \frac{0.080-0.160}{\sqrt{0.1164 \times 0.8836 \times (1/300+1/250)}} = \frac{-0.080}{\sqrt{0.10283 \times 0.007333}} = \frac{-0.080}{\sqrt{0.000754}} = \frac{-0.080}{0.02745} \approx -2.915$$
+
+**(c)** For $H_a: p_1 \ne p_2$ (two-tailed):
+$$\text{p-value} = 2 \times P(Z < -2.915) \approx 2(0.00178) = 0.00356$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+**(d)** Since p-value $\approx 0.004 < \alpha = 0.01$, we **reject $H_0$**. There is sufficient evidence at the 1% level to conclude that the day and night shifts have significantly different defect rates.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 33</div>
+A quality control team suspects that Laboratory 1 produces more variable blood-glucose readings than Laboratory 2. A sample of $n_1 = 15$ readings from Lab 1 gives $s_1 = 8.4$ mg/dL; a sample of $n_2 = 12$ readings from Lab 2 gives $s_2 = 4.1$ mg/dL. Test whether Lab 1's variance is significantly greater than Lab 2's variance.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute the $F$ test statistic.
+(c) State the degrees of freedom and find the p-value.
+(d) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The $F$ statistic is $F^* = s_1^2/s_2^2$, with $df_1 = n_1-1$ and $df_2 = n_2-1$.
+- For $H_a: \sigma_1^2 > \sigma_2^2$ (right-tailed), p-value $= P(F_{df_1,df_2} > F^*)$.
+- Compare $F^*$ to the critical value $F_{0.05}(14,11) \approx 2.739$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \sigma_1^2 = \sigma_2^2 \qquad H_a: \sigma_1^2 > \sigma_2^2$$
+
+**(b)**
+$$F^* = \frac{s_1^2}{s_2^2} = \frac{8.4^2}{4.1^2} = \frac{70.56}{16.81} \approx 4.198$$
+
+**(c)** $df_1 = 15-1 = 14$, $df_2 = 12-1 = 11$.
+
+For $H_a: \sigma_1^2 > \sigma_2^2$ (right-tailed):
+$$\text{p-value} = P(F_{14,11} > 4.198) \approx 0.014$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+The critical value $F_{0.05}(14,11) \approx 2.739$. Since $F^* = 4.198 > 2.739$, we confirm rejection.
+
+**(d)** Since p-value $\approx 0.014 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence to conclude that Laboratory 1 produces significantly more variable blood-glucose readings than Laboratory 2.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 34</div>
 Two quality inspectors each rate the same set of parts on a scale from 1 to 10. The boxplots below show the distribution of ratings given by each inspector.
 
-```{r ch6-q39-box, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch6-q34-box, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
 library(ggplot2)
 inspector_a <- c(2, 3, 4, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11)
 inspector_b <- c(3, 4, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9,  9, 10)
@@ -5496,7 +5146,7 @@ ggplot(df_insp, aes(x = inspector, y = rating, fill = inspector)) +
   geom_boxplot(color = "#636e72", width = 0.45, outlier.shape = 19, outlier.size = 2) +
   scale_fill_manual(values = c("Inspector A" = "#fd79a8", "Inspector B" = "#a29bfe")) +
   scale_y_continuous(breaks = 1:11) +
-  labs(x = NULL, y = "Rating (1�ü10)",
+  labs(x = NULL, y = "Rating (1–10)",
        caption = "Inspector A: n = 20  |  Inspector B: n = 18") +
   theme_minimal(base_size = 12) +
   theme(legend.position = "none",
@@ -5524,8 +5174,8 @@ result$statistic   # F*
 result$parameter   # df1, df2
 result$p.value     # p-value</textarea>
 <div class="webr-controls">
-  <button class="webr-run-btn" disabled>�� Run</button>
-  <button class="webr-reset-btn">�� Reset</button>
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
 </div>
 <div class="webr-output-area"></div>
 <div class="webr-canvas-area"><canvas></canvas></div>
@@ -5533,7 +5183,7 @@ result$p.value     # p-value</textarea>
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - "Is there a *difference*?" implies $H_a: \sigma_A^2 \ne \sigma_B^2$ (two-tailed).
 - Use `var.test(inspector_a, inspector_b, alternative = "two.sided")`.
@@ -5543,7 +5193,7 @@ result$p.value     # p-value</textarea>
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 
 ```r
@@ -5585,10 +5235,114 @@ Since p-value $\approx 0.380 > \alpha = 0.10$, we **fail to reject $H_0$**. Ther
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question 40</div>
-Seven university students complete a self-reported anxiety questionnaire (scored 0�ü50; higher = more anxious) before and after a six-week mindfulness course. The plot below shows each student's anxiety score before and after the program.
+<div class="exercise-label">Question 35</div>
+An engineer tests whether Machine A produces components with smaller dimensional variability than Machine B. A sample of $n_A = 10$ components from Machine A has $s_A = 0.12$ mm; a sample of $n_B = 13$ components from Machine B has $s_B = 0.31$ mm. Test $H_a: \sigma_A^2 < \sigma_B^2$ at $\alpha = 0.05$.
 
-```{r ch6-q40-line, echo=FALSE, fig.height=3.6, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute $F^* = s_A^2/s_B^2$ and use the symmetry property $P(F_{df_A,df_B} < c) = P(F_{df_B,df_A} > 1/c)$ to evaluate the p-value.
+(c) State a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Form $F^* = s_A^2/s_B^2$. A very *small* value of $F^*$ is evidence in favour of $H_a: \sigma_A^2 < \sigma_B^2$.
+- p-value $= P(F_{df_A,df_B} < F^*)$. By symmetry, this equals $P(F_{df_B,df_A} > 1/F^*)$, which is a right-tail lookup.
+- Compare $1/F^*$ with $F_{0.05}(df_B,\,df_A)$ from the Distribution Calculator.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \sigma_A^2 = \sigma_B^2 \qquad H_a: \sigma_A^2 < \sigma_B^2$$
+
+**(b)** $df_A = 9$, $df_B = 12$.
+
+$$F^* = \frac{s_A^2}{s_B^2} = \frac{0.12^2}{0.31^2} = \frac{0.0144}{0.0961} \approx 0.1498$$
+
+By symmetry of the $F$ distribution:
+$$\text{p-value} = P(F_{9,12} < 0.1498) = P\!\left(F_{12,9} > \frac{1}{0.1498}\right) = P(F_{12,9} > 6.676)$$
+
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+Since $F_{0.01}(12,9) \approx 4.39$ and $6.676 > 4.39$, the p-value $< 0.01$.
+
+**(c)** Since p-value $< 0.01 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence to conclude that Machine A produces components with significantly smaller dimensional variability than Machine B.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 36</div>
+Six recreational runners complete a 5-km time trial before and after a 12-week training programme. Their finishing times (minutes) are:
+
+| Runner | Before | After |
+|--------|--------|-------|
+| 1      | 28.5   | 27.7  |
+| 2      | 30.2   | 30.5  |
+| 3      | 27.1   | 25.0  |
+| 4      | 31.4   | 29.2  |
+| 5      | 29.8   | 27.4  |
+| 6      | 26.3   | 24.9  |
+
+Test whether the training programme significantly reduces finishing time, at $\alpha = 0.05$. Define $d_i = \text{Before}_i - \text{After}_i$ (positive = improvement).
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute $\bar{x}_d$ and $s_d$.
+(c) Compute the $t$ test statistic and state the degrees of freedom.
+(d) Find the p-value and state a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- With $d_i = \text{Before}_i - \text{After}_i$, a positive $\bar{x}_d$ means runners improved.
+- $H_a: \mu_d > 0$ (upper-tailed). The test statistic is $t^* = \bar{x}_d\,/\,(s_d/\sqrt{n})$, $df = n-1 = 5$.
+- p-value $= P(t_5 > t^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \mu_d = 0 \qquad H_a: \mu_d > 0$$
+
+**(b)** Differences $d_i = \text{Before}_i - \text{After}_i$: $\;0.8,\;{-0.3},\;2.1,\;2.2,\;2.4,\;1.4$.
+
+$$\bar{x}_d = \frac{0.8-0.3+2.1+2.2+2.4+1.4}{6} = \frac{8.6}{6} \approx 1.433$$
+
+Deviations from 1.433: $-0.633,\;{-1.733},\;0.667,\;0.767,\;0.967,\;{-0.033}$.
+
+$$\text{SS} = 0.401+3.003+0.445+0.588+0.935+0.001 = 5.373$$
+
+$$s_d^2 = \frac{5.373}{5} = 1.075, \qquad s_d \approx 1.037$$
+
+**(c)**
+$$t^* = \frac{1.433}{1.037/\sqrt{6}} = \frac{1.433}{0.4233} \approx 3.386, \qquad df = 5$$
+
+**(d)** For $H_a: \mu_d > 0$ (upper-tailed):
+$$\text{p-value} = P(t_5 > 3.386) \approx 0.010$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+Since p-value $\approx 0.010 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence to conclude that the 12-week training programme significantly improves 5-km finishing times.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 37</div>
+Seven university students complete a self-reported anxiety questionnaire (scored 0–50; higher = more anxious) before and after a six-week mindfulness course. The plot below shows each student's anxiety score before and after the program.
+
+```{r ch6-q37-line, echo=FALSE, fig.height=3.6, fig.width=5.5, fig.align='center', message=FALSE, warning=FALSE}
 library(ggplot2)
 df_anxiety <- data.frame(
   student = rep(paste("S", 1:7, sep = ""), each = 2),
@@ -5600,7 +5354,7 @@ ggplot(df_anxiety, aes(x = time, y = score, group = student)) +
   geom_point(aes(color = time), size = 3) +
   scale_color_manual(values = c("Before" = "#e17055", "After" = "#0984e3")) +
   scale_y_continuous(limits = c(15, 50), breaks = seq(15, 50, 5)) +
-  labs(x = NULL, y = "Anxiety score (0�ü50)", color = NULL,
+  labs(x = NULL, y = "Anxiety score (0–50)", color = NULL,
        caption = "n = 7 students  |  Each line = one student's change") +
   theme_minimal(base_size = 12) +
   theme(legend.position = "top",
@@ -5618,7 +5372,7 @@ You may use the Distribution Calculator in Section 4.1.5 to find the required ta
 </div>
 
 <details data-type="hint">
-<summary>�� Hint</summary>
+<summary>💡 Hint</summary>
 <div class="content">
 - With $d_i = \text{After}_i - \text{Before}_i$, every line in the plot slopes downward, so each $d_i < 0$.
 - $H_a: \mu_d < 0$ (lower-tailed). p-value $= P(t_{n-1} < t^*)$.
@@ -5627,7 +5381,7 @@ You may use the Distribution Calculator in Section 4.1.5 to find the required ta
 </details>
 
 <details data-type="answer">
-<summary>� Answer</summary>
+<summary>✅ Answer</summary>
 <div class="content">
 **1. Level of significance.** $\alpha = 0.05$
 
@@ -5653,10 +5407,204 @@ Reference distribution: $t_6$.
 
 **4. P-value.** For $H_a: \mu_d < 0$ (lower-tailed):
 $$\text{p-value} = P(t_6 < -6.526) < 0.001$$
-<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">�� Distribution Calculator</a>
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
 **5. Conclusion.**
 
 Since p-value $< 0.001 < \alpha = 0.05$, we **reject $H_0$**. There is very strong evidence that the mindfulness course significantly reduces student anxiety scores.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 38</div>
+Eight cars are each tested with two brands of gasoline (Brand A and Brand B) on identical courses, and fuel efficiency (km/L) is recorded. Define $d_i = \text{Brand B}_i - \text{Brand A}_i$.
+
+| Car | Brand A | Brand B | $d_i$ |
+|-----|---------|---------|--------|
+| 1   | 12.4    | 12.7    | 0.3    |
+| 2   | 11.8    | 11.3    | −0.5   |
+| 3   | 13.2    | 14.0    | 0.8    |
+| 4   | 10.9    | 11.1    | 0.2    |
+| 5   | 14.1    | 14.0    | −0.1   |
+| 6   | 12.0    | 12.4    | 0.4    |
+| 7   | 13.5    | 12.9    | −0.6   |
+| 8   | 11.5    | 12.0    | 0.5    |
+
+Test whether there is a significant difference in fuel efficiency between the two brands, at $\alpha = 0.05$.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute $\bar{x}_d$ and $s_d$ from the given differences.
+(c) Compute the $t$ test statistic and state the degrees of freedom.
+(d) Find the p-value and state a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Is there a *difference*?" implies $H_a: \mu_d \ne 0$ (two-tailed).
+- With the differences already provided, compute $\bar{x}_d$ directly, then find $s_d$ from the deviations.
+- Two-tailed p-value $= 2 \times P(t_{n-1} > |t^*|)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \mu_d = 0 \qquad H_a: \mu_d \ne 0$$
+
+**(b)** Differences: $\;0.3,\;{-0.5},\;0.8,\;0.2,\;{-0.1},\;0.4,\;{-0.6},\;0.5$.
+
+$$\bar{x}_d = \frac{0.3-0.5+0.8+0.2-0.1+0.4-0.6+0.5}{8} = \frac{1.0}{8} = 0.125$$
+
+Deviations from 0.125: $\;0.175,\;{-0.625},\;0.675,\;0.075,\;{-0.225},\;0.275,\;{-0.725},\;0.375$.
+
+$$\text{SS} = 0.031+0.391+0.456+0.006+0.051+0.076+0.526+0.141 = 1.675$$
+
+$$s_d^2 = \frac{1.675}{7} \approx 0.239, \qquad s_d \approx 0.489$$
+
+**(c)**
+$$t^* = \frac{0.125}{0.489/\sqrt{8}} = \frac{0.125}{0.173} \approx 0.723, \qquad df = 7$$
+
+**(d)** For $H_a: \mu_d \ne 0$ (two-tailed):
+$$\text{p-value} = 2 \times P(t_7 > 0.723) \approx 2(0.245) = 0.490$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+Since p-value $\approx 0.490 > \alpha = 0.05$, we **fail to reject $H_0$**. There is insufficient evidence to conclude that the two gasoline brands produce different fuel efficiency.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 39</div>
+A sales manager implements a new training programme and records monthly sales (units) for 9 sales representatives, both in the month before and the month after training.
+
+| Rep | Before | After |
+|-----|--------|-------|
+| 1   | 48     | 60    |
+| 2   | 55     | 63    |
+| 3   | 62     | 77    |
+| 4   | 44     | 49    |
+| 5   | 71     | 81    |
+| 6   | 38     | 41    |
+| 7   | 59     | 77    |
+| 8   | 50     | 57    |
+| 9   | 66     | 75    |
+
+Test whether the training programme significantly increases sales at $\alpha = 0.05$. Define $d_i = \text{After}_i - \text{Before}_i$.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.
+
+(a) State $H_0$ and $H_a$.
+(b) Compute $\bar{x}_d$ and $s_d$.
+(c) Compute the $t$ test statistic and state the degrees of freedom.
+(d) Find the p-value and state a conclusion at $\alpha = 0.05$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- With $d_i = \text{After}_i - \text{Before}_i$, "sales *increase*" means $\mu_d > 0$: use $H_a: \mu_d > 0$.
+- The test statistic is $t^* = \bar{x}_d\,/\,(s_d/\sqrt{n})$, with $df = n-1 = 8$.
+- p-value $= P(t_8 > t^*)$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \mu_d = 0 \qquad H_a: \mu_d > 0$$
+
+**(b)** Differences $d_i = \text{After}_i - \text{Before}_i$: $\;12,\;8,\;15,\;5,\;10,\;3,\;18,\;7,\;9$.
+
+$$\bar{x}_d = \frac{12+8+15+5+10+3+18+7+9}{9} = \frac{87}{9} \approx 9.667$$
+
+Deviations from 9.667: $\;2.333,\;{-1.667},\;5.333,\;{-4.667},\;0.333,\;{-6.667},\;8.333,\;{-2.667},\;{-0.667}$.
+
+$$\text{SS} = 5.444+2.779+28.441+21.781+0.111+44.449+69.441+7.113+0.445 = 180.004$$
+
+$$s_d^2 = \frac{180.004}{8} \approx 22.5, \qquad s_d \approx 4.743$$
+
+**(c)**
+$$t^* = \frac{9.667}{4.743/\sqrt{9}} = \frac{9.667}{1.581} \approx 6.115, \qquad df = 8$$
+
+**(d)** For $H_a: \mu_d > 0$ (upper-tailed):
+$$\text{p-value} = P(t_8 > 6.115) < 0.0002$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+Since p-value $< 0.0002 < \alpha = 0.05$, we **reject $H_0$**. There is very strong evidence that the training programme significantly increases monthly sales.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 40</div>
+A sports scientist compares resting heart rates (bpm) of athletes from two training regimes: Regime A ($n_1 = 20$, $\bar{x}_1 = 62.4$ bpm, $s_1 = 5.8$ bpm) and Regime B ($n_2 = 18$, $\bar{x}_2 = 66.1$ bpm, $s_2 = 7.2$ bpm).
+
+**Part 1 — F-test for equal variances**
+
+(a) Apply the **Fold Rule**: compute $\max(s_1,s_2)\,/\,\min(s_1,s_2)$ and compare it to $\sqrt{2} \approx 1.414$.
+(b) Formally test $H_0: \sigma_1^2 = \sigma_2^2$ vs. $H_a: \sigma_1^2 \ne \sigma_2^2$ at $\alpha = 0.10$ using an $F$-test.
+
+**Part 2 — Two-sample t-test**
+
+Based on your conclusion from Part 1, test $H_0: \mu_1 = \mu_2$ vs. $H_a: \mu_1 \ne \mu_2$ at $\alpha = 0.05$.
+
+(c) Compute the pooled variance $s_p^2$ and the $t$ test statistic.
+(d) State the degrees of freedom, find the p-value, and state a conclusion.
+
+You may use the Distribution Calculator in Section 4.1.5 to find the required tail probabilities.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Fold Rule**: if $\max(s)/\min(s) < \sqrt{2}$, the variances are considered approximately equal and you may use the pooled $t$-test.
+- For the $F$-test, place the larger $s^2$ in the numerator. Two-tailed p-value $= 2 \times P(F_{df_1,df_2} > F^*)$.
+- If the $F$-test does not reject equal variances, use $s_p^2 = [(n_1-1)s_1^2+(n_2-1)s_2^2]/(n_1+n_2-2)$ and $df = n_1+n_2-2$ for the pooled $t$-test.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Part 1 — F-test**
+
+**(a)** Fold Rule:
+$$\frac{\max(s_1,s_2)}{\min(s_1,s_2)} = \frac{7.2}{5.8} \approx 1.241 < \sqrt{2} \approx 1.414$$
+
+The Fold Rule suggests the population variances may be approximately equal.
+
+**(b)** $H_0: \sigma_1^2 = \sigma_2^2$ vs. $H_a: \sigma_1^2 \ne \sigma_2^2$. Place $s_2^2$ (larger) in the numerator:
+$$F^* = \frac{s_2^2}{s_1^2} = \frac{7.2^2}{5.8^2} = \frac{51.84}{33.64} \approx 1.541, \quad df_1 = 17,\ df_2 = 19$$
+
+$$\text{p-value} = 2 \times P(F_{17,19} > 1.541) \approx 2(0.204) = 0.408$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+Since p-value $\approx 0.408 > \alpha = 0.10$, we **fail to reject $H_0$**. Equal variances are supported; proceed with the pooled $t$-test.
+
+**Part 2 — Pooled t-test**
+
+**(c)**
+$$s_p^2 = \frac{(19)(5.8^2)+(17)(7.2^2)}{20+18-2} = \frac{(19)(33.64)+(17)(51.84)}{36} = \frac{639.16+881.28}{36} = \frac{1520.44}{36} \approx 42.235$$
+
+$$s_p = \sqrt{42.235} \approx 6.499$$
+
+$$t^* = \frac{62.4-66.1}{6.499\,\sqrt{1/20+1/18}} = \frac{-3.7}{6.499 \times 0.3249} = \frac{-3.7}{2.112} \approx -1.752$$
+
+**(d)** $df = 20+18-2 = 36$.
+
+For $H_a: \mu_1 \ne \mu_2$ (two-tailed):
+$$\text{p-value} = 2 \times P(t_{36} < -1.752) \approx 2(0.044) = 0.088$$
+<a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
+
+Since p-value $\approx 0.088 > \alpha = 0.05$, we **fail to reject $H_0$**. There is insufficient evidence at the 5% significance level to conclude that athletes from the two training regimes have different mean resting heart rates.
 </div>
 </details>
