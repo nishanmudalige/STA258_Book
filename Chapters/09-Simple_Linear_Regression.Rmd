@@ -2642,7 +2642,6 @@ summary(model)
 <summary>💡 Hint</summary>
 <div class="content">
 
-- Use `na.omit()` to remove missing values before fitting.
 - The p-value for `Temp` in `summary()` tests $H_0: \beta_1 = 0$.
 - Reject $H_0$ if p-value $< \alpha = 0.01$.
 
@@ -2654,8 +2653,8 @@ summary(model)
 <div class="content">
 
 ```r
-aq <- na.omit(airquality[, c("Ozone", "Temp")])
-model <- lm(Ozone ~ Temp, data = aq)
+data(airquality)
+model <- lm(Ozone ~ Temp, data = airquality)
 summary(model)
 ```
 
@@ -2962,9 +2961,10 @@ plot(___, which = ___)
 <div class="content">
 
 ```r
-aq <- na.omit(airquality[, c("Ozone", "Solar.R")])
-model <- lm(Ozone ~ Solar.R, data = aq)
-summary(model); confint(model)
+data(airquality)
+model <- lm(Ozone ~ Solar.R, data = airquality)
+summary(model)
+confint(model)
 plot(model, which = 1)
 ```
 
