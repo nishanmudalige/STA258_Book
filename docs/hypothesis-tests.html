@@ -350,8 +350,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -361,7 +362,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -423,7 +424,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -3449,7 +3449,7 @@ Question 9
 </div>
 <p>A nutritionist administers a sleep supplement to a random sample of <span class="math inline">\(n = 16\)</span> volunteers for four weeks and records their nightly sleep duration (hours). A national health study reports the population mean sleep time is <span class="math inline">\(\mu_0 = 7.0\)</span> hours. The nutritionist believes the supplement increases sleep time. Assume sleep times are approximately normally distributed.</p>
 <p>The histogram below shows the distribution of nightly sleep durations for the 16 volunteers. The dashed line marks the hypothesized population mean <span class="math inline">\(\mu_0 = 7.0\)</span> hours.</p>
-<p><img src="Book_files/figure-html/ch6-q9-hist-1.png" alt="" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q9-hist-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Use the data provided to test <span class="math inline">\(H_0: \mu = 7.0\)</span> vs. <span class="math inline">\(H_a: \mu &gt; 7.0\)</span> at <span class="math inline">\(\alpha = 0.05\)</span> using a one-sample <span class="math inline">\(t\)</span>-test. Fill in the blanks and run the code.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Fill in the blanks to run the <span class="math inline">\(t\)</span>-test in R.</li>
@@ -3655,7 +3655,7 @@ Test statistic:
 Question 13
 </div>
 <p>A national survey reports that 60% of households own at least one pet (<span class="math inline">\(p_0 = 0.60\)</span>). A researcher randomly selects <span class="math inline">\(n = 150\)</span> households in one city and records whether each household owns at least one pet. The bar chart below summarises the results.</p>
-<p><img src="Book_files/figure-html/ch6-q13-bar-1.png" alt="" width="432" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q13-bar-1.png" width="432" style="display: block; margin: auto;" /></p>
 <p>Is the local pet-ownership rate higher than the national rate of 60%?</p>
 <ol style="list-style-type: lower-alpha">
 <li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
@@ -3843,7 +3843,7 @@ From the <span class="math inline">\(\chi^2\)</span>-table: the lower 5th percen
 Question 17
 </div>
 <p>A university study reports that the standard deviation of weekly study hours among undergraduates is <span class="math inline">\(\sigma_0 = 4\)</span> hours (<span class="math inline">\(\sigma_0^2 = 16\)</span> hr<span class="math inline">\(^2\)</span>). A researcher surveys a random sample of <span class="math inline">\(n = 25\)</span> engineering students and records their weekly study hours. The histogram below shows the distribution of study hours in this sample.</p>
-<p><img src="Book_files/figure-html/ch6-q17-hist-1.png" alt="" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q17-hist-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Test whether the variance of study hours for engineering students differs from the university-wide value. Use <span class="math inline">\(\alpha = 0.05\)</span>. Assume study hours are approximately normally distributed.</p>
 <ol style="list-style-type: lower-alpha">
 <li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
@@ -4749,7 +4749,7 @@ Question 30
 Question 31
 </div>
 <p>A college tracks course completion across two delivery formats. The bar chart below shows the number of students who completed and did not complete the course for the online section (<span class="math inline">\(n_1 = 150\)</span>) and the in-person section (<span class="math inline">\(n_2 = 120\)</span>).</p>
-<p><img src="Book_files/figure-html/ch6-q31-bar-1.png" alt="" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q31-bar-1.png" width="624" style="display: block; margin: auto;" /></p>
 <p>Is the online completion rate significantly lower than the in-person rate? Use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
 <ol style="list-style-type: lower-alpha">
@@ -4883,7 +4883,7 @@ Question 33
 Question 34
 </div>
 <p>Two quality inspectors each rate the same set of parts on a scale from 1 to 10. The boxplots below show the distribution of ratings given by each inspector.</p>
-<p><img src="Book_files/figure-html/ch6-q34-box-1.png" alt="" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q34-box-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Is there a significant difference in the variability of their ratings? Use <span class="math inline">\(\alpha = 0.10\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
 <li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
@@ -5096,7 +5096,7 @@ Question 36
 Question 37
 </div>
 <p>Seven university students complete a self-reported anxiety questionnaire (scored 0–50; higher = more anxious) before and after a six-week mindfulness course. The plot below shows each student’s anxiety score before and after the program.</p>
-<p><img src="Book_files/figure-html/ch6-q37-line-1.png" alt="" width="528" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q37-line-1.png" width="528" style="display: block; margin: auto;" /></p>
 <p>Test whether anxiety scores decreased after the course, at <span class="math inline">\(\alpha = 0.05\)</span>. Define <span class="math inline">\(d_i = \text{After}_i - \text{Before}_i\)</span>.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
 <ol style="list-style-type: lower-alpha">

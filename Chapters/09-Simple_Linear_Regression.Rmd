@@ -2173,17 +2173,19 @@ An agronomist records the amount of rainfall ($x$, in mm) and the corresponding 
 <summary>✅ Answer</summary>
 <div class="content">
 
-**(a)** $\bar{x} = 325$, $\bar{y} \approx 3.617$
+**(a)**
+$$\bar{x} = \frac{\sum x_i}{n} = \frac{200+250+300+350+400+450}{6} = \frac{1950}{6} = 325$$
+$$\bar{y} = \frac{\sum y_i}{n} = \frac{2.1+2.8+3.4+3.9+4.5+5.0}{6} = \frac{21.7}{6} \approx 3.617$$
+$$S_{xx} = \sum x_i^2 - n\bar{x}^2 = (200^2+250^2+300^2+350^2+400^2+450^2) - 6(325)^2 = 677{,}500 - 633{,}750 = 43{,}750$$
+$$S_{xy} = \sum x_i y_i - n\bar{x}\bar{y} = (420+700+1020+1365+1800+2250) - 6(325)(3.617) = 7{,}555 - 7{,}052.5 = 502.5$$
 
-$S_{xx} = 200^2+250^2+\cdots+450^2 - 6(325)^2 = 43{,}750$
+**(b)**
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{502.5}{43{,}750} \approx 0.01149$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 3.617 - 0.01149(325) = 3.617 - 3.734 \approx -0.116$$
+$$\hat{y} = -0.116 + 0.01149\,x$$
 
-$S_{xy} = 200(2.1)+\cdots+450(5.0) - 6(325)(3.617) \approx 502.5$
-
-**(b)** $\hat{\beta}_1 = 502.5/43{,}750 \approx 0.01149$; $\hat{\beta}_0 = 3.617 - 0.01149(325) \approx -0.116$
-
-$\hat{y} = -0.116 + 0.01149\,x$
-
-**(c)** $\hat{y} = -0.116 + 0.01149(320) \approx 3.56$ tonnes/ha
+**(c)**
+$$\hat{y} = -0.116 + 0.01149(320) = -0.116 + 3.677 \approx 3.56 \text{ tonnes/ha}$$
 
 **(d)** For each additional mm of rainfall, the predicted wheat yield increases by approximately 0.0115 tonnes per hectare.
 
@@ -2221,25 +2223,32 @@ A physiologist studying cardiovascular fitness measures resting heart rate ($y$,
 <summary>✅ Answer</summary>
 <div class="content">
 
-$\bar{x} = 5$, $\bar{y} = 70.2$, $S_{xx} = 40$, $S_{xy} = -90$
+$\bar{x} = \dfrac{1+3+5+7+9}{5} = 5$, $\quad\bar{y} = \dfrac{80+74+70+65+62}{5} = 70.2$
 
-**(a)** $\hat{\beta}_1 = -90/40 = -2.25$; $\hat{\beta}_0 = 70.2 - (-2.25)(5) = 81.45$
+$$S_{xx} = \sum(x_i-\bar{x})^2 = (-4)^2+(-2)^2+0^2+2^2+4^2 = 16+4+0+4+16 = 40$$
+$$S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-4)(9.8)+(-2)(3.8)+(0)(-0.2)+(2)(-5.2)+(4)(-8.2) = -39.2-7.6+0-10.4-32.8 = -90$$
 
+**(a)**
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{-90}{40} = -2.25$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 70.2 - (-2.25)(5) = 70.2 + 11.25 = 81.45$$
 Fitted line: $\hat{y} = 81.45 - 2.25x$
 
 **(b)**
 
-| $x$ | $y$ | $\hat{y}$ | $e_i$ |
-|-----|-----|-----------|--------|
-| 1 | 80 | 79.20 | 0.80 |
-| 3 | 74 | 74.70 | −0.70 |
-| 5 | 70 | 70.20 | −0.20 |
-| 7 | 65 | 65.70 | −0.70 |
-| 9 | 62 | 61.20 | 0.80 |
+| $x$ | $y$ | $\hat{y} = 81.45 - 2.25x$ | $e_i = y_i - \hat{y}_i$ |
+|-----|-----|---------------------------|--------------------------|
+| 1 | 80 | $81.45-2.25(1)=79.20$ | $80-79.20=0.80$ |
+| 3 | 74 | $81.45-2.25(3)=74.70$ | $74-74.70=-0.70$ |
+| 5 | 70 | $81.45-2.25(5)=70.20$ | $70-70.20=-0.20$ |
+| 7 | 65 | $81.45-2.25(7)=65.70$ | $65-65.70=-0.70$ |
+| 9 | 62 | $81.45-2.25(9)=61.20$ | $62-61.20=0.80$ |
 
-$\sum e_i = 0$ ✓
+$\sum e_i = 0.80-0.70-0.20-0.70+0.80 = 0$ ✓
 
-**(c)** $\hat{y} = 81.45 - 2.25(6) = 67.95$; residual $= 68 - 67.95 = 0.05$ bpm. The participant's heart rate is (slightly) above the predicted value.
+**(c)**
+$$\hat{y} = 81.45 - 2.25(6) = 81.45 - 13.50 = 67.95 \text{ bpm}$$
+$$e = y - \hat{y} = 68 - 67.95 = 0.05 \text{ bpm}$$
+The participant's heart rate is (slightly) above the predicted value.
 
 </div>
 </details>
@@ -2274,9 +2283,12 @@ The R dataset `women` contains the average height (inches) and weight (pounds) o
 
 **(a)** $\text{weight}_i = \beta_0 + \beta_1 \cdot \text{height}_i + \varepsilon_i$, $\varepsilon_i \sim N(0, \sigma^2)$
 
-**(b)** $\hat{\beta}_1 = 966/280 = 3.45$; $\hat{\beta}_0 = 136.73 - 3.45(65) \approx -87.52$
+**(b)**
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{966}{280} = 3.45$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 136.73 - 3.45(65) = 136.73 - 224.25 \approx -87.52$$
 
-**(c)** $R^2 = 1 - 30.23/3362.93 \approx 0.991$
+**(c)**
+$$R^2 = 1 - \frac{\text{SSE}}{\text{SST}} = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{30.23}{3362.93} \approx 0.991$$
 
 **(d)** About 99.1% of the variability in women's weight is explained by the linear relationship with height — an excellent linear fit.
 
@@ -2379,15 +2391,22 @@ $$\bar{x} = 8, \quad \bar{y} = 150, \quad S_{xx} = 400, \quad S_{xy} = 2000, \qu
 <summary>✅ Answer</summary>
 <div class="content">
 
-**(a)** $\hat{\beta}_1 = 2000/400 = 5$; $\hat{\beta}_0 = 150 - 5(8) = 110$
+**(a)**
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{2000}{400} = 5$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 150 - 5(8) = 150 - 40 = 110$$
 
-**(b)** SSE $= 12{,}500 - 5(2000) = 2500$; $\hat{\sigma}^2 = 2500/18 \approx 138.9$; $\hat{\sigma} \approx 11.79$
+**(b)**
+$$\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 12{,}500 - 5(2000) = 12{,}500 - 10{,}000 = 2500$$
+$$\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{2500}{20-2} = \frac{2500}{18} \approx 138.9$$
+$$\hat{\sigma} = \sqrt{138.9} \approx 11.79$$
 
-**(c)** $R^2 = 1 - 2500/12{,}500 = 0.80$; $|r| = \sqrt{0.80} \approx 0.894$
+**(c)**
+$$R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{2500}{12{,}500} = 0.80$$
+$$|r| = \sqrt{R^2} = \sqrt{0.80} \approx 0.894$$
 
-**(d)** $\text{SE}(\hat{\beta}_1) = 11.79/\sqrt{400} = 11.79/20 \approx 0.589$
-
-95% CI: $5 \pm 2.101(0.589) = 5 \pm 1.238 = (3.762,\ 6.238)$
+**(d)**
+$$\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{11.79}{\sqrt{400}} = \frac{11.79}{20} \approx 0.589$$
+$$\hat{\beta}_1 \pm t_{0.025,\,18}\cdot\text{SE}(\hat{\beta}_1) = 5 \pm 2.101(0.589) = 5 \pm 1.238 = (3.762,\ 6.238)$$
 
 </div>
 </details>
@@ -2429,21 +2448,27 @@ For the data in Question 1 (rainfall and wheat yield):
 
 From Q1: $\hat{\beta}_1 \approx 0.01149$, $S_{xy} = 502.5$, $S_{yy} \approx 5.788$
 
-**(a)** SSR $= 0.01149(502.5) \approx 5.772$; SSE $= 5.788 - 5.772 \approx 0.017$; SST $= 5.788$
-
-$5.772 + 0.017 \approx 5.788 = $ SST ✓
+**(a)**
+$$\text{SSR} = \hat{\beta}_1 S_{xy} = 0.01149 \times 502.5 \approx 5.772$$
+$$\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 5.788 - 5.772 \approx 0.017$$
+$$\text{SST} = S_{yy} = 5.788$$
+Verify: $\text{SSR} + \text{SSE} = 5.772 + 0.017 = 5.788 = \text{SST}$ ✓
 
 **(b)**
 
 | Source | df | SS | MS |
 |--------|----|----|-----|
-| Regression | 1 | 5.772 | 5.772 |
-| Error | 4 | 0.017 | 0.00419 |
-| Total | 5 | 5.788 | |
+| Regression | $1$ | $5.772$ | $\text{SSR}/1 = 5.772$ |
+| Error | $n-2=4$ | $0.017$ | $\text{SSE}/(n-2) = 0.017/4 \approx 0.00419$ |
+| Total | $n-1=5$ | $5.788$ | |
 
-**(c)** $R^2 = 5.772/5.788 \approx 0.997$. About 99.7% of the variability in wheat yield is explained by the linear relationship with rainfall.
+**(c)**
+$$R^2 = \frac{\text{SSR}}{\text{SST}} = \frac{5.772}{5.788} \approx 0.997$$
+About 99.7% of the variability in wheat yield is explained by the linear relationship with rainfall.
 
-**(d)** $F = 5.772/0.00419 \approx 1377$. $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$. This extremely large F-statistic provides overwhelming evidence of a linear relationship.
+**(d)**
+$$F = \frac{\text{MSR}}{\text{MSE}} = \frac{5.772}{0.00419} \approx 1377$$
+$H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$. This extremely large F-statistic provides overwhelming evidence of a linear relationship.
 
 </div>
 </details>
@@ -2464,17 +2489,19 @@ Use R to:
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
-<textarea class="webr-editor" rows="10">data(pressure)
-m1 <- lm(pressure ~ temperature, data = pressure)
+<textarea class="webr-editor" rows="12">data(pressure)
+
+m1 <- lm(___ ~ ___, data = pressure)
 summary(m1)
 
 # Scatter plot with fitted line
-plot(pressure$temperature, pressure$pressure,
-     xlab = "Temperature (°C)", ylab = "Pressure (mm Hg)")
-abline(m1, col = "blue")
+plot(___, ___,
+     xlab = "Temperature (°C)",
+     ylab = "Pressure (mm Hg)")
+abline(___, col = "blue")
 
 # Residuals-vs-fitted plot
-plot(m1, which = 1)
+plot(___, which = ___)
 </textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
@@ -2500,16 +2527,30 @@ plot(m1, which = 1)
 <div class="content">
 
 ```r
+data(pressure)
+
 m1 <- lm(pressure ~ temperature, data = pressure)
 summary(m1)
+
+# Scatter plot with fitted line
+plot(pressure$temperature, pressure$pressure,
+     xlab = "Temperature (°C)",
+     ylab = "Pressure (mm Hg)")
+abline(m1, col = "blue")
+
+# Residuals-vs-fitted plot
 plot(m1, which = 1)
 ```
 
-**(a)** $R^2 \approx 0.574$, $\hat{\sigma} \approx 150.8$.
+**(a)** The fitted model is $\hat{y} = -147.90 + 1.512\,x$. From the `summary()` output: $R^2 \approx 0.574$ and $\hat{\sigma} \approx 150.8$. The scatter plot reveals a strongly non-linear (exponential-looking) pattern — points curve sharply upward at higher temperatures, suggesting that a straight-line model may not be appropriate for these data.
 
-**(b)** The residuals-vs-fitted plot shows a strong curved (U-shaped) pattern with the spread of residuals changing across fitted values. Both the linearity assumption and the constant variance assumption appear to be violated — a straight-line model is not a good description of these data.
+**(b)** The residuals-vs-fitted plot shows a strong curved (U-shaped) pattern, with the spread of residuals also increasing at higher fitted values. Both the linearity assumption and the constant variance assumption appear to be violated — a straight-line model is not a good description of these data.
 
-**(c)** From the output: $\hat{\sigma} \approx 150.8$, so $\hat{\sigma}^2 \approx 22{,}740$; $\text{SE}(\hat{\beta}_1) \approx 0.316$; $t = 1.512/0.316 \approx 4.79$ with $n - 2 = 17$ df, p-value $\approx 0.00017 < 0.05$. We reject $H_0$. There is strong evidence that the slope is non-zero. (Note from (b): although the test is highly significant, the linear model is clearly mis-specified, so the slope estimate should be interpreted with caution.)
+**(c)** From the `summary()` output: $\hat{\sigma}^2 = 150.8^2 \approx 22{,}745$; $\text{SE}(\hat{\beta}_1) \approx 0.316$.
+
+$$t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{1.512}{0.316} \approx 4.79, \quad df = n - 2 = 17, \quad \text{p-value} \approx 0.00017.$$
+
+Since p-value $\approx 0.00017 < 0.05$, we reject $H_0: \beta_1 = 0$ and conclude there is strong evidence that temperature is linearly associated with vapor pressure. However, given the clear model mis-specification observed in (b), this result should be interpreted with caution — the slope estimate is unreliable when the linearity assumption is violated.
 
 </div>
 </details>
@@ -2548,16 +2589,22 @@ A regression with $n = 25$ observations produces the following partial ANOVA tab
 <div class="content">
 
 **(a)**
+$$\text{SSE} = \text{SST} - \text{SSR} = 800 - 640 = 160$$
+$$df(\text{Error}) = n - 2 = 25 - 2 = 23, \qquad df(\text{Total}) = n - 1 = 25 - 1 = 24$$
+$$\text{MSR} = \frac{\text{SSR}}{1} = \frac{640}{1} = 640, \qquad \text{MSE} = \frac{\text{SSE}}{n-2} = \frac{160}{23} \approx 6.96$$
 
 | Source | df | SS | MS |
 |--------|----|----|-----|
-| Regression | 1 | 640 | 640 |
-| Error | 23 | 160 | 6.96 |
-| Total | 24 | 800 | |
+| Regression | $1$ | $640$ | $640$ |
+| Error | $23$ | $160$ | $6.96$ |
+| Total | $24$ | $800$ | |
 
-**(b)** $R^2 = 640/800 = 0.80$; $\hat{\sigma} = \sqrt{6.96} \approx 2.64$; $F = 640/6.96 \approx 92.0$
+**(b)**
+$$R^2 = \frac{\text{SSR}}{\text{SST}} = \frac{640}{800} = 0.80$$
+$$\hat{\sigma} = \sqrt{\text{MSE}} = \sqrt{6.96} \approx 2.64$$
+$$F = \frac{\text{MSR}}{\text{MSE}} = \frac{640}{6.96} \approx 92.0$$
 
-**(c)** $F = 92.0 \gg 4.28$. Reject $H_0$. There is strong evidence of a linear relationship between $x$ and $y$.
+**(c)** $F = 92.0 \gg F_{0.05,\,1,\,23} = 4.28$. Reject $H_0$. There is strong evidence of a linear relationship between $x$ and $y$.
 
 </div>
 </details>
@@ -2616,7 +2663,8 @@ summary(model)
 
 **(a)** $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$
 
-**(b)** $t \approx 10.4$, p-value $< 2 \times 10^{-16}$
+**(b)** From the `summary()` output: $\hat{\beta}_1 \approx 2.429$ and $\text{SE}(\hat{\beta}_1) \approx 0.233$.
+$$t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{2.429}{0.233} \approx 10.42, \quad df = n - 2 = 114, \quad \text{p-value} < 2 \times 10^{-16}$$
 
 **(c)** Reject $H_0$ at $\alpha = 0.01$. There is very strong evidence that temperature is a significant predictor of ozone. Each 1°F increase in temperature is associated with an average increase of about 2.43 ppb in ozone concentration.
 
@@ -2652,15 +2700,22 @@ A forestry researcher records the girth ($x$, inches) and volume ($y$, cubic fee
 <summary>✅ Answer</summary>
 <div class="content">
 
-**(a)** $\hat{\beta}_1 = 1496.64/295.44 \approx 5.066$; $\hat{\beta}_0 = 30.17 - 5.066(13.25) \approx -36.94$
+**(a)**
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{1496.64}{295.44} \approx 5.066$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 30.17 - 5.066(13.25) = 30.17 - 67.12 \approx -36.94$$
 
-**(b)** SSE $= 8106.08 - 5.066(1496.64) \approx 524.1$
+**(b)**
+$$\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 8106.08 - 5.066(1496.64) = 8106.08 - 7582.0 \approx 524.1$$
 
-**(c)** $\hat{\sigma}^2 = 524.1/29 \approx 18.07$; $\hat{\sigma} \approx 4.251$; $R^2 \approx 1 - 524.1/8106.08 \approx 0.935$
+**(c)**
+$$\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{524.1}{31-2} = \frac{524.1}{29} \approx 18.07$$
+$$\hat{\sigma} = \sqrt{18.07} \approx 4.251$$
+$$R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{524.1}{8106.08} \approx 0.935$$
+$$\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{4.251}{\sqrt{295.44}} \approx \frac{4.251}{17.19} \approx 0.247$$
 
-$\text{SE}(\hat{\beta}_1) = 4.251/\sqrt{295.44} \approx 0.247$
-
-**(d)** $t = 5.066/0.247 \approx 20.51 > 1.699$. Reject $H_0$. There is strong evidence that tree girth is positively linearly related to volume.
+**(d)**
+$$t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{5.066}{0.247} \approx 20.51$$
+Since $t = 20.51 > t_{0.05,\,29} = 1.699$, reject $H_0$. There is strong evidence that tree girth is positively linearly related to volume.
 
 </div>
 </details>
@@ -2764,17 +2819,27 @@ An environmental scientist records annual average temperature ($x$, °C) and the
 <summary>✅ Answer</summary>
 <div class="content">
 
-$\bar{x} = 1.5$, $\bar{y} = 9.5$, $S_{xx} = 42$, $S_{xy} = -95$, $S_{yy} = 216$
+$\bar{x} = \dfrac{-2+(-1)+0+1+2+3+4+5}{8} = \dfrac{12}{8} = 1.5$, $\quad\bar{y} = \dfrac{18+15+13+10+8+6+4+2}{8} = \dfrac{76}{8} = 9.5$
 
-**(a)** $\hat{\beta}_1 = -95/42 \approx -2.262$; $\hat{\beta}_0 = 9.5 - (-2.262)(1.5) \approx 12.893$
+$$S_{xx} = \sum(x_i-\bar{x})^2 = (-3.5)^2+(-2.5)^2+(-1.5)^2+(-0.5)^2+(0.5)^2+(1.5)^2+(2.5)^2+(3.5)^2 = 42$$
+$$S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-3.5)(8.5)+(-2.5)(5.5)+(-1.5)(3.5)+(-0.5)(0.5)+(0.5)(-1.5)+(1.5)(-3.5)+(2.5)(-5.5)+(3.5)(-7.5) = -95$$
+$$S_{yy} = \sum(y_i-\bar{y})^2 = 8.5^2+5.5^2+3.5^2+0.5^2+(-1.5)^2+(-3.5)^2+(-5.5)^2+(-7.5)^2 = 216$$
 
-SSE $= 216 - (-2.262)(-95) \approx 1.119$; $R^2 \approx 1 - 1.119/216 \approx 0.995$
+**(a)**
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{-95}{42} \approx -2.262$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 9.5 - (-2.262)(1.5) = 9.5 + 3.393 \approx 12.893$$
+$$\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 216 - (-2.262)(-95) = 216 - 214.881 \approx 1.119$$
+$$R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{1.119}{216} \approx 0.995$$
 
-**(b)** $\hat{\sigma}^2 = 1.119/6 \approx 0.187$; $\hat{\sigma} \approx 0.432$; $\text{SE}(\hat{\beta}_1) = 0.432/\sqrt{42} \approx 0.0666$
+**(b)**
+$$\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{1.119}{8-2} = \frac{1.119}{6} \approx 0.187$$
+$$\hat{\sigma} = \sqrt{0.187} \approx 0.432$$
+$$\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{0.432}{\sqrt{42}} \approx \frac{0.432}{6.481} \approx 0.0666$$
+$$t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{-2.262}{0.0666} \approx -33.94$$
+Since $t = -33.94 < -t_{0.01,\,6} = -3.143$, reject $H_0$. Very strong evidence that warmer temperatures are associated with fewer glacier advance events.
 
-$t = -2.262/0.0666 \approx -33.94 < -3.143$. Reject $H_0$. Very strong evidence that warmer temperatures are associated with fewer glacier advance events.
-
-**(c)** $-2.262 \pm 3.707(0.0666) = -2.262 \pm 0.247 = (-2.509,\ -2.015)$
+**(c)**
+$$\hat{\beta}_1 \pm t_{0.005,\,6}\cdot\text{SE}(\hat{\beta}_1) = -2.262 \pm 3.707(0.0666) = -2.262 \pm 0.247 = (-2.509,\ -2.015)$$
 
 **(d)** We are 99% confident that each 1°C increase in average temperature is associated with between 2.01 and 2.51 fewer glacier advance events per year, consistent with the effects of warming on glacier retreat.
 
@@ -2796,21 +2861,21 @@ Use R to explore Anscombe's quartet, a famous collection of four datasets that h
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
 <textarea class="webr-editor" rows="14">data(anscombe)
-# Fit all four models
+# Fit all four models (fill in the variable names)
 m1 <- lm(y1 ~ x1, data = anscombe)
-m2 <- lm(y2 ~ x2, data = anscombe)
-m3 <- lm(y3 ~ x3, data = anscombe)
-m4 <- lm(y4 ~ x4, data = anscombe)
+m2 <- lm(___ ~ ___, data = anscombe)
+m3 <- lm(___ ~ ___, data = anscombe)
+m4 <- lm(___ ~ ___, data = anscombe)
 
-# Compare statistics
+# Compare β₀, β₁, R², σ̂ across all four models
 sapply(list(m1, m2, m3, m4), function(m)
   c(b0 = coef(m)[1], b1 = coef(m)[2],
-    R2 = summary(m)$r.squared, sigma = summary(m)$sigma))
+    R2 = summary(m)$___, sigma = summary(m)$___))
 
-# Scatter plots
+# Scatter plots with fitted lines (2×2 grid)
 par(mfrow = c(2, 2))
 for (i in 1:4) {
-  plot(anscombe[, i], anscombe[, i+4], main = paste("Dataset", i),
+  plot(anscombe[, i], anscombe[, i + 4], main = paste("Dataset", i),
        xlab = paste0("x", i), ylab = paste0("y", i))
   abline(list(m1, m2, m3, m4)[[i]], col = "blue")
 }
@@ -2868,13 +2933,16 @@ Use R to fit a regression of `Ozone` on `Solar.R` in the `airquality` dataset (r
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
 <textarea class="webr-editor" rows="9">data(airquality)
+# Remove rows with missing Ozone or Solar.R
 aq <- na.omit(airquality[, c("Ozone", "Solar.R")])
-model <- lm(Ozone ~ Solar.R, data = aq)
+
+# Fit the model
+model <- lm(___ ~ ___, data = aq)
 summary(model)
-confint(model)
+confint(___)
 
 # Residuals-vs-fitted plot
-plot(model, which = 1)
+plot(___, which = ___)
 </textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
@@ -2931,11 +2999,11 @@ Use R to fit a regression of `Volume` on `Girth` in the `trees` dataset and perf
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
 <textarea class="webr-editor" rows="8">data(trees)
-model <- lm(Volume ~ Girth, data = trees)
-anova(model)
+model <- lm(___ ~ ___, data = trees)
+anova(___)
 
-# t-statistic for Girth
-t_val <- summary(model)$coefficients["Girth", "t value"]
+# Extract the t-statistic for Girth and verify F = t²
+t_val <- summary(model)$coefficients["Girth", "___"]
 c(t = t_val, t_squared = t_val^2)
 </textarea>
 <div class="webr-controls">
@@ -3012,21 +3080,31 @@ A city records the average daily temperature ($x$, °C) and the number of ice cr
 <summary>✅ Answer</summary>
 <div class="content">
 
-$\bar{x} = 25$, $\bar{y} = 17.75$, $S_{xx} = 168$, $S_{xy} = 148$, $S_{yy} = 133.5$
+$\bar{x} = \dfrac{18+20+22+24+26+28+30+32}{8} = \dfrac{200}{8} = 25$, $\quad\bar{y} = \dfrac{12+14+15+16+18+20+22+25}{8} = \dfrac{142}{8} = 17.75$
 
-**(a)** $\hat{\beta}_1 = 148/168 \approx 0.881$; $\hat{\beta}_0 = 17.75 - 0.881(25) \approx -4.274$; $R^2 = 1 - \text{SSE}/S_{yy} \approx 0.977$
+$$S_{xx} = \sum(x_i-\bar{x})^2 = (-7)^2+(-5)^2+(-3)^2+(-1)^2+1^2+3^2+5^2+7^2 = 49+25+9+1+1+9+25+49 = 168$$
+$$S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-7)(-5.75)+(-5)(-3.75)+(-3)(-2.75)+(-1)(-1.75)+(1)(0.25)+(3)(2.25)+(5)(4.25)+(7)(7.25) = 148$$
+$$S_{yy} = \sum(y_i-\bar{y})^2 = (-5.75)^2+(-3.75)^2+(-2.75)^2+(-1.75)^2+(0.25)^2+(2.25)^2+(4.25)^2+(7.25)^2 = 133.5$$
 
-**(b)** SSE $= 133.5 - 0.881(148) \approx 3.119$; $\hat{\sigma}^2 = 3.119/6 \approx 0.520$; $\hat{\sigma} \approx 0.721$
+**(a)**
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{148}{168} \approx 0.881$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 17.75 - 0.881(25) = 17.75 - 22.025 \approx -4.274$$
+$$\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 133.5 - 0.881(148) = 133.5 - 130.381 \approx 3.119$$
+$$R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{3.119}{133.5} \approx 0.977$$
 
-$\text{SE}(\hat{\beta}_1) = 0.721/\sqrt{168} \approx 0.0556$
+**(b)**
+$$\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{3.119}{8-2} = \frac{3.119}{6} \approx 0.520$$
+$$\hat{\sigma} = \sqrt{0.520} \approx 0.721$$
+$$\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{0.721}{\sqrt{168}} \approx \frac{0.721}{12.96} \approx 0.0556$$
 
-**(c)** $t = 0.881/0.0556 \approx 15.84 > 1.943$. Reject $H_0$. Very strong evidence that temperature is positively associated with ice cream sales.
+**(c)**
+$$t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{0.881}{0.0556} \approx 15.84$$
+Since $t = 15.84 > t_{0.05,\,6} = 1.943$, reject $H_0$. Very strong evidence that temperature is positively associated with ice cream sales.
 
-**(d)** $\hat{y}^* = -4.274 + 0.881(25) = 17.75$
-
-$\text{SE}_{\text{mean}} = 0.721\sqrt{1/8 + (25-25)^2/168} = 0.721/\sqrt{8} \approx 0.255$
-
-95% CI: $17.75 \pm 2.447(0.255) = 17.75 \pm 0.624 = (17.13,\ 18.37)$ hundred units.
+**(d)**
+$$\hat{y}^* = \hat{\beta}_0 + \hat{\beta}_1 x^* = -4.274 + 0.881(25) = -4.274 + 22.025 = 17.75 \text{ hundred units}$$
+$$\text{SE}_{\text{mean}} = \hat{\sigma}\sqrt{\frac{1}{n} + \frac{(x^*-\bar{x})^2}{S_{xx}}} = 0.721\sqrt{\frac{1}{8} + \frac{(25-25)^2}{168}} = 0.721\sqrt{\frac{1}{8}} = \frac{0.721}{\sqrt{8}} \approx 0.255$$
+$$\hat{y}^* \pm t_{0.025,\,6}\cdot\text{SE}_{\text{mean}} = 17.75 \pm 2.447(0.255) = 17.75 \pm 0.624 = (17.13,\ 18.37) \text{ hundred units}$$
 
 </div>
 </details>
@@ -3064,19 +3142,41 @@ A horticulturalist measures the age ($x$, years) and trunk diameter ($y$, cm) of
 <summary>✅ Answer</summary>
 <div class="content">
 
-$\bar{x} = 20$, $\bar{y} \approx 11.086$, $S_{xx} = 700$, $S_{xy} = 306.5$, $S_{yy} \approx 134.97$
+$\bar{x} = \dfrac{5+10+15+20+25+30+35}{7} = \dfrac{140}{7} = 20$, $\quad\bar{y} = \dfrac{4.1+6.8+9.2+11.0+13.8+15.5+17.2}{7} = \dfrac{77.6}{7} \approx 11.086$
 
-**(a)** $\hat{\beta}_1 = 306.5/700 \approx 0.4379$; $\hat{\beta}_0 = 11.086 - 0.4379(20) \approx 2.329$
+$$S_{xx} = \sum(x_i-\bar{x})^2 = (-15)^2+(-10)^2+(-5)^2+0^2+5^2+10^2+15^2 = 225+100+25+0+25+100+225 = 700$$
+$$S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-15)(-6.986)+(-10)(-4.286)+(-5)(-1.886)+(0)(-0.086)+(5)(2.714)+(10)(4.414)+(15)(6.114) = 306.5$$
+$$S_{yy} = \sum(y_i-\bar{y})^2 \approx 134.97$$
 
-SSE $= 134.97 - 0.4379(306.5) \approx 0.765$; $R^2 \approx 1 - 0.765/134.97 \approx 0.994$ — an excellent linear fit.
+**(a)**
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{306.5}{700} \approx 0.4379$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 11.086 - 0.4379(20) = 11.086 - 8.757 \approx 2.329$$
+$$\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 134.97 - 0.4379(306.5) = 134.97 - 134.21 \approx 0.765$$
+$$R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{0.765}{134.97} \approx 0.994$$
 
-**(b)** Residuals: $-0.418, 0.093, 0.304, -0.086, 0.525, 0.036, -0.454$ (approximate). $\sum e_i \approx 0$ ✓
+**(b)**
 
-**(c)** $\hat{\sigma}^2 = 0.765/5 \approx 0.153$; $\hat{\sigma} \approx 0.391$; $\text{SE}(\hat{\beta}_1) = 0.391/\sqrt{700} \approx 0.0148$
+| $x$ | $y$ | $\hat{y} = 2.329 + 0.4379x$ | $e_i = y_i - \hat{y}_i$ |
+|-----|-----|-----------------------------|--------------------------|
+| 5   | 4.1  | $2.329+0.4379(5)=4.519$  | $4.1-4.519=-0.419$  |
+| 10  | 6.8  | $2.329+0.4379(10)=6.708$ | $6.8-6.708=0.092$   |
+| 15  | 9.2  | $2.329+0.4379(15)=8.897$ | $9.2-8.897=0.303$   |
+| 20  | 11.0 | $2.329+0.4379(20)=11.087$| $11.0-11.087=-0.087$|
+| 25  | 13.8 | $2.329+0.4379(25)=13.277$| $13.8-13.277=0.523$ |
+| 30  | 15.5 | $2.329+0.4379(30)=15.466$| $15.5-15.466=0.034$ |
+| 35  | 17.2 | $2.329+0.4379(35)=17.656$| $17.2-17.656=-0.456$|
 
-95% CI: $0.4379 \pm 2.571(0.0148) = 0.4379 \pm 0.0380 = (0.400,\ 0.476)$
+$\sum e_i \approx -0.419+0.092+0.303-0.087+0.523+0.034-0.456 = -0.010 \approx 0$ ✓ (small rounding discrepancy)
 
-**(d)** $\hat{y} = 2.329 + 0.4379(40) \approx 19.84$ cm. Since the oldest observed tree is 35 years, predicting at $x = 40$ is extrapolation — the result should be used with caution.
+**(c)**
+$$\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{0.765}{7-2} = \frac{0.765}{5} \approx 0.153$$
+$$\hat{\sigma} = \sqrt{0.153} \approx 0.391$$
+$$\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{0.391}{\sqrt{700}} \approx \frac{0.391}{26.46} \approx 0.0148$$
+$$\hat{\beta}_1 \pm t_{0.025,\,5}\cdot\text{SE}(\hat{\beta}_1) = 0.4379 \pm 2.571(0.0148) = 0.4379 \pm 0.0380 = (0.400,\ 0.476)$$
+
+**(d)**
+$$\hat{y} = 2.329 + 0.4379(40) = 2.329 + 17.516 \approx 19.84 \text{ cm}$$
+Since the oldest observed tree is 35 years, predicting at $x = 40$ is extrapolation — the result should be used with caution.
 
 </div>
 </details>
@@ -3106,16 +3206,17 @@ Use R to carry out a complete regression analysis.
 <textarea class="webr-editor" rows="13">exercise  <- c(1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 9)
 heartrate <- c(82, 79, 81, 77, 75, 74, 72, 70, 68, 67, 65, 63)
 
-model <- lm(heartrate ~ exercise)
+# Fit the model
+model <- lm(___ ~ ___)
 summary(model)
 
-# Scatter plot
-plot(exercise, heartrate,
+# Scatter plot with regression line
+plot(___, ___,
      xlab = "Weekly Exercise (hours)", ylab = "Resting Heart Rate (bpm)")
-abline(model, col = "blue")
+abline(___, col = "blue")
 
-# Residual plot
-plot(model, which = 1)
+# Residuals-vs-fitted plot
+plot(___, which = ___)
 </textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
@@ -3180,14 +3281,15 @@ An environmental monitoring station records annual mean CO$_2$ concentration ($y
 <textarea class="webr-editor" rows="10">x <- 0:9
 y <- c(369.5, 371.1, 373.2, 375.8, 377.5, 379.8, 381.9, 383.8, 385.6, 387.4)
 
-model <- lm(y ~ x)
+# Fit the model and verify your part (a) estimates
+model <- lm(___ ~ ___)
 summary(model)
 
-plot(x, y, xlab = "Year (0 = 2000)", ylab = expression(CO[2]~"(ppm)"))
-abline(model, col = "blue")
+plot(___, ___, xlab = "Year (0 = 2000)", ylab = expression(CO[2]~"(ppm)"))
+abline(___, col = "blue")
 
 # 95% prediction interval for x = 12 (year 2012)
-predict(model, newdata = data.frame(x = 12), interval = "prediction", level = 0.95)
+predict(___, newdata = data.frame(x = 12), interval = "___", level = 0.95)
 </textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
@@ -3212,9 +3314,13 @@ predict(model, newdata = data.frame(x = 12), interval = "prediction", level = 0.
 <summary>✅ Answer</summary>
 <div class="content">
 
-**(a)** $\bar{x} = 4.5$, $\bar{y} = 378.56$, $S_{xx} = 82.5$, $S_{xy} = 168.1$
-
-$\hat{\beta}_1 = 168.1/82.5 \approx 2.038$; $\hat{\beta}_0 = 378.56 - 2.038(4.5) \approx 369.391$
+**(a)**
+$$\bar{x} = \frac{0+1+2+\cdots+9}{10} = \frac{45}{10} = 4.5$$
+$$\bar{y} = \frac{369.5+371.1+373.2+375.8+377.5+379.8+381.9+383.8+385.6+387.4}{10} = \frac{3785.6}{10} = 378.56$$
+$$S_{xx} = \sum(x_i-\bar{x})^2 = (-4.5)^2+(-3.5)^2+\cdots+(4.5)^2 = 2(20.25+12.25+6.25+2.25+0.25) = 82.5$$
+$$S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-4.5)(-9.06)+(-3.5)(-7.46)+\cdots+(4.5)(8.84) = 168.1$$
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{168.1}{82.5} \approx 2.038$$
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 378.56 - 2.038(4.5) = 378.56 - 9.171 \approx 369.39$$
 
 $\hat{\beta}_0 \approx 369.39$ ppm: the estimated CO$_2$ concentration in year 2000. $\hat{\beta}_1 \approx 2.04$ ppm/year: the estimated annual increase in CO$_2$.
 
@@ -3253,19 +3359,20 @@ Use R to carry out a complete regression analysis.
 <textarea class="webr-editor" rows="16">size  <- c(10, 12, 13, 15, 16, 18, 20, 22, 23, 25)
 price <- c(185, 205, 215, 240, 255, 275, 310, 335, 345, 370)
 
-model <- lm(price ~ size)
+# Fit the model
+model <- lm(___ ~ ___)
 summary(model)
 
 # Scatter plot with regression line
-plot(size, price, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
-abline(model, col = "blue")
+plot(___, ___, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
+abline(___, col = "blue")
 
 # Residuals-vs-fitted plot
-plot(model, which = 1)
+plot(___, which = ___)
 
-# CI and PI at x = 17
-predict(model, newdata = data.frame(size = 17), interval = "confidence", level = 0.95)
-predict(model, newdata = data.frame(size = 17), interval = "prediction",  level = 0.95)
+# 95% CI for mean price and PI for a new home at x = 17
+predict(___, newdata = data.frame(size = 17), interval = "___", level = 0.95)
+predict(___, newdata = data.frame(size = 17), interval = "___", level = 0.95)
 </textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
@@ -4035,7 +4142,7 @@ $$R^2 = 1 - \frac{\text{SSE}}{\text{SST}} = 1 - \frac{10.03}{35.59} = 1 - 0.282 
 About **71.8%** of the variability in well-being scores is explained by the linear relationship with weekly exercise hours.
 
 **(d)** Test statistic:
-$$t = \frac{\hat{\beta}_1}{\text{SE}(\hat{\beta}_1)} = \frac{0.557}{0.123} \approx 4.53.$$
+$$t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{0.557}{0.123} \approx 4.53.$$
 With $df = 8$ and $|t| = 4.53 > t_{0.025,\,8} \approx 2.306$, the $p$-value $\approx 0.002 < 0.05$. We **reject** $H_0$: there is statistically significant evidence of a linear relationship between exercise hours and well-being score.
 
 **(e)** **Disagree.** Although $R^2 = 0.72$ and the slope is statistically significant ($p \approx 0.002$), these measures only confirm that $x$ is a useful *linear* predictor — they do **not** imply the linear model is *appropriate*. Panel (a) shows a clear arch in the data, and Panel (b) reveals a systematic curved pattern in the residuals. Both indicate the linearity assumption is violated. A quadratic or other non-linear model would be more suitable for these data. A high $R^2$ and a significant $t$-test cannot substitute for residual diagnostics when assessing model adequacy.

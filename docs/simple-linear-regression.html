@@ -350,8 +350,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -361,7 +362,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -423,7 +424,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -1050,8 +1050,8 @@ variables.</p>
 strong positive correlation (See Figure <a href="simple-linear-regression.html#fig:examplePositiveCorr">9.4</a>).</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:examplePositiveCorr"></span>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-42cf1051dbdbfd8a6cec" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-42cf1051dbdbfd8a6cec">{"x":{"visdat":{"7b33cbba90":["function () ","plotlyVisDat"]},"cur_data":"7b33cbba90","attrs":{"7b33cbba90":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Positive Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[4,4.2068965517241379,4.4137931034482758,4.6206896551724137,4.8275862068965516,5.0344827586206895,5.2413793103448274,5.4482758620689653,5.6551724137931032,5.8620689655172411,6.068965517241379,6.2758620689655178,6.4827586206896548,6.6896551724137936,6.8965517241379306,7.1034482758620694,7.3103448275862064,7.5172413793103452,7.7241379310344822,7.931034482758621,8.137931034482758,8.3448275862068968,8.5517241379310356,8.7586206896551726,8.9655172413793096,9.1724137931034484,9.3793103448275872,9.5862068965517242,9.7931034482758612,10],"y":[67.197621767238942,69.883595311204303,79.862507087986998,73.455990232984945,74.784369710287493,83.747738727519845,78.511477581670135,70.916073137312154,74.841597809497898,77.082034977086423,86.465236573404198,83.178379480114401,84.417650356418534,84.001689441794568,81.703552946919274,94.451807063325745,89.040976529077227,77.753121113403537,92.127469162990835,87.291215375153442,85.350536642479568,90.634263357742995,87.628598448118979,90.148647301820176,91.702389867650254,87.428602411805173,101.08548694661056,98.697900071941191,93.274832556319566,106.26907460534963],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-131375a460208ff95651" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-131375a460208ff95651">{"x":{"visdat":{"2062597b5231":["function () ","plotlyVisDat"]},"cur_data":"2062597b5231","attrs":{"2062597b5231":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Positive Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[4,4.2068965517241379,4.4137931034482758,4.6206896551724137,4.8275862068965516,5.0344827586206895,5.2413793103448274,5.4482758620689653,5.6551724137931032,5.8620689655172411,6.068965517241379,6.2758620689655178,6.4827586206896548,6.6896551724137936,6.8965517241379306,7.1034482758620694,7.3103448275862064,7.5172413793103452,7.7241379310344822,7.931034482758621,8.137931034482758,8.3448275862068968,8.5517241379310356,8.7586206896551726,8.9655172413793096,9.1724137931034484,9.3793103448275872,9.5862068965517242,9.7931034482758612,10],"y":[67.197621767238942,69.883595311204303,79.862507087986998,73.455990232984945,74.784369710287493,83.747738727519845,78.511477581670135,70.916073137312154,74.841597809497898,77.082034977086423,86.465236573404198,83.178379480114401,84.417650356418534,84.001689441794568,81.703552946919274,94.451807063325745,89.040976529077227,77.753121113403537,92.127469162990835,87.291215375153442,85.350536642479568,90.634263357742995,87.628598448118979,90.148647301820176,91.702389867650254,87.428602411805173,101.08548694661056,98.697900071941191,93.274832556319566,106.26907460534963],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 9.4: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx +1\)</span>).
 </p>
@@ -1061,8 +1061,8 @@ Figure 9.4: An illustration of strong negative correlation (<span class="math in
 strong negative correlation. (See figure <a href="simple-linear-regression.html#fig:exampleNegaticeCorr">9.5</a>)</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:exampleNegaticeCorr"></span>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-0cb1db9d5c8ab10bcb98" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-0cb1db9d5c8ab10bcb98">{"x":{"visdat":{"7b378d82260":["function () ","plotlyVisDat"]},"cur_data":"7b378d82260","attrs":{"7b378d82260":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data Points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Negative Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[40,42.068965517241381,44.137931034482762,46.206896551724142,48.275862068965516,50.344827586206897,52.413793103448278,54.482758620689658,56.551724137931032,58.620689655172413,60.689655172413794,62.758620689655174,64.827586206896555,66.896551724137936,68.965517241379317,71.034482758620697,73.103448275862064,75.172413793103459,77.241379310344826,79.310344827586206,81.379310344827587,83.448275862068968,85.517241379310349,87.58620689655173,89.65517241379311,91.724137931034477,93.793103448275872,95.862068965517238,97.931034482758633,100],"y":[2.3879048706895576,2.3310136824312124,2.5773666628298249,2.1782807827625268,2.0972861184607607,2.3293143672396699,2.0000779780399456,1.5824307910533766,1.6309221125481241,1.6167499589211847,1.892543632215165,1.665369358818066,1.6227074816081719,1.516981904013766,1.338831773049185,1.7651496176518777,1.4674946239477347,0.93695179803187023,1.4349140374555942,1.1663112836718046,1.0152488181246648,1.1547521245063574,0.96415394904822938,0.99595403760633883,0.99037676181476386,0.7528869017612918,1.2337338794871402,1.0738400911932022,0.79349937316099073,1.2507629842139854],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data Points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-b24b285dc855c9443a7a" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b24b285dc855c9443a7a">{"x":{"visdat":{"206219657c53":["function () ","plotlyVisDat"]},"cur_data":"206219657c53","attrs":{"206219657c53":{"x":{},"y":{},"mode":"markers","marker":{"color":"#619CFF","size":8},"name":"Data Points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of Negative Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[40,42.068965517241381,44.137931034482762,46.206896551724142,48.275862068965516,50.344827586206897,52.413793103448278,54.482758620689658,56.551724137931032,58.620689655172413,60.689655172413794,62.758620689655174,64.827586206896555,66.896551724137936,68.965517241379317,71.034482758620697,73.103448275862064,75.172413793103459,77.241379310344826,79.310344827586206,81.379310344827587,83.448275862068968,85.517241379310349,87.58620689655173,89.65517241379311,91.724137931034477,93.793103448275872,95.862068965517238,97.931034482758633,100],"y":[2.3879048706895576,2.3310136824312124,2.5773666628298249,2.1782807827625268,2.0972861184607607,2.3293143672396699,2.0000779780399456,1.5824307910533766,1.6309221125481241,1.6167499589211847,1.892543632215165,1.665369358818066,1.6227074816081719,1.516981904013766,1.338831773049185,1.7651496176518777,1.4674946239477347,0.93695179803187023,1.4349140374555942,1.1663112836718046,1.0152488181246648,1.1547521245063574,0.96415394904822938,0.99595403760633883,0.99037676181476386,0.7528869017612918,1.2337338794871402,1.0738400911932022,0.79349937316099073,1.2507629842139854],"mode":"markers","marker":{"color":"#619CFF","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data Points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 9.5: An illustration of strong negative correlation (<span class="math inline">\(r_{xy} \approx -1\)</span>).
 </p>
@@ -1074,8 +1074,8 @@ correlation between the two random variables. Note that if
 but other relationship may exist (See Figure <a href="simple-linear-regression.html#fig:exampleNoCorr">9.6</a>).</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:exampleNoCorr"></span>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-6c2811982720b0bfc6a8" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-6c2811982720b0bfc6a8">{"x":{"visdat":{"7b3143d2559":["function () ","plotlyVisDat"]},"cur_data":"7b3143d2559","attrs":{"7b3143d2559":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of No Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,0.27586206896551724,0.55172413793103448,0.82758620689655171,1.103448275862069,1.3793103448275863,1.6551724137931034,1.9310344827586206,2.2068965517241379,2.4827586206896552,2.7586206896551726,3.0344827586206895,3.3103448275862069,3.5862068965517242,3.8620689655172411,4.1379310344827589,4.4137931034482758,4.6896551724137927,4.9655172413793105,5.2413793103448274,5.5172413793103452,5.7931034482758621,6.068965517241379,6.3448275862068968,6.6206896551724137,6.8965517241379306,7.1724137931034484,7.4482758620689653,7.7241379310344822,8],"y":[94.395243534477871,97.698225105167197,115.58708314149123,100.70508391424576,101.29287735160946,117.15064986883282,104.60916205989203,87.349387653934656,93.131471481064736,95.543380299000418,112.24081797439462,103.59813827057364,104.00771450594053,101.1068271594512,94.441588652459245,117.86913136803078,104.97850478229239,80.333828433703616,107.01355901563686,95.272085922720663,89.321762940131549,97.820250853417051,89.739955516927608,92.711087707088595,93.749607321507426,83.133066892575869,108.37787044494524,101.53373117836516,88.618630629880528,112.53814921069926],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-7df1b2d26bcc9f5552b0" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-7df1b2d26bcc9f5552b0">{"x":{"visdat":{"20624913b4fc":["function () ","plotlyVisDat"]},"cur_data":"20624913b4fc","attrs":{"20624913b4fc":{"x":{},"y":{},"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8},"name":"Data points","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Example of No Correlation","xaxis":{"domain":[0,1],"automargin":true,"title":"X"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Y"},"legend":{"x":0.050000000000000003,"y":0.94999999999999996},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,0.27586206896551724,0.55172413793103448,0.82758620689655171,1.103448275862069,1.3793103448275863,1.6551724137931034,1.9310344827586206,2.2068965517241379,2.4827586206896552,2.7586206896551726,3.0344827586206895,3.3103448275862069,3.5862068965517242,3.8620689655172411,4.1379310344827589,4.4137931034482758,4.6896551724137927,4.9655172413793105,5.2413793103448274,5.5172413793103452,5.7931034482758621,6.068965517241379,6.3448275862068968,6.6206896551724137,6.8965517241379306,7.1724137931034484,7.4482758620689653,7.7241379310344822,8],"y":[94.395243534477871,97.698225105167197,115.58708314149123,100.70508391424576,101.29287735160946,117.15064986883282,104.60916205989203,87.349387653934656,93.131471481064736,95.543380299000418,112.24081797439462,103.59813827057364,104.00771450594053,101.1068271594512,94.441588652459245,117.86913136803078,104.97850478229239,80.333828433703616,107.01355901563686,95.272085922720663,89.321762940131549,97.820250853417051,89.739955516927608,92.711087707088595,93.749607321507426,83.133066892575869,108.37787044494524,101.53373117836516,88.618630629880528,112.53814921069926],"mode":"markers","marker":{"color":"rgba(0, 100, 255, 0.7)","size":8,"line":{"color":"rgba(31,119,180,1)"}},"name":"Data points","type":"scatter","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 9.6: An illustration of no correlation (<span class="math inline">\(r_{xy} \approx 0\)</span>).
 </p>
@@ -2437,12 +2437,17 @@ Question 1
 ✅ Answer
 </summary>
 <div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(\bar{x} = 325\)</span>, <span class="math inline">\(\bar{y} \approx 3.617\)</span></p>
-<p><span class="math inline">\(S_{xx} = 200^2+250^2+\cdots+450^2 - 6(325)^2 = 43{,}750\)</span></p>
-<p><span class="math inline">\(S_{xy} = 200(2.1)+\cdots+450(5.0) - 6(325)(3.617) \approx 502.5\)</span></p>
-<p><strong>(b)</strong> <span class="math inline">\(\hat{\beta}_1 = 502.5/43{,}750 \approx 0.01149\)</span>; <span class="math inline">\(\hat{\beta}_0 = 3.617 - 0.01149(325) \approx -0.116\)</span></p>
-<p><span class="math inline">\(\hat{y} = -0.116 + 0.01149\,x\)</span></p>
-<p><strong>(c)</strong> <span class="math inline">\(\hat{y} = -0.116 + 0.01149(320) \approx 3.56\)</span> tonnes/ha</p>
+<p><strong>(a)</strong>
+<span class="math display">\[\bar{x} = \frac{\sum x_i}{n} = \frac{200+250+300+350+400+450}{6} = \frac{1950}{6} = 325\]</span>
+<span class="math display">\[\bar{y} = \frac{\sum y_i}{n} = \frac{2.1+2.8+3.4+3.9+4.5+5.0}{6} = \frac{21.7}{6} \approx 3.617\]</span>
+<span class="math display">\[S_{xx} = \sum x_i^2 - n\bar{x}^2 = (200^2+250^2+300^2+350^2+400^2+450^2) - 6(325)^2 = 677{,}500 - 633{,}750 = 43{,}750\]</span>
+<span class="math display">\[S_{xy} = \sum x_i y_i - n\bar{x}\bar{y} = (420+700+1020+1365+1800+2250) - 6(325)(3.617) = 7{,}555 - 7{,}052.5 = 502.5\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{502.5}{43{,}750} \approx 0.01149\]</span>
+<span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 3.617 - 0.01149(325) = 3.617 - 3.734 \approx -0.116\]</span>
+<span class="math display">\[\hat{y} = -0.116 + 0.01149\,x\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[\hat{y} = -0.116 + 0.01149(320) = -0.116 + 3.677 \approx 3.56 \text{ tonnes/ha}\]</span></p>
 <p><strong>(d)</strong> For each additional mm of rainfall, the predicted wheat yield increases by approximately 0.0115 tonnes per hectare.</p>
 </div>
 </details>
@@ -2497,54 +2502,61 @@ Question 2
 ✅ Answer
 </summary>
 <div class="content">
-<p><span class="math inline">\(\bar{x} = 5\)</span>, <span class="math inline">\(\bar{y} = 70.2\)</span>, <span class="math inline">\(S_{xx} = 40\)</span>, <span class="math inline">\(S_{xy} = -90\)</span></p>
-<p><strong>(a)</strong> <span class="math inline">\(\hat{\beta}_1 = -90/40 = -2.25\)</span>; <span class="math inline">\(\hat{\beta}_0 = 70.2 - (-2.25)(5) = 81.45\)</span></p>
-<p>Fitted line: <span class="math inline">\(\hat{y} = 81.45 - 2.25x\)</span></p>
+<p><span class="math inline">\(\bar{x} = \dfrac{1+3+5+7+9}{5} = 5\)</span>, <span class="math inline">\(\quad\bar{y} = \dfrac{80+74+70+65+62}{5} = 70.2\)</span></p>
+<p><span class="math display">\[S_{xx} = \sum(x_i-\bar{x})^2 = (-4)^2+(-2)^2+0^2+2^2+4^2 = 16+4+0+4+16 = 40\]</span>
+<span class="math display">\[S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-4)(9.8)+(-2)(3.8)+(0)(-0.2)+(2)(-5.2)+(4)(-8.2) = -39.2-7.6+0-10.4-32.8 = -90\]</span></p>
+<p><strong>(a)</strong>
+<span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{-90}{40} = -2.25\]</span>
+<span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 70.2 - (-2.25)(5) = 70.2 + 11.25 = 81.45\]</span>
+Fitted line: <span class="math inline">\(\hat{y} = 81.45 - 2.25x\)</span></p>
 <p><strong>(b)</strong></p>
 <table>
 <thead>
 <tr class="header">
 <th><span class="math inline">\(x\)</span></th>
 <th><span class="math inline">\(y\)</span></th>
-<th><span class="math inline">\(\hat{y}\)</span></th>
-<th><span class="math inline">\(e_i\)</span></th>
+<th><span class="math inline">\(\hat{y} = 81.45 - 2.25x\)</span></th>
+<th><span class="math inline">\(e_i = y_i - \hat{y}_i\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>1</td>
 <td>80</td>
-<td>79.20</td>
-<td>0.80</td>
+<td><span class="math inline">\(81.45-2.25(1)=79.20\)</span></td>
+<td><span class="math inline">\(80-79.20=0.80\)</span></td>
 </tr>
 <tr class="even">
 <td>3</td>
 <td>74</td>
-<td>74.70</td>
-<td>−0.70</td>
+<td><span class="math inline">\(81.45-2.25(3)=74.70\)</span></td>
+<td><span class="math inline">\(74-74.70=-0.70\)</span></td>
 </tr>
 <tr class="odd">
 <td>5</td>
 <td>70</td>
-<td>70.20</td>
-<td>−0.20</td>
+<td><span class="math inline">\(81.45-2.25(5)=70.20\)</span></td>
+<td><span class="math inline">\(70-70.20=-0.20\)</span></td>
 </tr>
 <tr class="even">
 <td>7</td>
 <td>65</td>
-<td>65.70</td>
-<td>−0.70</td>
+<td><span class="math inline">\(81.45-2.25(7)=65.70\)</span></td>
+<td><span class="math inline">\(65-65.70=-0.70\)</span></td>
 </tr>
 <tr class="odd">
 <td>9</td>
 <td>62</td>
-<td>61.20</td>
-<td>0.80</td>
+<td><span class="math inline">\(81.45-2.25(9)=61.20\)</span></td>
+<td><span class="math inline">\(62-61.20=0.80\)</span></td>
 </tr>
 </tbody>
 </table>
-<p><span class="math inline">\(\sum e_i = 0\)</span> ✓</p>
-<p><strong>(c)</strong> <span class="math inline">\(\hat{y} = 81.45 - 2.25(6) = 67.95\)</span>; residual <span class="math inline">\(= 68 - 67.95 = 0.05\)</span> bpm. The participant’s heart rate is (slightly) above the predicted value.</p>
+<p><span class="math inline">\(\sum e_i = 0.80-0.70-0.20-0.70+0.80 = 0\)</span> ✓</p>
+<p><strong>(c)</strong>
+<span class="math display">\[\hat{y} = 81.45 - 2.25(6) = 81.45 - 13.50 = 67.95 \text{ bpm}\]</span>
+<span class="math display">\[e = y - \hat{y} = 68 - 67.95 = 0.05 \text{ bpm}\]</span>
+The participant’s heart rate is (slightly) above the predicted value.</p>
 </div>
 </details>
 <hr />
@@ -2578,8 +2590,11 @@ Question 3
 </summary>
 <div class="content">
 <p><strong>(a)</strong> <span class="math inline">\(\text{weight}_i = \beta_0 + \beta_1 \cdot \text{height}_i + \varepsilon_i\)</span>, <span class="math inline">\(\varepsilon_i \sim N(0, \sigma^2)\)</span></p>
-<p><strong>(b)</strong> <span class="math inline">\(\hat{\beta}_1 = 966/280 = 3.45\)</span>; <span class="math inline">\(\hat{\beta}_0 = 136.73 - 3.45(65) \approx -87.52\)</span></p>
-<p><strong>(c)</strong> <span class="math inline">\(R^2 = 1 - 30.23/3362.93 \approx 0.991\)</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{966}{280} = 3.45\]</span>
+<span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 136.73 - 3.45(65) = 136.73 - 224.25 \approx -87.52\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[R^2 = 1 - \frac{\text{SSE}}{\text{SST}} = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{30.23}{3362.93} \approx 0.991\]</span></p>
 <p><strong>(d)</strong> About 99.1% of the variability in women’s weight is explained by the linear relationship with height — an excellent linear fit.</p>
 </div>
 </details>
@@ -2681,11 +2696,19 @@ Question 5
 ✅ Answer
 </summary>
 <div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(\hat{\beta}_1 = 2000/400 = 5\)</span>; <span class="math inline">\(\hat{\beta}_0 = 150 - 5(8) = 110\)</span></p>
-<p><strong>(b)</strong> SSE <span class="math inline">\(= 12{,}500 - 5(2000) = 2500\)</span>; <span class="math inline">\(\hat{\sigma}^2 = 2500/18 \approx 138.9\)</span>; <span class="math inline">\(\hat{\sigma} \approx 11.79\)</span></p>
-<p><strong>(c)</strong> <span class="math inline">\(R^2 = 1 - 2500/12{,}500 = 0.80\)</span>; <span class="math inline">\(|r| = \sqrt{0.80} \approx 0.894\)</span></p>
-<p><strong>(d)</strong> <span class="math inline">\(\text{SE}(\hat{\beta}_1) = 11.79/\sqrt{400} = 11.79/20 \approx 0.589\)</span></p>
-<p>95% CI: <span class="math inline">\(5 \pm 2.101(0.589) = 5 \pm 1.238 = (3.762,\ 6.238)\)</span></p>
+<p><strong>(a)</strong>
+<span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{2000}{400} = 5\]</span>
+<span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 150 - 5(8) = 150 - 40 = 110\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 12{,}500 - 5(2000) = 12{,}500 - 10{,}000 = 2500\]</span>
+<span class="math display">\[\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{2500}{20-2} = \frac{2500}{18} \approx 138.9\]</span>
+<span class="math display">\[\hat{\sigma} = \sqrt{138.9} \approx 11.79\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{2500}{12{,}500} = 0.80\]</span>
+<span class="math display">\[|r| = \sqrt{R^2} = \sqrt{0.80} \approx 0.894\]</span></p>
+<p><strong>(d)</strong>
+<span class="math display">\[\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{11.79}{\sqrt{400}} = \frac{11.79}{20} \approx 0.589\]</span>
+<span class="math display">\[\hat{\beta}_1 \pm t_{0.025,\,18}\cdot\text{SE}(\hat{\beta}_1) = 5 \pm 2.101(0.589) = 5 \pm 1.238 = (3.762,\ 6.238)\]</span></p>
 </div>
 </details>
 <hr />
@@ -2751,10 +2774,19 @@ Question 6
 </summary>
 <div class="content">
 <p>From Q1: <span class="math inline">\(\hat{\beta}_1 \approx 0.01149\)</span>, <span class="math inline">\(S_{xy} = 502.5\)</span>, <span class="math inline">\(S_{yy} \approx 5.788\)</span></p>
-<p><strong>(a)</strong> SSR <span class="math inline">\(= 0.01149(502.5) \approx 5.772\)</span>; SSE <span class="math inline">\(= 5.788 - 5.772 \approx 0.017\)</span>; SST <span class="math inline">\(= 5.788\)</span></p>
-<p>$5.772 + 0.017 = $ SST ✓</p>
+<p><strong>(a)</strong>
+<span class="math display">\[\text{SSR} = \hat{\beta}_1 S_{xy} = 0.01149 \times 502.5 \approx 5.772\]</span>
+<span class="math display">\[\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 5.788 - 5.772 \approx 0.017\]</span>
+<span class="math display">\[\text{SST} = S_{yy} = 5.788\]</span>
+Verify: <span class="math inline">\(\text{SSR} + \text{SSE} = 5.772 + 0.017 = 5.788 = \text{SST}\)</span> ✓</p>
 <p><strong>(b)</strong></p>
 <table>
+<colgroup>
+<col width="38%" />
+<col width="19%" />
+<col width="19%" />
+<col width="23%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Source</th>
@@ -2766,26 +2798,30 @@ Question 6
 <tbody>
 <tr class="odd">
 <td>Regression</td>
-<td>1</td>
-<td>5.772</td>
-<td>5.772</td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(5.772\)</span></td>
+<td><span class="math inline">\(\text{SSR}/1 = 5.772\)</span></td>
 </tr>
 <tr class="even">
 <td>Error</td>
-<td>4</td>
-<td>0.017</td>
-<td>0.00419</td>
+<td><span class="math inline">\(n-2=4\)</span></td>
+<td><span class="math inline">\(0.017\)</span></td>
+<td><span class="math inline">\(\text{SSE}/(n-2) = 0.017/4 \approx 0.00419\)</span></td>
 </tr>
 <tr class="odd">
 <td>Total</td>
-<td>5</td>
-<td>5.788</td>
+<td><span class="math inline">\(n-1=5\)</span></td>
+<td><span class="math inline">\(5.788\)</span></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><strong>(c)</strong> <span class="math inline">\(R^2 = 5.772/5.788 \approx 0.997\)</span>. About 99.7% of the variability in wheat yield is explained by the linear relationship with rainfall.</p>
-<p><strong>(d)</strong> <span class="math inline">\(F = 5.772/0.00419 \approx 1377\)</span>. <span class="math inline">\(H_0: \beta_1 = 0\)</span> vs <span class="math inline">\(H_1: \beta_1 \neq 0\)</span>. This extremely large F-statistic provides overwhelming evidence of a linear relationship.</p>
+<p><strong>(c)</strong>
+<span class="math display">\[R^2 = \frac{\text{SSR}}{\text{SST}} = \frac{5.772}{5.788} \approx 0.997\]</span>
+About 99.7% of the variability in wheat yield is explained by the linear relationship with rainfall.</p>
+<p><strong>(d)</strong>
+<span class="math display">\[F = \frac{\text{MSR}}{\text{MSE}} = \frac{5.772}{0.00419} \approx 1377\]</span>
+<span class="math inline">\(H_0: \beta_1 = 0\)</span> vs <span class="math inline">\(H_1: \beta_1 \neq 0\)</span>. This extremely large F-statistic provides overwhelming evidence of a linear relationship.</p>
 </div>
 </details>
 <hr />
@@ -2805,17 +2841,19 @@ Question 7
 <div class="webr-exercise-header">
 R Exercise
 </div>
-<textarea class="webr-editor" rows="10">data(pressure)
-m1 <- lm(pressure ~ temperature, data = pressure)
+<textarea class="webr-editor" rows="12">data(pressure)
+
+m1 <- lm(___ ~ ___, data = pressure)
 summary(m1)
 
 # Scatter plot with fitted line
-plot(pressure$temperature, pressure$pressure,
-     xlab = "Temperature (°C)", ylab = "Pressure (mm Hg)")
-abline(m1, col = "blue")
+plot(___, ___,
+     xlab = "Temperature (°C)",
+     ylab = "Pressure (mm Hg)")
+abline(___, col = "blue")
 
 # Residuals-vs-fitted plot
-plot(m1, which = 1)
+plot(___, which = ___)
 </textarea>
 <div class="webr-controls">
 <p><button class="webr-run-btn" disabled>▶ Run</button>
@@ -2846,12 +2884,24 @@ plot(m1, which = 1)
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="simple-linear-regression.html#cb161-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pressure <span class="sc">~</span> temperature, <span class="at">data =</span> pressure)</span>
-<span id="cb161-2"><a href="simple-linear-regression.html#cb161-2" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
-<span id="cb161-3"><a href="simple-linear-regression.html#cb161-3" tabindex="-1"></a><span class="fu">plot</span>(m1, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><strong>(a)</strong> <span class="math inline">\(R^2 \approx 0.574\)</span>, <span class="math inline">\(\hat{\sigma} \approx 150.8\)</span>.</p>
-<p><strong>(b)</strong> The residuals-vs-fitted plot shows a strong curved (U-shaped) pattern with the spread of residuals changing across fitted values. Both the linearity assumption and the constant variance assumption appear to be violated — a straight-line model is not a good description of these data.</p>
-<p><strong>(c)</strong> From the output: <span class="math inline">\(\hat{\sigma} \approx 150.8\)</span>, so <span class="math inline">\(\hat{\sigma}^2 \approx 22{,}740\)</span>; <span class="math inline">\(\text{SE}(\hat{\beta}_1) \approx 0.316\)</span>; <span class="math inline">\(t = 1.512/0.316 \approx 4.79\)</span> with <span class="math inline">\(n - 2 = 17\)</span> df, p-value <span class="math inline">\(\approx 0.00017 &lt; 0.05\)</span>. We reject <span class="math inline">\(H_0\)</span>. There is strong evidence that the slope is non-zero. (Note from (b): although the test is highly significant, the linear model is clearly mis-specified, so the slope estimate should be interpreted with caution.)</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="simple-linear-regression.html#cb161-1" tabindex="-1"></a><span class="fu">data</span>(pressure)</span>
+<span id="cb161-2"><a href="simple-linear-regression.html#cb161-2" tabindex="-1"></a></span>
+<span id="cb161-3"><a href="simple-linear-regression.html#cb161-3" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(pressure <span class="sc">~</span> temperature, <span class="at">data =</span> pressure)</span>
+<span id="cb161-4"><a href="simple-linear-regression.html#cb161-4" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
+<span id="cb161-5"><a href="simple-linear-regression.html#cb161-5" tabindex="-1"></a></span>
+<span id="cb161-6"><a href="simple-linear-regression.html#cb161-6" tabindex="-1"></a><span class="co"># Scatter plot with fitted line</span></span>
+<span id="cb161-7"><a href="simple-linear-regression.html#cb161-7" tabindex="-1"></a><span class="fu">plot</span>(pressure<span class="sc">$</span>temperature, pressure<span class="sc">$</span>pressure,</span>
+<span id="cb161-8"><a href="simple-linear-regression.html#cb161-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Temperature (°C)&quot;</span>,</span>
+<span id="cb161-9"><a href="simple-linear-regression.html#cb161-9" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Pressure (mm Hg)&quot;</span>)</span>
+<span id="cb161-10"><a href="simple-linear-regression.html#cb161-10" tabindex="-1"></a><span class="fu">abline</span>(m1, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb161-11"><a href="simple-linear-regression.html#cb161-11" tabindex="-1"></a></span>
+<span id="cb161-12"><a href="simple-linear-regression.html#cb161-12" tabindex="-1"></a><span class="co"># Residuals-vs-fitted plot</span></span>
+<span id="cb161-13"><a href="simple-linear-regression.html#cb161-13" tabindex="-1"></a><span class="fu">plot</span>(m1, <span class="at">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><strong>(a)</strong> The fitted model is <span class="math inline">\(\hat{y} = -147.90 + 1.512\,x\)</span>. From the <code>summary()</code> output: <span class="math inline">\(R^2 \approx 0.574\)</span> and <span class="math inline">\(\hat{\sigma} \approx 150.8\)</span>. The scatter plot reveals a strongly non-linear (exponential-looking) pattern — points curve sharply upward at higher temperatures, suggesting that a straight-line model may not be appropriate for these data.</p>
+<p><strong>(b)</strong> The residuals-vs-fitted plot shows a strong curved (U-shaped) pattern, with the spread of residuals also increasing at higher fitted values. Both the linearity assumption and the constant variance assumption appear to be violated — a straight-line model is not a good description of these data.</p>
+<p><strong>(c)</strong> From the <code>summary()</code> output: <span class="math inline">\(\hat{\sigma}^2 = 150.8^2 \approx 22{,}745\)</span>; <span class="math inline">\(\text{SE}(\hat{\beta}_1) \approx 0.316\)</span>.</p>
+<p><span class="math display">\[t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{1.512}{0.316} \approx 4.79, \quad df = n - 2 = 17, \quad \text{p-value} \approx 0.00017.\]</span></p>
+<p>Since p-value <span class="math inline">\(\approx 0.00017 &lt; 0.05\)</span>, we reject <span class="math inline">\(H_0: \beta_1 = 0\)</span> and conclude there is strong evidence that temperature is linearly associated with vapor pressure. However, given the clear model mis-specification observed in (b), this result should be interpreted with caution — the slope estimate is unreliable when the linearity assumption is violated.</p>
 </div>
 </details>
 <hr />
@@ -2913,7 +2963,10 @@ Question 8
 ✅ Answer
 </summary>
 <div class="content">
-<p><strong>(a)</strong></p>
+<p><strong>(a)</strong>
+<span class="math display">\[\text{SSE} = \text{SST} - \text{SSR} = 800 - 640 = 160\]</span>
+<span class="math display">\[df(\text{Error}) = n - 2 = 25 - 2 = 23, \qquad df(\text{Total}) = n - 1 = 25 - 1 = 24\]</span>
+<span class="math display">\[\text{MSR} = \frac{\text{SSR}}{1} = \frac{640}{1} = 640, \qquad \text{MSE} = \frac{\text{SSE}}{n-2} = \frac{160}{23} \approx 6.96\]</span></p>
 <table>
 <thead>
 <tr class="header">
@@ -2926,26 +2979,29 @@ Question 8
 <tbody>
 <tr class="odd">
 <td>Regression</td>
-<td>1</td>
-<td>640</td>
-<td>640</td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(640\)</span></td>
+<td><span class="math inline">\(640\)</span></td>
 </tr>
 <tr class="even">
 <td>Error</td>
-<td>23</td>
-<td>160</td>
-<td>6.96</td>
+<td><span class="math inline">\(23\)</span></td>
+<td><span class="math inline">\(160\)</span></td>
+<td><span class="math inline">\(6.96\)</span></td>
 </tr>
 <tr class="odd">
 <td>Total</td>
-<td>24</td>
-<td>800</td>
+<td><span class="math inline">\(24\)</span></td>
+<td><span class="math inline">\(800\)</span></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><strong>(b)</strong> <span class="math inline">\(R^2 = 640/800 = 0.80\)</span>; <span class="math inline">\(\hat{\sigma} = \sqrt{6.96} \approx 2.64\)</span>; <span class="math inline">\(F = 640/6.96 \approx 92.0\)</span></p>
-<p><strong>(c)</strong> <span class="math inline">\(F = 92.0 \gg 4.28\)</span>. Reject <span class="math inline">\(H_0\)</span>. There is strong evidence of a linear relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p><strong>(b)</strong>
+<span class="math display">\[R^2 = \frac{\text{SSR}}{\text{SST}} = \frac{640}{800} = 0.80\]</span>
+<span class="math display">\[\hat{\sigma} = \sqrt{\text{MSE}} = \sqrt{6.96} \approx 2.64\]</span>
+<span class="math display">\[F = \frac{\text{MSR}}{\text{MSE}} = \frac{640}{6.96} \approx 92.0\]</span></p>
+<p><strong>(c)</strong> <span class="math inline">\(F = 92.0 \gg F_{0.05,\,1,\,23} = 4.28\)</span>. Reject <span class="math inline">\(H_0\)</span>. There is strong evidence of a linear relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
 </div>
 </details>
 <hr />
@@ -3005,7 +3061,8 @@ summary(model)
 <span id="cb162-2"><a href="simple-linear-regression.html#cb162-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Ozone <span class="sc">~</span> Temp, <span class="at">data =</span> aq)</span>
 <span id="cb162-3"><a href="simple-linear-regression.html#cb162-3" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <p><strong>(a)</strong> <span class="math inline">\(H_0: \beta_1 = 0\)</span> vs <span class="math inline">\(H_1: \beta_1 \neq 0\)</span></p>
-<p><strong>(b)</strong> <span class="math inline">\(t \approx 10.4\)</span>, p-value <span class="math inline">\(&lt; 2 \times 10^{-16}\)</span></p>
+<p><strong>(b)</strong> From the <code>summary()</code> output: <span class="math inline">\(\hat{\beta}_1 \approx 2.429\)</span> and <span class="math inline">\(\text{SE}(\hat{\beta}_1) \approx 0.233\)</span>.
+<span class="math display">\[t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{2.429}{0.233} \approx 10.42, \quad df = n - 2 = 114, \quad \text{p-value} &lt; 2 \times 10^{-16}\]</span></p>
 <p><strong>(c)</strong> Reject <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha = 0.01\)</span>. There is very strong evidence that temperature is a significant predictor of ozone. Each 1°F increase in temperature is associated with an average increase of about 2.43 ppb in ozone concentration.</p>
 </div>
 </details>
@@ -3040,11 +3097,19 @@ Question 10
 ✅ Answer
 </summary>
 <div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(\hat{\beta}_1 = 1496.64/295.44 \approx 5.066\)</span>; <span class="math inline">\(\hat{\beta}_0 = 30.17 - 5.066(13.25) \approx -36.94\)</span></p>
-<p><strong>(b)</strong> SSE <span class="math inline">\(= 8106.08 - 5.066(1496.64) \approx 524.1\)</span></p>
-<p><strong>(c)</strong> <span class="math inline">\(\hat{\sigma}^2 = 524.1/29 \approx 18.07\)</span>; <span class="math inline">\(\hat{\sigma} \approx 4.251\)</span>; <span class="math inline">\(R^2 \approx 1 - 524.1/8106.08 \approx 0.935\)</span></p>
-<p><span class="math inline">\(\text{SE}(\hat{\beta}_1) = 4.251/\sqrt{295.44} \approx 0.247\)</span></p>
-<p><strong>(d)</strong> <span class="math inline">\(t = 5.066/0.247 \approx 20.51 &gt; 1.699\)</span>. Reject <span class="math inline">\(H_0\)</span>. There is strong evidence that tree girth is positively linearly related to volume.</p>
+<p><strong>(a)</strong>
+<span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{1496.64}{295.44} \approx 5.066\]</span>
+<span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 30.17 - 5.066(13.25) = 30.17 - 67.12 \approx -36.94\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 8106.08 - 5.066(1496.64) = 8106.08 - 7582.0 \approx 524.1\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{524.1}{31-2} = \frac{524.1}{29} \approx 18.07\]</span>
+<span class="math display">\[\hat{\sigma} = \sqrt{18.07} \approx 4.251\]</span>
+<span class="math display">\[R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{524.1}{8106.08} \approx 0.935\]</span>
+<span class="math display">\[\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{4.251}{\sqrt{295.44}} \approx \frac{4.251}{17.19} \approx 0.247\]</span></p>
+<p><strong>(d)</strong>
+<span class="math display">\[t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{5.066}{0.247} \approx 20.51\]</span>
+Since <span class="math inline">\(t = 20.51 &gt; t_{0.05,\,29} = 1.699\)</span>, reject <span class="math inline">\(H_0\)</span>. There is strong evidence that tree girth is positively linearly related to volume.</p>
 </div>
 </details>
 <hr />
@@ -3172,12 +3237,23 @@ Question 12
 ✅ Answer
 </summary>
 <div class="content">
-<p><span class="math inline">\(\bar{x} = 1.5\)</span>, <span class="math inline">\(\bar{y} = 9.5\)</span>, <span class="math inline">\(S_{xx} = 42\)</span>, <span class="math inline">\(S_{xy} = -95\)</span>, <span class="math inline">\(S_{yy} = 216\)</span></p>
-<p><strong>(a)</strong> <span class="math inline">\(\hat{\beta}_1 = -95/42 \approx -2.262\)</span>; <span class="math inline">\(\hat{\beta}_0 = 9.5 - (-2.262)(1.5) \approx 12.893\)</span></p>
-<p>SSE <span class="math inline">\(= 216 - (-2.262)(-95) \approx 1.119\)</span>; <span class="math inline">\(R^2 \approx 1 - 1.119/216 \approx 0.995\)</span></p>
-<p><strong>(b)</strong> <span class="math inline">\(\hat{\sigma}^2 = 1.119/6 \approx 0.187\)</span>; <span class="math inline">\(\hat{\sigma} \approx 0.432\)</span>; <span class="math inline">\(\text{SE}(\hat{\beta}_1) = 0.432/\sqrt{42} \approx 0.0666\)</span></p>
-<p><span class="math inline">\(t = -2.262/0.0666 \approx -33.94 &lt; -3.143\)</span>. Reject <span class="math inline">\(H_0\)</span>. Very strong evidence that warmer temperatures are associated with fewer glacier advance events.</p>
-<p><strong>(c)</strong> <span class="math inline">\(-2.262 \pm 3.707(0.0666) = -2.262 \pm 0.247 = (-2.509,\ -2.015)\)</span></p>
+<p><span class="math inline">\(\bar{x} = \dfrac{-2+(-1)+0+1+2+3+4+5}{8} = \dfrac{12}{8} = 1.5\)</span>, <span class="math inline">\(\quad\bar{y} = \dfrac{18+15+13+10+8+6+4+2}{8} = \dfrac{76}{8} = 9.5\)</span></p>
+<p><span class="math display">\[S_{xx} = \sum(x_i-\bar{x})^2 = (-3.5)^2+(-2.5)^2+(-1.5)^2+(-0.5)^2+(0.5)^2+(1.5)^2+(2.5)^2+(3.5)^2 = 42\]</span>
+<span class="math display">\[S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-3.5)(8.5)+(-2.5)(5.5)+(-1.5)(3.5)+(-0.5)(0.5)+(0.5)(-1.5)+(1.5)(-3.5)+(2.5)(-5.5)+(3.5)(-7.5) = -95\]</span>
+<span class="math display">\[S_{yy} = \sum(y_i-\bar{y})^2 = 8.5^2+5.5^2+3.5^2+0.5^2+(-1.5)^2+(-3.5)^2+(-5.5)^2+(-7.5)^2 = 216\]</span></p>
+<p><strong>(a)</strong>
+<span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{-95}{42} \approx -2.262\]</span>
+<span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 9.5 - (-2.262)(1.5) = 9.5 + 3.393 \approx 12.893\]</span>
+<span class="math display">\[\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 216 - (-2.262)(-95) = 216 - 214.881 \approx 1.119\]</span>
+<span class="math display">\[R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{1.119}{216} \approx 0.995\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{1.119}{8-2} = \frac{1.119}{6} \approx 0.187\]</span>
+<span class="math display">\[\hat{\sigma} = \sqrt{0.187} \approx 0.432\]</span>
+<span class="math display">\[\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{0.432}{\sqrt{42}} \approx \frac{0.432}{6.481} \approx 0.0666\]</span>
+<span class="math display">\[t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{-2.262}{0.0666} \approx -33.94\]</span>
+Since <span class="math inline">\(t = -33.94 &lt; -t_{0.01,\,6} = -3.143\)</span>, reject <span class="math inline">\(H_0\)</span>. Very strong evidence that warmer temperatures are associated with fewer glacier advance events.</p>
+<p><strong>(c)</strong>
+<span class="math display">\[\hat{\beta}_1 \pm t_{0.005,\,6}\cdot\text{SE}(\hat{\beta}_1) = -2.262 \pm 3.707(0.0666) = -2.262 \pm 0.247 = (-2.509,\ -2.015)\]</span></p>
 <p><strong>(d)</strong> We are 99% confident that each 1°C increase in average temperature is associated with between 2.01 and 2.51 fewer glacier advance events per year, consistent with the effects of warming on glacier retreat.</p>
 </div>
 </details>
@@ -3198,21 +3274,21 @@ Question 13
 R Exercise
 </div>
 <textarea class="webr-editor" rows="14">data(anscombe)
-# Fit all four models
+# Fit all four models (fill in the variable names)
 m1 <- lm(y1 ~ x1, data = anscombe)
-m2 <- lm(y2 ~ x2, data = anscombe)
-m3 <- lm(y3 ~ x3, data = anscombe)
-m4 <- lm(y4 ~ x4, data = anscombe)
+m2 <- lm(___ ~ ___, data = anscombe)
+m3 <- lm(___ ~ ___, data = anscombe)
+m4 <- lm(___ ~ ___, data = anscombe)
 
-# Compare statistics
+# Compare β₀, β₁, R², σ̂ across all four models
 sapply(list(m1, m2, m3, m4), function(m)
   c(b0 = coef(m)[1], b1 = coef(m)[2],
-    R2 = summary(m)$r.squared, sigma = summary(m)$sigma))
+    R2 = summary(m)$___, sigma = summary(m)$___))
 
-# Scatter plots
+# Scatter plots with fitted lines (2×2 grid)
 par(mfrow = c(2, 2))
 for (i in 1:4) {
-  plot(anscombe[, i], anscombe[, i+4], main = paste("Dataset", i),
+  plot(anscombe[, i], anscombe[, i + 4], main = paste("Dataset", i),
        xlab = paste0("x", i), ylab = paste0("y", i))
   abline(list(m1, m2, m3, m4)[[i]], col = "blue")
 }
@@ -3272,13 +3348,16 @@ Question 14
 R Exercise
 </div>
 <textarea class="webr-editor" rows="9">data(airquality)
+# Remove rows with missing Ozone or Solar.R
 aq <- na.omit(airquality[, c("Ozone", "Solar.R")])
-model <- lm(Ozone ~ Solar.R, data = aq)
+
+# Fit the model
+model <- lm(___ ~ ___, data = aq)
 summary(model)
-confint(model)
+confint(___)
 
 # Residuals-vs-fitted plot
-plot(model, which = 1)
+plot(___, which = ___)
 </textarea>
 <div class="webr-controls">
 <p><button class="webr-run-btn" disabled>▶ Run</button>
@@ -3441,14 +3520,26 @@ Question 16
 ✅ Answer
 </summary>
 <div class="content">
-<p><span class="math inline">\(\bar{x} = 25\)</span>, <span class="math inline">\(\bar{y} = 17.75\)</span>, <span class="math inline">\(S_{xx} = 168\)</span>, <span class="math inline">\(S_{xy} = 148\)</span>, <span class="math inline">\(S_{yy} = 133.5\)</span></p>
-<p><strong>(a)</strong> <span class="math inline">\(\hat{\beta}_1 = 148/168 \approx 0.881\)</span>; <span class="math inline">\(\hat{\beta}_0 = 17.75 - 0.881(25) \approx -4.274\)</span>; <span class="math inline">\(R^2 = 1 - \text{SSE}/S_{yy} \approx 0.977\)</span></p>
-<p><strong>(b)</strong> SSE <span class="math inline">\(= 133.5 - 0.881(148) \approx 3.119\)</span>; <span class="math inline">\(\hat{\sigma}^2 = 3.119/6 \approx 0.520\)</span>; <span class="math inline">\(\hat{\sigma} \approx 0.721\)</span></p>
-<p><span class="math inline">\(\text{SE}(\hat{\beta}_1) = 0.721/\sqrt{168} \approx 0.0556\)</span></p>
-<p><strong>(c)</strong> <span class="math inline">\(t = 0.881/0.0556 \approx 15.84 &gt; 1.943\)</span>. Reject <span class="math inline">\(H_0\)</span>. Very strong evidence that temperature is positively associated with ice cream sales.</p>
-<p><strong>(d)</strong> <span class="math inline">\(\hat{y}^* = -4.274 + 0.881(25) = 17.75\)</span></p>
-<p><span class="math inline">\(\text{SE}_{\text{mean}} = 0.721\sqrt{1/8 + (25-25)^2/168} = 0.721/\sqrt{8} \approx 0.255\)</span></p>
-<p>95% CI: <span class="math inline">\(17.75 \pm 2.447(0.255) = 17.75 \pm 0.624 = (17.13,\ 18.37)\)</span> hundred units.</p>
+<p><span class="math inline">\(\bar{x} = \dfrac{18+20+22+24+26+28+30+32}{8} = \dfrac{200}{8} = 25\)</span>, <span class="math inline">\(\quad\bar{y} = \dfrac{12+14+15+16+18+20+22+25}{8} = \dfrac{142}{8} = 17.75\)</span></p>
+<p><span class="math display">\[S_{xx} = \sum(x_i-\bar{x})^2 = (-7)^2+(-5)^2+(-3)^2+(-1)^2+1^2+3^2+5^2+7^2 = 49+25+9+1+1+9+25+49 = 168\]</span>
+<span class="math display">\[S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-7)(-5.75)+(-5)(-3.75)+(-3)(-2.75)+(-1)(-1.75)+(1)(0.25)+(3)(2.25)+(5)(4.25)+(7)(7.25) = 148\]</span>
+<span class="math display">\[S_{yy} = \sum(y_i-\bar{y})^2 = (-5.75)^2+(-3.75)^2+(-2.75)^2+(-1.75)^2+(0.25)^2+(2.25)^2+(4.25)^2+(7.25)^2 = 133.5\]</span></p>
+<p><strong>(a)</strong>
+<span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{148}{168} \approx 0.881\]</span>
+<span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 17.75 - 0.881(25) = 17.75 - 22.025 \approx -4.274\]</span>
+<span class="math display">\[\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 133.5 - 0.881(148) = 133.5 - 130.381 \approx 3.119\]</span>
+<span class="math display">\[R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{3.119}{133.5} \approx 0.977\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{3.119}{8-2} = \frac{3.119}{6} \approx 0.520\]</span>
+<span class="math display">\[\hat{\sigma} = \sqrt{0.520} \approx 0.721\]</span>
+<span class="math display">\[\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{0.721}{\sqrt{168}} \approx \frac{0.721}{12.96} \approx 0.0556\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{0.881}{0.0556} \approx 15.84\]</span>
+Since <span class="math inline">\(t = 15.84 &gt; t_{0.05,\,6} = 1.943\)</span>, reject <span class="math inline">\(H_0\)</span>. Very strong evidence that temperature is positively associated with ice cream sales.</p>
+<p><strong>(d)</strong>
+<span class="math display">\[\hat{y}^* = \hat{\beta}_0 + \hat{\beta}_1 x^* = -4.274 + 0.881(25) = -4.274 + 22.025 = 17.75 \text{ hundred units}\]</span>
+<span class="math display">\[\text{SE}_{\text{mean}} = \hat{\sigma}\sqrt{\frac{1}{n} + \frac{(x^*-\bar{x})^2}{S_{xx}}} = 0.721\sqrt{\frac{1}{8} + \frac{(25-25)^2}{168}} = 0.721\sqrt{\frac{1}{8}} = \frac{0.721}{\sqrt{8}} \approx 0.255\]</span>
+<span class="math display">\[\hat{y}^* \pm t_{0.025,\,6}\cdot\text{SE}_{\text{mean}} = 17.75 \pm 2.447(0.255) = 17.75 \pm 0.624 = (17.13,\ 18.37) \text{ hundred units}\]</span></p>
 </div>
 </details>
 <hr />
@@ -3508,13 +3599,79 @@ Question 17
 ✅ Answer
 </summary>
 <div class="content">
-<p><span class="math inline">\(\bar{x} = 20\)</span>, <span class="math inline">\(\bar{y} \approx 11.086\)</span>, <span class="math inline">\(S_{xx} = 700\)</span>, <span class="math inline">\(S_{xy} = 306.5\)</span>, <span class="math inline">\(S_{yy} \approx 134.97\)</span></p>
-<p><strong>(a)</strong> <span class="math inline">\(\hat{\beta}_1 = 306.5/700 \approx 0.4379\)</span>; <span class="math inline">\(\hat{\beta}_0 = 11.086 - 0.4379(20) \approx 2.329\)</span></p>
-<p>SSE <span class="math inline">\(= 134.97 - 0.4379(306.5) \approx 0.765\)</span>; <span class="math inline">\(R^2 \approx 1 - 0.765/134.97 \approx 0.994\)</span> — an excellent linear fit.</p>
-<p><strong>(b)</strong> Residuals: <span class="math inline">\(-0.418, 0.093, 0.304, -0.086, 0.525, 0.036, -0.454\)</span> (approximate). <span class="math inline">\(\sum e_i \approx 0\)</span> ✓</p>
-<p><strong>(c)</strong> <span class="math inline">\(\hat{\sigma}^2 = 0.765/5 \approx 0.153\)</span>; <span class="math inline">\(\hat{\sigma} \approx 0.391\)</span>; <span class="math inline">\(\text{SE}(\hat{\beta}_1) = 0.391/\sqrt{700} \approx 0.0148\)</span></p>
-<p>95% CI: <span class="math inline">\(0.4379 \pm 2.571(0.0148) = 0.4379 \pm 0.0380 = (0.400,\ 0.476)\)</span></p>
-<p><strong>(d)</strong> <span class="math inline">\(\hat{y} = 2.329 + 0.4379(40) \approx 19.84\)</span> cm. Since the oldest observed tree is 35 years, predicting at <span class="math inline">\(x = 40\)</span> is extrapolation — the result should be used with caution.</p>
+<p><span class="math inline">\(\bar{x} = \dfrac{5+10+15+20+25+30+35}{7} = \dfrac{140}{7} = 20\)</span>, <span class="math inline">\(\quad\bar{y} = \dfrac{4.1+6.8+9.2+11.0+13.8+15.5+17.2}{7} = \dfrac{77.6}{7} \approx 11.086\)</span></p>
+<p><span class="math display">\[S_{xx} = \sum(x_i-\bar{x})^2 = (-15)^2+(-10)^2+(-5)^2+0^2+5^2+10^2+15^2 = 225+100+25+0+25+100+225 = 700\]</span>
+<span class="math display">\[S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-15)(-6.986)+(-10)(-4.286)+(-5)(-1.886)+(0)(-0.086)+(5)(2.714)+(10)(4.414)+(15)(6.114) = 306.5\]</span>
+<span class="math display">\[S_{yy} = \sum(y_i-\bar{y})^2 \approx 134.97\]</span></p>
+<p><strong>(a)</strong>
+<span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{306.5}{700} \approx 0.4379\]</span>
+<span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 11.086 - 0.4379(20) = 11.086 - 8.757 \approx 2.329\]</span>
+<span class="math display">\[\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy} = 134.97 - 0.4379(306.5) = 134.97 - 134.21 \approx 0.765\]</span>
+<span class="math display">\[R^2 = 1 - \frac{\text{SSE}}{S_{yy}} = 1 - \frac{0.765}{134.97} \approx 0.994\]</span></p>
+<p><strong>(b)</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x\)</span></th>
+<th><span class="math inline">\(y\)</span></th>
+<th><span class="math inline">\(\hat{y} = 2.329 + 0.4379x\)</span></th>
+<th><span class="math inline">\(e_i = y_i - \hat{y}_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>4.1</td>
+<td><span class="math inline">\(2.329+0.4379(5)=4.519\)</span></td>
+<td><span class="math inline">\(4.1-4.519=-0.419\)</span></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>6.8</td>
+<td><span class="math inline">\(2.329+0.4379(10)=6.708\)</span></td>
+<td><span class="math inline">\(6.8-6.708=0.092\)</span></td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>9.2</td>
+<td><span class="math inline">\(2.329+0.4379(15)=8.897\)</span></td>
+<td><span class="math inline">\(9.2-8.897=0.303\)</span></td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>11.0</td>
+<td><span class="math inline">\(2.329+0.4379(20)=11.087\)</span></td>
+<td><span class="math inline">\(11.0-11.087=-0.087\)</span></td>
+</tr>
+<tr class="odd">
+<td>25</td>
+<td>13.8</td>
+<td><span class="math inline">\(2.329+0.4379(25)=13.277\)</span></td>
+<td><span class="math inline">\(13.8-13.277=0.523\)</span></td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td>15.5</td>
+<td><span class="math inline">\(2.329+0.4379(30)=15.466\)</span></td>
+<td><span class="math inline">\(15.5-15.466=0.034\)</span></td>
+</tr>
+<tr class="odd">
+<td>35</td>
+<td>17.2</td>
+<td><span class="math inline">\(2.329+0.4379(35)=17.656\)</span></td>
+<td><span class="math inline">\(17.2-17.656=-0.456\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(\sum e_i \approx -0.419+0.092+0.303-0.087+0.523+0.034-0.456 = -0.010 \approx 0\)</span> ✓ (small rounding discrepancy)</p>
+<p><strong>(c)</strong>
+<span class="math display">\[\hat{\sigma}^2 = \frac{\text{SSE}}{n-2} = \frac{0.765}{7-2} = \frac{0.765}{5} \approx 0.153\]</span>
+<span class="math display">\[\hat{\sigma} = \sqrt{0.153} \approx 0.391\]</span>
+<span class="math display">\[\text{SE}(\hat{\beta}_1) = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} = \frac{0.391}{\sqrt{700}} \approx \frac{0.391}{26.46} \approx 0.0148\]</span>
+<span class="math display">\[\hat{\beta}_1 \pm t_{0.025,\,5}\cdot\text{SE}(\hat{\beta}_1) = 0.4379 \pm 2.571(0.0148) = 0.4379 \pm 0.0380 = (0.400,\ 0.476)\]</span></p>
+<p><strong>(d)</strong>
+<span class="math display">\[\hat{y} = 2.329 + 0.4379(40) = 2.329 + 17.516 \approx 19.84 \text{ cm}\]</span>
+Since the oldest observed tree is 35 years, predicting at <span class="math inline">\(x = 40\)</span> is extrapolation — the result should be used with caution.</p>
 </div>
 </details>
 <hr />
@@ -3540,16 +3697,17 @@ R Exercise
 <textarea class="webr-editor" rows="13">exercise  <- c(1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 9)
 heartrate <- c(82, 79, 81, 77, 75, 74, 72, 70, 68, 67, 65, 63)
 
-model <- lm(heartrate ~ exercise)
+# Fit the model
+model <- lm(___ ~ ___)
 summary(model)
 
-# Scatter plot
-plot(exercise, heartrate,
+# Scatter plot with regression line
+plot(___, ___,
      xlab = "Weekly Exercise (hours)", ylab = "Resting Heart Rate (bpm)")
-abline(model, col = "blue")
+abline(___, col = "blue")
 
-# Residual plot
-plot(model, which = 1)
+# Residuals-vs-fitted plot
+plot(___, which = ___)
 </textarea>
 <div class="webr-controls">
 <p><button class="webr-run-btn" disabled>▶ Run</button>
@@ -3655,14 +3813,15 @@ R Exercise
 <textarea class="webr-editor" rows="10">x <- 0:9
 y <- c(369.5, 371.1, 373.2, 375.8, 377.5, 379.8, 381.9, 383.8, 385.6, 387.4)
 
-model <- lm(y ~ x)
+# Fit the model and verify your part (a) estimates
+model <- lm(___ ~ ___)
 summary(model)
 
-plot(x, y, xlab = "Year (0 = 2000)", ylab = expression(CO[2]~"(ppm)"))
-abline(model, col = "blue")
+plot(___, ___, xlab = "Year (0 = 2000)", ylab = expression(CO[2]~"(ppm)"))
+abline(___, col = "blue")
 
 # 95% prediction interval for x = 12 (year 2012)
-predict(model, newdata = data.frame(x = 12), interval = "prediction", level = 0.95)
+predict(___, newdata = data.frame(x = 12), interval = "___", level = 0.95)
 </textarea>
 <div class="webr-controls">
 <p><button class="webr-run-btn" disabled>▶ Run</button>
@@ -3693,8 +3852,13 @@ predict(model, newdata = data.frame(x = 12), interval = "prediction", level = 0.
 ✅ Answer
 </summary>
 <div class="content">
-<p><strong>(a)</strong> <span class="math inline">\(\bar{x} = 4.5\)</span>, <span class="math inline">\(\bar{y} = 378.56\)</span>, <span class="math inline">\(S_{xx} = 82.5\)</span>, <span class="math inline">\(S_{xy} = 168.1\)</span></p>
-<p><span class="math inline">\(\hat{\beta}_1 = 168.1/82.5 \approx 2.038\)</span>; <span class="math inline">\(\hat{\beta}_0 = 378.56 - 2.038(4.5) \approx 369.391\)</span></p>
+<p><strong>(a)</strong>
+<span class="math display">\[\bar{x} = \frac{0+1+2+\cdots+9}{10} = \frac{45}{10} = 4.5\]</span>
+<span class="math display">\[\bar{y} = \frac{369.5+371.1+373.2+375.8+377.5+379.8+381.9+383.8+385.6+387.4}{10} = \frac{3785.6}{10} = 378.56\]</span>
+<span class="math display">\[S_{xx} = \sum(x_i-\bar{x})^2 = (-4.5)^2+(-3.5)^2+\cdots+(4.5)^2 = 2(20.25+12.25+6.25+2.25+0.25) = 82.5\]</span>
+<span class="math display">\[S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-4.5)(-9.06)+(-3.5)(-7.46)+\cdots+(4.5)(8.84) = 168.1\]</span>
+<span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{168.1}{82.5} \approx 2.038\]</span>
+<span class="math display">\[\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 378.56 - 2.038(4.5) = 378.56 - 9.171 \approx 369.39\]</span></p>
 <p><span class="math inline">\(\hat{\beta}_0 \approx 369.39\)</span> ppm: the estimated CO<span class="math inline">\(_2\)</span> concentration in year 2000. <span class="math inline">\(\hat{\beta}_1 \approx 2.04\)</span> ppm/year: the estimated annual increase in CO<span class="math inline">\(_2\)</span>.</p>
 <p><strong>(b)</strong> R confirms <span class="math inline">\(\hat{\beta}_0 \approx 369.39\)</span>, <span class="math inline">\(\hat{\beta}_1 \approx 2.038\)</span>.</p>
 <p>95% PI at <span class="math inline">\(x = 12\)</span>: <span class="math inline">\(\hat{y} = 369.39 + 2.038(12) \approx 393.84\)</span> ppm; interval approximately <span class="math inline">\((393.04,\ 394.65)\)</span> ppm.</p>
@@ -3725,19 +3889,20 @@ R Exercise
 <textarea class="webr-editor" rows="16">size  <- c(10, 12, 13, 15, 16, 18, 20, 22, 23, 25)
 price <- c(185, 205, 215, 240, 255, 275, 310, 335, 345, 370)
 
-model <- lm(price ~ size)
+# Fit the model
+model <- lm(___ ~ ___)
 summary(model)
 
 # Scatter plot with regression line
-plot(size, price, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
-abline(model, col = "blue")
+plot(___, ___, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
+abline(___, col = "blue")
 
 # Residuals-vs-fitted plot
-plot(model, which = 1)
+plot(___, which = ___)
 
-# CI and PI at x = 17
-predict(model, newdata = data.frame(size = 17), interval = "confidence", level = 0.95)
-predict(model, newdata = data.frame(size = 17), interval = "prediction",  level = 0.95)
+# 95% CI for mean price and PI for a new home at x = 17
+predict(___, newdata = data.frame(size = 17), interval = "___", level = 0.95)
+predict(___, newdata = data.frame(size = 17), interval = "___", level = 0.95)
 </textarea>
 <div class="webr-controls">
 <p><button class="webr-run-btn" disabled>▶ Run</button>
@@ -4440,7 +4605,7 @@ Figure 9.15: (a) Scatterplot of well-being score (<span class="math inline">\(y\
 <span class="math display">\[R^2 = 1 - \frac{\text{SSE}}{\text{SST}} = 1 - \frac{10.03}{35.59} = 1 - 0.282 = 0.718.\]</span>
 About <strong>71.8%</strong> of the variability in well-being scores is explained by the linear relationship with weekly exercise hours.</p>
 <p><strong>(d)</strong> Test statistic:
-<span class="math display">\[t = \frac{\hat{\beta}_1}{\text{SE}(\hat{\beta}_1)} = \frac{0.557}{0.123} \approx 4.53.\]</span>
+<span class="math display">\[t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{0.557}{0.123} \approx 4.53.\]</span>
 With <span class="math inline">\(df = 8\)</span> and <span class="math inline">\(|t| = 4.53 &gt; t_{0.025,\,8} \approx 2.306\)</span>, the <span class="math inline">\(p\)</span>-value <span class="math inline">\(\approx 0.002 &lt; 0.05\)</span>. We <strong>reject</strong> <span class="math inline">\(H_0\)</span>: there is statistically significant evidence of a linear relationship between exercise hours and well-being score.</p>
 <p><strong>(e)</strong> <strong>Disagree.</strong> Although <span class="math inline">\(R^2 = 0.72\)</span> and the slope is statistically significant (<span class="math inline">\(p \approx 0.002\)</span>), these measures only confirm that <span class="math inline">\(x\)</span> is a useful <em>linear</em> predictor — they do <strong>not</strong> imply the linear model is <em>appropriate</em>. Panel (a) shows a clear arch in the data, and Panel (b) reveals a systematic curved pattern in the residuals. Both indicate the linearity assumption is violated. A quadratic or other non-linear model would be more suitable for these data. A high <span class="math inline">\(R^2\)</span> and a significant <span class="math inline">\(t\)</span>-test cannot substitute for residual diagnostics when assessing model adequacy.</p>
 </div>
