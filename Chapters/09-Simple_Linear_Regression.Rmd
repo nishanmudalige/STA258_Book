@@ -3317,3 +3317,1132 @@ predict(model, newdata = data.frame(size = 17), interval = "prediction",  level 
 
 </div>
 </details>
+
+---
+
+<!-- Q21 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 21</div>
+
+Each of the following statements refers to simple linear regression. State whether each statement is **True** or **False**, and give a brief justification.
+
+(A) The least-squares regression line always passes through the point $(\bar{x},\, \bar{y})$.
+
+(B) The sum of the residuals from the least-squares line is always exactly zero.
+
+(C) If $R^2 = 1$, then $\text{SSE} = \text{SST}$.
+
+(D) The slope estimate $\hat{\beta}_1$ equals zero whenever the sample correlation $r$ equals zero.
+
+(E) For any fitted simple linear regression model, SSE can never exceed SST.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The formula $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$ implies that $\hat{y} = \bar{y}$ when $x = \bar{x}$.
+- Recall $R^2 = 1 - \text{SSE}/\text{SST}$ and $\hat{\beta}_1 = r\,s_y/s_x$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(A) True.** Substituting $x = \bar{x}$ into $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$ and using $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$ gives $\hat{y} = \bar{y}$.
+
+**(B) True.** A property of least-squares estimation is that $\sum_{i=1}^n e_i = 0$ for any fitted model with an intercept.
+
+**(C) False.** If $R^2 = 1$ then $\text{SSE} = 0$ (all points lie exactly on the line), not $\text{SSE} = \text{SST}$.
+
+**(D) True.** Since $\hat{\beta}_1 = r\,(s_y/s_x)$, if $r = 0$ then $\hat{\beta}_1 = 0$.
+
+**(E) True.** Since $R^2 = 1 - \text{SSE}/\text{SST} \geq 0$, we must have $\text{SSE} \leq \text{SST}$.
+
+</div>
+</details>
+
+---
+
+<!-- Q22 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 22</div>
+
+Figure \@ref(fig:ch9q22scatter) shows a scatterplot of five observations.
+
+```{r ch9q22scatter, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Scatterplot of five observations. Which regression equation best fits these data?", fig.width=5, fig.height=4}
+library(ggplot2)
+df22 <- data.frame(x = c(1, 2, 3, 4, 5),
+                   y = c(4, 7, 5, 9, 10))
+ggplot(df22, aes(x, y)) +
+  geom_point(size = 3.5, color = "#619CFF") +
+  scale_x_continuous(breaks = 1:5) +
+  scale_y_continuous(breaks = seq(2, 12, 2), limits = c(2, 12)) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 14)
+```
+
+Four candidate regression equations are listed below. Which one is the least-squares regression line for the data shown? Explain how you identified the correct equation.
+
+(A) $\hat{y} = 2.8 + 1.4x$
+
+(B) $\hat{y} = 2.8 - 1.4x$
+
+(C) $\hat{y} = 1.4 + 2.8x$
+
+(D) $\hat{y} = 7.0 + 1.4x$
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The scatter shows a positive trend, so the slope must be positive. This rules out one option immediately.
+- The least-squares line passes through $(\bar{x}, \bar{y})$. Compute these from the five points, then check which equation satisfies $\hat{y} = \bar{y}$ when $x = \bar{x}$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(A) is correct:** $\hat{y} = 2.8 + 1.4x$.
+
+**Verification.** From the five points: $\bar{x} = 3$ and $\bar{y} = 7$.
+
+$$S_{xx} = 10, \quad S_{xy} = (-2)(-3)+(-1)(0)+(0)(-2)+(1)(2)+(2)(3) = 14$$
+
+$$\hat{\beta}_1 = 14/10 = 1.4, \qquad \hat{\beta}_0 = 7 - 1.4(3) = 2.8$$
+
+**Ruling out the others:**
+
+- **(B)** has a negative slope, but the scatter shows a positive trend.
+- **(C)** has slope 2.8, which is too steep; plugging $x = \bar{x} = 3$ gives $\hat{y} = 9.8 \neq \bar{y} = 7$.
+- **(D)** has intercept $7.0$; at $x = 3$ it gives $\hat{y} = 11.2 \neq 7$.
+
+</div>
+</details>
+
+---
+
+<!-- Q23 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 23</div>
+
+Five observations on two variables are recorded:
+
+| $x_i$ | 1  | 3  | 5  | 7  | 9  |
+|--------|----|----|----|----|-----|
+| $y_i$ | 3  | 7  | 8  | 11 | 16 |
+
+(a) Compute the sample means $\bar{x}$ and $\bar{y}$, the sample standard deviations $s_x$ and $s_y$, and the sample covariance $s_{xy}$.
+
+(b) Compute the sample correlation coefficient $r_{xy}$ and interpret its value.
+
+(c) Using the relationship $\hat{\beta}_1 = r_{xy}\,(s_y/s_x)$, find the slope and intercept of the least-squares line.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $s_{xy} = \dfrac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})$
+- $r_{xy} = s_{xy}/(s_x \cdot s_y)$, and $r_{xy}$ is always between $-1$ and $+1$.
+- Then use $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\bar{x} = 5$, $\bar{y} = 9$.
+
+$$s_x^2 = \frac{(-4)^2+(-2)^2+0^2+2^2+4^2}{4} = \frac{40}{4} = 10 \quad\Rightarrow\quad s_x = \sqrt{10} \approx 3.162$$
+
+$$s_y^2 = \frac{(-6)^2+(-2)^2+(-1)^2+2^2+7^2}{4} = \frac{94}{4} = 23.5 \quad\Rightarrow\quad s_y = \sqrt{23.5} \approx 4.848$$
+
+$$s_{xy} = \frac{(-4)(-6)+(-2)(-2)+(0)(-1)+(2)(2)+(4)(7)}{4} = \frac{60}{4} = 15$$
+
+**(b)** $r_{xy} = 15/(\sqrt{10}\cdot\sqrt{23.5}) = 15/\sqrt{235} \approx 0.978$.
+
+There is a very strong positive linear association between $x$ and $y$.
+
+**(c)** $\hat{\beta}_1 = 0.978 \times (4.848/3.162) \approx 0.978 \times 1.533 \approx 1.500$.
+
+$\hat{\beta}_0 = 9 - 1.500(5) = 1.5$.
+
+Fitted line: $\hat{y} = 1.5 + 1.5x$.
+
+*(Slight rounding differences may occur; using the exact formula $\hat{\beta}_1 = S_{xy}/S_{xx}$ with $S_{xy} = 60$ and $S_{xx} = 40$ gives $\hat{\beta}_1 = 1.5$ exactly.)*
+
+</div>
+</details>
+
+---
+
+<!-- Q24 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 24</div>
+
+A transportation researcher records the number of traffic signals encountered ($x$) and travel time ($y$, minutes) for 20 trips through a city. The following summary statistics are available:
+
+$$\bar{x} = 8, \quad \bar{y} = 22, \quad s_x = 3, \quad s_y = 6, \quad r = 0.85$$
+
+(a) Use the formula $\hat{\beta}_1 = r\,(s_y/s_x)$ to compute the slope of the least-squares regression line.
+
+(b) Find the intercept $\hat{\beta}_0$.
+
+(c) Write the fitted equation and predict the travel time for a trip that encounters 10 traffic signals.
+
+(d) Interpret $\hat{\beta}_1$ in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\hat{\beta}_1 = r \cdot (s_y / s_x)$; the ratio $s_y/s_x$ converts the correlation to the scale of the data.
+- $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\hat{\beta}_1 = 0.85 \times (6/3) = 0.85 \times 2 = 1.70$
+
+**(b)** $\hat{\beta}_0 = 22 - 1.70(8) = 22 - 13.6 = 8.4$
+
+**(c)** $\hat{y} = 8.4 + 1.70x$. At $x = 10$: $\hat{y} = 8.4 + 17.0 = 25.4$ minutes.
+
+**(d)** For each additional traffic signal encountered, the predicted travel time increases by 1.70 minutes on average.
+
+</div>
+</details>
+
+---
+
+<!-- Q25 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 25</div>
+
+A biologist models body weight ($y$, grams) from body length ($x$, centimetres) for a lizard species and obtains:
+
+$$\hat{y} = -8.4 + 3.2x$$
+
+(a) A colleague re-expresses all length measurements in **millimetres** ($x' = 10x$, where $x'$ is length in mm). Write the fitted regression equation in terms of $x'$.
+
+(b) A different colleague converts the response to **kilograms** ($y^* = y/1000$). Write the new fitted equation in terms of $x$ (still in cm) and $y^*$ (in kg).
+
+(c) Which unit conversion — rescaling $x$ or rescaling $y$ — leaves the intercept $\hat{\beta}_0$ unchanged? Explain briefly.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- If $x' = cx$ (scaling $x$ by factor $c$), substitute $x = x'/c$ into the original equation.
+- If $y^* = y/c$ (scaling $y$ by factor $c$), divide the entire equation by $c$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** Since $x' = 10x$, we have $x = x'/10$. Substituting:
+
+$$\hat{y} = -8.4 + 3.2\!\left(\frac{x'}{10}\right) = -8.4 + 0.32\,x'$$
+
+The slope becomes $0.32$ g/mm; the intercept $-8.4$ g is **unchanged**.
+
+**(b)** Since $y^* = y/1000$:
+
+$$\hat{y}^* = \frac{-8.4 + 3.2x}{1000} = -0.0084 + 0.0032\,x$$
+
+Both the slope (now $0.0032$ kg/cm) and the intercept (now $-0.0084$ kg) change.
+
+**(c)** Rescaling $x$ leaves the intercept unchanged because the intercept is the predicted value of $y$ when $x = 0$, and changing the scale of $x$ does not change the value of the response at $x = 0$. By contrast, rescaling $y$ multiplies every fitted value — including the intercept — by the same factor.
+
+</div>
+</details>
+
+---
+
+<!-- Q26 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 26</div>
+
+A study of 30 students produces the following fitted regression of exam score ($y$, out of 100) on hours studied ($x$):
+
+$$\hat{y} = 42.5 + 3.6x, \quad R^2 = 0.64$$
+
+Four students make the claims below. For each, state whether the claim is **correct** or **incorrect**, and explain.
+
+(A) "Since $R^2 = 0.64$, the slope of the regression line must be $0.64$."
+
+(B) "The sample correlation coefficient is $r = 0.64$."
+
+(C) "64% of the variation in exam scores is explained by the linear relationship with study hours."
+
+(D) "A student who studies one more hour will always score 3.6 points higher."
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $R^2$ and the slope are different quantities with different interpretations.
+- $r = \pm\sqrt{R^2}$; the sign is determined by the sign of $\hat{\beta}_1$.
+- The slope describes the **average** change, not a guaranteed change for every individual.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(A) Incorrect.** $R^2 = 0.64$ is the coefficient of determination (proportion of variance explained). The slope $\hat{\beta}_1 = 3.6$ is an entirely separate quantity measured in units of score per hour.
+
+**(B) Incorrect.** Since $\hat{\beta}_1 = 3.6 > 0$, the correlation is positive. Thus $r = +\sqrt{R^2} = +\sqrt{0.64} = 0.8$, not $0.64$.
+
+**(C) Correct.** This is the standard interpretation of $R^2$: the proportion of total variation in $y$ that is explained by the linear regression.
+
+**(D) Incorrect.** The slope $3.6$ describes the predicted (average) increase per additional study hour. Because of random variation (the error term $\varepsilon$), individual exam scores may be higher or lower than predicted; there is no guarantee every student gains exactly $3.6$ points.
+
+</div>
+</details>
+
+---
+
+<!-- Q27 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 27</div>
+
+A researcher fits a simple linear regression model and produces the residuals-vs-fitted plot shown in Figure \@ref(fig:ch9q27residplot).
+
+```{r ch9q27residplot, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Residuals-vs-fitted plot from a fitted simple linear regression model.", fig.width=5.5, fig.height=4}
+library(ggplot2)
+set.seed(27)
+x27 <- seq(1, 40, length.out = 40)
+y27 <- 5 + 0.8 * x27 + rnorm(40, 0, sd = x27 / 7)
+m27 <- lm(y27 ~ x27)
+df27 <- data.frame(Fitted = fitted(m27), Residuals = resid(m27))
+ggplot(df27, aes(Fitted, Residuals)) +
+  geom_point(color = "#619CFF", size = 2.5) +
+  geom_hline(yintercept = 0, color = "#000000", linewidth = 0.7) +
+  labs(x = "Fitted Values", y = "Residuals") +
+  theme_minimal(base_size = 14)
+```
+
+(a) Describe the pattern you observe in Figure \@ref(fig:ch9q27residplot).
+
+(b) Which regression assumption does this pattern indicate is violated? Explain.
+
+(c) What consequence does this violation have for inference (e.g., confidence intervals and hypothesis tests) based on the fitted model?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- If the model assumptions hold, the residuals should scatter randomly in a horizontal band of roughly constant width around zero.
+- A fan shape (spread increasing with fitted values) signals a specific assumption violation.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** The residuals spread outward as the fitted values increase — the plot has a clear fan or funnel shape, with small variability at low fitted values and much larger variability at high fitted values.
+
+**(b)** This pattern indicates a violation of the **constant variance (homoscedasticity)** assumption: $\text{Var}(\varepsilon_i) = \sigma^2$ for all $i$. Instead, the error variance appears to increase with the fitted value (or equivalently, with $x$).
+
+**(c)** Standard confidence intervals and p-values for the slope (and intercept) rely on the assumption of constant variance. When this assumption is violated, the usual formulas for $\text{SE}(\hat{\beta}_1)$ underestimate the true standard error at large fitted values and overestimate it at small fitted values, making intervals and test conclusions unreliable.
+
+</div>
+</details>
+
+---
+
+<!-- Q28 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 28</div>
+
+The R output below is from a regression of tomato `yield` (kg/plant) on `sunlight` (hours/day) for 18 plants.
+
+::: tcolorbox
+    Call:
+    lm(formula = yield ~ sunlight)
+
+    Coefficients:
+                Estimate Std. Error t value Pr(>|t|)
+    (Intercept)   0.4800     0.3120   1.538   0.1430
+    sunlight      0.5900     0.0475  12.421  1.8e-10 ***
+    ---
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+    Residual standard error: 0.321 on 16 degrees of freedom
+    Multiple R-squared:  0.9061,  Adjusted R-squared:  0.9002
+    F-statistic: 154.3 on 1 and 16 DF,  p-value: 1.8e-10
+:::
+
+(a) Write the fitted regression equation.
+
+(b) What is $\hat{\sigma}$? What does it estimate, and what are its units?
+
+(c) State the hypotheses tested by the $t$-test for `sunlight`, report the $t$-statistic and p-value, and state your conclusion at $\alpha = 0.05$.
+
+(d) Interpret $\hat{\beta}_1$ in context.
+
+(e) Interpret $R^2$ in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The "Residual standard error" in R output is $\hat{\sigma} = \sqrt{\text{SSE}/(n-2)}$.
+- The $t$-test for each coefficient tests $H_0: \beta_j = 0$ vs $H_a: \beta_j \neq 0$ (two-sided) by default.
+- Degrees of freedom for residuals = $n - 2$; read $n$ from the df line.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\hat{\text{yield}} = 0.480 + 0.590 \times \text{sunlight}$
+
+**(b)** $\hat{\sigma} = 0.321$ kg/plant. It estimates the standard deviation $\sigma$ of the error terms — the typical size of deviations of individual yields from the fitted line.
+
+**(c)**
+$$H_0: \beta_1 = 0 \quad\text{vs}\quad H_a: \beta_1 \neq 0$$
+$t = 12.421$, p-value $= 1.8 \times 10^{-10} < 0.05$. We reject $H_0$. There is very strong evidence that daily sunlight hours is a significant linear predictor of yield.
+
+**(d)** Each additional hour of sunlight per day is associated with an average increase of $0.590$ kg in tomato yield per plant.
+
+**(e)** $R^2 = 0.9061$: approximately 90.6% of the variation in tomato yield is explained by the linear relationship with daily sunlight hours — an excellent fit.
+
+</div>
+</details>
+
+---
+
+<!-- Q29 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 29</div>
+
+Two researchers each fit a simple linear regression model to predict student GPA (on a 4.0 scale) using the same dataset of $n = 32$ students. Their results are:
+
+|                         | Model 1                   | Model 2              |
+|-------------------------|---------------------------|----------------------|
+| Predictor               | Hours studied per week    | Number of absences   |
+| $\hat{\beta}_1$         | $0.12$                    | $-0.18$              |
+| $R^2$                   | $0.61$                    | $0.29$               |
+| $\hat{\sigma}$          | $0.42$                    | $0.57$               |
+| SSE                     | $5.30$                    | $9.66$               |
+
+(a) Which model explains more of the variation in GPA? How do you know?
+
+(b) Which model produces smaller residuals on average? How do you know?
+
+(c) A student claims: "Both $R^2$ values are less than 1, so neither model is any good." Is this a reasonable conclusion? Explain.
+
+(d) If you had to choose one of these two models for prediction purposes, which would you choose, and why?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- A higher $R^2$ means more variation is explained by the model.
+- $\hat{\sigma}$ is the estimated standard deviation of the residuals — smaller means tighter predictions.
+- $R^2$ is relative: even a moderate $R^2$ may be useful in practice.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** Model 1 explains more variation: $R^2 = 0.61$ vs $R^2 = 0.29$.
+
+**(b)** Model 1 produces smaller residuals on average: $\hat{\sigma} = 0.42$ vs $\hat{\sigma} = 0.57$. (Equivalently, Model 1 has a smaller SSE: $5.30$ vs $9.66$.)
+
+**(c)** Not a reasonable conclusion. An $R^2$ less than 1 simply means the model does not explain all variability in GPA — which is expected, since GPA is influenced by many factors beyond a single predictor. Whether a model is "good" depends on context and purpose; $R^2 = 0.61$ is often considered a reasonable fit for behavioral data.
+
+**(d)** Model 1. It has higher $R^2$, lower $\hat{\sigma}$, and lower SSE, so it produces more accurate predictions of GPA.
+
+</div>
+</details>
+
+---
+
+<!-- Q30 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 30</div>
+
+Figure \@ref(fig:ch9q30twolines) shows a scatterplot of seven observations together with two candidate regression lines, Line 1 and Line 2.
+
+```{r ch9q30twolines, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Scatterplot with two candidate regression lines.", fig.width=5.5, fig.height=4}
+library(ggplot2)
+df30 <- data.frame(x = 1:7,
+                   y = c(2.1, 3.8, 5.2, 6.9, 8.5, 10.1, 11.8))
+ggplot(df30, aes(x, y)) +
+  geom_point(size = 3.5, color = "#619CFF") +
+  geom_abline(aes(intercept = 0.486, slope = 1.607, color = "Line 1"),
+              linewidth = 1.2, key_glyph = draw_key_path) +
+  geom_abline(aes(intercept = 4.0, slope = 0.8, color = "Line 2"),
+              linewidth = 1.2, key_glyph = draw_key_path) +
+  scale_color_manual(name = NULL,
+                     values = c("Line 1" = "#F8766D", "Line 2" = "#00BFC4")) +
+  scale_x_continuous(breaks = 1:7) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "right")
+```
+
+(a) Without computing anything, use the graph to identify which line appears to be the better fit. Explain your reasoning.
+
+(b) The equations of the two lines are:
+$$\text{Line 1: } \hat{y} = 0.49 + 1.61x \qquad \text{Line 2: } \hat{y} = 4.00 + 0.80x$$
+Compute the residual for the observation at $x = 1$ ($y = 2.1$) under each line. Which residual has smaller magnitude?
+
+(c) Which of Line 1 or Line 2 is the least-squares regression line? How do you know?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The least-squares line minimises the sum of squared residuals (SSE).
+- Visually, the better-fitting line will pass closer to most of the plotted points.
+- Residual = observed $-$ predicted; a large residual means the line misses that point badly.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** Line 1 appears to be the better fit. It runs through the middle of the point cloud from lower-left to upper-right, staying close to all seven points. Line 2 is too flat and positioned too high, crossing above the smaller $y$-values and below the larger $y$-values.
+
+**(b)** At $x = 1$, $y = 2.1$:
+
+Line 1: $\hat{y} = 0.49 + 1.61(1) = 2.10$; residual $= 2.1 - 2.1 = 0.00$
+
+Line 2: $\hat{y} = 4.00 + 0.80(1) = 4.80$; residual $= 2.1 - 4.8 = -2.70$
+
+Line 1 has a much smaller residual magnitude at this point.
+
+**(c)** Line 1 is the least-squares regression line. The least-squares criterion minimises SSE, and Line 1 produces residuals close to zero for all seven observations while Line 2 produces large residuals (especially at the smallest and largest $x$-values). Line 1 was computed directly using $\hat{\beta}_1 = S_{xy}/S_{xx} = 45/28 \approx 1.607$.
+
+</div>
+</details>
+
+---
+
+<!-- Q31 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 31</div>
+
+A regression model predicting monthly rent ($y$, \$/month) from apartment floor area ($x$, in hundreds of sq ft) was fitted using data from apartments with areas ranging from $x = 8$ to $x = 20$ (i.e., 800 to 2000 sq ft). The fitted equation is:
+
+$$\hat{y} = 800 + 40x$$
+
+Classify each of the following predictions as **interpolation** or **extrapolation**, and briefly explain.
+
+(a) Predicting rent for $x = 12$ (1200 sq ft).
+
+(b) Predicting rent for $x = 25$ (2500 sq ft).
+
+(c) Predicting rent for $x = 4$ (400 sq ft).
+
+(d) Predicting rent for $x = 18$ (1800 sq ft).
+
+(e) For which of (a)–(d) should the prediction be used most cautiously? Why?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Interpolation: the $x$-value used for prediction lies **within** the range of the training data $[8, 20]$.
+- Extrapolation: the $x$-value lies **outside** the range $[8, 20]$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $x = 12 \in [8, 20]$: **Interpolation**. The prediction is within the observed data range and can be trusted (assuming the linear model is appropriate).
+
+**(b)** $x = 25 > 20$: **Extrapolation**. This is beyond the largest observed apartment. The linear trend may not hold at such large areas.
+
+**(c)** $x = 4 < 8$: **Extrapolation**. This is below the smallest observed apartment. Very small units may follow a different pricing structure.
+
+**(d)** $x = 18 \in [8, 20]$: **Interpolation**.
+
+**(e)** The predictions in (b) and (c) should be used most cautiously because they involve extrapolation. Among these, (b) extends farthest beyond the observed range relative to the data ($x = 25$ is $25\%$ above the upper boundary), so prediction (b) carries the most risk of being inaccurate.
+
+</div>
+</details>
+
+---
+
+<!-- Q32 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 32</div>
+
+A survey of 40 university students measures the average daily hours spent on social media ($x$) and semester GPA ($y$). The sample correlation between $x$ and $y$ is $r = -0.60$.
+
+(a) Compute $R^2$ and provide a one-sentence interpretation.
+
+(b) What is the sign of $\hat{\beta}_1$? Explain how you know.
+
+(c) A classmate claims: "Since $r = -0.60$, the coefficient of determination $R^2 = -0.60$." Is this correct? Explain.
+
+(d) Another student says: "Because $r$ is negative, $R^2$ must also be negative." Is this correct?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $R^2 = r^2$; squaring always gives a non-negative result.
+- The sign of $\hat{\beta}_1$ equals the sign of $r$ (from $\hat{\beta}_1 = r\,s_y/s_x$ and $s_x, s_y > 0$).
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $R^2 = (-0.60)^2 = 0.36$. About 36% of the variation in GPA is explained by the linear relationship with daily social media use.
+
+**(b)** The sign of $\hat{\beta}_1$ is **negative** (same as $r = -0.60$), since $\hat{\beta}_1 = r\,(s_y/s_x)$ and $s_y/s_x > 0$.
+
+**(c)** Incorrect. $R^2 = r^2 = (-0.60)^2 = 0.36$, not $-0.60$. The coefficient of determination is always between 0 and 1.
+
+**(d)** Incorrect. $R^2 = r^2 \geq 0$ always, regardless of the sign of $r$. Squaring a negative number yields a positive number.
+
+</div>
+</details>
+
+---
+
+<!-- Q33 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 33</div>
+
+The following R code computes the least-squares estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ **without** using `lm()`, by applying the formula $\hat{\beta}_1 = r\,(s_y/s_x)$ directly. Fill in the four blanks (marked `___`) to complete the code.
+
+::: tcolorbox
+    speed    <- c(20, 40, 60, 80, 100)
+    distance <- c(45, 73, 98, 130, 158)
+
+    x_bar <- mean(speed)
+    y_bar <- mean(___)          # Blank 1
+
+    r  <- cor(speed, distance)
+    sx <- sd(___)               # Blank 2
+    sy <- sd(distance)
+
+    b1 <- ___ * (sy / sx)      # Blank 3
+    b0 <- y_bar - b1 * ___     # Blank 4
+
+    cat("Slope:", b1, "\nIntercept:", b0)
+:::
+
+After filling in the blanks, state the numerical values of `b1` and `b0` (rounded to two decimal places), and write the fitted regression equation.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Blank 1: the mean of the response variable.
+- Blank 2: the standard deviation of the predictor.
+- Blank 3: the correlation object computed in the line above.
+- Blank 4: the mean of the predictor (since $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$).
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**Completed code:**
+
+::: tcolorbox
+    speed    <- c(20, 40, 60, 80, 100)
+    distance <- c(45, 73, 98, 130, 158)
+
+    x_bar <- mean(speed)
+    y_bar <- mean(distance)     # Blank 1: distance
+
+    r  <- cor(speed, distance)
+    sx <- sd(speed)             # Blank 2: speed
+    sy <- sd(distance)
+
+    b1 <- r * (sy / sx)        # Blank 3: r
+    b0 <- y_bar - b1 * x_bar  # Blank 4: x_bar
+
+    cat("Slope:", b1, "\nIntercept:", b0)
+:::
+
+**Numerical results:** $\bar{x} = 60$, $\bar{y} = 100.8$, $s_x \approx 31.62$, $s_y \approx 44.77$, $r \approx 1.000$.
+
+$$\hat{\beta}_1 \approx 1.415, \qquad \hat{\beta}_0 \approx 100.8 - 1.415(60) \approx 15.9$$
+
+**Fitted equation:** $\hat{y} = 15.9 + 1.415\,x$ (slope $\approx 1.42$, intercept $\approx 15.9$).
+
+</div>
+</details>
+
+---
+
+<!-- Q34 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 34</div>
+
+Figure \@ref(fig:ch9q34outlier) shows a scatterplot of seven observations with the fitted regression line. The point labelled **P** is at $(4,\; 14)$.
+
+```{r ch9q34outlier, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Scatterplot with the fitted regression line. Point P is highlighted.", fig.width=5.5, fig.height=4.2}
+library(ggplot2)
+df34 <- data.frame(
+  x = c(1, 2, 3, 4, 5, 6, 7),
+  y = c(3.0, 5.0, 7.0, 14.0, 9.0, 11.0, 13.0)
+)
+m34 <- lm(y ~ x, data = df34)
+b0_34 <- coef(m34)[1]
+b1_34 <- coef(m34)[2]
+
+df34$isP <- df34$x == 4
+
+ggplot(df34, aes(x, y)) +
+  geom_abline(intercept = b0_34, slope = b1_34,
+              color = "#F8766D", linewidth = 1.2) +
+  geom_point(data = subset(df34, !isP), size = 3.5, color = "#619CFF") +
+  geom_point(data = subset(df34, isP),  size = 4.5, color = "#E68613", shape = 17) +
+  annotate("text", x = 4.25, y = 14.0, label = "P", size = 5, color = "#E68613") +
+  scale_x_continuous(breaks = 1:7) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 14)
+```
+
+(a) Is point P above or below the fitted regression line? Use this to determine the **sign** of the residual $e_P = y_P - \hat{y}_P$.
+
+(b) The fitted regression equation is $\hat{y} = 2.571 + 1.571x$. Compute the residual $e_P$ exactly.
+
+(c) If point P were instead at $(4,\; 8)$, would its residual be positive or negative?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Residual = observed $y$ $-$ fitted $\hat{y}$. Points above the line have positive residuals; points below have negative residuals.
+- Compute $\hat{y}$ at $x = 4$ using the given equation.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** Point P is **above** the fitted regression line, so the residual is **positive** ($e_P > 0$).
+
+**(b)** $\hat{y}_P = 2.571 + 1.571(4) = 2.571 + 6.284 = 8.855$
+
+$$e_P = 14.0 - 8.855 = 5.145$$
+
+**(c)** At $(4,\; 8)$: $\hat{y} = 8.855$, so residual $= 8 - 8.855 = -0.855 < 0$. The residual would be **negative** because the point is below the fitted line.
+
+</div>
+</details>
+
+---
+
+<!-- Q35 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 35</div>
+
+For each of the following scenarios, state whether the slope $\hat{\beta}_1$ of a fitted simple linear regression should be **positive** or **negative**. Also state whether the intercept $\hat{\beta}_0$ has a meaningful practical interpretation in context. Briefly justify each answer.
+
+(a) Response $y$ = number of words recalled in a memory test; predictor $x$ = age (years) among participants aged 65–85.
+
+(b) Response $y$ = fuel efficiency (km per litre); predictor $x$ = engine displacement (litres) for passenger vehicles.
+
+(c) Response $y$ = seedling height (cm) measured at 4 weeks; predictor $x$ = amount of fertiliser applied at planting (grams per pot).
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The sign of the slope reflects the direction of the relationship: does $y$ tend to increase or decrease as $x$ increases?
+- The intercept is interpretable when $x = 0$ is a realistic value within or near the data range.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a) Negative slope.** Cognitive recall tends to decline with increasing age in elderly participants. The intercept at $x = 0$ (age = 0 years) has no practical meaning — no participant is aged 0.
+
+**(b) Negative slope.** Larger engines consume more fuel, resulting in lower fuel efficiency. The intercept at $x = 0$ litres of engine displacement is not physically meaningful (there is no car with zero engine size).
+
+**(c) Positive slope.** Up to a point, more fertiliser promotes plant growth, so height tends to increase with fertiliser amount. The intercept at $x = 0$ grams (no fertiliser) is practically meaningful — it represents the predicted seedling height when no fertiliser is applied, which is a realistic condition.
+
+</div>
+</details>
+
+---
+
+<!-- Q36 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 36</div>
+
+A simple linear regression model is fitted to $n = 27$ observations and produces the following:
+
+$$\text{SST} = 3600, \qquad \text{SSR} = 2880$$
+
+(a) Find SSE.
+
+(b) Compute $R^2$ and interpret it.
+
+(c) Compute the estimated error variance $\hat{\sigma}^2 = s^2$.
+
+(d) Compute the regression standard error $\hat{\sigma} = s$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\text{SST} = \text{SSR} + \text{SSE}$
+- $R^2 = \text{SSR}/\text{SST}$
+- $s^2 = \text{SSE}/(n - 2)$ with degrees of freedom $n - 2 = 25$
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\text{SSE} = \text{SST} - \text{SSR} = 3600 - 2880 = 720$
+
+**(b)** $R^2 = 2880/3600 = 0.80$. About 80% of the variation in $y$ is explained by the linear regression on $x$.
+
+**(c)** $s^2 = \text{SSE}/(n - 2) = 720/25 = 28.8$
+
+**(d)** $s = \sqrt{28.8} \approx 5.37$
+
+</div>
+</details>
+
+---
+
+<!-- Q37 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 37</div>
+
+Figure \@ref(fig:ch9q37extrap) was produced from a dataset in which daily high temperature ($x$, °C) was recorded along with the number of visitors to an outdoor swimming pool ($y$). The vertical dashed lines mark the range of $x$ values in the training data ($x = 15$ to $x = 35$). The fitted regression line is extended beyond this range. Points **A** and **B** show two predictions made using the fitted line.
+
+```{r ch9q37extrap, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Fitted regression line extended beyond the observed data range. Vertical dashed lines indicate the range of the training data.", fig.width=6, fig.height=4.2}
+library(ggplot2)
+set.seed(37)
+x37 <- c(15, 18, 20, 22, 25, 27, 30, 32, 35)
+y37 <- -80 + 12 * x37 + rnorm(9, 0, 15)
+m37 <- lm(y37 ~ x37)
+b0_37 <- coef(m37)[1]
+b1_37 <- coef(m37)[2]
+
+pred_A <- b0_37 + b1_37 * 25   # inside range
+pred_B <- b0_37 + b1_37 * 45   # outside range
+
+df37 <- data.frame(x = x37, y = y37)
+
+ggplot(df37, aes(x, y)) +
+  geom_rect(aes(xmin = 15, xmax = 35, ymin = -Inf, ymax = Inf),
+            fill = "#619CFF", alpha = 0.06, inherit.aes = FALSE) +
+  geom_vline(xintercept = c(15, 35), linetype = "dashed", color = "#555555", linewidth = 0.7) +
+  geom_abline(intercept = b0_37, slope = b1_37,
+              color = "#F8766D", linewidth = 1.2) +
+  geom_point(size = 3.2, color = "#619CFF") +
+  annotate("point", x = 25, y = pred_A, shape = 17, size = 4.5, color = "#E68613") +
+  annotate("text",  x = 25, y = pred_A + 18, label = "A", size = 5, color = "#E68613") +
+  annotate("point", x = 45, y = pred_B, shape = 17, size = 4.5, color = "#00BFC4") +
+  annotate("text",  x = 45, y = pred_B + 18, label = "B", size = 5, color = "#00BFC4") +
+  scale_x_continuous(breaks = seq(10, 50, 5), limits = c(10, 52)) +
+  labs(x = "Daily High Temperature (°C)", y = "Pool Visitors") +
+  theme_minimal(base_size = 14)
+```
+
+(a) Is the prediction at Point A (at $x = 25$) interpolation or extrapolation?
+
+(b) Is the prediction at Point B (at $x = 45$) interpolation or extrapolation?
+
+(c) Which prediction — A or B — should be treated with greater caution, and why?
+
+(d) A manager uses Point B's predicted value to plan weekend staffing for a heat-wave day forecast at 45°C. Identify one specific risk in relying on this prediction.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Compare the $x$-values of A and B against the shaded data range shown by the dashed lines.
+- Extrapolation assumes the linear trend continues outside the data range — this may not hold.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** Point A at $x = 25$: **Interpolation** — 25°C is within the observed data range $[15, 35]$ (inside the shaded region).
+
+**(b)** Point B at $x = 45$: **Extrapolation** — 45°C is well outside the upper boundary of the training data.
+
+**(c)** Point B should be treated with greater caution. Extrapolation assumes the linear relationship continues unchanged beyond the data range, which may not be true. There may be capacity limits (e.g., maximum pool capacity), nonlinear behaviour, or other factors that cause the actual visitor count at 45°C to deviate substantially from the linear prediction.
+
+**(d)** One risk: at extreme temperatures (45°C), heat-safety advisories might actually reduce visitor numbers, or the pool may have a fixed maximum capacity. The linear model has no information about the response at 45°C, so the prediction could be severely inaccurate — leading to overstaffing or understaffing.
+
+</div>
+</details>
+
+---
+
+<!-- Q38 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 38</div>
+
+A developmental psychologist studying children aged 4–12 finds a strong positive correlation between shoe size ($x$) and reading vocabulary ($y$): $r = 0.81$, p-value $< 0.001$. The fitted regression line is:
+
+$$\hat{y} = 12 + 18x$$
+
+After seeing this output, a colleague concludes:
+
+*"Since the p-value is less than 0.001, we have overwhelming evidence that wearing larger shoes causes children to develop larger reading vocabularies. Parents should buy children shoes one size larger than needed to boost reading skills."*
+
+(a) Identify **two** specific problems or errors in this conclusion.
+
+(b) What is the most likely explanation for the strong association between shoe size and vocabulary?
+
+(c) Suppose the researcher controlled for age by comparing children of the **same age**. What would you expect to happen to the correlation between shoe size and vocabulary?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- A statistically significant result means we can reject $H_0: \beta_1 = 0$, but it does **not** establish causation.
+- Think about what changes as children age from 4 to 12 years.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a) Two problems:**
+
+1. **Correlation does not imply causation.** A significant p-value only means the slope is unlikely to be zero — it does not mean shoe size *causes* vocabulary growth. The regression describes an association, not a mechanism.
+
+2. **The conclusion proposes a nonsensical intervention.** Even if the association were causal, the practical advice ("buy larger shoes") does not follow from the regression, which merely describes an observational relationship.
+
+**(b)** **Age** is a confounding variable. Both shoe size and reading vocabulary increase as children grow older. Older children have larger feet *and* larger vocabularies — but neither causes the other. The observed correlation reflects their shared dependence on age (and developmental maturity), not a direct link.
+
+**(c)** After controlling for age (i.e., comparing children of the same age), the correlation between shoe size and vocabulary would be expected to **decrease substantially**, likely approaching zero. Once age is held constant, both shoe size and vocabulary vary much less and are no longer systematically related to each other.
+
+</div>
+</details>
+
+---
+
+<!-- Q39 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 39</div>
+
+A home energy analyst records the outdoor temperature ($x$, °C) and daily gas consumption ($y$, units) for a residential heating system over 5 winter days:
+
+| Day | Temperature ($x$) | Gas ($y$) |
+|:---:|:-----------------:|:---------:|
+|  1  |         1         |    20     |
+|  2  |         2         |    16     |
+|  3  |         3         |    13     |
+|  4  |         4         |     9     |
+|  5  |         5         |     7     |
+
+(a) Compute $\bar{x}$, $\bar{y}$, $S_{xx}$, and $S_{xy}$. Find $\hat{\beta}_1$ and $\hat{\beta}_0$, and write the fitted regression equation.
+
+(b) Interpret $\hat{\beta}_1$ in the context of home energy use.
+
+(c) Compute the residual for Day 3.
+
+(d) Compute SSE and $\hat{\sigma}^2$.
+
+(e) Predict the daily gas consumption on a day when the outdoor temperature is $6$°C. Is this prediction an example of interpolation or extrapolation?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $S_{xx} = \sum(x_i - \bar{x})^2$, $S_{xy} = \sum(x_i - \bar{x})(y_i - \bar{y})$
+- $\hat{\sigma}^2 = \text{SSE}/(n - 2)$; note $n = 5$, so $n - 2 = 3$.
+- Compare $x = 6$ against the observed range $[1, 5]$ to classify the prediction.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\bar{x} = 3$, $\bar{y} = 13$
+
+$$S_{xx} = (-2)^2+(-1)^2+0^2+1^2+2^2 = 10$$
+$$S_{xy} = (-2)(7)+(-1)(3)+(0)(0)+(1)(-4)+(2)(-6) = -14-3+0-4-12 = -33$$
+$$\hat{\beta}_1 = -33/10 = -3.3, \qquad \hat{\beta}_0 = 13-(-3.3)(3) = 22.9$$
+
+Fitted equation: $\hat{y} = 22.9 - 3.3x$
+
+**(b)** For each 1°C increase in outdoor temperature, the predicted daily gas consumption decreases by 3.3 units on average. On warmer days, the heating system uses less gas.
+
+**(c)** Day 3: $\hat{y} = 22.9 - 3.3(3) = 13.0$; residual $= 13 - 13.0 = 0$.
+
+**(d)** Computing all residuals:
+
+| Day | $y$ | $\hat{y}$ | $e_i$ | $e_i^2$ |
+|:---:|:---:|:---------:|:-----:|:-------:|
+| 1 | 20 | 19.6 | 0.4 | 0.16 |
+| 2 | 16 | 16.3 | −0.3 | 0.09 |
+| 3 | 13 | 13.0 | 0 | 0.00 |
+| 4 | 9 | 9.7 | −0.7 | 0.49 |
+| 5 | 7 | 6.4 | 0.6 | 0.36 |
+
+$\text{SSE} = 0.16+0.09+0+0.49+0.36 = 1.10$
+
+$\hat{\sigma}^2 = 1.10/3 \approx 0.367$
+
+**(e)** $\hat{y} = 22.9 - 3.3(6) = 3.1$ units. Since $x = 6$ lies outside the observed range $[1, 5]$, this is **extrapolation** and should be used with caution.
+
+</div>
+</details>
+
+---
+
+<!-- Q40 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 40</div>
+
+Figure \@ref(fig:ch9q40scatter) shows a scatterplot with the fitted regression line $\hat{y} = 3 + 2x$ annotated on the plot. Four data points are labelled A, B, C, and D. Their coordinates are:
+
+- **A** = $(2,\; 10)$
+- **B** = $(4,\; 6)$
+- **C** = $(5,\; 13)$
+- **D** = $(7,\; 17)$
+
+```{r ch9q40scatter, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Scatterplot with the fitted regression line $\\hat{y} = 3 + 2x$. Four labelled points are shown.", fig.width=5.5, fig.height=4.2}
+library(ggplot2)
+
+pts <- data.frame(
+  x     = c(2,   4,   5,   7  ),
+  y     = c(10,  6,   13,  17 ),
+  label = c("A", "B", "C", "D")
+)
+
+bg <- data.frame(
+  x = c(1, 3, 6, 8),
+  y = c(5, 9, 15, 19)
+)
+
+ggplot() +
+  geom_point(data = bg, aes(x, y), size = 3, color = "#619CFF") +
+  geom_abline(intercept = 3, slope = 2, color = "#F8766D", linewidth = 1.2) +
+  geom_point(data = pts, aes(x, y), size = 4, color = "#619CFF") +
+  geom_text(data = pts, aes(x, y, label = label),
+            nudge_y = 0.9, size = 5, color = "#000000") +
+  annotate("text", x = 6.5, y = 10,
+           label = "hat(y) == 3 + 2*x",
+           parse = TRUE, color = "#F8766D", size = 4.5) +
+  scale_x_continuous(breaks = 1:8, limits = c(0.5, 9)) +
+  scale_y_continuous(breaks = seq(0, 22, 4), limits = c(2, 22)) +
+  labs(x = "x", y = "y") +
+  theme_minimal(base_size = 14)
+```
+
+(a) For each of the four labelled points A–D, compute the fitted value $\hat{y}$ and the residual $e = y - \hat{y}$.
+
+(b) State the sign (positive, negative, or zero) of the residual for each point, and confirm by looking at whether the point lies above, below, or on the line.
+
+(c) Which point contributes the most to SSE? Compute its contribution $e^2$.
+
+(d) Point A currently lies at $(2,\; 10)$. To what $y$-value would A need to be moved so that its residual equals exactly zero?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Fitted value: $\hat{y} = 3 + 2x$.
+- Residual $e = y - \hat{y}$: positive if the point is above the line, negative if below, zero if on the line.
+- To make the residual zero, the observed $y$ must equal the fitted $\hat{y}$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** Using $\hat{y} = 3 + 2x$:
+
+| Point | $x$ | $y$ | $\hat{y}$ | $e = y - \hat{y}$ |
+|:-----:|:---:|:---:|:---------:|:-----------------:|
+| A | 2 | 10 | $3+4=7$ | $+3$ |
+| B | 4 | 6 | $3+8=11$ | $-5$ |
+| C | 5 | 13 | $3+10=13$ | $0$ |
+| D | 7 | 17 | $3+14=17$ | $0$ |
+
+**(b)**
+
+- A: residual $= +3$ (positive — A is **above** the line).
+- B: residual $= -5$ (negative — B is well **below** the line).
+- C: residual $= 0$ (zero — C lies **on** the line).
+- D: residual $= 0$ (zero — D lies **on** the line).
+
+**(c)** Point B contributes the most to SSE: $e_B^2 = (-5)^2 = 25$.
+
+**(d)** For A's residual to be zero, we need $y_A = \hat{y}_A = 3 + 2(2) = 7$. Point A would need to be moved down to $(2,\; 7)$.
+
+</div>
+</details>
