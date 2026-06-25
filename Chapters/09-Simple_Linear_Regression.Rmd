@@ -2625,10 +2625,8 @@ Use R to fit the regression, report the full `summary()`, and test whether tempe
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
-<textarea class="webr-editor" rows="6">data(airquality)
-# Remove rows with missing Ozone values
-aq <- na.omit(airquality[, c("Ozone", "Temp")])
-model <- lm(___ ~ ___, data = aq)
+<textarea class="webr-editor" rows="5">data(airquality)
+model <- lm(___ ~ ___, data = airquality)
 summary(model)
 </textarea>
 <div class="webr-controls">
@@ -2932,12 +2930,8 @@ Use R to fit a regression of `Ozone` on `Solar.R` in the `airquality` dataset (r
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
-<textarea class="webr-editor" rows="9">data(airquality)
-# Remove rows with missing Ozone or Solar.R
-aq <- na.omit(airquality[, c("Ozone", "Solar.R")])
-
-# Fit the model
-model <- lm(___ ~ ___, data = aq)
+<textarea class="webr-editor" rows="8">data(airquality)
+model <- lm(___ ~ ___, data = airquality)
 summary(model)
 confint(___)
 
