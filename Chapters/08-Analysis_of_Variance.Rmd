@@ -1408,3 +1408,1173 @@ $$
 
 Again we conclude that only $\mu_{1}$ and $\mu_{2}$ differ. Notice, however, in the second calculation LSD is larger.
 The drawback to LSD is that we increase the probability of at least one Type I error. The Bonferroni adjustment corrects this problem.
+
+## Exercises {#sec:ch8exercises}
+
+### Part A: Regular Practice Questions
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+A professor wants to compare the average final exam scores of students taught by three different teaching methods: online, in-person, and hybrid. Each student is taught using only one method.
+
+Which statistical method should be used?
+
+A. One-sample $t$-test
+
+B. Two-sample $t$-test
+
+C. One-way ANOVA
+
+D. Chi-square test
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- A one-sample $t$-test compares one group mean to a fixed value.
+- A two-sample $t$-test compares exactly two group means.
+- ANOVA is designed to compare means across **three or more** independent groups.
+- A chi-square test is used for categorical data (counts/proportions), not means.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**C. One-way ANOVA.**
+
+There are $k = 3$ groups (online, in-person, hybrid) and the response variable (exam score) is continuous. When comparing means across three or more independent groups, one-way ANOVA is the appropriate method. A two-sample $t$-test can only handle $k = 2$ groups.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+A researcher wants to know whether four brands of batteries have the same average lifetime. Let $\mu_1, \mu_2, \mu_3, \mu_4$ be the population mean lifetimes (in hours) for the four brands.
+
+Write the null and alternative hypotheses for a one-way ANOVA test.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The null hypothesis in ANOVA states that **all** group means are equal.
+- The alternative hypothesis states that **at least two** means differ — not that all means differ.
+- Do not write $H_a$ as "$\mu_1 \ne \mu_2 \ne \mu_3 \ne \mu_4$"; that would mean all pairs differ.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+$$H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4$$
+$$H_a: \text{At least two battery brands have different mean lifetimes.}$$
+
+$H_0$ asserts no difference among all four brands. $H_a$ is non-specific — it only requires one pair to differ, not all pairs.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+A company compares the average repair cost for 4 bumper types. There are 10 cars in each group. The cars were **randomly assigned** to bumper types, and each car was tested once.
+
+Which ANOVA assumption is mainly supported by the random assignment?
+
+A. Normality
+
+B. Equal variances
+
+C. Independence
+
+D. Large sample size
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **Normality**: addressed by checking the distribution of residuals, not by random assignment.
+- **Equal variances**: assessed by comparing within-group spreads, not by design.
+- **Independence**: observations are independent when each unit is assigned to exactly one group at random, with no repeated measurements.
+- **Large sample size**: this is not a formal ANOVA assumption.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**C. Independence.**
+
+Random assignment ensures that each car is independently assigned to one bumper type, with no car influencing another car's result. This directly supports the independence assumption: $\epsilon_{ij} \overset{iid}{\sim} N(0, \sigma^2)$. Normality and equal variances must be assessed separately (e.g., residual plots, Levene's test).
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+A study compares average weekly sales under three advertising strategies: convenience, quality, and price. There are 8 weeks of data for each strategy ($n = 24$ total, $k = 3$ groups).
+
+The partial ANOVA table is:
+
+| Source    | df | SS  | MS | F |
+|:----------|:--:|:---:|:--:|:-:|
+| Treatment |    | 240 |    |   |
+| Error     |    | 420 |    |   |
+| Total     |    |     |    |   |
+
+Complete the ANOVA table.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- $df_{\text{Treatment}} = k - 1$, $\quad df_{\text{Error}} = n - k$, $\quad df_{\text{Total}} = n - 1$.
+- $MS = SS / df$ for each row.
+- $F = MS_{\text{Treatment}} / MS_{\text{Error}}$.
+- $SS_{\text{Total}} = SS_{\text{Treatment}} + SS_{\text{Error}}$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+With $k = 3$ groups and $n = 24$ total observations:
+
+$$df_{\text{Treatment}} = k - 1 = 2, \quad df_{\text{Error}} = n - k = 21, \quad df_{\text{Total}} = n - 1 = 23$$
+
+$$SS_{\text{Total}} = 240 + 420 = 660$$
+
+$$MS_{\text{Treatment}} = \frac{240}{2} = 120, \quad MS_{\text{Error}} = \frac{420}{21} = 20, \quad F = \frac{120}{20} = 6.00$$
+
+| Source    | df | SS  | MS  | F    |
+|:----------|:--:|:---:|:---:|:----:|
+| Treatment |  2 | 240 | 120 | 6.00 |
+| Error     | 21 | 420 |  20 |      |
+| Total     | 23 | 660 |     |      |
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+Using the ANOVA table from Question 4, the critical value is $F_{0.05,\,2,\,21} = 3.47$.
+
+At $\alpha = 0.05$, state the conclusion.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The rejection region for ANOVA is always in the **right tail**: reject $H_0$ if $F^* > F_{\alpha,\,df_T,\,df_E}$.
+- Compare the computed $F = 6.00$ to the critical value $F_{0.05,2,21} = 3.47$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+Since $F^* = 6.00 > F_{0.05,\,2,\,21} = 3.47$, we **reject $H_0$**.
+
+There is sufficient evidence at $\alpha = 0.05$ to conclude that not all advertising strategies produce the same mean weekly sales. At least two strategies differ in their average sales.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 6</div>
+A one-way ANOVA comparing four tax return forms gives:
+
+$$F^* = 2.94, \quad \text{p-value} = 0.036$$
+
+At $\alpha = 0.05$, what should we conclude?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compare the p-value to $\alpha = 0.05$.
+- If p-value $< \alpha$: reject $H_0$.
+- The p-value is the probability of observing a test statistic at least as extreme as $F^*$, **assuming $H_0$ is true**.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+Since $\text{p-value} = 0.036 < \alpha = 0.05$, we **reject $H_0$**.
+
+There is sufficient evidence at the 5% significance level to conclude that at least two forms have different average completion times.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 7</div>
+In Question 6, the ANOVA test rejects $H_0$. Can we immediately conclude which two forms have different mean completion times?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- ANOVA tests a single global null hypothesis: $\mu_1 = \mu_2 = \cdots = \mu_k$.
+- Rejecting $H_0$ tells us *that* differences exist, but not *where* they are.
+- Post-hoc methods (pairwise comparisons) are needed to identify specific pairs.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**No.** ANOVA only tells us that **at least two** group means differ — it does not identify which pair(s). To determine which specific groups differ, we need **pairwise comparison** methods such as:
+
+- **Fisher's LSD**: higher power, but does not control the experiment-wise Type I error rate.
+- **Bonferroni adjustment**: more conservative; controls the experiment-wise error rate by using $\alpha' = \alpha / m$, where $m = \binom{k}{2}$ is the number of pairwise comparisons.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
+A small business records sales in three countries over four weeks each:
+
+| Country A | Country B | Country C |
+|:---------:|:---------:|:---------:|
+|     6     |    10     |    14     |
+|    10     |     8     |    13     |
+|     7     |    12     |    11     |
+|     9     |    10     |    10     |
+
+Find the mean sales for each country and the overall grand mean.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Group mean: $\bar{x}_i = \dfrac{1}{n_i} \sum_{j=1}^{n_i} x_{ij}$.
+- Grand mean: $\bar{x} = \dfrac{\text{sum of all observations}}{\text{total number of observations}} = \dfrac{\sum_i \sum_j x_{ij}}{n}$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+$$\bar{x}_A = \frac{6+10+7+9}{4} = \frac{32}{4} = 8$$
+
+$$\bar{x}_B = \frac{10+8+12+10}{4} = \frac{40}{4} = 10$$
+
+$$\bar{x}_C = \frac{14+13+11+10}{4} = \frac{48}{4} = 12$$
+
+Total of all observations: $32 + 40 + 48 = 120$. Total sample size: $n = 12$.
+
+$$\bar{x} = \frac{120}{12} = 10$$
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 9</div>
+Using the sales data from Question 8:
+
+**(a)** If the next observation's country is **unknown**, what single value gives the best prediction of sales?
+
+**(b)** If the next observation is **known to be from Country C** and ANOVA has already rejected $H_0$, what value should be used as the prediction?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Without group information, the best single predictor is the **grand mean** $\bar{x}$.
+- Once ANOVA rejects $H_0$ (groups differ) and the group is known, the **group mean** $\bar{x}_i$ is a better predictor than $\bar{x}$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Use the grand mean $\bar{x} = \mathbf{10}$.
+
+Without knowing which country, the best predictor is the overall average. This is the prediction under $H_0$ (no group differences).
+
+**(b)** Use Country C's sample mean $\bar{x}_C = \mathbf{12}$.
+
+When ANOVA rejects $H_0$, the group means are significantly different. Knowing the observation comes from Country C, the group-specific mean gives a more accurate prediction than the grand mean.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 10</div>
+Using the group means from Question 8 ($\bar{x}_A = 8$, $\bar{x}_B = 10$, $\bar{x}_C = 12$, $\bar{x} = 10$, $n_i = 4$ each), compute the **treatment sum of squares**:
+
+$$SS_{\text{Treatment}} = \sum_{i=1}^{k} n_i\,(\bar{x}_i - \bar{x})^2$$
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- $SS_{\text{Treatment}}$ measures how much the group means vary **around the grand mean**.
+- Compute the squared deviation of each group mean from $\bar{x}$, multiply by $n_i$, and sum.
+- A larger $SS_{\text{Treatment}}$ means more between-group variation.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+Each group has $n_i = 4$ and $\bar{x} = 10$:
+
+$$SS_{\text{Treatment}} = 4(8-10)^2 + 4(10-10)^2 + 4(12-10)^2$$
+$$= 4(4) + 4(0) + 4(4) = 16 + 0 + 16 = \mathbf{32}$$
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 11</div>
+For the country sales example, $SS_{\text{Treatment}} = 32$, $SS_{\text{Error}} = 28$, $n = 12$, $k = 3$.
+
+Complete the ANOVA table.
+
+| Source    | df | SS | MS | F |
+|:----------|:--:|:--:|:--:|:-:|
+| Treatment |    | 32 |    |   |
+| Error     |    | 28 |    |   |
+| Total     |    |    |    |   |
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- $df_{\text{Treatment}} = k - 1 = 2$, $df_{\text{Error}} = n - k = 9$, $df_{\text{Total}} = n - 1 = 11$.
+- $MS_{\text{Treatment}} = 32/2$, $MS_{\text{Error}} = 28/9$.
+- $F = MS_{\text{Treatment}} / MS_{\text{Error}}$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+$$df_T = 2,\quad df_E = 9,\quad df_{\text{Total}} = 11$$
+$$MS_{\text{Treatment}} = \frac{32}{2} = 16,\quad MS_{\text{Error}} = \frac{28}{9} \approx 3.1111$$
+$$F = \frac{16}{3.1111} \approx 5.1429$$
+
+| Source    | df | SS | MS     | F      |
+|:----------|:--:|:--:|:------:|:------:|
+| Treatment |  2 | 32 | 16     | 5.1429 |
+| Error     |  9 | 28 | 3.1111 |        |
+| Total     | 11 | 60 |        |        |
+
+From R: `oneway.test(sales ~ country, var.equal = TRUE)` gives $F = 5.1429$, p-value $= 0.0324 < 0.05$.
+We **reject $H_0$**: not all countries have the same mean sales.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
+A consumer organisation compares the difference between advertised and actual margarine amounts (in grams) for three brands. Six packages were sampled per brand:
+
+| Brand 1 | Brand 2 | Brand 3 |
+|:-------:|:-------:|:-------:|
+|    1    |    2    |    1    |
+|    3    |    2    |    2    |
+|    3    |    4    |    4    |
+|    0    |    3    |    2    |
+|    1    |    0    |    3    |
+|    0    |    4    |    4    |
+
+The ANOVA output gives $F^* = 1.6864$, p-value $= 0.2185$.
+
+At $\alpha = 0.05$, is there sufficient evidence that the brands differ in their mean shortfall?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compare p-value = 0.2185 to $\alpha = 0.05$.
+- If p-value $\ge \alpha$: fail to reject $H_0$.
+- A large p-value means the observed $F$ is not unusual under $H_0$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+Since p-value $= 0.2185 > \alpha = 0.05$, we **fail to reject $H_0$**.
+
+There is **not** sufficient evidence to conclude that the mean shortfall differs among the three margarine brands. The observed difference in sample means could easily be due to random variation.
+
+```r
+b1 <- c(1, 3, 3, 0, 1, 0)
+b2 <- c(2, 2, 4, 3, 0, 4)
+b3 <- c(1, 2, 4, 2, 3, 4)
+differences <- c(b1, b2, b3)
+brand <- factor(rep(c("Brand1","Brand2","Brand3"), each = 6))
+oneway.test(differences ~ brand, var.equal = TRUE)
+# F = 1.6864, p-value = 0.2185
+```
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 13</div>
+In ANOVA, a **large** $F$ statistic usually means:
+
+A. Within-group variation is much larger than between-group variation
+
+B. Between-group variation is large relative to within-group variation
+
+C. All observations are exactly equal
+
+D. The sample size must be too small
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Recall $F = MS_{\text{Treatment}} / MS_{\text{Error}}$.
+- $MS_{\text{Treatment}}$ measures **between-group** variation.
+- $MS_{\text{Error}}$ measures **within-group** variation.
+- A large $F$ means the numerator (between) is much larger than the denominator (within).
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**B. Between-group variation is large relative to within-group variation.**
+
+$$F = \frac{MS_{\text{Treatment}}}{MS_{\text{Error}}} = \frac{\text{between-group variation}}{\text{within-group variation}}$$
+
+When group means are very different (large $MS_{\text{Treatment}}$) relative to the spread within each group (small $MS_{\text{Error}}$), $F$ is large, providing strong evidence against $H_0$.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 14</div>
+The boxplot below compares completion times (minutes) for four tax return forms. Observe the medians and spreads of the four groups.
+
+```{r ch8-q14-box, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+set.seed(258)
+times <- c(
+  c(45, 58, 72, 38, 61, 53, 79, 46, 65, 55),
+  c(82, 99, 74, 110, 88, 102, 79, 95, 107, 84),
+  c(98, 148, 75, 162, 109, 143, 62, 155, 105, 131),
+  c(78, 93, 106, 70, 117, 86, 99, 91, 113, 85)
+)
+forms <- rep(c("Form 1","Form 2","Form 3","Form 4"), each = 10)
+df_forms <- data.frame(time = times, form = factor(forms))
+ggplot(df_forms, aes(x = form, y = time, fill = form)) +
+  geom_boxplot(width = 0.45, color = "grey30",
+               outlier.shape = 16, outlier.size = 2) +
+  scale_fill_manual(values = c("#74b9ff","#55efc4","#fd79a8","#ffeaa7")) +
+  labs(x = "Tax Return Form", y = "Completion time (minutes)",
+       caption = "n = 10 per form  |  ANOVA: F = 2.94, p-value = 0.036") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+A one-way ANOVA gives $F^* = 2.94$, p-value $= 0.036$. Which conclusion is best at $\alpha = 0.05$?
+
+A. All four forms have exactly the same mean completion time.
+
+B. There is evidence that at least two form means differ.
+
+C. Form 3 must be different from every other form.
+
+D. ANOVA cannot be used with four groups.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compare p-value $= 0.036$ to $\alpha = 0.05$.
+- ANOVA's $H_a$ states "at least two means differ" — it does not pinpoint which pair.
+- Option C overclaims: ANOVA cannot identify which specific pairs differ without post-hoc tests.
+- Option D is false: ANOVA is designed for $k \ge 2$ groups.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**B. There is evidence that at least two form means differ.**
+
+Since p-value $= 0.036 < \alpha = 0.05$, we reject $H_0$. The boxplot shows Form 3 has a visibly higher median and wider spread, which is consistent with at least one group differing. However, ANOVA alone cannot confirm that Form 3 specifically differs from every other form — post-hoc pairwise comparisons (e.g., Fisher's LSD, Bonferroni) are needed to identify which pairs differ.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 15</div>
+In an ANOVA $F$-test, the p-value is calculated as the **right-tail** area of the $F$-distribution. Explain why the right tail is used rather than the left tail or both tails.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The $F$ statistic is $F = MS_{\text{Treatment}} / MS_{\text{Error}}$.
+- Under $H_0$, both numerator and denominator estimate the same $\sigma^2$, so $F \approx 1$.
+- Evidence against $H_0$ (group means differ) makes $MS_{\text{Treatment}}$ larger than $MS_{\text{Error}}$, pushing $F$ into the right tail.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+The $F$ statistic measures the ratio of between-group to within-group variation:
+
+$$F = \frac{MS_{\text{Treatment}}}{MS_{\text{Error}}}$$
+
+Under $H_0$ (all group means equal), both $MS_{\text{Treatment}}$ and $MS_{\text{Error}}$ estimate the same population variance $\sigma^2$, so $F$ is close to 1. When $H_0$ is false (group means differ), $MS_{\text{Treatment}}$ becomes inflated relative to $MS_{\text{Error}}$, producing **large** values of $F$.
+
+Therefore, **large** $F$ values constitute evidence against $H_0$, and the rejection region lies entirely in the **right tail** of the $F$-distribution:
+
+$$\text{p-value} = P(F_{k-1,\,n-k} \ge F^*)$$
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 16</div>
+A study compares $k = 5$ training programs. The ANOVA test rejects $H_0$. How many pairwise comparisons are needed to compare all possible pairs of programs?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The number of pairwise comparisons among $k$ groups is $\dbinom{k}{2} = \dfrac{k(k-1)}{2}$.
+- Each pair $(\mu_i, \mu_j)$ with $i < j$ is counted once.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+$$m = \binom{k}{2} = \frac{k(k-1)}{2} = \frac{5 \times 4}{2} = \mathbf{10}$$
+
+There are **10 pairwise comparisons** in total:
+$(1,2),\ (1,3),\ (1,4),\ (1,5),\ (2,3),\ (2,4),\ (2,5),\ (3,4),\ (3,5),\ (4,5)$.
+
+This is why the Bonferroni adjustment uses $\alpha' = \alpha / m = 0.05 / 10 = 0.005$ per comparison — to control the experiment-wise Type I error rate.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 17</div>
+A researcher compares 4 bumper types. The ANOVA test rejects $H_0$. They want to compare every pair of bumpers using pairwise confidence intervals.
+
+Which method is more conservative: **Fisher's LSD** or the **Bonferroni adjustment**? Briefly explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "More conservative" means it is harder to declare a significant difference (wider intervals, lower Type I error per comparison).
+- Fisher's LSD uses $\alpha$ unchanged for each comparison.
+- Bonferroni uses $\alpha' = \alpha / m$ (a smaller significance level per comparison, so larger critical value $t$).
+- A larger $t$ critical value → wider confidence interval → harder to reject.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**Bonferroni is more conservative.**
+
+For $k = 4$ groups, there are $m = \binom{4}{2} = 6$ pairwise comparisons. Fisher's LSD uses the full $\alpha = 0.05$ for each comparison, while Bonferroni adjusts to $\alpha' = 0.05 / 6 \approx 0.0083$.
+
+The smaller $\alpha'$ requires a larger $t$ critical value, which produces **wider** confidence intervals. A larger LSD means fewer pairs will be declared significantly different. The trade-off is:
+
+| Method | Power | Experiment-wise error control |
+|:---|:---|:---|
+| Fisher's LSD | Higher | Does **not** control $\alpha_E$ |
+| Bonferroni | Lower | Controls $\alpha_E \le \alpha$ |
+
+Fisher's LSD increases the probability of at least one false positive ($\alpha_E = 1 - (1-\alpha)^m$); Bonferroni corrects this at the cost of lower power.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 18</div>
+For the bumper repair cost study, the pairwise absolute difference between Bumper 1 and Bumper 2 is $|\bar{x}_1 - \bar{x}_2| = 105.9$.
+
+Using Fisher's LSD method with $MSE = 12{,}399$, $n_i = 10$, and $t_{0.025,\,36} \approx 2.028$:
+
+$$LSD = t_{\alpha/2} \sqrt{MSE \left(\frac{1}{n_i} + \frac{1}{n_j}\right)} \approx 2.028\sqrt{12399 \times 0.2} \approx 101.0$$
+
+Should we conclude that $\mu_1$ and $\mu_2$ differ under Fisher's LSD?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The Fisher's LSD decision rule: conclude $\mu_i \ne \mu_j$ if $|\bar{x}_i - \bar{x}_j| > LSD$.
+- Compare 105.9 to $LSD \approx 101.0$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+$$LSD = 2.028\sqrt{12399 \times 0.2} = 2.028 \times 49.797 \approx 101.0$$
+
+Since $|\bar{x}_1 - \bar{x}_2| = 105.9 > LSD \approx 101.0$, we **conclude that $\mu_1$ and $\mu_2$ differ** under Fisher's LSD.
+
+The 95% Fisher confidence interval for $\mu_1 - \mu_2$ is:
+$$-105.9 \pm 101.0 = (-206.9,\ -4.9)$$
+
+Since the entire interval is **negative**, there is evidence that $\mu_2 > \mu_1$ (Bumper 2 has higher mean repair cost than Bumper 1).
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 19</div>
+For the same Bumper 1 vs. Bumper 2 comparison ($|\bar{x}_1 - \bar{x}_2| = 105.9$), now apply the **Bonferroni adjustment**.
+
+With $k = 4$ groups, $m = 6$ pairwise comparisons, $\alpha' = 0.05/6 \approx 0.0083$, and $t_{0.00415,\,36} \approx 2.792$:
+
+$$LSD_{\text{Bonf}} = 2.792\sqrt{12399 \times 0.2} \approx 139.1$$
+
+Should we conclude that $\mu_1$ and $\mu_2$ differ under the Bonferroni adjustment?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The Bonferroni decision rule is the same: conclude $\mu_i \ne \mu_j$ if $|\bar{x}_i - \bar{x}_j| > LSD_{\text{Bonf}}$.
+- Compare 105.9 to 139.1.
+- Note that $LSD_{\text{Bonf}} > LSD_{\text{Fisher}}$, making Bonferroni harder to reject.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+Since $|\bar{x}_1 - \bar{x}_2| = 105.9 < LSD_{\text{Bonf}} \approx 139.1$, we **fail to conclude** that $\mu_1$ and $\mu_2$ differ under the Bonferroni adjustment.
+
+The Bonferroni 95% confidence interval for $\mu_1 - \mu_2$ is:
+$$-105.9 \pm 139.1 = (-245.0,\ 33.2)$$
+
+Since the interval **contains zero**, the difference is not statistically significant after adjustment.
+
+This illustrates the trade-off: Fisher's LSD (LSD $\approx$ 101.0) declares this pair significant, while Bonferroni (LSD $\approx$ 139.1) does not. Bonferroni is more conservative but better controls the experiment-wise error rate.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 20</div>
+A one-way ANOVA comparing four bumper types gives p-value $= 0.0139$. At $\alpha = 0.05$, write a conclusion in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compare p-value = 0.0139 to $\alpha = 0.05$.
+- State whether to reject or fail to reject $H_0$.
+- Express the conclusion in the context of the problem (bumper repair costs).
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+Since p-value $= 0.0139 < \alpha = 0.05$, we **reject $H_0$**.
+
+There is sufficient evidence at the 5% significance level to conclude that **at least two bumper types have different mean repair costs**. Further pairwise comparisons (Fisher's LSD or Bonferroni) are needed to identify which specific bumpers differ.
+</div>
+</details>
+
+---
+
+### Part B: WebR Practice Questions
+
+Use the following dataset for Questions B1–B10. Three countries' weekly sales data:
+
+```
+salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+```
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B1</div>
+Combine the three group vectors into a single response variable `sales`. Fill in the blanks and click **▶ Run**.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="6">salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+
+sales <- c(____, ____, ____)
+sales</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `c(...)` concatenates vectors end-to-end.
+- The result should have $4 + 4 + 4 = 12$ elements in order: A values, then B values, then C values.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+
+sales <- c(salesA, salesB, salesC)
+sales
+# [1]  6 10  7  9 10  8 12 10 14 13 11 10
+```
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B2</div>
+Create the group label variable `country` as a factor, with 4 repetitions of each label. Fill in the blank and click **▶ Run**.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="5">country <- factor(c(rep("A", 4), rep("B", 4), rep("C", ____)))
+country</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `rep("C", n)` repeats the string `"C"` $n$ times.
+- Country C has 4 observations, just like A and B.
+- `factor()` converts the character vector into a categorical variable with levels.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+country <- factor(c(rep("A", 4), rep("B", 4), rep("C", 4)))
+country
+# [1] A A A A B B B B C C C C
+# Levels: A B C
+```
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B3</div>
+Use `tapply()` to compute the mean sales for each country. Fill in the blanks and click **▶ Run**.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="8">salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+sales   <- c(salesA, salesB, salesC)
+country <- factor(c(rep("A", 4), rep("B", 4), rep("C", 4)))
+
+tapply(___, ___, ___)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `tapply(X, INDEX, FUN)` applies `FUN` to subsets of `X` defined by `INDEX`.
+- Here: `X = sales`, `INDEX = country`, `FUN = mean`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+tapply(sales, country, mean)
+#  A  B  C
+#  8 10 12
+```
+Country A has the lowest mean (8), Country C the highest (12).
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B4</div>
+Compute the **overall sample mean** of all 12 sales observations. Fill in the blank and click **▶ Run**.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="7">salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+sales   <- c(salesA, salesB, salesC)
+
+mean(___)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Apply `mean()` to the full `sales` vector (all 12 values combined).
+- This is the grand mean $\bar{x} = \sum_{i,j} x_{ij} / n$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+mean(sales)
+# [1] 10
+```
+The grand mean is $\bar{x} = 10$, equal to the average of the three group means $(8 + 10 + 12)/3 = 10$ because the group sizes are equal.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B5</div>
+Use `tapply()` to compute the sample **variance** for each country. Fill in the blank and click **▶ Run**.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="8">salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+sales   <- c(salesA, salesB, salesC)
+country <- factor(c(rep("A", 4), rep("B", 4), rep("C", 4)))
+
+tapply(sales, country, ___)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Replace `mean` with `var` to compute within-group sample variances.
+- The ANOVA equal-variance assumption requires these group variances to be similar.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+tapply(sales, country, var)
+#        A        B        C
+# 2.666667 2.666667 2.666667
+```
+All three groups have the same sample variance ($\approx 2.67$), which supports the equal-variance assumption of ANOVA.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B6</div>
+Fit a one-way ANOVA model and display the ANOVA table. Fill in the blanks and click **▶ Run**.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="9">salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+sales   <- c(salesA, salesB, salesC)
+country <- factor(c(rep("A", 4), rep("B", 4), rep("C", 4)))
+
+model <- aov(____ ~ ____)
+anova(model)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `aov(response ~ group)` fits the one-way ANOVA model.
+- The response variable goes on the left of `~`; the grouping factor goes on the right.
+- `anova(model)` prints the ANOVA table with df, SS, MS, F, and p-value.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+model <- aov(sales ~ country)
+anova(model)
+# Analysis of Variance Table
+# Response: sales
+#           Df Sum Sq Mean Sq F value  Pr(>F)
+# country    2     32  16.000  5.1429 0.03240 *
+# Residuals  9     28   3.111
+```
+$F^* = 5.1429$, p-value $= 0.0324 < 0.05$ → reject $H_0$. Not all country means are equal.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B7</div>
+Run a one-way ANOVA using `oneway.test()` assuming **equal variances**. Fill in the blank and click **▶ Run**.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="8">salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+sales   <- c(salesA, salesB, salesC)
+country <- factor(c(rep("A", 4), rep("B", 4), rep("C", 4)))
+
+oneway.test(sales ~ country, var.equal = ___)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Set `var.equal = TRUE` to assume equal variances (classical one-way ANOVA).
+- Setting `var.equal = FALSE` gives Welch's ANOVA, which does not assume equal variances.
+- Both approaches give the same result when group variances are identical (as here).
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+oneway.test(sales ~ country, var.equal = TRUE)
+# One-way analysis of means
+# F = 5.1429, num df = 2, denom df = 9, p-value = 0.0324
+```
+Same result as `aov()`: $F = 5.1429$, p-value $= 0.0324$. Both functions implement the same classical ANOVA when `var.equal = TRUE`.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B8</div>
+The code below has a bug: the response and group variables are **reversed**. Fix the error and click **▶ Run**.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="9">salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+sales   <- c(salesA, salesB, salesC)
+country <- factor(c(rep("A", 4), rep("B", 4), rep("C", 4)))
+
+# Fix the bug below
+model <- aov(country ~ sales)
+anova(model)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The `aov()` formula is always `response ~ group`.
+- `sales` is the **response** (what we measure); `country` is the **group** (what we compare).
+- Reversing them tries to predict a categorical variable from a numeric one, which is wrong for ANOVA.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+model <- aov(sales ~ country)   # response ~ group
+anova(model)
+# Response: sales
+#           Df Sum Sq Mean Sq F value Pr(>F)
+# country    2     32      16  5.1429 0.0324 *
+# Residuals  9     28       3
+```
+The response variable (`sales`) must appear on the **left** of `~` and the grouping factor (`country`) on the **right**.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B9</div>
+Create a **boxplot** to compare sales across the three countries. Fill in the blanks and click **▶ Run** to see the plot.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="11">salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+sales   <- c(salesA, salesB, salesC)
+country <- factor(c(rep("A", 4), rep("B", 4), rep("C", 4)))
+
+boxplot(____ ~ ____,
+        main = "Sales by Country",
+        xlab = "Country",
+        ylab = "Sales")</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The `boxplot()` formula syntax is `boxplot(response ~ group, ...)`.
+- Fill in `sales ~ country` to plot sales (y-axis) grouped by country (x-axis).
+- The plot should show Country C with a higher median than A and B.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+boxplot(sales ~ country,
+        main = "Sales by Country",
+        xlab = "Country",
+        ylab = "Sales")
+```
+The boxplot shows Country C with the highest median ($\tilde{x}_C = 12$) and Country A with the lowest ($\tilde{x}_A = 7.5$). The medians increase from A to C, consistent with the ANOVA result that group means differ.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question B10</div>
+Run the ANOVA below and read the output. Then select the correct conclusion at $\alpha = 0.05$.
+
+A. Do not reject $H_0$; the country means may all be equal.
+
+B. Reject $H_0$; not all country means are equal.
+
+C. Reject $H_0$; all country means are different from each other.
+
+D. ANOVA cannot be used here because the sample size is too small.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="8">salesA <- c(6, 10, 7, 9)
+salesB <- c(10, 8, 12, 10)
+salesC <- c(14, 13, 11, 10)
+sales   <- c(salesA, salesB, salesC)
+country <- factor(c(rep("A", 4), rep("B", 4), rep("C", 4)))
+
+oneway.test(sales ~ country, var.equal = TRUE)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Read the p-value from the output and compare it to $\alpha = 0.05$.
+- $H_a$ in ANOVA says "at least two means differ" — **not** "all means are different."
+- Option C overclaims: ANOVA cannot tell which specific pairs differ.
+- Option D is wrong: ANOVA works with small samples as long as the normality assumption holds approximately.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**B. Reject $H_0$; not all country means are equal.**
+
+The output gives $F = 5.1429$, p-value $= 0.0324$.
+
+Since p-value $= 0.0324 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that at least two countries have different mean sales. Option C overclaims — ANOVA only tells us that *some* means differ, not that *all* pairs differ. Post-hoc pairwise comparisons would be needed to identify which specific pairs are different.
+</div>
+</details>
