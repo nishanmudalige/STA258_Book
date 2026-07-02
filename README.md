@@ -1,5 +1,25 @@
 # STA258: Statistics with Applied Probability
 
+## Things to do for August 13
+- Chapter 8
+  - Slightly longer questions with table and summary for calculations by hand
+  - Have some different groups sizes
+  - Questions can have sub parts a) b) c) d) etc.
+  - Long questions can be broken into two questions (e.g. first question do ANOVA test with information, next question calculate Bomferroni CI/ LSD CI for data in ANOVA question)
+  - Add more plots (box plots to check assumptions of equal group variance, pairwise plots)
+  - Add more questions of reading datasets
+- Chapter 9
+  - Ask for sketch / draw plots where regression line calculated
+  - Have some questions with negative slope (calculation, interpretation, etc.)
+  - Few more questions with residual plots
+  - More questions similiar to question 28 (reading R output for regression, can block some information and ask students to do t test)
+  - Replace some webR questions with read.csv (reading large dataset from file)
+- Chapter 5 and 6
+  - Small sample and questions with qq plots (1 small sample, 2 small samples, pair difference with small sample)
+- Make some questions for chapter 4 and 7
+- Low priority: few questions for chapter 10 (10 questions in total hand writing + webR)
+
+
 ## Things to do for June 25
 - Chapter5 include more variety of datasets for some questions
 - Chapter5 and 6 include plots for questions (both one and two sample)
