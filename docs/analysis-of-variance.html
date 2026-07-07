@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-07-02" />
+<meta name="date" content="2026-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,7 +244,10 @@ async function initWebR() {
       'sleep_study.csv': `subject_id,hours\n1,7.2\n2,6.8\n3,8.1\n4,7.5\n5,6.5\n6,7.9\n7,7.0\n8,8.3\n9,6.7\n10,7.4\n11,8.0\n12,7.2\n13,6.9\n14,7.8\n15,8.2\n16,7.1\n17,6.6\n18,7.7\n19,8.0\n20,7.3`,
       'student_admission.csv': `student_id,admitted\n1,1\n2,1\n3,0\n4,1\n5,1\n6,0\n7,1\n8,1\n9,0\n10,1\n11,1\n12,0\n13,1\n14,1\n15,1\n16,0\n17,1\n18,1\n19,0\n20,1\n21,1\n22,1\n23,0\n24,1\n25,1\n26,0\n27,1\n28,1\n29,1\n30,0\n31,1\n32,1\n33,0\n34,1\n35,1\n36,1\n37,0\n38,1\n39,1\n40,0\n41,1\n42,1\n43,1\n44,0\n45,1\n46,1\n47,0\n48,1\n49,1\n50,1\n51,0\n52,1\n53,1\n54,1\n55,0\n56,1\n57,1\n58,0\n59,1\n60,1\n61,1\n62,0\n63,1\n64,1\n65,0\n66,1\n67,1\n68,1\n69,0\n70,1\n71,1\n72,0\n73,1\n74,1\n75,1\n76,0\n77,1\n78,1\n79,0\n80,1`,
       'plant_yield.csv': `fertilizer_a,fertilizer_b\n52.1,45.3\n48.7,42.8\n55.3,48.1\n49.2,43.6\n53.8,46.9\n47.5,41.2\n56.1,49.4\n50.4,44.7\n54.6,47.5\n48.1,42.3\n51.9,45.8\n53.2,46.1\n49.8,43.9\n55.7,48.6\n50.0,44.2`,
-      'braking_dist.csv': `distance,car\n34.2,X\n36.1,X\n33.8,X\n35.4,X\n34.9,X\n36.7,X\n33.5,X\n35.2,X\n34.6,X\n36.3,X\n33.9,X\n35.8,X\n31.5,Y\n38.4,Y\n29.8,Y\n40.2,Y\n33.1,Y\n37.6,Y\n30.4,Y\n39.7,Y\n32.8,Y\n38.1,Y\n31.2,Y\n40.5,Y`
+      'braking_dist.csv': `distance,car\n34.2,X\n36.1,X\n33.8,X\n35.4,X\n34.9,X\n36.7,X\n33.5,X\n35.2,X\n34.6,X\n36.3,X\n33.9,X\n35.8,X\n31.5,Y\n38.4,Y\n29.8,Y\n40.2,Y\n33.1,Y\n37.6,Y\n30.4,Y\n39.7,Y\n32.8,Y\n38.1,Y\n31.2,Y\n40.5,Y`,
+      'ch8-study-methods.csv': `method,score\nLecture,68\nLecture,71\nLecture,75\nLecture,70\nLecture,74\nLecture,77\nLecture,69\nLecture,73\nOnline,72\nOnline,78\nOnline,80\nOnline,75\nOnline,77\nOnline,79\nOnline,74\nOnline,81\nOnline,76\nOnline,77\nGroup,77\nGroup,82\nGroup,84\nGroup,79\nGroup,81\nGroup,83\nGroup,78\nGroup,86\nGroup,80\nGroup,83\nGroup,85\nGroup,82\nTutor,81\nTutor,88\nTutor,90\nTutor,85\nTutor,87\nTutor,91\nTutor,83\nTutor,89\nTutor,86\nSelfStudy,70\nSelfStudy,75\nSelfStudy,78\nSelfStudy,72\nSelfStudy,74\nSelfStudy,77\nSelfStudy,71\nSelfStudy,76\nSelfStudy,73\nSelfStudy,75\nSelfStudy,74`,
+      'ch8-delivery-times.csv': `company,time\nCompanyA,42\nCompanyA,39\nCompanyA,44\nCompanyA,41\nCompanyA,38\nCompanyA,43\nCompanyA,40\nCompanyB,55\nCompanyB,57\nCompanyB,53\nCompanyB,59\nCompanyB,56\nCompanyB,60\nCompanyB,54\nCompanyB,58\nCompanyB,61\nCompanyC,48\nCompanyC,45\nCompanyC,50\nCompanyC,47\nCompanyC,49\nCompanyC,46\nCompanyC,51\nCompanyC,48\nCompanyD,61\nCompanyD,65\nCompanyD,63\nCompanyD,67\nCompanyD,64\nCompanyD,66\nCompanyD,62\nCompanyD,68\nCompanyD,69\nCompanyD,64`,
+      'ch8-fertilizer-yield.csv': `fertilizer,yield\nF1,41\nF1,43\nF1,39\nF1,45\nF1,42\nF1,44\nF1,40\nF1,46\nF2,47\nF2,49\nF2,45\nF2,51\nF2,48\nF2,50\nF2,46\nF2,52\nF2,49\nF2,47\nF3,52\nF3,54\nF3,50\nF3,56\nF3,53\nF3,55\nF3,51\nF3,57\nF3,54\nF3,52\nF3,55\nF3,53\nF4,44\nF4,46\nF4,42\nF4,48\nF4,45\nF4,47\nF4,43\nF4,49\nF4,46`
     };
     const enc = new TextEncoder();
     for (const [fname, content] of Object.entries(csvData)) {
@@ -577,11 +580,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Variance</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#sec:ch8exercises"><i class="fa fa-check"></i><b>8.1</b> Exercises</a>
-<ul>
-<li class="chapter" data-level="8.1.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#part-a-regular-practice-questions"><i class="fa fa-check"></i><b>8.1.1</b> Part A: Regular Practice Questions</a></li>
-<li class="chapter" data-level="8.1.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#part-b-webr-practice-questions"><i class="fa fa-check"></i><b>8.1.2</b> Part B: WebR Practice Questions</a></li>
-</ul></li>
+<li class="chapter" data-level="8.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#sec:ch8exercises"><i class="fa fa-check"></i><b>8.1</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>9</b> Simple Linear Regression</a>
 <ul>
@@ -2465,8 +2464,6 @@ t_{\alpha / 2} \sqrt{M S E\left(\frac{1}{n_{i}}+\frac{1}{n_{j}}\right)} \approx 
 The drawback to LSD is that we increase the probability of at least one Type I error. The Bonferroni adjustment corrects this problem.</p>
 <div id="sec:ch8exercises" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Exercises<a href="analysis-of-variance.html#sec:ch8exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="part-a-regular-practice-questions" class="section level3 hasAnchor" number="8.1.1">
-<h3><span class="header-section-number">8.1.1</span> Part A: Regular Practice Questions<a href="analysis-of-variance.html#part-a-regular-practice-questions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
@@ -3334,17 +3331,14 @@ Question 20
 </div>
 </details>
 <hr />
-</div>
-<div id="part-b-webr-practice-questions" class="section level3 hasAnchor" number="8.1.2">
-<h3><span class="header-section-number">8.1.2</span> Part B: WebR Practice Questions<a href="analysis-of-variance.html#part-b-webr-practice-questions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Use the following dataset for Questions B1–B10. Three countries’ weekly sales data:</p>
+<p>Use the following dataset for Questions 21–30. Three countries’ weekly sales data:</p>
 <pre><code>salesA &lt;- c(6, 10, 7, 9)
 salesB &lt;- c(10, 8, 12, 10)
 salesC &lt;- c(14, 13, 11, 10)</code></pre>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B1
+Question 21
 </div>
 Combine the three group vectors into a single response variable <code>sales</code>. Fill in the blanks and click <strong>▶ Run</strong>.
 <div class="webr-exercise">
@@ -3398,7 +3392,7 @@ sales</textarea>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B2
+Question 22
 </div>
 Create the group label variable <code>country</code> as a factor, with 4 repetitions of each label. Fill in the blank and click <strong>▶ Run</strong>.
 <div class="webr-exercise">
@@ -3446,7 +3440,7 @@ country</textarea>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B3
+Question 23
 </div>
 Use <code>tapply()</code> to compute the mean sales for each country. Fill in the blanks and click <strong>▶ Run</strong>.
 <div class="webr-exercise">
@@ -3498,7 +3492,7 @@ tapply(___, ___, ___)</textarea>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B4
+Question 24
 </div>
 Compute the <strong>overall sample mean</strong> of all 12 sales observations. Fill in the blank and click <strong>▶ Run</strong>.
 <div class="webr-exercise">
@@ -3548,7 +3542,7 @@ mean(___)</textarea>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B5
+Question 25
 </div>
 Use <code>tapply()</code> to compute the sample <strong>variance</strong> for each country. Fill in the blank and click <strong>▶ Run</strong>.
 <div class="webr-exercise">
@@ -3600,7 +3594,7 @@ tapply(sales, country, ___)</textarea>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B6
+Question 26
 </div>
 Fit a one-way ANOVA model and display the ANOVA table. Fill in the blanks and click <strong>▶ Run</strong>.
 <div class="webr-exercise">
@@ -3658,7 +3652,7 @@ anova(model)</textarea>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B7
+Question 27
 </div>
 Run a one-way ANOVA using <code>oneway.test()</code> assuming <strong>equal variances</strong>. Fill in the blank and click <strong>▶ Run</strong>.
 <div class="webr-exercise">
@@ -3711,7 +3705,7 @@ oneway.test(sales ~ country, var.equal = ___)</textarea>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B8
+Question 28
 </div>
 The code below has a bug: the response and group variables are <strong>reversed</strong>. Fix the error and click <strong>▶ Run</strong>.
 <div class="webr-exercise">
@@ -3769,7 +3763,7 @@ anova(model)</textarea>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B9
+Question 29
 </div>
 Create a <strong>boxplot</strong> to compare sales across the three countries. Fill in the blanks and click <strong>▶ Run</strong> to see the plot.
 <div class="webr-exercise">
@@ -3826,7 +3820,7 @@ boxplot(____ ~ ____,
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
-Question B10
+Question 30
 </div>
 <p>Run the ANOVA below and read the output. Then select the correct conclusion at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <p>A. Do not reject <span class="math inline">\(H_0\)</span>; the country means may all be equal.</p>
@@ -3880,8 +3874,855 @@ oneway.test(sales ~ country, var.equal = TRUE)</textarea>
 <p>Since p-value <span class="math inline">\(= 0.0324 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that at least two countries have different mean sales. Option C overclaims — ANOVA only tells us that <em>some</em> means differ, not that <em>all</em> pairs differ. Post-hoc pairwise comparisons would be needed to identify which specific pairs are different.</p>
 </div>
 </details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 31
+</div>
+<p>A statistics instructor wants to compare the average final exam scores of students using five different study methods. The group sizes are <strong>not</strong> all equal.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Study Method</th>
+<th align="center"><span class="math inline">\(n_i\)</span></th>
+<th align="center"><span class="math inline">\(\bar{x}_i\)</span></th>
+<th align="center"><span class="math inline">\(s_i^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Lecture Review</td>
+<td align="center">8</td>
+<td align="center">72.4</td>
+<td align="center">36.0</td>
+</tr>
+<tr class="even">
+<td align="left">Online Videos</td>
+<td align="center">10</td>
+<td align="center">76.8</td>
+<td align="center">42.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Group Study</td>
+<td align="center">12</td>
+<td align="center">81.3</td>
+<td align="center">39.2</td>
+</tr>
+<tr class="even">
+<td align="left">Private Tutor</td>
+<td align="center">9</td>
+<td align="center">86.1</td>
+<td align="center">45.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Self Study</td>
+<td align="center">11</td>
+<td align="center">74.9</td>
+<td align="center">40.8</td>
+</tr>
+</tbody>
+</table>
+<p>Use <span class="math inline">\(\alpha = 0.05\)</span>. Round final answers to four decimal places.</p>
+<p><strong>(a)</strong> State the null and alternative hypotheses for a one-way ANOVA.</p>
+<p><strong>(b)</strong> Compute the overall (grand) sample mean. <em>Caution: group sizes are unequal.</em></p>
+<p><strong>(c)</strong> Compute the treatment sum of squares, <span class="math inline">\(SS_{\text{Treatment}}\)</span>.</p>
+<p><strong>(d)</strong> Compute the error sum of squares, <span class="math inline">\(SS_{\text{Error}}\)</span>.</p>
+<p><strong>(e)</strong> Complete the ANOVA table.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Treatment</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="left">Error</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>(f)</strong> Suppose the p-value is 0.0003. State the conclusion in context.</p>
+<p><strong>(g)</strong> Does rejecting <span class="math inline">\(H_0\)</span> tell us exactly which study methods differ? Explain.</p>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><strong>(b)</strong> When group sizes differ, the grand mean is a <strong>weighted</strong> average: <span class="math inline">\(\bar{x} = \dfrac{\sum n_i \bar{x}_i}{\sum n_i}\)</span>, not the simple average of the <span class="math inline">\(\bar{x}_i\)</span>.</li>
+<li><strong>(c)</strong> <span class="math inline">\(SS_{\text{Treatment}} = \sum_{i=1}^{k} n_i (\bar{x}_i - \bar{x})^2\)</span>.</li>
+<li><strong>(d)</strong> <span class="math inline">\(SS_{\text{Error}} = \sum_{i=1}^{k} (n_i - 1) s_i^2\)</span> — use the given sample variances.</li>
+<li><strong>(e)</strong> <span class="math inline">\(df_T = k-1\)</span>, <span class="math inline">\(df_E = n-k\)</span>; <span class="math inline">\(MS = SS/df\)</span>; <span class="math inline">\(F = MS_T/MS_E\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4 = \mu_5\]</span>
+<span class="math display">\[H_a: \text{At least two study method means are different.}\]</span></p>
+<p><strong>(b)</strong> Total <span class="math inline">\(n = 8+10+12+9+11 = 50\)</span>.
+<span class="math display">\[\bar{x} = \frac{\sum n_i \bar{x}_i}{n} = \frac{8(72.4)+10(76.8)+12(81.3)+9(86.1)+11(74.9)}{50}\]</span>
+<span class="math display">\[= \frac{579.2+768.0+975.6+774.9+823.9}{50} = \frac{3921.6}{50} = \mathbf{78.4320}\]</span></p>
+<p><strong>(c)</strong>
+<span class="math display">\[SS_{\text{Treatment}} = \sum n_i(\bar{x}_i - \bar{x})^2\]</span>
+<span class="math display">\[= 8(72.4-78.432)^2 + 10(76.8-78.432)^2 + 12(81.3-78.432)^2 + 9(86.1-78.432)^2 + 11(74.9-78.432)^2\]</span>
+<span class="math display">\[= 8(36.3851) + 10(2.6634) + 12(8.2250) + 9(58.7978) + 11(12.4749)\]</span>
+<span class="math display">\[= \mathbf{1082.8288}\]</span></p>
+<p><strong>(d)</strong>
+<span class="math display">\[SS_{\text{Error}} = \sum (n_i - 1)s_i^2 = 7(36.0)+9(42.5)+11(39.2)+8(45.0)+10(40.8)\]</span>
+<span class="math display">\[= 252.0+382.5+431.2+360.0+408.0 = \mathbf{1833.7000}\]</span></p>
+<p><strong>(e)</strong>
+<span class="math display">\[df_T = k-1 = 4,\quad df_E = n-k = 45,\quad df_{\text{Total}} = 49\]</span>
+<span class="math display">\[MS_T = \frac{1082.8288}{4} = 270.7072,\quad MS_E = \frac{1833.7000}{45} = 40.7489,\quad F = \frac{270.7072}{40.7489} = 6.6433\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Treatment</td>
+<td align="center">4</td>
+<td align="center">1082.8288</td>
+<td align="center">270.7072</td>
+<td align="center">6.6433</td>
+</tr>
+<tr class="even">
+<td align="left">Error</td>
+<td align="center">45</td>
+<td align="center">1833.7000</td>
+<td align="center">40.7489</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">49</td>
+<td align="center">2916.5288</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>(f)</strong> Since p-value <span class="math inline">\(= 0.0003 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that at least two study methods produce different mean final exam scores.</p>
+<p><strong>(g)</strong> No. ANOVA only tells us that at least two means are not equal. To determine which specific methods differ, pairwise comparisons (e.g., Fisher’s LSD or Bonferroni) are required.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 32
+</div>
+<p>A business compares delivery times (minutes) from four courier companies. Lower times are better. The group sizes are unequal because not every company had the same number of recorded deliveries.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Company A</th>
+<th align="center">Company B</th>
+<th align="center">Company C</th>
+<th align="center">Company D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">42</td>
+<td align="center">55</td>
+<td align="center">48</td>
+<td align="center">61</td>
+</tr>
+<tr class="even">
+<td align="center">39</td>
+<td align="center">57</td>
+<td align="center">45</td>
+<td align="center">65</td>
+</tr>
+<tr class="odd">
+<td align="center">44</td>
+<td align="center">53</td>
+<td align="center">50</td>
+<td align="center">63</td>
+</tr>
+<tr class="even">
+<td align="center">41</td>
+<td align="center">59</td>
+<td align="center">47</td>
+<td align="center">67</td>
+</tr>
+<tr class="odd">
+<td align="center">38</td>
+<td align="center">56</td>
+<td align="center">49</td>
+<td align="center">64</td>
+</tr>
+<tr class="even">
+<td align="center">43</td>
+<td align="center">60</td>
+<td align="center">46</td>
+<td align="center">66</td>
+</tr>
+<tr class="odd">
+<td align="center">40</td>
+<td align="center">54</td>
+<td align="center">51</td>
+<td align="center">62</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">58</td>
+<td align="center">48</td>
+<td align="center">68</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">61</td>
+<td align="center"></td>
+<td align="center">69</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">64</td>
+</tr>
+</tbody>
+</table>
+<p>Use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><strong>(a)</strong> What is the response variable? What is the factor?</p>
+<p><strong>(b)</strong> State the null and alternative hypotheses.</p>
+<p><strong>(c)</strong> The ANOVA output is:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Source</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Company</td>
+<td align="center">3</td>
+<td align="center">2739.8353</td>
+<td align="center">913.2784</td>
+<td align="center">154.8805</td>
+<td align="center">&lt; 0.0001</td>
+</tr>
+<tr class="even">
+<td align="left">Error</td>
+<td align="center">30</td>
+<td align="center">176.9000</td>
+<td align="center">5.8967</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">33</td>
+<td align="center">2916.7353</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Make a decision and write a conclusion in context.</p>
+<p><strong>(d)</strong> Based on the sample means below, which company appears fastest?</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Company</th>
+<th align="center"><span class="math inline">\(n\)</span></th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="center">7</td>
+<td align="center">41.0000</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="center">9</td>
+<td align="center">57.0000</td>
+</tr>
+<tr class="odd">
+<td align="left">C</td>
+<td align="center">8</td>
+<td align="center">48.0000</td>
+</tr>
+<tr class="even">
+<td align="left">D</td>
+<td align="center">10</td>
+<td align="center">64.9000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(e)</strong> Does the ANOVA result prove that Company A is faster than every other company? Explain.</p>
+<p><strong>(f)</strong> List three assumptions needed for this ANOVA.</p>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><strong>(a)</strong> The response variable is what is <strong>measured</strong> (a number); the factor defines the <strong>groups</strong>.</li>
+<li><strong>(c)</strong> Compare p-value to <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+<li><strong>(e)</strong> Remember that ANOVA tests a global <span class="math inline">\(H_0\)</span> — it does not identify which specific pairs differ.</li>
+<li><strong>(f)</strong> The three ANOVA assumptions are independence, normality, and equal variances.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> The <strong>response variable</strong> is delivery time (minutes). The <strong>factor</strong> is the delivery company (with <span class="math inline">\(k = 4\)</span> levels: A, B, C, D).</p>
+<p><strong>(b)</strong>
+<span class="math display">\[H_0: \mu_A = \mu_B = \mu_C = \mu_D\]</span>
+<span class="math display">\[H_a: \text{At least two company mean delivery times are different.}\]</span></p>
+<p><strong>(c)</strong> Since p-value <span class="math inline">\(&lt; 0.0001 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is very strong evidence that not all four courier companies have the same mean delivery time.</p>
+<p><strong>(d)</strong> <strong>Company A</strong> appears fastest: it has the smallest sample mean time (<span class="math inline">\(\bar{x}_A = 41.0\)</span> min).</p>
+<p><strong>(e)</strong> No. ANOVA only tells us that <strong>at least two</strong> means differ somewhere among the four companies. To confirm that Company A specifically differs from each of B, C, and D, pairwise comparisons (Fisher’s LSD or Bonferroni) are needed.</p>
+<p><strong>(f)</strong> The three ANOVA assumptions are:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Independence</strong>: observations within and across groups are independent.</li>
+<li><strong>Normality</strong>: each group’s delivery times are approximately normally distributed.</li>
+<li><strong>Equal variances</strong>: the population variance is the same across all four companies (<span class="math inline">\(\sigma_A^2 = \sigma_B^2 = \sigma_C^2 = \sigma_D^2\)</span>).</li>
+</ol>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 33
+</div>
+<p>Using the study method summary from Question 31, the ANOVA rejected <span class="math inline">\(H_0\)</span>. The instructor now wants to compare <strong>Group Study</strong> vs. <strong>Self Study</strong> specifically.</p>
+<p>Given: <span class="math inline">\(\bar{x}_{\text{Group}} = 81.3\)</span>, <span class="math inline">\(\bar{x}_{\text{Self}} = 74.9\)</span>, <span class="math inline">\(MSE = 40.7489\)</span>, <span class="math inline">\(n_{\text{Group}} = 12\)</span>, <span class="math inline">\(n_{\text{Self}} = 11\)</span>, <span class="math inline">\(df_E = 45\)</span>.</p>
+<p>Use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><strong>(a)</strong> How many pairwise comparisons are possible among the five study methods?</p>
+<p><strong>(b)</strong> Compute <strong>Fisher’s LSD</strong> for comparing Group Study and Self Study.</p>
+<p><span class="math display">\[LSD = t_{\alpha/2,\,df_E} \sqrt{MSE\!\left(\frac{1}{n_i}+\frac{1}{n_j}\right)}, \quad t_{0.025,\,45} = 2.0141\]</span></p>
+<p><strong>(c)</strong> Based on Fisher’s LSD, do the two methods differ significantly?</p>
+<p><strong>(d)</strong> Apply the <strong>Bonferroni adjustment</strong>. What value of <span class="math inline">\(\alpha^*\)</span> should be used per comparison?</p>
+<p><strong>(e)</strong> With <span class="math inline">\(t_{\alpha^*/2,\,45} = 2.9521\)</span>, compute the Bonferroni-adjusted LSD.</p>
+<p><strong>(f)</strong> Based on Bonferroni, do the two methods differ significantly?</p>
+<p><strong>(g)</strong> Explain why Fisher’s LSD and Bonferroni can give different conclusions.</p>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><strong>(a)</strong> Number of pairs: <span class="math inline">\(m = \dbinom{k}{2} = \dfrac{k(k-1)}{2}\)</span>.</li>
+<li><strong>(b)</strong> Plug <span class="math inline">\(MSE = 40.7489\)</span>, <span class="math inline">\(n_i = 12\)</span>, <span class="math inline">\(n_j = 11\)</span> into the LSD formula.</li>
+<li><strong>(d)</strong> Bonferroni uses <span class="math inline">\(\alpha^* = \alpha / m\)</span> per comparison.</li>
+<li><strong>(f)</strong> Compare <span class="math inline">\(|\bar{x}_i - \bar{x}_j|\)</span> to <span class="math inline">\(LSD_B\)</span>: conclude difference if <span class="math inline">\(|\bar{x}_i - \bar{x}_j| &gt; LSD_B\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong>
+<span class="math display">\[m = \binom{5}{2} = \frac{5 \times 4}{2} = \mathbf{10} \text{ pairwise comparisons}\]</span></p>
+<p><strong>(b)</strong>
+<span class="math display">\[LSD = 2.0141\sqrt{40.7489\!\left(\frac{1}{12}+\frac{1}{11}\right)} = 2.0141\sqrt{40.7489 \times 0.1742} = 2.0141 \times 2.6641 = \mathbf{5.3668}\]</span></p>
+<p><strong>(c)</strong> <span class="math inline">\(|\bar{x}_{\text{Group}} - \bar{x}_{\text{Self}}| = |81.3 - 74.9| = 6.4000\)</span>.</p>
+<p>Since <span class="math inline">\(6.4000 &gt; 5.3668\)</span>, <strong>Fisher’s LSD concludes the two methods differ significantly.</strong></p>
+<p><strong>(d)</strong> With <span class="math inline">\(m = 10\)</span> comparisons:
+<span class="math display">\[\alpha^* = \frac{\alpha}{m} = \frac{0.05}{10} = \mathbf{0.005}\]</span></p>
+<p><strong>(e)</strong>
+<span class="math display">\[LSD_B = 2.9521\sqrt{40.7489 \times 0.1742} = 2.9521 \times 2.6641 = \mathbf{7.8662}\]</span></p>
+<p><strong>(f)</strong> Since <span class="math inline">\(6.4000 &lt; 7.8662\)</span>, <strong>Bonferroni does not find a significant difference</strong> between Group Study and Self Study.</p>
+<p><strong>(g)</strong> Fisher’s LSD uses the original <span class="math inline">\(\alpha = 0.05\)</span> per comparison, giving a smaller LSD (easier to reject). Bonferroni divides <span class="math inline">\(\alpha\)</span> by the number of comparisons (<span class="math inline">\(\alpha^* = 0.005\)</span>), requiring a larger <span class="math inline">\(t\)</span> critical value and wider LSD. Bonferroni is more conservative — it better controls the experiment-wise Type I error rate, but at the cost of lower power to detect individual differences.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 34
+</div>
+<p>The boxplot below compares final exam scores for five study methods. The group sizes are not all equal.</p>
+<p><img src="Book_files/figure-html/ch8-p4-box-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>(a)</strong> Which group appears to have the highest centre (median)?</p>
+<p><strong>(b)</strong> Do the spreads look roughly similar across groups?</p>
+<p><strong>(c)</strong> Are there any obvious outliers that may affect the ANOVA?</p>
+<p><strong>(d)</strong> Based on the plot <strong>alone</strong>, can we formally conclude that the population means differ? Explain.</p>
+<p><strong>(e)</strong> If ANOVA rejects <span class="math inline">\(H_0\)</span>, what should be done next to identify specific differences?</p>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><strong>(a)</strong> The centre of a boxplot is the <strong>median</strong> (middle line of the box).</li>
+<li><strong>(b)</strong> The ANOVA equal-variance assumption requires roughly similar <strong>heights</strong> (IQRs) across boxes.</li>
+<li><strong>(c)</strong> Outliers appear as isolated points beyond the whiskers.</li>
+<li><strong>(d)</strong> A boxplot is descriptive; formal inference requires a test statistic and p-value.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> The <strong>Tutor</strong> group has the highest centre — its median is visibly above all other groups.</p>
+<p><strong>(b)</strong> Yes, the box heights (IQRs) appear reasonably similar across the five groups, which supports the equal-variance assumption of ANOVA.</p>
+<p><strong>(c)</strong> There are no extreme outliers visible in the plot — all points fall within the whiskers or close to them.</p>
+<p><strong>(d)</strong> No. A boxplot is a useful <strong>visual</strong> tool for checking assumptions and identifying patterns, but it cannot replace a formal hypothesis test. The conclusion must be based on the ANOVA <span class="math inline">\(F\)</span> statistic and the associated p-value.</p>
+<p><strong>(e)</strong> After rejecting <span class="math inline">\(H_0\)</span>, <strong>pairwise comparisons</strong> should be performed (e.g., Fisher’s LSD or Bonferroni) to identify which specific pairs of study methods have significantly different mean scores.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 35
+</div>
+<p>A student used R to compare mean crop yields under four fertilizer types. The output was:</p>
+<pre><code>Analysis of Variance Table
+
+Response: yield
+           Df Sum Sq Mean Sq F value   Pr(&gt;F)
+fertilizer  3  512.4  170.80   6.832   0.0012
+Residuals  36  900.0   25.00</code></pre>
+<p>Use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><strong>(a)</strong> How many fertilizer groups were compared?</p>
+<p><strong>(b)</strong> What is the total sample size?</p>
+<p><strong>(c)</strong> State the null and alternative hypotheses.</p>
+<p><strong>(d)</strong> Identify the value of <span class="math inline">\(MSE\)</span> from the output.</p>
+<p><strong>(e)</strong> Make a decision and write a conclusion in context.</p>
+<p><strong>(f)</strong> What does <span class="math inline">\(MSE\)</span> represent in this ANOVA?</p>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><strong>(a)</strong> <span class="math inline">\(df_{\text{Treatment}} = k - 1\)</span>; solve for <span class="math inline">\(k\)</span>.</li>
+<li><strong>(b)</strong> <span class="math inline">\(df_{\text{Error}} = n - k\)</span>; use the result from (a) to find <span class="math inline">\(n\)</span>.</li>
+<li><strong>(d)</strong> <span class="math inline">\(MSE\)</span> is in the <code>Mean Sq</code> column of the <code>Residuals</code> row.</li>
+<li><strong>(f)</strong> <span class="math inline">\(MSE\)</span> estimates <span class="math inline">\(\sigma^2\)</span>, the common within-group variance.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(df_{\text{Treatment}} = k - 1 = 3 \Rightarrow \mathbf{k = 4}\)</span> fertilizer groups.</p>
+<p><strong>(b)</strong> <span class="math inline">\(df_{\text{Error}} = n - k = 36 \Rightarrow n = 36 + 4 = \mathbf{40}\)</span> total observations.</p>
+<p><strong>(c)</strong>
+<span class="math display">\[H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4\]</span>
+<span class="math display">\[H_a: \text{At least two fertilizer types have different mean crop yields.}\]</span></p>
+<p><strong>(d)</strong> <span class="math inline">\(MSE = \mathbf{25.00}\)</span> (from the <code>Mean Sq</code> of the <code>Residuals</code> row).</p>
+<p><strong>(e)</strong> Since p-value <span class="math inline">\(= 0.0012 &lt; \alpha = 0.05\)</span>, we <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is sufficient evidence that at least two fertilizer types produce different mean crop yields.</p>
+<p><strong>(f)</strong> <span class="math inline">\(MSE\)</span> estimates the <strong>common within-group variance</strong> <span class="math inline">\(\sigma^2\)</span>. It represents the typical variability in crop yield <strong>within</strong> a fertilizer group — the unexplained variation remaining after accounting for the effect of fertilizer type. Here, <span class="math inline">\(MSE = 25.00\)</span> means the estimated within-group standard deviation is <span class="math inline">\(\sqrt{25} = 5\)</span> yield units.</p>
+</div>
+</details>
+<hr />
+<p>The following three datasets are pre-loaded and ready to use in R. They can be read with <code>read.csv("filename")</code>.</p>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 36
+</div>
+<p>The file <code>ch8-study-methods.csv</code> contains final exam scores for 50 students across five study methods. The group sizes are <strong>not</strong> all equal. Work through each part in order.</p>
+<p><strong>(a–b)</strong> Import the data and check group sizes.
+<strong>(c–d)</strong> Compute group means and create a boxplot.
+<strong>(e–f)</strong> Run a one-way ANOVA and interpret the p-value.
+<strong>(g)</strong> Run Bonferroni pairwise comparisons to identify which methods differ.</p>
+<p>Fill in the blanks and click <strong>▶ Run</strong>.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="20">study <- read.csv("ch8-study-methods.csv")
+
+# (b) Sample size per method
+table(study$___)
+
+# (c) Group means
+tapply(study$score, study$___, mean)
+
+# (d) Boxplot
+boxplot(___ ~ ___,
+        data  = study,
+        main  = "Final Exam Scores by Study Method",
+        xlab  = "Study Method",
+        ylab  = "Final Exam Score")
+
+# (e) One-way ANOVA
+model <- aov(___ ~ ___, data = study)
+anova(model)
+
+# (g) Bonferroni pairwise comparisons
+pairwise.t.test(study$score, study$method,
+                p.adjust.method = ___)</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
 
 </div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><code>table(study$method)</code> shows how many observations are in each group.</li>
+<li>For <code>tapply()</code>: the grouping variable is <code>study$method</code>.</li>
+<li>For <code>boxplot()</code>: use the formula <code>score ~ method</code>.</li>
+<li>For <code>aov()</code>: the formula is <code>score ~ method</code>.</li>
+<li>For <code>pairwise.t.test()</code>: use <code>p.adjust.method = "bonferroni"</code>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="analysis-of-variance.html#cb151-1" tabindex="-1"></a>study <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ch8-study-methods.csv&quot;</span>)</span>
+<span id="cb151-2"><a href="analysis-of-variance.html#cb151-2" tabindex="-1"></a></span>
+<span id="cb151-3"><a href="analysis-of-variance.html#cb151-3" tabindex="-1"></a><span class="co"># (b)</span></span>
+<span id="cb151-4"><a href="analysis-of-variance.html#cb151-4" tabindex="-1"></a><span class="fu">table</span>(study<span class="sc">$</span>method)</span>
+<span id="cb151-5"><a href="analysis-of-variance.html#cb151-5" tabindex="-1"></a><span class="co"># Group Lecture  Online SelfStudy    Tutor</span></span>
+<span id="cb151-6"><a href="analysis-of-variance.html#cb151-6" tabindex="-1"></a><span class="co">#    12       8      10        11        9</span></span>
+<span id="cb151-7"><a href="analysis-of-variance.html#cb151-7" tabindex="-1"></a></span>
+<span id="cb151-8"><a href="analysis-of-variance.html#cb151-8" tabindex="-1"></a><span class="co"># (c)</span></span>
+<span id="cb151-9"><a href="analysis-of-variance.html#cb151-9" tabindex="-1"></a><span class="fu">tapply</span>(study<span class="sc">$</span>score, study<span class="sc">$</span>method, mean)</span>
+<span id="cb151-10"><a href="analysis-of-variance.html#cb151-10" tabindex="-1"></a><span class="co">#    Group  Lecture   Online SelfStudy    Tutor</span></span>
+<span id="cb151-11"><a href="analysis-of-variance.html#cb151-11" tabindex="-1"></a><span class="co"># 81.6667  72.1250  76.9000   74.0909  86.6667</span></span>
+<span id="cb151-12"><a href="analysis-of-variance.html#cb151-12" tabindex="-1"></a></span>
+<span id="cb151-13"><a href="analysis-of-variance.html#cb151-13" tabindex="-1"></a><span class="co"># (d) boxplot — renders in plot area</span></span>
+<span id="cb151-14"><a href="analysis-of-variance.html#cb151-14" tabindex="-1"></a></span>
+<span id="cb151-15"><a href="analysis-of-variance.html#cb151-15" tabindex="-1"></a><span class="co"># (e)</span></span>
+<span id="cb151-16"><a href="analysis-of-variance.html#cb151-16" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> method, <span class="at">data =</span> study)</span>
+<span id="cb151-17"><a href="analysis-of-variance.html#cb151-17" tabindex="-1"></a><span class="fu">anova</span>(model)</span>
+<span id="cb151-18"><a href="analysis-of-variance.html#cb151-18" tabindex="-1"></a><span class="co"># Response: score</span></span>
+<span id="cb151-19"><a href="analysis-of-variance.html#cb151-19" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
+<span id="cb151-20"><a href="analysis-of-variance.html#cb151-20" tabindex="-1"></a><span class="co"># method     4 1284.83  321.21  39.134 4.129e-14 ***</span></span>
+<span id="cb151-21"><a href="analysis-of-variance.html#cb151-21" tabindex="-1"></a><span class="co"># Residuals 45  369.35    8.21</span></span>
+<span id="cb151-22"><a href="analysis-of-variance.html#cb151-22" tabindex="-1"></a></span>
+<span id="cb151-23"><a href="analysis-of-variance.html#cb151-23" tabindex="-1"></a><span class="co"># (g)</span></span>
+<span id="cb151-24"><a href="analysis-of-variance.html#cb151-24" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(study<span class="sc">$</span>score, study<span class="sc">$</span>method,</span>
+<span id="cb151-25"><a href="analysis-of-variance.html#cb151-25" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<p><strong>(f) Interpretation:</strong> p-value <span class="math inline">\(= 4.13 \times 10^{-14} \ll 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is overwhelming evidence that at least two study methods have different mean exam scores.</p>
+<p><strong>(g) Bonferroni result:</strong> The Tutor group differs significantly from all other groups (all adjusted p <span class="math inline">\(&lt; 0.05\)</span>). Lecture and SelfStudy do not differ from each other (<span class="math inline">\(p = 1.00\)</span>), but both differ from Group and Tutor. Online differs from Group (<span class="math inline">\(p = 0.0033\)</span>) and Tutor, but not from SelfStudy.</p>
+<blockquote>
+<p><strong>Note:</strong> The CSV data gives slightly different means from Question 31’s summary table (which used rounded <span class="math inline">\(s_i^2\)</span> values), so the <span class="math inline">\(F\)</span> statistic here (<span class="math inline">\(F \approx 39.13\)</span>) is larger than Question 31’s <span class="math inline">\(F = 6.64\)</span>.</p>
+</blockquote>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 37
+</div>
+<p>The file <code>ch8-delivery-times.csv</code> contains delivery times (minutes) for four courier companies. The group sizes are unequal. Work through each part in order.</p>
+<p><strong>(a–b)</strong> Import the data and check group sizes.
+<strong>(c–d)</strong> Compute group means and variances.
+<strong>(e)</strong> Create a boxplot.
+<strong>(f–g)</strong> Run a one-way ANOVA and interpret the result.
+<strong>(h)</strong> Identify the fastest company from the sample means.</p>
+<p>Fill in the blanks and click <strong>▶ Run</strong>.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="20">delivery <- read.csv("ch8-delivery-times.csv")
+
+# (b) Sample size per company
+table(delivery$___)
+
+# (c) Group means
+tapply(delivery$time, delivery$___, mean)
+
+# (d) Group variances
+tapply(delivery$time, delivery$___, var)
+
+# (e) Boxplot
+boxplot(___ ~ ___,
+        data = delivery,
+        main = "Delivery Times by Company",
+        xlab = "Company",
+        ylab = "Delivery Time (min)")
+
+# (f) ANOVA
+delivery_model <- aov(___ ~ ___, data = delivery)
+anova(delivery_model)</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The grouping variable is <code>company</code>; the response is <code>time</code>.</li>
+<li>For <code>tapply()</code>: <code>tapply(delivery$time, delivery$company, mean)</code>.</li>
+<li>For <code>boxplot()</code>: formula is <code>time ~ company</code>.</li>
+<li>For <code>aov()</code>: formula is <code>time ~ company</code>.</li>
+<li>The company with the <strong>smallest</strong> mean time is the fastest.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="analysis-of-variance.html#cb152-1" tabindex="-1"></a>delivery <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ch8-delivery-times.csv&quot;</span>)</span>
+<span id="cb152-2"><a href="analysis-of-variance.html#cb152-2" tabindex="-1"></a></span>
+<span id="cb152-3"><a href="analysis-of-variance.html#cb152-3" tabindex="-1"></a><span class="co"># (b)</span></span>
+<span id="cb152-4"><a href="analysis-of-variance.html#cb152-4" tabindex="-1"></a><span class="fu">table</span>(delivery<span class="sc">$</span>company)</span>
+<span id="cb152-5"><a href="analysis-of-variance.html#cb152-5" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
+<span id="cb152-6"><a href="analysis-of-variance.html#cb152-6" tabindex="-1"></a><span class="co">#        7        9        8       10</span></span>
+<span id="cb152-7"><a href="analysis-of-variance.html#cb152-7" tabindex="-1"></a></span>
+<span id="cb152-8"><a href="analysis-of-variance.html#cb152-8" tabindex="-1"></a><span class="co"># (c)</span></span>
+<span id="cb152-9"><a href="analysis-of-variance.html#cb152-9" tabindex="-1"></a><span class="fu">tapply</span>(delivery<span class="sc">$</span>time, delivery<span class="sc">$</span>company, mean)</span>
+<span id="cb152-10"><a href="analysis-of-variance.html#cb152-10" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
+<span id="cb152-11"><a href="analysis-of-variance.html#cb152-11" tabindex="-1"></a><span class="co">#     41.0     57.0     48.0     64.9</span></span>
+<span id="cb152-12"><a href="analysis-of-variance.html#cb152-12" tabindex="-1"></a></span>
+<span id="cb152-13"><a href="analysis-of-variance.html#cb152-13" tabindex="-1"></a><span class="co"># (d)</span></span>
+<span id="cb152-14"><a href="analysis-of-variance.html#cb152-14" tabindex="-1"></a><span class="fu">tapply</span>(delivery<span class="sc">$</span>time, delivery<span class="sc">$</span>company, var)</span>
+<span id="cb152-15"><a href="analysis-of-variance.html#cb152-15" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
+<span id="cb152-16"><a href="analysis-of-variance.html#cb152-16" tabindex="-1"></a><span class="co">#    4.667    7.750    4.571    7.211</span></span>
+<span id="cb152-17"><a href="analysis-of-variance.html#cb152-17" tabindex="-1"></a></span>
+<span id="cb152-18"><a href="analysis-of-variance.html#cb152-18" tabindex="-1"></a><span class="co"># (f)</span></span>
+<span id="cb152-19"><a href="analysis-of-variance.html#cb152-19" tabindex="-1"></a>delivery_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> company, <span class="at">data =</span> delivery)</span>
+<span id="cb152-20"><a href="analysis-of-variance.html#cb152-20" tabindex="-1"></a><span class="fu">anova</span>(delivery_model)</span>
+<span id="cb152-21"><a href="analysis-of-variance.html#cb152-21" tabindex="-1"></a><span class="co"># Response: time</span></span>
+<span id="cb152-22"><a href="analysis-of-variance.html#cb152-22" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
+<span id="cb152-23"><a href="analysis-of-variance.html#cb152-23" tabindex="-1"></a><span class="co"># company    3 2739.84  913.28  154.88 &lt; 2.2e-16 ***</span></span>
+<span id="cb152-24"><a href="analysis-of-variance.html#cb152-24" tabindex="-1"></a><span class="co"># Residuals 30  176.90    5.90</span></span></code></pre></div>
+<p><strong>(g)</strong> p-value <span class="math inline">\(&lt; 2.2 \times 10^{-16} \ll 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is overwhelming evidence that at least two companies have different mean delivery times.</p>
+<p><strong>(h)</strong> <strong>Company A</strong> is fastest: <span class="math inline">\(\bar{x}_A = 41.0\)</span> min, the smallest mean.</p>
+<blockquote>
+<p>The ANOVA output matches Question 32’s given table exactly (<span class="math inline">\(F = 154.88\)</span>, <span class="math inline">\(MSE = 5.90\)</span>).</p>
+</blockquote>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 38
+</div>
+<p>The file <code>ch8-fertilizer-yield.csv</code> contains crop yields from four fertilizer types. The group sizes are not all equal. Work through each part in order.</p>
+<p><strong>(a–b)</strong> Import the data and check group sizes.
+<strong>(c)</strong> Create side-by-side boxplots.
+<strong>(d–e)</strong> Run the ANOVA and Bonferroni pairwise comparisons.
+<strong>(f)</strong> Explain why Bonferroni is more conservative than Fisher’s LSD.</p>
+<p>Fill in the blanks and click <strong>▶ Run</strong>.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="20">fert <- read.csv("ch8-fertilizer-yield.csv")
+
+# (b) Sample size per fertilizer
+table(fert$___)
+
+# (c) Boxplot
+boxplot(___ ~ ___,
+        data = fert,
+        main = "Crop Yield by Fertilizer",
+        xlab = "Fertilizer",
+        ylab = "Yield")
+
+# (d) ANOVA
+fert_model <- aov(___ ~ ___, data = fert)
+anova(fert_model)
+
+# (e) Bonferroni pairwise comparisons
+pairwise.t.test(fert$yield, fert$fertilizer,
+                p.adjust.method = ___)</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The grouping variable is <code>fertilizer</code>; the response is <code>yield</code>.</li>
+<li>For <code>boxplot()</code>: formula is <code>yield ~ fertilizer</code>.</li>
+<li>For <code>aov()</code>: formula is <code>yield ~ fertilizer</code>.</li>
+<li>For <code>pairwise.t.test()</code>: use <code>p.adjust.method = "bonferroni"</code>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="analysis-of-variance.html#cb153-1" tabindex="-1"></a>fert <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ch8-fertilizer-yield.csv&quot;</span>)</span>
+<span id="cb153-2"><a href="analysis-of-variance.html#cb153-2" tabindex="-1"></a></span>
+<span id="cb153-3"><a href="analysis-of-variance.html#cb153-3" tabindex="-1"></a><span class="co"># (b)</span></span>
+<span id="cb153-4"><a href="analysis-of-variance.html#cb153-4" tabindex="-1"></a><span class="fu">table</span>(fert<span class="sc">$</span>fertilizer)</span>
+<span id="cb153-5"><a href="analysis-of-variance.html#cb153-5" tabindex="-1"></a><span class="co"># F1 F2 F3 F4</span></span>
+<span id="cb153-6"><a href="analysis-of-variance.html#cb153-6" tabindex="-1"></a><span class="co">#  8 10 12  9</span></span>
+<span id="cb153-7"><a href="analysis-of-variance.html#cb153-7" tabindex="-1"></a></span>
+<span id="cb153-8"><a href="analysis-of-variance.html#cb153-8" tabindex="-1"></a><span class="co"># (d)</span></span>
+<span id="cb153-9"><a href="analysis-of-variance.html#cb153-9" tabindex="-1"></a>fert_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> fertilizer, <span class="at">data =</span> fert)</span>
+<span id="cb153-10"><a href="analysis-of-variance.html#cb153-10" tabindex="-1"></a><span class="fu">anova</span>(fert_model)</span>
+<span id="cb153-11"><a href="analysis-of-variance.html#cb153-11" tabindex="-1"></a><span class="co"># Response: yield</span></span>
+<span id="cb153-12"><a href="analysis-of-variance.html#cb153-12" tabindex="-1"></a><span class="co">#            Df Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
+<span id="cb153-13"><a href="analysis-of-variance.html#cb153-13" tabindex="-1"></a><span class="co"># fertilizer  3 659.97  219.99   43.84 6.03e-12 ***</span></span>
+<span id="cb153-14"><a href="analysis-of-variance.html#cb153-14" tabindex="-1"></a><span class="co"># Residuals  35 175.62    5.02</span></span>
+<span id="cb153-15"><a href="analysis-of-variance.html#cb153-15" tabindex="-1"></a></span>
+<span id="cb153-16"><a href="analysis-of-variance.html#cb153-16" tabindex="-1"></a><span class="co"># (e)</span></span>
+<span id="cb153-17"><a href="analysis-of-variance.html#cb153-17" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(fert<span class="sc">$</span>yield, fert<span class="sc">$</span>fertilizer,</span>
+<span id="cb153-18"><a href="analysis-of-variance.html#cb153-18" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb153-19"><a href="analysis-of-variance.html#cb153-19" tabindex="-1"></a><span class="co">#    F1      F2      F3</span></span>
+<span id="cb153-20"><a href="analysis-of-variance.html#cb153-20" tabindex="-1"></a><span class="co"># F2 1.8e-05 -       -</span></span>
+<span id="cb153-21"><a href="analysis-of-variance.html#cb153-21" tabindex="-1"></a><span class="co"># F3 7.3e-12 3.7e-05 -</span></span>
+<span id="cb153-22"><a href="analysis-of-variance.html#cb153-22" tabindex="-1"></a><span class="co"># F4 0.049   0.054   1.1e-08</span></span></code></pre></div>
+<p>ANOVA result: <span class="math inline">\(F = 43.84\)</span>, p-value <span class="math inline">\(= 6.03 \times 10^{-12} \ll 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p>
+<p>Bonferroni pairwise results:
+- F1 vs F2, F1 vs F3, F2 vs F3, F3 vs F4: all significantly different (p <span class="math inline">\(\ll 0.05\)</span>).
+- F1 vs F4: <span class="math inline">\(p = 0.049\)</span> — borderline significant at the 5% level after Bonferroni adjustment.
+- F2 vs F4: <span class="math inline">\(p = 0.054\)</span> — not significant after Bonferroni adjustment.</p>
+<p><strong>(f)</strong> Bonferroni is more conservative because it divides <span class="math inline">\(\alpha\)</span> by the number of comparisons <span class="math inline">\(m = \binom{4}{2} = 6\)</span>, using <span class="math inline">\(\alpha^* = 0.05/6 \approx 0.0083\)</span> per comparison. This requires a larger <span class="math inline">\(t\)</span> critical value and wider confidence intervals, making it harder to declare a pair significantly different. Fisher’s LSD uses the full <span class="math inline">\(\alpha = 0.05\)</span> per test, which has higher power but increases the experiment-wise Type I error rate.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 39
+</div>
+WebR returned the following ANOVA output when comparing delivery times across four companies. Run the code below to reproduce it, then answer the questions.
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="8">delivery <- read.csv("ch8-delivery-times.csv")
+delivery_model <- aov(time ~ company, data = delivery)
+anova(delivery_model)</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+<p>Based on the output, answer the following:</p>
+<p><strong>(a)</strong> How many companies were compared?</p>
+<p><strong>(b)</strong> What is the error degrees of freedom?</p>
+<p><strong>(c)</strong> What is the value of <span class="math inline">\(MSE\)</span>?</p>
+<p><strong>(d)</strong> What is the conclusion at <span class="math inline">\(\alpha = 0.05\)</span>?</p>
+<p><strong>(e)</strong> Does this output tell us exactly which companies differ? Explain.</p>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><strong>(a)</strong> <span class="math inline">\(df_{\text{company}} = k - 1\)</span>; solve for <span class="math inline">\(k\)</span>.</li>
+<li><strong>(b)</strong> Read <span class="math inline">\(df_{\text{Residuals}}\)</span> from the output.</li>
+<li><strong>(c)</strong> <span class="math inline">\(MSE\)</span> is the <code>Mean Sq</code> in the <code>Residuals</code> row.</li>
+<li><strong>(d)</strong> Compare p-value to <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+<li><strong>(e)</strong> Recall what ANOVA’s <span class="math inline">\(H_a\)</span> actually states.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<pre><code>Response: time
+          Df  Sum Sq Mean Sq F value    Pr(&gt;F)
+company    3 2739.84  913.28  154.88 &lt; 2.2e-16 ***
+Residuals 30  176.90    5.90</code></pre>
+<p><strong>(a)</strong> <span class="math inline">\(df_{\text{company}} = k - 1 = 3 \Rightarrow \mathbf{k = 4}\)</span> companies.</p>
+<p><strong>(b)</strong> Error <span class="math inline">\(df = \mathbf{30}\)</span> (from the <code>Residuals</code> row).</p>
+<p><strong>(c)</strong> <span class="math inline">\(MSE = \mathbf{5.90}\)</span> (from the <code>Mean Sq</code> of <code>Residuals</code>).</p>
+<p><strong>(d)</strong> p-value <span class="math inline">\(&lt; 2.2 \times 10^{-16} &lt; \alpha = 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is overwhelming evidence that at least two companies have different mean delivery times.</p>
+<p><strong>(e)</strong> No. ANOVA’s <span class="math inline">\(H_a\)</span> only states “at least two means differ” — it does not identify which pair(s). To determine which specific companies differ, pairwise comparisons (e.g., <code>pairwise.t.test()</code> with Bonferroni adjustment) are needed.</p>
+</div>
+</details>
+
 </div>
 </div>
             </section>

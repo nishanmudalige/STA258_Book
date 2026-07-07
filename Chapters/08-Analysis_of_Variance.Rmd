@@ -1411,8 +1411,6 @@ The drawback to LSD is that we increase the probability of at least one Type I e
 
 ## Exercises {#sec:ch8exercises}
 
-### Part A: Regular Practice Questions
-
 ---
 
 <div class="exercise-box">
@@ -2116,9 +2114,7 @@ There is sufficient evidence at the 5% significance level to conclude that **at 
 
 ---
 
-### Part B: WebR Practice Questions
-
-Use the following dataset for Questions B1–B10. Three countries' weekly sales data:
+Use the following dataset for Questions 21–30. Three countries' weekly sales data:
 
 ```
 salesA <- c(6, 10, 7, 9)
@@ -2129,7 +2125,7 @@ salesC <- c(14, 13, 11, 10)
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B1</div>
+<div class="exercise-label">Question 21</div>
 Combine the three group vectors into a single response variable `sales`. Fill in the blanks and click **▶ Run**.
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -2174,7 +2170,7 @@ sales
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B2</div>
+<div class="exercise-label">Question 22</div>
 Create the group label variable `country` as a factor, with 4 repetitions of each label. Fill in the blank and click **▶ Run**.
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -2213,7 +2209,7 @@ country
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B3</div>
+<div class="exercise-label">Question 23</div>
 Use `tapply()` to compute the mean sales for each country. Fill in the blanks and click **▶ Run**.
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -2256,7 +2252,7 @@ Country A has the lowest mean (8), Country C the highest (12).
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B4</div>
+<div class="exercise-label">Question 24</div>
 Compute the **overall sample mean** of all 12 sales observations. Fill in the blank and click **▶ Run**.
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -2297,7 +2293,7 @@ The grand mean is $\bar{x} = 10$, equal to the average of the three group means 
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B5</div>
+<div class="exercise-label">Question 25</div>
 Use `tapply()` to compute the sample **variance** for each country. Fill in the blank and click **▶ Run**.
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -2340,7 +2336,7 @@ All three groups have the same sample variance ($\approx 2.67$), which supports 
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B6</div>
+<div class="exercise-label">Question 26</div>
 Fit a one-way ANOVA model and display the ANOVA table. Fill in the blanks and click **▶ Run**.
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -2389,7 +2385,7 @@ $F^* = 5.1429$, p-value $= 0.0324 < 0.05$ → reject $H_0$. Not all country mean
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B7</div>
+<div class="exercise-label">Question 27</div>
 Run a one-way ANOVA using `oneway.test()` assuming **equal variances**. Fill in the blank and click **▶ Run**.
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -2433,7 +2429,7 @@ Same result as `aov()`: $F = 5.1429$, p-value $= 0.0324$. Both functions impleme
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B8</div>
+<div class="exercise-label">Question 28</div>
 The code below has a bug: the response and group variables are **reversed**. Fix the error and click **▶ Run**.
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -2482,7 +2478,7 @@ The response variable (`sales`) must appear on the **left** of `~` and the group
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B9</div>
+<div class="exercise-label">Question 29</div>
 Create a **boxplot** to compare sales across the three countries. Fill in the blanks and click **▶ Run** to see the plot.
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -2530,7 +2526,7 @@ The boxplot shows Country C with the highest median ($\tilde{x}_C = 12$) and Cou
 ---
 
 <div class="exercise-box">
-<div class="exercise-label">Question B10</div>
+<div class="exercise-label">Question 30</div>
 Run the ANOVA below and read the output. Then select the correct conclusion at $\alpha = 0.05$.
 
 A. Do not reject $H_0$; the country means may all be equal.
@@ -2576,5 +2572,711 @@ oneway.test(sales ~ country, var.equal = TRUE)</textarea>
 The output gives $F = 5.1429$, p-value $= 0.0324$.
 
 Since p-value $= 0.0324 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that at least two countries have different mean sales. Option C overclaims — ANOVA only tells us that *some* means differ, not that *all* pairs differ. Post-hoc pairwise comparisons would be needed to identify which specific pairs are different.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 31</div>
+A statistics instructor wants to compare the average final exam scores of students using five different study methods. The group sizes are **not** all equal.
+
+| Study Method   | $n_i$ | $\bar{x}_i$ | $s_i^2$ |
+|:---------------|:-----:|:-----------:|:-------:|
+| Lecture Review |   8   |    72.4     |  36.0   |
+| Online Videos  |  10   |    76.8     |  42.5   |
+| Group Study    |  12   |    81.3     |  39.2   |
+| Private Tutor  |   9   |    86.1     |  45.0   |
+| Self Study     |  11   |    74.9     |  40.8   |
+
+Use $\alpha = 0.05$. Round final answers to four decimal places.
+
+**(a)** State the null and alternative hypotheses for a one-way ANOVA.
+
+**(b)** Compute the overall (grand) sample mean. *Caution: group sizes are unequal.*
+
+**(c)** Compute the treatment sum of squares, $SS_{\text{Treatment}}$.
+
+**(d)** Compute the error sum of squares, $SS_{\text{Error}}$.
+
+**(e)** Complete the ANOVA table.
+
+| Source    | df | SS | MS | F |
+|:----------|:--:|:--:|:--:|:-:|
+| Treatment |    |    |    |   |
+| Error     |    |    |    |   |
+| Total     |    |    |    |   |
+
+**(f)** Suppose the p-value is 0.0003. State the conclusion in context.
+
+**(g)** Does rejecting $H_0$ tell us exactly which study methods differ? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **(b)** When group sizes differ, the grand mean is a **weighted** average: $\bar{x} = \dfrac{\sum n_i \bar{x}_i}{\sum n_i}$, not the simple average of the $\bar{x}_i$.
+- **(c)** $SS_{\text{Treatment}} = \sum_{i=1}^{k} n_i (\bar{x}_i - \bar{x})^2$.
+- **(d)** $SS_{\text{Error}} = \sum_{i=1}^{k} (n_i - 1) s_i^2$ — use the given sample variances.
+- **(e)** $df_T = k-1$, $df_E = n-k$; $MS = SS/df$; $F = MS_T/MS_E$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4 = \mu_5$$
+$$H_a: \text{At least two study method means are different.}$$
+
+**(b)** Total $n = 8+10+12+9+11 = 50$.
+$$\bar{x} = \frac{\sum n_i \bar{x}_i}{n} = \frac{8(72.4)+10(76.8)+12(81.3)+9(86.1)+11(74.9)}{50}$$
+$$= \frac{579.2+768.0+975.6+774.9+823.9}{50} = \frac{3921.6}{50} = \mathbf{78.4320}$$
+
+**(c)**
+$$SS_{\text{Treatment}} = \sum n_i(\bar{x}_i - \bar{x})^2$$
+$$= 8(72.4-78.432)^2 + 10(76.8-78.432)^2 + 12(81.3-78.432)^2 + 9(86.1-78.432)^2 + 11(74.9-78.432)^2$$
+$$= 8(36.3851) + 10(2.6634) + 12(8.2250) + 9(58.7978) + 11(12.4749)$$
+$$= \mathbf{1082.8288}$$
+
+**(d)**
+$$SS_{\text{Error}} = \sum (n_i - 1)s_i^2 = 7(36.0)+9(42.5)+11(39.2)+8(45.0)+10(40.8)$$
+$$= 252.0+382.5+431.2+360.0+408.0 = \mathbf{1833.7000}$$
+
+**(e)**
+$$df_T = k-1 = 4,\quad df_E = n-k = 45,\quad df_{\text{Total}} = 49$$
+$$MS_T = \frac{1082.8288}{4} = 270.7072,\quad MS_E = \frac{1833.7000}{45} = 40.7489,\quad F = \frac{270.7072}{40.7489} = 6.6433$$
+
+| Source    | df |     SS      |    MS    |   F    |
+|:----------|:--:|:-----------:|:--------:|:------:|
+| Treatment |  4 | 1082.8288   | 270.7072 | 6.6433 |
+| Error     | 45 | 1833.7000   |  40.7489 |        |
+| Total     | 49 | 2916.5288   |          |        |
+
+**(f)** Since p-value $= 0.0003 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that at least two study methods produce different mean final exam scores.
+
+**(g)** No. ANOVA only tells us that at least two means are not equal. To determine which specific methods differ, pairwise comparisons (e.g., Fisher's LSD or Bonferroni) are required.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 32</div>
+A business compares delivery times (minutes) from four courier companies. Lower times are better. The group sizes are unequal because not every company had the same number of recorded deliveries.
+
+| Company A | Company B | Company C | Company D |
+|:---------:|:---------:|:---------:|:---------:|
+|    42     |    55     |    48     |    61     |
+|    39     |    57     |    45     |    65     |
+|    44     |    53     |    50     |    63     |
+|    41     |    59     |    47     |    67     |
+|    38     |    56     |    49     |    64     |
+|    43     |    60     |    46     |    66     |
+|    40     |    54     |    51     |    62     |
+|           |    58     |    48     |    68     |
+|           |    61     |           |    69     |
+|           |           |           |    64     |
+
+Use $\alpha = 0.05$.
+
+**(a)** What is the response variable? What is the factor?
+
+**(b)** State the null and alternative hypotheses.
+
+**(c)** The ANOVA output is:
+
+| Source  | df |    SS     |   MS    |    F    | p-value  |
+|:--------|:--:|:---------:|:-------:|:-------:|:--------:|
+| Company |  3 | 2739.8353 | 913.2784| 154.8805| < 0.0001 |
+| Error   | 30 |  176.9000 |   5.8967|         |          |
+| Total   | 33 | 2916.7353 |         |         |          |
+
+Make a decision and write a conclusion in context.
+
+**(d)** Based on the sample means below, which company appears fastest?
+
+| Company  | $n$ | $\bar{x}$ |
+|:---------|:---:|:---------:|
+| A        |  7  |  41.0000  |
+| B        |  9  |  57.0000  |
+| C        |  8  |  48.0000  |
+| D        | 10  |  64.9000  |
+
+**(e)** Does the ANOVA result prove that Company A is faster than every other company? Explain.
+
+**(f)** List three assumptions needed for this ANOVA.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **(a)** The response variable is what is **measured** (a number); the factor defines the **groups**.
+- **(c)** Compare p-value to $\alpha = 0.05$.
+- **(e)** Remember that ANOVA tests a global $H_0$ — it does not identify which specific pairs differ.
+- **(f)** The three ANOVA assumptions are independence, normality, and equal variances.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The **response variable** is delivery time (minutes). The **factor** is the delivery company (with $k = 4$ levels: A, B, C, D).
+
+**(b)**
+$$H_0: \mu_A = \mu_B = \mu_C = \mu_D$$
+$$H_a: \text{At least two company mean delivery times are different.}$$
+
+**(c)** Since p-value $< 0.0001 < \alpha = 0.05$, we **reject $H_0$**. There is very strong evidence that not all four courier companies have the same mean delivery time.
+
+**(d)** **Company A** appears fastest: it has the smallest sample mean time ($\bar{x}_A = 41.0$ min).
+
+**(e)** No. ANOVA only tells us that **at least two** means differ somewhere among the four companies. To confirm that Company A specifically differs from each of B, C, and D, pairwise comparisons (Fisher's LSD or Bonferroni) are needed.
+
+**(f)** The three ANOVA assumptions are:
+
+1. **Independence**: observations within and across groups are independent.
+2. **Normality**: each group's delivery times are approximately normally distributed.
+3. **Equal variances**: the population variance is the same across all four companies ($\sigma_A^2 = \sigma_B^2 = \sigma_C^2 = \sigma_D^2$).
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 33</div>
+Using the study method summary from Question 31, the ANOVA rejected $H_0$. The instructor now wants to compare **Group Study** vs. **Self Study** specifically.
+
+Given: $\bar{x}_{\text{Group}} = 81.3$, $\bar{x}_{\text{Self}} = 74.9$, $MSE = 40.7489$, $n_{\text{Group}} = 12$, $n_{\text{Self}} = 11$, $df_E = 45$.
+
+Use $\alpha = 0.05$.
+
+**(a)** How many pairwise comparisons are possible among the five study methods?
+
+**(b)** Compute **Fisher's LSD** for comparing Group Study and Self Study.
+
+$$LSD = t_{\alpha/2,\,df_E} \sqrt{MSE\!\left(\frac{1}{n_i}+\frac{1}{n_j}\right)}, \quad t_{0.025,\,45} = 2.0141$$
+
+**(c)** Based on Fisher's LSD, do the two methods differ significantly?
+
+**(d)** Apply the **Bonferroni adjustment**. What value of $\alpha^*$ should be used per comparison?
+
+**(e)** With $t_{\alpha^*/2,\,45} = 2.9521$, compute the Bonferroni-adjusted LSD.
+
+**(f)** Based on Bonferroni, do the two methods differ significantly?
+
+**(g)** Explain why Fisher's LSD and Bonferroni can give different conclusions.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **(a)** Number of pairs: $m = \dbinom{k}{2} = \dfrac{k(k-1)}{2}$.
+- **(b)** Plug $MSE = 40.7489$, $n_i = 12$, $n_j = 11$ into the LSD formula.
+- **(d)** Bonferroni uses $\alpha^* = \alpha / m$ per comparison.
+- **(f)** Compare $|\bar{x}_i - \bar{x}_j|$ to $LSD_B$: conclude difference if $|\bar{x}_i - \bar{x}_j| > LSD_B$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$m = \binom{5}{2} = \frac{5 \times 4}{2} = \mathbf{10} \text{ pairwise comparisons}$$
+
+**(b)**
+$$LSD = 2.0141\sqrt{40.7489\!\left(\frac{1}{12}+\frac{1}{11}\right)} = 2.0141\sqrt{40.7489 \times 0.1742} = 2.0141 \times 2.6641 = \mathbf{5.3668}$$
+
+**(c)** $|\bar{x}_{\text{Group}} - \bar{x}_{\text{Self}}| = |81.3 - 74.9| = 6.4000$.
+
+Since $6.4000 > 5.3668$, **Fisher's LSD concludes the two methods differ significantly.**
+
+**(d)** With $m = 10$ comparisons:
+$$\alpha^* = \frac{\alpha}{m} = \frac{0.05}{10} = \mathbf{0.005}$$
+
+**(e)**
+$$LSD_B = 2.9521\sqrt{40.7489 \times 0.1742} = 2.9521 \times 2.6641 = \mathbf{7.8662}$$
+
+**(f)** Since $6.4000 < 7.8662$, **Bonferroni does not find a significant difference** between Group Study and Self Study.
+
+**(g)** Fisher's LSD uses the original $\alpha = 0.05$ per comparison, giving a smaller LSD (easier to reject). Bonferroni divides $\alpha$ by the number of comparisons ($\alpha^* = 0.005$), requiring a larger $t$ critical value and wider LSD. Bonferroni is more conservative — it better controls the experiment-wise Type I error rate, but at the cost of lower power to detect individual differences.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 34</div>
+The boxplot below compares final exam scores for five study methods. The group sizes are not all equal.
+
+```{r ch8-p4-box, echo=FALSE, fig.height=3.8, fig.width=7, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+study_method <- data.frame(
+  method = factor(c(
+    rep("Lecture", 8), rep("Online", 10), rep("Group", 12),
+    rep("Tutor", 9), rep("SelfStudy", 11)
+  ), levels = c("Lecture","Online","SelfStudy","Group","Tutor")),
+  score = c(
+    68,71,75,70,74,77,69,73,
+    72,78,80,75,77,79,74,81,76,77,
+    77,82,84,79,81,83,78,86,80,83,85,82,
+    81,88,90,85,87,91,83,89,86,
+    70,75,78,72,74,77,71,76,73,75,74
+  )
+)
+ggplot(study_method, aes(x = method, y = score, fill = method)) +
+  geom_boxplot(width = 0.5, color = "grey30",
+               outlier.shape = 16, outlier.size = 2) +
+  scale_fill_manual(values = c("#74b9ff","#55efc4","#ffeaa7","#fd79a8","#a29bfe")) +
+  labs(x = "Study Method", y = "Final Exam Score",
+       caption = "n = 8, 10, 11, 12, 9 for Lecture, Online, SelfStudy, Group, Tutor") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none",
+        plot.caption = element_text(color = "#555", size = 9))
+```
+
+**(a)** Which group appears to have the highest centre (median)?
+
+**(b)** Do the spreads look roughly similar across groups?
+
+**(c)** Are there any obvious outliers that may affect the ANOVA?
+
+**(d)** Based on the plot **alone**, can we formally conclude that the population means differ? Explain.
+
+**(e)** If ANOVA rejects $H_0$, what should be done next to identify specific differences?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **(a)** The centre of a boxplot is the **median** (middle line of the box).
+- **(b)** The ANOVA equal-variance assumption requires roughly similar **heights** (IQRs) across boxes.
+- **(c)** Outliers appear as isolated points beyond the whiskers.
+- **(d)** A boxplot is descriptive; formal inference requires a test statistic and p-value.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The **Tutor** group has the highest centre — its median is visibly above all other groups.
+
+**(b)** Yes, the box heights (IQRs) appear reasonably similar across the five groups, which supports the equal-variance assumption of ANOVA.
+
+**(c)** There are no extreme outliers visible in the plot — all points fall within the whiskers or close to them.
+
+**(d)** No. A boxplot is a useful **visual** tool for checking assumptions and identifying patterns, but it cannot replace a formal hypothesis test. The conclusion must be based on the ANOVA $F$ statistic and the associated p-value.
+
+**(e)** After rejecting $H_0$, **pairwise comparisons** should be performed (e.g., Fisher's LSD or Bonferroni) to identify which specific pairs of study methods have significantly different mean scores.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 35</div>
+A student used R to compare mean crop yields under four fertilizer types. The output was:
+
+```
+Analysis of Variance Table
+
+Response: yield
+           Df Sum Sq Mean Sq F value   Pr(>F)
+fertilizer  3  512.4  170.80   6.832   0.0012
+Residuals  36  900.0   25.00
+```
+
+Use $\alpha = 0.05$.
+
+**(a)** How many fertilizer groups were compared?
+
+**(b)** What is the total sample size?
+
+**(c)** State the null and alternative hypotheses.
+
+**(d)** Identify the value of $MSE$ from the output.
+
+**(e)** Make a decision and write a conclusion in context.
+
+**(f)** What does $MSE$ represent in this ANOVA?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **(a)** $df_{\text{Treatment}} = k - 1$; solve for $k$.
+- **(b)** $df_{\text{Error}} = n - k$; use the result from (a) to find $n$.
+- **(d)** $MSE$ is in the `Mean Sq` column of the `Residuals` row.
+- **(f)** $MSE$ estimates $\sigma^2$, the common within-group variance.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $df_{\text{Treatment}} = k - 1 = 3 \Rightarrow \mathbf{k = 4}$ fertilizer groups.
+
+**(b)** $df_{\text{Error}} = n - k = 36 \Rightarrow n = 36 + 4 = \mathbf{40}$ total observations.
+
+**(c)**
+$$H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4$$
+$$H_a: \text{At least two fertilizer types have different mean crop yields.}$$
+
+**(d)** $MSE = \mathbf{25.00}$ (from the `Mean Sq` of the `Residuals` row).
+
+**(e)** Since p-value $= 0.0012 < \alpha = 0.05$, we **reject $H_0$**. There is sufficient evidence that at least two fertilizer types produce different mean crop yields.
+
+**(f)** $MSE$ estimates the **common within-group variance** $\sigma^2$. It represents the typical variability in crop yield **within** a fertilizer group — the unexplained variation remaining after accounting for the effect of fertilizer type. Here, $MSE = 25.00$ means the estimated within-group standard deviation is $\sqrt{25} = 5$ yield units.
+</div>
+</details>
+
+---
+
+The following three datasets are pre-loaded and ready to use in R. They can be read with `read.csv("filename")`.
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 36</div>
+The file `ch8-study-methods.csv` contains final exam scores for 50 students across five study methods. The group sizes are **not** all equal. Work through each part in order.
+
+**(a–b)** Import the data and check group sizes.
+**(c–d)** Compute group means and create a boxplot.
+**(e–f)** Run a one-way ANOVA and interpret the p-value.
+**(g)** Run Bonferroni pairwise comparisons to identify which methods differ.
+
+Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="20">study <- read.csv("ch8-study-methods.csv")
+
+# (b) Sample size per method
+table(study$___)
+
+# (c) Group means
+tapply(study$score, study$___, mean)
+
+# (d) Boxplot
+boxplot(___ ~ ___,
+        data  = study,
+        main  = "Final Exam Scores by Study Method",
+        xlab  = "Study Method",
+        ylab  = "Final Exam Score")
+
+# (e) One-way ANOVA
+model <- aov(___ ~ ___, data = study)
+anova(model)
+
+# (g) Bonferroni pairwise comparisons
+pairwise.t.test(study$score, study$method,
+                p.adjust.method = ___)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `table(study$method)` shows how many observations are in each group.
+- For `tapply()`: the grouping variable is `study$method`.
+- For `boxplot()`: use the formula `score ~ method`.
+- For `aov()`: the formula is `score ~ method`.
+- For `pairwise.t.test()`: use `p.adjust.method = "bonferroni"`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+study <- read.csv("ch8-study-methods.csv")
+
+# (b)
+table(study$method)
+# Group Lecture  Online SelfStudy    Tutor
+#    12       8      10        11        9
+
+# (c)
+tapply(study$score, study$method, mean)
+#    Group  Lecture   Online SelfStudy    Tutor
+# 81.6667  72.1250  76.9000   74.0909  86.6667
+
+# (d) boxplot — renders in plot area
+
+# (e)
+model <- aov(score ~ method, data = study)
+anova(model)
+# Response: score
+#           Df  Sum Sq Mean Sq F value    Pr(>F)
+# method     4 1284.83  321.21  39.134 4.129e-14 ***
+# Residuals 45  369.35    8.21
+
+# (g)
+pairwise.t.test(study$score, study$method,
+                p.adjust.method = "bonferroni")
+```
+
+**(f) Interpretation:** p-value $= 4.13 \times 10^{-14} \ll 0.05$ → **reject $H_0$**. There is overwhelming evidence that at least two study methods have different mean exam scores.
+
+**(g) Bonferroni result:** The Tutor group differs significantly from all other groups (all adjusted p $< 0.05$). Lecture and SelfStudy do not differ from each other ($p = 1.00$), but both differ from Group and Tutor. Online differs from Group ($p = 0.0033$) and Tutor, but not from SelfStudy.
+
+> **Note:** The CSV data gives slightly different means from Question 31's summary table (which used rounded $s_i^2$ values), so the $F$ statistic here ($F \approx 39.13$) is larger than Question 31's $F = 6.64$.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 37</div>
+The file `ch8-delivery-times.csv` contains delivery times (minutes) for four courier companies. The group sizes are unequal. Work through each part in order.
+
+**(a–b)** Import the data and check group sizes.
+**(c–d)** Compute group means and variances.
+**(e)** Create a boxplot.
+**(f–g)** Run a one-way ANOVA and interpret the result.
+**(h)** Identify the fastest company from the sample means.
+
+Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="20">delivery <- read.csv("ch8-delivery-times.csv")
+
+# (b) Sample size per company
+table(delivery$___)
+
+# (c) Group means
+tapply(delivery$time, delivery$___, mean)
+
+# (d) Group variances
+tapply(delivery$time, delivery$___, var)
+
+# (e) Boxplot
+boxplot(___ ~ ___,
+        data = delivery,
+        main = "Delivery Times by Company",
+        xlab = "Company",
+        ylab = "Delivery Time (min)")
+
+# (f) ANOVA
+delivery_model <- aov(___ ~ ___, data = delivery)
+anova(delivery_model)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The grouping variable is `company`; the response is `time`.
+- For `tapply()`: `tapply(delivery$time, delivery$company, mean)`.
+- For `boxplot()`: formula is `time ~ company`.
+- For `aov()`: formula is `time ~ company`.
+- The company with the **smallest** mean time is the fastest.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+delivery <- read.csv("ch8-delivery-times.csv")
+
+# (b)
+table(delivery$company)
+# CompanyA CompanyB CompanyC CompanyD
+#        7        9        8       10
+
+# (c)
+tapply(delivery$time, delivery$company, mean)
+# CompanyA CompanyB CompanyC CompanyD
+#     41.0     57.0     48.0     64.9
+
+# (d)
+tapply(delivery$time, delivery$company, var)
+# CompanyA CompanyB CompanyC CompanyD
+#    4.667    7.750    4.571    7.211
+
+# (f)
+delivery_model <- aov(time ~ company, data = delivery)
+anova(delivery_model)
+# Response: time
+#           Df  Sum Sq Mean Sq F value    Pr(>F)
+# company    3 2739.84  913.28  154.88 < 2.2e-16 ***
+# Residuals 30  176.90    5.90
+```
+
+**(g)** p-value $< 2.2 \times 10^{-16} \ll 0.05$ → **reject $H_0$**. There is overwhelming evidence that at least two companies have different mean delivery times.
+
+**(h)** **Company A** is fastest: $\bar{x}_A = 41.0$ min, the smallest mean.
+
+> The ANOVA output matches Question 32's given table exactly ($F = 154.88$, $MSE = 5.90$).
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 38</div>
+The file `ch8-fertilizer-yield.csv` contains crop yields from four fertilizer types. The group sizes are not all equal. Work through each part in order.
+
+**(a–b)** Import the data and check group sizes.
+**(c)** Create side-by-side boxplots.
+**(d–e)** Run the ANOVA and Bonferroni pairwise comparisons.
+**(f)** Explain why Bonferroni is more conservative than Fisher's LSD.
+
+Fill in the blanks and click **▶ Run**.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="20">fert <- read.csv("ch8-fertilizer-yield.csv")
+
+# (b) Sample size per fertilizer
+table(fert$___)
+
+# (c) Boxplot
+boxplot(___ ~ ___,
+        data = fert,
+        main = "Crop Yield by Fertilizer",
+        xlab = "Fertilizer",
+        ylab = "Yield")
+
+# (d) ANOVA
+fert_model <- aov(___ ~ ___, data = fert)
+anova(fert_model)
+
+# (e) Bonferroni pairwise comparisons
+pairwise.t.test(fert$yield, fert$fertilizer,
+                p.adjust.method = ___)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The grouping variable is `fertilizer`; the response is `yield`.
+- For `boxplot()`: formula is `yield ~ fertilizer`.
+- For `aov()`: formula is `yield ~ fertilizer`.
+- For `pairwise.t.test()`: use `p.adjust.method = "bonferroni"`.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```r
+fert <- read.csv("ch8-fertilizer-yield.csv")
+
+# (b)
+table(fert$fertilizer)
+# F1 F2 F3 F4
+#  8 10 12  9
+
+# (d)
+fert_model <- aov(yield ~ fertilizer, data = fert)
+anova(fert_model)
+# Response: yield
+#            Df Sum Sq Mean Sq F value    Pr(>F)
+# fertilizer  3 659.97  219.99   43.84 6.03e-12 ***
+# Residuals  35 175.62    5.02
+
+# (e)
+pairwise.t.test(fert$yield, fert$fertilizer,
+                p.adjust.method = "bonferroni")
+#    F1      F2      F3
+# F2 1.8e-05 -       -
+# F3 7.3e-12 3.7e-05 -
+# F4 0.049   0.054   1.1e-08
+```
+
+ANOVA result: $F = 43.84$, p-value $= 6.03 \times 10^{-12} \ll 0.05$ → **reject $H_0$**.
+
+Bonferroni pairwise results:
+- F1 vs F2, F1 vs F3, F2 vs F3, F3 vs F4: all significantly different (p $\ll 0.05$).
+- F1 vs F4: $p = 0.049$ — borderline significant at the 5% level after Bonferroni adjustment.
+- F2 vs F4: $p = 0.054$ — not significant after Bonferroni adjustment.
+
+**(f)** Bonferroni is more conservative because it divides $\alpha$ by the number of comparisons $m = \binom{4}{2} = 6$, using $\alpha^* = 0.05/6 \approx 0.0083$ per comparison. This requires a larger $t$ critical value and wider confidence intervals, making it harder to declare a pair significantly different. Fisher's LSD uses the full $\alpha = 0.05$ per test, which has higher power but increases the experiment-wise Type I error rate.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 39</div>
+WebR returned the following ANOVA output when comparing delivery times across four companies. Run the code below to reproduce it, then answer the questions.
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="8">delivery <- read.csv("ch8-delivery-times.csv")
+delivery_model <- aov(time ~ company, data = delivery)
+anova(delivery_model)</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+
+Based on the output, answer the following:
+
+**(a)** How many companies were compared?
+
+**(b)** What is the error degrees of freedom?
+
+**(c)** What is the value of $MSE$?
+
+**(d)** What is the conclusion at $\alpha = 0.05$?
+
+**(e)** Does this output tell us exactly which companies differ? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- **(a)** $df_{\text{company}} = k - 1$; solve for $k$.
+- **(b)** Read $df_{\text{Residuals}}$ from the output.
+- **(c)** $MSE$ is the `Mean Sq` in the `Residuals` row.
+- **(d)** Compare p-value to $\alpha = 0.05$.
+- **(e)** Recall what ANOVA's $H_a$ actually states.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+```
+Response: time
+          Df  Sum Sq Mean Sq F value    Pr(>F)
+company    3 2739.84  913.28  154.88 < 2.2e-16 ***
+Residuals 30  176.90    5.90
+```
+
+**(a)** $df_{\text{company}} = k - 1 = 3 \Rightarrow \mathbf{k = 4}$ companies.
+
+**(b)** Error $df = \mathbf{30}$ (from the `Residuals` row).
+
+**(c)** $MSE = \mathbf{5.90}$ (from the `Mean Sq` of `Residuals`).
+
+**(d)** p-value $< 2.2 \times 10^{-16} < \alpha = 0.05$ → **reject $H_0$**. There is overwhelming evidence that at least two companies have different mean delivery times.
+
+**(e)** No. ANOVA's $H_a$ only states "at least two means differ" — it does not identify which pair(s). To determine which specific companies differ, pairwise comparisons (e.g., `pairwise.t.test()` with Bonferroni adjustment) are needed.
 </div>
 </details>
