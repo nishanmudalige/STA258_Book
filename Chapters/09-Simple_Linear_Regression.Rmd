@@ -3181,31 +3181,25 @@ Since the oldest observed tree is 35 years, predicting at $x = 40$ is extrapolat
 <div class="exercise-box">
 <div class="exercise-label">Question 18</div>
 
-A health researcher records resting heart rate ($y$, bpm) and weekly aerobic exercise duration ($x$, hours) for 12 adult volunteers:
-
-```r
-exercise  <- c(1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 9)
-heartrate <- c(82, 79, 81, 77, 75, 74, 72, 70, 68, 67, 65, 63)
-```
+A health researcher records resting heart rate ($y$, bpm) and weekly aerobic exercise duration ($x$, hours/week) for 25 adult volunteers. The data are stored in `heart_rate.csv`, which contains two columns: `exercise` (hours per week) and `heartrate` (bpm).
 
 Use R to carry out a complete regression analysis.
 
-(a) Fit the model and report $\hat{\beta}_0$, $\hat{\beta}_1$, $R^2$, $\hat{\sigma}$, and the p-value for $\hat{\beta}_1$.
+(a) Read the data and fit the model. Report $\hat{\beta}_0$, $\hat{\beta}_1$, $R^2$, $\hat{\sigma}$, and the p-value for $\hat{\beta}_1$.
 (b) Interpret $\hat{\beta}_1$ in context.
 (c) Produce a scatter plot with the regression line.
 (d) Examine the residuals-vs-fitted plot. Does the linearity assumption appear satisfied?
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
-<textarea class="webr-editor" rows="13">exercise  <- c(1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 9)
-heartrate <- c(82, 79, 81, 77, 75, 74, 72, 70, 68, 67, 65, 63)
+<textarea class="webr-editor" rows="13">df <- read.csv("heart_rate.csv")
 
 # Fit the model
-model <- lm(___ ~ ___)
+model <- lm(___ ~ ___, data = df)
 summary(model)
 
 # Scatter plot with regression line
-plot(___, ___,
+plot(df$___, df$___,
      xlab = "Weekly Exercise (hours)", ylab = "Resting Heart Rate (bpm)")
 abline(___, col = "blue")
 
@@ -3225,7 +3219,7 @@ plot(___, which = ___)
 <summary>💡 Hint</summary>
 <div class="content">
 
-- `lm(heartrate ~ exercise)` fits the model (no `data =` needed since the vectors are in the workspace).
+- `read.csv("heart_rate.csv")` loads the data into a data frame; use `df$exercise` and `df$heartrate` to access the columns.
 - `plot(model, which = 1)` gives the residuals-vs-fitted plot.
 
 </div>
@@ -3236,16 +3230,18 @@ plot(___, which = ___)
 <div class="content">
 
 ```r
-model <- lm(heartrate ~ exercise)
+df <- read.csv("heart_rate.csv")
+model <- lm(heartrate ~ exercise, data = df)
 summary(model)
-plot(exercise, heartrate, xlab = "Weekly Exercise (hours)", ylab = "Resting Heart Rate (bpm)")
+plot(df$exercise, df$heartrate,
+     xlab = "Weekly Exercise (hours)", ylab = "Resting Heart Rate (bpm)")
 abline(model, col = "blue")
 plot(model, which = 1)
 ```
 
-**(a)** $\hat{\beta}_0 \approx 84.50$, $\hat{\beta}_1 \approx -2.473$, $R^2 \approx 0.985$, $\hat{\sigma} \approx 0.807$, p-value $\approx 1.8 \times 10^{-10}$.
+**(a)** $\hat{\beta}_0 \approx 85.36$, $\hat{\beta}_1 \approx -2.495$, $R^2 \approx 0.903$, $\hat{\sigma} \approx 2.19$, p-value $\approx 3.9 \times 10^{-13}$.
 
-**(b)** Each additional hour of aerobic exercise per week is associated with a decrease of approximately 2.47 bpm in resting heart rate, on average.
+**(b)** Each additional hour of aerobic exercise per week is associated with a decrease of approximately 2.50 bpm in resting heart rate, on average.
 
 **(c)** The scatterplot shows a strong negative, approximately linear association between weekly exercise duration and resting heart rate — participants who exercise more tend to have noticeably lower resting heart rates.
 
@@ -3333,12 +3329,7 @@ $\hat{\beta}_0 \approx 369.39$ ppm: the estimated CO$_2$ concentration in year 2
 <div class="exercise-box">
 <div class="exercise-label">Question 20</div>
 
-A real estate analyst records the floor area ($x$, hundreds of sq ft) and selling price ($y$, \$1000s) of 10 recently sold homes in a Toronto suburb:
-
-```r
-size  <- c(10, 12, 13, 15, 16, 18, 20, 22, 23, 25)
-price <- c(185, 205, 215, 240, 255, 275, 310, 335, 345, 370)
-```
+A real estate analyst records the floor area ($x$, hundreds of sq ft) and selling price ($y$, \$1000s) of 30 recently sold homes in a Toronto suburb. The data are stored in `toronto_homes.csv`, which contains two columns: `size` (hundreds of sq ft) and `price` (\$1000s).
 
 Use R to carry out a complete regression analysis.
 
@@ -3350,15 +3341,14 @@ Use R to carry out a complete regression analysis.
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
-<textarea class="webr-editor" rows="16">size  <- c(10, 12, 13, 15, 16, 18, 20, 22, 23, 25)
-price <- c(185, 205, 215, 240, 255, 275, 310, 335, 345, 370)
+<textarea class="webr-editor" rows="16">df <- read.csv("toronto_homes.csv")
 
 # Fit the model
-model <- lm(___ ~ ___)
+model <- lm(___ ~ ___, data = df)
 summary(model)
 
 # Scatter plot with regression line
-plot(___, ___, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
+plot(df$___, df$___, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
 abline(___, col = "blue")
 
 # Residuals-vs-fitted plot
@@ -3393,26 +3383,25 @@ predict(___, newdata = data.frame(size = 17), interval = "___", level = 0.95)
 <div class="content">
 
 ```r
-size  <- c(10, 12, 13, 15, 16, 18, 20, 22, 23, 25)
-price <- c(185, 205, 215, 240, 255, 275, 310, 335, 345, 370)
-model <- lm(price ~ size)
+df <- read.csv("toronto_homes.csv")
+model <- lm(price ~ size, data = df)
 summary(model)
-plot(size, price, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
+plot(df$size, df$price, xlab = "Floor Area (100 sq ft)", ylab = "Price ($1000s)")
 abline(model, col = "blue")
 plot(model, which = 1)
 predict(model, newdata = data.frame(size = 17), interval = "confidence", level = 0.95)
 predict(model, newdata = data.frame(size = 17), interval = "prediction",  level = 0.95)
 ```
 
-**(a)** $\hat{\beta}_0 \approx 52.50$, $\hat{\beta}_1 \approx 12.70$, $R^2 \approx 0.9971$, $\hat{\sigma} \approx 3.64$, p-value $\approx 1.8 \times 10^{-11}$.
+**(a)** $\hat{\beta}_0 \approx 35.65$, $\hat{\beta}_1 \approx 15.34$, $R^2 \approx 0.997$, $\hat{\sigma} \approx 4.14$, p-value $< 2 \times 10^{-16}$.
 
-**(b)** Each additional 100 sq ft of floor area is associated with an average price increase of approximately \$12,700. The model explains about 99.7% of the variability in selling price — an excellent linear fit for this neighbourhood.
+**(b)** Each additional 100 sq ft of floor area is associated with an average price increase of approximately \$15,340. The model explains about 99.7% of the variability in selling price — an excellent linear fit for this neighbourhood.
 
-**(d)** $\hat{y}^* = 52.50 + 12.70(17) \approx 268.4$ (thousand dollars).
+**(d)** $\hat{y}^* = 35.65 + 15.34(17) \approx 296.4$ (thousand dollars).
 
-95% CI for mean price at $x = 17$: approximately $(265.8,\ 271.1)$, i.e. about \$265.8k to \$271.1k.
+95% CI for mean price at $x = 17$: approximately $(294.9,\ 298.0)$, i.e. about \$294.9k to \$298.0k.
 
-95% PI for a new home at $x = 17$: approximately $(259.6,\ 277.2)$, i.e. about \$259.6k to \$277.2k — wider, as expected.
+95% PI for a new home at $x = 17$: approximately $(287.8,\ 305.0)$, i.e. about \$287.8k to \$305.0k — wider, as expected.
 
 **(e)** The residuals-vs-fitted plot shows approximately random scatter around zero, with no obvious curvature or systematic change in spread across the range of fitted values. The linearity and constant variance assumptions appear reasonably satisfied.
 
@@ -4568,6 +4557,203 @@ ggplot() +
 **(c)** Point B contributes the most to SSE: $e_B^2 = (-5)^2 = 25$.
 
 **(d)** For A's residual to be zero, we need $y_A = \hat{y}_A = 3 + 2(2) = 7$. Point A would need to be moved down to $(2,\; 7)$.
+
+</div>
+</details>
+
+---
+
+<!-- Q41 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 41</div>
+
+A sleep researcher records the average nightly sleep duration ($x$, hours) and mean reaction time ($y$, milliseconds) for 20 adults. The R output from the regression of `reaction` on `sleep` is shown below, with two values masked.
+
+::: tcolorbox
+    Call:
+    lm(formula = reaction ~ sleep)
+
+    Coefficients:
+                Estimate Std. Error t value Pr(>|t|)
+    (Intercept)  457.50     22.20   20.61   <2e-16 ***
+    sleep         -18.00    [A]      [B]    <0.001 ***
+    ---
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+    Residual standard error: 15.0 on 18 degrees of freedom
+    Multiple R-squared:  0.667,   Adjusted R-squared:  0.648
+    F-statistic: 36.0 on 1 and 18 DF,  p-value: 1.05e-05
+:::
+
+(a) Fill in the masked values **[A]** (standard error of $\hat{\beta}_1$) and **[B]** ($t$-statistic for `sleep`). Show your calculation.
+
+(b) Write the fitted regression equation and interpret $\hat{\beta}_1$ in context.
+
+(c) Test $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$ at $\alpha = 0.01$. State your conclusion using the $t$-statistic from (a).
+
+(d) Compute a 95% confidence interval for $\beta_1$. Use $t_{0.025,\, 18} = 2.101$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $t = \hat{\beta}_1 / \text{SE}(\hat{\beta}_1)$; rearrange to find $\text{SE}$ from $t$, or use $F = t^2$ with the reported $F$-statistic.
+- Degrees of freedom for the residuals = $n - 2$; read $n$ from the df line.
+- 95% CI: $\hat{\beta}_1 \pm t_{0.025,\, df} \times \text{SE}(\hat{\beta}_1)$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** From $F = t^2$: $t^2 = 36.0$, so $|t| = 6.00$ and $t = -6.00$ (negative because $\hat{\beta}_1 < 0$). Then:
+$$\text{SE}(\hat{\beta}_1) = \frac{|\hat{\beta}_1|}{|t|} = \frac{18.00}{6.00} = 3.00$$
+**[A]** $= 3.00$; **[B]** $= -6.00$.
+
+**(b)** $\hat{\text{reaction}} = 457.50 - 18.00 \times \text{sleep}$. Each additional hour of nightly sleep is associated with an average decrease of 18 ms in reaction time — better-rested adults respond more quickly.
+
+**(c)** $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$. The $t$-statistic is $-6.00$, with p-value $= 1.05 \times 10^{-5} < 0.01$. We **reject** $H_0$ at $\alpha = 0.01$. There is very strong evidence that nightly sleep duration is a significant linear predictor of reaction time.
+
+**(d)**
+$$\hat{\beta}_1 \pm t_{0.025,\,18} \times \text{SE}(\hat{\beta}_1) = -18.00 \pm 2.101 \times 3.00 = -18.00 \pm 6.30$$
+$$95\%\ \text{CI for}\ \beta_1:\ (-24.30,\ -11.70)$$
+We are 95% confident that each additional hour of sleep is associated with a decrease of between 11.70 and 24.30 ms in mean reaction time.
+
+</div>
+</details>
+
+---
+
+<!-- Q42 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 42</div>
+
+A retail analyst fits a simple linear regression of weekly sales ($y$, \$1000s) on weekly advertising spend ($x$, \$100s) for $n = 25$ stores. The partial ANOVA table is given below, with several entries masked.
+
+| Source     | SS      | df   | MS    | $F$   |
+|:-----------|--------:|-----:|------:|------:|
+| Regression | 3 840   |  1   | **[A]** | **[B]** |
+| Residual   | **[C]** | **[D]** | **[E]** |       |
+| Total      | 5 120   | 24   |       |       |
+
+Additional output: $\hat{\beta}_0 = 38.6$, $\hat{\beta}_1 = 4.80$.
+
+(a) Fill in entries **[A]** through **[E]** in the ANOVA table. Show all calculations.
+
+(b) Compute $R^2$ from the table and interpret it in context.
+
+(c) Compute $\hat{\sigma}$ from the table.
+
+(d) State $H_0$ and $H_1$ for the $F$-test and conduct the test at $\alpha = 0.05$. The critical value is $F_{0.05,\,1,\,23} \approx 4.28$.
+
+(e) Use the relationship $F = t^2$ to find the $t$-statistic for $\hat{\beta}_1$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\text{SSE} = \text{SST} - \text{SSR}$; $\text{df}_{\text{error}} = n - 2$.
+- $\text{MSR} = \text{SSR}/1$; $\text{MSE} = \text{SSE}/\text{df}_{\text{error}}$; $F = \text{MSR}/\text{MSE}$.
+- $R^2 = \text{SSR}/\text{SST}$; $\hat{\sigma} = \sqrt{\text{MSE}}$.
+- In SLR, $F = t^2$ always.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)**
+$$[\mathbf{C}]\ \text{SSE} = 5120 - 3840 = 1280$$
+$$[\mathbf{D}]\ \text{df}_{\text{error}} = 25 - 2 = 23$$
+$$[\mathbf{A}]\ \text{MSR} = \frac{3840}{1} = 3840$$
+$$[\mathbf{E}]\ \text{MSE} = \frac{1280}{23} \approx 55.65$$
+$$[\mathbf{B}]\ F = \frac{3840}{55.65} \approx 69.0$$
+
+**(b)** $R^2 = \dfrac{\text{SSR}}{\text{SST}} = \dfrac{3840}{5120} = 0.750$. About 75% of the variability in weekly sales is explained by the linear relationship with advertising spend.
+
+**(c)** $\hat{\sigma} = \sqrt{\text{MSE}} = \sqrt{55.65} \approx 7.46$ (\$1000s per store).
+
+**(d)** $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$. Since $F = 69.0 > F_{0.05,\,1,\,23} = 4.28$, we **reject** $H_0$ at $\alpha = 0.05$. There is very strong evidence of a significant linear relationship between advertising spend and weekly sales.
+
+**(e)** $t = \sqrt{F} = \sqrt{69.0} \approx 8.31$ (positive, since $\hat{\beta}_1 = 4.80 > 0$).
+
+</div>
+</details>
+
+---
+
+<!-- Q43 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 43</div>
+
+A pharmacologist investigates the relationship between caffeine dose ($x$, mg) and an alertness score ($y$, on a 0–100 scale) in $n = 28$ volunteers. The R output is shown below, with three values masked.
+
+::: tcolorbox
+    Call:
+    lm(formula = alertness ~ caffeine)
+
+    Coefficients:
+                Estimate Std. Error t value Pr(>|t|)
+    (Intercept)   34.60      5.18    6.68   <2e-16 ***
+    caffeine        0.45    [A]      [B]    <2e-16 ***
+    ---
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+    Residual standard error: 7.2 on 26 degrees of freedom
+    Multiple R-squared:  [C],   Adjusted R-squared:  0.745
+    F-statistic: 81.0 on 1 and 26 DF,  p-value: < 2e-16
+:::
+
+(a) Fill in **[A]** ($\text{SE}(\hat{\beta}_1)$), **[B]** ($t$-statistic), and **[C]** ($R^2$). Show your calculations.
+
+(b) Write the fitted regression equation and interpret $\hat{\beta}_1$ in context.
+
+(c) Predict the alertness score for a volunteer given a caffeine dose of 120 mg.
+
+(d) Compute a 95% CI for $\beta_1$. Use $t_{0.025,\,26} = 2.056$.
+
+(e) Interpret **[C]** ($R^2$) in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $t = \hat{\beta}_1 / \text{SE}(\hat{\beta}_1)$; rearrange to find $\text{SE}$ from $t$ (or use $F = t^2$).
+- $R^2 = 1 - \text{SSE}/\text{SST}$; you can also recover $R^2$ from the adjusted $R^2$ formula.
+- Prediction: substitute $x = 120$ into the fitted equation.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** From $F = t^2$: $t^2 = 81.0$, so $|t| = 9.00$ and $t = 9.00$ (positive, since $\hat{\beta}_1 > 0$). Then:
+$$\text{SE}(\hat{\beta}_1) = \frac{\hat{\beta}_1}{t} = \frac{0.45}{9.00} = 0.050$$
+
+For $R^2$: using $\text{Adj}\,R^2 = 1 - (1 - R^2)\dfrac{n-1}{n-2}$:
+$$0.745 = 1 - (1 - R^2) \cdot \frac{27}{26} \implies 1 - R^2 = 0.255 \times \frac{26}{27} \approx 0.2456 \implies R^2 \approx 0.754$$
+(Equivalently, from $F = 81$ and $n = 28$: $R^2 = 81/(81 + 26) \approx 0.757$.)
+
+**[A]** $= 0.050$; **[B]** $= 9.00$; **[C]** $\approx 0.757$.
+
+**(b)** $\hat{\text{alertness}} = 34.60 + 0.45 \times \text{caffeine}$. Each additional mg of caffeine is associated with an average increase of 0.45 points on the alertness scale.
+
+**(c)** $\hat{y} = 34.60 + 0.45 \times 120 = 34.60 + 54.00 = 88.60$ points.
+
+**(d)**
+$$0.45 \pm 2.056 \times 0.050 = 0.45 \pm 0.103$$
+$$95\%\ \text{CI for}\ \beta_1:\ (0.347,\ 0.553)$$
+
+**(e)** $R^2 \approx 0.757$: approximately 75.7% of the variability in alertness scores is explained by the linear relationship with caffeine dose — a moderately strong fit.
 
 </div>
 </details>
