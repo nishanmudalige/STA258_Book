@@ -4842,3 +4842,214 @@ predict(model, newdata = data.frame(miles = 50))
 
 </div>
 </details>
+
+---
+
+<!-- Q45 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 45</div>
+
+A nutritionist studies the relationship between average daily caloric intake ($x$, hundreds of calories) and body weight ($y$, kg) in $n = 22$ adults. The R output from the regression of `weight` on `calories` is shown below, with three values masked.
+
+::: tcolorbox
+    Call:
+    lm(formula = weight ~ calories)
+
+    Coefficients:
+                Estimate Std. Error t value Pr(>|t|)
+    (Intercept)   45.20      6.30     7.17   <2e-16 ***
+    calories        2.80    [A]       [B]    <2e-16 ***
+    ---
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+    Residual standard error: 4.5 on 20 degrees of freedom
+    Multiple R-squared:  [C],   Adjusted R-squared:  0.825
+    F-statistic: 100 on 1 and 20 DF,  p-value: < 2e-16
+:::
+
+(a) Fill in the masked values **[A]** ($\text{SE}(\hat{\beta}_1)$), **[B]** ($t$-statistic for `calories`), and **[C]** ($R^2$). Show all calculations.
+
+(b) Write the fitted regression equation and interpret $\hat{\beta}_1$ in context.
+
+(c) Test $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$ at $\alpha = 0.01$. Use the $t$-statistic from (a).
+
+(d) Compute a 95% confidence interval for $\beta_1$. Use $t_{0.025,\, 20} = 2.086$.
+
+(e) Predict the body weight of an adult whose average daily intake is 2200 calories (i.e., $x = 22$).
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Use $F = t^2$ to recover $|t|$, then $\text{SE}(\hat{\beta}_1) = \hat{\beta}_1 / t$.
+- Recover $R^2$ from the adjusted $R^2$ formula: $\text{Adj}\,R^2 = 1 - (1 - R^2)\dfrac{n-1}{n-2}$.
+- 95% CI: $\hat{\beta}_1 \pm t_{0.025,\, 20} \times \text{SE}(\hat{\beta}_1)$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** From $F = t^2$: $t^2 = 100$, so $|t| = 10.0$ and $t = 10.0$ (positive, since $\hat{\beta}_1 > 0$). Then:
+$$\text{SE}(\hat{\beta}_1) = \frac{\hat{\beta}_1}{t} = \frac{2.80}{10.0} = 0.28$$
+
+For $R^2$: using $\text{Adj}\,R^2 = 1 - (1 - R^2)\dfrac{n-1}{n-2}$:
+$$0.825 = 1 - (1 - R^2)\cdot\frac{21}{20} \implies 1 - R^2 = 0.175 \times \frac{20}{21} \approx 0.167 \implies R^2 \approx 0.833$$
+
+**[A]** $= 0.28$; **[B]** $= 10.0$; **[C]** $= 0.833$.
+
+**(b)** $\widehat{\text{weight}} = 45.20 + 2.80 \times \text{calories}$. Each additional hundred calories of daily intake is associated with an average increase of 2.80 kg in body weight, holding all else equal.
+
+**(c)** $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$. The $t$-statistic is $10.0$, with $p < 0.001 < 0.01$. We **reject** $H_0$ at $\alpha = 0.01$. There is very strong evidence that daily caloric intake is a significant linear predictor of body weight.
+
+**(d)**
+$$\hat{\beta}_1 \pm t_{0.025,\,20} \times \text{SE}(\hat{\beta}_1) = 2.80 \pm 2.086 \times 0.28 = 2.80 \pm 0.584$$
+$$95\%\ \text{CI for}\ \beta_1:\ (2.216,\ 3.384)$$
+
+**(e)** $\hat{y} = 45.20 + 2.80(22) = 45.20 + 61.60 = 106.80$ kg.
+
+</div>
+</details>
+
+---
+
+<!-- Q46 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 46</div>
+
+A utility company models the relationship between the average daily high temperature ($x$, °C) and the monthly household heating bill ($y$, \$) for $n = 16$ homes. The R output is shown below, with three values masked.
+
+::: tcolorbox
+    Call:
+    lm(formula = heating_bill ~ temperature)
+
+    Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)
+    (Intercept)   280.00      14.20    19.72   <2e-16 ***
+    temperature    [A]          0.50   -9.00   3.1e-07 ***
+    ---
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+    Residual standard error: 3.8 on 14 degrees of freedom
+    Multiple R-squared:  0.853,   Adjusted R-squared:  [B]
+    F-statistic: [C] on 1 and 14 DF,  p-value: 3.1e-07
+:::
+
+(a) Fill in **[A]** ($\hat{\beta}_1$), **[B]** (adjusted $R^2$), and **[C]** ($F$-statistic). Show all calculations.
+
+(b) Write the fitted regression equation and interpret $\hat{\beta}_1$ in context. Does the sign make sense? Explain.
+
+(c) Compute a 95% confidence interval for $\beta_1$. Use $t_{0.025,\, 14} = 2.145$.
+
+(d) Test $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$ at $\alpha = 0.01$ using the $F$-statistic from (a). The critical value is $F_{0.01,\,1,\,14} \approx 8.86$.
+
+(e) Predict the monthly heating bill for a home in a month where the average daily high temperature is 5°C.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\hat{\beta}_1 = t \times \text{SE}(\hat{\beta}_1)$; note that $t$ is negative here.
+- $F = t^2$ in SLR; $\text{Adj}\,R^2 = 1 - (1 - R^2)\dfrac{n-1}{n-2}$.
+- The sign of $\hat{\beta}_1$ tells you the direction of the relationship — warmer weather should mean lower heating costs.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)**
+$$[\mathbf{A}]\ \hat{\beta}_1 = t \times \text{SE} = -9.00 \times 0.50 = -4.50$$
+$$[\mathbf{C}]\ F = t^2 = (-9.00)^2 = 81.0$$
+$$[\mathbf{B}]\ \text{Adj}\,R^2 = 1 - (1 - 0.853)\cdot\frac{15}{14} = 1 - 0.147 \times 1.071 = 1 - 0.157 = 0.843$$
+
+**[A]** $= -4.50$; **[B]** $= 0.843$; **[C]** $= 81.0$.
+
+**(b)** $\widehat{\text{heating\_bill}} = 280.00 - 4.50 \times \text{temperature}$. Each additional degree Celsius in average daily high temperature is associated with an average decrease of \$4.50 in the monthly heating bill. The negative sign makes sense — warmer weather reduces the need for home heating.
+
+**(c)**
+$$\hat{\beta}_1 \pm t_{0.025,\,14} \times \text{SE}(\hat{\beta}_1) = -4.50 \pm 2.145 \times 0.50 = -4.50 \pm 1.073$$
+$$95\%\ \text{CI for}\ \beta_1:\ (-5.573,\ -3.427)$$
+
+**(d)** $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$. Since $F = 81.0 > F_{0.01,\,1,\,14} = 8.86$, we **reject** $H_0$ at $\alpha = 0.01$. There is very strong evidence that temperature is a significant linear predictor of monthly heating costs.
+
+**(e)** $\hat{y} = 280.00 - 4.50(5) = 280.00 - 22.50 = \$257.50$.
+
+</div>
+</details>
+
+---
+
+<!-- Q47 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 47</div>
+
+An agronomist studies the effect of monthly rainfall ($x$, mm) on crop yield ($y$, tonnes/hectare) across $n = 20$ agricultural plots. The R output is shown below, with three values masked.
+
+::: tcolorbox
+    Call:
+    lm(formula = yield ~ rainfall)
+
+    Coefficients:
+                Estimate Std. Error t value Pr(>|t|)
+    (Intercept)    1.80       0.45     4.00   0.0008 ***
+    rainfall        0.12      [A]      6.00   <2e-16 ***
+    ---
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+    Residual standard error: 0.35 on 18 degrees of freedom
+    Multiple R-squared:  0.667,   Adjusted R-squared:  [B]
+    F-statistic: [C] on 1 and 18 DF,  p-value: < 2e-16
+:::
+
+(a) Fill in **[A]** ($\text{SE}(\hat{\beta}_1)$), **[B]** (adjusted $R^2$), and **[C]** ($F$-statistic). Show all calculations.
+
+(b) Write the fitted regression equation and interpret $\hat{\beta}_1$ in context.
+
+(c) Compute a 95% confidence interval for $\beta_1$. Use $t_{0.025,\, 18} = 2.101$.
+
+(d) Test $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$ at $\alpha = 0.05$. State your conclusion.
+
+(e) Predict the crop yield for a plot receiving 40 mm of rainfall per month.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\text{SE}(\hat{\beta}_1) = \hat{\beta}_1 / t$; use the given $t = 6.00$.
+- $F = t^2$ in SLR; $\text{Adj}\,R^2 = 1 - (1 - R^2)\dfrac{n-1}{n-2}$.
+- Prediction: substitute $x = 40$ into $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)**
+$$[\mathbf{A}]\ \text{SE}(\hat{\beta}_1) = \frac{\hat{\beta}_1}{t} = \frac{0.12}{6.00} = 0.020$$
+$$[\mathbf{C}]\ F = t^2 = (6.00)^2 = 36.0$$
+$$[\mathbf{B}]\ \text{Adj}\,R^2 = 1 - (1 - 0.667)\cdot\frac{19}{18} = 1 - 0.333 \times 1.056 = 1 - 0.352 = 0.648$$
+
+**[A]** $= 0.020$; **[B]** $= 0.648$; **[C]** $= 36.0$.
+
+**(b)** $\widehat{\text{yield}} = 1.80 + 0.12 \times \text{rainfall}$. Each additional mm of monthly rainfall is associated with an average increase of 0.12 tonnes/hectare in crop yield.
+
+**(c)**
+$$\hat{\beta}_1 \pm t_{0.025,\,18} \times \text{SE}(\hat{\beta}_1) = 0.12 \pm 2.101 \times 0.020 = 0.12 \pm 0.042$$
+$$95\%\ \text{CI for}\ \beta_1:\ (0.078,\ 0.162)$$
+
+**(d)** $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$. The $t$-statistic is $6.00$ with $p < 0.001 < 0.05$. We **reject** $H_0$ at $\alpha = 0.05$. There is strong evidence that monthly rainfall is a significant linear predictor of crop yield.
+
+**(e)** $\hat{y} = 1.80 + 0.12(40) = 1.80 + 4.80 = 6.60$ tonnes/hectare.
+
+</div>
+</details>
