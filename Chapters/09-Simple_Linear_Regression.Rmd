@@ -2310,15 +2310,18 @@ Use R to fit a regression of `waiting` on `eruptions`, produce a scatter plot wi
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
-<textarea class="webr-editor" rows="8">data(faithful)
-# Fit the model
+<textarea class="webr-editor" rows="11">data(faithful)
+# Fit the model and extract coefficients
 model <- lm(___ ~ ___, data = faithful)
-coef(model)
+coef(___)
 
 # Scatter plot with regression line
-plot(faithful$eruptions, faithful$waiting,
+plot(faithful$___, faithful$___,
      xlab = "Eruption Duration (min)", ylab = "Waiting Time (min)")
 abline(___, col = "blue")
+
+# Predict waiting time for eruption = 3.5 min
+predict(___, newdata = data.frame(___ = 3.5))
 </textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
@@ -2627,7 +2630,7 @@ Use R to fit the regression, report the full `summary()`, and test whether tempe
 <div class="webr-exercise-header">R Exercise</div>
 <textarea class="webr-editor" rows="5">data(airquality)
 model <- lm(___ ~ ___, data = airquality)
-summary(model)
+summary(___)
 </textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
@@ -2733,15 +2736,15 @@ Use R to fit a regression of `Volume` on `Girth` using the `trees` dataset. Veri
 <div class="webr-exercise-header">R Exercise</div>
 <textarea class="webr-editor" rows="10">data(trees)
 model <- lm(___ ~ ___, data = trees)
-summary(model)
+summary(___)
 
 # CI for mean response at Girth = 14
-predict(model, newdata = data.frame(Girth = 14),
-        interval = "confidence", level = 0.95)
+predict(___, newdata = data.frame(Girth = ___),
+        interval = "___", level = 0.95)
 
 # PI for a new observation at Girth = 14
-predict(model, newdata = data.frame(Girth = 14),
-        interval = "prediction", level = 0.95)
+predict(___, newdata = data.frame(Girth = ___),
+        interval = "___", level = 0.95)
 </textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
@@ -2931,7 +2934,7 @@ Use R to fit a regression of `Ozone` on `Solar.R` in the `airquality` dataset (r
 <div class="webr-exercise-header">R Exercise</div>
 <textarea class="webr-editor" rows="8">data(airquality)
 model <- lm(___ ~ ___, data = airquality)
-summary(model)
+summary(___)
 confint(___)
 
 # Residuals-vs-fitted plot
@@ -3268,18 +3271,17 @@ An environmental monitoring station records annual mean CO$_2$ concentration ($y
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">R Exercise</div>
-<textarea class="webr-editor" rows="10">x <- 0:9
-y <- c(369.5, 371.1, 373.2, 375.8, 377.5, 379.8, 381.9, 383.8, 385.6, 387.4)
+<textarea class="webr-editor" rows="10">df <- read.csv("co2_annual.csv")
 
 # Fit the model and verify your part (a) estimates
-model <- lm(___ ~ ___)
-summary(model)
+model <- lm(___ ~ ___, data = df)
+summary(___)
 
-plot(___, ___, xlab = "Year (0 = 2000)", ylab = expression(CO[2]~"(ppm)"))
+plot(df$___, df$___, xlab = "Year (0 = 2000)", ylab = expression(CO[2]~"(ppm)"))
 abline(___, col = "blue")
 
 # 95% prediction interval for x = 12 (year 2012)
-predict(___, newdata = data.frame(x = 12), interval = "___", level = 0.95)
+predict(___, newdata = data.frame(year_code = 12), interval = "___", level = 0.95)
 </textarea>
 <div class="webr-controls">
   <button class="webr-run-btn" disabled>▶ Run</button>
@@ -3314,7 +3316,7 @@ $$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} = 378.56 - 2.038(4.5) = 378.56 
 
 $\hat{\beta}_0 \approx 369.39$ ppm: the estimated CO$_2$ concentration in year 2000. $\hat{\beta}_1 \approx 2.04$ ppm/year: the estimated annual increase in CO$_2$.
 
-**(b)** R confirms $\hat{\beta}_0 \approx 369.39$, $\hat{\beta}_1 \approx 2.038$.
+**(b)** Run `lm(co2_ppm ~ year_code, data = df)` — R confirms $\hat{\beta}_0 \approx 369.39$, $\hat{\beta}_1 \approx 2.038$.
 
 95% PI at $x = 12$: $\hat{y} = 369.39 + 2.038(12) \approx 393.84$ ppm; interval approximately $(393.04,\ 394.65)$ ppm.
 
@@ -4754,6 +4756,89 @@ $$0.45 \pm 2.056 \times 0.050 = 0.45 \pm 0.103$$
 $$95\%\ \text{CI for}\ \beta_1:\ (0.347,\ 0.553)$$
 
 **(e)** $R^2 \approx 0.757$: approximately 75.7% of the variability in alertness scores is explained by the linear relationship with caffeine dose — a moderately strong fit.
+
+</div>
+</details>
+
+---
+
+<!-- Q44 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 44</div>
+
+A sports scientist records the average weekly training distance ($x$, miles/week) and marathon finish time ($y$, minutes) for 35 recreational runners. The data are stored in `marathon_training.csv`, which has two columns: `miles` and `finish_time`.
+
+Use R to carry out a complete regression analysis.
+
+(a) Read the data and fit the model. Report $\hat{\beta}_0$, $\hat{\beta}_1$, $R^2$, and $\hat{\sigma}$.
+(b) Interpret $\hat{\beta}_1$ in context. Does the sign match your expectation? Explain.
+(c) Produce a scatter plot with the regression line.
+(d) Examine the residuals-vs-fitted plot and comment on whether the model assumptions appear satisfied.
+(e) Predict the finish time for a runner who trains 50 miles per week.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="14">df <- read.csv("marathon_training.csv")
+
+# Fit the model
+model <- lm(___ ~ ___, data = df)
+summary(___)
+
+# Scatter plot with regression line
+plot(df$___, df$___,
+     xlab = "Weekly Training (miles)", ylab = "Finish Time (min)")
+abline(___, col = "blue")
+
+# Residuals-vs-fitted plot
+plot(___, which = ___)
+
+# Predict finish time for x = 50 miles/week
+predict(___, newdata = data.frame(___ = 50))
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- More training typically leads to faster (lower) finish times — expect a negative slope.
+- `plot(model, which = 1)` gives the residuals-vs-fitted plot.
+- For part (e), use `data.frame(miles = 50)` in `predict()`.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+df <- read.csv("marathon_training.csv")
+model <- lm(finish_time ~ miles, data = df)
+summary(model)
+plot(df$miles, df$finish_time,
+     xlab = "Weekly Training (miles)", ylab = "Finish Time (min)")
+abline(model, col = "blue")
+plot(model, which = 1)
+predict(model, newdata = data.frame(miles = 50))
+```
+
+**(a)** $\hat{\beta}_0 \approx 340.24$, $\hat{\beta}_1 \approx -2.208$, $R^2 \approx 0.992$, $\hat{\sigma} \approx 2.71$ minutes.
+
+**(b)** Each additional mile per week of training is associated with an average decrease of about 2.21 minutes in marathon finish time. The negative sign is expected — more training improves fitness and leads to faster race times.
+
+**(c)** The scatterplot shows a strong negative, approximately linear relationship: runners with higher weekly mileage tend to finish considerably faster.
+
+**(d)** The residuals-vs-fitted plot shows approximately random scatter around zero with no clear curvature or fanning. The linearity and constant variance assumptions appear reasonably satisfied.
+
+**(e)** $\hat{y} = 340.24 - 2.208(50) \approx 229.8$ minutes (about 3 hours 50 minutes).
 
 </div>
 </details>
