@@ -3989,69 +3989,6 @@ With $df = 8$ and $|t| = 4.53 > t_{0.025,\,8} \approx 2.306$, the $p$-value $\ap
 
 ---
 
-<!-- Q31 -->
-<div class="exercise-box">
-<div class="exercise-label">Question 31</div>
-
-Figure \@ref(fig:ch9q31outlier) shows a scatterplot of seven observations with the fitted regression line. The point labelled **P** is at $(4,\; 14)$.
-
-```{r ch9q31outlier, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Scatterplot with the fitted regression line. Point P is highlighted.", fig.width=5.5, fig.height=4.2}
-library(ggplot2)
-df34 <- data.frame(
-  x = c(1, 2, 3, 4, 5, 6, 7),
-  y = c(3.0, 5.0, 7.0, 14.0, 9.0, 11.0, 13.0)
-)
-m34 <- lm(y ~ x, data = df34)
-b0_34 <- coef(m34)[1]
-b1_34 <- coef(m34)[2]
-
-df34$isP <- df34$x == 4
-
-ggplot(df34, aes(x, y)) +
-  geom_abline(intercept = b0_34, slope = b1_34,
-              color = "#F8766D", linewidth = 1.2) +
-  geom_point(data = subset(df34, !isP), size = 3.5, color = "#619CFF") +
-  geom_point(data = subset(df34, isP),  size = 4.5, color = "#E68613", shape = 17) +
-  annotate("text", x = 4.25, y = 14.0, label = "P", size = 5, color = "#E68613") +
-  scale_x_continuous(breaks = 1:7) +
-  labs(x = "x", y = "y") +
-  theme_minimal(base_size = 14)
-```
-
-(a) Is point P above or below the fitted regression line? Use this to determine the **sign** of the residual $e_P = y_P - \hat{y}_P$.
-
-(b) The fitted regression equation is $\hat{y} = 2.571 + 1.571x$. Compute the residual $e_P$ exactly.
-
-(c) If point P were instead at $(4,\; 8)$, would its residual be positive or negative?
-</div>
-
-<details data-type="hint">
-<summary>💡 Hint</summary>
-<div class="content">
-
-- Residual = observed $y$ $-$ fitted $\hat{y}$. Points above the line have positive residuals; points below have negative residuals.
-- Compute $\hat{y}$ at $x = 4$ using the given equation.
-
-</div>
-</details>
-
-<details data-type="answer">
-<summary>✅ Answer</summary>
-<div class="content">
-
-**(a)** Point P is **above** the fitted regression line, so the residual is **positive** ($e_P > 0$).
-
-**(b)** $\hat{y}_P = 2.571 + 1.571(4) = 2.571 + 6.284 = 8.855$
-
-$$e_P = 14.0 - 8.855 = 5.145$$
-
-**(c)** At $(4,\; 8)$: $\hat{y} = 8.855$, so residual $= 8 - 8.855 = -0.855 < 0$. The residual would be **negative** because the point is below the fitted line.
-
-</div>
-</details>
-
----
-
 <!-- Q32 -->
 <div class="exercise-box">
 <div class="exercise-label">Question 32</div>
@@ -4339,57 +4276,60 @@ $\hat{\sigma}^2 = 1.10/3 \approx 0.367$
 <div class="exercise-box">
 <div class="exercise-label">Question 37</div>
 
-Figure \@ref(fig:ch9q37scatter) shows a scatterplot with the fitted regression line $\hat{y} = 3 + 2x$ annotated on the plot. Four data points are labelled A, B, C, and D. Their coordinates are:
+A phone manufacturer studies how battery charge remaining ($y$, \% of full charge) declines with hours of continuous video streaming ($x$, hours). Figure \@ref(fig:ch9q37scatter) shows a scatterplot with the fitted regression line $\hat{y} = 100 - 8x$ annotated on the plot. Four measured phones are labelled A, B, C, and D. Their coordinates are:
 
-- **A** = $(2,\; 10)$
-- **B** = $(4,\; 6)$
-- **C** = $(5,\; 13)$
-- **D** = $(7,\; 17)$
+- **A** = $(1,\; 95)$
+- **B** = $(3,\; 68)$
+- **C** = $(4,\; 68)$
+- **D** = $(6,\; 58)$
 
-```{r ch9q37scatter, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Scatterplot with the fitted regression line $\\hat{y} = 3 + 2x$. Four labelled points are shown.", fig.width=5.5, fig.height=4.2}
+```{r ch9q37scatter, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Scatterplot with the fitted regression line $\\hat{y} = 100 - 8x$. Four labelled phones are shown.", fig.width=5.5, fig.height=4.2}
 library(ggplot2)
 
 pts <- data.frame(
-  x     = c(2,   4,   5,   7  ),
-  y     = c(10,  6,   13,  17 ),
+  x     = c(1,   3,   4,   6  ),
+  y     = c(95,  68,  68,  58 ),
   label = c("A", "B", "C", "D")
 )
 
 bg <- data.frame(
-  x = c(1, 3, 6, 8),
-  y = c(5, 9, 15, 19)
+  x = c(0.5, 2, 3.5, 5, 7),
+  y = c(96,  84, 72,  60, 44)
 )
 
 ggplot() +
   geom_point(data = bg, aes(x, y), size = 3, color = "#619CFF") +
-  geom_abline(intercept = 3, slope = 2, color = "#F8766D", linewidth = 1.2) +
+  geom_abline(intercept = 100, slope = -8, color = "#F8766D", linewidth = 1.2) +
   geom_point(data = pts, aes(x, y), size = 4, color = "#619CFF") +
   geom_text(data = pts, aes(x, y, label = label),
-            nudge_y = 0.9, size = 5, color = "#000000") +
-  annotate("text", x = 6.5, y = 10,
-           label = "hat(y) == 3 + 2*x",
+            nudge_y = 2.5, size = 5, color = "#000000") +
+  annotate("text", x = 5, y = 90,
+           label = "hat(y) == 100 - 8*x",
            parse = TRUE, color = "#F8766D", size = 4.5) +
-  scale_x_continuous(breaks = 1:8, limits = c(0.5, 9)) +
-  scale_y_continuous(breaks = seq(0, 22, 4), limits = c(2, 22)) +
-  labs(x = "x", y = "y") +
+  scale_x_continuous(breaks = 0:7, limits = c(0, 7.5)) +
+  scale_y_continuous(breaks = seq(40, 100, 10), limits = c(38, 100)) +
+  labs(x = "Hours of streaming (x)", y = "Battery charge remaining (%, y)") +
   theme_minimal(base_size = 14)
 ```
 
-(a) For each of the four labelled points A–D, compute the fitted value $\hat{y}$ and the residual $e = y - \hat{y}$.
+(a) For each of the four labelled phones A–D, compute the fitted value $\hat{y}$ and the residual $e = y - \hat{y}$.
 
 (b) State the sign (positive, negative, or zero) of the residual for each point, and confirm by looking at whether the point lies above, below, or on the line.
 
 (c) Which point contributes the most to SSE? Compute its contribution $e^2$.
 
-(d) Point A currently lies at $(2,\; 10)$. To what $y$-value would A need to be moved so that its residual equals exactly zero?
+(d) Interpret the slope $\hat{\beta}_1 = -8$ in context, including units. Then use the fitted equation to predict the battery charge remaining after 5 hours of streaming.
+
+(e) Point A currently lies at $(1,\; 95)$. To what $y$-value would A need to be moved so that its residual equals exactly zero? Then, in one sentence, explain why a negative slope makes sense in this context.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
 
-- Fitted value: $\hat{y} = 3 + 2x$.
+- Fitted value: $\hat{y} = 100 - 8x$.
 - Residual $e = y - \hat{y}$: positive if the point is above the line, negative if below, zero if on the line.
+- The slope $\hat{\beta}_1 = -8$ means $y$ (battery \%) is predicted to change by $-8$ for each 1-unit increase in $x$ (hours).
 - To make the residual zero, the observed $y$ must equal the fitted $\hat{y}$.
 
 </div>
@@ -4399,25 +4339,27 @@ ggplot() +
 <summary>✅ Answer</summary>
 <div class="content">
 
-**(a)** Using $\hat{y} = 3 + 2x$:
+**(a)** Using $\hat{y} = 100 - 8x$:
 
 | Point | $x$ | $y$ | $\hat{y}$ | $e = y - \hat{y}$ |
 |:-----:|:---:|:---:|:---------:|:-----------------:|
-| A | 2 | 10 | $3+4=7$ | $+3$ |
-| B | 4 | 6 | $3+8=11$ | $-5$ |
-| C | 5 | 13 | $3+10=13$ | $0$ |
-| D | 7 | 17 | $3+14=17$ | $0$ |
+| A | 1 | 95 | $100-8=92$ | $+3$ |
+| B | 3 | 68 | $100-24=76$ | $-8$ |
+| C | 4 | 68 | $100-32=68$ | $0$ |
+| D | 6 | 58 | $100-48=52$ | $+6$ |
 
 **(b)**
 
 - A: residual $= +3$ (positive — A is **above** the line).
-- B: residual $= -5$ (negative — B is well **below** the line).
+- B: residual $= -8$ (negative — B is well **below** the line).
 - C: residual $= 0$ (zero — C lies **on** the line).
-- D: residual $= 0$ (zero — D lies **on** the line).
+- D: residual $= +6$ (positive — D is **above** the line).
 
-**(c)** Point B contributes the most to SSE: $e_B^2 = (-5)^2 = 25$.
+**(c)** Point B contributes the most to SSE: $e_B^2 = (-8)^2 = 64$ (compared to $e_A^2 = 9$ and $e_D^2 = 36$).
 
-**(d)** For A's residual to be zero, we need $y_A = \hat{y}_A = 3 + 2(2) = 7$. Point A would need to be moved down to $(2,\; 7)$.
+**(d)** For each additional hour of continuous video streaming, the predicted battery charge remaining **decreases** by 8 percentage points on average. At $x = 5$ hours: $\hat{y} = 100 - 8(5) = 100 - 40 = 60\%$.
+
+**(e)** For A's residual to be zero, we need $y_A = \hat{y}_A = 100 - 8(1) = 92$. Point A would need to be moved down to $(1,\; 92)$. A negative slope makes sense here because streaming video continuously consumes battery power, so the percentage of charge remaining can only go down (never up) the longer the phone streams.
 
 </div>
 </details>
@@ -4903,6 +4845,347 @@ $$95\%\ \text{CI for}\ \beta_1:\ (-0.162,\ -0.078)$$
 **(d)** $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$. The $t$-statistic is $-6.00$ with $p < 0.001 < 0.05$. We **reject** $H_0$ at $\alpha = 0.05$. There is strong evidence that distance from the city centre is a significant linear predictor of monthly rent.
 
 **(e)** $\hat{y} = 3.80 - 0.12(25) = 3.80 - 3.00 = 0.80$ (\$1000s), i.e., \$800/month.
+
+</div>
+</details>
+
+---
+
+<!-- Q45 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 45</div>
+
+A researcher lights an identical candle and records its height ($y$, cm) at five points in time after being lit ($x$, minutes):
+
+| Time lit ($x$, min) | 10 | 20 | 30 | 40 | 50 |
+|-----------------------|----|----|----|----|----|
+| Candle height ($y$, cm) | 25 | 20 | 17 | 12 | 11 |
+
+**(a)** Compute $\bar{x}$, $\bar{y}$, $S_{xx}$, and $S_{xy}$. Find $\hat{\beta}_1$ and $\hat{\beta}_0$, and write the fitted least-squares regression equation.
+
+**(b)** On graph paper (or a hand-drawn set of axes), plot the scatterplot of the five $(x,y)$ pairs. Then compute two points on the fitted line from part (a) — for example, at $x=10$ and $x=50$ — and sketch the fitted regression line through them on the same axes. Describe the direction and general form of the relationship you see.
+
+**(c)** Interpret $\hat{\beta}_1$ in context, including units. Then use the fitted equation to predict the candle's height after 35 minutes, and separately after 90 minutes. Which of these two predictions is more reliable? Explain, referring to interpolation and extrapolation.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $S_{xx} = \sum(x_i-\bar{x})^2$ and $S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y})$; then $\hat{\beta}_1 = S_{xy}/S_{xx}$ and $\hat{\beta}_0 = \bar{y}-\hat{\beta}_1\bar{x}$.
+- To sketch the line by hand, compute $\hat{y}$ at the smallest and largest observed $x$-values and draw a straight edge between the two resulting points.
+- A prediction is interpolation if $x^*$ lies inside the observed range of $x$ (10 to 50 minutes), and extrapolation if it lies outside.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\bar{x} = \dfrac{10+20+30+40+50}{5} = 30$, $\quad\bar{y} = \dfrac{25+20+17+12+11}{5} = \dfrac{85}{5} = 17$
+
+$$S_{xx} = \sum(x_i-\bar{x})^2 = (-20)^2+(-10)^2+0^2+10^2+20^2 = 400+100+0+100+400 = 1000$$
+$$S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y}) = (-20)(8)+(-10)(3)+(0)(0)+(10)(-5)+(20)(-6) = -160-30+0-50-120 = -360$$
+
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{-360}{1000} = -0.36, \qquad \hat{\beta}_0 = \bar{y}-\hat{\beta}_1\bar{x} = 17-(-0.36)(30) = 17+10.8 = 27.8$$
+
+Fitted equation: $\hat{y} = 27.8 - 0.36x$
+
+**(b)** Two convenient points on the fitted line: at $x=10$, $\hat{y}=27.8-0.36(10)=24.2$; at $x=50$, $\hat{y}=27.8-0.36(50)=9.8$. Plotting the five data points and drawing a straight line through $(10,\,24.2)$ and $(50,\,9.8)$ should produce a sketch similar to the reference plot below. The relationship is **negative and approximately linear**: as burning time increases, candle height decreases fairly steadily, with the points scattered closely but not exactly on the line.
+
+```{r ch9q45sketch, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Reference solution: scatterplot of candle height vs. time lit with the fitted regression line.", fig.width=5, fig.height=4}
+library(ggplot2)
+df45 <- data.frame(x = c(10,20,30,40,50), y = c(25,20,17,12,11))
+m45  <- lm(y ~ x, data = df45)
+ggplot(df45, aes(x, y)) +
+  geom_abline(intercept = coef(m45)[1], slope = coef(m45)[2],
+              color = "#F8766D", linewidth = 1.2) +
+  geom_point(size = 3.5, color = "#619CFF") +
+  scale_x_continuous(breaks = seq(0, 50, 10), limits = c(0, 55)) +
+  labs(x = "Time lit (minutes, x)", y = "Candle height (cm, y)") +
+  theme_minimal(base_size = 14)
+```
+
+**(c)** For each additional minute the candle burns, its predicted height **decreases** by 0.36 cm on average.
+
+At $x=35$: $\hat{y} = 27.8-0.36(35) = 27.8-12.6 = 15.2$ cm.
+At $x=90$: $\hat{y} = 27.8-0.36(90) = 27.8-32.4 = -4.6$ cm.
+
+The prediction at $x=35$ is more reliable: it is **interpolation**, since 35 minutes lies within the observed range $[10,50]$. The prediction at $x=90$ is **extrapolation** — no candle in the data was observed anywhere near 90 minutes after being lit, and the fitted line is only reliable within the range of data used to build it. This extrapolated prediction is also physically impossible (a negative height), which vividly illustrates why extrapolating far beyond the observed data should be avoided.
+
+</div>
+</details>
+
+---
+
+<!-- Q46 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 46</div>
+
+A used-car dealer records the age ($x$, years) and resale value ($y$, \$1000s) of 5 comparable sedans:
+
+| Age ($x$, years)     | 1  | 2  | 3  | 4  | 5  |
+|----------------------|----|----|----|----|----|
+| Resale value ($y$)   | 20 | 17 | 15 | 11 | 10 |
+
+(a) Compute $\bar{x}$, $\bar{y}$, $S_{xx}$, and $S_{xy}$. Find $\hat{\beta}_1$ and $\hat{\beta}_0$, and write the fitted regression equation.
+
+(b) Interpret $\hat{\beta}_1$ in the context of car age and resale value.
+
+(c) Predict the resale value of a car that is 7 years old. The data only include cars aged 1 to 5 years — is this prediction interpolation or extrapolation?
+
+(d) Given $S_{yy} = 69.2$, compute $R^2$ and use it to describe the strength and direction of the linear relationship between age and resale value.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $S_{xx} = \sum(x_i-\bar{x})^2$, $S_{xy} = \sum(x_i-\bar{x})(y_i-\bar{y})$.
+- A negative $\hat{\beta}_1$ means $y$ tends to decrease as $x$ increases.
+- $R^2 = 1 - \text{SSE}/S_{yy}$, where $\text{SSE} = S_{yy} - \hat{\beta}_1 S_{xy}$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\bar{x} = \dfrac{1+2+3+4+5}{5} = 3$, $\quad\bar{y} = \dfrac{20+17+15+11+10}{5} = \dfrac{73}{5} = 14.6$
+
+$$S_{xx} = (-2)^2+(-1)^2+0^2+1^2+2^2 = 10$$
+$$S_{xy} = (-2)(5.4)+(-1)(2.4)+(0)(0.4)+(1)(-3.6)+(2)(-4.6) = -10.8-2.4+0-3.6-9.2 = -26$$
+
+$$\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{-26}{10} = -2.6, \qquad \hat{\beta}_0 = \bar{y}-\hat{\beta}_1\bar{x} = 14.6-(-2.6)(3) = 14.6+7.8 = 22.4$$
+
+Fitted equation: $\hat{y} = 22.4 - 2.6x$
+
+**(b)** Each additional year of age is associated with an average **decrease** of \$2,600 in the resale value of a car of this type.
+
+**(c)** $\hat{y} = 22.4-2.6(7) = 22.4-18.2 = 4.2$ (\$1000s), i.e. \$4,200.
+
+Since $x=7$ lies **outside** the observed range $[1,5]$, this is **extrapolation** — the prediction assumes the linear decline continues at the same rate, which may not hold once a car is old enough to have negligible resale value.
+
+**(d)**
+$$\text{SSE} = S_{yy}-\hat{\beta}_1 S_{xy} = 69.2-(-2.6)(-26) = 69.2-67.6 = 1.6$$
+$$R^2 = 1-\frac{\text{SSE}}{S_{yy}} = 1-\frac{1.6}{69.2} \approx 0.977$$
+
+About 97.7% of the variability in resale value is explained by the linear relationship with age. This indicates a very strong, **negative** linear relationship: resale value declines consistently and predictably as a car gets older.
+
+</div>
+</details>
+
+---
+
+<!-- Q47 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 47</div>
+
+A chemical engineer studies the effect of catalyst amount ($x$, grams) on the percentage yield ($y$, \%) of a reaction, using 5 trial runs:
+
+| Catalyst ($x$, g) | 1  | 2  | 3  | 4  | 5  |
+|--------------------|----|----|----|----|----|
+| Yield ($y$, \%)    | 23 | 29 | 45 | 35 | 41 |
+
+(a) Compute $\bar{x}$, $\bar{y}$, $S_{xx}$, and $S_{xy}$. Find $\hat{\beta}_0$ and $\hat{\beta}_1$, and write the fitted regression equation.
+
+(b) Complete a table of fitted values $\hat{y}_i$ and residuals $e_i = y_i-\hat{y}_i$ for all five runs. Verify that $\sum e_i = 0$.
+
+(c) **Sketch the residual plot by hand:** put $x_i$ (catalyst amount) on the horizontal axis and $e_i$ (residual) on the vertical axis, and draw a horizontal reference line at $e=0$.
+
+(d) Based on the pattern in your residual plot, identify any unusual observation(s). Does it raise concerns about a specific data point, about the overall appropriateness of the linear model, or both?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Use $\hat{\beta}_1 = S_{xy}/S_{xx}$ and $\hat{\beta}_0 = \bar{y}-\hat{\beta}_1\bar{x}$ as usual.
+- $\hat{y}_i = \hat{\beta}_0+\hat{\beta}_1 x_i$; $e_i = y_i-\hat{y}_i$.
+- When sketching, look for any point whose residual is much larger in magnitude than the others, or far from the horizontal band the rest of the points form.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\bar{x} = 3$, $\quad\bar{y} = \dfrac{23+29+45+35+41}{5} = \dfrac{173}{5} = 34.6$
+
+$$S_{xx} = 10$$
+$$S_{xy} = (-2)(-11.6)+(-1)(-5.6)+(0)(10.4)+(1)(0.4)+(2)(6.4) = 23.2+5.6+0+0.4+12.8 = 42$$
+
+$$\hat{\beta}_1 = \frac{42}{10} = 4.2, \qquad \hat{\beta}_0 = 34.6-4.2(3) = 34.6-12.6 = 22.0$$
+
+Fitted equation: $\hat{y} = 22.0+4.2x$
+
+**(b)**
+
+| $x$ | $y$ | $\hat{y} = 22.0+4.2x$ | $e_i = y_i-\hat{y}_i$ |
+|:---:|:---:|:---------------------:|:----------------------:|
+| 1 | 23 | 26.2 | $-3.2$ |
+| 2 | 29 | 30.4 | $-1.4$ |
+| 3 | 45 | 34.6 | $+10.4$ |
+| 4 | 35 | 38.8 | $-3.8$ |
+| 5 | 41 | 43.0 | $-2.0$ |
+
+$\sum e_i = -3.2-1.4+10.4-3.8-2.0 = 0$ ✓
+
+**(c)** Plotting the five points $(x_i, e_i)$ from the table above, with a dashed horizontal line at $e=0$, gives the reference residual plot below:
+
+```{r ch9q47resid, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Reference solution: residual plot for the catalyst/yield data.", fig.width=5, fig.height=4}
+library(ggplot2)
+df47 <- data.frame(x = c(1,2,3,4,5), y = c(23,29,45,35,41))
+m47  <- lm(y ~ x, data = df47)
+df47$resid <- resid(m47)
+ggplot(df47, aes(x, resid)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+  geom_point(size = 3.5, color = "#619CFF") +
+  scale_x_continuous(breaks = 1:5) +
+  labs(x = "Catalyst amount (x, g)", y = "Residual") +
+  theme_minimal(base_size = 14)
+```
+
+**(d)** The residual at $x=3$ (Trial 3, $e_3 = +10.4$) stands out sharply: the other four residuals are all small and negative, ranging from $-3.8$ to $-1.4$, forming a fairly tight band, while Trial 3 sits far above them. This is a clear **unusual observation**. It raises concerns primarily about that specific data point — the run should be checked for a measurement or recording error, or for an unusual experimental condition — rather than about the linear model in general, since the remaining four points show no obvious curvature or trend. Once the Trial 3 observation is investigated, the fit should be reassessed with and without it to see how much it is influencing $\hat{\beta}_0$ and $\hat{\beta}_1$.
+
+</div>
+</details>
+
+---
+
+<!-- Q48 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 48</div>
+
+A manufacturing analyst fits a simple linear regression of per-unit production cost ($y$, \$) on production batch size ($x$, units) using $n=50$ batches. Figure \@ref(fig:ch9q48resid) shows the residuals-vs-fitted-values plot from the fitted model.
+
+```{r ch9q48resid, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Residuals-vs-fitted plot from a regression of per-unit production cost on batch size.", fig.width=5.5, fig.height=4}
+library(ggplot2)
+set.seed(48)
+n48 <- 50
+x48 <- seq(5, 100, length.out = n48)
+y48 <- 80 - 0.30 * x48 + rnorm(n48, 0, sd = 1.5 + 0.13 * x48)
+m48 <- lm(y48 ~ x48)
+df48 <- data.frame(Fitted = fitted(m48), Residuals = resid(m48))
+ggplot(df48, aes(Fitted, Residuals)) +
+  geom_hline(yintercept = 0, color = "black", linewidth = 0.7) +
+  geom_point(color = "#619CFF", size = 2.5) +
+  labs(x = "Fitted Values", y = "Residuals") +
+  theme_minimal(base_size = 14)
+```
+
+(a) Describe the pattern in the spread of the residuals as the fitted values increase.
+
+(b) Which model assumption is called into question by this pattern? Explain how the plot supports your answer.
+
+(c) Give a plausible real-world explanation for why the variability in per-unit production cost might depend on batch size in this way.
+
+(d) Does the linearity assumption also appear violated in this plot? Explain how you distinguish a linearity problem from a constant-variance problem when reading a residual plot.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Compare the vertical spread ("width of the band") of points at the left of the plot to the spread at the right.
+- Constant variance requires the width of the residual band to stay roughly the same across all fitted values.
+- Linearity requires the residuals to be centred on zero with no systematic upward/downward curve as fitted values change.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** The residuals are widely scattered at low fitted values (small batches) and become noticeably tighter around zero as the fitted values increase (larger batches) — the opposite of a "fan opening to the right"; here the funnel narrows as fitted values increase.
+
+**(b)** This calls into question the **constant variance (homoscedasticity)** assumption: $\text{Var}(\varepsilon_i) = \sigma^2$ for all $i$. Instead, the error variance appears to be larger for small batches and smaller for large batches, i.e., the variance is not constant across the range of fitted values.
+
+**(c)** For small batches, fixed setup and changeover costs are spread across only a few units, so the per-unit cost is highly sensitive to small differences in efficiency from run to run — producing high variability. For large batches, those fixed costs are averaged over many more units, and efficiencies of scale tend to stabilize the per-unit cost, producing low variability.
+
+**(d)** No, linearity does not appear to be violated here: aside from the change in spread, the residuals are centred around zero across the *entire* range of fitted values, with no obvious curve (no systematic rise-then-fall or fall-then-rise pattern). To distinguish the two issues: for **linearity**, look at whether the *centre* of the point cloud drifts away from the zero line and curves as you scan left to right; for **constant variance**, look at whether the *width* of the vertical band of points changes as you scan left to right, regardless of whether its centre stays at zero.
+
+</div>
+</details>
+
+---
+
+<!-- Q49 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 49</div>
+
+Figure \@ref(fig:ch9q49panels) shows four residuals-vs-fitted-values plots, Panels (A)–(D), each from a different simple linear regression fit to a different dataset.
+
+```{r ch9q49panels, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center', fig.cap="Four residual plots illustrating different diagnostic patterns.", fig.width=8, fig.height=6.5}
+library(ggplot2)
+library(patchwork)
+set.seed(49)
+
+# Panel A: assumptions reasonably satisfied
+xA <- seq(1, 50, length.out = 40)
+dfA <- data.frame(Fitted = xA, Residuals = rnorm(40, 0, 3))
+
+# Panel B: non-linearity (systematic curved pattern)
+xB <- seq(1, 50, length.out = 40)
+dfB <- data.frame(Fitted = xB, Residuals = 0.02 * (xB - 25)^2 - 8 + rnorm(40, 0, 1.5))
+
+# Panel C: non-constant variance (fan/funnel pattern)
+xC <- seq(1, 50, length.out = 40)
+dfC <- data.frame(Fitted = xC, Residuals = rnorm(40, 0, sd = 0.15 * xC + 0.5))
+
+# Panel D: an outlier / unusual observation
+xD <- seq(1, 50, length.out = 40)
+rD <- rnorm(40, 0, 2.5)
+rD[20] <- 25
+dfD <- data.frame(Fitted = xD, Residuals = rD)
+
+mk <- function(df, tt) {
+  ggplot(df, aes(Fitted, Residuals)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey50") +
+    geom_point(color = "#619CFF", size = 2) +
+    labs(title = tt, x = "Fitted values", y = "Residuals") +
+    theme_minimal(base_size = 12)
+}
+
+(mk(dfA, "(A)") + mk(dfB, "(B)")) / (mk(dfC, "(C)") + mk(dfD, "(D)"))
+```
+
+(a) For each panel, state which ONE of the following best describes what it shows: (i) assumptions reasonably satisfied; (ii) non-linearity; (iii) non-constant variance; (iv) an outlier/unusual observation.
+
+(b) For each panel you classified as (ii), (iii), or (iv), briefly describe the specific visual feature that led you to that classification.
+
+(c) For which panel(s), if any, would you be comfortable proceeding with formal inference ($t$-tests, confidence intervals) based on the fitted simple linear regression model? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- (i) looks like a random, constant-width horizontal band centred on zero.
+- (ii) shows a smooth curve in the centre of the point cloud (not just noise).
+- (iii) shows a band that widens or narrows systematically from one side to the other.
+- (iv) looks like (i) except for one point that is clearly separated from the rest of the cloud.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** Panel (A) $\to$ (i); Panel (B) $\to$ (ii); Panel (C) $\to$ (iii); Panel (D) $\to$ (iv).
+
+**(b)**
+
+- **Panel (B):** the residuals trace a smooth, systematic curve — negative at the extremes of the fitted-value range and positive in the middle (or the reverse) — rather than scattering randomly around zero. This curvature indicates the true relationship between $x$ and $y$ is not linear.
+- **Panel (C):** the vertical spread of the residuals visibly widens (or narrows) as the fitted values increase, rather than staying roughly constant — a "fan" or "funnel" shape indicating the error variance is not constant.
+- **Panel (D):** nearly all of the residuals fall inside a narrow, randomly-scattered band around zero, but a single point lies far outside that band, clearly separated from the rest of the cloud — an unusual observation that warrants investigation.
+
+**(c)** Panel (A) only. Its residuals scatter randomly in a horizontal band of roughly constant width around zero, with no curvature and no extreme points, so the assumptions needed for valid inference (linearity, constant variance, absence of unusual/influential points) all appear reasonably satisfied. In Panels (B)–(D), at least one assumption is questionable, so $t$-tests, confidence intervals, and predictions from those fitted lines should be treated with caution until the underlying issue (curvature, non-constant variance, or the unusual point) is addressed.
 
 </div>
 </details>

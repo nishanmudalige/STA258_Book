@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-07-14" />
+<meta name="date" content="2026-07-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -357,9 +357,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -369,7 +368,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -431,6 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -3459,7 +3459,7 @@ Question 9
 </div>
 <p>A nutritionist administers a sleep supplement to a random sample of <span class="math inline">\(n = 16\)</span> volunteers for four weeks and records their nightly sleep duration (hours). A national health study reports the population mean sleep time is <span class="math inline">\(\mu_0 = 7.0\)</span> hours. The nutritionist believes the supplement increases sleep time. Assume sleep times are approximately normally distributed.</p>
 <p>The histogram below shows the distribution of nightly sleep durations for the 16 volunteers. The dashed line marks the hypothesized population mean <span class="math inline">\(\mu_0 = 7.0\)</span> hours.</p>
-<p><img src="Book_files/figure-html/ch6-q9-hist-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q9-hist-1.png" alt="" width="576" style="display: block; margin: auto;" /></p>
 <p>Use the data provided to test <span class="math inline">\(H_0: \mu = 7.0\)</span> vs. <span class="math inline">\(H_a: \mu &gt; 7.0\)</span> at <span class="math inline">\(\alpha = 0.05\)</span> using a one-sample <span class="math inline">\(t\)</span>-test. Fill in the blanks and run the code.</p>
 <ol style="list-style-type: lower-alpha">
 <li>Fill in the blanks to run the <span class="math inline">\(t\)</span>-test in R.</li>
@@ -3665,7 +3665,7 @@ Test statistic:
 Question 13
 </div>
 <p>A national survey reports that 60% of households own at least one pet (<span class="math inline">\(p_0 = 0.60\)</span>). A researcher randomly selects <span class="math inline">\(n = 150\)</span> households in one city and records whether each household owns at least one pet. The bar chart below summarises the results.</p>
-<p><img src="Book_files/figure-html/ch6-q13-bar-1.png" width="432" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q13-bar-1.png" alt="" width="432" style="display: block; margin: auto;" /></p>
 <p>Is the local pet-ownership rate higher than the national rate of 60%?</p>
 <ol style="list-style-type: lower-alpha">
 <li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
@@ -3853,7 +3853,7 @@ From the <span class="math inline">\(\chi^2\)</span>-table: the lower 5th percen
 Question 17
 </div>
 <p>A university study reports that the standard deviation of weekly study hours among undergraduates is <span class="math inline">\(\sigma_0 = 4\)</span> hours (<span class="math inline">\(\sigma_0^2 = 16\)</span> hr<span class="math inline">\(^2\)</span>). A researcher surveys a random sample of <span class="math inline">\(n = 25\)</span> engineering students and records their weekly study hours. The histogram below shows the distribution of study hours in this sample.</p>
-<p><img src="Book_files/figure-html/ch6-q17-hist-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q17-hist-1.png" alt="" width="576" style="display: block; margin: auto;" /></p>
 <p>Test whether the variance of study hours for engineering students differs from the university-wide value. Use <span class="math inline">\(\alpha = 0.05\)</span>. Assume study hours are approximately normally distributed.</p>
 <ol style="list-style-type: lower-alpha">
 <li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
@@ -4759,7 +4759,7 @@ Question 30
 Question 31
 </div>
 <p>A college tracks course completion across two delivery formats. The bar chart below shows the number of students who completed and did not complete the course for the online section (<span class="math inline">\(n_1 = 150\)</span>) and the in-person section (<span class="math inline">\(n_2 = 120\)</span>).</p>
-<p><img src="Book_files/figure-html/ch6-q31-bar-1.png" width="624" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q31-bar-1.png" alt="" width="624" style="display: block; margin: auto;" /></p>
 <p>Is the online completion rate significantly lower than the in-person rate? Use <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
 <ol style="list-style-type: lower-alpha">
@@ -4893,7 +4893,7 @@ Question 33
 Question 34
 </div>
 <p>Two quality inspectors each rate the same set of parts on a scale from 1 to 10. The boxplots below show the distribution of ratings given by each inspector.</p>
-<p><img src="Book_files/figure-html/ch6-q34-box-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q34-box-1.png" alt="" width="576" style="display: block; margin: auto;" /></p>
 <p>Is there a significant difference in the variability of their ratings? Use <span class="math inline">\(\alpha = 0.10\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
 <li>State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
@@ -5106,7 +5106,7 @@ Question 36
 Question 37
 </div>
 <p>Seven university students complete a self-reported anxiety questionnaire (scored 0–50; higher = more anxious) before and after a six-week mindfulness course. The plot below shows each student’s anxiety score before and after the program.</p>
-<p><img src="Book_files/figure-html/ch6-q37-line-1.png" width="528" style="display: block; margin: auto;" /></p>
+<p><img src="Book_files/figure-html/ch6-q37-line-1.png" alt="" width="528" style="display: block; margin: auto;" /></p>
 <p>Test whether anxiety scores decreased after the course, at <span class="math inline">\(\alpha = 0.05\)</span>. Define <span class="math inline">\(d_i = \text{After}_i - \text{Before}_i\)</span>.</p>
 <p>You may use the Distribution Calculator in Section 4.1.5 to find the required tail probability.</p>
 <ol style="list-style-type: lower-alpha">
@@ -5417,6 +5417,257 @@ Question 40
 <span class="math display">\[\text{p-value} = 2 \times P(t_{36} &lt; -1.752) \approx 2(0.044) = 0.088\]</span>
 <a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a></p>
 <p>Since p-value <span class="math inline">\(\approx 0.088 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is insufficient evidence at the 5% significance level to conclude that athletes from the two training regimes have different mean resting heart rates.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 41
+</div>
+<p>An appliance repair company wants to know whether the mean time to complete a repair call exceeds the historical benchmark of <span class="math inline">\(\mu_0 = 2.0\)</span> hours. A dispatcher randomly selects <span class="math inline">\(n = 8\)</span> recent repair calls and records their completion times (hours):</p>
+<p><span class="math display">\[1.2,\ 1.5,\ 1.8,\ 2.0,\ 2.2,\ 2.5,\ 3.8,\ 6.5\]</span></p>
+<p>The normal Q-Q plot of these 8 repair times is shown below.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="hypothesis-tests.html#cb113-1" tabindex="-1"></a>repair <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">1.5</span>, <span class="fl">1.8</span>, <span class="fl">2.0</span>, <span class="fl">2.2</span>, <span class="fl">2.5</span>, <span class="fl">3.8</span>, <span class="fl">6.5</span>)</span>
+<span id="cb113-2"><a href="hypothesis-tests.html#cb113-2" tabindex="-1"></a><span class="fu">qqnorm</span>(repair)</span>
+<span id="cb113-3"><a href="hypothesis-tests.html#cb113-3" tabindex="-1"></a><span class="fu">qqline</span>(repair)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ch6-q41-qq"></span>
+<img src="Book_files/figure-html/ch6-q41-qq-1.png" alt="Normal Q-Q plot of the 8 repair times." width="432" />
+<p class="caption">
+Figure 6.12: Normal Q-Q plot of the 8 repair times.
+</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li>Based on the Q-Q plot above, does the normality assumption appear reasonable for this sample? Describe any skewness, heavy tails, or outliers you observe.</li>
+<li>Given the small sample size (<span class="math inline">\(n = 8\)</span>) and the pattern in (a), is a one-sample <span class="math inline">\(t\)</span>-procedure appropriate for testing <span class="math inline">\(H_0: \mu = 2.0\)</span> vs. <span class="math inline">\(H_a: \mu &gt; 2.0\)</span>? Justify your answer using <strong>both</strong> the sample size and the Q-Q plot.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>In a normal Q-Q plot, points that fall close to the reference line are consistent with normality. Points that curve away from the line at one end only (rather than both ends) indicate skewness; a single point far from the line and from the rest of the data indicates a possible outlier.</li>
+<li>With <span class="math inline">\(n = 8\)</span>, the <span class="math inline">\(t\)</span>-procedure’s validity depends heavily on the normality assumption, since there is little data to “average out” a departure — unlike with large <span class="math inline">\(n\)</span>, where the Central Limit Theorem offers protection.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> The normality assumption does <strong>not</strong> appear reasonable here. The points follow the reference line fairly well in the lower-to-middle range, but the two largest observations (3.8 and 6.5 hours) bend sharply upward and away from the line. This is a classic <strong>right-skew</strong> signature — a long right tail — rather than a single isolated outlier, since the departure builds gradually across the upper quantiles instead of jumping abruptly at just one point. The plot provides evidence of a departure from normality.</p>
+<p><strong>(b)</strong> The one-sample <span class="math inline">\(t\)</span>-procedure is <strong>questionable</strong> here. With only <span class="math inline">\(n = 8\)</span> observations, the sample size is too small for the Central Limit Theorem to compensate for a non-normal population, so the validity of the <span class="math inline">\(t\)</span>-procedure rests heavily on the normality assumption itself — and the Q-Q plot shows a clear right-skew rather than an approximately straight line. Repair-time data of this kind often follow a skewed distribution in practice (most calls are quick, but a few take much longer), which is consistent with what is seen here. Combining the small <span class="math inline">\(n\)</span> with the visible skew, a <span class="math inline">\(t\)</span>-test conducted on this sample could produce a misleading p-value.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 42
+</div>
+<p>A production manager compares the time (minutes) to complete a manual assembly task at two workstations. Independent random samples give:</p>
+<p><strong>Workstation 1 (<span class="math inline">\(n_1 = 7\)</span>):</strong> 12.1, 11.8, 12.5, 12.0, 11.9, 12.3, 12.2</p>
+<p><strong>Workstation 2 (<span class="math inline">\(n_2 = 6\)</span>):</strong> 13.0, 12.7, 13.5, 12.9, 13.2, 21.4</p>
+<p>(The last Workstation 2 time of 21.4 minutes occurred during a shift when the machine briefly jammed.)</p>
+<p>Normal Q-Q plots for each workstation are shown below.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="hypothesis-tests.html#cb114-1" tabindex="-1"></a><span class="fu">qqnorm</span>(ws1); <span class="fu">qqline</span>(ws1)</span>
+<span id="cb114-2"><a href="hypothesis-tests.html#cb114-2" tabindex="-1"></a><span class="fu">qqnorm</span>(ws2); <span class="fu">qqline</span>(ws2)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ch6-q42-qq"></span>
+<img src="Book_files/figure-html/ch6-q42-qq-1.png" alt="Normal Q-Q plots for Workstation 1 (left) and Workstation 2 (right)." width="816" />
+<p class="caption">
+Figure 6.13: Normal Q-Q plots for Workstation 1 (left) and Workstation 2 (right).
+</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li>Assess normality separately for each workstation using its Q-Q plot. Does either sample show a clear departure from normality? If so, what kind?</li>
+<li>Compare the shapes of the two Q-Q plots. What is different about them?</li>
+<li>Based on your answers above, is a two-sample <span class="math inline">\(t\)</span>-procedure appropriate for comparing these two workstations as they currently stand? What would you recommend the manager do before proceeding with a formal test?</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Assess each group’s Q-Q plot on its own — a two-sample procedure requires each population to be reasonably normal (or at least similarly shaped), not the pooled data.</li>
+<li>A single point that sits far from an otherwise straight line, with a large visual gap separating it from the rest of the cloud, signals a possible outlier rather than general skewness.</li>
+<li>Do not conclude a population is normal with certainty — only that the plot is or is not consistent with normality.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> The Workstation 1 Q-Q plot shows all seven points falling close to the reference line — the normality assumption appears reasonable, with no meaningful departure. The Workstation 2 Q-Q plot shows five points falling almost exactly on the line, but the sixth point (21.4 minutes, from the jam) sits far above and away from the rest of the cloud. This plot provides evidence of a departure from normality in the form of a clear <strong>isolated outlier</strong>, not a general skew or heavy-tail pattern, since removing that one point would leave a very straight-looking Q-Q plot.</p>
+<p><strong>(b)</strong> Workstation 1’s plot is uniformly close to the line along its whole length, while Workstation 2’s plot is close to the line for five of its six points and then breaks sharply away at the extreme upper point. The overall shapes are otherwise similar (both show tightly clustered, roughly linear points), so the difference comes down to that single value in Workstation 2.</p>
+<p><strong>(c)</strong> As it stands, a two-sample <span class="math inline">\(t\)</span>-procedure is <strong>not fully appropriate</strong> for comparing the two workstations, because Workstation 2’s single extreme outlier strongly affects both its mean and its standard deviation with only <span class="math inline">\(n_2 = 6\)</span> observations. Before proceeding, the manager should investigate the 21.4-minute observation (it has a known, documented cause — the machine jam) and consider excluding it or analyzing the data with and without it to see how much it changes the conclusion. Workstation 1’s data show no such concern and could be used as-is.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 43
+</div>
+<p>An instructor compares final exam scores (out of 100 points) between two independent sections of an introductory statistics course. Random samples of students from each section give:</p>
+<p><strong>Section A (<span class="math inline">\(n_1 = 8\)</span>):</strong> 94, 92, 91, 90, 88, 82, 74, 61</p>
+<p><strong>Section B (<span class="math inline">\(n_2 = 7\)</span>):</strong> 78, 82, 75, 80, 77, 83, 79</p>
+<p>The instructor plans to compare the two section means using a <strong>standard two-sample <span class="math inline">\(t\)</span>-procedure</strong>. Before doing so, a statistics student is asked to evaluate whether this plan is sound by examining normal Q-Q plots of the two samples, shown below.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="hypothesis-tests.html#cb115-1" tabindex="-1"></a><span class="fu">qqnorm</span>(sectionA); <span class="fu">qqline</span>(sectionA)</span>
+<span id="cb115-2"><a href="hypothesis-tests.html#cb115-2" tabindex="-1"></a><span class="fu">qqnorm</span>(sectionB); <span class="fu">qqline</span>(sectionB)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ch6-q43-qq"></span>
+<img src="Book_files/figure-html/ch6-q43-qq-1.png" alt="Normal Q-Q plots for Section A (left) and Section B (right)." width="816" />
+<p class="caption">
+Figure 6.14: Normal Q-Q plots for Section A (left) and Section B (right).
+</p>
+</div>
+<ol style="list-style-type: lower-alpha">
+<li>Identify which section’s Q-Q plot shows evidence of negative skew, and describe the specific evidence visible in the plot.</li>
+<li>Explain why the pattern you identified in (a) represents gradual left skew rather than a single isolated outlier.</li>
+<li>Assess the normality assumption separately for <strong>both</strong> sections using their Q-Q plots.</li>
+<li>Evaluate whether the instructor’s plan to use a standard two-sample <span class="math inline">\(t\)</span>-procedure is trustworthy given these two small samples.</li>
+<li>Explain why the small sample sizes make the departure identified in (a) a more serious concern than it would be with larger samples.</li>
+<li>If the <span class="math inline">\(t\)</span>-procedure’s assumptions are doubtful, recommend one reasonable next step the instructor could take.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Approximate linearity in a Q-Q plot — points tracking the reference line across their full range — supports the normality assumption; it does not prove it.</li>
+<li>Skewness shows up as asymmetric curvature across the <em>whole</em> plot, not just at one end: look at whether one tail extends further from the line than the other, and whether the middle points sit consistently on one side of the line rather than scattering randomly around it.</li>
+<li>A single isolated outlier looks different from skew: one point breaks sharply away from an otherwise linear set of points, rather than several points departing by gradually different amounts.</li>
+<li>With small samples, the <span class="math inline">\(t\)</span>-procedure has little help from the Central Limit Theorem, so its validity leans heavily on the normality condition actually holding — and having “similarly shaped” samples is not, by itself, a guarantee that a small-sample <span class="math inline">\(t\)</span>-procedure will behave well.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> The Q-Q plot shows systematic curvature consistent with a negatively skewed distribution: the lowest observations fall below the reference line, several central observations lie above or near it, and the upper tail is comparatively compressed. Specifically, in Section A the two lowest scores, 61 and 74, sit below the reference line (61 strongly so), while 82 lies approximately on (very slightly above) the line. Moving up, 88, 90, and 91 sit above the line, before 92 sits close to it and the highest score, 94, curves back down toward the line. Taken together — a long lower tail together with a comparatively short, compressed upper tail — this is evidence of negative skew, not a random scatter around the line. Section B’s plot, by contrast, tracks the reference line closely across its entire range, which is consistent with the normality assumption appearing reasonable there.</p>
+<p><strong>(b)</strong> The lower-tail departure in Section A involves more than a single value. Looking at the three lowest scores in order — 82, 74, and 61 — the gaps between them widen steadily (82 to 74 is a gap of 8 points; 74 to 61 is a gap of 13 points), with 74 and 61 both sitting below the reference line and 61 considerably more so. A single isolated outlier would instead look like one point breaking sharply away while an otherwise tightly linear set of points remained close to the line. Here, the departure builds up gradually across several scores and is reinforced by the compressed upper tail (92 and 94 curving back toward the line rather than continuing to track it). This overall shape — long lower tail, compressed upper tail — is the signature of systematic negative skew, not one unusual score.</p>
+<p><strong>(c)</strong> For Section A, the normality assumption does <strong>not</strong> appear reasonable: the curvature described above is a systematic pattern rather than random scatter around the line. For Section B, the normality assumption <strong>appears reasonable</strong>, since all seven points lie close to the reference line with no clear curvature, heavy tails, or isolated points — though with only <span class="math inline">\(n_2 = 7\)</span> observations, this is evidence supporting normality rather than proof that the population is normal.</p>
+<p><strong>(d)</strong> The instructor’s plan is <strong>questionable</strong> as it stands. With samples this small, a two-sample <span class="math inline">\(t\)</span>-procedure’s approximate validity depends on each population being reasonably close to normal; simply having “similarly shaped” samples is not by itself enough to guarantee the <span class="math inline">\(t\)</span>-approximation is trustworthy, because strong skewness or outliers in <em>either</em> group can distort it. Here, Section A shows evidence of clear negative skew while Section B does not — so not only is the normality condition doubtful for one group, but the two groups also differ substantially in shape from one another. With such small samples (<span class="math inline">\(n_1=8\)</span>, <span class="math inline">\(n_2=7\)</span>), this combination makes the standard two-sample <span class="math inline">\(t\)</span>-procedure questionable, and its result should be interpreted with caution.</p>
+<p><strong>(e)</strong> With only <span class="math inline">\(n_1 = 8\)</span> and <span class="math inline">\(n_2 = 7\)</span> observations, the Central Limit Theorem cannot be relied on to average out non-normality in the sampling distribution of the difference in means — that protection only becomes strong with much larger samples. A skewed shape like the one visible in Section A therefore carries more weight here than the same-looking departure would in a sample of, say, 100 students, where the <span class="math inline">\(t\)</span>-procedure would likely still perform well regardless.</p>
+<p><strong>(f)</strong> One reasonable next step would be to collect more exam scores from Section A (and ideally Section B) so that the shape of each distribution, and the reliability of the <span class="math inline">\(t\)</span>-procedure, can be assessed with more confidence. Another reasonable option is a sensitivity analysis (checking whether the conclusion changes if the lowest score is set aside). A rank-based nonparametric alternative could also be considered, but it should be noted that such procedures generally test a different question — for example, equality of medians or of entire distributions — rather than directly testing equality of the population means, so its result would need to be interpreted with that distinction in mind.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 44
+</div>
+<p>A researcher studies whether a new low-sodium diet lowers LDL cholesterol (mg/dL). Eight sets of identical twins are recruited; within each pair, one twin is randomly assigned to follow the new diet for 8 weeks while the other twin (the matched control) continues their usual diet. This matched-twin design controls for genetic and household differences between pairs, so each <strong>twin pair</strong> — not each individual twin — is the observational unit. LDL cholesterol is measured for both twins at the end of the study:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Twin pair</th>
+<th>Control twin</th>
+<th>Diet twin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>140</td>
+<td>134</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>135</td>
+<td>128</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>150</td>
+<td>143</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>145</td>
+<td>137</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>138</td>
+<td>129</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>142</td>
+<td>128</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>148</td>
+<td>128</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>136</td>
+<td>108</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>Explain why this is a <strong>paired</strong> study, and identify the observational unit.</li>
+<li>Define the paired differences as <span class="math inline">\(d_i = \text{Diet twin}_i - \text{Control twin}_i\)</span>, and calculate all eight differences.</li>
+</ol>
+<p>The normal Q-Q plot of these eight differences is shown below.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="hypothesis-tests.html#cb116-1" tabindex="-1"></a>d <span class="ot">&lt;-</span> diet <span class="sc">-</span> control</span>
+<span id="cb116-2"><a href="hypothesis-tests.html#cb116-2" tabindex="-1"></a><span class="fu">qqnorm</span>(d)</span>
+<span id="cb116-3"><a href="hypothesis-tests.html#cb116-3" tabindex="-1"></a><span class="fu">qqline</span>(d)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ch6-q44-qq"></span>
+<img src="Book_files/figure-html/ch6-q44-qq-1.png" alt="Normal Q-Q plot of the paired differences (Diet twin minus Control twin, mg/dL)." width="432" />
+<p class="caption">
+Figure 6.15: Normal Q-Q plot of the paired differences (Diet twin minus Control twin, mg/dL).
+</p>
+</div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Examine the Q-Q plot of the differences above and describe the pattern. Does it show evidence of negative (left) skew?</li>
+<li>Explain why the pattern you described in (c) represents systematic negative skew rather than a single isolated outlier.</li>
+<li>Does the normality condition needed for a paired <span class="math inline">\(t\)</span>-procedure appear reasonable here?</li>
+<li>Evaluate whether a paired <span class="math inline">\(t\)</span>-procedure would be trustworthy given the small sample size and the observed Q-Q plot.</li>
+<li>Explain why normality must be checked for the differences <span class="math inline">\(d_i\)</span>, rather than by examining separate Q-Q plots of the Control-twin and Diet-twin measurements.</li>
+<li>If the normality condition is doubtful, suggest one reasonable alternative or sensitivity analysis the researcher could pursue.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Calculate each difference as <span class="math inline">\(d_i = \text{Diet twin}_i - \text{Control twin}_i\)</span>, keeping the direction consistent across all eight pairs.</li>
+<li>A paired <span class="math inline">\(t\)</span>-procedure is really just a <strong>one-sample</strong> <span class="math inline">\(t\)</span>-procedure applied to the single sample of differences <span class="math inline">\(d_1, \dots, d_n\)</span> — so it is the shape of that one sample, not the two original columns, that matters.</li>
+<li>Look at the overall curvature of the plot rather than a single point: does one tail extend noticeably further from the reference line than the other, with several points — not just one — departing by gradually different amounts, while the opposite tail looks comparatively compressed?</li>
+<li>This question does not ask you to compute a <span class="math inline">\(t\)</span>-statistic — focus on the diagnostic reasoning.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> This is a paired study because each twin pair shares genetic background and upbringing, so the diet-twin and control-twin measurements within a pair are linked rather than independent — differences between the twins are more likely attributable to the diet itself rather than to unrelated genetic or environmental variation. The observational unit is the <strong>twin pair</strong>, not the individual twin.</p>
+<p><strong>(b)</strong> With <span class="math inline">\(d_i = \text{Diet twin}_i - \text{Control twin}_i\)</span>:</p>
+<p><span class="math display">\[d_i:\quad 134-140=-6,\ \ 128-135=-7,\ \ 143-150=-7,\ \ 137-145=-8,\]</span>
+<span class="math display">\[129-138=-9,\ \ 128-142=-14,\ \ 128-148=-20,\ \ 108-136=-28\]</span></p>
+<p>So the eight differences are <span class="math inline">\(-6,\ -7,\ -7,\ -8,\ -9,\ -14,\ -20,\ -28\)</span> (mg/dL).</p>
+<p><strong>(c)</strong> The Q-Q plot displays systematic curvature consistent with negative skew: the most negative differences fall below the reference line, the central observations tend to lie above or near it, and the upper tail is comparatively short. Specifically, the two most negative differences, <span class="math inline">\(-28\)</span> and <span class="math inline">\(-20\)</span>, sit below the reference line (<span class="math inline">\(-28\)</span> strongly so), while <span class="math inline">\(-14\)</span> lies approximately near the line rather than clearly below it. The middle differences (<span class="math inline">\(-9\)</span>, <span class="math inline">\(-8\)</span>, <span class="math inline">\(-7\)</span>) sit above the line, and the two least negative differences (<span class="math inline">\(-7\)</span> and <span class="math inline">\(-6\)</span>) curve back down toward the line at the top. This asymmetric shape — a long lower tail together with a short, compressed upper tail — is evidence of negative skew, though with only <span class="math inline">\(n=8\)</span> pairs this evidence should be interpreted cautiously rather than as definitive proof of the population shape.</p>
+<p><strong>(d)</strong> The lower-tail departure involves more than a single value. Looking at the three most negative differences in order — <span class="math inline">\(-14\)</span>, <span class="math inline">\(-20\)</span>, and <span class="math inline">\(-28\)</span> — the gaps between them widen steadily (<span class="math inline">\(-14\)</span> to <span class="math inline">\(-20\)</span> is a gap of 6; <span class="math inline">\(-20\)</span> to <span class="math inline">\(-28\)</span> is a gap of 8), with <span class="math inline">\(-20\)</span> and <span class="math inline">\(-28\)</span> both sitting below the reference line and <span class="math inline">\(-28\)</span> considerably more so. A single isolated outlier would instead look like one value breaking sharply away while an otherwise tightly linear set of points remained close to the line. Here, the departure builds up gradually across multiple pairs and is reinforced by the compressed upper tail (<span class="math inline">\(-7\)</span> and <span class="math inline">\(-6\)</span> curving back toward the line rather than continuing to track it). This combination — long lower tail, short upper tail — is the signature of systematic negative skew, not one unusual pair.</p>
+<p><strong>(e)</strong> The normality condition does <strong>not</strong> appear reasonable here: the systematic curvature described in (c) and (d) — long lower tail, compressed upper tail — is a structured pattern rather than random scatter around the line, though with only 8 pairs this diagnostic evidence is limited and should be interpreted cautiously.</p>
+<p><strong>(f)</strong> A paired <span class="math inline">\(t\)</span>-procedure would be <strong>questionable</strong> in this case. With only <span class="math inline">\(n = 8\)</span> pairs, the Central Limit Theorem offers little protection against non-normality, so the procedure’s validity depends heavily on the normality condition actually holding — and the Q-Q plot instead provides evidence of negative skew in the differences. Combining the small sample size with this visible departure means a paired <span class="math inline">\(t\)</span>-procedure applied here may not be trustworthy.</p>
+<p><strong>(g)</strong> A paired <span class="math inline">\(t\)</span>-procedure is algebraically a <strong>one-sample</strong> <span class="math inline">\(t\)</span>-procedure carried out on the single sample of differences <span class="math inline">\(d_1, \dots, d_n\)</span>, using <span class="math inline">\(\bar{d}\)</span> and <span class="math inline">\(s_d\)</span> as its inputs. The reference <span class="math inline">\(t\)</span>-distribution used by that procedure requires only that this one variable, <span class="math inline">\(d_i\)</span>, be approximately normal; it places no requirement on the individual shapes of the Control-twin and Diet-twin measurements. Indeed, the Control-twin and Diet-twin columns could each look reasonably normal on their own while their differences do not (or vice versa), so examining them separately would not diagnose the condition the paired procedure actually depends on.</p>
+<p><strong>(h)</strong> Given the observed skew, one reasonable option is a <strong>paired sign test</strong>: it tests the <strong>median</strong> paired difference rather than the mean paired difference and does not require the differences to follow a symmetric or normal distribution, though this also means it addresses a somewhat different question than the paired <span class="math inline">\(t\)</span>-procedure does. Another reasonable option is a <strong>sensitivity analysis</strong>: re-examining the conclusion with the most extreme pair (pair 8, <span class="math inline">\(d = -28\)</span>) set aside, to see whether it is driving the apparent skew and whether the substantive conclusion changes without it. Recruiting <strong>additional twin pairs</strong> would also help assess the shape of the distribution of differences with more confidence. A rank-based procedure such as the Wilcoxon signed-rank test is sometimes suggested in this situation, but its usual interpretation as a test about the center of the distribution relies on the differences being approximately symmetric — an assumption that is doubtful here given the observed skew — so if used, it would need to be interpreted carefully as a statement about the distribution of differences rather than as a direct substitute for a test about the mean difference.</p>
 </div>
 </details>
 

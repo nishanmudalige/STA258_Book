@@ -5608,3 +5608,273 @@ $$\text{p-value} = 2 \times P(t_{36} < -1.752) \approx 2(0.044) = 0.088$$
 Since p-value $\approx 0.088 > \alpha = 0.05$, we **fail to reject $H_0$**. There is insufficient evidence at the 5% significance level to conclude that athletes from the two training regimes have different mean resting heart rates.
 </div>
 </details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 41</div>
+An appliance repair company wants to know whether the mean time to complete a repair call exceeds the historical benchmark of $\mu_0 = 2.0$ hours. A dispatcher randomly selects $n = 8$ recent repair calls and records their completion times (hours):
+
+$$1.2,\ 1.5,\ 1.8,\ 2.0,\ 2.2,\ 2.5,\ 3.8,\ 6.5$$
+
+The normal Q-Q plot of these 8 repair times is shown below.
+
+```r
+repair <- c(1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 3.8, 6.5)
+qqnorm(repair)
+qqline(repair)
+```
+
+```{r ch6-q41-qq, echo=FALSE, fig.height=4, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE, fig.cap="Normal Q-Q plot of the 8 repair times."}
+library(ggplot2)
+repair <- c(1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 3.8, 6.5)
+df41 <- data.frame(x = repair)
+ggplot(df41, aes(sample = x)) +
+  stat_qq(color = "#619CFF", size = 2.5) +
+  stat_qq_line(color = "#000000") +
+  labs(x = "Theoretical Quantiles", y = "Sample Quantiles (hours)") +
+  theme_minimal(base_size = 14)
+```
+
+(a) Based on the Q-Q plot above, does the normality assumption appear reasonable for this sample? Describe any skewness, heavy tails, or outliers you observe.
+(b) Given the small sample size ($n = 8$) and the pattern in (a), is a one-sample $t$-procedure appropriate for testing $H_0: \mu = 2.0$ vs. $H_a: \mu > 2.0$? Justify your answer using **both** the sample size and the Q-Q plot.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- In a normal Q-Q plot, points that fall close to the reference line are consistent with normality. Points that curve away from the line at one end only (rather than both ends) indicate skewness; a single point far from the line and from the rest of the data indicates a possible outlier.
+- With $n = 8$, the $t$-procedure's validity depends heavily on the normality assumption, since there is little data to "average out" a departure — unlike with large $n$, where the Central Limit Theorem offers protection.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** The normality assumption does **not** appear reasonable here. The points follow the reference line fairly well in the lower-to-middle range, but the two largest observations (3.8 and 6.5 hours) bend sharply upward and away from the line. This is a classic **right-skew** signature — a long right tail — rather than a single isolated outlier, since the departure builds gradually across the upper quantiles instead of jumping abruptly at just one point. The plot provides evidence of a departure from normality.
+
+**(b)** The one-sample $t$-procedure is **questionable** here. With only $n = 8$ observations, the sample size is too small for the Central Limit Theorem to compensate for a non-normal population, so the validity of the $t$-procedure rests heavily on the normality assumption itself — and the Q-Q plot shows a clear right-skew rather than an approximately straight line. Repair-time data of this kind often follow a skewed distribution in practice (most calls are quick, but a few take much longer), which is consistent with what is seen here. Combining the small $n$ with the visible skew, a $t$-test conducted on this sample could produce a misleading p-value.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 42</div>
+A production manager compares the time (minutes) to complete a manual assembly task at two workstations. Independent random samples give:
+
+**Workstation 1 ($n_1 = 7$):** 12.1, 11.8, 12.5, 12.0, 11.9, 12.3, 12.2
+
+**Workstation 2 ($n_2 = 6$):** 13.0, 12.7, 13.5, 12.9, 13.2, 21.4
+
+(The last Workstation 2 time of 21.4 minutes occurred during a shift when the machine briefly jammed.)
+
+Normal Q-Q plots for each workstation are shown below.
+
+```r
+qqnorm(ws1); qqline(ws1)
+qqnorm(ws2); qqline(ws2)
+```
+
+```{r ch6-q42-qq, echo=FALSE, fig.height=4, fig.width=8.5, fig.align='center', message=FALSE, warning=FALSE, fig.cap="Normal Q-Q plots for Workstation 1 (left) and Workstation 2 (right)."}
+library(ggplot2)
+library(patchwork)
+ws1 <- c(12.1, 11.8, 12.5, 12.0, 11.9, 12.3, 12.2)
+ws2 <- c(13.0, 12.7, 13.5, 12.9, 13.2, 21.4)
+
+p1 <- ggplot(data.frame(x = ws1), aes(sample = x)) +
+  stat_qq(color = "#619CFF", size = 2.5) + stat_qq_line(color = "#000000") +
+  labs(title = "Workstation 1", x = "Theoretical Quantiles", y = "Sample Quantiles (min)") +
+  theme_minimal(base_size = 13)
+
+p2 <- ggplot(data.frame(x = ws2), aes(sample = x)) +
+  stat_qq(color = "#619CFF", size = 2.5) + stat_qq_line(color = "#000000") +
+  labs(title = "Workstation 2", x = "Theoretical Quantiles", y = "Sample Quantiles (min)") +
+  theme_minimal(base_size = 13)
+
+p1 + p2
+```
+
+(a) Assess normality separately for each workstation using its Q-Q plot. Does either sample show a clear departure from normality? If so, what kind?
+(b) Compare the shapes of the two Q-Q plots. What is different about them?
+(c) Based on your answers above, is a two-sample $t$-procedure appropriate for comparing these two workstations as they currently stand? What would you recommend the manager do before proceeding with a formal test?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Assess each group's Q-Q plot on its own — a two-sample procedure requires each population to be reasonably normal (or at least similarly shaped), not the pooled data.
+- A single point that sits far from an otherwise straight line, with a large visual gap separating it from the rest of the cloud, signals a possible outlier rather than general skewness.
+- Do not conclude a population is normal with certainty — only that the plot is or is not consistent with normality.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** The Workstation 1 Q-Q plot shows all seven points falling close to the reference line — the normality assumption appears reasonable, with no meaningful departure. The Workstation 2 Q-Q plot shows five points falling almost exactly on the line, but the sixth point (21.4 minutes, from the jam) sits far above and away from the rest of the cloud. This plot provides evidence of a departure from normality in the form of a clear **isolated outlier**, not a general skew or heavy-tail pattern, since removing that one point would leave a very straight-looking Q-Q plot.
+
+**(b)** Workstation 1's plot is uniformly close to the line along its whole length, while Workstation 2's plot is close to the line for five of its six points and then breaks sharply away at the extreme upper point. The overall shapes are otherwise similar (both show tightly clustered, roughly linear points), so the difference comes down to that single value in Workstation 2.
+
+**(c)** As it stands, a two-sample $t$-procedure is **not fully appropriate** for comparing the two workstations, because Workstation 2's single extreme outlier strongly affects both its mean and its standard deviation with only $n_2 = 6$ observations. Before proceeding, the manager should investigate the 21.4-minute observation (it has a known, documented cause — the machine jam) and consider excluding it or analyzing the data with and without it to see how much it changes the conclusion. Workstation 1's data show no such concern and could be used as-is.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 43</div>
+An instructor compares final exam scores (out of 100 points) between two independent sections of an introductory statistics course. Random samples of students from each section give:
+
+**Section A ($n_1 = 8$):** 94, 92, 91, 90, 88, 82, 74, 61
+
+**Section B ($n_2 = 7$):** 78, 82, 75, 80, 77, 83, 79
+
+The instructor plans to compare the two section means using a **standard two-sample $t$-procedure**. Before doing so, a statistics student is asked to evaluate whether this plan is sound by examining normal Q-Q plots of the two samples, shown below.
+
+```r
+qqnorm(sectionA); qqline(sectionA)
+qqnorm(sectionB); qqline(sectionB)
+```
+
+```{r ch6-q43-qq, echo=FALSE, fig.height=4, fig.width=8.5, fig.align='center', message=FALSE, warning=FALSE, fig.cap="Normal Q-Q plots for Section A (left) and Section B (right)."}
+library(ggplot2)
+library(patchwork)
+sectionA <- c(94, 92, 91, 90, 88, 82, 74, 61)
+sectionB <- c(78, 82, 75, 80, 77, 83, 79)
+
+p1 <- ggplot(data.frame(x = sectionA), aes(sample = x)) +
+  stat_qq(color = "#619CFF", size = 2.5) + stat_qq_line(color = "#000000") +
+  labs(title = "Section A", x = "Theoretical Quantiles", y = "Sample Quantiles (score)") +
+  theme_minimal(base_size = 13)
+
+p2 <- ggplot(data.frame(x = sectionB), aes(sample = x)) +
+  stat_qq(color = "#619CFF", size = 2.5) + stat_qq_line(color = "#000000") +
+  labs(title = "Section B", x = "Theoretical Quantiles", y = "Sample Quantiles (score)") +
+  theme_minimal(base_size = 13)
+
+p1 + p2
+```
+
+(a) Identify which section's Q-Q plot shows evidence of negative skew, and describe the specific evidence visible in the plot.
+(b) Explain why the pattern you identified in (a) represents gradual left skew rather than a single isolated outlier.
+(c) Assess the normality assumption separately for **both** sections using their Q-Q plots.
+(d) Evaluate whether the instructor's plan to use a standard two-sample $t$-procedure is trustworthy given these two small samples.
+(e) Explain why the small sample sizes make the departure identified in (a) a more serious concern than it would be with larger samples.
+(f) If the $t$-procedure's assumptions are doubtful, recommend one reasonable next step the instructor could take.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Approximate linearity in a Q-Q plot — points tracking the reference line across their full range — supports the normality assumption; it does not prove it.
+- Skewness shows up as asymmetric curvature across the *whole* plot, not just at one end: look at whether one tail extends further from the line than the other, and whether the middle points sit consistently on one side of the line rather than scattering randomly around it.
+- A single isolated outlier looks different from skew: one point breaks sharply away from an otherwise linear set of points, rather than several points departing by gradually different amounts.
+- With small samples, the $t$-procedure has little help from the Central Limit Theorem, so its validity leans heavily on the normality condition actually holding — and having "similarly shaped" samples is not, by itself, a guarantee that a small-sample $t$-procedure will behave well.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** The Q-Q plot shows systematic curvature consistent with a negatively skewed distribution: the lowest observations fall below the reference line, several central observations lie above or near it, and the upper tail is comparatively compressed. Specifically, in Section A the two lowest scores, 61 and 74, sit below the reference line (61 strongly so), while 82 lies approximately on (very slightly above) the line. Moving up, 88, 90, and 91 sit above the line, before 92 sits close to it and the highest score, 94, curves back down toward the line. Taken together — a long lower tail together with a comparatively short, compressed upper tail — this is evidence of negative skew, not a random scatter around the line. Section B's plot, by contrast, tracks the reference line closely across its entire range, which is consistent with the normality assumption appearing reasonable there.
+
+**(b)** The lower-tail departure in Section A involves more than a single value. Looking at the three lowest scores in order — 82, 74, and 61 — the gaps between them widen steadily (82 to 74 is a gap of 8 points; 74 to 61 is a gap of 13 points), with 74 and 61 both sitting below the reference line and 61 considerably more so. A single isolated outlier would instead look like one point breaking sharply away while an otherwise tightly linear set of points remained close to the line. Here, the departure builds up gradually across several scores and is reinforced by the compressed upper tail (92 and 94 curving back toward the line rather than continuing to track it). This overall shape — long lower tail, compressed upper tail — is the signature of systematic negative skew, not one unusual score.
+
+**(c)** For Section A, the normality assumption does **not** appear reasonable: the curvature described above is a systematic pattern rather than random scatter around the line. For Section B, the normality assumption **appears reasonable**, since all seven points lie close to the reference line with no clear curvature, heavy tails, or isolated points — though with only $n_2 = 7$ observations, this is evidence supporting normality rather than proof that the population is normal.
+
+**(d)** The instructor's plan is **questionable** as it stands. With samples this small, a two-sample $t$-procedure's approximate validity depends on each population being reasonably close to normal; simply having "similarly shaped" samples is not by itself enough to guarantee the $t$-approximation is trustworthy, because strong skewness or outliers in *either* group can distort it. Here, Section A shows evidence of clear negative skew while Section B does not — so not only is the normality condition doubtful for one group, but the two groups also differ substantially in shape from one another. With such small samples ($n_1=8$, $n_2=7$), this combination makes the standard two-sample $t$-procedure questionable, and its result should be interpreted with caution.
+
+**(e)** With only $n_1 = 8$ and $n_2 = 7$ observations, the Central Limit Theorem cannot be relied on to average out non-normality in the sampling distribution of the difference in means — that protection only becomes strong with much larger samples. A skewed shape like the one visible in Section A therefore carries more weight here than the same-looking departure would in a sample of, say, 100 students, where the $t$-procedure would likely still perform well regardless.
+
+**(f)** One reasonable next step would be to collect more exam scores from Section A (and ideally Section B) so that the shape of each distribution, and the reliability of the $t$-procedure, can be assessed with more confidence. Another reasonable option is a sensitivity analysis (checking whether the conclusion changes if the lowest score is set aside). A rank-based nonparametric alternative could also be considered, but it should be noted that such procedures generally test a different question — for example, equality of medians or of entire distributions — rather than directly testing equality of the population means, so its result would need to be interpreted with that distinction in mind.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 44</div>
+A researcher studies whether a new low-sodium diet lowers LDL cholesterol (mg/dL). Eight sets of identical twins are recruited; within each pair, one twin is randomly assigned to follow the new diet for 8 weeks while the other twin (the matched control) continues their usual diet. This matched-twin design controls for genetic and household differences between pairs, so each **twin pair** — not each individual twin — is the observational unit. LDL cholesterol is measured for both twins at the end of the study:
+
+| Twin pair | Control twin | Diet twin |
+|-----------|--------------|-----------|
+| 1         | 140          | 134       |
+| 2         | 135          | 128       |
+| 3         | 150          | 143       |
+| 4         | 145          | 137       |
+| 5         | 138          | 129       |
+| 6         | 142          | 128       |
+| 7         | 148          | 128       |
+| 8         | 136          | 108       |
+
+(a) Explain why this is a **paired** study, and identify the observational unit.
+(b) Define the paired differences as $d_i = \text{Diet twin}_i - \text{Control twin}_i$, and calculate all eight differences.
+
+The normal Q-Q plot of these eight differences is shown below.
+
+```r
+d <- diet - control
+qqnorm(d)
+qqline(d)
+```
+
+```{r ch6-q44-qq, echo=FALSE, fig.height=4, fig.width=4.5, fig.align='center', message=FALSE, warning=FALSE, fig.cap="Normal Q-Q plot of the paired differences (Diet twin minus Control twin, mg/dL)."}
+library(ggplot2)
+control <- c(140, 135, 150, 145, 138, 142, 148, 136)
+diet    <- c(134, 128, 143, 137, 129, 128, 128, 108)
+d <- diet - control
+ggplot(data.frame(x = d), aes(sample = x)) +
+  stat_qq(color = "#619CFF", size = 2.5) +
+  stat_qq_line(color = "#000000") +
+  labs(x = "Theoretical Quantiles", y = "Sample Quantiles of d = Diet − Control (mg/dL)") +
+  theme_minimal(base_size = 14)
+```
+
+(c) Examine the Q-Q plot of the differences above and describe the pattern. Does it show evidence of negative (left) skew?
+(d) Explain why the pattern you described in (c) represents systematic negative skew rather than a single isolated outlier.
+(e) Does the normality condition needed for a paired $t$-procedure appear reasonable here?
+(f) Evaluate whether a paired $t$-procedure would be trustworthy given the small sample size and the observed Q-Q plot.
+(g) Explain why normality must be checked for the differences $d_i$, rather than by examining separate Q-Q plots of the Control-twin and Diet-twin measurements.
+(h) If the normality condition is doubtful, suggest one reasonable alternative or sensitivity analysis the researcher could pursue.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Calculate each difference as $d_i = \text{Diet twin}_i - \text{Control twin}_i$, keeping the direction consistent across all eight pairs.
+- A paired $t$-procedure is really just a **one-sample** $t$-procedure applied to the single sample of differences $d_1, \dots, d_n$ — so it is the shape of that one sample, not the two original columns, that matters.
+- Look at the overall curvature of the plot rather than a single point: does one tail extend noticeably further from the reference line than the other, with several points — not just one — departing by gradually different amounts, while the opposite tail looks comparatively compressed?
+- This question does not ask you to compute a $t$-statistic — focus on the diagnostic reasoning.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** This is a paired study because each twin pair shares genetic background and upbringing, so the diet-twin and control-twin measurements within a pair are linked rather than independent — differences between the twins are more likely attributable to the diet itself rather than to unrelated genetic or environmental variation. The observational unit is the **twin pair**, not the individual twin.
+
+**(b)** With $d_i = \text{Diet twin}_i - \text{Control twin}_i$:
+
+$$d_i:\quad 134-140=-6,\ \ 128-135=-7,\ \ 143-150=-7,\ \ 137-145=-8,$$
+$$129-138=-9,\ \ 128-142=-14,\ \ 128-148=-20,\ \ 108-136=-28$$
+
+So the eight differences are $-6,\ -7,\ -7,\ -8,\ -9,\ -14,\ -20,\ -28$ (mg/dL).
+
+**(c)** The Q-Q plot displays systematic curvature consistent with negative skew: the most negative differences fall below the reference line, the central observations tend to lie above or near it, and the upper tail is comparatively short. Specifically, the two most negative differences, $-28$ and $-20$, sit below the reference line ($-28$ strongly so), while $-14$ lies approximately near the line rather than clearly below it. The middle differences ($-9$, $-8$, $-7$) sit above the line, and the two least negative differences ($-7$ and $-6$) curve back down toward the line at the top. This asymmetric shape — a long lower tail together with a short, compressed upper tail — is evidence of negative skew, though with only $n=8$ pairs this evidence should be interpreted cautiously rather than as definitive proof of the population shape.
+
+**(d)** The lower-tail departure involves more than a single value. Looking at the three most negative differences in order — $-14$, $-20$, and $-28$ — the gaps between them widen steadily ($-14$ to $-20$ is a gap of 6; $-20$ to $-28$ is a gap of 8), with $-20$ and $-28$ both sitting below the reference line and $-28$ considerably more so. A single isolated outlier would instead look like one value breaking sharply away while an otherwise tightly linear set of points remained close to the line. Here, the departure builds up gradually across multiple pairs and is reinforced by the compressed upper tail ($-7$ and $-6$ curving back toward the line rather than continuing to track it). This combination — long lower tail, short upper tail — is the signature of systematic negative skew, not one unusual pair.
+
+**(e)** The normality condition does **not** appear reasonable here: the systematic curvature described in (c) and (d) — long lower tail, compressed upper tail — is a structured pattern rather than random scatter around the line, though with only 8 pairs this diagnostic evidence is limited and should be interpreted cautiously.
+
+**(f)** A paired $t$-procedure would be **questionable** in this case. With only $n = 8$ pairs, the Central Limit Theorem offers little protection against non-normality, so the procedure's validity depends heavily on the normality condition actually holding — and the Q-Q plot instead provides evidence of negative skew in the differences. Combining the small sample size with this visible departure means a paired $t$-procedure applied here may not be trustworthy.
+
+**(g)** A paired $t$-procedure is algebraically a **one-sample** $t$-procedure carried out on the single sample of differences $d_1, \dots, d_n$, using $\bar{d}$ and $s_d$ as its inputs. The reference $t$-distribution used by that procedure requires only that this one variable, $d_i$, be approximately normal; it places no requirement on the individual shapes of the Control-twin and Diet-twin measurements. Indeed, the Control-twin and Diet-twin columns could each look reasonably normal on their own while their differences do not (or vice versa), so examining them separately would not diagnose the condition the paired procedure actually depends on.
+
+**(h)** Given the observed skew, one reasonable option is a **paired sign test**: it tests the **median** paired difference rather than the mean paired difference and does not require the differences to follow a symmetric or normal distribution, though this also means it addresses a somewhat different question than the paired $t$-procedure does. Another reasonable option is a **sensitivity analysis**: re-examining the conclusion with the most extreme pair (pair 8, $d = -28$) set aside, to see whether it is driving the apparent skew and whether the substantive conclusion changes without it. Recruiting **additional twin pairs** would also help assess the shape of the distribution of differences with more confidence. A rank-based procedure such as the Wilcoxon signed-rank test is sometimes suggested in this situation, but its usual interpretation as a test about the center of the distribution relies on the differences being approximately symmetric — an assumption that is doubtful here given the observed skew — so if used, it would need to be interpreted carefully as a statement about the distribution of differences rather than as a direct substitute for a test about the mean difference.
+</div>
+</details>
