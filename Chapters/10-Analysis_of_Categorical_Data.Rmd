@@ -316,3 +316,597 @@ The P -value is the area to the right of $X^{2}$ under the density curve of the 
 We must have enough data for the methods to work. We usually check the following:
 Expected Cell Frequency Condition: We should expect to see at least five individuals in each cell.
 The expected cell frequency condition sounds like the condition that $n p$ and $n(1-p)$ be at least 10 when we tested proportions, it is similar to that.
+
+## Exercises {#sec:ch10exercises}
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+A candy company claims that its milk-chocolate candies are produced in the following color proportions: Brown 13%, Yellow 14%, Red 13%, Blue 24%, Orange 20%, and Green 16%. A student buys a large bag and counts $n = 250$ candies, obtaining the observed counts below (in the same color order):
+
+$$28,\ 32,\ 30,\ 64,\ 54,\ 42$$
+
+Complete the R code below to (a) find the expected count for each color under $H_0$, (b) compute the chi-square contribution of each color, (c) compute the overall chi-square statistic, and (d) find the degrees of freedom and p-value.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="20">observed <- c(28, 32, 30, 64, 54, 42)
+probs    <- c(0.13, 0.14, 0.13, 0.24, 0.20, 0.16)
+n        <- sum(observed)
+
+# (a) Expected counts under H0
+expected <- n * ___
+expected
+
+# (b) Chi-square contribution of each cell
+chi_components <- (observed - expected)^2 / expected
+chi_components
+
+# (c) Chi-square test statistic
+chi_square <- sum(___)
+chi_square
+
+# (d) Degrees of freedom and p-value
+df <- length(observed) - 1
+p_value <- pchisq(chi_square, df, lower.tail = FALSE)
+p_value</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The expected count for each cell under $H_0$ is $E_i = np_i$; multiply the total sample size by the vector of hypothesized probabilities, not by any single number.
+- The chi-square statistic is the *sum* of the individual cell contributions $(O_i - E_i)^2 / E_i$ — `sum()` applied to the vector you already computed in part (b).
+- The p-value for a goodness-of-fit test is the area to the *right* of the observed $\chi^2$ statistic, which is why `lower.tail = FALSE` is used.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+observed <- c(28, 32, 30, 64, 54, 42)
+probs    <- c(0.13, 0.14, 0.13, 0.24, 0.20, 0.16)
+n        <- sum(observed)
+
+# (a) Expected counts under H0
+expected <- n * probs
+expected
+# [1] 32.5 35.0 32.5 60.0 50.0 40.0
+
+# (b) Chi-square contribution of each cell
+chi_components <- (observed - expected)^2 / expected
+chi_components
+# [1] 0.6230769 0.2571429 0.1923077 0.2666667 0.3200000 0.1000000
+
+# (c) Chi-square test statistic
+chi_square <- sum(chi_components)
+chi_square
+# [1] 1.759194
+
+# (d) Degrees of freedom and p-value
+df <- length(observed) - 1
+p_value <- pchisq(chi_square, df, lower.tail = FALSE)
+p_value
+# [1] 0.8813595
+```
+
+**(a)** $E_i = np_i$ gives expected counts of $32.5, 35, 32.5, 60, 50, 40$ candies.
+
+**(b)** The largest individual contribution comes from Brown (0.623), but every contribution here is small.
+
+**(c)** $\chi^2 = \sum (O_i - E_i)^2/E_i \approx 1.7592$.
+
+**(d)** $df = k - 1 = 6 - 1 = 5$, and the p-value $\approx 0.8814$.
+
+**Interpretation:** Since the p-value (0.8814) is far greater than a typical significance level such as $\alpha = 0.05$, we fail to reject $H_0$. There is no evidence that the student's bag of candies departs from the company's claimed color distribution.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+An auto dealership believes that buyers' exterior color preferences follow these proportions: White 25%, Black 20%, Silver 20%, Blue 15%, Red 10%, Other 10%. A sample of $n = 200$ recent sales shows the following observed counts (in the same color order):
+
+$$58,\ 36,\ 34,\ 28,\ 24,\ 20$$
+
+Complete the R code below to (a) run the chi-square goodness-of-fit test using `chisq.test()`, and (b) extract the expected counts from the resulting test object.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="9">observed <- c(58, 36, 34, 28, 24, 20)
+probs    <- c(0.25, 0.20, 0.20, 0.15, 0.10, 0.10)
+
+# (a) Run the chi-square goodness-of-fit test
+result <- chisq.test(___, p = ___)
+result
+
+# (b) Extract the expected counts from the test object
+result$expected</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `chisq.test(x, p)` takes the vector of *observed* counts as its first argument and the vector of *hypothesized probabilities* as the `p` argument.
+- The object returned by `chisq.test()` stores the expected counts inside it — access them with `$expected`, the same way you would access any list element in R.
+- Compare the reported p-value to a chosen significance level to decide whether to reject $H_0$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+observed <- c(58, 36, 34, 28, 24, 20)
+probs    <- c(0.25, 0.20, 0.20, 0.15, 0.10, 0.10)
+
+# (a) Run the chi-square goodness-of-fit test
+result <- chisq.test(observed, p = probs)
+result
+#
+#   Chi-squared test for given probabilities
+#
+# data:  observed
+# X-squared = 3.5133, df = 5, p-value = 0.6214
+
+# (b) Extract the expected counts from the test object
+result$expected
+# [1] 50 40 40 30 20 20
+```
+
+**Interpretation:** The test statistic is $\chi^2 \approx 3.5133$ with $df = 5$, giving a p-value of about $0.6214$. Since this p-value is much greater than $\alpha = 0.05$, we fail to reject $H_0$. The dealership's recent sales data are consistent with its claimed color-preference proportions.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+A classic genetics experiment crosses two pea plants and expects offspring phenotypes in a $9:3:3:1$ ratio, i.e., $p_1 = 9/16$, $p_2 = 3/16$, $p_3 = 3/16$, $p_4 = 1/16$. A researcher observes $n = 160$ offspring with the following counts (in the same phenotype order):
+
+$$90,\ 40,\ 20,\ 10$$
+
+Complete the R code below to (a) compute the exact multinomial probability of observing *this specific* count vector under $H_0$ using `dmultinom()`, (b) find the expected counts, (c) compute the chi-square statistic, and (d) find the degrees of freedom and p-value.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="20">observed <- c(90, 40, 20, 10)
+probs    <- c(9/16, 3/16, 3/16, 1/16)
+n        <- sum(observed)
+
+# (a) Exact multinomial probability of this precise count vector under H0
+dmultinom(___, prob = ___)
+
+# (b) Expected counts under H0
+expected <- n * probs
+expected
+
+# (c) Chi-square goodness-of-fit statistic
+chi_square <- sum((observed - expected)^2 / expected)
+chi_square
+
+# (d) Degrees of freedom and p-value
+df <- length(observed) - 1
+p_value <- pchisq(___, df, lower.tail = FALSE)
+p_value</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `dmultinom(x, prob)` returns the exact joint multinomial probability of observing *exactly* the count vector `x`, given the category probabilities `prob` — this is a single, very small number, not a p-value.
+- The chi-square goodness-of-fit p-value, by contrast, is the probability the *statistic* is at least as large as the value you observed, computed from the chi-square distribution — the second blank should be the statistic you just calculated in part (c).
+- Don't confuse the two probabilities: they answer different questions.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+observed <- c(90, 40, 20, 10)
+probs    <- c(9/16, 3/16, 3/16, 1/16)
+n        <- sum(observed)
+
+# (a) Exact multinomial probability of this precise count vector under H0
+dmultinom(observed, prob = probs)
+# [1] 3.118111e-05
+
+# (b) Expected counts under H0
+expected <- n * probs
+expected
+# [1] 90 30 30 10
+
+# (c) Chi-square goodness-of-fit statistic
+chi_square <- sum((observed - expected)^2 / expected)
+chi_square
+# [1] 6.666667
+
+# (d) Degrees of freedom and p-value
+df <- length(observed) - 1
+p_value <- pchisq(chi_square, df, lower.tail = FALSE)
+p_value
+# [1] 0.0833163
+```
+
+**Interpretation:** The `dmultinom()` result ($\approx 0.0000312$) is simply the probability of this *one exact* count pattern among the enormous number of possible patterns — it is not, by itself, evidence against $H_0$. The relevant test uses $\chi^2 \approx 6.667$ with $df = 3$, giving a p-value $\approx 0.0833$. Since this p-value exceeds $\alpha = 0.05$, we fail to reject $H_0$: the observed offspring counts are reasonably consistent with the classical 9:3:3:1 ratio, even though the second phenotype (observed 40 vs. expected 30) shows some departure from what was hypothesized.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+A retail store wants to know whether customer visits are evenly distributed across the five weekdays (Monday through Friday), i.e., $H_0: p_1 = p_2 = p_3 = p_4 = p_5 = 1/5$. Over one week, the store records $n = 300$ visits with the following counts (Monday through Friday):
+
+$$48,\ 52,\ 45,\ 95,\ 60$$
+
+Complete the R code below to (a) find the expected counts under $H_0$, (b) find each day's chi-square contribution, (c) identify which day contributes the most to the chi-square statistic, and (d) find the overall test statistic, degrees of freedom, and p-value.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="20">observed <- c(48, 52, 45, 95, 60)   # Mon, Tue, Wed, Thu, Fri
+n        <- sum(observed)
+probs    <- rep(1/5, 5)
+
+# (a) Expected counts under H0 (no day preferred)
+expected <- n * ___
+expected
+
+# (b) Chi-square contribution of each day
+chi_components <- (observed - expected)^2 / expected
+chi_components
+
+# (c) Which day contributes the most to the chi-square statistic?
+which.max(___)
+
+# (d) Overall test statistic, df, and p-value
+chi_square <- sum(chi_components)
+df <- length(observed) - 1
+p_value <- pchisq(chi_square, df, lower.tail = FALSE)
+p_value</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The expected-count blank should be filled with the same probability vector defined just above it, `probs`.
+- `which.max()` returns the *index* of the largest value in a vector — apply it to the vector of chi-square contributions, not to the observed counts themselves.
+- The index returned corresponds to a position in `observed`; match it back to the day labels in the comment on the first line.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+observed <- c(48, 52, 45, 95, 60)   # Mon, Tue, Wed, Thu, Fri
+n        <- sum(observed)
+probs    <- rep(1/5, 5)
+
+# (a) Expected counts under H0 (no day preferred)
+expected <- n * probs
+expected
+# [1] 60 60 60 60 60
+
+# (b) Chi-square contribution of each day
+chi_components <- (observed - expected)^2 / expected
+chi_components
+# [1] 2.400000 1.066667 3.750000 20.416667 0.000000
+
+# (c) Which day contributes the most to the chi-square statistic?
+which.max(chi_components)
+# [1] 4
+
+# (d) Overall test statistic, df, and p-value
+chi_square <- sum(chi_components)
+df <- length(observed) - 1
+p_value <- pchisq(chi_square, df, lower.tail = FALSE)
+p_value
+# chi_square = 27.63333, df = 4, p_value = 1.479955e-05
+```
+
+**Interpretation:** Position 4 corresponds to **Thursday**, whose contribution ($\approx 20.42$) dwarfs every other day's — Thursday's observed count of 95 visits is far above its expected count of 60. With $\chi^2 \approx 27.633$, $df = 4$, and p-value $\approx 0.0000148$, we reject $H_0$ at any conventional significance level: visits are clearly not evenly distributed across weekdays, and Thursday is the primary driver of that conclusion.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+The national distribution of blood types is claimed to be O 44%, A 42%, B 10%, and AB 4%. A clinic samples $n = 200$ patients and observes the following counts (in the same order):
+
+$$98,\ 76,\ 18,\ 8$$
+
+Complete the R code below to (a) find the expected counts under $H_0$, (b) compute the chi-square statistic, (c) find the degrees of freedom and the critical value at $\alpha = 0.05$ using `qchisq()`, and (d) apply the decision rule by comparing the statistic to the critical value.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="18">observed <- c(98, 76, 18, 8)   # O, A, B, AB
+probs    <- c(0.44, 0.42, 0.10, 0.04)
+n        <- sum(observed)
+alpha    <- 0.05
+
+# (a) Expected counts under H0
+expected <- n * probs
+expected
+
+# (b) Chi-square statistic
+chi_square <- sum((observed - expected)^2 / expected)
+chi_square
+
+# (c) Degrees of freedom and critical value
+df   <- length(observed) - ___
+crit <- qchisq(___, df)
+crit
+
+# (d) Decision rule: compare chi_square to crit
+chi_square > crit</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Degrees of freedom for a goodness-of-fit test with $k$ categories is always $k - 1$.
+- `qchisq(area, df)` returns the value that cuts off the given *upper-tail* area only when you supply $1 - \alpha$, not $\alpha$ itself, as the first argument.
+- If the observed statistic exceeds the critical value, the statistic falls in the rejection region.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+observed <- c(98, 76, 18, 8)   # O, A, B, AB
+probs    <- c(0.44, 0.42, 0.10, 0.04)
+n        <- sum(observed)
+alpha    <- 0.05
+
+# (a) Expected counts under H0
+expected <- n * probs
+expected
+# [1] 88 84 20 8
+
+# (b) Chi-square statistic
+chi_square <- sum((observed - expected)^2 / expected)
+chi_square
+# [1] 2.098268
+
+# (c) Degrees of freedom and critical value
+df   <- length(observed) - 1
+crit <- qchisq(1 - alpha, df)
+crit
+# [1] 7.814728
+
+# (d) Decision rule: compare chi_square to crit
+chi_square > crit
+# [1] FALSE
+```
+
+**Interpretation:** Since $\chi^2 \approx 2.098$ does **not** exceed the critical value $\approx 7.815$ at $\alpha = 0.05$ with $df = 3$, we fail to reject $H_0$. There is no evidence that this clinic's blood-type distribution differs from the claimed national proportions.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 6</div>
+A city library wants to know whether book checkouts are evenly distributed across the seven days of the week. Over the course of a month, the librarian records which day of the week each book was checked out on, and plans to test $H_0: p_1 = p_2 = \cdots = p_7 = 1/7$ using a chi-square goodness-of-fit test.
+
+(a) List the five properties that must hold for this to be a valid multinomial experiment.
+(b) For each property, briefly state whether it plausibly holds in this library scenario, and explain any property you think might be questionable.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The five properties concern: the number of trials, the number and structure of possible outcomes per trial, whether outcome probabilities stay constant, whether trials are independent of one another, and what the random variables of interest actually are.
+- Think about whether one customer checking out several books at once, or the same customer visiting repeatedly across the month, could threaten one of these properties.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The five properties of a multinomial experiment are:
+
+1. There is a fixed number of $n$ identical trials.
+2. Each trial results in one of $k$ mutually exclusive and exhaustive outcomes (here, $k = 7$ days).
+3. The probability of each outcome, $p_1, \ldots, p_k$, remains constant from trial to trial.
+4. The trials are independent of one another.
+5. The random variables of interest are the cell counts $n_1, \ldots, n_k$ — the number of trials falling into each category.
+
+**(b)** In this scenario, each "trial" is one book checkout, and $n$ is the total number of checkouts recorded over the month — this is fixed once the data are collected, satisfying property 1. Each checkout falls on exactly one day of the week, so the seven days form mutually exclusive and exhaustive categories, satisfying property 2. The cell counts (number of checkouts on each day) are indeed the variables of interest, satisfying property 5.
+
+Property 3 (constant probabilities) is plausible if the library's weekly patterns are stable across the month, but could be questionable if, for example, a special event or holiday during the month temporarily changed typical borrowing patterns on a particular day.
+
+Property 4 (independence) is the most questionable: if the same patron checks out multiple books in a single visit, or checks out books repeatedly on their usual visiting day throughout the month, those checkouts are not truly independent trials — a librarian assuming independence when patrons' repeated visits cluster on particular days could understate the true variability in the data.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 7</div>
+A restaurant chain reports that, historically, customer complaints break down as: Food quality 40%, Service 30%, Wait time 20%, and Cleanliness 10%. A regional manager samples $n = 120$ complaints from her restaurant this quarter and finds the following counts (in the same order):
+
+$$58,\ 30,\ 20,\ 12$$
+
+(a) State $H_0$ and $H_a$.
+(b) Find the expected count for each complaint category.
+(c) Compute the chi-square goodness-of-fit statistic.
+(d) Find the degrees of freedom, and compare the statistic to the critical value $\chi^2_{0.05,\,3} = 7.815$.
+(e) State a conclusion at $\alpha = 0.05$, interpreted in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- $H_0$ states that all four hypothesized proportions hold simultaneously; $H_a$ states that at least one of them is wrong — not that all of them are wrong.
+- Each expected count is $E_i = np_i$ using the *historical* proportions, not the observed data.
+- Compare your computed $\chi^2$ directly to the given critical value; you do not need to compute an exact p-value to reach a conclusion this way.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+$$H_0: p_{\text{Food}} = 0.40,\ p_{\text{Service}} = 0.30,\ p_{\text{Wait}} = 0.20,\ p_{\text{Clean}} = 0.10$$
+$$H_a: \text{at least one category probability differs from its hypothesized value}$$
+
+**(b)** $E_{\text{Food}} = 120(0.40) = 48$, $E_{\text{Service}} = 120(0.30) = 36$, $E_{\text{Wait}} = 120(0.20) = 24$, $E_{\text{Clean}} = 120(0.10) = 12$.
+
+**(c)**
+$$\chi^2 = \frac{(58-48)^2}{48} + \frac{(30-36)^2}{36} + \frac{(20-24)^2}{24} + \frac{(12-12)^2}{12} = 2.0833 + 1.0000 + 0.6667 + 0 = 3.75$$
+
+**(d)** $df = k - 1 = 4 - 1 = 3$. Since $\chi^2 = 3.75 < 7.815 = \chi^2_{0.05,\,3}$, the test statistic does **not** fall in the rejection region. (Equivalently, the exact p-value is about $0.290$, which is greater than $0.05$.)
+
+**(e)** Since $\chi^2 = 3.75$ does not exceed the critical value at $\alpha = 0.05$, we fail to reject $H_0$. There is not enough evidence to conclude that this restaurant's complaint categories differ from the chain's historical proportions.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
+A nutrition researcher wants to test whether people's preferred snack category (Fruit, Chips, Candy, Nuts, Other) follows the hypothesized proportions $0.35, 0.30, 0.15, 0.10, 0.10$, based on a planned sample of $n = 25$ people.
+
+(a) Compute the expected count for each of the five categories.
+(b) Check the expected-cell-frequency condition for a chi-square goodness-of-fit test. Does it hold for all five categories?
+(c) Explain the practical implication of your finding in (b) for whether this researcher should proceed with a chi-square goodness-of-fit test using this sample size, and suggest one way to address the problem if the condition fails.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Expected counts are $E_i = np_i$, exactly as in any other goodness-of-fit setup — no test statistic is needed here.
+- The expected-cell-frequency condition requires *every* category's expected count to be at least 5, not just most of them.
+- If some categories fail the condition, think about what combining categories, or increasing $n$, would do to the expected counts.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $E_{\text{Fruit}} = 25(0.35) = 8.75$, $E_{\text{Chips}} = 25(0.30) = 7.5$, $E_{\text{Candy}} = 25(0.15) = 3.75$, $E_{\text{Nuts}} = 25(0.10) = 2.5$, $E_{\text{Other}} = 25(0.10) = 2.5$.
+
+**(b)** The expected-cell-frequency condition requires every expected count to be at least 5. Here, Fruit (8.75) and Chips (7.5) satisfy this, but Candy (3.75), Nuts (2.5), and Other (2.5) do **not** — three of the five categories fall below 5. The condition does not hold for this sample.
+
+**(c)** Because three categories have expected counts well below 5, the chi-square distribution is not a reliable approximation to the true sampling distribution of the test statistic at this sample size, so a chi-square goodness-of-fit test performed with $n = 25$ could produce a misleading p-value. The researcher should either substantially increase the sample size so that every expected count reaches at least 5 (for example, $n$ would need to be at least 50 to bring the Nuts and Other categories to an expected count of 5), or combine some of the smaller categories (e.g., merging Nuts and Other into a single "Other" category) so that the resulting expected counts satisfy the condition.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 9</div>
+An e-commerce company hypothesizes that website traffic arrives from four sources in the proportions: Search 50%, Social media 20%, Direct 20%, and Referral 10%. Over one week, the company records $n = 400$ sessions with the following observed counts (in the same order):
+
+$$180,\ 100,\ 70,\ 50$$
+
+(a) Compute the expected count and the chi-square contribution for each traffic source.
+(b) Identify which traffic source contributes the most to the chi-square statistic, and explain what that contribution means.
+(c) Compute the overall test statistic and degrees of freedom, and state a conclusion at $\alpha = 0.05$ using the critical value $\chi^2_{0.05,\,3} = 7.815$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compute all four expected counts first using $E_i = np_i$, then compute each cell's contribution $(O_i - E_i)^2/E_i$ before comparing them.
+- The category with the largest individual contribution is not necessarily the one with the largest observed count — it depends on the size of the deviation *relative to* the expected count.
+- Sum the four contributions to get $\chi^2$, then compare to the given critical value.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Expected counts: $E_{\text{Search}} = 400(0.50) = 200$, $E_{\text{Social}} = 400(0.20) = 80$, $E_{\text{Direct}} = 400(0.20) = 80$, $E_{\text{Referral}} = 400(0.10) = 40$.
+
+Chi-square contributions:
+$$\frac{(180-200)^2}{200} = 2.00 \qquad \frac{(100-80)^2}{80} = 5.00 \qquad \frac{(70-80)^2}{80} = 1.25 \qquad \frac{(50-40)^2}{40} = 2.50$$
+
+**(b)** Social media contributes the most (5.00). This means the Social media category's observed count (100) deviates from its expected count (80) by more, relative to the size of that expected count, than any other traffic source — it is the category driving the overall lack of fit the most.
+
+**(c)** $\chi^2 = 2.00 + 5.00 + 1.25 + 2.50 = 10.75$, with $df = 4 - 1 = 3$. Since $\chi^2 = 10.75 > 7.815 = \chi^2_{0.05,\,3}$, the statistic falls in the rejection region. We reject $H_0$ at the 5% significance level: there is evidence that actual traffic-source proportions differ from the hypothesized 50/20/20/10 split, with Social media traffic in particular exceeding what was hypothesized.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 10</div>
+A quality-control supervisor tests whether four types of manufacturing defects (Scratch, Dent, Discoloration, Misalignment) occur according to the company's historical proportions of $0.45, 0.25, 0.20, 0.10$. A sample of $n = 180$ defective items yields the observed counts
+
+$$90,\ 42,\ 30,\ 18$$
+
+(a) For this study, identify which numbers are the *observed counts*, which are the *expected counts*, and which are the *hypothesized probabilities* — and explain how each is obtained.
+(b) Compute the chi-square goodness-of-fit statistic and its degrees of freedom.
+(c) Using the critical value $\chi^2_{0.05,\,3} = 7.815$, state a conclusion at $\alpha = 0.05$, phrased correctly in terms of "reject" or "fail to reject."
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Hypothesized probabilities are given by the company's historical claim, before any data are collected; observed counts come directly from the sample; expected counts are calculated *from* the hypothesized probabilities and the sample size, not observed directly.
+- Compute $E_i = np_i$ for each category before forming the chi-square contributions.
+- Never conclude that a null hypothesis has been "accepted" — only that it has or has not been rejected.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The **hypothesized probabilities** are $p_{\text{hyp}} = 0.45, 0.25, 0.20, 0.10$ — these come from the company's historical claim and are fixed before any data are collected. The **observed counts** are $90, 42, 30, 18$ — these are what the supervisor actually counted in the sample of 180 defective items. The **expected counts** are *not* directly observed; they are calculated as $E_i = np_i$ using the sample size and the hypothesized probabilities: $E_{\text{Scratch}} = 180(0.45) = 81$, $E_{\text{Dent}} = 180(0.25) = 45$, $E_{\text{Discoloration}} = 180(0.20) = 36$, $E_{\text{Misalignment}} = 180(0.10) = 18$.
+
+**(b)**
+$$\chi^2 = \frac{(90-81)^2}{81} + \frac{(42-45)^2}{45} + \frac{(30-36)^2}{36} + \frac{(18-18)^2}{18} = 1.00 + 0.20 + 1.00 + 0 = 2.20$$
+$$df = k - 1 = 4 - 1 = 3$$
+
+**(c)** Since $\chi^2 = 2.20$ does not exceed the critical value $\chi^2_{0.05,\,3} = 7.815$, we **fail to reject** $H_0$ at the 5% significance level. There is not enough evidence to conclude that the true proportions of defect types differ from the company's historical claim of $0.45, 0.25, 0.20, 0.10$.
+</div>
+</details>

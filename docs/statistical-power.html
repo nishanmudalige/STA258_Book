@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-07-17" />
+<meta name="date" content="2026-07-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -425,29 +425,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -581,6 +558,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.1" data-path="statistical-power.html"><a href="statistical-power.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="statistical-power.html"><a href="statistical-power.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>7.2</b> Type I and Type II Errors</a></li>
 <li class="chapter" data-level="7.3" data-path="statistical-power.html"><a href="statistical-power.html#using-power-to-determine-sample-size"><i class="fa fa-check"></i><b>7.3</b> Using Power to Determine Sample Size</a></li>
+<li class="chapter" data-level="7.4" data-path="statistical-power.html"><a href="statistical-power.html#sec:ch7exercises"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Variance</a>
 <ul>
@@ -609,6 +587,7 @@ div.csl-indent {
 <li class="chapter" data-level="10.1" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#multinomial-response-model"><i class="fa fa-check"></i><b>10.1</b> Multinomial Response Model</a></li>
 <li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.2</b> The Chi-square Test for Goodness of fit</a></li>
 <li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.3</b> Sample Size Assumption</a></li>
+<li class="chapter" data-level="10.4" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sec:ch10exercises"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -1051,6 +1030,1343 @@ level <span class="math inline">\(\alpha\)</span>. The P-value measures the stre
 provided by the data against <span class="math inline">\(H_0\)</span>. It leaves any action or decision
 based on that evidence up to each individual. Different people may
 require different strengths of evidence.</p>
+</div>
+<div id="sec:ch7exercises" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Exercises<a href="statistical-power.html#sec:ch7exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 1
+</div>
+<p>A battery manufacturer’s current cell design has a known mean lifetime of <span class="math inline">\(\mu_0 = 500\)</span> hours, with population standard deviation <span class="math inline">\(\sigma = 20\)</span> hours. Engineers develop a new electrode chemistry that they believe <em>increases</em> mean battery life, and plan to test
+<span class="math display">\[H_0: \mu = 500 \qquad \text{vs.} \qquad H_a: \mu &gt; 500\]</span>
+using a random sample of <span class="math inline">\(n = 36\)</span> batteries at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>Complete the R code below to (a) find the critical value <span class="math inline">\(z_{\text{crit}}\)</span> for this upper-tailed test, (b) convert it into a rejection cutoff for <span class="math inline">\(\bar{x}\)</span>, (c) find the power of the test against the alternative <span class="math inline">\(\mu_a = 510\)</span> hours, and (d) find <span class="math inline">\(\beta\)</span> for that same alternative.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="19">mu0   <- 500
+sigma <- 20
+n     <- 36
+alpha <- 0.05
+mua   <- 510
+
+# (a) Critical z value for an upper-tailed test
+z_crit <- qnorm(___)
+z_crit
+
+# (b) Convert z_crit to a cutoff for xbar
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
+xbar_crit
+
+# (c) Power against the alternative mu = 510
+power <- 1 - pnorm((xbar_crit - mua) / (sigma / sqrt(n)))
+power
+
+# (d) Type II error probability
+beta <- ___
+beta</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>For an upper-tailed test, the rejection region is in the right tail, so <span class="math inline">\(z_{\text{crit}} = z_{1-\alpha}\)</span>; in R this is <code>qnorm(1 - alpha)</code>.</li>
+<li>Once you have <span class="math inline">\(z_{\text{crit}}\)</span>, convert to <span class="math inline">\(\bar{x}_{\text{crit}} = \mu_0 + z_{\text{crit}}(\sigma/\sqrt{n})\)</span>.</li>
+<li>Power is computed by standardizing <span class="math inline">\(\bar{x}_{\text{crit}}\)</span> under the <em>alternative</em> mean <span class="math inline">\(\mu_a\)</span>, not under <span class="math inline">\(\mu_0\)</span>.</li>
+<li>Recall the relationship between power and <span class="math inline">\(\beta\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="statistical-power.html#cb122-1" tabindex="-1"></a>mu0   <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb122-2"><a href="statistical-power.html#cb122-2" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb122-3"><a href="statistical-power.html#cb122-3" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">36</span></span>
+<span id="cb122-4"><a href="statistical-power.html#cb122-4" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb122-5"><a href="statistical-power.html#cb122-5" tabindex="-1"></a>mua   <span class="ot">&lt;-</span> <span class="dv">510</span></span>
+<span id="cb122-6"><a href="statistical-power.html#cb122-6" tabindex="-1"></a></span>
+<span id="cb122-7"><a href="statistical-power.html#cb122-7" tabindex="-1"></a><span class="co"># (a) Critical z value for an upper-tailed test</span></span>
+<span id="cb122-8"><a href="statistical-power.html#cb122-8" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha)</span>
+<span id="cb122-9"><a href="statistical-power.html#cb122-9" tabindex="-1"></a>z_crit</span>
+<span id="cb122-10"><a href="statistical-power.html#cb122-10" tabindex="-1"></a><span class="co"># [1] 1.644854</span></span>
+<span id="cb122-11"><a href="statistical-power.html#cb122-11" tabindex="-1"></a></span>
+<span id="cb122-12"><a href="statistical-power.html#cb122-12" tabindex="-1"></a><span class="co"># (b) Convert z_crit to a cutoff for xbar</span></span>
+<span id="cb122-13"><a href="statistical-power.html#cb122-13" tabindex="-1"></a>xbar_crit <span class="ot">&lt;-</span> mu0 <span class="sc">+</span> z_crit <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb122-14"><a href="statistical-power.html#cb122-14" tabindex="-1"></a>xbar_crit</span>
+<span id="cb122-15"><a href="statistical-power.html#cb122-15" tabindex="-1"></a><span class="co"># [1] 505.4828</span></span>
+<span id="cb122-16"><a href="statistical-power.html#cb122-16" tabindex="-1"></a></span>
+<span id="cb122-17"><a href="statistical-power.html#cb122-17" tabindex="-1"></a><span class="co"># (c) Power against the alternative mu = 510</span></span>
+<span id="cb122-18"><a href="statistical-power.html#cb122-18" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>((xbar_crit <span class="sc">-</span> mua) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)))</span>
+<span id="cb122-19"><a href="statistical-power.html#cb122-19" tabindex="-1"></a>power</span>
+<span id="cb122-20"><a href="statistical-power.html#cb122-20" tabindex="-1"></a><span class="co"># [1] 0.9123145</span></span>
+<span id="cb122-21"><a href="statistical-power.html#cb122-21" tabindex="-1"></a></span>
+<span id="cb122-22"><a href="statistical-power.html#cb122-22" tabindex="-1"></a><span class="co"># (d) Type II error probability</span></span>
+<span id="cb122-23"><a href="statistical-power.html#cb122-23" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> power</span>
+<span id="cb122-24"><a href="statistical-power.html#cb122-24" tabindex="-1"></a>beta</span>
+<span id="cb122-25"><a href="statistical-power.html#cb122-25" tabindex="-1"></a><span class="co"># [1] 0.08768546</span></span></code></pre></div>
+<p><strong>(a)</strong> <span class="math inline">\(z_{\text{crit}} = z_{0.95} \approx 1.6449\)</span>.</p>
+<p><strong>(b)</strong> <span class="math inline">\(\bar{x}_{\text{crit}} = 500 + 1.6449(20/\sqrt{36}) \approx 505.483\)</span> hours. The test rejects <span class="math inline">\(H_0\)</span> whenever <span class="math inline">\(\bar{x} &gt; 505.483\)</span>.</p>
+<p><strong>(c)</strong> Standardizing <span class="math inline">\(505.483\)</span> using <span class="math inline">\(\mu_a = 510\)</span>: <span class="math inline">\(\text{Power} = P(Z &gt; -1.3551) \approx 0.9123\)</span>.</p>
+<p><strong>(d)</strong> <span class="math inline">\(\beta = 1 - 0.9123 = 0.0877\)</span>.</p>
+<p><strong>Interpretation:</strong> There is approximately a 91.2% probability that this test will correctly detect a true increase in mean battery life to 510 hours. Equivalently, there is about an 8.8% chance the study fails to detect this real improvement — a Type II error.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 2
+</div>
+<p>A pharmaceutical company markets a cholesterol drug and, based on past data, believes the mean LDL level of treated patients is <span class="math inline">\(\mu_0 = 130\)</span> mg/dL, with <span class="math inline">\(\sigma = 15\)</span> mg/dL known from a large historical database. A researcher tests a reformulated version, believing it <em>lowers</em> LDL further, using
+<span class="math display">\[H_0: \mu = 130 \qquad \text{vs.} \qquad H_a: \mu &lt; 130\]</span>
+with <span class="math inline">\(n = 25\)</span> patients at <span class="math inline">\(\alpha = 0.01\)</span>.</p>
+<p>Complete the R code to (a) find <span class="math inline">\(z_{\text{crit}}\)</span> for this lower-tailed test, (b) find the rejection cutoff for <span class="math inline">\(\bar{x}\)</span>, (c) find the power against <span class="math inline">\(\mu_a = 122\)</span> mg/dL, and (d) find <span class="math inline">\(\beta\)</span>.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="19">mu0   <- 130
+sigma <- 15
+n     <- 25
+alpha <- 0.01
+mua   <- 122
+
+# (a) Critical z value for a lower-tailed test
+z_crit <- qnorm(___)
+z_crit
+
+# (b) Convert z_crit to a cutoff for xbar
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
+xbar_crit
+
+# (c) Power against the alternative mu = 122
+power <- pnorm((xbar_crit - mua) / (sigma / sqrt(n)))
+power
+
+# (d) Type II error probability
+beta <- ___
+beta</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>For a lower-tailed test, the rejection region is in the left tail, so <span class="math inline">\(z_{\text{crit}} = z_{\alpha}\)</span>, a <em>negative</em> number: <code>qnorm(alpha)</code>.</li>
+<li>The cutoff formula is still <span class="math inline">\(\bar{x}_{\text{crit}} = \mu_0 + z_{\text{crit}}(\sigma/\sqrt{n})\)</span>; because <span class="math inline">\(z_{\text{crit}} &lt; 0\)</span>, this cutoff falls below <span class="math inline">\(\mu_0\)</span>.</li>
+<li>Power is <span class="math inline">\(P(\bar{x} &lt; \bar{x}_{\text{crit}})\)</span> standardized using <span class="math inline">\(\mu_a\)</span>, computed directly with <code>pnorm()</code> (no need for <code>1 -</code>).</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="statistical-power.html#cb123-1" tabindex="-1"></a>mu0   <span class="ot">&lt;-</span> <span class="dv">130</span></span>
+<span id="cb123-2"><a href="statistical-power.html#cb123-2" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb123-3"><a href="statistical-power.html#cb123-3" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb123-4"><a href="statistical-power.html#cb123-4" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb123-5"><a href="statistical-power.html#cb123-5" tabindex="-1"></a>mua   <span class="ot">&lt;-</span> <span class="dv">122</span></span>
+<span id="cb123-6"><a href="statistical-power.html#cb123-6" tabindex="-1"></a></span>
+<span id="cb123-7"><a href="statistical-power.html#cb123-7" tabindex="-1"></a><span class="co"># (a) Critical z value for a lower-tailed test</span></span>
+<span id="cb123-8"><a href="statistical-power.html#cb123-8" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
+<span id="cb123-9"><a href="statistical-power.html#cb123-9" tabindex="-1"></a>z_crit</span>
+<span id="cb123-10"><a href="statistical-power.html#cb123-10" tabindex="-1"></a><span class="co"># [1] -2.326348</span></span>
+<span id="cb123-11"><a href="statistical-power.html#cb123-11" tabindex="-1"></a></span>
+<span id="cb123-12"><a href="statistical-power.html#cb123-12" tabindex="-1"></a><span class="co"># (b) Convert z_crit to a cutoff for xbar</span></span>
+<span id="cb123-13"><a href="statistical-power.html#cb123-13" tabindex="-1"></a>xbar_crit <span class="ot">&lt;-</span> mu0 <span class="sc">+</span> z_crit <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb123-14"><a href="statistical-power.html#cb123-14" tabindex="-1"></a>xbar_crit</span>
+<span id="cb123-15"><a href="statistical-power.html#cb123-15" tabindex="-1"></a><span class="co"># [1] 123.021</span></span>
+<span id="cb123-16"><a href="statistical-power.html#cb123-16" tabindex="-1"></a></span>
+<span id="cb123-17"><a href="statistical-power.html#cb123-17" tabindex="-1"></a><span class="co"># (c) Power against the alternative mu = 122</span></span>
+<span id="cb123-18"><a href="statistical-power.html#cb123-18" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="fu">pnorm</span>((xbar_crit <span class="sc">-</span> mua) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)))</span>
+<span id="cb123-19"><a href="statistical-power.html#cb123-19" tabindex="-1"></a>power</span>
+<span id="cb123-20"><a href="statistical-power.html#cb123-20" tabindex="-1"></a><span class="co"># [1] 0.6331918</span></span>
+<span id="cb123-21"><a href="statistical-power.html#cb123-21" tabindex="-1"></a></span>
+<span id="cb123-22"><a href="statistical-power.html#cb123-22" tabindex="-1"></a><span class="co"># (d) Type II error probability</span></span>
+<span id="cb123-23"><a href="statistical-power.html#cb123-23" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> power</span>
+<span id="cb123-24"><a href="statistical-power.html#cb123-24" tabindex="-1"></a>beta</span>
+<span id="cb123-25"><a href="statistical-power.html#cb123-25" tabindex="-1"></a><span class="co"># [1] 0.3668082</span></span></code></pre></div>
+<p><strong>(a)</strong> <span class="math inline">\(z_{\text{crit}} = z_{0.01} \approx -2.3263\)</span>.</p>
+<p><strong>(b)</strong> <span class="math inline">\(\bar{x}_{\text{crit}} = 130 + (-2.3263)(15/\sqrt{25}) \approx 123.021\)</span> mg/dL. The test rejects <span class="math inline">\(H_0\)</span> whenever <span class="math inline">\(\bar{x} &lt; 123.021\)</span>.</p>
+<p><strong>(c)</strong> Standardizing under <span class="math inline">\(\mu_a = 122\)</span>: <span class="math inline">\(\text{Power} = P(Z &lt; 0.3403) \approx 0.6332\)</span>.</p>
+<p><strong>(d)</strong> <span class="math inline">\(\beta = 1 - 0.6332 = 0.3668\)</span>.</p>
+<p><strong>Interpretation:</strong> There is approximately a 63.3% probability that this test will correctly detect a true LDL reduction to 122 mg/dL. There is a 36.7% chance (<span class="math inline">\(\beta\)</span>) that the study fails to detect this real reduction.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 3
+</div>
+<p>A city transportation department installs a new traffic-signal timing system that it believes <em>reduces</em> average commute time below the historical mean <span class="math inline">\(\mu_0 = 30\)</span> minutes (<span class="math inline">\(\sigma = 8\)</span> minutes, known from years of sensor data). The department tests
+<span class="math display">\[H_0: \mu = 30 \qquad \text{vs.} \qquad H_a: \mu &lt; 30\]</span>
+at <span class="math inline">\(\alpha = 0.05\)</span>, and wants to see how the power against the alternative <span class="math inline">\(\mu_a = 27\)</span> minutes changes as the sample size <span class="math inline">\(n\)</span> increases.</p>
+<p>Complete the R code to compute the rejection cutoff and the power for each sample size in <code>n_vec</code>, then describe the pattern you observe.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="14">mu0   <- 30
+sigma <- 8
+alpha <- 0.05
+mua   <- 27
+n_vec <- c(15, 30, 45, 60, 90)
+
+z_crit <- qnorm(alpha)
+
+# (a) Vector of rejection cutoffs, one for each sample size
+xbar_crit <- mu0 + z_crit * sigma / sqrt(___)
+xbar_crit
+
+# (b) Vector of power values, one for each sample size
+power_vec <- pnorm((xbar_crit - mua) / (sigma / sqrt(___)))
+power_vec</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>R will happily compute <code>sigma / sqrt(n_vec)</code> element-by-element, returning a vector of standard errors, one for each entry of <code>n_vec</code>.</li>
+<li>Both blanks should be filled with the same vector — the sample sizes you’re varying.</li>
+<li>As <span class="math inline">\(n\)</span> increases (with <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(\mu_0\)</span>, and <span class="math inline">\(\mu_a\)</span> all held fixed), the standard error shrinks, which pulls the cutoff closer to <span class="math inline">\(\mu_0\)</span> and pushes power in a predictable direction.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="statistical-power.html#cb124-1" tabindex="-1"></a>mu0   <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb124-2"><a href="statistical-power.html#cb124-2" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb124-3"><a href="statistical-power.html#cb124-3" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb124-4"><a href="statistical-power.html#cb124-4" tabindex="-1"></a>mua   <span class="ot">&lt;-</span> <span class="dv">27</span></span>
+<span id="cb124-5"><a href="statistical-power.html#cb124-5" tabindex="-1"></a>n_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">15</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">60</span>, <span class="dv">90</span>)</span>
+<span id="cb124-6"><a href="statistical-power.html#cb124-6" tabindex="-1"></a></span>
+<span id="cb124-7"><a href="statistical-power.html#cb124-7" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
+<span id="cb124-8"><a href="statistical-power.html#cb124-8" tabindex="-1"></a></span>
+<span id="cb124-9"><a href="statistical-power.html#cb124-9" tabindex="-1"></a><span class="co"># (a) Vector of rejection cutoffs</span></span>
+<span id="cb124-10"><a href="statistical-power.html#cb124-10" tabindex="-1"></a>xbar_crit <span class="ot">&lt;-</span> mu0 <span class="sc">+</span> z_crit <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n_vec)</span>
+<span id="cb124-11"><a href="statistical-power.html#cb124-11" tabindex="-1"></a>xbar_crit</span>
+<span id="cb124-12"><a href="statistical-power.html#cb124-12" tabindex="-1"></a><span class="co"># [1] 26.60240 27.59754 28.03840 28.30120 28.61294</span></span>
+<span id="cb124-13"><a href="statistical-power.html#cb124-13" tabindex="-1"></a></span>
+<span id="cb124-14"><a href="statistical-power.html#cb124-14" tabindex="-1"></a><span class="co"># (b) Vector of power values</span></span>
+<span id="cb124-15"><a href="statistical-power.html#cb124-15" tabindex="-1"></a>power_vec <span class="ot">&lt;-</span> <span class="fu">pnorm</span>((xbar_crit <span class="sc">-</span> mua) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n_vec)))</span>
+<span id="cb124-16"><a href="statistical-power.html#cb124-16" tabindex="-1"></a>power_vec</span>
+<span id="cb124-17"><a href="statistical-power.html#cb124-17" tabindex="-1"></a><span class="co"># [1] 0.4236812 0.6587690 0.8080472 0.8961444 0.9721073</span></span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th>15</th>
+<th>30</th>
+<th>45</th>
+<th>60</th>
+<th>90</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\bar{x}_{\text{crit}}\)</span></td>
+<td>26.602</td>
+<td>27.598</td>
+<td>28.038</td>
+<td>28.301</td>
+<td>28.613</td>
+</tr>
+<tr class="even">
+<td>Power</td>
+<td>0.4237</td>
+<td>0.6588</td>
+<td>0.8080</td>
+<td>0.8961</td>
+<td>0.9721</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretation:</strong> Holding <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(\mu_0\)</span>, and <span class="math inline">\(\mu_a\)</span> fixed, power increases steadily as <span class="math inline">\(n\)</span> increases — from about 42.4% at <span class="math inline">\(n=15\)</span> to about 97.2% at <span class="math inline">\(n=90\)</span>. This happens because a larger sample shrinks the standard error <span class="math inline">\(\sigma/\sqrt{n}\)</span>, which narrows the sampling distribution of <span class="math inline">\(\bar{x}\)</span> under both <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span> and pulls the rejection cutoff closer to <span class="math inline">\(\mu_0\)</span>, making it easier to correctly detect the true reduction to <span class="math inline">\(\mu_a = 27\)</span> minutes.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 4
+</div>
+<p>An agricultural researcher is testing a new fertilizer that is believed to <em>increase</em> mean corn yield above the regional average of <span class="math inline">\(\mu_0 = 150\)</span> bushels per acre (<span class="math inline">\(\sigma = 25\)</span> bushels/acre, known from historical regional data). The test is
+<span class="math display">\[H_0: \mu = 150 \qquad \text{vs.} \qquad H_a: \mu &gt; 150\]</span>
+based on <span class="math inline">\(n = 50\)</span> test plots at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p>Complete the R code below to construct the power curve — the power of the test plotted against a range of possible true means <span class="math inline">\(\mu_a\)</span> — and to highlight the power at <span class="math inline">\(\mu_a = 157\)</span> and <span class="math inline">\(\mu_a = 161\)</span> bushels/acre.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="20">mu0   <- 150
+sigma <- 25
+n     <- 50
+alpha <- 0.05
+
+# (a) Critical value for xbar under an upper-tailed test
+z_crit <- qnorm(1 - alpha)
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
+xbar_crit
+
+# (b) Sequence of possible true means to evaluate power over
+mu_vals <- seq(___, ___, length.out = 100)
+
+# (c) Power at each value in mu_vals
+power_curve <- 1 - pnorm((xbar_crit - mu_vals) / (sigma / sqrt(n)))
+
+# (d) Plot the power curve
+plot(mu_vals, power_curve, type = "l", lty = 2, col = "blue",
+     xlab = expression(mu), ylab = "power")
+
+# (e) Highlight the power at mu = 157 and mu = 161
+points(157, 1 - pnorm((xbar_crit - 157) / (sigma / sqrt(n))), pch = 19, col = "red")
+points(161, 1 - pnorm((xbar_crit - ___) / (sigma / sqrt(n))), pch = 19, col = "red")</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li><code>seq()</code> needs a starting value and an ending value that together span a sensible range of true means around <span class="math inline">\(\mu_0 = 150\)</span> (150 to 180 is reasonable here, since <span class="math inline">\(\mu_a &gt; \mu_0\)</span> for an upper-tailed test).</li>
+<li>The final <code>points()</code> call should highlight the same true mean referenced earlier in that line, <span class="math inline">\(\mu_a = 161\)</span>.</li>
+<li>Points further to the right of <span class="math inline">\(\mu_0\)</span> on the power curve should show higher power, since they represent alternatives further from <span class="math inline">\(H_0\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="statistical-power.html#cb125-1" tabindex="-1"></a>mu0   <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb125-2"><a href="statistical-power.html#cb125-2" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb125-3"><a href="statistical-power.html#cb125-3" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb125-4"><a href="statistical-power.html#cb125-4" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb125-5"><a href="statistical-power.html#cb125-5" tabindex="-1"></a></span>
+<span id="cb125-6"><a href="statistical-power.html#cb125-6" tabindex="-1"></a><span class="co"># (a) Critical value for xbar under an upper-tailed test</span></span>
+<span id="cb125-7"><a href="statistical-power.html#cb125-7" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha)</span>
+<span id="cb125-8"><a href="statistical-power.html#cb125-8" tabindex="-1"></a>xbar_crit <span class="ot">&lt;-</span> mu0 <span class="sc">+</span> z_crit <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb125-9"><a href="statistical-power.html#cb125-9" tabindex="-1"></a>xbar_crit</span>
+<span id="cb125-10"><a href="statistical-power.html#cb125-10" tabindex="-1"></a><span class="co"># [1] 155.8154</span></span>
+<span id="cb125-11"><a href="statistical-power.html#cb125-11" tabindex="-1"></a></span>
+<span id="cb125-12"><a href="statistical-power.html#cb125-12" tabindex="-1"></a><span class="co"># (b) Sequence of possible true means to evaluate power over</span></span>
+<span id="cb125-13"><a href="statistical-power.html#cb125-13" tabindex="-1"></a>mu_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">150</span>, <span class="dv">180</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb125-14"><a href="statistical-power.html#cb125-14" tabindex="-1"></a></span>
+<span id="cb125-15"><a href="statistical-power.html#cb125-15" tabindex="-1"></a><span class="co"># (c) Power at each value in mu_vals</span></span>
+<span id="cb125-16"><a href="statistical-power.html#cb125-16" tabindex="-1"></a>power_curve <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>((xbar_crit <span class="sc">-</span> mu_vals) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)))</span>
+<span id="cb125-17"><a href="statistical-power.html#cb125-17" tabindex="-1"></a></span>
+<span id="cb125-18"><a href="statistical-power.html#cb125-18" tabindex="-1"></a><span class="co"># (d) Plot the power curve</span></span>
+<span id="cb125-19"><a href="statistical-power.html#cb125-19" tabindex="-1"></a><span class="fu">plot</span>(mu_vals, power_curve, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb125-20"><a href="statistical-power.html#cb125-20" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(mu), <span class="at">ylab =</span> <span class="st">&quot;power&quot;</span>)</span>
+<span id="cb125-21"><a href="statistical-power.html#cb125-21" tabindex="-1"></a></span>
+<span id="cb125-22"><a href="statistical-power.html#cb125-22" tabindex="-1"></a><span class="co"># (e) Highlight the power at mu = 157 and mu = 161</span></span>
+<span id="cb125-23"><a href="statistical-power.html#cb125-23" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">157</span>, <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>((xbar_crit <span class="sc">-</span> <span class="dv">157</span>) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))), <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb125-24"><a href="statistical-power.html#cb125-24" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">161</span>, <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>((xbar_crit <span class="sc">-</span> <span class="dv">161</span>) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))), <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb125-25"><a href="statistical-power.html#cb125-25" tabindex="-1"></a><span class="co"># Power at mu = 157: 0.6312</span></span>
+<span id="cb125-26"><a href="statistical-power.html#cb125-26" tabindex="-1"></a><span class="co"># Power at mu = 161: 0.9287</span></span></code></pre></div>
+<p><strong>Interpretation:</strong> The rejection cutoff is <span class="math inline">\(\bar{x}_{\text{crit}} \approx 155.815\)</span> bushels/acre. At <span class="math inline">\(\mu_a = 157\)</span>, only slightly above the cutoff, the power is about 0.6312 — the test correctly detects this modest true increase about 63% of the time. At <span class="math inline">\(\mu_a = 161\)</span>, further from <span class="math inline">\(\mu_0\)</span>, power rises to about 0.9287. The power curve is increasing in <span class="math inline">\(\mu_a\)</span> because larger true increases push more of the alternative sampling distribution of <span class="math inline">\(\bar{x}\)</span> past the fixed cutoff <span class="math inline">\(\bar{x}_{\text{crit}}\)</span>, leaving less area in the “fail to reject” region.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 5
+</div>
+<p>A manufacturing plant’s current process produces defective circuit boards at a rate of <span class="math inline">\(p_0 = 0.08\)</span>. Engineers introduce a new process that they believe <em>reduces</em> the defect rate, and plan to test
+<span class="math display">\[H_0: p = 0.08 \qquad \text{vs.} \qquad H_a: p &lt; 0.08\]</span>
+using <span class="math inline">\(n = 250\)</span> boards at <span class="math inline">\(\alpha = 0.05\)</span>, with the Normal approximation to the sampling distribution of <span class="math inline">\(\hat{p}\)</span>.</p>
+<p>Complete the R code to (a) find <span class="math inline">\(z_{\text{crit}}\)</span>, (b) find the rejection cutoff <span class="math inline">\(\hat{p}^{\,*}\)</span> under <span class="math inline">\(H_0\)</span>, (c) find the power against the true alternative <span class="math inline">\(p_a = 0.05\)</span>, and (d) find <span class="math inline">\(\beta\)</span>.</p>
+<div class="webr-exercise">
+<div class="webr-exercise-header">
+Exercise
+</div>
+<textarea class="webr-editor" rows="19">p0    <- 0.08
+n     <- 250
+alpha <- 0.05
+pa    <- 0.05
+
+# (a) Critical z value for a lower-tailed test
+z_crit <- qnorm(___)
+z_crit
+
+# (b) Rejection cutoff for phat under H0
+phat_crit <- p0 + z_crit * sqrt(p0 * (1 - p0) / n)
+phat_crit
+
+# (c) Power against the true proportion pa = 0.05
+power <- pnorm((phat_crit - pa) / sqrt(pa * (1 - pa) / n))
+power
+
+# (d) Type II error probability
+beta <- ___
+beta</textarea>
+<div class="webr-controls">
+<p><button class="webr-run-btn" disabled>▶ Run</button>
+<button class="webr-reset-btn">↺ Reset</button></p>
+</div>
+<div class="webr-output-area">
+
+</div>
+<div class="webr-canvas-area">
+<canvas>
+</canvas>
+</div>
+</div>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The rejection cutoff <span class="math inline">\(\hat{p}^{\,*}\)</span> must be computed using the standard error under <span class="math inline">\(H_0\)</span>, based on <span class="math inline">\(p_0 = 0.08\)</span> — not <span class="math inline">\(p_a\)</span>.</li>
+<li>Power, on the other hand, is computed by standardizing <span class="math inline">\(\hat{p}^{\,*}\)</span> using the standard error based on the <em>true</em> alternative <span class="math inline">\(p_a = 0.05\)</span>. Using the wrong standard error at the wrong stage is a common mistake.</li>
+<li>This is a lower-tailed test, so use <code>qnorm(alpha)</code> for the negative critical value.</li>
+<li>Recall <span class="math inline">\(\beta = 1 - \text{Power}\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="statistical-power.html#cb126-1" tabindex="-1"></a>p0    <span class="ot">&lt;-</span> <span class="fl">0.08</span></span>
+<span id="cb126-2"><a href="statistical-power.html#cb126-2" tabindex="-1"></a>n     <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb126-3"><a href="statistical-power.html#cb126-3" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb126-4"><a href="statistical-power.html#cb126-4" tabindex="-1"></a>pa    <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb126-5"><a href="statistical-power.html#cb126-5" tabindex="-1"></a></span>
+<span id="cb126-6"><a href="statistical-power.html#cb126-6" tabindex="-1"></a><span class="co"># (a) Critical z value for a lower-tailed test</span></span>
+<span id="cb126-7"><a href="statistical-power.html#cb126-7" tabindex="-1"></a>z_crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
+<span id="cb126-8"><a href="statistical-power.html#cb126-8" tabindex="-1"></a>z_crit</span>
+<span id="cb126-9"><a href="statistical-power.html#cb126-9" tabindex="-1"></a><span class="co"># [1] -1.644854</span></span>
+<span id="cb126-10"><a href="statistical-power.html#cb126-10" tabindex="-1"></a></span>
+<span id="cb126-11"><a href="statistical-power.html#cb126-11" tabindex="-1"></a><span class="co"># (b) Rejection cutoff for phat under H0</span></span>
+<span id="cb126-12"><a href="statistical-power.html#cb126-12" tabindex="-1"></a>phat_crit <span class="ot">&lt;-</span> p0 <span class="sc">+</span> z_crit <span class="sc">*</span> <span class="fu">sqrt</span>(p0 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p0) <span class="sc">/</span> n)</span>
+<span id="cb126-13"><a href="statistical-power.html#cb126-13" tabindex="-1"></a>phat_crit</span>
+<span id="cb126-14"><a href="statistical-power.html#cb126-14" tabindex="-1"></a><span class="co"># [1] 0.05177746</span></span>
+<span id="cb126-15"><a href="statistical-power.html#cb126-15" tabindex="-1"></a></span>
+<span id="cb126-16"><a href="statistical-power.html#cb126-16" tabindex="-1"></a><span class="co"># (c) Power against the true proportion pa = 0.05</span></span>
+<span id="cb126-17"><a href="statistical-power.html#cb126-17" tabindex="-1"></a>power <span class="ot">&lt;-</span> <span class="fu">pnorm</span>((phat_crit <span class="sc">-</span> pa) <span class="sc">/</span> <span class="fu">sqrt</span>(pa <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> pa) <span class="sc">/</span> n))</span>
+<span id="cb126-18"><a href="statistical-power.html#cb126-18" tabindex="-1"></a>power</span>
+<span id="cb126-19"><a href="statistical-power.html#cb126-19" tabindex="-1"></a><span class="co"># [1] 0.5513015</span></span>
+<span id="cb126-20"><a href="statistical-power.html#cb126-20" tabindex="-1"></a></span>
+<span id="cb126-21"><a href="statistical-power.html#cb126-21" tabindex="-1"></a><span class="co"># (d) Type II error probability</span></span>
+<span id="cb126-22"><a href="statistical-power.html#cb126-22" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> power</span>
+<span id="cb126-23"><a href="statistical-power.html#cb126-23" tabindex="-1"></a>beta</span>
+<span id="cb126-24"><a href="statistical-power.html#cb126-24" tabindex="-1"></a><span class="co"># [1] 0.4486985</span></span></code></pre></div>
+<p><strong>(a)</strong> <span class="math inline">\(z_{\text{crit}} = z_{0.05} \approx -1.6449\)</span> (using the Normal approximation).</p>
+<p><strong>(b)</strong> <span class="math inline">\(\hat{p}^{\,*} = 0.08 + (-1.6449)\sqrt{0.08(0.92)/250} \approx 0.0518\)</span>. The test rejects <span class="math inline">\(H_0\)</span> whenever <span class="math inline">\(\hat{p} &lt; 0.0518\)</span>.</p>
+<p><strong>(c)</strong> Standardizing under <span class="math inline">\(p_a = 0.05\)</span>: <span class="math inline">\(\text{Power} = P(Z &lt; 0.1290) \approx 0.5513\)</span>.</p>
+<p><strong>(d)</strong> <span class="math inline">\(\beta = 1 - 0.5513 = 0.4487\)</span>.</p>
+<p><strong>Interpretation:</strong> There is approximately a 55.1% probability that this test will correctly detect a true reduction in the defect rate to 5%. There is a 44.9% chance (<span class="math inline">\(\beta\)</span>) that the study fails to detect this real improvement, even though the new process is genuinely better — this reflects the relatively small gap between <span class="math inline">\(p_0 = 0.08\)</span> and <span class="math inline">\(p_a = 0.05\)</span>.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 6
+</div>
+<p>A quality-control engineer is explaining statistical power to a new colleague at a manufacturing plant.</p>
+<ol style="list-style-type: lower-alpha">
+<li>In your own words, define the statistical power of a test.</li>
+<li>Explain what it means for a test to have high power. What does it mean for a test to have low power?</li>
+<li>Give one concrete consequence, in a quality-control setting, of running a test that has low power.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Power is a conditional probability — it is defined given that a specific condition about <span class="math inline">\(H_0\)</span> holds. Start from that definition.</li>
+<li>“High” and “low” power should be described in terms of how reliably the test detects a real effect, not in terms of the p-value of any single sample.</li>
+<li>For part (c), think about what happens when a real problem exists but the test is unlikely to flag it.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> The power of a test is the probability that the test correctly rejects <span class="math inline">\(H_0\)</span> when a particular alternative value of the parameter is actually true:
+<span class="math display">\[\text{Power} = P(\text{reject } H_0 \mid H_0 \text{ is false})\]</span></p>
+<p><strong>(b)</strong> A test with power close to 1 (high power) is very likely to detect a real effect when one exists — it reliably rejects <span class="math inline">\(H_0\)</span> when the alternative is true. A test with power close to 0 (low power) is unreliable: even when the alternative is true, the test will often fail to reject <span class="math inline">\(H_0\)</span>, so a real effect can easily go undetected.</p>
+<p><strong>(c)</strong> If a quality-control test for detecting a shift in a manufacturing process has low power, a genuine problem — such as a machine that has drifted out of calibration and started producing defective parts — could go undetected for a long time, because the test is unlikely to signal that anything is wrong even when something truly is.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 7
+</div>
+<p>An environmental agency tests soil samples from a former industrial site to determine whether the site is contaminated above a legal safety threshold. They test
+<span class="math display">\[H_0: \text{site is not contaminated} \qquad \text{vs.} \qquad H_a: \text{site is contaminated}\]</span></p>
+<p>Fill in the four blank cells of the truth-versus-decision table below, and then answer the questions that follow.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(H_0\)</span> True (site is safe)</th>
+<th><span class="math inline">\(H_0\)</span> False (site is contaminated)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Reject <span class="math inline">\(H_0\)</span></strong> (declare contaminated)</td>
+<td>______ (i)</td>
+<td>______ (ii)</td>
+</tr>
+<tr class="even">
+<td><strong>Fail to reject <span class="math inline">\(H_0\)</span></strong> (declare safe)</td>
+<td>______ (iii)</td>
+<td>______ (iv)</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>Fill in each of (i)–(iv) with one of: Type I error, Type II error, correct decision.</li>
+<li>Which single cell corresponds to the probability <span class="math inline">\(\alpha\)</span>?</li>
+<li>Which single cell corresponds to the probability <span class="math inline">\(\beta\)</span>?</li>
+<li>In this particular context, briefly explain which type of error (I or II) has more serious real-world consequences, and why.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>A Type I error can only occur in the column where <span class="math inline">\(H_0\)</span> is actually true.</li>
+<li>A Type II error can only occur when the decision is “fail to reject <span class="math inline">\(H_0\)</span>.”</li>
+<li><span class="math inline">\(\alpha\)</span> is defined as <span class="math inline">\(P(\text{reject } H_0 \mid H_0 \text{ true})\)</span>; <span class="math inline">\(\beta\)</span> is defined analogously for the opposite decision and the opposite truth.</li>
+<li>For part (d), think about the cost of concluding the site is safe when it is not, versus concluding it is contaminated when it is not.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong></p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(H_0\)</span> True (site is safe)</th>
+<th><span class="math inline">\(H_0\)</span> False (site is contaminated)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Reject <span class="math inline">\(H_0\)</span></strong> (declare contaminated)</td>
+<td>(i) Type I error</td>
+<td>(ii) Correct decision</td>
+</tr>
+<tr class="even">
+<td><strong>Fail to reject <span class="math inline">\(H_0\)</span></strong> (declare safe)</td>
+<td>(iii) Correct decision</td>
+<td>(iv) Type II error</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(b)</strong> Cell (i) corresponds to <span class="math inline">\(\alpha = P(\text{reject } H_0 \mid H_0 \text{ true})\)</span> — declaring a genuinely safe site contaminated.</p>
+<p><strong>(c)</strong> Cell (iv) corresponds to <span class="math inline">\(\beta = P(\text{fail to reject } H_0 \mid H_0 \text{ false})\)</span> — declaring a genuinely contaminated site safe.</p>
+<p><strong>(d)</strong> In this context, the Type II error (cell (iv)) is arguably more serious: declaring a truly contaminated site “safe” could allow continued exposure to a health hazard, with consequences that are difficult to reverse once people have been affected. The Type I error (cell (i)) is costly — unnecessary remediation spending on a site that was actually safe — but it is generally less harmful to public health than leaving real contamination undetected.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 8
+</div>
+<p>An automobile parts supplier tests every airbag deployment sensor before shipment. The test is set up as
+<span class="math display">\[H_0: \text{sensor functions correctly} \qquad \text{vs.} \qquad H_a: \text{sensor is defective}\]</span></p>
+<ol style="list-style-type: lower-alpha">
+<li>Describe, in the context of this scenario, what a Type I error would mean and what its practical consequence would be.</li>
+<li>Describe, in the context of this scenario, what a Type II error would mean and what its practical consequence would be.</li>
+<li>Briefly explain why a manufacturer in this industry might be willing to accept a higher Type I error rate in exchange for a lower Type II error rate.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>A Type I error occurs when <span class="math inline">\(H_0\)</span> is rejected but <span class="math inline">\(H_0\)</span> is actually true — think about what “rejecting <span class="math inline">\(H_0\)</span>” means here.</li>
+<li>A Type II error occurs when the test fails to reject <span class="math inline">\(H_0\)</span> but <span class="math inline">\(H_0\)</span> is actually false.</li>
+<li>For part (c), compare the cost of discarding a good sensor to the cost of shipping a defective one.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> A Type I error occurs if the test concludes a sensor is defective (rejects <span class="math inline">\(H_0\)</span>) when the sensor actually functions correctly. The practical consequence is a working sensor being scrapped or sent back for unnecessary rework — a cost in materials and production time, but not a safety risk.</p>
+<p><strong>(b)</strong> A Type II error occurs if the test fails to reject <span class="math inline">\(H_0\)</span> — concluding the sensor functions correctly — when the sensor is actually defective. The practical consequence is a faulty sensor being shipped and installed in a vehicle, where it might fail to deploy the airbag in a crash — a serious safety risk.</p>
+<p><strong>(c)</strong> Because a Type II error here carries a severe safety consequence while a Type I error carries only a financial and operational cost, the manufacturer would reasonably prefer a testing procedure with higher power (lower <span class="math inline">\(\beta\)</span>) against defective sensors, even if that means tolerating a somewhat higher false-positive (Type I error) rate that discards a few functioning sensors.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 9
+</div>
+<p>A company redesigns its website checkout page and tests whether the new design <em>increases</em> the proportion of visitors who complete a purchase, using
+<span class="math display">\[H_0: p = p_0 \qquad \text{vs.} \qquad H_a: p &gt; p_0\]</span>
+The analysis rejects <span class="math inline">\(H_0\)</span> and the company concludes that the new design increased the conversion rate.</p>
+<ol style="list-style-type: lower-alpha">
+<li>What type of error, if any, could the company be making by reaching this conclusion?</li>
+<li>Explain, in the context of this scenario, what it would mean for that error to have actually occurred.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Only one type of error is possible whenever <span class="math inline">\(H_0\)</span> has been rejected — think about which one occurs when <span class="math inline">\(H_0\)</span> is true but is rejected anyway.</li>
+<li>The other type of error (associated with failing to reject <span class="math inline">\(H_0\)</span>) is not possible here, because that is not the decision that was made.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> Because the company rejected <span class="math inline">\(H_0\)</span>, the only possible error is a <strong>Type I error</strong>. A Type II error cannot occur here, since that error is only possible when the decision is to fail to reject <span class="math inline">\(H_0\)</span>.</p>
+<p><strong>(b)</strong> A Type I error would mean that the true conversion rate did not actually increase (the redesign had no real effect, so <span class="math inline">\(H_0: p = p_0\)</span> was actually true), but sampling variability in the observed data happened to produce a sample proportion large enough to lead the company to reject <span class="math inline">\(H_0\)</span> anyway. In that case, the company would be crediting the redesign with an improvement that does not really exist.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 10
+</div>
+<p>A school district pilots a new teaching method that it hopes will <em>increase</em> mean standardized test scores above the historical average, using
+<span class="math display">\[H_0: \mu = \mu_0 \qquad \text{vs.} \qquad H_a: \mu &gt; \mu_0\]</span>
+The analysis fails to reject <span class="math inline">\(H_0\)</span>, and the district concludes there is not enough evidence that the new method improved scores.</p>
+<ol style="list-style-type: lower-alpha">
+<li>What type of error, if any, could the district be making by reaching this conclusion?</li>
+<li>Explain, in the context of this scenario, what it would mean for that error to have actually occurred.</li>
+<li>Explain why the district’s conclusion should not be phrased as “the new method has no effect.”</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Only one type of error is possible whenever a test fails to reject <span class="math inline">\(H_0\)</span> — the same principle as the previous question, applied to the opposite decision.</li>
+<li>Part (c) is about the difference between “failing to reject <span class="math inline">\(H_0\)</span>” and “accepting <span class="math inline">\(H_0\)</span>.”</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> Because the district failed to reject <span class="math inline">\(H_0\)</span>, the only possible error is a <strong>Type II error</strong>. A Type I error cannot occur here, since that error requires <span class="math inline">\(H_0\)</span> to have been rejected.</p>
+<p><strong>(b)</strong> A Type II error would mean that the new teaching method truly does raise mean test scores (so <span class="math inline">\(H_a: \mu &gt; \mu_0\)</span> is actually true), but sampling variability in this particular study’s data was not strong enough to produce a test statistic in the rejection region, so the real improvement went undetected.</p>
+<p><strong>(c)</strong> Failing to reject <span class="math inline">\(H_0\)</span> only means the data did not provide sufficiently strong evidence against <span class="math inline">\(H_0\)</span> at the chosen significance level — it does not prove that <span class="math inline">\(H_0\)</span> is true. The method may have a real, positive effect that this particular study simply lacked the power to detect (for example, due to a small sample size or high variability in scores). We can say the study failed to reject <span class="math inline">\(H_0\)</span>; we should never say <span class="math inline">\(H_0\)</span> was “accepted.”</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 11
+</div>
+<p>A clinical research team is evaluating a new therapy in two separate sub-studies.</p>
+<ol style="list-style-type: lower-alpha">
+<li>In sub-study 1, against a particular alternative value of the parameter, the probability of a Type II error is <span class="math inline">\(\beta = 0.35\)</span>. What is the power of the test against that alternative? Interpret the result in context.</li>
+<li>In sub-study 2, against a different alternative value, the power of the test is <span class="math inline">\(0.72\)</span>. What is <span class="math inline">\(\beta\)</span> for that alternative? Interpret the result in context.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Use the relationship <span class="math inline">\(\text{Power} = 1 - \beta\)</span> in both directions: it can be solved for power given <span class="math inline">\(\beta\)</span>, or for <span class="math inline">\(\beta\)</span> given power.</li>
+<li>Each part refers to power/<span class="math inline">\(\beta\)</span> against a <em>specific</em> alternative — the numbers in (a) and (b) are not both describing the same alternative.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> <span class="math inline">\(\text{Power} = 1 - \beta = 1 - 0.35 = 0.65\)</span>. There is a 65% probability that sub-study 1’s test correctly rejects <span class="math inline">\(H_0\)</span> against this particular alternative — that is, correctly detects that the new therapy has a real effect of that magnitude.</p>
+<p><strong>(b)</strong> <span class="math inline">\(\beta = 1 - \text{Power} = 1 - 0.72 = 0.28\)</span>. There is a 28% probability that sub-study 2’s test fails to reject <span class="math inline">\(H_0\)</span> against its alternative, even though the therapy truly has an effect of that magnitude — a Type II error.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 12
+</div>
+<p>Two independent clinical trials test whether a new medication <em>lowers</em> mean systolic blood pressure below the baseline level <span class="math inline">\(\mu_0 = 140\)</span> mmHg, both using <span class="math inline">\(\sigma = 12\)</span> mmHg (known), <span class="math inline">\(\alpha = 0.05\)</span>, and the same alternative <span class="math inline">\(\mu_a = 134\)</span> mmHg. Trial A enrolls <span class="math inline">\(n = 20\)</span> patients; Trial B enrolls <span class="math inline">\(n = 50\)</span> patients.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Without doing any calculation, state which trial you expect to have greater power, and explain why.</li>
+<li>Compute the power of each trial against <span class="math inline">\(\mu_a = 134\)</span> and confirm your answer to part (a).</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Both trials use a lower-tailed test: <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span>.</li>
+<li>Increasing <span class="math inline">\(n\)</span> shrinks the standard error <span class="math inline">\(\sigma/\sqrt{n}\)</span>, which narrows the sampling distributions of <span class="math inline">\(\bar{x}\)</span> under both <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute the rejection cutoff <span class="math inline">\(\bar{x}_{\text{crit}} = \mu_0 + z_{\alpha}(\sigma/\sqrt{n})\)</span> separately for each <span class="math inline">\(n\)</span>, then find the power under <span class="math inline">\(\mu_a = 134\)</span> for each.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> Trial B (<span class="math inline">\(n = 50\)</span>) should have greater power than Trial A (<span class="math inline">\(n = 20\)</span>), because a larger sample size shrinks the standard error of <span class="math inline">\(\bar{x}\)</span>, narrowing the sampling distributions under <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span> and making it easier to distinguish them — with everything else (effect size, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(\alpha\)</span>) held fixed.</p>
+<p><strong>(b)</strong> Using <span class="math inline">\(z_{\text{crit}} = z_{0.05} = -1.6449\)</span>:</p>
+<p>Trial A (<span class="math inline">\(n=20\)</span>): <span class="math inline">\(\bar{x}_{\text{crit}} = 140 - 1.6449(12/\sqrt{20}) \approx 135.586\)</span> mmHg.
+<span class="math display">\[\text{Power}_A = P\left(Z &lt; \frac{135.586 - 134}{12/\sqrt{20}}\right) \approx P(Z &lt; 0.591) \approx 0.7228\]</span></p>
+<p>Trial B (<span class="math inline">\(n=50\)</span>): <span class="math inline">\(\bar{x}_{\text{crit}} = 140 - 1.6449(12/\sqrt{50}) \approx 137.209\)</span> mmHg.
+<span class="math display">\[\text{Power}_B = P\left(Z &lt; \frac{137.209 - 134}{12/\sqrt{50}}\right) \approx P(Z &lt; 1.892) \approx 0.9707\]</span></p>
+<p>This confirms part (a): Trial B’s power (about 97.1%) is substantially greater than Trial A’s power (about 72.3%), driven entirely by the larger sample size.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 13
+</div>
+<p>Two agricultural research stations test whether a new irrigation technique <em>increases</em> mean crop yield above <span class="math inline">\(\mu_0 = 100\)</span> bushels/acre, both using <span class="math inline">\(n = 36\)</span> plots, <span class="math inline">\(\alpha = 0.05\)</span>, and the same alternative <span class="math inline">\(\mu_a = 108\)</span> bushels/acre. Station 1 operates in a region with more consistent soil and weather conditions, giving <span class="math inline">\(\sigma = 10\)</span>; Station 2 operates in a more variable region, giving <span class="math inline">\(\sigma = 25\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Without doing any calculation, state which station you expect to have greater power, and explain why.</li>
+<li>Compute the power for each station against <span class="math inline">\(\mu_a = 108\)</span> and confirm your answer to part (a).</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Both stations use an upper-tailed test: <span class="math inline">\(H_a: \mu &gt; \mu_0\)</span>.</li>
+<li>A larger <span class="math inline">\(\sigma\)</span> increases the standard error <span class="math inline">\(\sigma/\sqrt{n}\)</span> for a fixed <span class="math inline">\(n\)</span>, which widens the sampling distributions of <span class="math inline">\(\bar{x}\)</span> under both <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>.</li>
+<li>Compute <span class="math inline">\(\bar{x}_{\text{crit}} = \mu_0 + z_{1-\alpha}(\sigma/\sqrt{n})\)</span> separately for each <span class="math inline">\(\sigma\)</span>, then find the power under <span class="math inline">\(\mu_a = 108\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> Station 1 (<span class="math inline">\(\sigma = 10\)</span>) should have greater power than Station 2 (<span class="math inline">\(\sigma = 25\)</span>), because lower variability in the data narrows the sampling distribution of <span class="math inline">\(\bar{x}\)</span> under both <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span> (for the same <span class="math inline">\(n\)</span>), making the two distributions easier to distinguish and the true effect easier to detect.</p>
+<p><strong>(b)</strong> Using <span class="math inline">\(z_{\text{crit}} = z_{0.95} = 1.6449\)</span>:</p>
+<p>Station 1 (<span class="math inline">\(\sigma=10\)</span>): <span class="math inline">\(\bar{x}_{\text{crit}} = 100 + 1.6449(10/\sqrt{36}) \approx 102.741\)</span> bushels/acre.
+<span class="math display">\[\text{Power}_1 = P\left(Z &gt; \frac{102.741 - 108}{10/\sqrt{36}}\right) \approx P(Z &gt; -3.156) \approx 0.9992\]</span></p>
+<p>Station 2 (<span class="math inline">\(\sigma=25\)</span>): <span class="math inline">\(\bar{x}_{\text{crit}} = 100 + 1.6449(25/\sqrt{36}) \approx 106.854\)</span> bushels/acre.
+<span class="math display">\[\text{Power}_2 = P\left(Z &gt; \frac{106.854 - 108}{25/\sqrt{36}}\right) \approx P(Z &gt; -0.275) \approx 0.6084\]</span></p>
+<p>This confirms part (a): Station 1’s power (about 99.9%) is much greater than Station 2’s power (about 60.8%), driven entirely by the difference in population variability.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 14
+</div>
+<p>A retail chain trains its staff using a new customer-service program and tests whether it <em>increases</em> mean customer satisfaction scores (on a 100-point scale) above <span class="math inline">\(\mu_0 = 72\)</span>, using <span class="math inline">\(\sigma = 9\)</span>, <span class="math inline">\(n = 40\)</span>, and <span class="math inline">\(\alpha = 0.05\)</span> in both cases. Study A evaluates the program against a modest alternative of <span class="math inline">\(\mu_a = 74\)</span>; Study B evaluates it against a larger alternative of <span class="math inline">\(\mu_a = 78\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Without doing any calculation, state which study you expect to have greater power, and explain why.</li>
+<li>Compute the power for each alternative and confirm your answer to part (a).</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Both studies use the same rejection cutoff <span class="math inline">\(\bar{x}_{\text{crit}}\)</span>, since <span class="math inline">\(\mu_0\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(n\)</span>, and <span class="math inline">\(\alpha\)</span> are identical — only the <em>true</em> alternative mean differs between (a) and (b).</li>
+<li>A larger gap between <span class="math inline">\(\mu_0\)</span> and <span class="math inline">\(\mu_a\)</span> (a larger effect size) shifts the alternative sampling distribution further away from the cutoff.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> Study B (<span class="math inline">\(\mu_a = 78\)</span>) should have greater power than Study A (<span class="math inline">\(\mu_a = 74\)</span>), because the true effect size (<span class="math inline">\(\mu_a - \mu_0\)</span>) is larger in Study B, shifting more of the alternative sampling distribution of <span class="math inline">\(\bar{x}\)</span> past the (shared) rejection cutoff.</p>
+<p><strong>(b)</strong> The shared rejection cutoff is <span class="math inline">\(\bar{x}_{\text{crit}} = 72 + 1.6449(9/\sqrt{40}) \approx 74.341\)</span>.</p>
+<p>Study A (<span class="math inline">\(\mu_a=74\)</span>):
+<span class="math display">\[\text{Power}_A = P\left(Z &gt; \frac{74.341 - 74}{9/\sqrt{40}}\right) \approx P(Z &gt; 0.240) \approx 0.4054\]</span></p>
+<p>Study B (<span class="math inline">\(\mu_a=78\)</span>):
+<span class="math display">\[\text{Power}_B = P\left(Z &gt; \frac{74.341 - 78}{9/\sqrt{40}}\right) \approx P(Z &gt; -2.572) \approx 0.9949\]</span></p>
+<p>This confirms part (a): Study B’s power (about 99.5%) is much greater than Study A’s power (about 40.5%), because detecting a larger true improvement (6 points vs. 2 points) is easier with the same sample size and variability.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 15
+</div>
+<p>A food safety laboratory tests whether the mean concentration of a contaminant in a food product has <em>decreased</em> below the regulatory threshold <span class="math inline">\(\mu_0 = 50\)</span> ppm, using <span class="math inline">\(\sigma = 8\)</span> ppm, <span class="math inline">\(n = 30\)</span>, and a true alternative of <span class="math inline">\(\mu_a = 45\)</span> ppm in both cases. Protocol A uses <span class="math inline">\(\alpha = 0.01\)</span>; Protocol B uses <span class="math inline">\(\alpha = 0.10\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Without doing any calculation, state which protocol you expect to have greater power, and explain the trade-off involved.</li>
+<li>Compute the power under each protocol and confirm your answer to part (a).</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Both protocols use a lower-tailed test: <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span>.</li>
+<li>A larger <span class="math inline">\(\alpha\)</span> moves the rejection cutoff <span class="math inline">\(\bar{x}_{\text{crit}} = \mu_0 + z_\alpha(\sigma/\sqrt{n})\)</span> closer to <span class="math inline">\(\mu_0\)</span>, enlarging the rejection region.</li>
+<li>Consider what a larger <span class="math inline">\(\alpha\)</span> does to the probability of a Type I error at the same time it changes power.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> Protocol B (<span class="math inline">\(\alpha = 0.10\)</span>) should have greater power than Protocol A (<span class="math inline">\(\alpha = 0.01\)</span>), because a larger <span class="math inline">\(\alpha\)</span> makes the rejection region wider (the cutoff moves closer to <span class="math inline">\(\mu_0\)</span>), so it is easier to reject <span class="math inline">\(H_0\)</span> under any given alternative. The trade-off is that Protocol B also has a higher probability of a Type I error — falsely concluding the contaminant level has decreased when it has not — since <span class="math inline">\(\alpha\)</span> <em>is</em> that Type I error probability.</p>
+<p><strong>(b)</strong></p>
+<p>Protocol A (<span class="math inline">\(\alpha=0.01\)</span>, <span class="math inline">\(z_{\text{crit}} = -2.3263\)</span>): <span class="math inline">\(\bar{x}_{\text{crit}} = 50 - 2.3263(8/\sqrt{30}) \approx 46.602\)</span> ppm.
+<span class="math display">\[\text{Power}_A = P\left(Z &lt; \frac{46.602 - 45}{8/\sqrt{30}}\right) \approx P(Z &lt; 1.097) \approx 0.8637\]</span></p>
+<p>Protocol B (<span class="math inline">\(\alpha=0.10\)</span>, <span class="math inline">\(z_{\text{crit}} = -1.2816\)</span>): <span class="math inline">\(\bar{x}_{\text{crit}} = 50 - 1.2816(8/\sqrt{30}) \approx 48.128\)</span> ppm.
+<span class="math display">\[\text{Power}_B = P\left(Z &lt; \frac{48.128 - 45}{8/\sqrt{30}}\right) \approx P(Z &lt; 2.142) \approx 0.9839\]</span></p>
+<p>This confirms part (a): Protocol B’s power (about 98.4%) exceeds Protocol A’s power (about 86.4%), but at the cost of a ten-times-larger Type I error rate (0.10 vs. 0.01).</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 16
+</div>
+<p>A factory manager introduces a new assembly-line procedure and wants to know whether it <em>increases</em> the mean number of units produced per shift above the current level of <span class="math inline">\(\mu_0 = 120\)</span> units. The population standard deviation is known to be <span class="math inline">\(\sigma = 18\)</span> units. A random sample of <span class="math inline">\(n = 49\)</span> shifts under the new procedure is planned, and the test will be conducted at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Find the critical value <span class="math inline">\(z_{\text{crit}}\)</span> and express the rejection rule in terms of <span class="math inline">\(z\)</span>.</li>
+<li>Convert the rejection rule into a rule stated in terms of <span class="math inline">\(\bar{x}\)</span>.</li>
+<li>Calculate the power of this test against the alternative <span class="math inline">\(\mu_a = 126\)</span> units.</li>
+<li>Interpret the power value you found in part (c) in the context of this scenario.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>This is an upper-tailed test, so the rejection rule is <span class="math inline">\(z^* &gt; z_{\text{crit}}\)</span> with <span class="math inline">\(z_{\text{crit}} = z_{1-\alpha}\)</span>.</li>
+<li>Convert using <span class="math inline">\(\bar{x}_{\text{crit}} = \mu_0 + z_{\text{crit}}(\sigma/\sqrt{n})\)</span>.</li>
+<li>For part (c), standardize <span class="math inline">\(\bar{x}_{\text{crit}}\)</span> using <span class="math inline">\(\mu_a = 126\)</span>, not <span class="math inline">\(\mu_0 = 120\)</span>.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> The hypotheses are <span class="math inline">\(H_0: \mu = 120\)</span> vs. <span class="math inline">\(H_a: \mu &gt; 120\)</span>. With <span class="math inline">\(\alpha = 0.05\)</span>, <span class="math inline">\(z_{\text{crit}} = z_{0.95} \approx 1.6449\)</span>. The rejection rule is: reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(z^* &gt; 1.6449\)</span>.</p>
+<p><strong>(b)</strong> Since <span class="math inline">\(\sigma = 18\)</span> is known,
+<span class="math display">\[z^* = \frac{\bar{x} - 120}{18/\sqrt{49}} &gt; 1.6449 \quad \Longleftrightarrow \quad \bar{x} &gt; 120 + 1.6449\left(\frac{18}{\sqrt{49}}\right) \approx 124.230\]</span>
+So the test rejects <span class="math inline">\(H_0\)</span> whenever <span class="math inline">\(\bar{x} &gt; 124.230\)</span> units.</p>
+<p><strong>(c)</strong> Standardizing the cutoff <span class="math inline">\(124.230\)</span> using the alternative <span class="math inline">\(\mu_a = 126\)</span>:
+<span class="math display">\[\text{Power} = P\left(Z &gt; \frac{124.230 - 126}{18/\sqrt{49}}\right) = P(Z &gt; -0.6885) \approx 0.7544\]</span></p>
+<p><strong>(d)</strong> There is approximately a 75.4% probability that this test will correctly detect a true increase in mean units produced per shift to 126, if the new assembly-line procedure really does raise output by that amount. Equivalently, there is roughly a 24.6% chance (<span class="math inline">\(\beta\)</span>) that the study fails to detect this real improvement.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 17
+</div>
+<p>A call center’s average customer hold time has historically been <span class="math inline">\(\mu_0 = 8\)</span> minutes, with <span class="math inline">\(\sigma = 2.4\)</span> minutes known from years of call-log data. After introducing a new call-routing algorithm believed to <em>reduce</em> hold times, management plans to sample <span class="math inline">\(n = 64\)</span> calls and test at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Find the critical value <span class="math inline">\(z_{\text{crit}}\)</span> and express the rejection rule in terms of <span class="math inline">\(z\)</span>.</li>
+<li>Convert the rejection rule into a rule stated in terms of <span class="math inline">\(\bar{x}\)</span>.</li>
+<li>Calculate the power of this test against the alternative <span class="math inline">\(\mu_a = 7.2\)</span> minutes.</li>
+<li>Interpret the power value you found in part (c) in the context of this scenario.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>“Reduce hold times” calls for a lower-tailed alternative: <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span>, so <span class="math inline">\(z_{\text{crit}} = z_{\alpha}\)</span>, a negative value.</li>
+<li>The cutoff formula is <span class="math inline">\(\bar{x}_{\text{crit}} = \mu_0 + z_{\text{crit}}(\sigma/\sqrt{n})\)</span>; because <span class="math inline">\(z_{\text{crit}} &lt; 0\)</span>, expect a cutoff below <span class="math inline">\(\mu_0\)</span>.</li>
+<li>For part (c), standardize <span class="math inline">\(\bar{x}_{\text{crit}}\)</span> under <span class="math inline">\(\mu_a = 7.2\)</span>, and compute the probability with the correct (lower-tailed) direction.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> The hypotheses are <span class="math inline">\(H_0: \mu = 8\)</span> vs. <span class="math inline">\(H_a: \mu &lt; 8\)</span>. With <span class="math inline">\(\alpha = 0.05\)</span>, <span class="math inline">\(z_{\text{crit}} = z_{0.05} \approx -1.6449\)</span>. The rejection rule is: reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(z^* &lt; -1.6449\)</span>.</p>
+<p><strong>(b)</strong> Since <span class="math inline">\(\sigma = 2.4\)</span> is known,
+<span class="math display">\[z^* = \frac{\bar{x} - 8}{2.4/\sqrt{64}} &lt; -1.6449 \quad \Longleftrightarrow \quad \bar{x} &lt; 8 - 1.6449\left(\frac{2.4}{\sqrt{64}}\right) \approx 7.5065\]</span>
+So the test rejects <span class="math inline">\(H_0\)</span> whenever <span class="math inline">\(\bar{x} &lt; 7.5065\)</span> minutes.</p>
+<p><strong>(c)</strong> Standardizing the cutoff <span class="math inline">\(7.5065\)</span> using the alternative <span class="math inline">\(\mu_a = 7.2\)</span>:
+<span class="math display">\[\text{Power} = P\left(Z &lt; \frac{7.5065 - 7.2}{2.4/\sqrt{64}}\right) = P(Z &lt; 1.0218) \approx 0.8466\]</span></p>
+<p><strong>(d)</strong> There is approximately an 84.7% probability that this test will correctly detect a true reduction in mean hold time to 7.2 minutes, if the new routing algorithm really does reduce hold times by that amount. There is roughly a 15.3% chance (<span class="math inline">\(\beta\)</span>) that the study fails to detect this real improvement.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 18
+</div>
+<p>A cereal manufacturer’s boxes are filled to a target mean weight of <span class="math inline">\(\mu_0 = 350\)</span> g, with <span class="math inline">\(\sigma = 5\)</span> g known from the filling equipment’s specifications. Quality control wants to detect <em>either</em> overfilling or underfilling, so they test
+<span class="math display">\[H_0: \mu = 350 \qquad \text{vs.} \qquad H_a: \mu \neq 350\]</span>
+using <span class="math inline">\(n = 40\)</span> boxes at <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Find the two critical z-values and the corresponding lower and upper rejection cutoffs for <span class="math inline">\(\bar{x}\)</span>.</li>
+<li>Calculate the power of this test against the alternative <span class="math inline">\(\mu_a = 352\)</span> g, making sure to account for both tails.</li>
+<li>Interpret the power value you found in part (b) in context.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>For a two-sided test, split <span class="math inline">\(\alpha\)</span> evenly between the two tails: use <span class="math inline">\(z_{\alpha/2}\)</span> for both cutoffs.</li>
+<li>The two cutoffs are <span class="math inline">\(\bar{x}_{\text{crit,low}} = \mu_0 - z_{\alpha/2}(\sigma/\sqrt{n})\)</span> and <span class="math inline">\(\bar{x}_{\text{crit,high}} = \mu_0 + z_{\alpha/2}(\sigma/\sqrt{n})\)</span>.</li>
+<li>Power is the probability that <span class="math inline">\(\bar{x}\)</span> falls below the <em>lower</em> cutoff <strong>or</strong> above the <em>upper</em> cutoff, standardized under <span class="math inline">\(\mu_a = 352\)</span> — do not simply double a one-sided power value without checking that both tails’ contributions are actually meaningful.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> With <span class="math inline">\(\alpha = 0.05\)</span> split into two tails, <span class="math inline">\(z_{\alpha/2} = z_{0.025} \approx 1.9600\)</span>. The standard error is <span class="math inline">\(\sigma/\sqrt{n} = 5/\sqrt{40} \approx 0.7906\)</span>.
+<span class="math display">\[\bar{x}_{\text{crit,low}} = 350 - 1.9600(0.7906) \approx 348.451 \qquad \bar{x}_{\text{crit,high}} = 350 + 1.9600(0.7906) \approx 351.549\]</span>
+The test rejects <span class="math inline">\(H_0\)</span> whenever <span class="math inline">\(\bar{x} &lt; 348.451\)</span> or <span class="math inline">\(\bar{x} &gt; 351.549\)</span>.</p>
+<p><strong>(b)</strong> Standardizing both cutoffs under <span class="math inline">\(\mu_a = 352\)</span>:
+<span class="math display">\[z_{\text{low}} = \frac{348.451 - 352}{0.7906} \approx -4.490 \qquad z_{\text{high}} = \frac{351.549 - 352}{0.7906} \approx -0.570\]</span>
+<span class="math display">\[\text{Power} = P(Z &lt; -4.490) + P(Z &gt; -0.570) \approx 0.0000 + 0.7156 = 0.7156\]</span>
+Here, the lower-tail contribution is essentially zero (since <span class="math inline">\(\mu_a = 352\)</span> is above <span class="math inline">\(\mu_0\)</span>, it is extremely unlikely for <span class="math inline">\(\bar{x}\)</span> to fall below the <em>lower</em> cutoff), so almost all the power comes from the upper tail. This shows why doubling a one-sided power value is not generally valid — the two tails do not contribute equally when <span class="math inline">\(\mu_a\)</span> is much closer to one cutoff than the other.</p>
+<p><strong>(c)</strong> There is approximately a 71.6% probability that this two-sided test will correctly detect that the mean fill weight has shifted to 352 g. There is roughly a 28.4% chance (<span class="math inline">\(\beta\)</span>) that this real shift goes undetected.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 19
+</div>
+<p>A university testing office administers a standardized diagnostic exam with a historical mean score of <span class="math inline">\(\mu_0 = 78\)</span> points and known standard deviation <span class="math inline">\(\sigma = 12\)</span> points. A tutoring center wants to know whether its students score higher on average, and uses a rejection rule (already derived from a chosen significance level) that rejects <span class="math inline">\(H_0\)</span> whenever <span class="math inline">\(\bar{x} &gt; 82\)</span>, based on a sample of <span class="math inline">\(n = 36\)</span> tutored students.</p>
+<p>Suppose the tutoring center’s students truly have a mean score of <span class="math inline">\(\mu_a = 84\)</span> points.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Calculate <span class="math inline">\(\beta\)</span>, the probability that this test fails to reject <span class="math inline">\(H_0\)</span> even though <span class="math inline">\(\mu_a = 84\)</span> is the true mean.</li>
+<li>Calculate the power of the test against this same alternative.</li>
+<li>Interpret both values in context.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>You are given the cutoff directly (<span class="math inline">\(\bar{x}_{\text{crit}} = 82\)</span>), so there is no need to find <span class="math inline">\(z_{\text{crit}}\)</span> from <span class="math inline">\(\alpha\)</span> first.</li>
+<li><span class="math inline">\(\beta\)</span> is the probability of the <em>complementary</em> event to rejection, standardized under the true alternative mean <span class="math inline">\(\mu_a = 84\)</span>: <span class="math inline">\(\beta = P(\bar{x} &lt; 82 \mid \mu = 84)\)</span>.</li>
+<li>Once you have <span class="math inline">\(\beta\)</span>, use the relationship between power and <span class="math inline">\(\beta\)</span> for part (b) — no separate standardization is needed.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> Standardizing the cutoff <span class="math inline">\(\bar{x}_{\text{crit}} = 82\)</span> under <span class="math inline">\(\mu_a = 84\)</span>:
+<span class="math display">\[\beta = P(\bar{x} &lt; 82 \mid \mu = 84) = P\left(Z &lt; \frac{82 - 84}{12/\sqrt{36}}\right) = P(Z &lt; -1.00) \approx 0.1587\]</span></p>
+<p><strong>(b)</strong> <span class="math inline">\(\text{Power} = 1 - \beta = 1 - 0.1587 = 0.8413\)</span>.</p>
+<p><strong>(c)</strong> There is approximately an 84.1% probability that this test correctly detects the tutoring center’s true mean score of 84. A Type II error would occur if the study failed to detect this real 6-point improvement even though the tutored students’ true mean score had increased — this happens with probability <span class="math inline">\(\beta \approx 0.1587\)</span>.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 20
+</div>
+<p>A regional environmental agency is testing whether a new emissions regulation has <em>decreased</em> the mean concentration of a pollutant below the pre-regulation level of <span class="math inline">\(\mu_0 = 42 \ \mu\text{g/m}^3\)</span> (<span class="math inline">\(\sigma = 9\)</span>, <span class="math inline">\(n = 40\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>, lower-tailed test). The rejection cutoff works out to <span class="math inline">\(\bar{x}_{\text{crit}} \approx 39.659\)</span>. The agency computed the power of this test against three different possible true post-regulation means:</p>
+<table>
+<thead>
+<tr class="header">
+<th>True mean <span class="math inline">\(\mu_a\)</span> (<span class="math inline">\(\mu\text{g/m}^3\)</span>)</th>
+<th>41</th>
+<th>39</th>
+<th>37</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Power</td>
+<td>0.1731</td>
+<td>0.6784</td>
+<td>0.9692</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li>Describe the pattern shown in this table as <span class="math inline">\(\mu_a\)</span> moves further from <span class="math inline">\(\mu_0 = 42\)</span>.</li>
+<li>Explain, in terms of the sampling distribution of <span class="math inline">\(\bar{x}\)</span>, why power behaves this way.</li>
+<li>If the true post-regulation mean turned out to be <span class="math inline">\(\mu_a = 41\)</span>, would you be confident that a study using this design would detect the improvement? Explain.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Compare how far each value of <span class="math inline">\(\mu_a\)</span> is from <span class="math inline">\(\mu_0 = 42\)</span>, and see how that distance lines up with the power values given.</li>
+<li>Think about where the fixed cutoff <span class="math inline">\(\bar{x}_{\text{crit}} = 39.659\)</span> sits relative to each alternative sampling distribution (each one centered at a different <span class="math inline">\(\mu_a\)</span>).</li>
+<li>For part (c), a power value well below 0.5 says something specific about how often the test would succeed if repeated.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> As <span class="math inline">\(\mu_a\)</span> moves further below <span class="math inline">\(\mu_0 = 42\)</span> (from 41, to 39, to 37), power increases — from about 17.3%, to about 67.8%, to about 96.9%.</p>
+<p><strong>(b)</strong> The rejection cutoff <span class="math inline">\(\bar{x}_{\text{crit}} = 39.659\)</span> stays fixed regardless of the true mean. As <span class="math inline">\(\mu_a\)</span> moves further below this fixed cutoff, more of the sampling distribution of <span class="math inline">\(\bar{x}\)</span> under that alternative (centered at <span class="math inline">\(\mu_a\)</span>, with standard error <span class="math inline">\(\sigma/\sqrt{n}\)</span>) falls below <span class="math inline">\(\bar{x}_{\text{crit}}\)</span>, which is exactly the rejection region for this lower-tailed test. A small true decrease (like <span class="math inline">\(\mu_a = 41\)</span>) leaves the alternative distribution mostly straddling the cutoff, so only a small fraction falls in the rejection region; a large true decrease (like <span class="math inline">\(\mu_a = 37\)</span>) shifts nearly the entire distribution below the cutoff.</p>
+<p><strong>(c)</strong> No — with power only about 0.1731 against <span class="math inline">\(\mu_a = 41\)</span>, this design would correctly detect a true decrease to 41 only about 17% of the time; roughly 83% of the time it would fail to detect this real (but small) improvement. A much larger sample size would be needed to reliably detect an effect this modest.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 21
+</div>
+<p>A demographer believes the mean age of residents in a rapidly growing suburb has <em>increased</em> above the historical value of <span class="math inline">\(\mu_0 = 37\)</span> years, with <span class="math inline">\(\sigma = 6\)</span> years known from census records. She wants to test <span class="math inline">\(H_0: \mu = 37\)</span> vs. <span class="math inline">\(H_a: \mu &gt; 37\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>, and wants the power against the alternative <span class="math inline">\(\mu_a = 39\)</span> years to be at least <span class="math inline">\(0.85\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Write the rejection rule for <span class="math inline">\(\bar{x}_*\)</span> in terms of the (unknown) sample size <span class="math inline">\(n\)</span>.</li>
+<li>Write the expression for power in terms of <span class="math inline">\(n\)</span>, and set it equal to <span class="math inline">\(0.85\)</span>.</li>
+<li>Solve for the minimum required sample size.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Set up two expressions for <span class="math inline">\(\bar{x}_*\)</span>: one from <span class="math inline">\(\alpha = P(\bar{X} &gt; \bar{x}_* \mid \mu = 37)\)</span>, and one from <span class="math inline">\(0.85 = P(\bar{X} &gt; \bar{x}_* \mid \mu = 39)\)</span>.</li>
+<li>Both expressions equal <span class="math inline">\(\bar{x}_*\)</span>, so set them equal to each other and solve for <span class="math inline">\(n\)</span>.</li>
+<li>Remember that <span class="math inline">\(n\)</span> must be a whole number, and that rounding down would leave the achieved power slightly below the target.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> By definition,
+<span class="math display">\[\alpha = P(\bar{X} &gt; \bar{x}_* \mid \mu = 37) = P\left(Z &gt; \frac{\bar{x}_* - 37}{6/\sqrt{n}}\right) = 0.05\]</span>
+Since <span class="math inline">\(P(Z &gt; 1.6449) = 0.05\)</span>,
+<span class="math display">\[\bar{x}_* = 37 + 1.6449\left(\frac{6}{\sqrt{n}}\right)\]</span></p>
+<p><strong>(b)</strong> The power condition is
+<span class="math display">\[\text{Power} = P(\bar{X} &gt; \bar{x}_* \mid \mu = 39) = P\left(Z &gt; \frac{\bar{x}_* - 39}{6/\sqrt{n}}\right) = 0.85\]</span>
+Since <span class="math inline">\(P(Z &gt; -1.0364) \approx 0.85\)</span>,
+<span class="math display">\[\frac{\bar{x}_* - 39}{6/\sqrt{n}} = -1.0364 \quad \Longrightarrow \quad \bar{x}_* = 39 - 1.0364\left(\frac{6}{\sqrt{n}}\right)\]</span></p>
+<p><strong>(c)</strong> Setting the two expressions for <span class="math inline">\(\bar{x}_*\)</span> equal:
+<span class="math display">\[37 + 1.6449\left(\frac{6}{\sqrt{n}}\right) = 39 - 1.0364\left(\frac{6}{\sqrt{n}}\right)\]</span>
+<span class="math display">\[n = \left[\frac{(1.6449 + 1.0364)(6)}{39 - 37}\right]^2 \approx 64.70\]</span>
+The calculation gives <span class="math inline">\(n = 64.70\)</span>, so the minimum required sample size is <span class="math inline">\(\boxed{65}\)</span> residents, because sample size must be a whole number and rounding down to 64 would leave the achieved power slightly below the target of 0.85.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 22
+</div>
+<p>A pharmaceutical company believes a new medication <em>decreases</em> mean recovery time below the current standard of <span class="math inline">\(\mu_0 = 14\)</span> days, with <span class="math inline">\(\sigma = 3\)</span> days known from prior trials. It plans to test <span class="math inline">\(H_0: \mu = 14\)</span> vs. <span class="math inline">\(H_a: \mu &lt; 14\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>, and wants the power against the alternative <span class="math inline">\(\mu_a = 12.5\)</span> days to be at least <span class="math inline">\(0.90\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Write the rejection rule for <span class="math inline">\(\bar{x}_*\)</span> in terms of the (unknown) sample size <span class="math inline">\(n\)</span>.</li>
+<li>Write the expression for power in terms of <span class="math inline">\(n\)</span>, and set it equal to <span class="math inline">\(0.90\)</span>.</li>
+<li>Solve for the minimum required sample size.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>This is a lower-tailed test, so start from <span class="math inline">\(\alpha = P(\bar{X} &lt; \bar{x}_* \mid \mu = 14)\)</span>.</li>
+<li>Set up a second expression for <span class="math inline">\(\bar{x}_*\)</span> from the power condition <span class="math inline">\(0.90 = P(\bar{X} &lt; \bar{x}_* \mid \mu = 12.5)\)</span>, then equate the two expressions for <span class="math inline">\(\bar{x}_*\)</span>.</li>
+<li>Round the final answer for <span class="math inline">\(n\)</span> up, not down.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> By definition,
+<span class="math display">\[\alpha = P(\bar{X} &lt; \bar{x}_* \mid \mu = 14) = P\left(Z &lt; \frac{\bar{x}_* - 14}{3/\sqrt{n}}\right) = 0.05\]</span>
+Since <span class="math inline">\(P(Z &lt; -1.6449) = 0.05\)</span>,
+<span class="math display">\[\bar{x}_* = 14 - 1.6449\left(\frac{3}{\sqrt{n}}\right)\]</span></p>
+<p><strong>(b)</strong> The power condition is
+<span class="math display">\[\text{Power} = P(\bar{X} &lt; \bar{x}_* \mid \mu = 12.5) = P\left(Z &lt; \frac{\bar{x}_* - 12.5}{3/\sqrt{n}}\right) = 0.90\]</span>
+Since <span class="math inline">\(P(Z &lt; 1.2816) \approx 0.90\)</span>,
+<span class="math display">\[\frac{\bar{x}_* - 12.5}{3/\sqrt{n}} = 1.2816 \quad \Longrightarrow \quad \bar{x}_* = 12.5 + 1.2816\left(\frac{3}{\sqrt{n}}\right)\]</span></p>
+<p><strong>(c)</strong> Setting the two expressions for <span class="math inline">\(\bar{x}_*\)</span> equal:
+<span class="math display">\[14 - 1.6449\left(\frac{3}{\sqrt{n}}\right) = 12.5 + 1.2816\left(\frac{3}{\sqrt{n}}\right)\]</span>
+<span class="math display">\[n = \left[\frac{(1.6449 + 1.2816)(3)}{14 - 12.5}\right]^2 \approx 34.26\]</span>
+The calculation gives <span class="math inline">\(n = 34.26\)</span>, so the minimum required sample size is <span class="math inline">\(\boxed{35}\)</span> patients, because sample size must be a whole number and rounding down to 34 would leave the achieved power slightly below the target of 0.90.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 23
+</div>
+<p>A public health survey reports that <span class="math inline">\(p_0 = 0.30\)</span> of adults in a region meet recommended weekly exercise guidelines. After a city-wide fitness campaign, researchers want to test whether the true proportion has <em>increased</em>, using
+<span class="math display">\[H_0: p = 0.30 \qquad \text{vs.} \qquad H_a: p &gt; 0.30\]</span>
+with <span class="math inline">\(n = 400\)</span> adults surveyed at <span class="math inline">\(\alpha = 0.05\)</span>, using the Normal approximation to the sampling distribution of <span class="math inline">\(\hat{p}\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Find the rejection cutoff <span class="math inline">\(\hat{p}^{\,*}\)</span> under <span class="math inline">\(H_0\)</span>.</li>
+<li>Calculate the power of this test against the true alternative <span class="math inline">\(p_a = 0.35\)</span>.</li>
+<li>Interpret the power value in context.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>The rejection cutoff must use the standard error under <span class="math inline">\(H_0\)</span>, based on <span class="math inline">\(p_0 = 0.30\)</span>: <span class="math inline">\(\hat{p}^{\,*} = p_0 + z_{1-\alpha}\sqrt{p_0(1-p_0)/n}\)</span>.</li>
+<li>Power requires standardizing <span class="math inline">\(\hat{p}^{\,*}\)</span> using the standard error based on <span class="math inline">\(p_a = 0.35\)</span> instead — the two stages use different standard errors.</li>
+<li>This is an upper-tailed test, so use <span class="math inline">\(P(Z &gt; \cdot)\)</span> for the power calculation.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> With <span class="math inline">\(z_{\text{crit}} = z_{0.95} \approx 1.6449\)</span>:
+<span class="math display">\[\hat{p}^{\,*} = 0.30 + 1.6449\sqrt{\frac{0.30(0.70)}{400}} \approx 0.3377\]</span>
+The test rejects <span class="math inline">\(H_0\)</span> whenever <span class="math inline">\(\hat{p} &gt; 0.3377\)</span>.</p>
+<p><strong>(b)</strong> Standardizing <span class="math inline">\(\hat{p}^{\,*} = 0.3377\)</span> using the true alternative <span class="math inline">\(p_a = 0.35\)</span>:
+<span class="math display">\[\text{Power} = P\left(Z &gt; \frac{0.3377 - 0.35}{\sqrt{0.35(0.65)/400}}\right) = P(Z &gt; -0.5162) \approx 0.6972\]</span>
+(This uses the Normal approximation to the sampling distribution of <span class="math inline">\(\hat{p}\)</span>, which is reasonable here since <span class="math inline">\(np_a\)</span> and <span class="math inline">\(n(1-p_a)\)</span> are both well above 10.)</p>
+<p><strong>(c)</strong> There is approximately a 69.7% probability that this test correctly detects a true increase in the exercise-guideline compliance rate to 35%. There is roughly a 30.3% chance (<span class="math inline">\(\beta\)</span>) that this real increase goes undetected by the survey.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 24
+</div>
+<p>A subscription service currently retains <span class="math inline">\(p_0 = 0.75\)</span> of customers who report being “satisfied” after one year. Management is testing a new loyalty program, believing it will <em>increase</em> the satisfaction proportion, and wants to test <span class="math inline">\(H_0: p = 0.75\)</span> vs. <span class="math inline">\(H_a: p &gt; 0.75\)</span> at <span class="math inline">\(\alpha = 0.05\)</span>. They want the power against the alternative <span class="math inline">\(p_a = 0.82\)</span> to be at least <span class="math inline">\(0.85\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Write the rejection rule for <span class="math inline">\(\hat{p}^{\,*}\)</span> in terms of the (unknown) sample size <span class="math inline">\(n\)</span>.</li>
+<li>Write the expression for power in terms of <span class="math inline">\(n\)</span>, and set it equal to <span class="math inline">\(0.85\)</span>.</li>
+<li>Solve for the minimum required sample size.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Follow the same two-equation strategy used for the mean-test sample-size problems, but with <span class="math inline">\(\hat{p}^{\,*} = p_0 + z_{1-\alpha}\sqrt{p_0(1-p_0)/n}\)</span> under <span class="math inline">\(H_0\)</span> and a second expression for <span class="math inline">\(\hat{p}^{\,*}\)</span> under <span class="math inline">\(p_a = 0.82\)</span> with power <span class="math inline">\(= 0.85\)</span>.</li>
+<li>The two standard-error terms (one using <span class="math inline">\(p_0\)</span>, one using <span class="math inline">\(p_a\)</span>) do <strong>not</strong> simplify to the same expression — keep them separate until the final equation.</li>
+<li>Round the final <span class="math inline">\(n\)</span> up, not down.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> By definition,
+<span class="math display">\[\alpha = P(\hat{p} &gt; \hat{p}^{\,*} \mid p = 0.75) = P\left(Z &gt; \frac{\hat{p}^{\,*} - 0.75}{\sqrt{0.75(0.25)/n}}\right) = 0.05\]</span>
+Since <span class="math inline">\(P(Z &gt; 1.6449) = 0.05\)</span>,
+<span class="math display">\[\hat{p}^{\,*} = 0.75 + 1.6449\sqrt{\frac{0.75(0.25)}{n}}\]</span></p>
+<p><strong>(b)</strong> The power condition is
+<span class="math display">\[\text{Power} = P(\hat{p} &gt; \hat{p}^{\,*} \mid p = 0.82) = P\left(Z &gt; \frac{\hat{p}^{\,*} - 0.82}{\sqrt{0.82(0.18)/n}}\right) = 0.85\]</span>
+Since <span class="math inline">\(P(Z &gt; -1.0364) \approx 0.85\)</span>,
+<span class="math display">\[\hat{p}^{\,*} = 0.82 - 1.0364\sqrt{\frac{0.82(0.18)}{n}}\]</span></p>
+<p><strong>(c)</strong> Setting the two expressions for <span class="math inline">\(\hat{p}^{\,*}\)</span> equal:
+<span class="math display">\[0.75 + 1.6449\sqrt{\frac{0.75(0.25)}{n}} = 0.82 - 1.0364\sqrt{\frac{0.82(0.18)}{n}}\]</span>
+<span class="math display">\[0.07 = \frac{1}{\sqrt{n}}\left(1.6449\sqrt{0.1875} + 1.0364\sqrt{0.1476}\right) = \frac{1.1105}{\sqrt{n}}\]</span>
+<span class="math display">\[\sqrt{n} = \frac{1.1105}{0.07} \approx 15.865 \quad \Longrightarrow \quad n \approx 251.64\]</span>
+The calculation gives <span class="math inline">\(n = 251.64\)</span>, so the minimum required sample size is <span class="math inline">\(\boxed{252}\)</span> customers, because sample size must be a whole number and rounding down to 251 would leave the achieved power slightly below the target of 0.85.</p>
+</div>
+</details>
+<hr />
+<div class="exercise-box">
+<div class="exercise-label">
+Question 25
+</div>
+<p>A hospital’s 30-day readmission rate has historically been <span class="math inline">\(p_0 = 0.22\)</span>. A new discharge-planning program is designed to <em>reduce</em> readmissions, and the hospital is deciding among three proposed pilot study sizes before committing resources: <span class="math inline">\(n = 100\)</span>, <span class="math inline">\(n = 200\)</span>, and <span class="math inline">\(n = 300\)</span> patients. The test in each case is
+<span class="math display">\[H_0: p = 0.22 \qquad \text{vs.} \qquad H_a: p &lt; 0.22 \qquad \text{at } \alpha = 0.05\]</span>
+and the hospital wants to know the power against a true post-program readmission rate of <span class="math inline">\(p_a = 0.16\)</span> for each design.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Compute the rejection cutoff <span class="math inline">\(\hat{p}^{\,*}\)</span> and the power against <span class="math inline">\(p_a = 0.16\)</span> for each of the three sample sizes.</li>
+<li>Based on your results, which design would you recommend if the hospital can only afford to enroll <span class="math inline">\(n = 200\)</span> patients but wants power of at least <span class="math inline">\(0.80\)</span>? Explain.</li>
+<li>Suppose the pilot study is run with <span class="math inline">\(n = 300\)</span> patients, the test is conducted, and a p-value of <span class="math inline">\(0.032\)</span> is reported. Explain the conceptual difference between this p-value and the power calculated in part (a) for <span class="math inline">\(n = 300\)</span> — in particular, why the p-value alone (without the power calculations above) would not tell the hospital anything about how reliably the <em>design</em> could have detected a true reduction to <span class="math inline">\(p_a = 0.16\)</span> before the study was ever run.</li>
+</ol>
+</div>
+<details data-type="hint">
+<summary>
+💡 Hint
+</summary>
+<div class="content">
+<ul>
+<li>Compute <span class="math inline">\(\hat{p}^{\,*} = p_0 + z_{\alpha}\sqrt{p_0(1-p_0)/n}\)</span> for each <span class="math inline">\(n\)</span> (this is a lower-tailed test), then standardize under <span class="math inline">\(p_a = 0.16\)</span> to get power for each design.</li>
+<li>For part (b), compare the computed power values directly to the target of <span class="math inline">\(0.80\)</span>.</li>
+<li>For part (c), think about <em>when</em> each quantity can be calculated (before vs. after data collection) and what each one conditions on.</li>
+</ul>
+</div>
+</details>
+<details data-type="answer">
+<summary>
+✅ Answer
+</summary>
+<div class="content">
+<p><strong>(a)</strong> Using <span class="math inline">\(z_{\text{crit}} = z_{0.05} \approx -1.6449\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th><span class="math inline">\(\hat{p}^{\,*}\)</span></th>
+<th>Power against <span class="math inline">\(p_a = 0.16\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>100</td>
+<td>0.1519</td>
+<td>0.4122</td>
+</tr>
+<tr class="even">
+<td>200</td>
+<td>0.1718</td>
+<td>0.6758</td>
+</tr>
+<tr class="odd">
+<td>300</td>
+<td>0.1807</td>
+<td>0.8355</td>
+</tr>
+</tbody>
+</table>
+<p>For example, at <span class="math inline">\(n = 300\)</span>: <span class="math inline">\(\hat{p}^{\,*} = 0.22 - 1.6449\sqrt{0.22(0.78)/300} \approx 0.1807\)</span>, and
+<span class="math display">\[\text{Power} = P\left(Z &lt; \frac{0.1807 - 0.16}{\sqrt{0.16(0.84)/300}}\right) \approx P(Z &lt; 0.976) \approx 0.8355\]</span></p>
+<p><strong>(b)</strong> At <span class="math inline">\(n = 200\)</span>, the power against <span class="math inline">\(p_a = 0.16\)</span> is only about <span class="math inline">\(0.6758\)</span>, which falls short of the target of <span class="math inline">\(0.80\)</span>. None of the three proposed sizes below 300 would meet the target — only the <span class="math inline">\(n = 300\)</span> design achieves power above <span class="math inline">\(0.80\)</span> (about <span class="math inline">\(0.8355\)</span>). If the hospital is limited to <span class="math inline">\(n = 200\)</span>, it should recognize that this design has roughly a 32% chance of failing to detect a real reduction to 16%, and should either seek to enroll more patients or accept this comparatively higher risk of a Type II error.</p>
+<p><strong>(c)</strong> The p-value of <span class="math inline">\(0.032\)</span> is calculated <em>after</em> the data are collected, and it measures the strength of evidence in this <em>particular sample</em> against <span class="math inline">\(H_0: p = 0.22\)</span> — it says nothing about <span class="math inline">\(p_a = 0.16\)</span> specifically, nor about any other possible alternative. Power, by contrast, is calculated <em>before</em> the data are collected (during study design) and is a property of the testing procedure itself against a <em>specific</em> stated alternative (<span class="math inline">\(p_a = 0.16\)</span>): it answers “if the true rate really were 0.16, how often would a study of this design correctly detect it?” A design can have low power against <span class="math inline">\(p_a = 0.16\)</span> and still occasionally produce a small p-value in an actual sample (as happened here), or have high power and still fail to reject <span class="math inline">\(H_0\)</span> in a particular unlucky sample. The p-value from a single completed study cannot retroactively tell the hospital how reliable its chosen sample size was — that question can only be answered by the power calculations performed in part (a).</p>
+</div>
+</details>
 
 </div>
 </div>

@@ -10,7 +10,15 @@ github-repo: nishanmudalige/STA258
 bibliography: [references.bib, packages.bib]
 biblio-style: apalike
 link-citations: true
-nocite: '@*'
+# nocite: '@*'  # disabled: this forced every entry in references.bib/packages.bib
+# (mostly auto-generated R package citations such as rmarkdown, Matrix, igraph,
+# pak, mvtnorm) to be listed as an automatic reference list at the end of the
+# merged book. Since references.Rmd is excluded from _bookdown.yml's rmd_files,
+# there is no explicit `<div id="refs"></div>` placeholder anywhere in the book,
+# so pandoc/citeproc appended that full package bibliography immediately after
+# the last chapter in rmd_files (Chapter 10), right after Question 10's Answer.
+# No chapter currently contains real in-text citations (`[@key]`), so removing
+# the forced nocite listing does not drop any genuine references.
 description: "Bookdown hosted on GitHub using bookdown::gitbook."
 ---
 

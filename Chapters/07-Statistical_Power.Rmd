@@ -600,3 +600,1182 @@ level $\alpha$. The P-value measures the strength of the evidence
 provided by the data against $H_0$. It leaves any action or decision
 based on that evidence up to each individual. Different people may
 require different strengths of evidence.
+
+## Exercises {#sec:ch7exercises}
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+A battery manufacturer's current cell design has a known mean lifetime of $\mu_0 = 500$ hours, with population standard deviation $\sigma = 20$ hours. Engineers develop a new electrode chemistry that they believe *increases* mean battery life, and plan to test
+$$H_0: \mu = 500 \qquad \text{vs.} \qquad H_a: \mu > 500$$
+using a random sample of $n = 36$ batteries at $\alpha = 0.05$.
+
+Complete the R code below to (a) find the critical value $z_{\text{crit}}$ for this upper-tailed test, (b) convert it into a rejection cutoff for $\bar{x}$, (c) find the power of the test against the alternative $\mu_a = 510$ hours, and (d) find $\beta$ for that same alternative.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="19">mu0   <- 500
+sigma <- 20
+n     <- 36
+alpha <- 0.05
+mua   <- 510
+
+# (a) Critical z value for an upper-tailed test
+z_crit <- qnorm(___)
+z_crit
+
+# (b) Convert z_crit to a cutoff for xbar
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
+xbar_crit
+
+# (c) Power against the alternative mu = 510
+power <- 1 - pnorm((xbar_crit - mua) / (sigma / sqrt(n)))
+power
+
+# (d) Type II error probability
+beta <- ___
+beta</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For an upper-tailed test, the rejection region is in the right tail, so $z_{\text{crit}} = z_{1-\alpha}$; in R this is `qnorm(1 - alpha)`.
+- Once you have $z_{\text{crit}}$, convert to $\bar{x}_{\text{crit}} = \mu_0 + z_{\text{crit}}(\sigma/\sqrt{n})$.
+- Power is computed by standardizing $\bar{x}_{\text{crit}}$ under the *alternative* mean $\mu_a$, not under $\mu_0$.
+- Recall the relationship between power and $\beta$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+mu0   <- 500
+sigma <- 20
+n     <- 36
+alpha <- 0.05
+mua   <- 510
+
+# (a) Critical z value for an upper-tailed test
+z_crit <- qnorm(1 - alpha)
+z_crit
+# [1] 1.644854
+
+# (b) Convert z_crit to a cutoff for xbar
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
+xbar_crit
+# [1] 505.4828
+
+# (c) Power against the alternative mu = 510
+power <- 1 - pnorm((xbar_crit - mua) / (sigma / sqrt(n)))
+power
+# [1] 0.9123145
+
+# (d) Type II error probability
+beta <- 1 - power
+beta
+# [1] 0.08768546
+```
+
+**(a)** $z_{\text{crit}} = z_{0.95} \approx 1.6449$.
+
+**(b)** $\bar{x}_{\text{crit}} = 500 + 1.6449(20/\sqrt{36}) \approx 505.483$ hours. The test rejects $H_0$ whenever $\bar{x} > 505.483$.
+
+**(c)** Standardizing $505.483$ using $\mu_a = 510$: $\text{Power} = P(Z > -1.3551) \approx 0.9123$.
+
+**(d)** $\beta = 1 - 0.9123 = 0.0877$.
+
+**Interpretation:** There is approximately a 91.2% probability that this test will correctly detect a true increase in mean battery life to 510 hours. Equivalently, there is about an 8.8% chance the study fails to detect this real improvement — a Type II error.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+A pharmaceutical company markets a cholesterol drug and, based on past data, believes the mean LDL level of treated patients is $\mu_0 = 130$ mg/dL, with $\sigma = 15$ mg/dL known from a large historical database. A researcher tests a reformulated version, believing it *lowers* LDL further, using
+$$H_0: \mu = 130 \qquad \text{vs.} \qquad H_a: \mu < 130$$
+with $n = 25$ patients at $\alpha = 0.01$.
+
+Complete the R code to (a) find $z_{\text{crit}}$ for this lower-tailed test, (b) find the rejection cutoff for $\bar{x}$, (c) find the power against $\mu_a = 122$ mg/dL, and (d) find $\beta$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="19">mu0   <- 130
+sigma <- 15
+n     <- 25
+alpha <- 0.01
+mua   <- 122
+
+# (a) Critical z value for a lower-tailed test
+z_crit <- qnorm(___)
+z_crit
+
+# (b) Convert z_crit to a cutoff for xbar
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
+xbar_crit
+
+# (c) Power against the alternative mu = 122
+power <- pnorm((xbar_crit - mua) / (sigma / sqrt(n)))
+power
+
+# (d) Type II error probability
+beta <- ___
+beta</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For a lower-tailed test, the rejection region is in the left tail, so $z_{\text{crit}} = z_{\alpha}$, a *negative* number: `qnorm(alpha)`.
+- The cutoff formula is still $\bar{x}_{\text{crit}} = \mu_0 + z_{\text{crit}}(\sigma/\sqrt{n})$; because $z_{\text{crit}} < 0$, this cutoff falls below $\mu_0$.
+- Power is $P(\bar{x} < \bar{x}_{\text{crit}})$ standardized using $\mu_a$, computed directly with `pnorm()` (no need for `1 -`).
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+mu0   <- 130
+sigma <- 15
+n     <- 25
+alpha <- 0.01
+mua   <- 122
+
+# (a) Critical z value for a lower-tailed test
+z_crit <- qnorm(alpha)
+z_crit
+# [1] -2.326348
+
+# (b) Convert z_crit to a cutoff for xbar
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
+xbar_crit
+# [1] 123.021
+
+# (c) Power against the alternative mu = 122
+power <- pnorm((xbar_crit - mua) / (sigma / sqrt(n)))
+power
+# [1] 0.6331918
+
+# (d) Type II error probability
+beta <- 1 - power
+beta
+# [1] 0.3668082
+```
+
+**(a)** $z_{\text{crit}} = z_{0.01} \approx -2.3263$.
+
+**(b)** $\bar{x}_{\text{crit}} = 130 + (-2.3263)(15/\sqrt{25}) \approx 123.021$ mg/dL. The test rejects $H_0$ whenever $\bar{x} < 123.021$.
+
+**(c)** Standardizing under $\mu_a = 122$: $\text{Power} = P(Z < 0.3403) \approx 0.6332$.
+
+**(d)** $\beta = 1 - 0.6332 = 0.3668$.
+
+**Interpretation:** There is approximately a 63.3% probability that this test will correctly detect a true LDL reduction to 122 mg/dL. There is a 36.7% chance ($\beta$) that the study fails to detect this real reduction.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+A city transportation department installs a new traffic-signal timing system that it believes *reduces* average commute time below the historical mean $\mu_0 = 30$ minutes ($\sigma = 8$ minutes, known from years of sensor data). The department tests
+$$H_0: \mu = 30 \qquad \text{vs.} \qquad H_a: \mu < 30$$
+at $\alpha = 0.05$, and wants to see how the power against the alternative $\mu_a = 27$ minutes changes as the sample size $n$ increases.
+
+Complete the R code to compute the rejection cutoff and the power for each sample size in `n_vec`, then describe the pattern you observe.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="14">mu0   <- 30
+sigma <- 8
+alpha <- 0.05
+mua   <- 27
+n_vec <- c(15, 30, 45, 60, 90)
+
+z_crit <- qnorm(alpha)
+
+# (a) Vector of rejection cutoffs, one for each sample size
+xbar_crit <- mu0 + z_crit * sigma / sqrt(___)
+xbar_crit
+
+# (b) Vector of power values, one for each sample size
+power_vec <- pnorm((xbar_crit - mua) / (sigma / sqrt(___)))
+power_vec</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- R will happily compute `sigma / sqrt(n_vec)` element-by-element, returning a vector of standard errors, one for each entry of `n_vec`.
+- Both blanks should be filled with the same vector — the sample sizes you're varying.
+- As $n$ increases (with $\alpha$, $\sigma$, $\mu_0$, and $\mu_a$ all held fixed), the standard error shrinks, which pulls the cutoff closer to $\mu_0$ and pushes power in a predictable direction.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+mu0   <- 30
+sigma <- 8
+alpha <- 0.05
+mua   <- 27
+n_vec <- c(15, 30, 45, 60, 90)
+
+z_crit <- qnorm(alpha)
+
+# (a) Vector of rejection cutoffs
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n_vec)
+xbar_crit
+# [1] 26.60240 27.59754 28.03840 28.30120 28.61294
+
+# (b) Vector of power values
+power_vec <- pnorm((xbar_crit - mua) / (sigma / sqrt(n_vec)))
+power_vec
+# [1] 0.4236812 0.6587690 0.8080472 0.8961444 0.9721073
+```
+
+| $n$ | 15 | 30 | 45 | 60 | 90 |
+|---|---|---|---|---|---|
+| $\bar{x}_{\text{crit}}$ | 26.602 | 27.598 | 28.038 | 28.301 | 28.613 |
+| Power | 0.4237 | 0.6588 | 0.8080 | 0.8961 | 0.9721 |
+
+**Interpretation:** Holding $\alpha$, $\sigma$, $\mu_0$, and $\mu_a$ fixed, power increases steadily as $n$ increases — from about 42.4% at $n=15$ to about 97.2% at $n=90$. This happens because a larger sample shrinks the standard error $\sigma/\sqrt{n}$, which narrows the sampling distribution of $\bar{x}$ under both $H_0$ and $H_a$ and pulls the rejection cutoff closer to $\mu_0$, making it easier to correctly detect the true reduction to $\mu_a = 27$ minutes.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+An agricultural researcher is testing a new fertilizer that is believed to *increase* mean corn yield above the regional average of $\mu_0 = 150$ bushels per acre ($\sigma = 25$ bushels/acre, known from historical regional data). The test is
+$$H_0: \mu = 150 \qquad \text{vs.} \qquad H_a: \mu > 150$$
+based on $n = 50$ test plots at $\alpha = 0.05$.
+
+Complete the R code below to construct the power curve — the power of the test plotted against a range of possible true means $\mu_a$ — and to highlight the power at $\mu_a = 157$ and $\mu_a = 161$ bushels/acre.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="20">mu0   <- 150
+sigma <- 25
+n     <- 50
+alpha <- 0.05
+
+# (a) Critical value for xbar under an upper-tailed test
+z_crit <- qnorm(1 - alpha)
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
+xbar_crit
+
+# (b) Sequence of possible true means to evaluate power over
+mu_vals <- seq(___, ___, length.out = 100)
+
+# (c) Power at each value in mu_vals
+power_curve <- 1 - pnorm((xbar_crit - mu_vals) / (sigma / sqrt(n)))
+
+# (d) Plot the power curve
+plot(mu_vals, power_curve, type = "l", lty = 2, col = "blue",
+     xlab = expression(mu), ylab = "power")
+
+# (e) Highlight the power at mu = 157 and mu = 161
+points(157, 1 - pnorm((xbar_crit - 157) / (sigma / sqrt(n))), pch = 19, col = "red")
+points(161, 1 - pnorm((xbar_crit - ___) / (sigma / sqrt(n))), pch = 19, col = "red")</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- `seq()` needs a starting value and an ending value that together span a sensible range of true means around $\mu_0 = 150$ (150 to 180 is reasonable here, since $\mu_a > \mu_0$ for an upper-tailed test).
+- The final `points()` call should highlight the same true mean referenced earlier in that line, $\mu_a = 161$.
+- Points further to the right of $\mu_0$ on the power curve should show higher power, since they represent alternatives further from $H_0$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+mu0   <- 150
+sigma <- 25
+n     <- 50
+alpha <- 0.05
+
+# (a) Critical value for xbar under an upper-tailed test
+z_crit <- qnorm(1 - alpha)
+xbar_crit <- mu0 + z_crit * sigma / sqrt(n)
+xbar_crit
+# [1] 155.8154
+
+# (b) Sequence of possible true means to evaluate power over
+mu_vals <- seq(150, 180, length.out = 100)
+
+# (c) Power at each value in mu_vals
+power_curve <- 1 - pnorm((xbar_crit - mu_vals) / (sigma / sqrt(n)))
+
+# (d) Plot the power curve
+plot(mu_vals, power_curve, type = "l", lty = 2, col = "blue",
+     xlab = expression(mu), ylab = "power")
+
+# (e) Highlight the power at mu = 157 and mu = 161
+points(157, 1 - pnorm((xbar_crit - 157) / (sigma / sqrt(n))), pch = 19, col = "red")
+points(161, 1 - pnorm((xbar_crit - 161) / (sigma / sqrt(n))), pch = 19, col = "red")
+# Power at mu = 157: 0.6312
+# Power at mu = 161: 0.9287
+```
+
+**Interpretation:** The rejection cutoff is $\bar{x}_{\text{crit}} \approx 155.815$ bushels/acre. At $\mu_a = 157$, only slightly above the cutoff, the power is about 0.6312 — the test correctly detects this modest true increase about 63% of the time. At $\mu_a = 161$, further from $\mu_0$, power rises to about 0.9287. The power curve is increasing in $\mu_a$ because larger true increases push more of the alternative sampling distribution of $\bar{x}$ past the fixed cutoff $\bar{x}_{\text{crit}}$, leaving less area in the "fail to reject" region.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+A manufacturing plant's current process produces defective circuit boards at a rate of $p_0 = 0.08$. Engineers introduce a new process that they believe *reduces* the defect rate, and plan to test
+$$H_0: p = 0.08 \qquad \text{vs.} \qquad H_a: p < 0.08$$
+using $n = 250$ boards at $\alpha = 0.05$, with the Normal approximation to the sampling distribution of $\hat{p}$.
+
+Complete the R code to (a) find $z_{\text{crit}}$, (b) find the rejection cutoff $\hat{p}^{\,*}$ under $H_0$, (c) find the power against the true alternative $p_a = 0.05$, and (d) find $\beta$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">Exercise</div>
+<textarea class="webr-editor" rows="19">p0    <- 0.08
+n     <- 250
+alpha <- 0.05
+pa    <- 0.05
+
+# (a) Critical z value for a lower-tailed test
+z_crit <- qnorm(___)
+z_crit
+
+# (b) Rejection cutoff for phat under H0
+phat_crit <- p0 + z_crit * sqrt(p0 * (1 - p0) / n)
+phat_crit
+
+# (c) Power against the true proportion pa = 0.05
+power <- pnorm((phat_crit - pa) / sqrt(pa * (1 - pa) / n))
+power
+
+# (d) Type II error probability
+beta <- ___
+beta</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The rejection cutoff $\hat{p}^{\,*}$ must be computed using the standard error under $H_0$, based on $p_0 = 0.08$ — not $p_a$.
+- Power, on the other hand, is computed by standardizing $\hat{p}^{\,*}$ using the standard error based on the *true* alternative $p_a = 0.05$. Using the wrong standard error at the wrong stage is a common mistake.
+- This is a lower-tailed test, so use `qnorm(alpha)` for the negative critical value.
+- Recall $\beta = 1 - \text{Power}$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+p0    <- 0.08
+n     <- 250
+alpha <- 0.05
+pa    <- 0.05
+
+# (a) Critical z value for a lower-tailed test
+z_crit <- qnorm(alpha)
+z_crit
+# [1] -1.644854
+
+# (b) Rejection cutoff for phat under H0
+phat_crit <- p0 + z_crit * sqrt(p0 * (1 - p0) / n)
+phat_crit
+# [1] 0.05177746
+
+# (c) Power against the true proportion pa = 0.05
+power <- pnorm((phat_crit - pa) / sqrt(pa * (1 - pa) / n))
+power
+# [1] 0.5513015
+
+# (d) Type II error probability
+beta <- 1 - power
+beta
+# [1] 0.4486985
+```
+
+**(a)** $z_{\text{crit}} = z_{0.05} \approx -1.6449$ (using the Normal approximation).
+
+**(b)** $\hat{p}^{\,*} = 0.08 + (-1.6449)\sqrt{0.08(0.92)/250} \approx 0.0518$. The test rejects $H_0$ whenever $\hat{p} < 0.0518$.
+
+**(c)** Standardizing under $p_a = 0.05$: $\text{Power} = P(Z < 0.1290) \approx 0.5513$.
+
+**(d)** $\beta = 1 - 0.5513 = 0.4487$.
+
+**Interpretation:** There is approximately a 55.1% probability that this test will correctly detect a true reduction in the defect rate to 5%. There is a 44.9% chance ($\beta$) that the study fails to detect this real improvement, even though the new process is genuinely better — this reflects the relatively small gap between $p_0 = 0.08$ and $p_a = 0.05$.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 6</div>
+A quality-control engineer is explaining statistical power to a new colleague at a manufacturing plant.
+
+(a) In your own words, define the statistical power of a test.
+(b) Explain what it means for a test to have high power. What does it mean for a test to have low power?
+(c) Give one concrete consequence, in a quality-control setting, of running a test that has low power.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Power is a conditional probability — it is defined given that a specific condition about $H_0$ holds. Start from that definition.
+- "High" and "low" power should be described in terms of how reliably the test detects a real effect, not in terms of the p-value of any single sample.
+- For part (c), think about what happens when a real problem exists but the test is unlikely to flag it.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The power of a test is the probability that the test correctly rejects $H_0$ when a particular alternative value of the parameter is actually true:
+$$\text{Power} = P(\text{reject } H_0 \mid H_0 \text{ is false})$$
+
+**(b)** A test with power close to 1 (high power) is very likely to detect a real effect when one exists — it reliably rejects $H_0$ when the alternative is true. A test with power close to 0 (low power) is unreliable: even when the alternative is true, the test will often fail to reject $H_0$, so a real effect can easily go undetected.
+
+**(c)** If a quality-control test for detecting a shift in a manufacturing process has low power, a genuine problem — such as a machine that has drifted out of calibration and started producing defective parts — could go undetected for a long time, because the test is unlikely to signal that anything is wrong even when something truly is.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 7</div>
+An environmental agency tests soil samples from a former industrial site to determine whether the site is contaminated above a legal safety threshold. They test
+$$H_0: \text{site is not contaminated} \qquad \text{vs.} \qquad H_a: \text{site is contaminated}$$
+
+Fill in the four blank cells of the truth-versus-decision table below, and then answer the questions that follow.
+
+| | $H_0$ True (site is safe) | $H_0$ False (site is contaminated) |
+|---|---|---|
+| **Reject $H_0$** (declare contaminated) | ______ (i) | ______ (ii) |
+| **Fail to reject $H_0$** (declare safe) | ______ (iii) | ______ (iv) |
+
+(a) Fill in each of (i)–(iv) with one of: Type I error, Type II error, correct decision.
+(b) Which single cell corresponds to the probability $\alpha$?
+(c) Which single cell corresponds to the probability $\beta$?
+(d) In this particular context, briefly explain which type of error (I or II) has more serious real-world consequences, and why.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- A Type I error can only occur in the column where $H_0$ is actually true.
+- A Type II error can only occur when the decision is "fail to reject $H_0$."
+- $\alpha$ is defined as $P(\text{reject } H_0 \mid H_0 \text{ true})$; $\beta$ is defined analogously for the opposite decision and the opposite truth.
+- For part (d), think about the cost of concluding the site is safe when it is not, versus concluding it is contaminated when it is not.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)**
+
+| | $H_0$ True (site is safe) | $H_0$ False (site is contaminated) |
+|---|---|---|
+| **Reject $H_0$** (declare contaminated) | (i) Type I error | (ii) Correct decision |
+| **Fail to reject $H_0$** (declare safe) | (iii) Correct decision | (iv) Type II error |
+
+**(b)** Cell (i) corresponds to $\alpha = P(\text{reject } H_0 \mid H_0 \text{ true})$ — declaring a genuinely safe site contaminated.
+
+**(c)** Cell (iv) corresponds to $\beta = P(\text{fail to reject } H_0 \mid H_0 \text{ false})$ — declaring a genuinely contaminated site safe.
+
+**(d)** In this context, the Type II error (cell (iv)) is arguably more serious: declaring a truly contaminated site "safe" could allow continued exposure to a health hazard, with consequences that are difficult to reverse once people have been affected. The Type I error (cell (i)) is costly — unnecessary remediation spending on a site that was actually safe — but it is generally less harmful to public health than leaving real contamination undetected.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
+An automobile parts supplier tests every airbag deployment sensor before shipment. The test is set up as
+$$H_0: \text{sensor functions correctly} \qquad \text{vs.} \qquad H_a: \text{sensor is defective}$$
+
+(a) Describe, in the context of this scenario, what a Type I error would mean and what its practical consequence would be.
+(b) Describe, in the context of this scenario, what a Type II error would mean and what its practical consequence would be.
+(c) Briefly explain why a manufacturer in this industry might be willing to accept a higher Type I error rate in exchange for a lower Type II error rate.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- A Type I error occurs when $H_0$ is rejected but $H_0$ is actually true — think about what "rejecting $H_0$" means here.
+- A Type II error occurs when the test fails to reject $H_0$ but $H_0$ is actually false.
+- For part (c), compare the cost of discarding a good sensor to the cost of shipping a defective one.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** A Type I error occurs if the test concludes a sensor is defective (rejects $H_0$) when the sensor actually functions correctly. The practical consequence is a working sensor being scrapped or sent back for unnecessary rework — a cost in materials and production time, but not a safety risk.
+
+**(b)** A Type II error occurs if the test fails to reject $H_0$ — concluding the sensor functions correctly — when the sensor is actually defective. The practical consequence is a faulty sensor being shipped and installed in a vehicle, where it might fail to deploy the airbag in a crash — a serious safety risk.
+
+**(c)** Because a Type II error here carries a severe safety consequence while a Type I error carries only a financial and operational cost, the manufacturer would reasonably prefer a testing procedure with higher power (lower $\beta$) against defective sensors, even if that means tolerating a somewhat higher false-positive (Type I error) rate that discards a few functioning sensors.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 9</div>
+A company redesigns its website checkout page and tests whether the new design *increases* the proportion of visitors who complete a purchase, using
+$$H_0: p = p_0 \qquad \text{vs.} \qquad H_a: p > p_0$$
+The analysis rejects $H_0$ and the company concludes that the new design increased the conversion rate.
+
+(a) What type of error, if any, could the company be making by reaching this conclusion?
+(b) Explain, in the context of this scenario, what it would mean for that error to have actually occurred.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Only one type of error is possible whenever $H_0$ has been rejected — think about which one occurs when $H_0$ is true but is rejected anyway.
+- The other type of error (associated with failing to reject $H_0$) is not possible here, because that is not the decision that was made.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Because the company rejected $H_0$, the only possible error is a **Type I error**. A Type II error cannot occur here, since that error is only possible when the decision is to fail to reject $H_0$.
+
+**(b)** A Type I error would mean that the true conversion rate did not actually increase (the redesign had no real effect, so $H_0: p = p_0$ was actually true), but sampling variability in the observed data happened to produce a sample proportion large enough to lead the company to reject $H_0$ anyway. In that case, the company would be crediting the redesign with an improvement that does not really exist.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 10</div>
+A school district pilots a new teaching method that it hopes will *increase* mean standardized test scores above the historical average, using
+$$H_0: \mu = \mu_0 \qquad \text{vs.} \qquad H_a: \mu > \mu_0$$
+The analysis fails to reject $H_0$, and the district concludes there is not enough evidence that the new method improved scores.
+
+(a) What type of error, if any, could the district be making by reaching this conclusion?
+(b) Explain, in the context of this scenario, what it would mean for that error to have actually occurred.
+(c) Explain why the district's conclusion should not be phrased as "the new method has no effect."
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Only one type of error is possible whenever a test fails to reject $H_0$ — the same principle as the previous question, applied to the opposite decision.
+- Part (c) is about the difference between "failing to reject $H_0$" and "accepting $H_0$."
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Because the district failed to reject $H_0$, the only possible error is a **Type II error**. A Type I error cannot occur here, since that error requires $H_0$ to have been rejected.
+
+**(b)** A Type II error would mean that the new teaching method truly does raise mean test scores (so $H_a: \mu > \mu_0$ is actually true), but sampling variability in this particular study's data was not strong enough to produce a test statistic in the rejection region, so the real improvement went undetected.
+
+**(c)** Failing to reject $H_0$ only means the data did not provide sufficiently strong evidence against $H_0$ at the chosen significance level — it does not prove that $H_0$ is true. The method may have a real, positive effect that this particular study simply lacked the power to detect (for example, due to a small sample size or high variability in scores). We can say the study failed to reject $H_0$; we should never say $H_0$ was "accepted."
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 11</div>
+A clinical research team is evaluating a new therapy in two separate sub-studies.
+
+(a) In sub-study 1, against a particular alternative value of the parameter, the probability of a Type II error is $\beta = 0.35$. What is the power of the test against that alternative? Interpret the result in context.
+(b) In sub-study 2, against a different alternative value, the power of the test is $0.72$. What is $\beta$ for that alternative? Interpret the result in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Use the relationship $\text{Power} = 1 - \beta$ in both directions: it can be solved for power given $\beta$, or for $\beta$ given power.
+- Each part refers to power/$\beta$ against a *specific* alternative — the numbers in (a) and (b) are not both describing the same alternative.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** $\text{Power} = 1 - \beta = 1 - 0.35 = 0.65$. There is a 65% probability that sub-study 1's test correctly rejects $H_0$ against this particular alternative — that is, correctly detects that the new therapy has a real effect of that magnitude.
+
+**(b)** $\beta = 1 - \text{Power} = 1 - 0.72 = 0.28$. There is a 28% probability that sub-study 2's test fails to reject $H_0$ against its alternative, even though the therapy truly has an effect of that magnitude — a Type II error.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
+Two independent clinical trials test whether a new medication *lowers* mean systolic blood pressure below the baseline level $\mu_0 = 140$ mmHg, both using $\sigma = 12$ mmHg (known), $\alpha = 0.05$, and the same alternative $\mu_a = 134$ mmHg. Trial A enrolls $n = 20$ patients; Trial B enrolls $n = 50$ patients.
+
+(a) Without doing any calculation, state which trial you expect to have greater power, and explain why.
+(b) Compute the power of each trial against $\mu_a = 134$ and confirm your answer to part (a).
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Both trials use a lower-tailed test: $H_a: \mu < \mu_0$.
+- Increasing $n$ shrinks the standard error $\sigma/\sqrt{n}$, which narrows the sampling distributions of $\bar{x}$ under both $H_0$ and $H_a$.
+- Compute the rejection cutoff $\bar{x}_{\text{crit}} = \mu_0 + z_{\alpha}(\sigma/\sqrt{n})$ separately for each $n$, then find the power under $\mu_a = 134$ for each.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Trial B ($n = 50$) should have greater power than Trial A ($n = 20$), because a larger sample size shrinks the standard error of $\bar{x}$, narrowing the sampling distributions under $H_0$ and $H_a$ and making it easier to distinguish them — with everything else (effect size, $\sigma$, $\alpha$) held fixed.
+
+**(b)** Using $z_{\text{crit}} = z_{0.05} = -1.6449$:
+
+Trial A ($n=20$): $\bar{x}_{\text{crit}} = 140 - 1.6449(12/\sqrt{20}) \approx 135.586$ mmHg.
+$$\text{Power}_A = P\left(Z < \frac{135.586 - 134}{12/\sqrt{20}}\right) \approx P(Z < 0.591) \approx 0.7228$$
+
+Trial B ($n=50$): $\bar{x}_{\text{crit}} = 140 - 1.6449(12/\sqrt{50}) \approx 137.209$ mmHg.
+$$\text{Power}_B = P\left(Z < \frac{137.209 - 134}{12/\sqrt{50}}\right) \approx P(Z < 1.892) \approx 0.9707$$
+
+This confirms part (a): Trial B's power (about 97.1%) is substantially greater than Trial A's power (about 72.3%), driven entirely by the larger sample size.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 13</div>
+Two agricultural research stations test whether a new irrigation technique *increases* mean crop yield above $\mu_0 = 100$ bushels/acre, both using $n = 36$ plots, $\alpha = 0.05$, and the same alternative $\mu_a = 108$ bushels/acre. Station 1 operates in a region with more consistent soil and weather conditions, giving $\sigma = 10$; Station 2 operates in a more variable region, giving $\sigma = 25$.
+
+(a) Without doing any calculation, state which station you expect to have greater power, and explain why.
+(b) Compute the power for each station against $\mu_a = 108$ and confirm your answer to part (a).
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Both stations use an upper-tailed test: $H_a: \mu > \mu_0$.
+- A larger $\sigma$ increases the standard error $\sigma/\sqrt{n}$ for a fixed $n$, which widens the sampling distributions of $\bar{x}$ under both $H_0$ and $H_a$.
+- Compute $\bar{x}_{\text{crit}} = \mu_0 + z_{1-\alpha}(\sigma/\sqrt{n})$ separately for each $\sigma$, then find the power under $\mu_a = 108$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Station 1 ($\sigma = 10$) should have greater power than Station 2 ($\sigma = 25$), because lower variability in the data narrows the sampling distribution of $\bar{x}$ under both $H_0$ and $H_a$ (for the same $n$), making the two distributions easier to distinguish and the true effect easier to detect.
+
+**(b)** Using $z_{\text{crit}} = z_{0.95} = 1.6449$:
+
+Station 1 ($\sigma=10$): $\bar{x}_{\text{crit}} = 100 + 1.6449(10/\sqrt{36}) \approx 102.741$ bushels/acre.
+$$\text{Power}_1 = P\left(Z > \frac{102.741 - 108}{10/\sqrt{36}}\right) \approx P(Z > -3.156) \approx 0.9992$$
+
+Station 2 ($\sigma=25$): $\bar{x}_{\text{crit}} = 100 + 1.6449(25/\sqrt{36}) \approx 106.854$ bushels/acre.
+$$\text{Power}_2 = P\left(Z > \frac{106.854 - 108}{25/\sqrt{36}}\right) \approx P(Z > -0.275) \approx 0.6084$$
+
+This confirms part (a): Station 1's power (about 99.9%) is much greater than Station 2's power (about 60.8%), driven entirely by the difference in population variability.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 14</div>
+A retail chain trains its staff using a new customer-service program and tests whether it *increases* mean customer satisfaction scores (on a 100-point scale) above $\mu_0 = 72$, using $\sigma = 9$, $n = 40$, and $\alpha = 0.05$ in both cases. Study A evaluates the program against a modest alternative of $\mu_a = 74$; Study B evaluates it against a larger alternative of $\mu_a = 78$.
+
+(a) Without doing any calculation, state which study you expect to have greater power, and explain why.
+(b) Compute the power for each alternative and confirm your answer to part (a).
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Both studies use the same rejection cutoff $\bar{x}_{\text{crit}}$, since $\mu_0$, $\sigma$, $n$, and $\alpha$ are identical — only the *true* alternative mean differs between (a) and (b).
+- A larger gap between $\mu_0$ and $\mu_a$ (a larger effect size) shifts the alternative sampling distribution further away from the cutoff.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Study B ($\mu_a = 78$) should have greater power than Study A ($\mu_a = 74$), because the true effect size ($\mu_a - \mu_0$) is larger in Study B, shifting more of the alternative sampling distribution of $\bar{x}$ past the (shared) rejection cutoff.
+
+**(b)** The shared rejection cutoff is $\bar{x}_{\text{crit}} = 72 + 1.6449(9/\sqrt{40}) \approx 74.341$.
+
+Study A ($\mu_a=74$):
+$$\text{Power}_A = P\left(Z > \frac{74.341 - 74}{9/\sqrt{40}}\right) \approx P(Z > 0.240) \approx 0.4054$$
+
+Study B ($\mu_a=78$):
+$$\text{Power}_B = P\left(Z > \frac{74.341 - 78}{9/\sqrt{40}}\right) \approx P(Z > -2.572) \approx 0.9949$$
+
+This confirms part (a): Study B's power (about 99.5%) is much greater than Study A's power (about 40.5%), because detecting a larger true improvement (6 points vs. 2 points) is easier with the same sample size and variability.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 15</div>
+A food safety laboratory tests whether the mean concentration of a contaminant in a food product has *decreased* below the regulatory threshold $\mu_0 = 50$ ppm, using $\sigma = 8$ ppm, $n = 30$, and a true alternative of $\mu_a = 45$ ppm in both cases. Protocol A uses $\alpha = 0.01$; Protocol B uses $\alpha = 0.10$.
+
+(a) Without doing any calculation, state which protocol you expect to have greater power, and explain the trade-off involved.
+(b) Compute the power under each protocol and confirm your answer to part (a).
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Both protocols use a lower-tailed test: $H_a: \mu < \mu_0$.
+- A larger $\alpha$ moves the rejection cutoff $\bar{x}_{\text{crit}} = \mu_0 + z_\alpha(\sigma/\sqrt{n})$ closer to $\mu_0$, enlarging the rejection region.
+- Consider what a larger $\alpha$ does to the probability of a Type I error at the same time it changes power.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Protocol B ($\alpha = 0.10$) should have greater power than Protocol A ($\alpha = 0.01$), because a larger $\alpha$ makes the rejection region wider (the cutoff moves closer to $\mu_0$), so it is easier to reject $H_0$ under any given alternative. The trade-off is that Protocol B also has a higher probability of a Type I error — falsely concluding the contaminant level has decreased when it has not — since $\alpha$ *is* that Type I error probability.
+
+**(b)**
+
+Protocol A ($\alpha=0.01$, $z_{\text{crit}} = -2.3263$): $\bar{x}_{\text{crit}} = 50 - 2.3263(8/\sqrt{30}) \approx 46.602$ ppm.
+$$\text{Power}_A = P\left(Z < \frac{46.602 - 45}{8/\sqrt{30}}\right) \approx P(Z < 1.097) \approx 0.8637$$
+
+Protocol B ($\alpha=0.10$, $z_{\text{crit}} = -1.2816$): $\bar{x}_{\text{crit}} = 50 - 1.2816(8/\sqrt{30}) \approx 48.128$ ppm.
+$$\text{Power}_B = P\left(Z < \frac{48.128 - 45}{8/\sqrt{30}}\right) \approx P(Z < 2.142) \approx 0.9839$$
+
+This confirms part (a): Protocol B's power (about 98.4%) exceeds Protocol A's power (about 86.4%), but at the cost of a ten-times-larger Type I error rate (0.10 vs. 0.01).
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 16</div>
+A factory manager introduces a new assembly-line procedure and wants to know whether it *increases* the mean number of units produced per shift above the current level of $\mu_0 = 120$ units. The population standard deviation is known to be $\sigma = 18$ units. A random sample of $n = 49$ shifts under the new procedure is planned, and the test will be conducted at $\alpha = 0.05$.
+
+(a) Find the critical value $z_{\text{crit}}$ and express the rejection rule in terms of $z$.
+(b) Convert the rejection rule into a rule stated in terms of $\bar{x}$.
+(c) Calculate the power of this test against the alternative $\mu_a = 126$ units.
+(d) Interpret the power value you found in part (c) in the context of this scenario.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- This is an upper-tailed test, so the rejection rule is $z^* > z_{\text{crit}}$ with $z_{\text{crit}} = z_{1-\alpha}$.
+- Convert using $\bar{x}_{\text{crit}} = \mu_0 + z_{\text{crit}}(\sigma/\sqrt{n})$.
+- For part (c), standardize $\bar{x}_{\text{crit}}$ using $\mu_a = 126$, not $\mu_0 = 120$.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The hypotheses are $H_0: \mu = 120$ vs. $H_a: \mu > 120$. With $\alpha = 0.05$, $z_{\text{crit}} = z_{0.95} \approx 1.6449$. The rejection rule is: reject $H_0$ if $z^* > 1.6449$.
+
+**(b)** Since $\sigma = 18$ is known,
+$$z^* = \frac{\bar{x} - 120}{18/\sqrt{49}} > 1.6449 \quad \Longleftrightarrow \quad \bar{x} > 120 + 1.6449\left(\frac{18}{\sqrt{49}}\right) \approx 124.230$$
+So the test rejects $H_0$ whenever $\bar{x} > 124.230$ units.
+
+**(c)** Standardizing the cutoff $124.230$ using the alternative $\mu_a = 126$:
+$$\text{Power} = P\left(Z > \frac{124.230 - 126}{18/\sqrt{49}}\right) = P(Z > -0.6885) \approx 0.7544$$
+
+**(d)** There is approximately a 75.4% probability that this test will correctly detect a true increase in mean units produced per shift to 126, if the new assembly-line procedure really does raise output by that amount. Equivalently, there is roughly a 24.6% chance ($\beta$) that the study fails to detect this real improvement.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 17</div>
+A call center's average customer hold time has historically been $\mu_0 = 8$ minutes, with $\sigma = 2.4$ minutes known from years of call-log data. After introducing a new call-routing algorithm believed to *reduce* hold times, management plans to sample $n = 64$ calls and test at $\alpha = 0.05$.
+
+(a) Find the critical value $z_{\text{crit}}$ and express the rejection rule in terms of $z$.
+(b) Convert the rejection rule into a rule stated in terms of $\bar{x}$.
+(c) Calculate the power of this test against the alternative $\mu_a = 7.2$ minutes.
+(d) Interpret the power value you found in part (c) in the context of this scenario.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- "Reduce hold times" calls for a lower-tailed alternative: $H_a: \mu < \mu_0$, so $z_{\text{crit}} = z_{\alpha}$, a negative value.
+- The cutoff formula is $\bar{x}_{\text{crit}} = \mu_0 + z_{\text{crit}}(\sigma/\sqrt{n})$; because $z_{\text{crit}} < 0$, expect a cutoff below $\mu_0$.
+- For part (c), standardize $\bar{x}_{\text{crit}}$ under $\mu_a = 7.2$, and compute the probability with the correct (lower-tailed) direction.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** The hypotheses are $H_0: \mu = 8$ vs. $H_a: \mu < 8$. With $\alpha = 0.05$, $z_{\text{crit}} = z_{0.05} \approx -1.6449$. The rejection rule is: reject $H_0$ if $z^* < -1.6449$.
+
+**(b)** Since $\sigma = 2.4$ is known,
+$$z^* = \frac{\bar{x} - 8}{2.4/\sqrt{64}} < -1.6449 \quad \Longleftrightarrow \quad \bar{x} < 8 - 1.6449\left(\frac{2.4}{\sqrt{64}}\right) \approx 7.5065$$
+So the test rejects $H_0$ whenever $\bar{x} < 7.5065$ minutes.
+
+**(c)** Standardizing the cutoff $7.5065$ using the alternative $\mu_a = 7.2$:
+$$\text{Power} = P\left(Z < \frac{7.5065 - 7.2}{2.4/\sqrt{64}}\right) = P(Z < 1.0218) \approx 0.8466$$
+
+**(d)** There is approximately an 84.7% probability that this test will correctly detect a true reduction in mean hold time to 7.2 minutes, if the new routing algorithm really does reduce hold times by that amount. There is roughly a 15.3% chance ($\beta$) that the study fails to detect this real improvement.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 18</div>
+A cereal manufacturer's boxes are filled to a target mean weight of $\mu_0 = 350$ g, with $\sigma = 5$ g known from the filling equipment's specifications. Quality control wants to detect *either* overfilling or underfilling, so they test
+$$H_0: \mu = 350 \qquad \text{vs.} \qquad H_a: \mu \neq 350$$
+using $n = 40$ boxes at $\alpha = 0.05$.
+
+(a) Find the two critical z-values and the corresponding lower and upper rejection cutoffs for $\bar{x}$.
+(b) Calculate the power of this test against the alternative $\mu_a = 352$ g, making sure to account for both tails.
+(c) Interpret the power value you found in part (b) in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- For a two-sided test, split $\alpha$ evenly between the two tails: use $z_{\alpha/2}$ for both cutoffs.
+- The two cutoffs are $\bar{x}_{\text{crit,low}} = \mu_0 - z_{\alpha/2}(\sigma/\sqrt{n})$ and $\bar{x}_{\text{crit,high}} = \mu_0 + z_{\alpha/2}(\sigma/\sqrt{n})$.
+- Power is the probability that $\bar{x}$ falls below the *lower* cutoff **or** above the *upper* cutoff, standardized under $\mu_a = 352$ — do not simply double a one-sided power value without checking that both tails' contributions are actually meaningful.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** With $\alpha = 0.05$ split into two tails, $z_{\alpha/2} = z_{0.025} \approx 1.9600$. The standard error is $\sigma/\sqrt{n} = 5/\sqrt{40} \approx 0.7906$.
+$$\bar{x}_{\text{crit,low}} = 350 - 1.9600(0.7906) \approx 348.451 \qquad \bar{x}_{\text{crit,high}} = 350 + 1.9600(0.7906) \approx 351.549$$
+The test rejects $H_0$ whenever $\bar{x} < 348.451$ or $\bar{x} > 351.549$.
+
+**(b)** Standardizing both cutoffs under $\mu_a = 352$:
+$$z_{\text{low}} = \frac{348.451 - 352}{0.7906} \approx -4.490 \qquad z_{\text{high}} = \frac{351.549 - 352}{0.7906} \approx -0.570$$
+$$\text{Power} = P(Z < -4.490) + P(Z > -0.570) \approx 0.0000 + 0.7156 = 0.7156$$
+Here, the lower-tail contribution is essentially zero (since $\mu_a = 352$ is above $\mu_0$, it is extremely unlikely for $\bar{x}$ to fall below the *lower* cutoff), so almost all the power comes from the upper tail. This shows why doubling a one-sided power value is not generally valid — the two tails do not contribute equally when $\mu_a$ is much closer to one cutoff than the other.
+
+**(c)** There is approximately a 71.6% probability that this two-sided test will correctly detect that the mean fill weight has shifted to 352 g. There is roughly a 28.4% chance ($\beta$) that this real shift goes undetected.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 19</div>
+A university testing office administers a standardized diagnostic exam with a historical mean score of $\mu_0 = 78$ points and known standard deviation $\sigma = 12$ points. A tutoring center wants to know whether its students score higher on average, and uses a rejection rule (already derived from a chosen significance level) that rejects $H_0$ whenever $\bar{x} > 82$, based on a sample of $n = 36$ tutored students.
+
+Suppose the tutoring center's students truly have a mean score of $\mu_a = 84$ points.
+
+(a) Calculate $\beta$, the probability that this test fails to reject $H_0$ even though $\mu_a = 84$ is the true mean.
+(b) Calculate the power of the test against this same alternative.
+(c) Interpret both values in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- You are given the cutoff directly ($\bar{x}_{\text{crit}} = 82$), so there is no need to find $z_{\text{crit}}$ from $\alpha$ first.
+- $\beta$ is the probability of the *complementary* event to rejection, standardized under the true alternative mean $\mu_a = 84$: $\beta = P(\bar{x} < 82 \mid \mu = 84)$.
+- Once you have $\beta$, use the relationship between power and $\beta$ for part (b) — no separate standardization is needed.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Standardizing the cutoff $\bar{x}_{\text{crit}} = 82$ under $\mu_a = 84$:
+$$\beta = P(\bar{x} < 82 \mid \mu = 84) = P\left(Z < \frac{82 - 84}{12/\sqrt{36}}\right) = P(Z < -1.00) \approx 0.1587$$
+
+**(b)** $\text{Power} = 1 - \beta = 1 - 0.1587 = 0.8413$.
+
+**(c)** There is approximately an 84.1% probability that this test correctly detects the tutoring center's true mean score of 84. A Type II error would occur if the study failed to detect this real 6-point improvement even though the tutored students' true mean score had increased — this happens with probability $\beta \approx 0.1587$.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 20</div>
+A regional environmental agency is testing whether a new emissions regulation has *decreased* the mean concentration of a pollutant below the pre-regulation level of $\mu_0 = 42 \ \mu\text{g/m}^3$ ($\sigma = 9$, $n = 40$, $\alpha = 0.05$, lower-tailed test). The rejection cutoff works out to $\bar{x}_{\text{crit}} \approx 39.659$. The agency computed the power of this test against three different possible true post-regulation means:
+
+| True mean $\mu_a$ ($\mu\text{g/m}^3$) | 41 | 39 | 37 |
+|---|---|---|---|
+| Power | 0.1731 | 0.6784 | 0.9692 |
+
+(a) Describe the pattern shown in this table as $\mu_a$ moves further from $\mu_0 = 42$.
+(b) Explain, in terms of the sampling distribution of $\bar{x}$, why power behaves this way.
+(c) If the true post-regulation mean turned out to be $\mu_a = 41$, would you be confident that a study using this design would detect the improvement? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compare how far each value of $\mu_a$ is from $\mu_0 = 42$, and see how that distance lines up with the power values given.
+- Think about where the fixed cutoff $\bar{x}_{\text{crit}} = 39.659$ sits relative to each alternative sampling distribution (each one centered at a different $\mu_a$).
+- For part (c), a power value well below 0.5 says something specific about how often the test would succeed if repeated.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** As $\mu_a$ moves further below $\mu_0 = 42$ (from 41, to 39, to 37), power increases — from about 17.3%, to about 67.8%, to about 96.9%.
+
+**(b)** The rejection cutoff $\bar{x}_{\text{crit}} = 39.659$ stays fixed regardless of the true mean. As $\mu_a$ moves further below this fixed cutoff, more of the sampling distribution of $\bar{x}$ under that alternative (centered at $\mu_a$, with standard error $\sigma/\sqrt{n}$) falls below $\bar{x}_{\text{crit}}$, which is exactly the rejection region for this lower-tailed test. A small true decrease (like $\mu_a = 41$) leaves the alternative distribution mostly straddling the cutoff, so only a small fraction falls in the rejection region; a large true decrease (like $\mu_a = 37$) shifts nearly the entire distribution below the cutoff.
+
+**(c)** No — with power only about 0.1731 against $\mu_a = 41$, this design would correctly detect a true decrease to 41 only about 17% of the time; roughly 83% of the time it would fail to detect this real (but small) improvement. A much larger sample size would be needed to reliably detect an effect this modest.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 21</div>
+A demographer believes the mean age of residents in a rapidly growing suburb has *increased* above the historical value of $\mu_0 = 37$ years, with $\sigma = 6$ years known from census records. She wants to test $H_0: \mu = 37$ vs. $H_a: \mu > 37$ at $\alpha = 0.05$, and wants the power against the alternative $\mu_a = 39$ years to be at least $0.85$.
+
+(a) Write the rejection rule for $\bar{x}_*$ in terms of the (unknown) sample size $n$.
+(b) Write the expression for power in terms of $n$, and set it equal to $0.85$.
+(c) Solve for the minimum required sample size.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Set up two expressions for $\bar{x}_*$: one from $\alpha = P(\bar{X} > \bar{x}_* \mid \mu = 37)$, and one from $0.85 = P(\bar{X} > \bar{x}_* \mid \mu = 39)$.
+- Both expressions equal $\bar{x}_*$, so set them equal to each other and solve for $n$.
+- Remember that $n$ must be a whole number, and that rounding down would leave the achieved power slightly below the target.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** By definition,
+$$\alpha = P(\bar{X} > \bar{x}_* \mid \mu = 37) = P\left(Z > \frac{\bar{x}_* - 37}{6/\sqrt{n}}\right) = 0.05$$
+Since $P(Z > 1.6449) = 0.05$,
+$$\bar{x}_* = 37 + 1.6449\left(\frac{6}{\sqrt{n}}\right)$$
+
+**(b)** The power condition is
+$$\text{Power} = P(\bar{X} > \bar{x}_* \mid \mu = 39) = P\left(Z > \frac{\bar{x}_* - 39}{6/\sqrt{n}}\right) = 0.85$$
+Since $P(Z > -1.0364) \approx 0.85$,
+$$\frac{\bar{x}_* - 39}{6/\sqrt{n}} = -1.0364 \quad \Longrightarrow \quad \bar{x}_* = 39 - 1.0364\left(\frac{6}{\sqrt{n}}\right)$$
+
+**(c)** Setting the two expressions for $\bar{x}_*$ equal:
+$$37 + 1.6449\left(\frac{6}{\sqrt{n}}\right) = 39 - 1.0364\left(\frac{6}{\sqrt{n}}\right)$$
+$$n = \left[\frac{(1.6449 + 1.0364)(6)}{39 - 37}\right]^2 \approx 64.70$$
+The calculation gives $n = 64.70$, so the minimum required sample size is $\boxed{65}$ residents, because sample size must be a whole number and rounding down to 64 would leave the achieved power slightly below the target of 0.85.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 22</div>
+A pharmaceutical company believes a new medication *decreases* mean recovery time below the current standard of $\mu_0 = 14$ days, with $\sigma = 3$ days known from prior trials. It plans to test $H_0: \mu = 14$ vs. $H_a: \mu < 14$ at $\alpha = 0.05$, and wants the power against the alternative $\mu_a = 12.5$ days to be at least $0.90$.
+
+(a) Write the rejection rule for $\bar{x}_*$ in terms of the (unknown) sample size $n$.
+(b) Write the expression for power in terms of $n$, and set it equal to $0.90$.
+(c) Solve for the minimum required sample size.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- This is a lower-tailed test, so start from $\alpha = P(\bar{X} < \bar{x}_* \mid \mu = 14)$.
+- Set up a second expression for $\bar{x}_*$ from the power condition $0.90 = P(\bar{X} < \bar{x}_* \mid \mu = 12.5)$, then equate the two expressions for $\bar{x}_*$.
+- Round the final answer for $n$ up, not down.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** By definition,
+$$\alpha = P(\bar{X} < \bar{x}_* \mid \mu = 14) = P\left(Z < \frac{\bar{x}_* - 14}{3/\sqrt{n}}\right) = 0.05$$
+Since $P(Z < -1.6449) = 0.05$,
+$$\bar{x}_* = 14 - 1.6449\left(\frac{3}{\sqrt{n}}\right)$$
+
+**(b)** The power condition is
+$$\text{Power} = P(\bar{X} < \bar{x}_* \mid \mu = 12.5) = P\left(Z < \frac{\bar{x}_* - 12.5}{3/\sqrt{n}}\right) = 0.90$$
+Since $P(Z < 1.2816) \approx 0.90$,
+$$\frac{\bar{x}_* - 12.5}{3/\sqrt{n}} = 1.2816 \quad \Longrightarrow \quad \bar{x}_* = 12.5 + 1.2816\left(\frac{3}{\sqrt{n}}\right)$$
+
+**(c)** Setting the two expressions for $\bar{x}_*$ equal:
+$$14 - 1.6449\left(\frac{3}{\sqrt{n}}\right) = 12.5 + 1.2816\left(\frac{3}{\sqrt{n}}\right)$$
+$$n = \left[\frac{(1.6449 + 1.2816)(3)}{14 - 12.5}\right]^2 \approx 34.26$$
+The calculation gives $n = 34.26$, so the minimum required sample size is $\boxed{35}$ patients, because sample size must be a whole number and rounding down to 34 would leave the achieved power slightly below the target of 0.90.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 23</div>
+A public health survey reports that $p_0 = 0.30$ of adults in a region meet recommended weekly exercise guidelines. After a city-wide fitness campaign, researchers want to test whether the true proportion has *increased*, using
+$$H_0: p = 0.30 \qquad \text{vs.} \qquad H_a: p > 0.30$$
+with $n = 400$ adults surveyed at $\alpha = 0.05$, using the Normal approximation to the sampling distribution of $\hat{p}$.
+
+(a) Find the rejection cutoff $\hat{p}^{\,*}$ under $H_0$.
+(b) Calculate the power of this test against the true alternative $p_a = 0.35$.
+(c) Interpret the power value in context.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- The rejection cutoff must use the standard error under $H_0$, based on $p_0 = 0.30$: $\hat{p}^{\,*} = p_0 + z_{1-\alpha}\sqrt{p_0(1-p_0)/n}$.
+- Power requires standardizing $\hat{p}^{\,*}$ using the standard error based on $p_a = 0.35$ instead — the two stages use different standard errors.
+- This is an upper-tailed test, so use $P(Z > \cdot)$ for the power calculation.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** With $z_{\text{crit}} = z_{0.95} \approx 1.6449$:
+$$\hat{p}^{\,*} = 0.30 + 1.6449\sqrt{\frac{0.30(0.70)}{400}} \approx 0.3377$$
+The test rejects $H_0$ whenever $\hat{p} > 0.3377$.
+
+**(b)** Standardizing $\hat{p}^{\,*} = 0.3377$ using the true alternative $p_a = 0.35$:
+$$\text{Power} = P\left(Z > \frac{0.3377 - 0.35}{\sqrt{0.35(0.65)/400}}\right) = P(Z > -0.5162) \approx 0.6972$$
+(This uses the Normal approximation to the sampling distribution of $\hat{p}$, which is reasonable here since $np_a$ and $n(1-p_a)$ are both well above 10.)
+
+**(c)** There is approximately a 69.7% probability that this test correctly detects a true increase in the exercise-guideline compliance rate to 35%. There is roughly a 30.3% chance ($\beta$) that this real increase goes undetected by the survey.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 24</div>
+A subscription service currently retains $p_0 = 0.75$ of customers who report being "satisfied" after one year. Management is testing a new loyalty program, believing it will *increase* the satisfaction proportion, and wants to test $H_0: p = 0.75$ vs. $H_a: p > 0.75$ at $\alpha = 0.05$. They want the power against the alternative $p_a = 0.82$ to be at least $0.85$.
+
+(a) Write the rejection rule for $\hat{p}^{\,*}$ in terms of the (unknown) sample size $n$.
+(b) Write the expression for power in terms of $n$, and set it equal to $0.85$.
+(c) Solve for the minimum required sample size.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Follow the same two-equation strategy used for the mean-test sample-size problems, but with $\hat{p}^{\,*} = p_0 + z_{1-\alpha}\sqrt{p_0(1-p_0)/n}$ under $H_0$ and a second expression for $\hat{p}^{\,*}$ under $p_a = 0.82$ with power $= 0.85$.
+- The two standard-error terms (one using $p_0$, one using $p_a$) do **not** simplify to the same expression — keep them separate until the final equation.
+- Round the final $n$ up, not down.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** By definition,
+$$\alpha = P(\hat{p} > \hat{p}^{\,*} \mid p = 0.75) = P\left(Z > \frac{\hat{p}^{\,*} - 0.75}{\sqrt{0.75(0.25)/n}}\right) = 0.05$$
+Since $P(Z > 1.6449) = 0.05$,
+$$\hat{p}^{\,*} = 0.75 + 1.6449\sqrt{\frac{0.75(0.25)}{n}}$$
+
+**(b)** The power condition is
+$$\text{Power} = P(\hat{p} > \hat{p}^{\,*} \mid p = 0.82) = P\left(Z > \frac{\hat{p}^{\,*} - 0.82}{\sqrt{0.82(0.18)/n}}\right) = 0.85$$
+Since $P(Z > -1.0364) \approx 0.85$,
+$$\hat{p}^{\,*} = 0.82 - 1.0364\sqrt{\frac{0.82(0.18)}{n}}$$
+
+**(c)** Setting the two expressions for $\hat{p}^{\,*}$ equal:
+$$0.75 + 1.6449\sqrt{\frac{0.75(0.25)}{n}} = 0.82 - 1.0364\sqrt{\frac{0.82(0.18)}{n}}$$
+$$0.07 = \frac{1}{\sqrt{n}}\left(1.6449\sqrt{0.1875} + 1.0364\sqrt{0.1476}\right) = \frac{1.1105}{\sqrt{n}}$$
+$$\sqrt{n} = \frac{1.1105}{0.07} \approx 15.865 \quad \Longrightarrow \quad n \approx 251.64$$
+The calculation gives $n = 251.64$, so the minimum required sample size is $\boxed{252}$ customers, because sample size must be a whole number and rounding down to 251 would leave the achieved power slightly below the target of 0.85.
+</div>
+</details>
+
+---
+
+<div class="exercise-box">
+<div class="exercise-label">Question 25</div>
+A hospital's 30-day readmission rate has historically been $p_0 = 0.22$. A new discharge-planning program is designed to *reduce* readmissions, and the hospital is deciding among three proposed pilot study sizes before committing resources: $n = 100$, $n = 200$, and $n = 300$ patients. The test in each case is
+$$H_0: p = 0.22 \qquad \text{vs.} \qquad H_a: p < 0.22 \qquad \text{at } \alpha = 0.05$$
+and the hospital wants to know the power against a true post-program readmission rate of $p_a = 0.16$ for each design.
+
+(a) Compute the rejection cutoff $\hat{p}^{\,*}$ and the power against $p_a = 0.16$ for each of the three sample sizes.
+(b) Based on your results, which design would you recommend if the hospital can only afford to enroll $n = 200$ patients but wants power of at least $0.80$? Explain.
+(c) Suppose the pilot study is run with $n = 300$ patients, the test is conducted, and a p-value of $0.032$ is reported. Explain the conceptual difference between this p-value and the power calculated in part (a) for $n = 300$ — in particular, why the p-value alone (without the power calculations above) would not tell the hospital anything about how reliably the *design* could have detected a true reduction to $p_a = 0.16$ before the study was ever run.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+- Compute $\hat{p}^{\,*} = p_0 + z_{\alpha}\sqrt{p_0(1-p_0)/n}$ for each $n$ (this is a lower-tailed test), then standardize under $p_a = 0.16$ to get power for each design.
+- For part (b), compare the computed power values directly to the target of $0.80$.
+- For part (c), think about *when* each quantity can be calculated (before vs. after data collection) and what each one conditions on.
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+**(a)** Using $z_{\text{crit}} = z_{0.05} \approx -1.6449$:
+
+| $n$ | $\hat{p}^{\,*}$ | Power against $p_a = 0.16$ |
+|---|---|---|
+| 100 | 0.1519 | 0.4122 |
+| 200 | 0.1718 | 0.6758 |
+| 300 | 0.1807 | 0.8355 |
+
+For example, at $n = 300$: $\hat{p}^{\,*} = 0.22 - 1.6449\sqrt{0.22(0.78)/300} \approx 0.1807$, and
+$$\text{Power} = P\left(Z < \frac{0.1807 - 0.16}{\sqrt{0.16(0.84)/300}}\right) \approx P(Z < 0.976) \approx 0.8355$$
+
+**(b)** At $n = 200$, the power against $p_a = 0.16$ is only about $0.6758$, which falls short of the target of $0.80$. None of the three proposed sizes below 300 would meet the target — only the $n = 300$ design achieves power above $0.80$ (about $0.8355$). If the hospital is limited to $n = 200$, it should recognize that this design has roughly a 32% chance of failing to detect a real reduction to 16%, and should either seek to enroll more patients or accept this comparatively higher risk of a Type II error.
+
+**(c)** The p-value of $0.032$ is calculated *after* the data are collected, and it measures the strength of evidence in this *particular sample* against $H_0: p = 0.22$ — it says nothing about $p_a = 0.16$ specifically, nor about any other possible alternative. Power, by contrast, is calculated *before* the data are collected (during study design) and is a property of the testing procedure itself against a *specific* stated alternative ($p_a = 0.16$): it answers "if the true rate really were 0.16, how often would a study of this design correctly detect it?" A design can have low power against $p_a = 0.16$ and still occasionally produce a small p-value in an actual sample (as happened here), or have high power and still fail to reject $H_0$ in a particular unlucky sample. The p-value from a single completed study cannot retroactively tell the hospital how reliable its chosen sample size was — that question can only be answered by the power calculations performed in part (a).
+</div>
+</details>
