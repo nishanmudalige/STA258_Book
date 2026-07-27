@@ -932,10 +932,10 @@ $$E(X_i) = \mu, \quad \text{and} \quad \mathrm{Var}(X_i) = \sigma^2.$$
 
 Let $$\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i.$$
 
-By the Central Limit Theorem (CLT), we know that
-$$\bar{X}_n \sim \mathcal{N} \left( \mu, \frac{\sigma^2}{n} \right).$$
+Since $X_1, X_2, \ldots, X_n$ are i.i.d.\ with mean $\mu$ and variance $\sigma^2$, we have
+$$E(\bar{X}_n) = \mu \quad \text{and} \quad \mathrm{Var}(\bar{X}_n) = \frac{\sigma^2}{n}.$$
 
-Now, applying Chebyshev's Inequality from Theorem \@ref(thm:Chebyshev) to $\bar{X}_n$, we set $k = \varepsilon$, and obtain:
+Applying Chebyshev's Inequality from Theorem \@ref(thm:Chebyshev) to $\bar{X}_n$, we set $k = \varepsilon$, and obtain:
 $$P\left( \left| \bar{X}_n - \mu \right| > \varepsilon \right) \leq \frac{\mathrm{Var}(\bar{X}_n)}{\varepsilon^2} = \frac{\sigma^2 / n}{\varepsilon^2} = \frac{\sigma^2}{n \varepsilon^2}.$$
 
 Taking the limit as $n \to \infty$, we have:
@@ -1113,4 +1113,1294 @@ Then as we sample more and more values of $X$, the sample mean
 $\bar{X}_n$ converges in probability to $P(\text{heads up})$, that is:
 
 $$\bar{X}_n \overset{p}{\longrightarrow} P(\text{heads up}).$$
+
+## Exercises
+
+<!-- Q1 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 1</div>
+
+The birth weights of full-term newborns at a hospital are approximately normally distributed with mean $\mu = 3400$ g and standard deviation $\sigma = 500$ g.
+
+(a) Use the Empirical Rule to find the probability that a randomly selected newborn weighs between 2400 g and 4400 g.
+
+(b) Use the Empirical Rule to find the probability that a newborn weighs more than 4900 g.
+
+(c) Approximately the heaviest 2.5% of newborns weigh more than some value $c$. Use the Empirical Rule to find $c$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The Empirical Rule: 68% within $\pm 1\sigma$; 95% within $\pm 2\sigma$; 99.7% within $\pm 3\sigma$.
+- Sketch a bell curve and mark $\mu$, $\mu \pm \sigma$, $\mu \pm 2\sigma$, $\mu \pm 3\sigma$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $2400 = \mu - 2\sigma$ and $4400 = \mu + 2\sigma$, so by the Empirical Rule:
+
+$$P(2400 < X < 4400) \approx P(\mu - 2\sigma < X < \mu + 2\sigma) \approx 95\%$$
+
+**(b)** $4900 = \mu + 3\sigma$. By the Empirical Rule, approximately 99.7% of values fall within $\pm 3\sigma$, so approximately 0.3% fall outside. By symmetry, approximately 0.15% lie above $\mu + 3\sigma$:
+
+$$P(X > 4900) \approx 0.15\%$$
+
+**(c)** By symmetry, the top 2.5% corresponds to $\mu + 2\sigma = 3400 + 2(500) = 4400$ g. So $c \approx 4400$ g.
+
+</div>
+</details>
+
+---
+
+<!-- Q2 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 2</div>
+
+Let $Z \sim N(0, 1)$ be a standard normal random variable.
+
+(a) What are the mean and variance of $Z$?
+
+(b) A quality-control engineer measures the diameter of machined bolts. The diameters follow $X \sim N(10.0,\ 0.04)$ (in mm, so $\sigma^2 = 0.04$ and $\sigma = 0.2$ mm). Standardize $X$ by writing $Z = (X - \mu)/\sigma$. What distribution does $Z$ follow?
+
+(c) The engineer rejects bolts with diameters outside $[9.6,\ 10.4]$ mm. Express this acceptance interval in terms of $Z$ and identify the corresponding range of $z$-values.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The standard normal has $\mu = 0$ and $\sigma^2 = 1$.
+- Standardization: $Z = (X - \mu)/\sigma$ converts any $N(\mu, \sigma^2)$ to $N(0, 1)$.
+- Substitute each endpoint of the interval into $z = (x - \mu)/\sigma$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $E[Z] = 0$ and $\text{Var}(Z) = 1$.
+
+**(b)** $Z = (X - 10.0)/0.2 \sim N(0, 1)$.
+
+**(c)** Lower: $z = (9.6 - 10.0)/0.2 = -2$. Upper: $z = (10.4 - 10.0)/0.2 = 2$. The acceptance interval in $Z$-scores is $[-2,\ 2]$.
+
+</div>
+</details>
+
+---
+
+<!-- Q3 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 3</div>
+
+A dataset of exam scores is approximately normally distributed with a minimum of 42 and a maximum of 98.
+
+(a) Use the crude approximation $\hat{\sigma} \approx \text{Range}/4$ to estimate the standard deviation.
+
+(b) A classmate argues that a more careful estimate would use Range/6 instead. Under the Empirical Rule, which divisor ($4$ or $6$) corresponds to capturing approximately 95% of the data, and which corresponds to approximately 99.7%? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Range = max $-$ min.
+- Under the Empirical Rule: 95% of values lie within $\pm 2\sigma$ (total spread $\approx 4\sigma$); 99.7% within $\pm 3\sigma$ (total spread $\approx 6\sigma$).
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** Range $= 98 - 42 = 56$. $\hat{\sigma} \approx 56/4 = 14$.
+
+**(b)** Dividing by 4 assumes the observed range covers roughly $\pm 2\sigma$ ($4\sigma$ total), which corresponds to **95%** of the data. Dividing by 6 assumes the range covers $\pm 3\sigma$ ($6\sigma$ total), which corresponds to **99.7%** of the data. The choice of divisor reflects how extreme one assumes the most extreme observations to be.
+
+</div>
+</details>
+
+---
+
+<!-- Q4 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 4</div>
+
+Let $Z_1, Z_2, Z_3 \overset{\text{iid}}{\sim} N(0, 1)$.
+
+(a) What is the distribution of $W = Z_1^2 + Z_2^2 + Z_3^2$? State the name and parameter(s).
+
+(b) What is the distribution of $V = Z_1^2$? State the name and parameter(s).
+
+(c) A student claims that $Z_1^2 + Z_2^2$ follows a $\chi^2_4$ distribution because "$2 \times 2 = 4$." Is this correct? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- By definition, the sum of $k$ squared independent $N(0,1)$ variables follows $\chi^2_k$.
+- The degrees of freedom equal the number of squared terms, not the square of the number of terms.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $W = Z_1^2 + Z_2^2 + Z_3^2 \sim \chi^2_3$ (chi-square with 3 degrees of freedom).
+
+**(b)** $V = Z_1^2 \sim \chi^2_1$ (chi-square with 1 degree of freedom).
+
+**(c)** Incorrect. $Z_1^2 + Z_2^2$ is the sum of **2** squared independent standard normals, so it follows $\chi^2_2$, not $\chi^2_4$. The degrees of freedom count the number of squared terms.
+
+</div>
+</details>
+
+---
+
+<!-- Q5 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 5</div>
+
+Suppose $Z \sim N(0, 1)$ and $U \sim \chi^2_{9}$ are independent.
+
+(a) Write the expression for a random variable $T$ that follows a $t_9$ distribution using $Z$ and $U$.
+
+(b) As the degrees of freedom $\nu \to \infty$, the $t_\nu$ distribution approaches another well-known distribution. Which one? Explain briefly why this makes intuitive sense.
+
+(c) Two researchers compute tail probabilities. Researcher A uses the standard normal; Researcher B uses $t_{5}$. For the same tail region (say, beyond $|t| = 2$), who gets the larger tail probability? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $T = Z / \sqrt{U/\nu}$ where $\nu$ is the degrees of freedom.
+- The $t$ distribution has heavier tails than the normal; it is wider for small $\nu$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $T = \dfrac{Z}{\sqrt{U/9}} \sim t_9$.
+
+**(b)** As $\nu \to \infty$, $t_\nu \to N(0,1)$. As the degrees of freedom increase, the $t$ distribution becomes increasingly similar to the standard normal distribution: its heavier tails become less pronounced and the curve becomes taller and narrower at the centre. In the limit as $\nu \to \infty$, the $t_\nu$ distribution approaches $N(0,1)$.
+
+**(c)** Researcher B (using $t_5$) gets the larger tail probability. The $t$ distribution has heavier tails than the standard normal, so more probability lies in the tails — especially when the degrees of freedom are small.
+
+</div>
+</details>
+
+---
+
+<!-- Q6 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 6</div>
+
+Suppose $U \sim \chi^2_{3}$ and $V \sim \chi^2_{10}$ are independent.
+
+(a) Write the expression for a random variable $F$ that follows an $F_{3,10}$ distribution using $U$ and $V$.
+
+(b) State the two degrees of freedom parameters of $F$ and identify which corresponds to the numerator and which to the denominator.
+
+(c) The $F$ distribution is always non-negative. Explain why, based on its definition as a ratio.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $F = (U/\nu_1)\,/\,(V/\nu_2)$ where $\nu_1$ and $\nu_2$ are the numerator and denominator degrees of freedom.
+- Chi-square variables are sums of squared terms, so they are always $\geq 0$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $F = \dfrac{U/3}{V/10} \sim F_{3,\,10}$.
+
+**(b)** The numerator degrees of freedom are $\nu_1 = 3$ (from $U \sim \chi^2_3$); the denominator degrees of freedom are $\nu_2 = 10$ (from $V \sim \chi^2_{10}$).
+
+**(c)** $U$ and $V$ are chi-square random variables — each is a sum of squared terms and therefore $\geq 0$. Dividing by their degrees of freedom (positive constants) keeps each quotient $\geq 0$. The ratio of two non-negative quantities is non-negative, so $F \geq 0$ always.
+
+</div>
+</details>
+
+---
+
+<!-- Q7 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 7</div>
+
+A researcher repeatedly takes random samples of size $n = 36$ from a population with mean $\mu = 50$ and standard deviation $\sigma = 12$. Assume that $n = 36$ is sufficiently large for the CLT approximation to be appropriate in this setting.
+
+(a) What is the mean of the sampling distribution of $\bar{X}$?
+
+(b) What is the standard deviation (standard error) of $\bar{X}$?
+
+(c) By the Central Limit Theorem, what is the approximate distribution of $\bar{X}$?
+
+(d) Write the standardized version of $\bar{X}$: express $Z = (\bar{X} - \mu)/(\sigma/\sqrt{n})$ with numbers substituted in.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The sampling distribution of $\bar{X}$ has mean $\mu$ and standard deviation $\sigma/\sqrt{n}$.
+- The CLT says that for large $n$, $\bar{X}$ is approximately $N(\mu,\, \sigma^2/n)$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $E[\bar{X}] = \mu = 50$.
+
+**(b)** $\text{SD}(\bar{X}) = \sigma/\sqrt{n} = 12/\sqrt{36} = 12/6 = 2$.
+
+**(c)** By the CLT, $\bar{X} \overset{\text{approx}}{\sim} N(50,\, 4)$ (i.e., $N(\mu,\, \sigma^2/n) = N(50,\, 2^2)$).
+
+**(d)** $Z = \dfrac{\bar{X} - 50}{12/\sqrt{36}} = \dfrac{\bar{X} - 50}{2} \sim N(0,1)$ approximately.
+
+</div>
+</details>
+
+---
+
+<!-- Q8 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 8</div>
+
+A factory produces light bulbs with a mean lifetime of $\mu = 800$ hours and a standard deviation of $\sigma = 100$ hours. The distribution of individual lifetimes is unknown.
+
+(a) A quality inspector records the mean lifetime $\bar{X}$ of a random sample of $n = 100$ bulbs. What distribution does $\bar{X}$ approximately follow, and why?
+
+(b) Would the CLT apply equally well for a sample of $n = 4$ bulbs? Explain.
+
+(c) Another inspector samples $n = 100$ bulbs from a second factory where individual lifetimes are exactly normally distributed. Does the CLT still need to be invoked for $\bar{X}$ to be normal? Explain.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The CLT approximation generally improves as the sample size increases. For a sufficiently large sample size, the sampling distribution of the sample mean can often be approximated by a normal distribution under the conditions of the CLT.
+- If the parent distribution is itself normal, $\bar{X}$ is exactly normal for any $n$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** By the CLT, $\bar{X} \overset{\text{approx}}{\sim} N(800,\, 100^2/100) = N(800,\, 100)$, i.e., with mean 800 and standard deviation $100/\sqrt{100} = 10$ hours. The CLT applies because $n = 100$ is large.
+
+**(b)** With $n = 4$, the CLT approximation may not be reliable. The CLT guarantees approximate normality as $n$ grows large; for very small samples from a non-normal population, the sampling distribution of $\bar{X}$ may still be noticeably non-normal.
+
+**(c)** No — if the parent distribution is exactly normal, $\bar{X}$ is exactly $N(\mu,\, \sigma^2/n)$ for any $n$, including small samples. Therefore, the CLT is not needed to establish normality of $\bar{X}$ in this case.
+
+</div>
+</details>
+
+---
+
+<!-- Q9 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 9</div>
+
+Let $X$ be a random variable with mean $\mu = 20$ and variance $\sigma^2 = 16$.
+
+(a) Use Chebyshev's Inequality to find an upper bound for $P(|X - 20| \geq 8)$.
+
+(b) Use Chebyshev's Inequality to find a lower bound for $P(|X - 20| < 8)$.
+
+(c) Suppose $X_1, X_2, \ldots, X_n$ are i.i.d. copies of $X$. By the Weak Law of Large Numbers, what does $\bar{X}_n$ converge to in probability?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- Chebyshev's Inequality: $P(|X - \mu| \geq k) \leq \sigma^2/k^2$.
+- Using complements: $P(|X - \mu| < k) \geq 1 - \sigma^2/k^2$.
+- The WLLN states $\bar{X}_n \overset{p}{\longrightarrow} \mu$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** With $k = 8$, $\mu = 20$, $\sigma^2 = 16$:
+
+$$P(|X - 20| \geq 8) \leq \frac{\sigma^2}{k^2} = \frac{16}{64} = 0.25$$
+
+**(b)** By the complement form: $P(|X - 20| < 8) \geq 1 - 0.25 = 0.75$.
+
+**(c)** By the WLLN, $\bar{X}_n \overset{p}{\longrightarrow} \mu = 20$.
+
+</div>
+</details>
+
+---
+
+<!-- Q10 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 10</div>
+
+Use R to compute the following probabilities using the built-in distribution functions. Record the R command and the numerical result for each.
+
+(a) $P(Z \leq 1.96)$ where $Z \sim N(0,1)$.
+
+(b) $P(Z > 1.645)$ where $Z \sim N(0,1)$.
+
+(c) $P(T \leq 2.262)$ where $T \sim t_9$.
+
+(d) $P(\chi^2 \leq 16.92)$ where $\chi^2 \sim \chi^2_{9}$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="8">pnorm(___)
+pnorm(___, lower.tail = ___)
+pt(___, df = ___)
+pchisq(___, df = ___)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `pnorm(q)` gives $P(Z \leq q)$ for a standard normal.
+- Use `lower.tail = FALSE` to get the upper tail probability.
+- `pt(q, df)` and `pchisq(q, df)` work similarly for the $t$ and $\chi^2$ distributions.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+# (a)
+pnorm(1.96)             # ≈ 0.9750
+
+# (b)
+pnorm(1.645, lower.tail = FALSE)   # ≈ 0.0500
+
+# (c)
+pt(2.262, df = 9)       # ≈ 0.9750
+
+# (d)
+pchisq(16.92, df = 9)   # ≈ 0.9500
+```
+
+**(a)** $P(Z \leq 1.96) \approx 0.9750$
+
+**(b)** $P(Z > 1.645) \approx 0.0500$
+
+**(c)** $P(T \leq 2.262) \approx 0.9750$
+
+**(d)** $P(\chi^2 \leq 16.92) \approx 0.9500$
+
+</div>
+</details>
+
+---
+
+<!-- Q11 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 11</div>
+
+Use R to simulate the Central Limit Theorem. The population distribution is **Exponential with rate 1** (mean $= 1$, variance $= 1$), which is strongly right-skewed.
+
+(a) Draw 1000 samples of size $n = 5$ and compute the sample mean of each. Plot a histogram of the 1000 sample means.
+
+(b) Repeat with $n = 30$ and $n = 100$. Compare the three histograms. What do you observe as $n$ increases?
+
+(c) What does this simulation illustrate about the Central Limit Theorem?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="14">set.seed(42)
+means5   <- replicate(1000, mean(rexp(___, rate = ___)))
+means30  <- replicate(1000, mean(rexp(___, rate = ___)))
+means100 <- replicate(1000, mean(rexp(___, rate = ___)))
+par(mfrow = c(___, ___))
+hist(___, breaks = 30, main = "___", xlab = "Sample Mean", col = "#619CFF")
+hist(___, breaks = 30, main = "___", xlab = "Sample Mean", col = "#00BA38")
+hist(___, breaks = 30, main = "___", xlab = "Sample Mean", col = "#F8766D")
+par(mfrow = c(1, 1))
+cat("Mean:", mean(___), "  SD:", sd(___))
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `rexp(n, rate = 1)` generates $n$ observations from an Exponential(1) distribution.
+- `replicate(1000, expr)` repeats `expr` 1000 times and collects the results.
+- Look at the shape of each histogram: does it become more symmetric and bell-shaped as $n$ grows?
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+set.seed(42)
+sim_means <- function(n, reps = 1000) {
+  replicate(reps, mean(rexp(n, rate = 1)))
+}
+means5   <- sim_means(5)
+means30  <- sim_means(30)
+means100 <- sim_means(100)
+
+par(mfrow = c(1, 3))
+hist(means5,   breaks = 30, main = "n = 5",   xlab = "Sample Mean", col = "#619CFF")
+hist(means30,  breaks = 30, main = "n = 30",  xlab = "Sample Mean", col = "#00BA38")
+hist(means100, breaks = 30, main = "n = 100", xlab = "Sample Mean", col = "#F8766D")
+par(mfrow = c(1, 1))
+```
+
+**(b)** At $n = 5$, the histogram of sample means is still visibly right-skewed (reflecting the skewed parent). At $n = 30$, the histogram becomes much more symmetric and roughly bell-shaped. At $n = 100$, the histogram is very close to a normal curve, centred near 1 (the true mean) with smaller spread.
+
+**(c)** Even though the parent distribution is skewed, the sampling distribution of $\bar{X}$ becomes increasingly well approximated by a normal distribution as $n$ increases, as predicted by the Central Limit Theorem.
+
+</div>
+</details>
+
+---
+
+<!-- Q12 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 12</div>
+
+Use R to verify the Weak Law of Large Numbers by simulating rolling a fair six-sided die.
+
+(a) The theoretical mean of one die roll is $\mu = 3.5$. Generate a running sample mean for 500 rolls and plot it against the number of rolls. Add a horizontal dashed line at $\mu = 3.5$.
+
+(b) What do you observe about the running mean as the number of rolls increases? How does this relate to the WLLN?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="11">set.seed(7)
+n     <- 500
+rolls <- sample(___, size = ___, replace = ___)
+running_mean <- cumsum(___) / seq_len(___)
+plot(seq_len(n), ___, type = "l",
+     xlab = "Number of Rolls", ylab = "Running Sample Mean",
+     col = "#619CFF", ylim = c(1, 6))
+abline(h = ___, lty = 2, col = "red")
+legend("topright", legend = "___", lty = 2, col = "red")
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `sample(1:6, size = n, replace = TRUE)` simulates $n$ fair die rolls.
+- `cumsum(rolls) / seq_len(n)` computes the running (cumulative) sample mean after each roll.
+- Add the dashed line at $\mu = 3.5$ using `abline(h = 3.5, lty = 2)`.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+set.seed(7)
+n    <- 500
+rolls <- sample(1:6, size = n, replace = TRUE)
+running_mean <- cumsum(rolls) / seq_len(n)
+
+plot(seq_len(n), running_mean, type = "l",
+     xlab = "Number of Rolls", ylab = "Running Sample Mean",
+     main = "WLLN: Running Mean of Die Rolls",
+     col = "#619CFF", ylim = c(1, 6))
+abline(h = 3.5, lty = 2, col = "red")
+legend("topright", legend = "True mean = 3.5", lty = 2, col = "red")
+```
+
+**(b)** The running sample mean fluctuates substantially when the number of rolls is small, but tends to stabilize near $\mu = 3.5$ as the number of rolls increases. This simulation illustrates the WLLN: as the sample size grows, the sample mean tends to become increasingly close to the population mean.
+
+</div>
+</details>
+
+---
+
+<!-- Q13 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 13</div>
+
+Consider three independent normally distributed random variables:
+
+$$X \sim N(50,\; 4), \quad Y \sim N(50,\; 16), \quad W \sim N(60,\; 4)$$
+
+(Recall that the second parameter is the **variance** $\sigma^2$.)
+
+(a) Which two distributions have the same mean? Which two have the same spread (standard deviation)?
+
+(b) Describe how the bell curve for $X$ compares to that of $Y$ in terms of **centre** and **width**.
+
+(c) Describe how the bell curve for $X$ compares to that of $W$ in terms of **centre** and **width**.
+
+(d) Without computing any probabilities, which variable — $X$ or $Y$ — is more likely to take a value within 2 units of its mean? Explain using the standard deviations.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The mean $\mu$ controls the **location** (centre) of the bell curve; the standard deviation $\sigma = \sqrt{\sigma^2}$ controls its **width**.
+- A larger $\sigma$ produces a flatter, more spread-out curve; a smaller $\sigma$ produces a taller, narrower curve.
+- For part (d), think about how many standard deviations 2 units represents for each variable.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $X$ and $Y$ share the same mean ($\mu = 50$). $X$ and $W$ share the same variance ($\sigma^2 = 4$, so $\sigma = 2$).
+
+**(b)** $X$ and $Y$ are both centred at 50. We have $\sigma_X = 2$ and $\sigma_Y = 4$, so $Y$ has twice the standard deviation of $X$ and is more spread out.
+
+**(c)** $X$ and $W$ have the same standard deviation ($\sigma = 2$), so their bell curves have the **same width**. But $W$ is centred at 60, shifted 10 units to the right of $X$.
+
+**(d)** $X$ is more likely. For $X$: $\sigma_X = 2$, so 2 units equals $1\sigma_X$; by the Empirical Rule, about 68% of $X$ values fall within $\pm 1\sigma_X$. For $Y$: $\sigma_Y = 4$, so 2 units equals only $0.5\sigma_Y$, which covers a smaller fraction of $Y$'s distribution. The narrower spread of $X$ makes values near the mean more probable.
+
+</div>
+</details>
+
+---
+
+<!-- Q14 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 14</div>
+
+Random samples of size $n = 100$ are drawn from a large population with mean $\mu = 50$ and standard deviation $\sigma = 20$.
+
+(a) Compute $E[\bar{X}]$ and $\text{SE}(\bar{X}) = \sigma/\sqrt{n}$.
+
+(b) State the approximate distribution of $\bar{X}$ by the Central Limit Theorem.
+
+(c) Use the Empirical Rule applied to $\bar{X}$ to find $P(46 < \bar{X} < 54)$.
+
+(d) Using the Empirical Rule, find $P(\bar{X} > 54)$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\text{SE}(\bar{X}) = \sigma / \sqrt{n}$; compute this number first.
+- By the CLT, $\bar{X} \overset{\text{approx}}{\sim} N(\mu,\, \sigma^2/n)$.
+- Check how many standard errors 46 and 54 are from $\mu = 50$ — then apply the Empirical Rule.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $E[\bar{X}] = \mu = 50$. $\text{SE}(\bar{X}) = 20/\sqrt{100} = 20/10 = 2$.
+
+**(b)** By the CLT: $\bar{X} \overset{\text{approx}}{\sim} N(50,\; 4)$, i.e., normal with mean 50 and standard deviation 2.
+
+**(c)** $46 = \mu - 2\,\text{SE}$ and $54 = \mu + 2\,\text{SE}$, so by the Empirical Rule:
+
+$$P(46 < \bar{X} < 54) \approx 95\%$$
+
+**(d)** Since $54 = \mu + 2\,\text{SE}$, and by the Empirical Rule approximately 95% of the distribution falls within $\pm 2\,\text{SE}$, the remaining 5% is split equally between the two tails:
+
+$$P(\bar{X} > 54) \approx \frac{1 - 0.95}{2} = 2.5\%$$
+
+</div>
+</details>
+
+---
+
+<!-- Q15 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 15</div>
+
+Let $X_1, X_2, \ldots, X_n$ be i.i.d. random variables with mean $\mu = 10$ and variance $\sigma^2 = 25$.
+
+(a) For $n = 25$, compute $\text{Var}(\bar{X})$. Apply Chebyshev's Inequality to find an upper bound for $P(|\bar{X} - 10| \geq 3)$.
+
+(b) For $n = 100$, repeat part (a).
+
+(c) Compare the two bounds. What does this illustrate about the behaviour of $\bar{X}$ as $n$ increases?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\text{Var}(\bar{X}) = \sigma^2/n$.
+- Apply Chebyshev's Inequality to $\bar{X}$: $P(|\bar{X} - \mu| \geq k) \leq \text{Var}(\bar{X})/k^2$.
+- Set $k = 3$ in both parts.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $\text{Var}(\bar{X}) = 25/25 = 1$. Applying Chebyshev with $k = 3$:
+
+$$P(|\bar{X} - 10| \geq 3) \leq \frac{1}{3^2} = \frac{1}{9} \approx 0.111$$
+
+**(b)** $\text{Var}(\bar{X}) = 25/100 = 0.25$. Applying Chebyshev:
+
+$$P(|\bar{X} - 10| \geq 3) \leq \frac{0.25}{9} \approx 0.028$$
+
+**(c)** As $n$ increases from 25 to 100, $\text{Var}(\bar{X})$ decreases and the Chebyshev bound tightens. This illustrates the WLLN: $\bar{X}$ becomes increasingly concentrated around $\mu = 10$ as the sample size grows.
+
+</div>
+</details>
+
+---
+
+<!-- Q16 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 16</div>
+
+For each $n = 1, 2, \ldots$, define a random variable $Y_n$ by
+
+$$Y_n = \begin{cases} 2, & \text{with probability } 1 - \dfrac{1}{n}, \\[6pt] 5, & \text{with probability } \dfrac{1}{n}. \end{cases}$$
+
+(a) Let $0 < \varepsilon < 3$. Find $P(|Y_n - 2| > \varepsilon)$.
+
+(b) What is $P(|Y_n - 2| > \varepsilon)$ when $\varepsilon \geq 3$?
+
+(c) For every fixed $\varepsilon > 0$, find $\displaystyle\lim_{n \to \infty} P(|Y_n - 2| > \varepsilon)$. Based on the definition of convergence in probability, does $Y_n$ converge in probability to 2?
+
+(d) Explain intuitively why your answer to part (c) makes sense.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $Y_n$ differs from 2 only when $Y_n = 5$; in that case $|Y_n - 2| = 3$.
+- Consider the two cases $0 < \varepsilon < 3$ and $\varepsilon \geq 3$ separately.
+- Recall that $Y_n \overset{p}{\longrightarrow} c$ means that for every fixed $\varepsilon > 0$, $P(|Y_n - c| > \varepsilon) \to 0$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** For $0 < \varepsilon < 3$, the event $|Y_n - 2| > \varepsilon$ occurs exactly when $Y_n = 5$, since $|5 - 2| = 3 > \varepsilon$. Therefore:
+
+$$P(|Y_n - 2| > \varepsilon) = P(Y_n = 5) = \frac{1}{n}$$
+
+**(b)** If $\varepsilon \geq 3$, neither possible value of $Y_n$ is more than $\varepsilon$ units away from 2. Therefore:
+
+$$P(|Y_n - 2| > \varepsilon) = 0$$
+
+**(c)** For $0 < \varepsilon < 3$:
+
+$$\lim_{n \to \infty} P(|Y_n - 2| > \varepsilon) = \lim_{n \to \infty} \frac{1}{n} = 0$$
+
+For $\varepsilon \geq 3$, the probability is already 0. Thus, for every fixed $\varepsilon > 0$:
+
+$$\lim_{n \to \infty} P(|Y_n - 2| > \varepsilon) = 0$$
+
+Therefore, by the definition of convergence in probability, $Y_n \overset{p}{\longrightarrow} 2$.
+
+**(d)** The probability that $Y_n = 2$ is $1 - \tfrac{1}{n}$, which approaches 1 as $n \to \infty$. At the same time, $P(Y_n = 5) = \tfrac{1}{n} \to 0$. Therefore, as $n$ increases, $Y_n$ becomes increasingly likely to equal 2.
+
+</div>
+</details>
+
+---
+
+<!-- Q17 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 17</div>
+
+Suppose $X_1, X_2, \ldots, X_n$ are i.i.d. random variables with $E[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2 < \infty$. Consider the sample mean $\bar{X}_n = (X_1 + \cdots + X_n)/n$.
+
+For each statement below, determine whether it is primarily described by the **Central Limit Theorem (CLT)** or the **Weak Law of Large Numbers (WLLN)**.
+
+(a) As $n$ becomes large, $\bar{X}_n$ becomes increasingly concentrated near $\mu$.
+
+(b) For large $n$, $\dfrac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma}$ has an approximately standard normal distribution.
+
+(c) For every fixed $\varepsilon > 0$, $P(|\bar{X}_n - \mu| > \varepsilon) \to 0$.
+
+(d) A student says: "The WLLN and CLT say exactly the same thing because both involve the sample mean when $n$ becomes large." Is the student correct? Briefly explain the main difference between the two results.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+Think about what each theorem describes:
+
+- Does it describe **where** the sample mean goes (convergence in probability)?
+- Or does it describe the **shape** of the standardized sampling distribution?
+- The WLLN uses convergence in probability: $\bar{X}_n \overset{p}{\longrightarrow} \mu$.
+- The CLT describes the approximately normal distribution of the standardized sample mean for large $n$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** **WLLN.** The WLLN states that $\bar{X}_n \overset{p}{\longrightarrow} \mu$, so as $n$ grows, the sample mean becomes increasingly concentrated near the population mean.
+
+**(b)** **CLT.** The CLT describes the standardized sample mean: for large $n$, $\dfrac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma}$ has an approximately standard normal distribution.
+
+**(c)** **WLLN.** The statement $P(|\bar{X}_n - \mu| > \varepsilon) \to 0$ for every fixed $\varepsilon > 0$ is the convergence-in-probability statement used in the WLLN.
+
+**(d)** The student is incorrect. The WLLN describes **where** the sample mean goes: as $n$ increases, $\bar{X}_n$ becomes increasingly close to $\mu$ in probability. The CLT describes the **shape** of the standardized sampling distribution: for large $n$, $\dfrac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma}$ is approximately standard normal. The two theorems are related but describe different aspects of the behaviour of $\bar{X}_n$.
+
+</div>
+</details>
+
+---
+
+<!-- Q18 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 18</div>
+
+Let $X \sim \chi^2_3$ and $Y \sim \chi^2_7$ be independent.
+
+(a) By the definition of the chi-square distribution, how many squared standard normal terms does $X$ represent? How many does $Y$ represent?
+
+(b) Write $W = X + Y$ as a sum of squared standard normals. What is the distribution of $W$?
+
+(c) Now let $A \sim \chi^2_4$ and $B \sim \chi^2_4$ be independent. Let $T = \dfrac{Z}{\sqrt{(A+B)/8}}$ where $Z \sim N(0,1)$ is independent of $A$ and $B$. Identify the distribution of $T$.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\chi^2_k$ is by definition the sum of $k$ squared i.i.d.\ $N(0,1)$ variables, so adding $\chi^2_m$ and $\chi^2_n$ gives $\chi^2_{m+n}$.
+- For part (c): first find the distribution of $A + B$, then match the expression $Z/\sqrt{\cdot/\nu}$ to the $t_\nu$ definition.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** $X$ represents 3 squared standard normals; $Y$ represents 7 squared standard normals.
+
+**(b)** $W = X + Y$ is the sum of $3 + 7 = 10$ independent squared standard normals, so $W \sim \chi^2_{10}$.
+
+**(c)** $A + B \sim \chi^2_{4+4} = \chi^2_8$. Therefore:
+
+$$T = \frac{Z}{\sqrt{(A+B)/8}} \sim t_8$$
+
+matching the definition $T = Z/\sqrt{U/\nu}$ with $U = A + B \sim \chi^2_8$ and $\nu = 8$.
+
+</div>
+</details>
+
+---
+
+<!-- Q19 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 19</div>
+
+A normally distributed variable $X$ is known to satisfy the following two properties:
+
+- Approximately 95% of values lie between 30 and 70.
+- The distribution is symmetric.
+
+(a) Find $\mu$.
+
+(b) Find $\sigma$ using the Empirical Rule.
+
+(c) What percentage of values lie above 80, according to the Empirical Rule?
+
+(d) Standardize: if a randomly selected value is $x = 55$, compute its $z$-score.
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- The mean is at the centre of the symmetric interval.
+- By the Empirical Rule, 95% of values lie within $\mu \pm 2\sigma$, so the half-width of the interval equals $2\sigma$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** By symmetry, $\mu = (30 + 70)/2 = 50$.
+
+**(b)** The interval $[30,\, 70]$ covers 95% of the distribution, so it spans $\mu \pm 2\sigma$. The half-width is $70 - 50 = 20 = 2\sigma$, giving $\sigma = 10$.
+
+**(c)** $80 = \mu + 3\sigma = 50 + 30$. By the Empirical Rule, approximately 99.7% of values fall within $\pm 3\sigma$, leaving approximately 0.3% outside; by symmetry, approximately **0.15%** lie above 80.
+
+**(d)** $z = (55 - 50)/10 = 0.5$.
+
+</div>
+</details>
+
+---
+
+<!-- Q20 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 20</div>
+
+Use R to find the following quantiles (critical values) using the built-in distribution functions.
+
+(a) Find the value $z^*$ such that $P(Z \leq z^*) = 0.975$ for $Z \sim N(0,1)$.
+
+(b) Find the 95th percentile of $T \sim t_{15}$.
+
+(c) Find the value $c$ such that $P(\chi^2 \leq c) = 0.90$ for $\chi^2 \sim \chi^2_{10}$.
+
+(d) Find the value $f^*$ such that $P(F \leq f^*) = 0.95$ for $F \sim F_{3,\,20}$.
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="8">qnorm(___)
+qt(___, df = ___)
+qchisq(___, df = ___)
+qf(___, df1 = ___, df2 = ___)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `qnorm(p)` returns the value $z$ such that $P(Z \leq z) = p$.
+- `qt(p, df)`, `qchisq(p, df)`, and `qf(p, df1, df2)` work the same way for their respective distributions.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+qnorm(0.975)            # (a) ≈ 1.960
+qt(0.95, df = 15)       # (b) ≈ 1.753
+qchisq(0.90, df = 10)   # (c) ≈ 15.99
+qf(0.95, df1 = 3, df2 = 20)  # (d) ≈ 3.098
+```
+
+**(a)** $z^* \approx 1.960$ — this is the familiar 97.5th percentile of the standard normal.
+
+**(b)** 95th percentile of $t_{15} \approx 1.753$ — note this is slightly larger than $z_{0.95} \approx 1.645$ for the standard normal, reflecting the heavier tails of the $t$ distribution.
+
+**(c)** $c \approx 15.99$.
+
+**(d)** $f^* \approx 3.098$.
+
+</div>
+</details>
+
+---
+
+<!-- Q21 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 21</div>
+
+Use R to simulate the sampling distribution of $\bar{X}$ when the population distribution is **Uniform on $[0,\, 1]$** (mean $\mu = 0.5$, variance $\sigma^2 = 1/12$).
+
+(a) For $n = 1, 10, 50$, generate 2000 samples of each size and compute the sample mean of each. Plot histograms of the 2000 sample means side by side.
+
+(b) For $n = 50$: compute the mean and variance of your 2000 simulated sample means. Compare with the theoretical values $\mu = 0.5$ and $\sigma^2/n = 1/600$.
+
+(c) What do you observe about the shape of the distribution as $n$ increases?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="14">set.seed(99)
+reps <- 2000
+means1  <- replicate(reps, mean(runif(___)))
+means10 <- replicate(reps, mean(runif(___)))
+means50 <- replicate(reps, mean(runif(___)))
+par(mfrow = c(___, ___))
+hist(___, breaks = 30, main = "___", xlab = "Sample Mean", col = "#619CFF")
+hist(___, breaks = 30, main = "___", xlab = "Sample Mean", col = "#00BA38")
+hist(___, breaks = 30, main = "___", xlab = "Sample Mean", col = "#F8766D")
+par(mfrow = c(1, 1))
+cat("Simulated mean:", mean(___), " Simulated var:", var(___), " Theoretical var:", ___ / ___)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `runif(n)` generates $n$ observations from Uniform$[0,1]$.
+- The theoretical variance of $\bar{X}$ for $n = 50$ is $\sigma^2/n = (1/12)/50 \approx 0.00167$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+set.seed(99)
+reps <- 2000
+means1  <- replicate(reps, mean(runif(1)))
+means10 <- replicate(reps, mean(runif(10)))
+means50 <- replicate(reps, mean(runif(50)))
+
+par(mfrow = c(1, 3))
+hist(means1,  breaks = 30, main = "n = 1",  xlab = "Sample Mean", col = "#619CFF")
+hist(means10, breaks = 30, main = "n = 10", xlab = "Sample Mean", col = "#00BA38")
+hist(means50, breaks = 30, main = "n = 50", xlab = "Sample Mean", col = "#F8766D")
+par(mfrow = c(1, 1))
+mean(means50)   # ≈ 0.500
+var(means50)    # ≈ 0.00167
+```
+
+**(b)** The simulated mean $\approx 0.500$ (matches $\mu = 0.5$) and the simulated variance $\approx 0.00167$ (matches $\sigma^2/n = 1/600 \approx 0.00167$).
+
+**(c)** At $n = 1$, the histogram is flat (matching the uniform parent). As $n$ increases to 10 and 50, the histogram becomes increasingly symmetric and bell-shaped — illustrating the Central Limit Theorem even for a non-normal parent.
+
+</div>
+</details>
+
+---
+
+<!-- Q22 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 22</div>
+
+Use R to plot the $t_\nu$ distribution for $\nu = 2, 10, 30$ alongside the standard normal $N(0,1)$ on the same axes.
+
+(a) Run the code and describe how the shape of the $t$ distribution changes as $\nu$ increases.
+
+(b) At $x = 2$, which distribution has the highest density: $t_2$, $t_{10}$, $t_{30}$, or $N(0,1)$? Does this agree with the property that the $t$ distribution has heavier tails than the normal?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="12">x <- seq(-4, 4, length.out = 300)
+plot(x, dnorm(___), type = "l", lwd = 2, col = "black",
+     ylab = "Density", ylim = c(0, 0.42))
+lines(x, dt(x, df = ___), col = "#F8766D", lwd = 2, lty = 2)
+lines(x, dt(x, df = ___), col = "#00BA38", lwd = 2, lty = 3)
+lines(x, dt(x, df = ___), col = "#619CFF", lwd = 2, lty = 4)
+legend("topright",
+       legend = c("N(0,1)", "t(2)", "t(10)", "t(30)"),
+       col    = c("black", "#F8766D", "#00BA38", "#619CFF"),
+       lty    = c(1, 2, 3, 4), lwd = 2)
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `dt(x, df = v)` computes the density of $t_\nu$ at $x$.
+- The $t$ distribution has heavier tails: more density far from zero, less density at the centre, compared to $N(0,1)$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+x <- seq(-4, 4, length.out = 300)
+plot(x, dnorm(x), type = "l", lwd = 2, col = "black",
+     ylab = "Density", main = "t-distributions vs Standard Normal",
+     ylim = c(0, 0.42))
+lines(x, dt(x, df = 2),  col = "#F8766D", lwd = 2, lty = 2)
+lines(x, dt(x, df = 10), col = "#00BA38", lwd = 2, lty = 3)
+lines(x, dt(x, df = 30), col = "#619CFF", lwd = 2, lty = 4)
+legend("topright",
+       legend = c("N(0,1)", "t(2)", "t(10)", "t(30)"),
+       col    = c("black", "#F8766D", "#00BA38", "#619CFF"),
+       lty    = c(1, 2, 3, 4), lwd = 2)
+```
+
+**(a)** As $\nu$ increases, the $t_\nu$ curve becomes taller at the centre and its tails become lighter, converging toward the $N(0,1)$ curve. At $\nu = 30$ the curves are nearly indistinguishable.
+
+**(b)** At $x = 2$, the $t_2$ distribution has the **highest** density — because heavy tails mean more probability mass farther from zero. The standard normal has the lowest density at $x = 2$ among the four. This is consistent with the $t$ distribution's heavier-tail property: probability "moved" from the centre to the tails means the peak is lower but the tail density is higher than the normal.
+
+</div>
+</details>
+
+---
+
+<!-- Q23 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 23</div>
+
+Use R to verify Chebyshev's Inequality by simulation. Let $X \sim \text{Exponential}(\text{rate} = 1)$, so $\mu = 1$ and $\sigma^2 = 1$.
+
+(a) Generate 50,000 observations from $X$. Compute the proportion of observations satisfying $|X - 1| \geq 2$ (i.e., $X \leq -1$ or $X \geq 3$). Since $X \geq 0$, this reduces to $X \geq 3$.
+
+(b) Chebyshev's Inequality gives $P(|X - 1| \geq 2) \leq \sigma^2/k^2 = 1/4 = 0.25$. Does your simulated proportion satisfy this bound?
+
+(c) The exact probability is $P(X \geq 3) = e^{-3} \approx 0.050$. How does the Chebyshev bound compare to the exact value? What does this tell you about Chebyshev's Inequality?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="12">set.seed(21)
+n <- 50000
+x          <- rexp(n, rate = ___)
+prop_sim   <- mean(x >= ___)
+cheb_bound <- ___ / ___^2
+exact      <- exp(___)
+cat("Simulated proportion:", prop_sim, "\n")
+cat("Chebyshev bound:     ", cheb_bound, "\n")
+cat("Exact probability:   ", round(exact, 4), "\n")
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `rexp(n, rate = 1)` generates exponential observations with mean 1.
+- The Chebyshev bound uses $k = 2$: $\sigma^2/k^2 = 1/4$.
+- `mean(x >= 3)` computes the proportion of observations $\geq 3$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+set.seed(21)
+n <- 50000
+x <- rexp(n, rate = 1)
+prop_sim <- mean(x >= 3)
+cat("Simulated proportion:", prop_sim, "\n")   # ≈ 0.050
+cheb_bound <- 1 / 4
+cat("Chebyshev bound:", cheb_bound, "\n")       # 0.250
+exact <- exp(-3)
+cat("Exact probability:", round(exact, 4), "\n") # 0.0498
+```
+
+**(b)** The simulated proportion ($\approx 0.050$) is well below the Chebyshev bound of 0.25 — the bound holds.
+
+**(c)** The Chebyshev bound (0.25) is much larger than the exact probability ($\approx 0.050$). Chebyshev's Inequality is a **conservative** (worst-case) bound that holds for **any** distribution with finite mean and variance. It does not require knowledge of the distribution's shape, so it sacrifices sharpness in exchange for generality.
+
+</div>
+</details>
+
+---
+
+<!-- Q24 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 24</div>
+
+Use R to investigate how the CLT improves normality of $\bar{X}$ when the population is **Poisson with $\lambda = 2$** (right-skewed, mean $= 2$, variance $= 2$).
+
+For $n = 5, 30, 100$: generate 1000 sample means and use `qqnorm()` to assess normality.
+
+(a) Run the code. For which value of $n$ does the Q-Q plot appear most linear (closest to the reference line)?
+
+(b) What does the Q-Q plot for $n = 5$ look like compared to $n = 100$? How does this relate to the CLT?
+
+<div class="webr-exercise">
+<div class="webr-exercise-header">R Exercise</div>
+<textarea class="webr-editor" rows="13">set.seed(14)
+reps <- 1000
+means5   <- replicate(reps, mean(rpois(___, lambda = ___)))
+means30  <- replicate(reps, mean(rpois(___, lambda = ___)))
+means100 <- replicate(reps, mean(rpois(___, lambda = ___)))
+par(mfrow = c(___, ___))
+qqnorm(___); qqline(___)
+qqnorm(___); qqline(___)
+qqnorm(___); qqline(___)
+par(mfrow = c(1, 1))
+</textarea>
+<div class="webr-controls">
+  <button class="webr-run-btn" disabled>▶ Run</button>
+  <button class="webr-reset-btn">↺ Reset</button>
+</div>
+<div class="webr-output-area"></div>
+<div class="webr-canvas-area"><canvas></canvas></div>
+</div>
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- `rpois(n, lambda = 2)` generates $n$ Poisson observations.
+- A Q-Q plot compares the quantiles of your data against those of a normal distribution. A straight line indicates normality.
+- Deviations from the line (especially at the tails) indicate non-normality.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+```r
+set.seed(14)
+reps <- 1000
+means5   <- replicate(reps, mean(rpois(5,   lambda = 2)))
+means30  <- replicate(reps, mean(rpois(30,  lambda = 2)))
+means100 <- replicate(reps, mean(rpois(100, lambda = 2)))
+
+par(mfrow = c(1, 3))
+qqnorm(means5,   main = "n = 5");   qqline(means5)
+qqnorm(means30,  main = "n = 30");  qqline(means30)
+qqnorm(means100, main = "n = 100"); qqline(means100)
+par(mfrow = c(1, 1))
+```
+
+**(a)** The Q-Q plot for $n = 100$ is most linear — the points fall very close to the reference line, indicating that the distribution of $\bar{X}$ is approximately normal.
+
+**(b)** For $n = 5$, the Q-Q plot shows noticeable curvature, especially in the upper tail (reflecting the right-skewed Poisson parent). As $n$ increases to 30 and 100, the points tend to follow the reference line more closely and the Q-Q plots become progressively more linear. Even though the parent distribution is skewed, the sampling distribution of $\bar{X}$ becomes increasingly well approximated by a normal distribution as $n$ increases, as predicted by the Central Limit Theorem.
+
+</div>
+</details>
+
+---
+
+<!-- Q25 -->
+<div class="exercise-box">
+<div class="exercise-label">Question 25</div>
+
+Let $X_1, X_2, \ldots$ be i.i.d. Bernoulli random variables with success probability $p = 0.4$, so $E[X_i] = 0.4$ and $\text{Var}(X_i) = p(1-p) = 0.24$.
+
+(a) By the WLLN, what value does $\bar{X}_n$ converge to in probability?
+
+(b) Use Chebyshev's Inequality to find the minimum $n$ such that:
+
+$$P\!\left(|\bar{X}_n - 0.4| \geq 0.05\right) \leq 0.05$$
+
+Show all steps.
+
+(c) Interpret your answer: in the context of estimating a proportion from a survey, what does this bound guarantee?
+</div>
+
+<details data-type="hint">
+<summary>💡 Hint</summary>
+<div class="content">
+
+- $\text{Var}(\bar{X}_n) = \text{Var}(X_i)/n = 0.24/n$.
+- Apply Chebyshev with $k = 0.05$: set $\dfrac{0.24/n}{(0.05)^2} \leq 0.05$ and solve for $n$.
+
+</div>
+</details>
+
+<details data-type="answer">
+<summary>✅ Answer</summary>
+<div class="content">
+
+**(a)** By the WLLN: $\bar{X}_n \overset{p}{\longrightarrow} 0.4$.
+
+**(b)** $\text{Var}(\bar{X}_n) = 0.24/n$. By Chebyshev's Inequality:
+
+$$P(|\bar{X}_n - 0.4| \geq 0.05) \leq \frac{0.24/n}{(0.05)^2} = \frac{0.24}{0.0025\,n} = \frac{96}{n}$$
+
+Setting $96/n \leq 0.05$:
+
+$$n \geq \frac{96}{0.05} = 1920$$
+
+The minimum required sample size is $n = 1920$.
+
+**(c)** With $n = 1920$ respondents, Chebyshev's Inequality guarantees that the probability that the sample proportion $\bar{X}_n$ differs from the true proportion $p = 0.4$ by at least 0.05 is at most 5%.
+
+</div>
+</details>
 

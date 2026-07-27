@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-07-25" />
+<meta name="date" content="2026-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -357,8 +357,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -368,7 +369,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -509,6 +510,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#weak-law-of-large-numbers-wlln"><i class="fa fa-check"></i><b>4.4.2</b> Weak Law of Large Numbers (WLLN)</a></li>
 <li class="chapter" data-level="4.4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#simulation"><i class="fa fa-check"></i><b>4.4.3</b> Simulation</a></li>
 </ul></li>
+<li class="chapter" data-level="4.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#exercises"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
 <ul>
@@ -580,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#anova-table-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2.3</b> ANOVA Table for Simple Linear Regression</a></li>
 <li class="chapter" data-level="9.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>9.2.4</b> Residual Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#exercises"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
+<li class="chapter" data-level="9.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#exercises-1"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>10</b> Analysis of Categorical Data</a>
 <ul>
@@ -989,30 +991,30 @@ p_value</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="analysis-of-categorical-data.html#cb204-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">32</span>, <span class="dv">30</span>, <span class="dv">64</span>, <span class="dv">54</span>, <span class="dv">42</span>)</span>
-<span id="cb204-2"><a href="analysis-of-categorical-data.html#cb204-2" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.13</span>, <span class="fl">0.14</span>, <span class="fl">0.13</span>, <span class="fl">0.24</span>, <span class="fl">0.20</span>, <span class="fl">0.16</span>)</span>
-<span id="cb204-3"><a href="analysis-of-categorical-data.html#cb204-3" tabindex="-1"></a>n        <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
-<span id="cb204-4"><a href="analysis-of-categorical-data.html#cb204-4" tabindex="-1"></a></span>
-<span id="cb204-5"><a href="analysis-of-categorical-data.html#cb204-5" tabindex="-1"></a><span class="co"># (a) Expected counts under H0</span></span>
-<span id="cb204-6"><a href="analysis-of-categorical-data.html#cb204-6" tabindex="-1"></a>expected <span class="ot">&lt;-</span> n <span class="sc">*</span> probs</span>
-<span id="cb204-7"><a href="analysis-of-categorical-data.html#cb204-7" tabindex="-1"></a>expected</span>
-<span id="cb204-8"><a href="analysis-of-categorical-data.html#cb204-8" tabindex="-1"></a><span class="co"># [1] 32.5 35.0 32.5 60.0 50.0 40.0</span></span>
-<span id="cb204-9"><a href="analysis-of-categorical-data.html#cb204-9" tabindex="-1"></a></span>
-<span id="cb204-10"><a href="analysis-of-categorical-data.html#cb204-10" tabindex="-1"></a><span class="co"># (b) Chi-square contribution of each cell</span></span>
-<span id="cb204-11"><a href="analysis-of-categorical-data.html#cb204-11" tabindex="-1"></a>chi_components <span class="ot">&lt;-</span> (observed <span class="sc">-</span> expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected</span>
-<span id="cb204-12"><a href="analysis-of-categorical-data.html#cb204-12" tabindex="-1"></a>chi_components</span>
-<span id="cb204-13"><a href="analysis-of-categorical-data.html#cb204-13" tabindex="-1"></a><span class="co"># [1] 0.6230769 0.2571429 0.1923077 0.2666667 0.3200000 0.1000000</span></span>
-<span id="cb204-14"><a href="analysis-of-categorical-data.html#cb204-14" tabindex="-1"></a></span>
-<span id="cb204-15"><a href="analysis-of-categorical-data.html#cb204-15" tabindex="-1"></a><span class="co"># (c) Chi-square test statistic</span></span>
-<span id="cb204-16"><a href="analysis-of-categorical-data.html#cb204-16" tabindex="-1"></a>chi_square <span class="ot">&lt;-</span> <span class="fu">sum</span>(chi_components)</span>
-<span id="cb204-17"><a href="analysis-of-categorical-data.html#cb204-17" tabindex="-1"></a>chi_square</span>
-<span id="cb204-18"><a href="analysis-of-categorical-data.html#cb204-18" tabindex="-1"></a><span class="co"># [1] 1.759194</span></span>
-<span id="cb204-19"><a href="analysis-of-categorical-data.html#cb204-19" tabindex="-1"></a></span>
-<span id="cb204-20"><a href="analysis-of-categorical-data.html#cb204-20" tabindex="-1"></a><span class="co"># (d) Degrees of freedom and p-value</span></span>
-<span id="cb204-21"><a href="analysis-of-categorical-data.html#cb204-21" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(observed) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb204-22"><a href="analysis-of-categorical-data.html#cb204-22" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_square, df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb204-23"><a href="analysis-of-categorical-data.html#cb204-23" tabindex="-1"></a>p_value</span>
-<span id="cb204-24"><a href="analysis-of-categorical-data.html#cb204-24" tabindex="-1"></a><span class="co"># [1] 0.8813595</span></span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="analysis-of-categorical-data.html#cb212-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">32</span>, <span class="dv">30</span>, <span class="dv">64</span>, <span class="dv">54</span>, <span class="dv">42</span>)</span>
+<span id="cb212-2"><a href="analysis-of-categorical-data.html#cb212-2" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.13</span>, <span class="fl">0.14</span>, <span class="fl">0.13</span>, <span class="fl">0.24</span>, <span class="fl">0.20</span>, <span class="fl">0.16</span>)</span>
+<span id="cb212-3"><a href="analysis-of-categorical-data.html#cb212-3" tabindex="-1"></a>n        <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
+<span id="cb212-4"><a href="analysis-of-categorical-data.html#cb212-4" tabindex="-1"></a></span>
+<span id="cb212-5"><a href="analysis-of-categorical-data.html#cb212-5" tabindex="-1"></a><span class="co"># (a) Expected counts under H0</span></span>
+<span id="cb212-6"><a href="analysis-of-categorical-data.html#cb212-6" tabindex="-1"></a>expected <span class="ot">&lt;-</span> n <span class="sc">*</span> probs</span>
+<span id="cb212-7"><a href="analysis-of-categorical-data.html#cb212-7" tabindex="-1"></a>expected</span>
+<span id="cb212-8"><a href="analysis-of-categorical-data.html#cb212-8" tabindex="-1"></a><span class="co"># [1] 32.5 35.0 32.5 60.0 50.0 40.0</span></span>
+<span id="cb212-9"><a href="analysis-of-categorical-data.html#cb212-9" tabindex="-1"></a></span>
+<span id="cb212-10"><a href="analysis-of-categorical-data.html#cb212-10" tabindex="-1"></a><span class="co"># (b) Chi-square contribution of each cell</span></span>
+<span id="cb212-11"><a href="analysis-of-categorical-data.html#cb212-11" tabindex="-1"></a>chi_components <span class="ot">&lt;-</span> (observed <span class="sc">-</span> expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected</span>
+<span id="cb212-12"><a href="analysis-of-categorical-data.html#cb212-12" tabindex="-1"></a>chi_components</span>
+<span id="cb212-13"><a href="analysis-of-categorical-data.html#cb212-13" tabindex="-1"></a><span class="co"># [1] 0.6230769 0.2571429 0.1923077 0.2666667 0.3200000 0.1000000</span></span>
+<span id="cb212-14"><a href="analysis-of-categorical-data.html#cb212-14" tabindex="-1"></a></span>
+<span id="cb212-15"><a href="analysis-of-categorical-data.html#cb212-15" tabindex="-1"></a><span class="co"># (c) Chi-square test statistic</span></span>
+<span id="cb212-16"><a href="analysis-of-categorical-data.html#cb212-16" tabindex="-1"></a>chi_square <span class="ot">&lt;-</span> <span class="fu">sum</span>(chi_components)</span>
+<span id="cb212-17"><a href="analysis-of-categorical-data.html#cb212-17" tabindex="-1"></a>chi_square</span>
+<span id="cb212-18"><a href="analysis-of-categorical-data.html#cb212-18" tabindex="-1"></a><span class="co"># [1] 1.759194</span></span>
+<span id="cb212-19"><a href="analysis-of-categorical-data.html#cb212-19" tabindex="-1"></a></span>
+<span id="cb212-20"><a href="analysis-of-categorical-data.html#cb212-20" tabindex="-1"></a><span class="co"># (d) Degrees of freedom and p-value</span></span>
+<span id="cb212-21"><a href="analysis-of-categorical-data.html#cb212-21" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(observed) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb212-22"><a href="analysis-of-categorical-data.html#cb212-22" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_square, df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb212-23"><a href="analysis-of-categorical-data.html#cb212-23" tabindex="-1"></a>p_value</span>
+<span id="cb212-24"><a href="analysis-of-categorical-data.html#cb212-24" tabindex="-1"></a><span class="co"># [1] 0.8813595</span></span></code></pre></div>
 <p><strong>(a)</strong> <span class="math inline">\(E_i = np_i\)</span> gives expected counts of <span class="math inline">\(32.5, 35, 32.5, 60, 50, 40\)</span> candies.</p>
 <p><strong>(b)</strong> The largest individual contribution comes from Brown (0.623), but every contribution here is small.</p>
 <p><strong>(c)</strong> <span class="math inline">\(\chi^2 = \sum (O_i - E_i)^2/E_i \approx 1.7592\)</span>.</p>
@@ -1071,21 +1073,21 @@ result$expected</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="analysis-of-categorical-data.html#cb205-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">58</span>, <span class="dv">36</span>, <span class="dv">34</span>, <span class="dv">28</span>, <span class="dv">24</span>, <span class="dv">20</span>)</span>
-<span id="cb205-2"><a href="analysis-of-categorical-data.html#cb205-2" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.15</span>, <span class="fl">0.10</span>, <span class="fl">0.10</span>)</span>
-<span id="cb205-3"><a href="analysis-of-categorical-data.html#cb205-3" tabindex="-1"></a></span>
-<span id="cb205-4"><a href="analysis-of-categorical-data.html#cb205-4" tabindex="-1"></a><span class="co"># (a) Run the chi-square goodness-of-fit test</span></span>
-<span id="cb205-5"><a href="analysis-of-categorical-data.html#cb205-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(observed, <span class="at">p =</span> probs)</span>
-<span id="cb205-6"><a href="analysis-of-categorical-data.html#cb205-6" tabindex="-1"></a>result</span>
-<span id="cb205-7"><a href="analysis-of-categorical-data.html#cb205-7" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb205-8"><a href="analysis-of-categorical-data.html#cb205-8" tabindex="-1"></a><span class="co">#   Chi-squared test for given probabilities</span></span>
-<span id="cb205-9"><a href="analysis-of-categorical-data.html#cb205-9" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb205-10"><a href="analysis-of-categorical-data.html#cb205-10" tabindex="-1"></a><span class="co"># data:  observed</span></span>
-<span id="cb205-11"><a href="analysis-of-categorical-data.html#cb205-11" tabindex="-1"></a><span class="co"># X-squared = 3.5133, df = 5, p-value = 0.6214</span></span>
-<span id="cb205-12"><a href="analysis-of-categorical-data.html#cb205-12" tabindex="-1"></a></span>
-<span id="cb205-13"><a href="analysis-of-categorical-data.html#cb205-13" tabindex="-1"></a><span class="co"># (b) Extract the expected counts from the test object</span></span>
-<span id="cb205-14"><a href="analysis-of-categorical-data.html#cb205-14" tabindex="-1"></a>result<span class="sc">$</span>expected</span>
-<span id="cb205-15"><a href="analysis-of-categorical-data.html#cb205-15" tabindex="-1"></a><span class="co"># [1] 50 40 40 30 20 20</span></span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="analysis-of-categorical-data.html#cb213-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">58</span>, <span class="dv">36</span>, <span class="dv">34</span>, <span class="dv">28</span>, <span class="dv">24</span>, <span class="dv">20</span>)</span>
+<span id="cb213-2"><a href="analysis-of-categorical-data.html#cb213-2" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.15</span>, <span class="fl">0.10</span>, <span class="fl">0.10</span>)</span>
+<span id="cb213-3"><a href="analysis-of-categorical-data.html#cb213-3" tabindex="-1"></a></span>
+<span id="cb213-4"><a href="analysis-of-categorical-data.html#cb213-4" tabindex="-1"></a><span class="co"># (a) Run the chi-square goodness-of-fit test</span></span>
+<span id="cb213-5"><a href="analysis-of-categorical-data.html#cb213-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(observed, <span class="at">p =</span> probs)</span>
+<span id="cb213-6"><a href="analysis-of-categorical-data.html#cb213-6" tabindex="-1"></a>result</span>
+<span id="cb213-7"><a href="analysis-of-categorical-data.html#cb213-7" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb213-8"><a href="analysis-of-categorical-data.html#cb213-8" tabindex="-1"></a><span class="co">#   Chi-squared test for given probabilities</span></span>
+<span id="cb213-9"><a href="analysis-of-categorical-data.html#cb213-9" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb213-10"><a href="analysis-of-categorical-data.html#cb213-10" tabindex="-1"></a><span class="co"># data:  observed</span></span>
+<span id="cb213-11"><a href="analysis-of-categorical-data.html#cb213-11" tabindex="-1"></a><span class="co"># X-squared = 3.5133, df = 5, p-value = 0.6214</span></span>
+<span id="cb213-12"><a href="analysis-of-categorical-data.html#cb213-12" tabindex="-1"></a></span>
+<span id="cb213-13"><a href="analysis-of-categorical-data.html#cb213-13" tabindex="-1"></a><span class="co"># (b) Extract the expected counts from the test object</span></span>
+<span id="cb213-14"><a href="analysis-of-categorical-data.html#cb213-14" tabindex="-1"></a>result<span class="sc">$</span>expected</span>
+<span id="cb213-15"><a href="analysis-of-categorical-data.html#cb213-15" tabindex="-1"></a><span class="co"># [1] 50 40 40 30 20 20</span></span></code></pre></div>
 <p><strong>Interpretation:</strong> The test statistic is <span class="math inline">\(\chi^2 \approx 3.5133\)</span> with <span class="math inline">\(df = 5\)</span>, giving a p-value of about <span class="math inline">\(0.6214\)</span>. Since this p-value is much greater than <span class="math inline">\(\alpha = 0.05\)</span>, we fail to reject <span class="math inline">\(H_0\)</span>. The dealership’s recent sales data are consistent with its claimed color-preference proportions.</p>
 </div>
 </details>
@@ -1150,29 +1152,29 @@ p_value</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="analysis-of-categorical-data.html#cb206-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">40</span>, <span class="dv">20</span>, <span class="dv">10</span>)</span>
-<span id="cb206-2"><a href="analysis-of-categorical-data.html#cb206-2" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">9</span><span class="sc">/</span><span class="dv">16</span>, <span class="dv">3</span><span class="sc">/</span><span class="dv">16</span>, <span class="dv">3</span><span class="sc">/</span><span class="dv">16</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">16</span>)</span>
-<span id="cb206-3"><a href="analysis-of-categorical-data.html#cb206-3" tabindex="-1"></a>n        <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
-<span id="cb206-4"><a href="analysis-of-categorical-data.html#cb206-4" tabindex="-1"></a></span>
-<span id="cb206-5"><a href="analysis-of-categorical-data.html#cb206-5" tabindex="-1"></a><span class="co"># (a) Exact multinomial probability of this precise count vector under H0</span></span>
-<span id="cb206-6"><a href="analysis-of-categorical-data.html#cb206-6" tabindex="-1"></a><span class="fu">dmultinom</span>(observed, <span class="at">prob =</span> probs)</span>
-<span id="cb206-7"><a href="analysis-of-categorical-data.html#cb206-7" tabindex="-1"></a><span class="co"># [1] 3.118111e-05</span></span>
-<span id="cb206-8"><a href="analysis-of-categorical-data.html#cb206-8" tabindex="-1"></a></span>
-<span id="cb206-9"><a href="analysis-of-categorical-data.html#cb206-9" tabindex="-1"></a><span class="co"># (b) Expected counts under H0</span></span>
-<span id="cb206-10"><a href="analysis-of-categorical-data.html#cb206-10" tabindex="-1"></a>expected <span class="ot">&lt;-</span> n <span class="sc">*</span> probs</span>
-<span id="cb206-11"><a href="analysis-of-categorical-data.html#cb206-11" tabindex="-1"></a>expected</span>
-<span id="cb206-12"><a href="analysis-of-categorical-data.html#cb206-12" tabindex="-1"></a><span class="co"># [1] 90 30 30 10</span></span>
-<span id="cb206-13"><a href="analysis-of-categorical-data.html#cb206-13" tabindex="-1"></a></span>
-<span id="cb206-14"><a href="analysis-of-categorical-data.html#cb206-14" tabindex="-1"></a><span class="co"># (c) Chi-square goodness-of-fit statistic</span></span>
-<span id="cb206-15"><a href="analysis-of-categorical-data.html#cb206-15" tabindex="-1"></a>chi_square <span class="ot">&lt;-</span> <span class="fu">sum</span>((observed <span class="sc">-</span> expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected)</span>
-<span id="cb206-16"><a href="analysis-of-categorical-data.html#cb206-16" tabindex="-1"></a>chi_square</span>
-<span id="cb206-17"><a href="analysis-of-categorical-data.html#cb206-17" tabindex="-1"></a><span class="co"># [1] 6.666667</span></span>
-<span id="cb206-18"><a href="analysis-of-categorical-data.html#cb206-18" tabindex="-1"></a></span>
-<span id="cb206-19"><a href="analysis-of-categorical-data.html#cb206-19" tabindex="-1"></a><span class="co"># (d) Degrees of freedom and p-value</span></span>
-<span id="cb206-20"><a href="analysis-of-categorical-data.html#cb206-20" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(observed) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb206-21"><a href="analysis-of-categorical-data.html#cb206-21" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_square, df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb206-22"><a href="analysis-of-categorical-data.html#cb206-22" tabindex="-1"></a>p_value</span>
-<span id="cb206-23"><a href="analysis-of-categorical-data.html#cb206-23" tabindex="-1"></a><span class="co"># [1] 0.0833163</span></span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="analysis-of-categorical-data.html#cb214-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">40</span>, <span class="dv">20</span>, <span class="dv">10</span>)</span>
+<span id="cb214-2"><a href="analysis-of-categorical-data.html#cb214-2" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">9</span><span class="sc">/</span><span class="dv">16</span>, <span class="dv">3</span><span class="sc">/</span><span class="dv">16</span>, <span class="dv">3</span><span class="sc">/</span><span class="dv">16</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">16</span>)</span>
+<span id="cb214-3"><a href="analysis-of-categorical-data.html#cb214-3" tabindex="-1"></a>n        <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
+<span id="cb214-4"><a href="analysis-of-categorical-data.html#cb214-4" tabindex="-1"></a></span>
+<span id="cb214-5"><a href="analysis-of-categorical-data.html#cb214-5" tabindex="-1"></a><span class="co"># (a) Exact multinomial probability of this precise count vector under H0</span></span>
+<span id="cb214-6"><a href="analysis-of-categorical-data.html#cb214-6" tabindex="-1"></a><span class="fu">dmultinom</span>(observed, <span class="at">prob =</span> probs)</span>
+<span id="cb214-7"><a href="analysis-of-categorical-data.html#cb214-7" tabindex="-1"></a><span class="co"># [1] 3.118111e-05</span></span>
+<span id="cb214-8"><a href="analysis-of-categorical-data.html#cb214-8" tabindex="-1"></a></span>
+<span id="cb214-9"><a href="analysis-of-categorical-data.html#cb214-9" tabindex="-1"></a><span class="co"># (b) Expected counts under H0</span></span>
+<span id="cb214-10"><a href="analysis-of-categorical-data.html#cb214-10" tabindex="-1"></a>expected <span class="ot">&lt;-</span> n <span class="sc">*</span> probs</span>
+<span id="cb214-11"><a href="analysis-of-categorical-data.html#cb214-11" tabindex="-1"></a>expected</span>
+<span id="cb214-12"><a href="analysis-of-categorical-data.html#cb214-12" tabindex="-1"></a><span class="co"># [1] 90 30 30 10</span></span>
+<span id="cb214-13"><a href="analysis-of-categorical-data.html#cb214-13" tabindex="-1"></a></span>
+<span id="cb214-14"><a href="analysis-of-categorical-data.html#cb214-14" tabindex="-1"></a><span class="co"># (c) Chi-square goodness-of-fit statistic</span></span>
+<span id="cb214-15"><a href="analysis-of-categorical-data.html#cb214-15" tabindex="-1"></a>chi_square <span class="ot">&lt;-</span> <span class="fu">sum</span>((observed <span class="sc">-</span> expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected)</span>
+<span id="cb214-16"><a href="analysis-of-categorical-data.html#cb214-16" tabindex="-1"></a>chi_square</span>
+<span id="cb214-17"><a href="analysis-of-categorical-data.html#cb214-17" tabindex="-1"></a><span class="co"># [1] 6.666667</span></span>
+<span id="cb214-18"><a href="analysis-of-categorical-data.html#cb214-18" tabindex="-1"></a></span>
+<span id="cb214-19"><a href="analysis-of-categorical-data.html#cb214-19" tabindex="-1"></a><span class="co"># (d) Degrees of freedom and p-value</span></span>
+<span id="cb214-20"><a href="analysis-of-categorical-data.html#cb214-20" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(observed) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb214-21"><a href="analysis-of-categorical-data.html#cb214-21" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_square, df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb214-22"><a href="analysis-of-categorical-data.html#cb214-22" tabindex="-1"></a>p_value</span>
+<span id="cb214-23"><a href="analysis-of-categorical-data.html#cb214-23" tabindex="-1"></a><span class="co"># [1] 0.0833163</span></span></code></pre></div>
 <p><strong>Interpretation:</strong> The <code>dmultinom()</code> result (<span class="math inline">\(\approx 0.0000312\)</span>) is simply the probability of this <em>one exact</em> count pattern among the enormous number of possible patterns — it is not, by itself, evidence against <span class="math inline">\(H_0\)</span>. The relevant test uses <span class="math inline">\(\chi^2 \approx 6.667\)</span> with <span class="math inline">\(df = 3\)</span>, giving a p-value <span class="math inline">\(\approx 0.0833\)</span>. Since this p-value exceeds <span class="math inline">\(\alpha = 0.05\)</span>, we fail to reject <span class="math inline">\(H_0\)</span>: the observed offspring counts are reasonably consistent with the classical 9:3:3:1 ratio, even though the second phenotype (observed 40 vs. expected 30) shows some departure from what was hypothesized.</p>
 </div>
 </details>
@@ -1238,30 +1240,30 @@ p_value</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="analysis-of-categorical-data.html#cb207-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">52</span>, <span class="dv">45</span>, <span class="dv">95</span>, <span class="dv">60</span>)   <span class="co"># Mon, Tue, Wed, Thu, Fri</span></span>
-<span id="cb207-2"><a href="analysis-of-categorical-data.html#cb207-2" tabindex="-1"></a>n        <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
-<span id="cb207-3"><a href="analysis-of-categorical-data.html#cb207-3" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb207-4"><a href="analysis-of-categorical-data.html#cb207-4" tabindex="-1"></a></span>
-<span id="cb207-5"><a href="analysis-of-categorical-data.html#cb207-5" tabindex="-1"></a><span class="co"># (a) Expected counts under H0 (no day preferred)</span></span>
-<span id="cb207-6"><a href="analysis-of-categorical-data.html#cb207-6" tabindex="-1"></a>expected <span class="ot">&lt;-</span> n <span class="sc">*</span> probs</span>
-<span id="cb207-7"><a href="analysis-of-categorical-data.html#cb207-7" tabindex="-1"></a>expected</span>
-<span id="cb207-8"><a href="analysis-of-categorical-data.html#cb207-8" tabindex="-1"></a><span class="co"># [1] 60 60 60 60 60</span></span>
-<span id="cb207-9"><a href="analysis-of-categorical-data.html#cb207-9" tabindex="-1"></a></span>
-<span id="cb207-10"><a href="analysis-of-categorical-data.html#cb207-10" tabindex="-1"></a><span class="co"># (b) Chi-square contribution of each day</span></span>
-<span id="cb207-11"><a href="analysis-of-categorical-data.html#cb207-11" tabindex="-1"></a>chi_components <span class="ot">&lt;-</span> (observed <span class="sc">-</span> expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected</span>
-<span id="cb207-12"><a href="analysis-of-categorical-data.html#cb207-12" tabindex="-1"></a>chi_components</span>
-<span id="cb207-13"><a href="analysis-of-categorical-data.html#cb207-13" tabindex="-1"></a><span class="co"># [1] 2.400000 1.066667 3.750000 20.416667 0.000000</span></span>
-<span id="cb207-14"><a href="analysis-of-categorical-data.html#cb207-14" tabindex="-1"></a></span>
-<span id="cb207-15"><a href="analysis-of-categorical-data.html#cb207-15" tabindex="-1"></a><span class="co"># (c) Which day contributes the most to the chi-square statistic?</span></span>
-<span id="cb207-16"><a href="analysis-of-categorical-data.html#cb207-16" tabindex="-1"></a><span class="fu">which.max</span>(chi_components)</span>
-<span id="cb207-17"><a href="analysis-of-categorical-data.html#cb207-17" tabindex="-1"></a><span class="co"># [1] 4</span></span>
-<span id="cb207-18"><a href="analysis-of-categorical-data.html#cb207-18" tabindex="-1"></a></span>
-<span id="cb207-19"><a href="analysis-of-categorical-data.html#cb207-19" tabindex="-1"></a><span class="co"># (d) Overall test statistic, df, and p-value</span></span>
-<span id="cb207-20"><a href="analysis-of-categorical-data.html#cb207-20" tabindex="-1"></a>chi_square <span class="ot">&lt;-</span> <span class="fu">sum</span>(chi_components)</span>
-<span id="cb207-21"><a href="analysis-of-categorical-data.html#cb207-21" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(observed) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb207-22"><a href="analysis-of-categorical-data.html#cb207-22" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_square, df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb207-23"><a href="analysis-of-categorical-data.html#cb207-23" tabindex="-1"></a>p_value</span>
-<span id="cb207-24"><a href="analysis-of-categorical-data.html#cb207-24" tabindex="-1"></a><span class="co"># chi_square = 27.63333, df = 4, p_value = 1.479955e-05</span></span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="analysis-of-categorical-data.html#cb215-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">52</span>, <span class="dv">45</span>, <span class="dv">95</span>, <span class="dv">60</span>)   <span class="co"># Mon, Tue, Wed, Thu, Fri</span></span>
+<span id="cb215-2"><a href="analysis-of-categorical-data.html#cb215-2" tabindex="-1"></a>n        <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
+<span id="cb215-3"><a href="analysis-of-categorical-data.html#cb215-3" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb215-4"><a href="analysis-of-categorical-data.html#cb215-4" tabindex="-1"></a></span>
+<span id="cb215-5"><a href="analysis-of-categorical-data.html#cb215-5" tabindex="-1"></a><span class="co"># (a) Expected counts under H0 (no day preferred)</span></span>
+<span id="cb215-6"><a href="analysis-of-categorical-data.html#cb215-6" tabindex="-1"></a>expected <span class="ot">&lt;-</span> n <span class="sc">*</span> probs</span>
+<span id="cb215-7"><a href="analysis-of-categorical-data.html#cb215-7" tabindex="-1"></a>expected</span>
+<span id="cb215-8"><a href="analysis-of-categorical-data.html#cb215-8" tabindex="-1"></a><span class="co"># [1] 60 60 60 60 60</span></span>
+<span id="cb215-9"><a href="analysis-of-categorical-data.html#cb215-9" tabindex="-1"></a></span>
+<span id="cb215-10"><a href="analysis-of-categorical-data.html#cb215-10" tabindex="-1"></a><span class="co"># (b) Chi-square contribution of each day</span></span>
+<span id="cb215-11"><a href="analysis-of-categorical-data.html#cb215-11" tabindex="-1"></a>chi_components <span class="ot">&lt;-</span> (observed <span class="sc">-</span> expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected</span>
+<span id="cb215-12"><a href="analysis-of-categorical-data.html#cb215-12" tabindex="-1"></a>chi_components</span>
+<span id="cb215-13"><a href="analysis-of-categorical-data.html#cb215-13" tabindex="-1"></a><span class="co"># [1] 2.400000 1.066667 3.750000 20.416667 0.000000</span></span>
+<span id="cb215-14"><a href="analysis-of-categorical-data.html#cb215-14" tabindex="-1"></a></span>
+<span id="cb215-15"><a href="analysis-of-categorical-data.html#cb215-15" tabindex="-1"></a><span class="co"># (c) Which day contributes the most to the chi-square statistic?</span></span>
+<span id="cb215-16"><a href="analysis-of-categorical-data.html#cb215-16" tabindex="-1"></a><span class="fu">which.max</span>(chi_components)</span>
+<span id="cb215-17"><a href="analysis-of-categorical-data.html#cb215-17" tabindex="-1"></a><span class="co"># [1] 4</span></span>
+<span id="cb215-18"><a href="analysis-of-categorical-data.html#cb215-18" tabindex="-1"></a></span>
+<span id="cb215-19"><a href="analysis-of-categorical-data.html#cb215-19" tabindex="-1"></a><span class="co"># (d) Overall test statistic, df, and p-value</span></span>
+<span id="cb215-20"><a href="analysis-of-categorical-data.html#cb215-20" tabindex="-1"></a>chi_square <span class="ot">&lt;-</span> <span class="fu">sum</span>(chi_components)</span>
+<span id="cb215-21"><a href="analysis-of-categorical-data.html#cb215-21" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">length</span>(observed) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb215-22"><a href="analysis-of-categorical-data.html#cb215-22" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="fu">pchisq</span>(chi_square, df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb215-23"><a href="analysis-of-categorical-data.html#cb215-23" tabindex="-1"></a>p_value</span>
+<span id="cb215-24"><a href="analysis-of-categorical-data.html#cb215-24" tabindex="-1"></a><span class="co"># chi_square = 27.63333, df = 4, p_value = 1.479955e-05</span></span></code></pre></div>
 <p><strong>Interpretation:</strong> Position 4 corresponds to <strong>Thursday</strong>, whose contribution (<span class="math inline">\(\approx 20.42\)</span>) dwarfs every other day’s — Thursday’s observed count of 95 visits is far above its expected count of 60. With <span class="math inline">\(\chi^2 \approx 27.633\)</span>, <span class="math inline">\(df = 4\)</span>, and p-value <span class="math inline">\(\approx 0.0000148\)</span>, we reject <span class="math inline">\(H_0\)</span> at any conventional significance level: visits are clearly not evenly distributed across weekdays, and Thursday is the primary driver of that conclusion.</p>
 </div>
 </details>
@@ -1327,30 +1329,30 @@ chi_square > crit</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="analysis-of-categorical-data.html#cb208-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">76</span>, <span class="dv">18</span>, <span class="dv">8</span>)   <span class="co"># O, A, B, AB</span></span>
-<span id="cb208-2"><a href="analysis-of-categorical-data.html#cb208-2" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.44</span>, <span class="fl">0.42</span>, <span class="fl">0.10</span>, <span class="fl">0.04</span>)</span>
-<span id="cb208-3"><a href="analysis-of-categorical-data.html#cb208-3" tabindex="-1"></a>n        <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
-<span id="cb208-4"><a href="analysis-of-categorical-data.html#cb208-4" tabindex="-1"></a>alpha    <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb208-5"><a href="analysis-of-categorical-data.html#cb208-5" tabindex="-1"></a></span>
-<span id="cb208-6"><a href="analysis-of-categorical-data.html#cb208-6" tabindex="-1"></a><span class="co"># (a) Expected counts under H0</span></span>
-<span id="cb208-7"><a href="analysis-of-categorical-data.html#cb208-7" tabindex="-1"></a>expected <span class="ot">&lt;-</span> n <span class="sc">*</span> probs</span>
-<span id="cb208-8"><a href="analysis-of-categorical-data.html#cb208-8" tabindex="-1"></a>expected</span>
-<span id="cb208-9"><a href="analysis-of-categorical-data.html#cb208-9" tabindex="-1"></a><span class="co"># [1] 88 84 20 8</span></span>
-<span id="cb208-10"><a href="analysis-of-categorical-data.html#cb208-10" tabindex="-1"></a></span>
-<span id="cb208-11"><a href="analysis-of-categorical-data.html#cb208-11" tabindex="-1"></a><span class="co"># (b) Chi-square statistic</span></span>
-<span id="cb208-12"><a href="analysis-of-categorical-data.html#cb208-12" tabindex="-1"></a>chi_square <span class="ot">&lt;-</span> <span class="fu">sum</span>((observed <span class="sc">-</span> expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected)</span>
-<span id="cb208-13"><a href="analysis-of-categorical-data.html#cb208-13" tabindex="-1"></a>chi_square</span>
-<span id="cb208-14"><a href="analysis-of-categorical-data.html#cb208-14" tabindex="-1"></a><span class="co"># [1] 2.098268</span></span>
-<span id="cb208-15"><a href="analysis-of-categorical-data.html#cb208-15" tabindex="-1"></a></span>
-<span id="cb208-16"><a href="analysis-of-categorical-data.html#cb208-16" tabindex="-1"></a><span class="co"># (c) Degrees of freedom and critical value</span></span>
-<span id="cb208-17"><a href="analysis-of-categorical-data.html#cb208-17" tabindex="-1"></a>df   <span class="ot">&lt;-</span> <span class="fu">length</span>(observed) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb208-18"><a href="analysis-of-categorical-data.html#cb208-18" tabindex="-1"></a>crit <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alpha, df)</span>
-<span id="cb208-19"><a href="analysis-of-categorical-data.html#cb208-19" tabindex="-1"></a>crit</span>
-<span id="cb208-20"><a href="analysis-of-categorical-data.html#cb208-20" tabindex="-1"></a><span class="co"># [1] 7.814728</span></span>
-<span id="cb208-21"><a href="analysis-of-categorical-data.html#cb208-21" tabindex="-1"></a></span>
-<span id="cb208-22"><a href="analysis-of-categorical-data.html#cb208-22" tabindex="-1"></a><span class="co"># (d) Decision rule: compare chi_square to crit</span></span>
-<span id="cb208-23"><a href="analysis-of-categorical-data.html#cb208-23" tabindex="-1"></a>chi_square <span class="sc">&gt;</span> crit</span>
-<span id="cb208-24"><a href="analysis-of-categorical-data.html#cb208-24" tabindex="-1"></a><span class="co"># [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="analysis-of-categorical-data.html#cb216-1" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">98</span>, <span class="dv">76</span>, <span class="dv">18</span>, <span class="dv">8</span>)   <span class="co"># O, A, B, AB</span></span>
+<span id="cb216-2"><a href="analysis-of-categorical-data.html#cb216-2" tabindex="-1"></a>probs    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.44</span>, <span class="fl">0.42</span>, <span class="fl">0.10</span>, <span class="fl">0.04</span>)</span>
+<span id="cb216-3"><a href="analysis-of-categorical-data.html#cb216-3" tabindex="-1"></a>n        <span class="ot">&lt;-</span> <span class="fu">sum</span>(observed)</span>
+<span id="cb216-4"><a href="analysis-of-categorical-data.html#cb216-4" tabindex="-1"></a>alpha    <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb216-5"><a href="analysis-of-categorical-data.html#cb216-5" tabindex="-1"></a></span>
+<span id="cb216-6"><a href="analysis-of-categorical-data.html#cb216-6" tabindex="-1"></a><span class="co"># (a) Expected counts under H0</span></span>
+<span id="cb216-7"><a href="analysis-of-categorical-data.html#cb216-7" tabindex="-1"></a>expected <span class="ot">&lt;-</span> n <span class="sc">*</span> probs</span>
+<span id="cb216-8"><a href="analysis-of-categorical-data.html#cb216-8" tabindex="-1"></a>expected</span>
+<span id="cb216-9"><a href="analysis-of-categorical-data.html#cb216-9" tabindex="-1"></a><span class="co"># [1] 88 84 20 8</span></span>
+<span id="cb216-10"><a href="analysis-of-categorical-data.html#cb216-10" tabindex="-1"></a></span>
+<span id="cb216-11"><a href="analysis-of-categorical-data.html#cb216-11" tabindex="-1"></a><span class="co"># (b) Chi-square statistic</span></span>
+<span id="cb216-12"><a href="analysis-of-categorical-data.html#cb216-12" tabindex="-1"></a>chi_square <span class="ot">&lt;-</span> <span class="fu">sum</span>((observed <span class="sc">-</span> expected)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> expected)</span>
+<span id="cb216-13"><a href="analysis-of-categorical-data.html#cb216-13" tabindex="-1"></a>chi_square</span>
+<span id="cb216-14"><a href="analysis-of-categorical-data.html#cb216-14" tabindex="-1"></a><span class="co"># [1] 2.098268</span></span>
+<span id="cb216-15"><a href="analysis-of-categorical-data.html#cb216-15" tabindex="-1"></a></span>
+<span id="cb216-16"><a href="analysis-of-categorical-data.html#cb216-16" tabindex="-1"></a><span class="co"># (c) Degrees of freedom and critical value</span></span>
+<span id="cb216-17"><a href="analysis-of-categorical-data.html#cb216-17" tabindex="-1"></a>df   <span class="ot">&lt;-</span> <span class="fu">length</span>(observed) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb216-18"><a href="analysis-of-categorical-data.html#cb216-18" tabindex="-1"></a>crit <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="dv">1</span> <span class="sc">-</span> alpha, df)</span>
+<span id="cb216-19"><a href="analysis-of-categorical-data.html#cb216-19" tabindex="-1"></a>crit</span>
+<span id="cb216-20"><a href="analysis-of-categorical-data.html#cb216-20" tabindex="-1"></a><span class="co"># [1] 7.814728</span></span>
+<span id="cb216-21"><a href="analysis-of-categorical-data.html#cb216-21" tabindex="-1"></a></span>
+<span id="cb216-22"><a href="analysis-of-categorical-data.html#cb216-22" tabindex="-1"></a><span class="co"># (d) Decision rule: compare chi_square to crit</span></span>
+<span id="cb216-23"><a href="analysis-of-categorical-data.html#cb216-23" tabindex="-1"></a>chi_square <span class="sc">&gt;</span> crit</span>
+<span id="cb216-24"><a href="analysis-of-categorical-data.html#cb216-24" tabindex="-1"></a><span class="co"># [1] FALSE</span></span></code></pre></div>
 <p><strong>Interpretation:</strong> Since <span class="math inline">\(\chi^2 \approx 2.098\)</span> does <strong>not</strong> exceed the critical value <span class="math inline">\(\approx 7.815\)</span> at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(df = 3\)</span>, we fail to reject <span class="math inline">\(H_0\)</span>. There is no evidence that this clinic’s blood-type distribution differs from the claimed national proportions.</p>
 </div>
 </details>
