@@ -1697,13 +1697,34 @@ A researcher wants to estimate the average sleep time of university students dur
 
 $$6.5,\ 7.2,\ 5.8,\ 6.9,\ 7.5,\ 6.1,\ 5.9,\ 6.7,\ 7.0,\ 6.4$$
 
-Assume the sleep hours are approximately normally distributed. Find the **95% confidence interval** for the population mean sleep time.
+The Normal Q--Q plot of these 10 values is shown below.
+
+```{r ch5-q3-qq, echo=FALSE, fig.height=3.5, fig.width=5, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+sleep10 <- c(6.5,7.2,5.8,6.9,7.5,6.1,5.9,6.7,7.0,6.4)
+df_sleep10 <- data.frame(hours = sleep10)
+ggplot(df_sleep10, aes(sample = hours)) +
+  stat_qq(color = "#619CFF", size = 2.2) +
+  stat_qq_line(color = "#e17055", linewidth = 0.8) +
+  labs(x = "Theoretical Quantiles", y = "Sample Quantiles",
+       caption = "n = 10 students") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
+
+**(a)** Based on the Q--Q plot, assess whether the normality assumption is reasonable for this small sample ($n = 10$).
+
+**(b)** Is a one-sample $t$-procedure appropriate here? Briefly justify your answer.
+
+**(c)** If appropriate, construct the **95% confidence interval** for the population mean sleep time.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- Since $\sigma$ is unknown, use the $t$-interval: $\bar{x} \pm t_{n-1,\,\alpha/2} \cdot \dfrac{s}{\sqrt{n}}$.
+- On a Normal Q--Q plot, the points should fall close to a straight line if the data are approximately Normal. Look for strong curvature, clustering, or points that stray far from the line.
+- Because $n = 10$ is small, we **cannot** rely on the Central Limit Theorem — the normality assumption must be checked directly from the data (e.g., with a Q--Q plot), since there is no large-sample guarantee that $\bar{x}$ is approximately Normal.
+- If the Q--Q plot shows no strong departure from linearity, it is reasonable to proceed with the $t$-interval: $\bar{x} \pm t_{n-1,\,\alpha/2} \cdot \dfrac{s}{\sqrt{n}}$.
 - Calculate $\bar{x}$ and $s$ from the raw data first.
 - Degrees of freedom: $df = n - 1 = 9$; look up $t_{9,\,0.025} = 2.262$.
 </div>
@@ -1712,6 +1733,12 @@ Assume the sleep hours are approximately normally distributed. Find the **95% co
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
+**(a)** The points in the Q--Q plot fall close to the reference line, with no strong curvature and no points that stray far from the line. There is no clear evidence of skewness or outliers, so the normality assumption looks **reasonable** for this small sample.
+
+**(b)** Because the sample is small ($n = 10 < 30$), we cannot appeal to the Central Limit Theorem — normality has to hold (at least approximately) in the population itself. Since the Q--Q plot in part (a) shows no strong departure from a straight line, it is reasonable to treat the population as approximately Normal, and the one-sample $t$-procedure is **appropriate**.
+
+**(c)**
+
 **Key formula:**
 $$\bar{x} \pm t_{n-1,\,\alpha/2} \cdot \frac{s}{\sqrt{n}}$$
 
@@ -2362,14 +2389,35 @@ A fitness coach wants to know whether a 6-week training program changes particip
 | 9 | 81 | 76 |
 | 10 | 77 | 75 |
 
-Let $d = \text{Before} - \text{After}$. Construct a **95% confidence interval** for the mean difference $\mu_d$.
+Let $d = \text{Before} - \text{After}$. The Normal Q--Q plot of the 10 paired differences $d_i$ is shown below.
+
+```{r ch5-q17-qq, echo=FALSE, fig.height=3.5, fig.width=5, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+before <- c(78,82,76,88,80,75,84,79,81,77)
+after  <- c(74,79,73,84,78,72,81,77,76,75)
+d_vals <- before - after
+df_d <- data.frame(d = d_vals)
+ggplot(df_d, aes(sample = d)) +
+  stat_qq(color = "#619CFF", size = 2.2) +
+  stat_qq_line(color = "#e17055", linewidth = 0.8) +
+  labs(x = "Theoretical Quantiles", y = "Sample Quantiles",
+       caption = "n = 10 paired differences") +
+  theme_minimal(base_size = 12) +
+  theme(plot.caption = element_text(color = "#555", size = 9))
+```
+
+**(a)** Based on the Q--Q plot, does the normality assumption required for a paired $t$-interval appear reasonable for this small sample of differences ($n = 10$)?
+
+**(b)** Construct a **95% confidence interval** for the mean difference $\mu_d$.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- Compute $d_i = \text{Before}_i - \text{After}_i$ for each participant.
-- Find $\bar{d}$ and $s_d$, then apply the paired $t$-interval:
+- A paired $t$-interval is really a **one-sample** $t$-interval applied to the differences $d_i = \text{Before}_i - \text{After}_i$, so it is the differences (not the raw Before/After scores) that need to look approximately Normal.
+- On the Q--Q plot, check whether the points lie close to the reference line without strong curvature or outliers.
+- With only $n = 10$ pairs, the Central Limit Theorem does not guarantee normality of $\bar{d}$, so the Q--Q plot is the main tool for checking the assumption.
+- Once normality is judged reasonable, find $\bar{d}$ and $s_d$, then apply the paired $t$-interval:
 $$\bar{d} \pm t_{n-1,\,\alpha/2} \cdot \frac{s_d}{\sqrt{n}}$$
 - $df = n - 1 = 9$; for 95%: $t_{9,\,0.025} = 2.262$.
 </div>
@@ -2378,6 +2426,10 @@ $$\bar{d} \pm t_{n-1,\,\alpha/2} \cdot \frac{s_d}{\sqrt{n}}$$
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
+**(a)** The differences $d_i$ in the Q--Q plot fall close to the reference line, with no strong curvature and no obvious outliers. Even though $n = 10$ is small, there is no evidence against normality, so it is reasonable to proceed with the paired $t$-procedure.
+
+**(b)**
+
 **Key formula (paired $t$-interval):**
 $$\bar{d} \pm t_{n-1,\,\alpha/2} \cdot \frac{s_d}{\sqrt{n}}$$
 
@@ -3449,25 +3501,22 @@ At least **510 students per group** (1020 total) are required.
 
 <div class="exercise-box">
 <div class="exercise-label">Question 40</div>
-A researcher records the exam scores of $n = 25$ students. The histogram below shows the distribution of scores, with the dashed line marking the sample mean.
+A researcher records the exam scores of $n = 25$ students. The Normal Q--Q plot below shows the distribution of these scores.
 
-```{r ch5-q40-hist, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
+```{r ch5-q40-qq, echo=FALSE, fig.height=3.5, fig.width=5, fig.align='center', message=FALSE, warning=FALSE}
 library(ggplot2)
 scores <- c(75,82,68,90,77,85,71,88,64,79,83,70,93,76,87,66,81,74,89,72,84,69,78,91,73)
 df_scores <- data.frame(score = scores)
-ggplot(df_scores, aes(x = score)) +
-  geom_histogram(binwidth = 5, fill = "#619CFF", color = "white", boundary = 60) +
-  geom_vline(xintercept = mean(scores), linetype = "dashed", color = "#e17055", linewidth = 0.9) +
-  annotate("text", x = mean(scores) + 1, y = 6.4, label = paste0("bar(x) == ", round(mean(scores),1)),
-           parse = TRUE, color = "#e17055", size = 4, hjust = 0) +
-  scale_x_continuous(breaks = seq(60, 100, 5)) +
-  labs(x = "Exam Score", y = "Frequency",
-       caption = "n = 25 students  |  Dashed line = sample mean") +
+ggplot(df_scores, aes(sample = score)) +
+  stat_qq(color = "#619CFF", size = 2) +
+  stat_qq_line(color = "#e17055", linewidth = 0.8) +
+  labs(x = "Theoretical Quantiles", y = "Sample Quantiles",
+       caption = "n = 25 students") +
   theme_minimal(base_size = 12) +
   theme(plot.caption = element_text(color = "#555", size = 9))
 ```
 
-**(a)** Describe the shape of the distribution shown in the histogram.
+**(a)** Based on the Q--Q plot, assess whether the normality assumption is reasonable for this sample, and state whether a one-sample $t$-procedure is appropriate.
 
 **(b)** Construct a **95% $t$-confidence interval** for the true mean exam score. Assume the population variance is unknown.
 </div>
@@ -3475,7 +3524,8 @@ ggplot(df_scores, aes(x = score)) +
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- The $t$-interval formula is $\bar{x} \pm t^*_{n-1} \cdot s/\sqrt{n}$.
+- On a Normal Q--Q plot, points lying close to the reference line (without strong curvature or outliers) support the normality assumption.
+- If the plot shows no strong departure from linearity, the $t$-procedure is appropriate: $\bar{x} \pm t^*_{n-1} \cdot s/\sqrt{n}$.
 - With $n = 25$: $\bar{x} = 78.6$, $s \approx 8.40$, $t^*_{24} \approx 2.064$.
 - For 95% confidence use `qt(0.975, df = 24)`.
 </div>
@@ -3484,7 +3534,7 @@ ggplot(df_scores, aes(x = score)) +
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**(a)** The histogram is roughly symmetric and bell-shaped, centred around 78–79 with no strong skew or outliers.
+**(a)** The points in the Q--Q plot fall close to the reference line across the whole range, with no strong curvature and no points that stand far off the line. This supports the normality assumption, so the one-sample $t$-procedure is **appropriate** here.
 
 **(b)**
 
@@ -3527,13 +3577,38 @@ ggplot(df_brake, aes(x = car, y = distance, fill = car)) +
 
 **(a)** What does the boxplot suggest about the variability of the two car models?
 
-**(b)** Construct a **95% Welch $t$-CI** for $\mu_X - \mu_Y$. Do not assume equal variances.
+The Normal Q--Q plots for each (small) group are shown below.
+
+```{r ch5-q41-qq, echo=FALSE, fig.height=3.5, fig.width=7, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+library(patchwork)
+x_X <- c(34.2,36.1,33.8,35.4,34.9,36.7,33.5,35.2,34.6,36.3,33.9,35.8)
+x_Y <- c(31.5,38.4,29.8,40.2,33.1,37.6,30.4,39.7,32.8,38.1,31.2,40.5)
+df_X <- data.frame(distance = x_X)
+df_Y <- data.frame(distance = x_Y)
+p_X <- ggplot(df_X, aes(sample = distance)) +
+  stat_qq(color = "#74b9ff", size = 2) +
+  stat_qq_line(color = "#e17055", linewidth = 0.8) +
+  labs(title = "Car X", x = "Theoretical Quantiles", y = "Sample Quantiles") +
+  theme_minimal(base_size = 12)
+p_Y <- ggplot(df_Y, aes(sample = distance)) +
+  stat_qq(color = "#fd79a8", size = 2) +
+  stat_qq_line(color = "#e17055", linewidth = 0.8) +
+  labs(title = "Car Y", x = "Theoretical Quantiles", y = "Sample Quantiles") +
+  theme_minimal(base_size = 12)
+p_X + p_Y
+```
+
+**(b)** Both groups have small sample sizes ($n_X = n_Y = 12$). Based on the Q--Q plots, does the normality assumption appear reasonable for each group? Is the Welch $t$-procedure appropriate?
+
+**(c)** Construct a **95% Welch $t$-CI** for $\mu_X - \mu_Y$. Do not assume equal variances.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
 - Car Y's box is much wider, indicating greater spread — this justifies **not** assuming equal variances.
+- Because $n_X = n_Y = 12$ are both small, the Central Limit Theorem cannot be relied on for either group — check each group's own Q--Q plot for strong curvature or outliers.
 - Use `t.test(x_X, x_Y, var.equal = FALSE, conf.level = 0.95)$conf.int`.
 - The CI includes zero if there is no evidence of a difference in means.
 </div>
@@ -3544,7 +3619,9 @@ ggplot(df_brake, aes(x = car, y = distance, fill = car)) +
 <div class="content">
 **(a)** Car X has a very compact box (low variance, $s_X \approx 1.06$ m), while Car Y's box is much wider (high variance, $s_Y \approx 4.15$ m), suggesting Car Y's braking distance is far less consistent.
 
-**(b)**
+**(b)** The Car X points fall very close to the reference line, supporting normality. The Car Y points show slightly more scatter around the line — consistent with its larger variance — but there is no strong curvature or clear outlier, so normality is still a reasonable working assumption for both small samples. Since neither group shows a serious departure from normality, the Welch $t$-procedure (which already does not assume equal variances) is **appropriate**.
+
+**(c)**
 
 ```r
 x_X <- c(34.2,36.1,33.8,35.4,34.9,36.7,33.5,35.2,34.6,36.3,33.9,35.8)
@@ -3652,7 +3729,31 @@ ggplot(df_yield, aes(x = group, y = yield, fill = group)) +
         plot.caption = element_text(color = "#555", size = 9))
 ```
 
-Based on the boxplots, the two groups appear to have different means. Using the dataset `plant_yield.csv`, construct a **90% Welch $t$-CI** for $\mu_A - \mu_B$. Do not assume equal variances.
+Based on the boxplots, the two groups appear to have different means. Both groups are **small samples** ($n_A = n_B = 15$), so before comparing the means we should check the normality assumption. The Normal Q--Q plots for each group are shown below.
+
+```{r ch5-q43-qq, echo=FALSE, fig.height=3.5, fig.width=7, fig.align='center', message=FALSE, warning=FALSE}
+library(ggplot2)
+library(patchwork)
+fa <- c(52.1,48.7,55.3,49.2,53.8,47.5,56.1,50.4,54.6,48.1,51.9,53.2,49.8,55.7,50.0)
+fb <- c(45.3,42.8,48.1,43.6,46.9,41.2,49.4,44.7,47.5,42.3,45.8,46.1,43.9,48.6,44.2)
+df_fa <- data.frame(yield = fa)
+df_fb <- data.frame(yield = fb)
+p_fa <- ggplot(df_fa, aes(sample = yield)) +
+  stat_qq(color = "#74b9ff", size = 2) +
+  stat_qq_line(color = "#e17055", linewidth = 0.8) +
+  labs(title = "Fertiliser A", x = "Theoretical Quantiles", y = "Sample Quantiles") +
+  theme_minimal(base_size = 12)
+p_fb <- ggplot(df_fb, aes(sample = yield)) +
+  stat_qq(color = "#fd79a8", size = 2) +
+  stat_qq_line(color = "#e17055", linewidth = 0.8) +
+  labs(title = "Fertiliser B", x = "Theoretical Quantiles", y = "Sample Quantiles") +
+  theme_minimal(base_size = 12)
+p_fa + p_fb
+```
+
+**(a)** Based on the Q--Q plots, does the normality assumption appear reasonable for both (small) groups? Is the Welch $t$-procedure appropriate?
+
+**(b)** Using the dataset `plant_yield.csv`, construct a **90% Welch $t$-CI** for $\mu_A - \mu_B$. Do not assume equal variances.
 
 Fill in the blanks and click **▶ Run**.
 
@@ -3677,6 +3778,7 @@ t.test(___, ___,
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
+- Because $n_A = n_B = 15$ are both small, check each group's own Q--Q plot for strong curvature or outliers before trusting the $t$-procedure.
 - Pass `a` and `b` as the first two arguments to `t.test()`.
 - Set `var.equal = FALSE` for Welch's (unequal-variance) test.
 - Set `conf.level = 0.90` for a 90% CI.
@@ -3687,6 +3789,10 @@ t.test(___, ___,
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
+**(a)** Both the Fertiliser A and Fertiliser B points fall close to their reference lines, with no strong curvature and no clear outliers. Although each sample is small ($n=15$), neither Q--Q plot shows a serious departure from normality, so the Welch $t$-procedure is **appropriate**.
+
+**(b)**
+
 ```r
 yield_df <- read.csv("plant_yield.csv")
 a <- yield_df$fertilizer_a
