@@ -1411,7 +1411,7 @@ $$2,\ 3,\ 3,\ 4,\ 4,\ 5,\ 5,\ 5,\ 6,\ 8$$
 (b) (2 marks) Find the **median**.
 (c) (1 mark) Find the **mode**.
 (d) (1 mark) Find the **range**.
-(e) (2 marks) Is the mean larger than the median? Briefly explain why this may happen.
+(e) (2 marks) Compare the mean and median. Are they equal or different? Under what conditions would you expect the mean to exceed the median?
 
 <div class="webr-exercise">
 <div class="webr-exercise-header">Exercise</div>
@@ -1449,7 +1449,7 @@ $$\text{Median} = \frac{x_{(5)} + x_{(6)}}{2} = \frac{4 + 5}{2} = \mathbf{4.5}$$
 
 **(d)** $\text{Range} = x_{\max} - x_{\min} = 8 - 2 = \mathbf{6}$.
 
-**(e)** Here $\bar{x} = \text{Median} = 4.5$. When the mean and median are equal (or very close), the distribution is fairly balanced with no strong skew in either direction.
+**(e)** Here $\bar{x} = \text{Median} = 4.5$ — they are equal. We would expect the mean to exceed the median when the distribution is **right-skewed**: large values in the upper tail pull the mean upward without affecting the median. In this dataset there is a mild high value (8), but it is not extreme enough to create a gap between the mean and median.
 
 **R code:**
 
@@ -1798,7 +1798,7 @@ groupB <- c( 8, 12, 15, 19, 18, 11, 17, 20, 20, 10)
 mean(groupA)   # [1] 15
 sd(groupA)     # [1] 0.8164966
 mean(groupB)   # [1] 15
-sd(groupB)     # [1] 4.452478
+sd(groupB)     # [1] 4.447362
 
 # Create a side-by-side boxplot to compare the spread
 boxplot(groupA, groupB,
@@ -2180,7 +2180,7 @@ ggplot(df_q15, aes(x = salary)) +
 <div class="exercise-label">Question 18</div>
 For each situation below, choose the most appropriate graph: **bar chart**, **histogram**, or **boxplot**. Briefly explain your choice.
 
-*Recall: a **bar chart** displays counts or frequencies for the categories of a qualitative (categorical) variable — bar width has no numerical meaning. A **histogram** displays the distribution of a quantitative variable by grouping values into intervals.*
+*Recall: a **bar chart** displays counts or frequencies for the categories of a qualitative (categorical) variable — bar width has no numerical meaning. A **histogram** displays the distribution of a quantitative variable by grouping values into intervals. A **boxplot** summarises a quantitative variable using its five-number summary (minimum, Q1, median, Q3, maximum) and flags potential outliers.*
 
 (a) (1 mark) A professor wants to display the number of students enrolled in each program: Statistics, Computer Science, Biology, and Psychology.
 (b) (1 mark) A researcher wants to show the distribution of commute times for 200 students.

@@ -1905,41 +1905,43 @@ We are 90% confident that between **40.79%** and **47.21%** of all employees pre
 
 <div class="exercise-box">
 <div class="exercise-label">Question 7</div>
-A machine fills bottles of juice. The company wants to check whether the filling process is stable. A random sample of 25 bottles gives a sample variance of $s^2 = 12.5$.
+A random sample of $n = 18$ adult women has a mean resting heart rate of $\bar{x} = 72$ bpm and sample standard deviation $s = 8$ bpm. Assume resting heart rates are approximately normally distributed.
 
-Assume the filling amounts are normally distributed. Construct a **95% confidence interval** for the population variance $\sigma^2$.
+(a) Construct a **95% confidence interval** for the true mean resting heart rate.
+
+(b) Construct a **99% confidence interval** for the true mean resting heart rate.
+
+(c) Which interval is wider? Explain why in one sentence.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- The CI for $\sigma^2$ uses the chi-squared distribution:
-$$\left(\frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}},\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}}\right)$$
-- $df = n - 1 = 24$. For 95% confidence: $\chi^2_{0.025,\,24} = 39.364$ (upper) and $\chi^2_{0.975,\,24} = 12.401$ (lower).
-- Divide by the **larger** $\chi^2$ for the lower bound, and by the **smaller** $\chi^2$ for the upper bound.
+- Use the one-sample $t$-interval: $\bar{x} \pm t_{df,\,\alpha/2} \cdot \dfrac{s}{\sqrt{n}}$, with $df = n - 1 = 17$.
+- For 95% confidence: $t_{17,\,0.025} = 2.110$. For 99% confidence: $t_{17,\,0.005} = 2.898$.
+- A higher confidence level requires a wider interval to capture the true mean with greater certainty.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**Key formula:**
-$$\left(\frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}},\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}}\right)$$
+**Key formula:** $\bar{x} \pm t_{df,\,\alpha/2} \cdot \dfrac{s}{\sqrt{n}}$
 
-**Given:** $n = 25$, $s^2 = 12.5$, $df = 24$
-
-**Critical values** (95% CI, $\alpha = 0.05$):
-$$\chi^2_{0.025,\,24} = 39.364, \qquad \chi^2_{0.975,\,24} = 12.401$$
+**Given:** $n = 18$, $\bar{x} = 72$, $s = 8$, $df = 17$
 <a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
-**Bounds:**
-$$\text{Lower} = \frac{(24)(12.5)}{39.364} = \frac{300}{39.364} \approx 7.6212$$
-$$\text{Upper} = \frac{(24)(12.5)}{12.401} = \frac{300}{12.401} \approx 24.1916$$
+**Standard error:** $\text{SE} = \dfrac{8}{\sqrt{18}} = \dfrac{8}{4.2426} \approx 1.8856$ bpm
 
-**95% CI for $\sigma^2$:**
-$$\mathbf{(7.6212,\ 24.1916)}$$
+**(a) 95% CI** ($t_{17,\,0.025} = 2.110$):
+$$E = 2.110 \times 1.8856 \approx 3.979$$
+$$(72 - 3.979,\ 72 + 3.979) = \mathbf{(68.02,\ 75.98) \text{ bpm}}$$
 
-We are 95% confident that the true population variance of the filling amounts lies between **7.6212** and **24.1916**.
+**(b) 99% CI** ($t_{17,\,0.005} = 2.898$):
+$$E = 2.898 \times 1.8856 \approx 5.466$$
+$$(72 - 5.466,\ 72 + 5.466) = \mathbf{(66.53,\ 77.47) \text{ bpm}}$$
+
+**(c)** The 99% CI is wider because a higher confidence level requires a larger critical value $t^*$, which increases the margin of error.
 </div>
 </details>
 
@@ -1947,37 +1949,42 @@ We are 95% confident that the true population variance of the filling amounts li
 
 <div class="exercise-box">
 <div class="exercise-label">Question 8</div>
-A researcher studies the variation in reaction times for drivers. A random sample of 16 drivers has a sample variance of $s^2 = 0.36$.
+A local bakery records the waiting time (in minutes) for a random sample of $n = 15$ customers. The sample mean is $\bar{x} = 5.2$ minutes with sample standard deviation $s = 1.8$ minutes. Assume waiting times are approximately normally distributed.
 
-Assume reaction times are normally distributed. Construct a **90% confidence interval** for the population variance $\sigma^2$.
+(a) Construct a **90% confidence interval** for the true mean waiting time.
+
+(b) A manager claims the average wait is under 6 minutes. Does the confidence interval support this claim? Explain briefly.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- Use the chi-squared CI formula with $df = n - 1 = 15$.
-- For 90% confidence ($\alpha = 0.10$): $\chi^2_{0.05,\,15} = 24.996$ (upper) and $\chi^2_{0.95,\,15} = 7.261$ (lower).
+- Use the one-sample $t$-interval with $df = n - 1 = 14$.
+- For 90% confidence: $t_{14,\,0.05} = 1.761$.
+- Think about what it means if 6 is inside or outside the confidence interval.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**Key formula:**
-$$\left(\frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}},\ \frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}}\right)$$
+**Key formula:** $\bar{x} \pm t_{df,\,\alpha/2} \cdot \dfrac{s}{\sqrt{n}}$
 
-**Given:** $n = 16$, $s^2 = 0.36$, $df = 15$
-
-**Critical values** (90% CI, $\alpha = 0.10$):
-$$\chi^2_{0.05,\,15} = 24.996, \qquad \chi^2_{0.95,\,15} = 7.261$$
+**Given:** $n = 15$, $\bar{x} = 5.2$, $s = 1.8$, $df = 14$, $t_{14,\,0.05} = 1.761$
 <a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
-**Bounds:**
-$$\text{Lower} = \frac{(15)(0.36)}{24.996} = \frac{5.4}{24.996} \approx 0.2160$$
-$$\text{Upper} = \frac{(15)(0.36)}{7.261} = \frac{5.4}{7.261} \approx 0.7437$$
+**(a) Standard error:**
+$$\text{SE} = \frac{1.8}{\sqrt{15}} = \frac{1.8}{3.8730} \approx 0.4648 \text{ min}$$
 
-**90% CI for $\sigma^2$:**
-$$\mathbf{(0.2160,\ 0.7437)}$$
+**Margin of error:**
+$$E = 1.761 \times 0.4648 \approx 0.8185 \text{ min}$$
+
+**90% CI:**
+$$(5.2 - 0.8185,\ 5.2 + 0.8185) = \mathbf{(4.38,\ 6.02) \text{ min}}$$
+
+We are 90% confident that the true mean waiting time lies between **4.38** and **6.02 minutes**.
+
+**(b)** The interval extends slightly above 6 minutes (upper bound $\approx 6.02$), so we cannot confidently conclude the mean is under 6 minutes at the 90% confidence level. The true mean could plausibly be just above 6 minutes.
 </div>
 </details>
 
@@ -3190,7 +3197,7 @@ $$n = \frac{z_{\alpha/2}^2\,p^*(1-p^*)}{E^2}$$
 <a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
 **Calculation:**
-$$n = \frac{(2.576)^2(0.18)(0.82)}{(0.02)^2} = \frac{6.6358 \times 0.1476}{0.0004} = \frac{0.9795}{0.0004} = 2448.75$$
+$$n = \frac{(2.576)^2(0.18)(0.82)}{(0.02)^2} = \frac{6.6358 \times 0.1476}{0.0004} = \frac{0.9794}{0.0004} \approx 2448.6$$
 
 Since $n$ must be a whole number and we always **round up**:
 $$\boxed{n = 2449}$$

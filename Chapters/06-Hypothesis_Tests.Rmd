@@ -5187,7 +5187,7 @@ result$p.value     # p-value</textarea>
 <div class="content">
 - "Is there a *difference*?" implies $H_a: \sigma_A^2 \ne \sigma_B^2$ (two-tailed).
 - Use `var.test(inspector_a, inspector_b, alternative = "two.sided")`.
-- `var.test()` automatically places the larger variance in the numerator. The reported F-statistic equals $s_A^2/s_B^2$.
+- `var.test(x, y)` computes $F = s_x^2/s_y^2$ based on the order you pass the arguments. Since Inspector A has the larger variance, passing `inspector_a` first gives $F = s_A^2/s_B^2 \geq 1$.
 - Two-tailed p-value $= 2 \times P(F_{df_1,df_2} > F^*)$.
 </div>
 </details>
