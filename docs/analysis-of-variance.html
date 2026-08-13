@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-07-27" />
+<meta name="date" content="2026-08-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -2021,8 +2021,8 @@ Y_{ij} = \mu_i + \epsilon_{ij} \quad \text{with} \quad \epsilon_{ij} \sim \mathc
 <p><strong>Note:</strong> <em>not</em> conducting pairwise hypothesis tests</p>
 <p>Fisher’s is easier to calculate, has more statistical power; however, Bonferroni maintains experiment-wise error rate.</p>
 <ul>
-<li><strong>Fisher:</strong> <span class="math inline">\(\alpha_E = 1 - (1 - \alpha)^m\)</span></li>
-<li><strong>Bonferroni:</strong> <span class="math inline">\(\alpha_E = 1 - \left( 1 - \frac{\alpha}{m} \right)^m\)</span></li>
+<li><strong>Fisher:</strong> <span class="math inline">\(\alpha_E \approx 1 - (1 - \alpha)^m\)</span> (exact only if comparisons are independent; pairwise tests on the same data are generally dependent)</li>
+<li><strong>Bonferroni:</strong> <span class="math inline">\(\alpha_E \le 1 - \left( 1 - \frac{\alpha}{m} \right)^m \le \alpha\)</span></li>
 </ul>
 <p>Fisher</p>
 <ul>
@@ -2056,11 +2056,11 @@ L S D=t_{\alpha / 2} \sqrt{M S E\left(\frac{1}{n_{i}}+\frac{1}{n_{j}}\right)}
 \]</span></p>
 <p>LSD will be the same for all pairs of means if all <span class="math inline">\(k\)</span> sample sizes are equal. If some sample sizes differ, LSD must be calculated for each combination.
 It can be argued that this method is flawed because it will increase the probability of committing a Type I error. That is, it is more likely that the analysis of variance to conclude that a difference exists in some of the population means when in fact none differ.</p>
-<p>The true probability of making at least one Type I error is called the experimentwise Type I error rate, denoted <span class="math inline">\(\alpha_{E}\)</span>. The experimentwise Type I error rate can be calculated as</p>
+<p>The true probability of making at least one Type I error is called the experimentwise Type I error rate, denoted <span class="math inline">\(\alpha_{E}\)</span>. If the <span class="math inline">\(C\)</span> comparisons were independent, <span class="math inline">\(\alpha_E\)</span> would equal</p>
 <p><span class="math display">\[
 \alpha_{E}=1-(1-\alpha)^{C}
 \]</span></p>
-<p>Here <span class="math inline">\(C\)</span> is the number of pairwise comparisons, which can be calculated by <span class="math inline">\(C=\frac{k(k-1)}{2}\)</span>. It can be shown that</p>
+<p>Because pairwise comparisons based on the same data are generally dependent, this formula is an approximation. Regardless, <span class="math inline">\(\alpha_E\)</span> increases with <span class="math inline">\(C\)</span>, motivating the Bonferroni adjustment. Here <span class="math inline">\(C\)</span> is the number of pairwise comparisons, which can be calculated by <span class="math inline">\(C=\frac{k(k-1)}{2}\)</span>. It can be shown that</p>
 <p><span class="math display">\[
 \alpha_{E} \leq C \alpha
 \]</span></p>
@@ -2392,8 +2392,8 @@ Figure 8.3: Comparison of LSD and Bonferroni Confidence Intervals for <span clas
 <td>Does <strong>not</strong> control for experiment-wise error</td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(\alpha_E = 1 - (1 - \frac{\alpha}{m})^m\)</span></td>
-<td><span class="math inline">\(\alpha_E = 1 - (1 - \alpha)^m\)</span></td>
+<td><span class="math inline">\(\alpha_E \le \alpha\)</span></td>
+<td><span class="math inline">\(\alpha_E \approx 1 - (1 - \alpha)^m\)</span> (assumes independence)</td>
 </tr>
 <tr class="odd">
 <td>Suitable when control of Type I error is required</td>
@@ -3079,7 +3079,7 @@ Question 14
 </div>
 <p>The boxplot below compares completion times (minutes) for four tax return forms. Observe the medians and spreads of the four groups.</p>
 <p><img src="Book_files/figure-html/ch8-q14-box-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>A one-way ANOVA gives <span class="math inline">\(F^* = 2.94\)</span>, p-value <span class="math inline">\(= 0.036\)</span>. Which conclusion is best at <span class="math inline">\(\alpha = 0.05\)</span>?</p>
+<p>A one-way ANOVA gives <span class="math inline">\(F^* = 14.90\)</span>, p-value <span class="math inline">\(= 1.82 \times 10^{-6}\)</span>. Which conclusion is best at <span class="math inline">\(\alpha = 0.05\)</span>?</p>
 <p>A. All four forms have exactly the same mean completion time.</p>
 <p>B. There is evidence that at least two form means differ.</p>
 <p>C. Form 3 must be different from every other form.</p>
@@ -3091,7 +3091,7 @@ Question 14
 </summary>
 <div class="content">
 <ul>
-<li>Compare p-value <span class="math inline">\(= 0.036\)</span> to <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+<li>Compare p-value <span class="math inline">\(= 1.82 \times 10^{-6}\)</span> to <span class="math inline">\(\alpha = 0.05\)</span>.</li>
 <li>ANOVA’s <span class="math inline">\(H_a\)</span> states “at least two means differ” — it does not pinpoint which pair.</li>
 <li>Option C overclaims: ANOVA cannot identify which specific pairs differ without post-hoc tests.</li>
 <li>Option D is false: ANOVA is designed for <span class="math inline">\(k \ge 2\)</span> groups.</li>
@@ -3104,7 +3104,7 @@ Question 14
 </summary>
 <div class="content">
 <p><strong>B. There is evidence that at least two form means differ.</strong></p>
-<p>Since p-value <span class="math inline">\(= 0.036 &lt; \alpha = 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>. The boxplot shows Form 3 has a visibly higher median and wider spread, which is consistent with at least one group differing. However, ANOVA alone cannot confirm that Form 3 specifically differs from every other form — post-hoc pairwise comparisons (e.g., Fisher’s LSD, Bonferroni) are needed to identify which pairs differ.</p>
+<p>Since p-value <span class="math inline">\(= 1.82 \times 10^{-6} \ll \alpha = 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>. The boxplot shows Form 3 has a visibly higher median and wider spread, which is consistent with at least one group differing. However, ANOVA alone establishes only that <strong>at least two population means differ</strong> — it does not identify which specific pair(s). Post-hoc pairwise comparisons (e.g., Fisher’s LSD, Bonferroni) are needed to determine which forms differ.</p>
 </div>
 </details>
 <hr />
@@ -3217,7 +3217,7 @@ Question 17
 </tr>
 </tbody>
 </table>
-<p>Fisher’s LSD increases the probability of at least one false positive (<span class="math inline">\(\alpha_E = 1 - (1-\alpha)^m\)</span>); Bonferroni corrects this at the cost of lower power.</p>
+<p>If the <span class="math inline">\(m\)</span> tests were independent, the familywise Type I error rate would be <span class="math inline">\(1-(1-\alpha)^m\)</span>. Pairwise comparisons based on the same ANOVA data are generally <strong>dependent</strong>, so this expression is an approximation rather than an exact general formula. The key point is that unadjusted Fisher’s LSD does <strong>not</strong> generally control the familywise error rate at <span class="math inline">\(\alpha\)</span>, whereas Bonferroni guarantees FWER <span class="math inline">\(\le \alpha\)</span> — at the cost of lower power.</p>
 </div>
 </details>
 <hr />
@@ -3260,7 +3260,7 @@ Question 19
 </div>
 <p>For the same Bumper 1 vs. Bumper 2 comparison (<span class="math inline">\(|\bar{x}_1 - \bar{x}_2| = 105.9\)</span>), now apply the <strong>Bonferroni adjustment</strong>.</p>
 <p>With <span class="math inline">\(k = 4\)</span> groups, <span class="math inline">\(m = 6\)</span> pairwise comparisons, <span class="math inline">\(\alpha&#39; = 0.05/6 \approx 0.0083\)</span>, and <span class="math inline">\(t_{0.00415,\,36} \approx 2.792\)</span>:</p>
-<p><span class="math display">\[LSD_{\text{Bonf}} = 2.792\sqrt{12399 \times 0.2} \approx 139.1\]</span></p>
+<p><span class="math display">\[LSD_{\text{Bonf}} = 2.792\sqrt{12399 \times 0.2} \approx 139.0\]</span></p>
 <p>Should we conclude that <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> differ under the Bonferroni adjustment?</p>
 </div>
 <details data-type="hint">
@@ -3270,7 +3270,7 @@ Question 19
 <div class="content">
 <ul>
 <li>The Bonferroni decision rule is the same: conclude <span class="math inline">\(\mu_i \ne \mu_j\)</span> if <span class="math inline">\(|\bar{x}_i - \bar{x}_j| &gt; LSD_{\text{Bonf}}\)</span>.</li>
-<li>Compare 105.9 to 139.1.</li>
+<li>Compare 105.9 to 139.0.</li>
 <li>Note that <span class="math inline">\(LSD_{\text{Bonf}} &gt; LSD_{\text{Fisher}}\)</span>, making Bonferroni harder to reject.</li>
 </ul>
 </div>
@@ -3280,11 +3280,11 @@ Question 19
 ✅ Answer
 </summary>
 <div class="content">
-<p>Since <span class="math inline">\(|\bar{x}_1 - \bar{x}_2| = 105.9 &lt; LSD_{\text{Bonf}} \approx 139.1\)</span>, we <strong>fail to conclude</strong> that <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> differ under the Bonferroni adjustment.</p>
+<p>Since <span class="math inline">\(|\bar{x}_1 - \bar{x}_2| = 105.9 &lt; LSD_{\text{Bonf}} \approx 139.0\)</span>, we <strong>fail to conclude</strong> that <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> differ under the Bonferroni adjustment.</p>
 <p>The Bonferroni 95% confidence interval for <span class="math inline">\(\mu_1 - \mu_2\)</span> is:
-<span class="math display">\[-105.9 \pm 139.1 = (-245.0,\ 33.2)\]</span></p>
+<span class="math display">\[-105.9 \pm 139.0 = (-244.9,\ 33.1)\]</span></p>
 <p>Since the interval <strong>contains zero</strong>, the difference is not statistically significant after adjustment.</p>
-<p>This illustrates the trade-off: Fisher’s LSD (LSD <span class="math inline">\(\approx\)</span> 101.0) declares this pair significant, while Bonferroni (LSD <span class="math inline">\(\approx\)</span> 139.1) does not. Bonferroni is more conservative but better controls the experiment-wise error rate.</p>
+<p>This illustrates the trade-off: Fisher’s LSD (LSD <span class="math inline">\(\approx\)</span> 101.0) declares this pair significant, while Bonferroni (LSD <span class="math inline">\(\approx\)</span> 139.0) does not. Bonferroni is more conservative but better controls the experiment-wise error rate.</p>
 </div>
 </details>
 <hr />
@@ -3572,8 +3572,8 @@ tapply(sales, country, ___)</textarea>
 <div class="content">
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="analysis-of-variance.html#cb162-1" tabindex="-1"></a><span class="fu">tapply</span>(sales, country, var)</span>
 <span id="cb162-2"><a href="analysis-of-variance.html#cb162-2" tabindex="-1"></a><span class="co">#        A        B        C</span></span>
-<span id="cb162-3"><a href="analysis-of-variance.html#cb162-3" tabindex="-1"></a><span class="co"># 2.666667 2.666667 2.666667</span></span></code></pre></div>
-<p>All three groups have the same sample variance (<span class="math inline">\(\approx 2.67\)</span>), which supports the equal-variance assumption of ANOVA.</p>
+<span id="cb162-3"><a href="analysis-of-variance.html#cb162-3" tabindex="-1"></a><span class="co"># 3.333333 2.666667 3.333333</span></span></code></pre></div>
+<p>Countries A and C have sample variance <span class="math inline">\(\approx 3.33\)</span> and Country B has <span class="math inline">\(\approx 2.67\)</span>. These values are similar in this small sample and do not show an obvious variance difference, supporting the equal-variance assumption. Note that similar-looking sample variances do not prove that the population variances are equal; the assumption should be checked with additional diagnostic tools (e.g., Levene’s test) in practice.</p>
 </div>
 </details>
 <hr />
@@ -3799,7 +3799,7 @@ boxplot(____ ~ ____,
 <span id="cb166-2"><a href="analysis-of-variance.html#cb166-2" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Sales by Country&quot;</span>,</span>
 <span id="cb166-3"><a href="analysis-of-variance.html#cb166-3" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Country&quot;</span>,</span>
 <span id="cb166-4"><a href="analysis-of-variance.html#cb166-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Sales&quot;</span>)</span></code></pre></div>
-<p>The boxplot shows Country C with the highest median (<span class="math inline">\(\tilde{x}_C = 12\)</span>) and Country A with the lowest (<span class="math inline">\(\tilde{x}_A = 7.5\)</span>). The medians increase from A to C, consistent with the ANOVA result that group means differ.</p>
+<p>The boxplot shows three increasing medians: <span class="math inline">\(\tilde{x}_A = 8\)</span> (sorted: 6, 7, <strong>7+9</strong>/2 = 8), <span class="math inline">\(\tilde{x}_B = 10\)</span> (sorted: 8, 10, <strong>10+10</strong>/2 = 10), <span class="math inline">\(\tilde{x}_C = 12\)</span> (sorted: 10, 11, <strong>11+13</strong>/2 = 12). Country C has the highest median and Country A the lowest, consistent with the ANOVA result that group means differ.</p>
 </div>
 </details>
 <hr />
@@ -4430,23 +4430,28 @@ pairwise.t.test(study$score, study$method,
 <span id="cb168-10"><a href="analysis-of-variance.html#cb168-10" tabindex="-1"></a><span class="co">#    Group  Lecture   Online SelfStudy    Tutor</span></span>
 <span id="cb168-11"><a href="analysis-of-variance.html#cb168-11" tabindex="-1"></a><span class="co"># 81.6667  72.1250  76.9000   74.0909  86.6667</span></span>
 <span id="cb168-12"><a href="analysis-of-variance.html#cb168-12" tabindex="-1"></a></span>
-<span id="cb168-13"><a href="analysis-of-variance.html#cb168-13" tabindex="-1"></a><span class="co"># (d) boxplot — renders in plot area</span></span>
-<span id="cb168-14"><a href="analysis-of-variance.html#cb168-14" tabindex="-1"></a></span>
-<span id="cb168-15"><a href="analysis-of-variance.html#cb168-15" tabindex="-1"></a><span class="co"># (e)</span></span>
-<span id="cb168-16"><a href="analysis-of-variance.html#cb168-16" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> method, <span class="at">data =</span> study)</span>
-<span id="cb168-17"><a href="analysis-of-variance.html#cb168-17" tabindex="-1"></a><span class="fu">anova</span>(model)</span>
-<span id="cb168-18"><a href="analysis-of-variance.html#cb168-18" tabindex="-1"></a><span class="co"># Response: score</span></span>
-<span id="cb168-19"><a href="analysis-of-variance.html#cb168-19" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
-<span id="cb168-20"><a href="analysis-of-variance.html#cb168-20" tabindex="-1"></a><span class="co"># method     4 1284.83  321.21  39.134 4.129e-14 ***</span></span>
-<span id="cb168-21"><a href="analysis-of-variance.html#cb168-21" tabindex="-1"></a><span class="co"># Residuals 45  369.35    8.21</span></span>
-<span id="cb168-22"><a href="analysis-of-variance.html#cb168-22" tabindex="-1"></a></span>
-<span id="cb168-23"><a href="analysis-of-variance.html#cb168-23" tabindex="-1"></a><span class="co"># (g)</span></span>
-<span id="cb168-24"><a href="analysis-of-variance.html#cb168-24" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(study<span class="sc">$</span>score, study<span class="sc">$</span>method,</span>
-<span id="cb168-25"><a href="analysis-of-variance.html#cb168-25" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<span id="cb168-13"><a href="analysis-of-variance.html#cb168-13" tabindex="-1"></a><span class="co"># (d)</span></span>
+<span id="cb168-14"><a href="analysis-of-variance.html#cb168-14" tabindex="-1"></a><span class="fu">boxplot</span>(score <span class="sc">~</span> method,</span>
+<span id="cb168-15"><a href="analysis-of-variance.html#cb168-15" tabindex="-1"></a>        <span class="at">data  =</span> study,</span>
+<span id="cb168-16"><a href="analysis-of-variance.html#cb168-16" tabindex="-1"></a>        <span class="at">main  =</span> <span class="st">&quot;Final Exam Scores by Study Method&quot;</span>,</span>
+<span id="cb168-17"><a href="analysis-of-variance.html#cb168-17" tabindex="-1"></a>        <span class="at">xlab  =</span> <span class="st">&quot;Study Method&quot;</span>,</span>
+<span id="cb168-18"><a href="analysis-of-variance.html#cb168-18" tabindex="-1"></a>        <span class="at">ylab  =</span> <span class="st">&quot;Final Exam Score&quot;</span>)</span>
+<span id="cb168-19"><a href="analysis-of-variance.html#cb168-19" tabindex="-1"></a></span>
+<span id="cb168-20"><a href="analysis-of-variance.html#cb168-20" tabindex="-1"></a><span class="co"># (e)</span></span>
+<span id="cb168-21"><a href="analysis-of-variance.html#cb168-21" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> method, <span class="at">data =</span> study)</span>
+<span id="cb168-22"><a href="analysis-of-variance.html#cb168-22" tabindex="-1"></a><span class="fu">anova</span>(model)</span>
+<span id="cb168-23"><a href="analysis-of-variance.html#cb168-23" tabindex="-1"></a><span class="co"># Response: score</span></span>
+<span id="cb168-24"><a href="analysis-of-variance.html#cb168-24" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
+<span id="cb168-25"><a href="analysis-of-variance.html#cb168-25" tabindex="-1"></a><span class="co"># method     4 1284.83  321.21  39.134 4.129e-14 ***</span></span>
+<span id="cb168-26"><a href="analysis-of-variance.html#cb168-26" tabindex="-1"></a><span class="co"># Residuals 45  369.35    8.21</span></span>
+<span id="cb168-27"><a href="analysis-of-variance.html#cb168-27" tabindex="-1"></a></span>
+<span id="cb168-28"><a href="analysis-of-variance.html#cb168-28" tabindex="-1"></a><span class="co"># (g)</span></span>
+<span id="cb168-29"><a href="analysis-of-variance.html#cb168-29" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(study<span class="sc">$</span>score, study<span class="sc">$</span>method,</span>
+<span id="cb168-30"><a href="analysis-of-variance.html#cb168-30" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <p><strong>(f) Interpretation:</strong> p-value <span class="math inline">\(= 4.13 \times 10^{-14} \ll 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is overwhelming evidence that at least two study methods have different mean exam scores.</p>
 <p><strong>(g) Bonferroni result:</strong> The Tutor group differs significantly from all other groups (all adjusted p <span class="math inline">\(&lt; 0.05\)</span>). Lecture and SelfStudy do not differ from each other (<span class="math inline">\(p = 1.00\)</span>), but both differ from Group and Tutor. Online differs from Group (<span class="math inline">\(p = 0.0033\)</span>) and Tutor, but not from SelfStudy.</p>
 <blockquote>
-<p><strong>Note:</strong> The CSV data gives slightly different means from Question 31’s summary table (which used rounded <span class="math inline">\(s_i^2\)</span> values), so the <span class="math inline">\(F\)</span> statistic here (<span class="math inline">\(F \approx 39.13\)</span>) is larger than Question 31’s <span class="math inline">\(F = 6.64\)</span>.</p>
+<p><strong>Note:</strong> The CSV dataset and Question 31’s summary table use different underlying data (different group means and sizes), so their ANOVA results are not expected to match.</p>
 </blockquote>
 </div>
 </details>
@@ -4534,15 +4539,22 @@ anova(delivery_model)</textarea>
 <span id="cb169-13"><a href="analysis-of-variance.html#cb169-13" tabindex="-1"></a><span class="co"># (d)</span></span>
 <span id="cb169-14"><a href="analysis-of-variance.html#cb169-14" tabindex="-1"></a><span class="fu">tapply</span>(delivery<span class="sc">$</span>time, delivery<span class="sc">$</span>company, var)</span>
 <span id="cb169-15"><a href="analysis-of-variance.html#cb169-15" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
-<span id="cb169-16"><a href="analysis-of-variance.html#cb169-16" tabindex="-1"></a><span class="co">#    4.667    7.750    4.571    7.211</span></span>
+<span id="cb169-16"><a href="analysis-of-variance.html#cb169-16" tabindex="-1"></a><span class="co">#    4.667    7.500    4.000    6.767</span></span>
 <span id="cb169-17"><a href="analysis-of-variance.html#cb169-17" tabindex="-1"></a></span>
-<span id="cb169-18"><a href="analysis-of-variance.html#cb169-18" tabindex="-1"></a><span class="co"># (f)</span></span>
-<span id="cb169-19"><a href="analysis-of-variance.html#cb169-19" tabindex="-1"></a>delivery_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> company, <span class="at">data =</span> delivery)</span>
-<span id="cb169-20"><a href="analysis-of-variance.html#cb169-20" tabindex="-1"></a><span class="fu">anova</span>(delivery_model)</span>
-<span id="cb169-21"><a href="analysis-of-variance.html#cb169-21" tabindex="-1"></a><span class="co"># Response: time</span></span>
-<span id="cb169-22"><a href="analysis-of-variance.html#cb169-22" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
-<span id="cb169-23"><a href="analysis-of-variance.html#cb169-23" tabindex="-1"></a><span class="co"># company    3 2739.84  913.28  154.88 &lt; 2.2e-16 ***</span></span>
-<span id="cb169-24"><a href="analysis-of-variance.html#cb169-24" tabindex="-1"></a><span class="co"># Residuals 30  176.90    5.90</span></span></code></pre></div>
+<span id="cb169-18"><a href="analysis-of-variance.html#cb169-18" tabindex="-1"></a><span class="co"># (e)</span></span>
+<span id="cb169-19"><a href="analysis-of-variance.html#cb169-19" tabindex="-1"></a><span class="fu">boxplot</span>(time <span class="sc">~</span> company,</span>
+<span id="cb169-20"><a href="analysis-of-variance.html#cb169-20" tabindex="-1"></a>        <span class="at">data =</span> delivery,</span>
+<span id="cb169-21"><a href="analysis-of-variance.html#cb169-21" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Delivery Times by Company&quot;</span>,</span>
+<span id="cb169-22"><a href="analysis-of-variance.html#cb169-22" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Company&quot;</span>,</span>
+<span id="cb169-23"><a href="analysis-of-variance.html#cb169-23" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Delivery Time (min)&quot;</span>)</span>
+<span id="cb169-24"><a href="analysis-of-variance.html#cb169-24" tabindex="-1"></a></span>
+<span id="cb169-25"><a href="analysis-of-variance.html#cb169-25" tabindex="-1"></a><span class="co"># (f)</span></span>
+<span id="cb169-26"><a href="analysis-of-variance.html#cb169-26" tabindex="-1"></a>delivery_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> company, <span class="at">data =</span> delivery)</span>
+<span id="cb169-27"><a href="analysis-of-variance.html#cb169-27" tabindex="-1"></a><span class="fu">anova</span>(delivery_model)</span>
+<span id="cb169-28"><a href="analysis-of-variance.html#cb169-28" tabindex="-1"></a><span class="co"># Response: time</span></span>
+<span id="cb169-29"><a href="analysis-of-variance.html#cb169-29" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
+<span id="cb169-30"><a href="analysis-of-variance.html#cb169-30" tabindex="-1"></a><span class="co"># company    3 2739.84  913.28  154.88 &lt; 2.2e-16 ***</span></span>
+<span id="cb169-31"><a href="analysis-of-variance.html#cb169-31" tabindex="-1"></a><span class="co"># Residuals 30  176.90    5.90</span></span></code></pre></div>
 <p><strong>(g)</strong> p-value <span class="math inline">\(&lt; 2.2 \times 10^{-16} \ll 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is overwhelming evidence that at least two companies have different mean delivery times.</p>
 <p><strong>(h)</strong> <strong>Company A</strong> is fastest: <span class="math inline">\(\bar{x}_A = 41.0\)</span> min, the smallest mean.</p>
 <blockquote>
@@ -4622,21 +4634,28 @@ pairwise.t.test(fert$yield, fert$fertilizer,
 <span id="cb170-5"><a href="analysis-of-variance.html#cb170-5" tabindex="-1"></a><span class="co"># F1 F2 F3 F4</span></span>
 <span id="cb170-6"><a href="analysis-of-variance.html#cb170-6" tabindex="-1"></a><span class="co">#  8 10 12  9</span></span>
 <span id="cb170-7"><a href="analysis-of-variance.html#cb170-7" tabindex="-1"></a></span>
-<span id="cb170-8"><a href="analysis-of-variance.html#cb170-8" tabindex="-1"></a><span class="co"># (d)</span></span>
-<span id="cb170-9"><a href="analysis-of-variance.html#cb170-9" tabindex="-1"></a>fert_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> fertilizer, <span class="at">data =</span> fert)</span>
-<span id="cb170-10"><a href="analysis-of-variance.html#cb170-10" tabindex="-1"></a><span class="fu">anova</span>(fert_model)</span>
-<span id="cb170-11"><a href="analysis-of-variance.html#cb170-11" tabindex="-1"></a><span class="co"># Response: yield</span></span>
-<span id="cb170-12"><a href="analysis-of-variance.html#cb170-12" tabindex="-1"></a><span class="co">#            Df Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
-<span id="cb170-13"><a href="analysis-of-variance.html#cb170-13" tabindex="-1"></a><span class="co"># fertilizer  3 659.97  219.99   43.84 6.03e-12 ***</span></span>
-<span id="cb170-14"><a href="analysis-of-variance.html#cb170-14" tabindex="-1"></a><span class="co"># Residuals  35 175.62    5.02</span></span>
-<span id="cb170-15"><a href="analysis-of-variance.html#cb170-15" tabindex="-1"></a></span>
-<span id="cb170-16"><a href="analysis-of-variance.html#cb170-16" tabindex="-1"></a><span class="co"># (e)</span></span>
-<span id="cb170-17"><a href="analysis-of-variance.html#cb170-17" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(fert<span class="sc">$</span>yield, fert<span class="sc">$</span>fertilizer,</span>
-<span id="cb170-18"><a href="analysis-of-variance.html#cb170-18" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
-<span id="cb170-19"><a href="analysis-of-variance.html#cb170-19" tabindex="-1"></a><span class="co">#    F1      F2      F3</span></span>
-<span id="cb170-20"><a href="analysis-of-variance.html#cb170-20" tabindex="-1"></a><span class="co"># F2 1.8e-05 -       -</span></span>
-<span id="cb170-21"><a href="analysis-of-variance.html#cb170-21" tabindex="-1"></a><span class="co"># F3 7.3e-12 3.7e-05 -</span></span>
-<span id="cb170-22"><a href="analysis-of-variance.html#cb170-22" tabindex="-1"></a><span class="co"># F4 0.049   0.054   1.1e-08</span></span></code></pre></div>
+<span id="cb170-8"><a href="analysis-of-variance.html#cb170-8" tabindex="-1"></a><span class="co"># (c)</span></span>
+<span id="cb170-9"><a href="analysis-of-variance.html#cb170-9" tabindex="-1"></a><span class="fu">boxplot</span>(yield <span class="sc">~</span> fertilizer,</span>
+<span id="cb170-10"><a href="analysis-of-variance.html#cb170-10" tabindex="-1"></a>        <span class="at">data =</span> fert,</span>
+<span id="cb170-11"><a href="analysis-of-variance.html#cb170-11" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Crop Yield by Fertilizer&quot;</span>,</span>
+<span id="cb170-12"><a href="analysis-of-variance.html#cb170-12" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Fertilizer&quot;</span>,</span>
+<span id="cb170-13"><a href="analysis-of-variance.html#cb170-13" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Yield&quot;</span>)</span>
+<span id="cb170-14"><a href="analysis-of-variance.html#cb170-14" tabindex="-1"></a></span>
+<span id="cb170-15"><a href="analysis-of-variance.html#cb170-15" tabindex="-1"></a><span class="co"># (d)</span></span>
+<span id="cb170-16"><a href="analysis-of-variance.html#cb170-16" tabindex="-1"></a>fert_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> fertilizer, <span class="at">data =</span> fert)</span>
+<span id="cb170-17"><a href="analysis-of-variance.html#cb170-17" tabindex="-1"></a><span class="fu">anova</span>(fert_model)</span>
+<span id="cb170-18"><a href="analysis-of-variance.html#cb170-18" tabindex="-1"></a><span class="co"># Response: yield</span></span>
+<span id="cb170-19"><a href="analysis-of-variance.html#cb170-19" tabindex="-1"></a><span class="co">#            Df Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
+<span id="cb170-20"><a href="analysis-of-variance.html#cb170-20" tabindex="-1"></a><span class="co"># fertilizer  3 659.97  219.99   43.84 6.03e-12 ***</span></span>
+<span id="cb170-21"><a href="analysis-of-variance.html#cb170-21" tabindex="-1"></a><span class="co"># Residuals  35 175.62    5.02</span></span>
+<span id="cb170-22"><a href="analysis-of-variance.html#cb170-22" tabindex="-1"></a></span>
+<span id="cb170-23"><a href="analysis-of-variance.html#cb170-23" tabindex="-1"></a><span class="co"># (e)</span></span>
+<span id="cb170-24"><a href="analysis-of-variance.html#cb170-24" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(fert<span class="sc">$</span>yield, fert<span class="sc">$</span>fertilizer,</span>
+<span id="cb170-25"><a href="analysis-of-variance.html#cb170-25" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb170-26"><a href="analysis-of-variance.html#cb170-26" tabindex="-1"></a><span class="co">#    F1      F2      F3</span></span>
+<span id="cb170-27"><a href="analysis-of-variance.html#cb170-27" tabindex="-1"></a><span class="co"># F2 1.8e-05 -       -</span></span>
+<span id="cb170-28"><a href="analysis-of-variance.html#cb170-28" tabindex="-1"></a><span class="co"># F3 7.3e-12 3.7e-05 -</span></span>
+<span id="cb170-29"><a href="analysis-of-variance.html#cb170-29" tabindex="-1"></a><span class="co"># F4 0.049   0.054   1.1e-08</span></span></code></pre></div>
 <p>ANOVA result: <span class="math inline">\(F = 43.84\)</span>, p-value <span class="math inline">\(= 6.03 \times 10^{-12} \ll 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p>
 <p>Bonferroni pairwise results:
 - F1 vs F2, F1 vs F3, F2 vs F3, F3 vs F4: all significantly different (p <span class="math inline">\(\ll 0.05\)</span>).

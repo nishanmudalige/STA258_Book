@@ -1005,8 +1005,8 @@ Bonferroni
 
 Fisher's is easier to calculate, has more statistical power; however, Bonferroni maintains experiment-wise error rate.
 
-- **Fisher:** \( \alpha_E = 1 - (1 - \alpha)^m \)
-- **Bonferroni:** \( \alpha_E = 1 - \left( 1 - \frac{\alpha}{m} \right)^m \)
+- **Fisher:** \( \alpha_E \approx 1 - (1 - \alpha)^m \) (exact only if comparisons are independent; pairwise tests on the same data are generally dependent)
+- **Bonferroni:** \( \alpha_E \le 1 - \left( 1 - \frac{\alpha}{m} \right)^m \le \alpha \)
 
 
 
@@ -1058,13 +1058,13 @@ $$
 LSD will be the same for all pairs of means if all $k$ sample sizes are equal. If some sample sizes differ, LSD must be calculated for each combination.
 It can be argued that this method is flawed because it will increase the probability of committing a Type I error. That is, it is more likely that the analysis of variance to conclude that a difference exists in some of the population means when in fact none differ.
 
-The true probability of making at least one Type I error is called the experimentwise Type I error rate, denoted $\alpha_{E}$. The experimentwise Type I error rate can be calculated as
+The true probability of making at least one Type I error is called the experimentwise Type I error rate, denoted $\alpha_{E}$. If the $C$ comparisons were independent, $\alpha_E$ would equal
 
 $$
 \alpha_{E}=1-(1-\alpha)^{C}
 $$
 
-Here $C$ is the number of pairwise comparisons, which can be calculated by $C=\frac{k(k-1)}{2}$. It can be shown that
+Because pairwise comparisons based on the same data are generally dependent, this formula is an approximation. Regardless, $\alpha_E$ increases with $C$, motivating the Bonferroni adjustment. Here $C$ is the number of pairwise comparisons, which can be calculated by $C=\frac{k(k-1)}{2}$. It can be shown that
 
 $$
 \alpha_{E} \leq C \alpha
@@ -1348,7 +1348,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 | **Bonferroni** | **LSD** |
 |----------------|---------|
 | Controls for experiment-wise error | Does **not** control for experiment-wise error |
-| \( \alpha_E = 1 - (1 - \frac{\alpha}{m})^m \) | \( \alpha_E = 1 - (1 - \alpha)^m \) |
+| \( \alpha_E \le \alpha \) | \( \alpha_E \approx 1 - (1 - \alpha)^m \) (assumes independence) |
 | Suitable when control of Type I error is required | Suitable when control of Type I error is **not** a strict concern |
 | Higher risk of Type II error | Lower risk of Type II error |
 | Lower power | Higher power |
@@ -1885,13 +1885,13 @@ ggplot(df_forms, aes(x = form, y = time, fill = form)) +
                outlier.shape = 16, outlier.size = 2) +
   scale_fill_manual(values = c("#74b9ff","#55efc4","#fd79a8","#ffeaa7")) +
   labs(x = "Tax Return Form", y = "Completion time (minutes)",
-       caption = "n = 10 per form  |  ANOVA: F = 2.94, p-value = 0.036") +
+       caption = "n = 10 per form  |  ANOVA: F = 14.90, p-value = 1.82e-06") +
   theme_minimal(base_size = 12) +
   theme(legend.position = "none",
         plot.caption = element_text(color = "#555", size = 9))
 ```
 
-A one-way ANOVA gives $F^* = 2.94$, p-value $= 0.036$. Which conclusion is best at $\alpha = 0.05$?
+A one-way ANOVA gives $F^* = 14.90$, p-value $= 1.82 \times 10^{-6}$. Which conclusion is best at $\alpha = 0.05$?
 
 A. All four forms have exactly the same mean completion time.
 
@@ -1905,7 +1905,7 @@ D. ANOVA cannot be used with four groups.
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- Compare p-value $= 0.036$ to $\alpha = 0.05$.
+- Compare p-value $= 1.82 \times 10^{-6}$ to $\alpha = 0.05$.
 - ANOVA's $H_a$ states "at least two means differ" — it does not pinpoint which pair.
 - Option C overclaims: ANOVA cannot identify which specific pairs differ without post-hoc tests.
 - Option D is false: ANOVA is designed for $k \ge 2$ groups.
@@ -1917,7 +1917,7 @@ D. ANOVA cannot be used with four groups.
 <div class="content">
 **B. There is evidence that at least two form means differ.**
 
-Since p-value $= 0.036 < \alpha = 0.05$, we reject $H_0$. The boxplot shows Form 3 has a visibly higher median and wider spread, which is consistent with at least one group differing. However, ANOVA alone cannot confirm that Form 3 specifically differs from every other form — post-hoc pairwise comparisons (e.g., Fisher's LSD, Bonferroni) are needed to identify which pairs differ.
+Since p-value $= 1.82 \times 10^{-6} \ll \alpha = 0.05$, we reject $H_0$. The boxplot shows Form 3 has a visibly higher median and wider spread, which is consistent with at least one group differing. However, ANOVA alone establishes only that **at least two population means differ** — it does not identify which specific pair(s). Post-hoc pairwise comparisons (e.g., Fisher's LSD, Bonferroni) are needed to determine which forms differ.
 </div>
 </details>
 
@@ -2012,7 +2012,7 @@ The smaller $\alpha'$ requires a larger $t$ critical value, which produces **wid
 | Fisher's LSD | Higher | Does **not** control $\alpha_E$ |
 | Bonferroni | Lower | Controls $\alpha_E \le \alpha$ |
 
-Fisher's LSD increases the probability of at least one false positive ($\alpha_E = 1 - (1-\alpha)^m$); Bonferroni corrects this at the cost of lower power.
+If the $m$ tests were independent, the familywise Type I error rate would be $1-(1-\alpha)^m$. Pairwise comparisons based on the same ANOVA data are generally **dependent**, so this expression is an approximation rather than an exact general formula. The key point is that unadjusted Fisher's LSD does **not** generally control the familywise error rate at $\alpha$, whereas Bonferroni guarantees FWER $\le \alpha$ — at the cost of lower power.
 </div>
 </details>
 
@@ -2059,7 +2059,7 @@ For the same Bumper 1 vs. Bumper 2 comparison ($|\bar{x}_1 - \bar{x}_2| = 105.9$
 
 With $k = 4$ groups, $m = 6$ pairwise comparisons, $\alpha' = 0.05/6 \approx 0.0083$, and $t_{0.00415,\,36} \approx 2.792$:
 
-$$LSD_{\text{Bonf}} = 2.792\sqrt{12399 \times 0.2} \approx 139.1$$
+$$LSD_{\text{Bonf}} = 2.792\sqrt{12399 \times 0.2} \approx 139.0$$
 
 Should we conclude that $\mu_1$ and $\mu_2$ differ under the Bonferroni adjustment?
 </div>
@@ -2068,7 +2068,7 @@ Should we conclude that $\mu_1$ and $\mu_2$ differ under the Bonferroni adjustme
 <summary>💡 Hint</summary>
 <div class="content">
 - The Bonferroni decision rule is the same: conclude $\mu_i \ne \mu_j$ if $|\bar{x}_i - \bar{x}_j| > LSD_{\text{Bonf}}$.
-- Compare 105.9 to 139.1.
+- Compare 105.9 to 139.0.
 - Note that $LSD_{\text{Bonf}} > LSD_{\text{Fisher}}$, making Bonferroni harder to reject.
 </div>
 </details>
@@ -2076,14 +2076,14 @@ Should we conclude that $\mu_1$ and $\mu_2$ differ under the Bonferroni adjustme
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-Since $|\bar{x}_1 - \bar{x}_2| = 105.9 < LSD_{\text{Bonf}} \approx 139.1$, we **fail to conclude** that $\mu_1$ and $\mu_2$ differ under the Bonferroni adjustment.
+Since $|\bar{x}_1 - \bar{x}_2| = 105.9 < LSD_{\text{Bonf}} \approx 139.0$, we **fail to conclude** that $\mu_1$ and $\mu_2$ differ under the Bonferroni adjustment.
 
 The Bonferroni 95% confidence interval for $\mu_1 - \mu_2$ is:
-$$-105.9 \pm 139.1 = (-245.0,\ 33.2)$$
+$$-105.9 \pm 139.0 = (-244.9,\ 33.1)$$
 
 Since the interval **contains zero**, the difference is not statistically significant after adjustment.
 
-This illustrates the trade-off: Fisher's LSD (LSD $\approx$ 101.0) declares this pair significant, while Bonferroni (LSD $\approx$ 139.1) does not. Bonferroni is more conservative but better controls the experiment-wise error rate.
+This illustrates the trade-off: Fisher's LSD (LSD $\approx$ 101.0) declares this pair significant, while Bonferroni (LSD $\approx$ 139.0) does not. Bonferroni is more conservative but better controls the experiment-wise error rate.
 </div>
 </details>
 
@@ -2327,9 +2327,9 @@ tapply(sales, country, ___)</textarea>
 ```r
 tapply(sales, country, var)
 #        A        B        C
-# 2.666667 2.666667 2.666667
+# 3.333333 2.666667 3.333333
 ```
-All three groups have the same sample variance ($\approx 2.67$), which supports the equal-variance assumption of ANOVA.
+Countries A and C have sample variance $\approx 3.33$ and Country B has $\approx 2.67$. These values are similar in this small sample and do not show an obvious variance difference, supporting the equal-variance assumption. Note that similar-looking sample variances do not prove that the population variances are equal; the assumption should be checked with additional diagnostic tools (e.g., Levene's test) in practice.
 </div>
 </details>
 
@@ -2519,7 +2519,7 @@ boxplot(sales ~ country,
         xlab = "Country",
         ylab = "Sales")
 ```
-The boxplot shows Country C with the highest median ($\tilde{x}_C = 12$) and Country A with the lowest ($\tilde{x}_A = 7.5$). The medians increase from A to C, consistent with the ANOVA result that group means differ.
+The boxplot shows three increasing medians: $\tilde{x}_A = 8$ (sorted: 6, 7, **7+9**/2 = 8), $\tilde{x}_B = 10$ (sorted: 8, 10, **10+10**/2 = 10), $\tilde{x}_C = 12$ (sorted: 10, 11, **11+13**/2 = 12). Country C has the highest median and Country A the lowest, consistent with the ANOVA result that group means differ.
 </div>
 </details>
 
@@ -3007,7 +3007,12 @@ tapply(study$score, study$method, mean)
 #    Group  Lecture   Online SelfStudy    Tutor
 # 81.6667  72.1250  76.9000   74.0909  86.6667
 
-# (d) boxplot — renders in plot area
+# (d)
+boxplot(score ~ method,
+        data  = study,
+        main  = "Final Exam Scores by Study Method",
+        xlab  = "Study Method",
+        ylab  = "Final Exam Score")
 
 # (e)
 model <- aov(score ~ method, data = study)
@@ -3026,7 +3031,7 @@ pairwise.t.test(study$score, study$method,
 
 **(g) Bonferroni result:** The Tutor group differs significantly from all other groups (all adjusted p $< 0.05$). Lecture and SelfStudy do not differ from each other ($p = 1.00$), but both differ from Group and Tutor. Online differs from Group ($p = 0.0033$) and Tutor, but not from SelfStudy.
 
-> **Note:** The CSV data gives slightly different means from Question 31's summary table (which used rounded $s_i^2$ values), so the $F$ statistic here ($F \approx 39.13$) is larger than Question 31's $F = 6.64$.
+> **Note:** The CSV dataset and Question 31's summary table use different underlying data (different group means and sizes), so their ANOVA results are not expected to match.
 </div>
 </details>
 
@@ -3106,7 +3111,14 @@ tapply(delivery$time, delivery$company, mean)
 # (d)
 tapply(delivery$time, delivery$company, var)
 # CompanyA CompanyB CompanyC CompanyD
-#    4.667    7.750    4.571    7.211
+#    4.667    7.500    4.000    6.767
+
+# (e)
+boxplot(time ~ company,
+        data = delivery,
+        main = "Delivery Times by Company",
+        xlab = "Company",
+        ylab = "Delivery Time (min)")
 
 # (f)
 delivery_model <- aov(time ~ company, data = delivery)
@@ -3188,6 +3200,13 @@ fert <- read.csv("ch8-fertilizer-yield.csv")
 table(fert$fertilizer)
 # F1 F2 F3 F4
 #  8 10 12  9
+
+# (c)
+boxplot(yield ~ fertilizer,
+        data = fert,
+        main = "Crop Yield by Fertilizer",
+        xlab = "Fertilizer",
+        ylab = "Yield")
 
 # (d)
 fert_model <- aov(yield ~ fertilizer, data = fert)

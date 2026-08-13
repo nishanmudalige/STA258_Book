@@ -3436,7 +3436,7 @@ result
 #   One Sample t-test
 #
 # data:  calories
-# t = -5.3083, df = 9, p-value = 0.0002386
+# t = -5.3077, df = 9, p-value = 0.0002386
 # alternative hypothesis: true mean is less than 2000
 # 95 percent confidence interval:
 #      -Inf 1921.699
@@ -5202,11 +5202,11 @@ inspector_b <- c(3, 4, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8,  9,  9, 10)
 
 result <- var.test(inspector_a, inspector_b, alternative = "two.sided")
 result
-# F = 1.6752, num df = 19, denom df = 17, p-value = 0.3797
+# F = 1.6752, num df = 19, denom df = 17, p-value = 0.2899
 
 result$statistic   # 1.6752
 result$parameter   # num df = 19, denom df = 17
-result$p.value     # 0.3797
+result$p.value     # 0.2899
 ```
 
 **1. Level of significance.** $\alpha = 0.10$
@@ -5224,11 +5224,11 @@ $$F^* = \frac{s_A^2}{s_B^2} = \frac{5.568}{3.324} \approx 1.675$$
 Reference distribution: $F_{19,\,17}$.
 
 **4. P-value.** For $H_a: \sigma_A^2 \ne \sigma_B^2$ (two-tailed):
-$$\text{p-value} = 2 \times P(F_{19,17} > 1.675) \approx 0.380$$
+$$\text{p-value} = 2 \times P(F_{19,17} > 1.675) \approx 0.290$$
 
 **5. Conclusion.**
 
-Since p-value $\approx 0.380 > \alpha = 0.10$, we **fail to reject $H_0$**. There is insufficient evidence to conclude that the two inspectors differ in the variability of their ratings.
+Since p-value $\approx 0.290 > \alpha = 0.10$, we **fail to reject $H_0$**. There is insufficient evidence to conclude that the two inspectors differ in the variability of their ratings.
 </div>
 </details>
 

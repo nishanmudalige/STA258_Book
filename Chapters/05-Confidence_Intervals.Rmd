@@ -2291,20 +2291,17 @@ Since the interval contains 0, we cannot conclude at the 90% level that the two 
 
 <div class="exercise-box">
 <div class="exercise-label">Question 15</div>
-A quality-control engineer compares the variability of bottle filling amounts from two machines. A random sample of 12 bottles from Machine A has a sample variance of $s_1^2 = 4.8$. A random sample of 15 bottles from Machine B has a sample variance of $s_2^2 = 7.2$.
+A nutritionist compares daily caloric intake between two dietary groups. The vegetarian group ($n_1 = 10$, $\bar{x}_1 = 1850$ kcal, $s_1 = 120$ kcal) and the omnivore group ($n_2 = 12$, $\bar{x}_2 = 2100$ kcal, $s_2 = 115$ kcal). Assume both populations are normally distributed with **equal variances**.
 
-Assume the filling amounts from both machines are normally distributed and the samples are independent.
-
-Construct a **95% confidence interval** for $\dfrac{\sigma_1^2}{\sigma_2^2}$, where $\sigma_1^2$ is the population variance for Machine A and $\sigma_2^2$ is the population variance for Machine B.
+Construct a **95% confidence interval** for $\mu_1 - \mu_2$ (vegetarian minus omnivore), using the pooled two-sample $t$-interval.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- The CI for the ratio of two variances uses the $F$-distribution:
-$$\left(\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{\alpha/2,\,df_1,\,df_2}},\ \frac{s_1^2}{s_2^2} \cdot F_{\alpha/2,\,df_2,\,df_1}\right)$$
-- $df_1 = n_1 - 1 = 11$, $df_2 = n_2 - 1 = 14$.
-- For 95%: $F_{0.025,\,11,\,14} \approx 3.09$ and $F_{0.025,\,14,\,11} \approx 3.33$.
+- Pooled variance: $s_p^2 = \dfrac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}$
+- Standard error: $\text{SE} = s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}$
+- Degrees of freedom: $df = n_1 + n_2 - 2 = 20$; for 95%: $t_{0.025,\,20} \approx 2.086$.
 </div>
 </details>
 
@@ -2312,24 +2309,26 @@ $$\left(\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{\alpha/2,\,df_1,\,df_2}},\ \frac{s
 <summary>✅ Answer</summary>
 <div class="content">
 **Key formula:**
-$$\left(\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{\alpha/2,\,df_1,\,df_2}},\ \frac{s_1^2}{s_2^2} \cdot F_{\alpha/2,\,df_2,\,df_1}\right)$$
+$$(\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\,n_1+n_2-2}\cdot s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$$
 
-**Given:** $n_1=12$, $s_1^2=4.8$, $df_1=11$; $\quad n_2=15$, $s_2^2=7.2$, $df_2=14$
+**Pooled variance:**
+$$s_p^2 = \frac{(10-1)(120)^2 + (12-1)(115)^2}{10+12-2} = \frac{9(14400)+11(13225)}{20} = \frac{129600+145475}{20} = \frac{275075}{20} = 13753.75$$
+$$s_p = \sqrt{13753.75} \approx 117.3$$
 
-**Observed ratio:** $\dfrac{s_1^2}{s_2^2} = \dfrac{4.8}{7.2} \approx 0.6667$
+**Standard error:**
+$$\text{SE} = 117.3\sqrt{\frac{1}{10}+\frac{1}{12}} = 117.3\sqrt{0.1833} \approx 117.3 \times 0.4282 \approx 50.2$$
 
-**Critical $F$-values** (95% CI, $\alpha/2 = 0.025$):
-$$F_{0.025,\,11,\,14} \approx 3.09, \qquad F_{0.025,\,14,\,11} \approx 3.33$$
+**Critical value:** $df = 20$, $t_{0.025,\,20} \approx 2.086$
 <a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
-**Bounds:**
-$$\text{Lower} = 0.6667 \times \frac{1}{3.09} \approx 0.2158$$
-$$\text{Upper} = 0.6667 \times 3.33 \approx 2.2201$$
+**Margin of error:** $E = 2.086 \times 50.2 \approx 104.7$
 
-**95% CI for $\sigma_1^2/\sigma_2^2$:**
-$$\mathbf{(0.2158,\ 2.2201)}$$
+**Point estimate:** $\bar{x}_1 - \bar{x}_2 = 1850 - 2100 = -250$ kcal
 
-Since the interval contains 1, we cannot conclude at the 95% level that the two machines have different variability.
+**95% CI for $\mu_1 - \mu_2$:**
+$$(-250 - 104.7,\ -250 + 104.7) = \mathbf{(-354.7,\ -145.3) \text{ kcal}}$$
+
+Since the entire interval is negative, we are 95% confident that vegetarians consume fewer calories per day than omnivores, with the difference ranging from approximately 145 to 355 kcal/day.
 </div>
 </details>
 
@@ -2337,43 +2336,39 @@ Since the interval contains 1, we cannot conclude at the 95% level that the two 
 
 <div class="exercise-box">
 <div class="exercise-label">Question 16</div>
-A researcher wants to compare the variability of exam scores between two classes. In Class 1, a random sample of 18 students has a sample variance of $s_1^2 = 64$. In Class 2, a random sample of 20 students has a sample variance of $s_2^2 = 49$.
+A study compares the daily study time (in minutes) of first-year students in two programs. Business students: $n_1 = 12$, $\bar{x}_1 = 180$ min, $s_1 = 38$ min. Engineering students: $n_2 = 15$, $\bar{x}_2 = 220$ min, $s_2 = 55$ min. The populations are approximately normal. **Do not assume equal variances.**
 
-Assume exam scores in both classes are approximately normally distributed and the two samples are independent.
-
-Construct a **90% confidence interval** for $\dfrac{\sigma_1^2}{\sigma_2^2}$, where $\sigma_1^2$ is the population variance of exam scores in Class 1 and $\sigma_2^2$ is the population variance of exam scores in Class 2.
+Construct a **90% confidence interval** for $\mu_1 - \mu_2$ (Business minus Engineering) using the Welch–Satterthwaite approximation with $\nu \approx 25$ degrees of freedom.
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- Use the $F$-ratio CI formula with $df_1 = n_1-1 = 17$ and $df_2 = n_2-1 = 19$.
-- For 90% CI ($\alpha/2 = 0.05$): $F_{0.05,\,17,\,19} \approx 2.23$ and $F_{0.05,\,19,\,17} \approx 2.27$.
+- Welch SE: $\text{SE} = \sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}$
+- Use $t_{0.05,\,25} \approx 1.708$ for 90% confidence.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**Key formula:**
-$$\left(\frac{s_1^2}{s_2^2} \cdot \frac{1}{F_{\alpha/2,\,df_1,\,df_2}},\ \frac{s_1^2}{s_2^2} \cdot F_{\alpha/2,\,df_2,\,df_1}\right)$$
+**Key formula (Welch):**
+$$(\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\,\nu}\cdot\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$$
 
-**Given:** $n_1=18$, $s_1^2=64$, $df_1=17$; $\quad n_2=20$, $s_2^2=49$, $df_2=19$
+**Standard error:**
+$$\text{SE} = \sqrt{\frac{38^2}{12}+\frac{55^2}{15}} = \sqrt{\frac{1444}{12}+\frac{3025}{15}} = \sqrt{120.3+201.7} = \sqrt{322} \approx 17.9$$
 
-**Observed ratio:** $\dfrac{s_1^2}{s_2^2} = \dfrac{64}{49} \approx 1.3061$
-
-**Critical $F$-values** (90% CI, $\alpha/2 = 0.05$):
-$$F_{0.05,\,17,\,19} \approx 2.23, \qquad F_{0.05,\,19,\,17} \approx 2.27$$
+**Critical value:** $\nu \approx 25$, $t_{0.05,\,25} \approx 1.708$
 <a href="foundations-of-inference.html#distribution-calculator" target="_blank" style="font-size:0.85em; color:#2c7bb6;">🔢 Distribution Calculator</a>
 
-**Bounds:**
-$$\text{Lower} = 1.3061 \times \frac{1}{2.23} \approx 0.5857$$
-$$\text{Upper} = 1.3061 \times 2.27 \approx 2.9648$$
+**Margin of error:** $E = 1.708 \times 17.9 \approx 30.6$
 
-**90% CI for $\sigma_1^2/\sigma_2^2$:**
-$$\mathbf{(0.5857,\ 2.9648)}$$
+**Point estimate:** $\bar{x}_1 - \bar{x}_2 = 180 - 220 = -40$ min
 
-Since the interval contains 1, we cannot conclude at the 90% level that the exam score variability differs significantly between the two classes.
+**90% CI for $\mu_1 - \mu_2$:**
+$$(-40 - 30.6,\ -40 + 30.6) = \mathbf{(-70.6,\ -9.4) \text{ min}}$$
+
+Since the entire interval is negative, we are 90% confident that engineering students study more per day than business students, with the difference ranging from approximately 9 to 71 minutes.
 </div>
 </details>
 

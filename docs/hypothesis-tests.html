@@ -23,7 +23,7 @@
 <meta name="author" content="Nishan Mudalige, Masoud Ataei, Nurlana Alili, Xi (Bryan) Su, Janice (Jiachen) Chen, Jianing Lu, Yiwen Zhao" />
 
 
-<meta name="date" content="2026-07-27" />
+<meta name="date" content="2026-08-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -3160,7 +3160,7 @@ result</textarea>
 <span id="cb110-6"><a href="hypothesis-tests.html#cb110-6" tabindex="-1"></a><span class="co">#   One Sample t-test</span></span>
 <span id="cb110-7"><a href="hypothesis-tests.html#cb110-7" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb110-8"><a href="hypothesis-tests.html#cb110-8" tabindex="-1"></a><span class="co"># data:  calories</span></span>
-<span id="cb110-9"><a href="hypothesis-tests.html#cb110-9" tabindex="-1"></a><span class="co"># t = -5.3083, df = 9, p-value = 0.0002386</span></span>
+<span id="cb110-9"><a href="hypothesis-tests.html#cb110-9" tabindex="-1"></a><span class="co"># t = -5.3077, df = 9, p-value = 0.0002386</span></span>
 <span id="cb110-10"><a href="hypothesis-tests.html#cb110-10" tabindex="-1"></a><span class="co"># alternative hypothesis: true mean is less than 2000</span></span>
 <span id="cb110-11"><a href="hypothesis-tests.html#cb110-11" tabindex="-1"></a><span class="co"># 95 percent confidence interval:</span></span>
 <span id="cb110-12"><a href="hypothesis-tests.html#cb110-12" tabindex="-1"></a><span class="co">#      -Inf 1921.699</span></span>
@@ -4918,7 +4918,7 @@ result$p.value     # p-value</textarea>
 <ul>
 <li>“Is there a <em>difference</em>?” implies <span class="math inline">\(H_a: \sigma_A^2 \ne \sigma_B^2\)</span> (two-tailed).</li>
 <li>Use <code>var.test(inspector_a, inspector_b, alternative = "two.sided")</code>.</li>
-<li><code>var.test()</code> automatically places the larger variance in the numerator. The reported F-statistic equals <span class="math inline">\(s_A^2/s_B^2\)</span>.</li>
+<li><code>var.test(x, y)</code> computes <span class="math inline">\(F = s_x^2/s_y^2\)</span> based on the order you pass the arguments. Since Inspector A has the larger variance, passing <code>inspector_a</code> first gives <span class="math inline">\(F = s_A^2/s_B^2 \geq 1\)</span>.</li>
 <li>Two-tailed p-value <span class="math inline">\(= 2 \times P(F_{df_1,df_2} &gt; F^*)\)</span>.</li>
 </ul>
 </div>
@@ -4933,11 +4933,11 @@ result$p.value     # p-value</textarea>
 <span id="cb120-3"><a href="hypothesis-tests.html#cb120-3" tabindex="-1"></a></span>
 <span id="cb120-4"><a href="hypothesis-tests.html#cb120-4" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">var.test</span>(inspector_a, inspector_b, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span>
 <span id="cb120-5"><a href="hypothesis-tests.html#cb120-5" tabindex="-1"></a>result</span>
-<span id="cb120-6"><a href="hypothesis-tests.html#cb120-6" tabindex="-1"></a><span class="co"># F = 1.6752, num df = 19, denom df = 17, p-value = 0.3797</span></span>
+<span id="cb120-6"><a href="hypothesis-tests.html#cb120-6" tabindex="-1"></a><span class="co"># F = 1.6752, num df = 19, denom df = 17, p-value = 0.2899</span></span>
 <span id="cb120-7"><a href="hypothesis-tests.html#cb120-7" tabindex="-1"></a></span>
 <span id="cb120-8"><a href="hypothesis-tests.html#cb120-8" tabindex="-1"></a>result<span class="sc">$</span>statistic   <span class="co"># 1.6752</span></span>
 <span id="cb120-9"><a href="hypothesis-tests.html#cb120-9" tabindex="-1"></a>result<span class="sc">$</span>parameter   <span class="co"># num df = 19, denom df = 17</span></span>
-<span id="cb120-10"><a href="hypothesis-tests.html#cb120-10" tabindex="-1"></a>result<span class="sc">$</span>p.value     <span class="co"># 0.3797</span></span></code></pre></div>
+<span id="cb120-10"><a href="hypothesis-tests.html#cb120-10" tabindex="-1"></a>result<span class="sc">$</span>p.value     <span class="co"># 0.2899</span></span></code></pre></div>
 <p><strong>1. Level of significance.</strong> <span class="math inline">\(\alpha = 0.10\)</span></p>
 <p><strong>2. Null and alternative hypotheses.</strong>
 <span class="math display">\[H_0: \sigma_A^2 = \sigma_B^2 \qquad H_a: \sigma_A^2 \ne \sigma_B^2\]</span></p>
@@ -4947,9 +4947,9 @@ result$p.value     # p-value</textarea>
 <span class="math display">\[F^* = \frac{s_A^2}{s_B^2} = \frac{5.568}{3.324} \approx 1.675\]</span></p>
 <p>Reference distribution: <span class="math inline">\(F_{19,\,17}\)</span>.</p>
 <p><strong>4. P-value.</strong> For <span class="math inline">\(H_a: \sigma_A^2 \ne \sigma_B^2\)</span> (two-tailed):
-<span class="math display">\[\text{p-value} = 2 \times P(F_{19,17} &gt; 1.675) \approx 0.380\]</span></p>
+<span class="math display">\[\text{p-value} = 2 \times P(F_{19,17} &gt; 1.675) \approx 0.290\]</span></p>
 <p><strong>5. Conclusion.</strong></p>
-<p>Since p-value <span class="math inline">\(\approx 0.380 &gt; \alpha = 0.10\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is insufficient evidence to conclude that the two inspectors differ in the variability of their ratings.</p>
+<p>Since p-value <span class="math inline">\(\approx 0.290 &gt; \alpha = 0.10\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. There is insufficient evidence to conclude that the two inspectors differ in the variability of their ratings.</p>
 </div>
 </details>
 <hr />

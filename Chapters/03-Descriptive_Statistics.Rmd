@@ -1798,7 +1798,7 @@ groupB <- c( 8, 12, 15, 19, 18, 11, 17, 20, 20, 10)
 mean(groupA)   # [1] 15
 sd(groupA)     # [1] 0.8164966
 mean(groupB)   # [1] 15
-sd(groupB)     # [1] 4.447362
+sd(groupB)     # [1] 4.447221
 
 # Create a side-by-side boxplot to compare the spread
 boxplot(groupA, groupB,
@@ -1878,12 +1878,12 @@ x <- c(3, 4, 5, 5, 6, 7, 8, 9, 10, 12, 13, 30)
 # Six-number summary (Min, Q1, Median, Mean, Q3, Max)
 summary(x)
 #    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
-#    3.00    5.25    7.50   10.58   11.25   30.00
+#    3.00    5.00    7.50    9.33   10.50   30.00
 
 # IQR and outlier cutoffs
-IQR(x)                    # [1] 6
-5.25 - 1.5 * IQR(x)       # lower cutoff: -3.75
-11.25 + 1.5 * IQR(x)      # upper cutoff: 20.25
+IQR(x)                    # [1] 5.5
+5.00 - 1.5 * IQR(x)       # lower cutoff: -3.25
+10.50 + 1.5 * IQR(x)      # upper cutoff: 18.75
 
 # Create a horizontal boxplot
 boxplot(x, horizontal = TRUE,
@@ -1891,7 +1891,7 @@ boxplot(x, horizontal = TRUE,
         xlab = "Minutes", col = "#00cec9")
 ```
 
-R's `summary()` gives $Q_1 = 5.25$ and $Q_3 = 11.25$ (slightly different from the textbook split-halves values of 5 and 11), but both methods give IQR $= 6$ and both flag **30 as an outlier**. The boxplot shows 30 as an isolated dot above the upper whisker.
+R's `summary()` gives $Q_1 = 5$ and $Q_3 = 10.5$ (slightly different from the textbook split-halves $Q_3 = 11$), so R's IQR $= 5.5$ and upper cutoff $= 18.75$. Both methods agree: **30 is a high outlier**. The boxplot shows 30 as an isolated dot above the upper whisker.
 </div>
 </details>
 
