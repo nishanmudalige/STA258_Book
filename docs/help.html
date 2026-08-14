@@ -100,7 +100,7 @@
 <body>
 
 <h1>STA258 Book — Documentation</h1>
-<p class="authors">Authors: Janice Chen &nbsp;|&nbsp; Contributors: Nishan Mudalige</p>
+<p class="authors">Nishan Mudalige &nbsp;|&nbsp; Masoud Ataei &nbsp;|&nbsp; Janice Chen &nbsp;|&nbsp; Jianing Lu &nbsp;|&nbsp; Yiwen Zhao</p>
 
 <div class="toc">
   <h3>Table of Contents</h3>
@@ -455,7 +455,7 @@ sd(x)
 
 <p>
   This section documents the non-obvious changes made to the project that are not derivable
-  from reading a standard bookdown tutorial. This is the "what did you guys do" section the professor can consult before making updates.
+  from reading a standard bookdown tutorial. This is the "what did you guys do" section anyone maintaining the book can consult before making updates.
 </p>
 
 <h3>webR in bookdown — how we got it to work</h3>
@@ -510,17 +510,13 @@ sd(x)
 </p>
 
 <h3>Datasets</h3>
-<p>
-  We are <strong>not</strong> including local CSV files. All datasets used in exercises are either:
-</p>
+<p>Most datasets are either hard-coded inline as <code>c(...)</code> vectors or use built-in R datasets (e.g., <code>mtcars</code>). Chapter 8 additionally uses three CSV files stored in both <code>Chapters/</code> and <code>docs/</code> so webR can load them via <code>read.csv()</code>:</p>
 <ul>
-  <li>Hard-coded inline as <code>c(...)</code> vectors in the exercise text, or</li>
-  <li>Built-in R datasets (e.g., <code>mtcars</code>, <code>faithful</code>).</li>
+  <li><code>ch8-study-methods.csv</code> — final exam scores for 50 students across 5 study methods</li>
+  <li><code>ch8-delivery-times.csv</code> — delivery times for 4 courier companies</li>
+  <li><code>ch8-fertilizer-yield.csv</code> — crop yields for 4 fertilizer types</li>
 </ul>
-<p>
-  This avoids file-path issues when the book runs in the browser via webR or is
-  served from GitHub Pages.
-</p>
+<p>If you add new CSV-based exercises, place the file in both <code>Chapters/</code> and <code>docs/</code> to ensure webR can access it when served from GitHub Pages.</p>
 
 <h3>RGL removed</h3>
 <p>
@@ -534,9 +530,8 @@ sd(x)
 <h2 id="apps">10. Interactive Apps (Chapter 4)</h2>
 
 <p>
-  Because F-distribution tables get unwieldy, Professor Mudalige built three
-  self-contained HTML apps using Plotly/Shiny, stored in <code>Apps/</code>
-  and embedded via <code>knitr::include_app()</code> in the chapter body.
+  Because F-distribution tables get unwieldy, three self-contained HTML apps using Plotly
+  were built and stored in <code>Apps/</code>, embedded via <code>knitr::include_app()</code> in the chapter body.
 </p>
 
 <table>
@@ -578,37 +573,55 @@ sd(x)
     <td>2</td>
     <td>An Introduction to R</td>
     <td>R tutorial exercises</td>
-    <td><span class="tag done">Done</span> webR calculator, vectors, functions, packages, and data frame practice</td>
+    <td><span class="tag done">Done</span> arithmetic, vectors, indexing, data frames, packages</td>
   </tr>
   <tr>
     <td>3</td>
     <td>Descriptive Statistics</td>
     <td>Q1–Q27 (hand calc + R coding)</td>
-    <td><span class="tag done">Done</span> Q6, Q9, Q11, Q12 (inside boxes); Q19–Q23 (standalone R)</td>
+    <td><span class="tag done">Done</span> summary statistics, IQR/outlier detection, boxplot, histogram</td>
   </tr>
   <tr>
     <td>4</td>
     <td>Foundations of Inference</td>
-    <td>In progress</td>
-    <td><span class="tag">Apps embedded</span></td>
+    <td>Q1–Q25 (Normal/t/χ²/F distributions, CLT, Chebyshev, WLLN)</td>
+    <td><span class="tag done">Done</span> pnorm, pt, pchisq, CLT/WLLN simulations; distribution calculator apps embedded</td>
   </tr>
   <tr>
     <td>5</td>
     <td>Confidence Intervals</td>
-    <td>Q1–Q27</td>
-    <td><span class="tag done">Done</span> Q20–Q27 (Z CI, t CI, proportion CI, two-sample Welch, ratio of variances, paired t)</td>
+    <td>Q1–Q43 (z/t/proportion/two-sample/paired CIs, sample size)</td>
+    <td><span class="tag done">Done</span> z CI, t CI, proportion CI, two-sample Welch, paired t, sample size</td>
   </tr>
   <tr>
     <td>6</td>
     <td>Hypothesis Tests</td>
-    <td>Q1–Q20</td>
-    <td><span class="tag done">Done</span> Q1–Q5 (z test, p-value, t test, proportion test, prop.test)</td>
+    <td>Q1–Q44 (one/two-sample z/t/χ²/F tests, paired t)</td>
+    <td><span class="tag done">Done</span> z test, t.test, prop.test, var.test, chisq.test</td>
   </tr>
   <tr>
-    <td>7–10</td>
-    <td>Power, ANOVA, Regression, Categorical</td>
-    <td>Existing content</td>
-    <td><span class="tag">None yet</span></td>
+    <td>7</td>
+    <td>Statistical Power</td>
+    <td>Q1–Q25 (Type I/II error, power, sample size)</td>
+    <td><span class="tag done">Done</span> pnorm-based power calculations, power curves</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>Analysis of Variance</td>
+    <td>Q1–Q38 (one-way ANOVA, Fisher LSD, Bonferroni)</td>
+    <td><span class="tag done">Done</span> aov, anova, oneway.test, pairwise.t.test; CSV datasets for Q36–Q38</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>Simple Linear Regression</td>
+    <td>Q1–Q48 (SLR, β̂₀/β̂₁, R², SSE/SST/SSR, t-test for slope)</td>
+    <td><span class="tag done">Done</span> lm, cor, summary(lm), predict</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>Analysis of Categorical Data</td>
+    <td>Q1–Q10 (χ² goodness-of-fit, independence, Fisher's exact)</td>
+    <td><span class="tag done">Done</span> chisq.test, fisher.test</td>
   </tr>
 </table>
 
@@ -819,7 +832,7 @@ git pull</code></pre>
 
 <hr style="margin-top:40px; border-color:#e0e0e0;">
 <p style="color:#90a4ae; font-size:0.85em;">
-  Last updated: June 2026 &nbsp;|&nbsp; STA258: Statistics with Applied Probability, University of Toronto Mississauga
+  Last updated: August 2026 &nbsp;|&nbsp; STA258: Statistics with Applied Probability, University of Toronto Mississauga
 </p>
 
 </body>
