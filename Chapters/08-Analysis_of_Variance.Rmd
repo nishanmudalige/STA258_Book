@@ -1867,7 +1867,7 @@ When group means are very different (large $MS_{\text{Treatment}}$) relative to 
 
 <div class="exercise-box">
 <div class="exercise-label">Question 14</div>
-The boxplot below compares completion times (minutes) for four tax return forms. Observe the medians and spreads of the four groups.
+The boxplot below compares completion times (minutes) for four tax return forms, based on samples of $n = 10$ per form.
 
 ```{r ch8-q14-box, echo=FALSE, fig.height=3.5, fig.width=6, fig.align='center', message=FALSE, warning=FALSE}
 library(ggplot2)
@@ -1885,39 +1885,36 @@ ggplot(df_forms, aes(x = form, y = time, fill = form)) +
                outlier.shape = 16, outlier.size = 2) +
   scale_fill_manual(values = c("#74b9ff","#55efc4","#fd79a8","#ffeaa7")) +
   labs(x = "Tax Return Form", y = "Completion time (minutes)",
-       caption = "n = 10 per form  |  ANOVA: F = 14.90, p-value = 1.82e-06") +
+       caption = "n = 10 per form") +
   theme_minimal(base_size = 12) +
   theme(legend.position = "none",
         plot.caption = element_text(color = "#555", size = 9))
 ```
 
-A one-way ANOVA gives $F^* = 14.90$, p-value $= 1.82 \times 10^{-6}$. Which conclusion is best at $\alpha = 0.05$?
+**(a)** Before running the ANOVA, examine the boxplot above. Which ANOVA assumption looks questionable here? Base your answer on the spreads (box heights and whisker lengths) of the four groups.
 
-A. All four forms have exactly the same mean completion time.
-
-B. There is evidence that at least two form means differ.
-
-C. Form 3 must be different from every other form.
-
-D. ANOVA cannot be used with four groups.
+**(b)** What could be done to address this issue before carrying out the analysis?
 </div>
 
 <details data-type="hint">
 <summary>💡 Hint</summary>
 <div class="content">
-- Compare p-value $= 1.82 \times 10^{-6}$ to $\alpha = 0.05$.
-- ANOVA's $H_a$ states "at least two means differ" — it does not pinpoint which pair.
-- Option C overclaims: ANOVA cannot identify which specific pairs differ without post-hoc tests.
-- Option D is false: ANOVA is designed for $k \ge 2$ groups.
+- **(a)** One-way ANOVA assumes independence, normality, and **equal variances** ($\sigma_1^2 = \sigma_2^2 = \sigma_3^2 = \sigma_4^2$) across groups. Compare the heights of the four boxes and the length of their whiskers — is one group's spread clearly larger than the rest?
+- **(b)** Think about remedies that either stabilize the variance or avoid requiring it: a transformation of the response, a version of ANOVA that allows unequal variances, or a non-parametric test.
 </div>
 </details>
 
 <details data-type="answer">
 <summary>✅ Answer</summary>
 <div class="content">
-**B. There is evidence that at least two form means differ.**
+**(a)** The **equal-variance (homogeneity of variance) assumption** looks questionable. Form 3's box is much taller and its whiskers extend much further than those of Forms 1, 2, and 4 — its completion times are far more spread out. Numerically, the sample standard deviations are approximately $12.6$, $12.4$, $34.4$, and $15.1$ minutes for Forms 1–4, so Form 3's variance is roughly **7–8 times larger** than the smallest group variance — well beyond what sampling variability alone would explain. This suggests $\sigma_3^2 \ne \sigma_1^2 = \sigma_2^2 = \sigma_4^2$, which violates the assumption that all groups share a common population variance $\sigma^2$ required by the standard (equal-variance) one-way ANOVA model.
 
-Since p-value $= 1.82 \times 10^{-6} \ll \alpha = 0.05$, we reject $H_0$. The boxplot shows Form 3 has a visibly higher median and wider spread, which is consistent with at least one group differing. However, ANOVA alone establishes only that **at least two population means differ** — it does not identify which specific pair(s). Post-hoc pairwise comparisons (e.g., Fisher's LSD, Bonferroni) are needed to determine which forms differ.
+**(b)** Before proceeding, one could:
+
+- Apply a **variance-stabilizing transformation** to completion time (e.g., a log or square-root transform) and re-examine the boxplot to see if the spreads become more comparable.
+- Use **Welch's ANOVA** (`oneway.test(time ~ form, var.equal = FALSE)`), which does not require the equal-variance assumption.
+- Use a **non-parametric alternative**, such as the Kruskal–Wallis test, which does not assume equal variances or normality.
+- Formally check the assumption with a test such as **Levene's test** before deciding which approach to use.
 </div>
 </details>
 
