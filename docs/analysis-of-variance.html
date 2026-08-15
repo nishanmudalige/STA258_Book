@@ -356,9 +356,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -368,7 +367,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -3076,13 +3075,10 @@ Question 13
 <div class="exercise-label">
 Question 14
 </div>
-<p>The boxplot below compares completion times (minutes) for four tax return forms. Observe the medians and spreads of the four groups.</p>
+<p>The boxplot below compares completion times (minutes) for four tax return forms, based on samples of <span class="math inline">\(n = 10\)</span> per form.</p>
 <p><img src="Book_files/figure-html/ch8-q14-box-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>A one-way ANOVA gives <span class="math inline">\(F^* = 14.90\)</span>, p-value <span class="math inline">\(= 1.82 \times 10^{-6}\)</span>. Which conclusion is best at <span class="math inline">\(\alpha = 0.05\)</span>?</p>
-<p>A. All four forms have exactly the same mean completion time.</p>
-<p>B. There is evidence that at least two form means differ.</p>
-<p>C. Form 3 must be different from every other form.</p>
-<p>D. ANOVA cannot be used with four groups.</p>
+<p><strong>(a)</strong> Before running the ANOVA, examine the boxplot above. Which ANOVA assumption looks questionable here? Base your answer on the spreads (box heights and whisker lengths) of the four groups.</p>
+<p><strong>(b)</strong> What could be done to address this issue before carrying out the analysis?</p>
 </div>
 <details data-type="hint">
 <summary>
@@ -3090,10 +3086,8 @@ Question 14
 </summary>
 <div class="content">
 <ul>
-<li>Compare p-value <span class="math inline">\(= 1.82 \times 10^{-6}\)</span> to <span class="math inline">\(\alpha = 0.05\)</span>.</li>
-<li>ANOVA’s <span class="math inline">\(H_a\)</span> states “at least two means differ” — it does not pinpoint which pair.</li>
-<li>Option C overclaims: ANOVA cannot identify which specific pairs differ without post-hoc tests.</li>
-<li>Option D is false: ANOVA is designed for <span class="math inline">\(k \ge 2\)</span> groups.</li>
+<li><strong>(a)</strong> One-way ANOVA assumes independence, normality, and <strong>equal variances</strong> (<span class="math inline">\(\sigma_1^2 = \sigma_2^2 = \sigma_3^2 = \sigma_4^2\)</span>) across groups. Compare the heights of the four boxes and the length of their whiskers — is one group’s spread clearly larger than the rest?</li>
+<li><strong>(b)</strong> Think about remedies that either stabilize the variance or avoid requiring it: a transformation of the response, a version of ANOVA that allows unequal variances, or a non-parametric test.</li>
 </ul>
 </div>
 </details>
@@ -3102,8 +3096,14 @@ Question 14
 ✅ Answer
 </summary>
 <div class="content">
-<p><strong>B. There is evidence that at least two form means differ.</strong></p>
-<p>Since p-value <span class="math inline">\(= 1.82 \times 10^{-6} \ll \alpha = 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>. The boxplot shows Form 3 has a visibly higher median and wider spread, which is consistent with at least one group differing. However, ANOVA alone establishes only that <strong>at least two population means differ</strong> — it does not identify which specific pair(s). Post-hoc pairwise comparisons (e.g., Fisher’s LSD, Bonferroni) are needed to determine which forms differ.</p>
+<p><strong>(a)</strong> The <strong>equal-variance (homogeneity of variance) assumption</strong> looks questionable. Form 3’s box is much taller and its whiskers extend much further than those of Forms 1, 2, and 4 — its completion times are far more spread out. Numerically, the sample standard deviations are approximately <span class="math inline">\(12.6\)</span>, <span class="math inline">\(12.4\)</span>, <span class="math inline">\(34.4\)</span>, and <span class="math inline">\(15.1\)</span> minutes for Forms 1–4, so Form 3’s variance is roughly <strong>7–8 times larger</strong> than the smallest group variance — well beyond what sampling variability alone would explain. This suggests <span class="math inline">\(\sigma_3^2 \ne \sigma_1^2 = \sigma_2^2 = \sigma_4^2\)</span>, which violates the assumption that all groups share a common population variance <span class="math inline">\(\sigma^2\)</span> required by the standard (equal-variance) one-way ANOVA model.</p>
+<p><strong>(b)</strong> Before proceeding, one could:</p>
+<ul>
+<li>Apply a <strong>variance-stabilizing transformation</strong> to completion time (e.g., a log or square-root transform) and re-examine the boxplot to see if the spreads become more comparable.</li>
+<li>Use <strong>Welch’s ANOVA</strong> (<code>oneway.test(time ~ form, var.equal = FALSE)</code>), which does not require the equal-variance assumption.</li>
+<li>Use a <strong>non-parametric alternative</strong>, such as the Kruskal–Wallis test, which does not assume equal variances or normality.</li>
+<li>Formally check the assumption with a test such as <strong>Levene’s test</strong> before deciding which approach to use.</li>
+</ul>
 </div>
 </details>
 <hr />
