@@ -1,5 +1,7 @@
 # Analysis of Variance
 
+
+## Introduction to Analysis of Variance
 ANOVA (Analysis of Variance) is used to compare multiple means.<br>
 Suppose we have $k$ groups $(k \geqslant 3)$ and each group is given a treatment.
 
@@ -43,6 +45,7 @@ Where:
 - \( S_i^2 \): sample variance of group \( i \)  
 - \( n_i \): sample size of group \( i \)
 
+## Sources and Decomposition of Variation
 
 **Total Sample Size and Overall Mean**
 
@@ -97,6 +100,7 @@ This captures the **treatment effect** (how group means differ from overall mean
 \]
 
 
+## The ANOVA F-Test
 **ANOVA Table**
 
 | Source     | df     | SS       | MS                          | F-Statistic         |
@@ -104,7 +108,6 @@ This captures the **treatment effect** (how group means differ from overall mean
 | Treatment  | k - 1  | SSTr     | MSTr = SSTr / (k - 1)       | F* = MSTr / MSE     |
 | Error      | n - k  | SSE      | MSE = SSE / (n - k)         |                     |
 | Total      | n - 1  | SSTotal  |                             |                     |
-                          
 
 
 Where \( MS = \dfrac{SS}{df} \)
@@ -170,6 +173,7 @@ ggplot(f_data, aes(x, y)) +
   theme_minimal(base_size = 12)
 ```
 
+## One-Way ANOVA: Sales Across Countries
 **The Data Matrix**
 
 The following table shows last year's sales data for a small business. The sample is put into a matrix format in which each of the three columns corresponds to one of the three countries in which the company does business. The numbers in the cell represent the sales (in units of $\$ 1000$ ) made in that country last year. These data will be used to develop the theory underlying **Analysis of Variance**, or, for short, **ANOVA**.
@@ -230,18 +234,21 @@ If the null hypothesis is rejected, then we can be statistically confident that 
 
 **The One-Factor ANOVA F Test**
 
-To test the null hypothesis stated above, we have to calculate an F-statistic. If $F_{*}>F_{(c-1, n-c), \alpha}$, then reject $H_{0}$, and use the sample column means to predict future observations. Otherwise, do not reject $H_{0}$ and use the overall sample mean to predict future observations.
+
+To test the null hypothesis stated above, we calculate an F-statistic. Let $k$ denote the number of groups and $n$ the total number of observations. If $F^* > F_{(k-1,n-k),\alpha}$, then reject $H_0$. Otherwise, do not reject $H_0$. Rejecting $H_0$ provides evidence that at least one population mean differs from the others, while failing to reject $H_0$ indicates insufficient evidence of a difference among the population means.
+
 
 **ANOVA Table**
 
 To see how this $F_{*}$ is calculated, see the ANOVA Table below.
 
-| Source of <br> Variation | Degrees of <br> Freedom <br> $(\mathrm{df})$ | Sum of <br> Square <br> $(\mathrm{SS})$ | Mean Sum of <br> Squares <br> $($ MSS $)$ | F Ratio |
+
+| Source of Variation | Degrees of Freedom (df) | Sum of Squares (SS) | Mean Square (MS) | F Ratio |
 | :---: | :---: | :---: | :---: | :---: |
-| Treatments | $\mathrm{c}-1$ | SST | $\frac{\text { SST }}{c-1}$ | $F=\frac{\text { MST }}{\text { MSE }}$ |
-| Error | $\mathrm{n}-\mathrm{c}$ | SSE | $\frac{\text { SSE }}{n-c}$ |  |
-| Total | $\mathrm{n}-1$ | $\mathrm{SS}_{\mathrm{Total}}$
- |  |  |
+| Treatments | $k-1$ | $SSTr$ | $MSTr = \frac{SSTr}{k-1}$ | $F^* = \frac{MSTr}{MSE}$ |
+| Error | $n-k$ | $SSE$ | $MSE = \frac{SSE}{n-k}$ | |
+| Total | $n-1$ | $SSTotal$ | | |
+
 
 **Calculation of $\mathrm{SS}_{\mathrm{Total}}$**
 
@@ -280,7 +287,7 @@ Using the above 12 predictions, the errors squared are shown in the table below.
 
 Errors Squared when the Column Factor is used $($ Total $)=28$.
 
-**Calculation of SST**
+**Calculation of SSTr**
 
 The units explained by the column model are calculated by finding the square of each prediction change when moving from NO model to the column model. The following table presents the square of each prediction change:
 
@@ -357,6 +364,7 @@ Officially, to use the predictions from an ANOVA model, three assumptions about 
 2. Each population has the **same** standard deviation $\sigma$.
 3. The observations are mutually independent of one another.
 
+## ANOVA Calculations and Formulas
 **Formulas**
 
 Sum of Squares for Treatments (a.k.a. between-treatments variation or Explained)
@@ -480,7 +488,8 @@ A consumer organization was concerned about the differences between the advertis
 | 1 | 0 | 3 |
 | 0 | 4 | 4 |
 
-Exercise on 3 bounds
+### Worked Example: Comparing Three Brands
+Exercise on 3 Brands
 
 Consider  
 $\alpha = 0.05$
@@ -610,15 +619,18 @@ SSE = \sum_{i=1}^{3} (n_i - 1) S_i^2 = (6 - 1)(1.87) + (6 - 1)(2.30) + (6 - 1)(1
 
 ---
 
+
 Between (Treatment effect)
 
 \[
-SS_{\text{Tot}} = \sum_{i=1}^{3} n_i (\bar{x}_i - \bar{x})^2 = 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2
+SSTr = \sum_{i=1}^{3} n_i (\bar{x}_i - \bar{x})^2
+= 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2
 \]
 
 \[
-= \boxed{6.39}
+SSTr \approx \boxed{6.39}
 \]
+
 
 ANOVA Table
 
@@ -660,15 +672,18 @@ F distribution with numerator df = 2 and denominator df = 15.
 \text{p-value} > 0.100 > 0.05 \quad (\alpha)
 \]
 
+
 Conclusion of ANOVA
 
-There is **insufficient evidence to reject**  
+Since the p-value is greater than the significance level $\alpha = 0.05$, we fail to reject the null hypothesis:
+
 \[
-H_0: \mu_1 = \mu_2 = \mu_3
+H_0: \mu_1 = \mu_2 = \mu_3.
 \]
 
-The analysis from ANOVA suggests that all 3 groups have the same mean.
+There is insufficient statistical evidence to conclude that the population mean differences from the advertised amount differ among the three margarine brands.
 
+Failing to reject $H_0$ does not establish that the three population means are equal; it only indicates that the observed data do not provide sufficient evidence of a difference at the 5% significance level.
 
 
 What if $H_0$ had been rejected?
@@ -714,7 +729,7 @@ Step 2. Compute test statistic.
 Grand mean = \( \bar{x} = 2.17 \).
 
 \[
-SST = 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2 = 6.387 \approx 6.39
+SSTr = 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2 = 6.387 \approx 6.39
 \]
 
 \[
@@ -776,10 +791,11 @@ Margarine example
 ```
 
 
-|  | Df | Sum Sq | Mean Sq | $F$ value |
-| :--- | ---: | ---: | ---: | :---: |
-| brand | 2 | 6.3333 | 3.1667 | 1.6864 |
-| Residuals | 15 | 28.1667 | 1.8778 | 0.2185 |
+
+| Source of Variation | Df | Sum Sq | Mean Sq | F value | Pr(>F) |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| brand | 2 | 6.3333 | 3.1667 | 1.6864 | 0.2185 |
+| Residuals | 15 | 28.1667 | 1.8778 | | |
 
 
 
@@ -792,14 +808,15 @@ What conclusions can be drawn from these data?
 R Code
 
 ```r
-#Step 1. Entering data;
-# importing data;
-# url of tax return forms;
-forms_url =
-"https://mcs.utm.utoronto.ca/"nosedal/data/tax-forms.txt"
-forms_data= read.table(forms_url,header=TRUE);
-names(forms_data);
-forms_data[1:4, ];
+
+# Step 1. Import the tax return forms data
+forms_url = "https://mcs.utm.utoronto.ca/~nosedal/data/tax-forms.txt"
+
+forms_data = read.table(forms_url, header = TRUE)
+
+names(forms_data)
+forms_data[1:4, ]
+
 ```
 
 
@@ -840,6 +857,7 @@ R Code
 ## = 0.03632
 ```
 
+## Assumptions of One-Way ANOVA
 Assumptions of ANOVA
 
 Model
@@ -876,7 +894,7 @@ This common variance is estimated using the **Mean Squared Error (MSE)** from AN
 
 
 
-
+## Multiple Comparisons After ANOVA
 **Multiple Comparisons**
 
 Example
@@ -901,7 +919,9 @@ b. If differences exist, which bumpers differ? Apply Fisher's LSD method with th
 | 196 | 375 | 494 | 412 |
 | 444 | 438 | 637 | 499 |
 
-```r
+
+```{r bumper-data-setup, message=FALSE, warning=FALSE}
+
 cost_bumper1 = c(610, 354, 234, 399, 278, 358, 379, 548, 196, 444)
 cost_bumper2 = c(404, 663, 521, 518, 499, 374, 562, 505, 375, 438)
 cost_bumper3 = c(599, 426, 429, 621, 426, 414, 332, 460, 494, 637)
@@ -931,12 +951,15 @@ result
 | Bumper 3 | 332 | 426.00 | 444.5 | 572.75 | 637 | 483.8 | 102.10866 | 10 | 0 |
 | Bumper 4 | 181 | 278.25 | 340.5 | 410.25 | 538 | 348.2 | 118.52688 | 10 | 0 |
 
-```r
-    # Create anova model
-    bumper_model = aov(cost ~ type, data = bumper_data)
-    # Get ANOVA table
-    anova(bumper_model)
+
+```{r bumper-anova-model, message=FALSE, warning=FALSE}
+# Create ANOVA model
+bumper_model <- aov(cost ~ type, data = bumper_data)
+
+# Display ANOVA table
+anova(bumper_model)
 ```
+
 
 Bumper Example
 
@@ -979,20 +1002,22 @@ $$
 \binom{4}{2} = 6
 $$
 
-
+### Pairwise Confidence Intervals
 **Pairwise confidence Intervals**
 
 Fisher's LSD
 
 \[
-(\bar{x}_i - \bar{x}_j) \pm t_{(n - k,\ \alpha/2)} \cdot \sqrt{MSE \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}
+(\bar{x}_i - \bar{x}_j) \pm t_{(n-k,\ \alpha/2)}
+\sqrt{MSE\left(\frac{1}{n_i}+\frac{1}{n_j}\right)}
 \]
 
 
 Bonferroni
 
 \[
-(\bar{x}_i - \bar{x}_j) \pm t_{(n - k,\ \alpha / (2m))} \cdot \sqrt{MSE \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}
+(\bar{x}_i - \bar{x}_j) \pm t_{(n-k,\ \alpha/(2m))}
+\sqrt{MSE\left(\frac{1}{n_i}+\frac{1}{n_j}\right)}
 \]
 
 <span style="color:red">\( m = \binom{k}{2} \) &nbsp;&nbsp;&nbsp;&nbsp; # pairwise comparisons</span>
@@ -1006,7 +1031,7 @@ Bonferroni
 Fisher's is easier to calculate, has more statistical power; however, Bonferroni maintains experiment-wise error rate.
 
 - **Fisher:** \( \alpha_E \approx 1 - (1 - \alpha)^m \) (exact only if comparisons are independent; pairwise tests on the same data are generally dependent)
-- **Bonferroni:** \( \alpha_E \le 1 - \left( 1 - \frac{\alpha}{m} \right)^m \le \alpha \)
+- **Bonferroni:** \( \alpha_E \le m(\alpha/m)=\alpha \) for any dependence structure. If the comparisons are independent, \( \alpha_E = 1-(1-\alpha/m)^m \).
 
 
 
@@ -1022,11 +1047,24 @@ As \( m \uparrow \), error rate \( \uparrow \)
 
 Bonferroni
 
-As \( m \uparrow \),  
+The Bonferroni adjustment controls the experimentwise Type I error rate by dividing the overall significance level $\alpha$ by the number of comparisons $m$. Thus, each comparison is conducted at significance level $\alpha/m$.
+
+By the Bonferroni inequality, the experimentwise error rate satisfies
+
 \[
-\alpha_E = \left( 1 - \frac{\alpha}{m} \right)^m
-\]  
-remains _almost constant_
+\alpha_E \leq m\left(\frac{\alpha}{m}\right)=\alpha.
+\]
+
+This guarantee holds even when the comparisons are dependent.
+
+If the comparisons are independent, the experimentwise error rate is exactly
+
+\[
+\alpha_E = 1-\left(1-\frac{\alpha}{m}\right)^m.
+\]
+
+For $\alpha=0.05$, this expression remains close to, but does not exceed, $0.05$ as $m$ increases. Thus, the Bonferroni adjustment controls the experimentwise Type I error rate at the desired level.
+
 
 
 Solution a)
@@ -1105,8 +1143,8 @@ t_{\alpha/2,\, n-k} = t_{0.00415, 36} = 2.7935 \quad \text{(using R)}
 \]
 
 ```r
-qt(0.00415, 36)
-## [1] -2.793555
+qt(1 - 0.00415, 36)
+## [1] 2.793555
 ```
 
 \[
@@ -1303,6 +1341,12 @@ Using `DescTools::PostHocTest()` for Fisher's LSD
 
 We perform Fisher’s LSD post-hoc test using the `DescTools` package:
 
+```{r fisher-lsd-posthoc, message=FALSE, warning=FALSE}
+library(DescTools)
+
+PostHocTest(bumper_model, method = "lsd")
+```
+
 This returns the following multiple comparisons of means:
 
 95% Family-wise Confidence Level – Fisher LSD
@@ -1343,6 +1387,7 @@ This returns the following multiple comparisons of means:
 
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
+### Bonferroni Versus Fisher's LSD
 **Bonferroni vs. LSD Comparison**
 
 | **Bonferroni** | **LSD** |
@@ -1361,10 +1406,11 @@ To facilitate a decision, she conducts an experiment. In three different cities 
 
 These data are available at:
 
-```r
-ad_url =
-"https://mcs.utm.utoronto.ca/ ~nosedal/data/ad-strategies.t
+
+```{r apple-juice-data, message=FALSE, warning=FALSE}
+ad_url <- "https://mcs.utm.utoronto.ca/~nosedal/data/ad-strategies.txt"
 ```
+
 
 The marketing manager wants to know if differences in sales exist between the three advertising strategies.
 

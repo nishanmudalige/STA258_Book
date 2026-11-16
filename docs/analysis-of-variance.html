@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Analysis of Variance | STA258: Statistics with Applied Probability</title>
+  <title>Chapter 9 Analysis of Variance | STA258: Statistics with Applied Probability</title>
   <meta name="description" content="Bookdown hosted on GitHub using bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Analysis of Variance | STA258: Statistics with Applied Probability" />
+  <meta property="og:title" content="Chapter 9 Analysis of Variance | STA258: Statistics with Applied Probability" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Bookdown hosted on GitHub using bookdown::gitbook." />
   <meta name="github-repo" content="nishanmudalige/STA258" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Analysis of Variance | STA258: Statistics with Applied Probability" />
+  <meta name="twitter:title" content="Chapter 9 Analysis of Variance | STA258: Statistics with Applied Probability" />
   
   <meta name="twitter:description" content="Bookdown hosted on GitHub using bookdown::gitbook." />
   
@@ -51,19 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
-<script src="libs/mathjax-2.7.5/cdn.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
-<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <!-- webR Interactive R Exercise Cells -->
 <!-- Loaded via _output.yml in_header for bookdown::gitbook -->
 
@@ -356,8 +343,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -367,7 +355,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -438,156 +426,167 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>STA258: Statistics with Applied Probability <br> University of Toronto Mississauga</a></li>
-<li class="chapter" data-level="" data-path="table-of-contents.html"><a href="table-of-contents.html"><i class="fa fa-check"></i>Table of Contents</a></li>
-<li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
-<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
-<li class="chapter" data-level="" data-path="introduction-and-overview.html"><a href="introduction-and-overview.html"><i class="fa fa-check"></i>Introduction and Overview</a></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> nocite: ‘<span class="citation"></span>’ # disabled: this forced every entry in references.bib/packages.bib</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#sec:foundations"><i class="fa fa-check"></i><b>1.1</b> Foundations</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#types-of-data"><i class="fa fa-check"></i><b>1.2</b> Types of data</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#introduction-to-inferential-statistics"><i class="fa fa-check"></i><b>1.3</b> Introduction to Inferential statistics</a></li>
-<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sec:ch1exercises"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#sec:foundations"><i class="fa fa-check"></i><b>2.1</b> Foundations</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#types-of-data"><i class="fa fa-check"></i><b>2.2</b> Types of data</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#introduction-to-inferential-statistics"><i class="fa fa-check"></i><b>2.3</b> Introduction to Inferential statistics</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#sec:ch1exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> An Introduction to R</a>
+<li class="chapter" data-level="3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> An Introduction to R</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#the-statistical-computing-language"><i class="fa fa-check"></i><b>2.1</b> The Statistical Computing Language</a></li>
-<li class="chapter" data-level="2.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.2</b> Installing R and RStudio</a>
+<li class="chapter" data-level="3.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#the-statistical-computing-language"><i class="fa fa-check"></i><b>3.1</b> The Statistical Computing Language</a></li>
+<li class="chapter" data-level="3.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>3.2</b> Installing R and RStudio</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-r"><i class="fa fa-check"></i><b>2.2.1</b> Installing R</a></li>
-<li class="chapter" data-level="2.2.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-rstudio"><i class="fa fa-check"></i><b>2.2.2</b> Installing RStudio</a></li>
-<li class="chapter" data-level="2.2.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#positron"><i class="fa fa-check"></i><b>2.2.3</b> Positron</a></li>
+<li class="chapter" data-level="3.2.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-r"><i class="fa fa-check"></i><b>3.2.1</b> Installing R</a></li>
+<li class="chapter" data-level="3.2.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-rstudio"><i class="fa fa-check"></i><b>3.2.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="3.2.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#positron"><i class="fa fa-check"></i><b>3.2.3</b> Positron</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#an-introduction-to-programming-in-r"><i class="fa fa-check"></i><b>2.3</b> An Introduction to programming in R</a>
+<li class="chapter" data-level="3.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#an-introduction-to-programming-in-r"><i class="fa fa-check"></i><b>3.3</b> An Introduction to programming in R</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#r-as-a-powerful-calculator"><i class="fa fa-check"></i><b>2.3.1</b> R as a Powerful Calculator</a></li>
-<li class="chapter" data-level="2.3.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#basic-r-data-structures"><i class="fa fa-check"></i><b>2.3.2</b> Basic R Data Structures</a></li>
-<li class="chapter" data-level="2.3.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#using-basic-functions-in-r"><i class="fa fa-check"></i><b>2.3.3</b> Using Basic Functions in R</a></li>
-<li class="chapter" data-level="2.3.4" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#make-a-histogram-using-rstudio"><i class="fa fa-check"></i><b>2.3.4</b> Make a Histogram Using RStudio</a></li>
-<li class="chapter" data-level="2.3.5" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>2.3.5</b> Installing and Loading Packages</a></li>
+<li class="chapter" data-level="3.3.1" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#r-as-a-powerful-calculator"><i class="fa fa-check"></i><b>3.3.1</b> R as a Powerful Calculator</a></li>
+<li class="chapter" data-level="3.3.2" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#basic-r-data-structures"><i class="fa fa-check"></i><b>3.3.2</b> Basic R Data Structures</a></li>
+<li class="chapter" data-level="3.3.3" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#using-basic-functions-in-r"><i class="fa fa-check"></i><b>3.3.3</b> Using Basic Functions in R</a></li>
+<li class="chapter" data-level="3.3.4" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#make-a-histogram-using-rstudio"><i class="fa fa-check"></i><b>3.3.4</b> Make a Histogram Using RStudio</a></li>
+<li class="chapter" data-level="3.3.5" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#installing-and-loading-packages"><i class="fa fa-check"></i><b>3.3.5</b> Installing and Loading Packages</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#sec:ch2exercises"><i class="fa fa-check"></i><b>2.4</b> Exercises</a></li>
+<li class="chapter" data-level="3.4" data-path="an-introduction-to-r.html"><a href="an-introduction-to-r.html#sec:ch2exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> Descriptive Statistics</a>
+<li class="chapter" data-level="4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>4</b> Descriptive Statistics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#representing-data"><i class="fa fa-check"></i><b>3.1</b> Representing Data</a></li>
-<li class="chapter" data-level="3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-measures"><i class="fa fa-check"></i><b>3.2</b> Numerical Measures</a>
+<li class="chapter" data-level="4.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#representing-data"><i class="fa fa-check"></i><b>4.1</b> Representing Data</a></li>
+<li class="chapter" data-level="4.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#numerical-measures"><i class="fa fa-check"></i><b>4.2</b> Numerical Measures</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>3.2.1</b> Mean</a></li>
-<li class="chapter" data-level="3.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>3.2.2</b> Median</a></li>
-<li class="chapter" data-level="3.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>3.2.3</b> Mode</a></li>
-<li class="chapter" data-level="3.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>3.2.4</b> Variance</a></li>
-<li class="chapter" data-level="3.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>3.2.5</b> Standard Deviation</a></li>
-<li class="chapter" data-level="3.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>3.2.6</b> Range</a></li>
-<li class="chapter" data-level="3.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#percentiles"><i class="fa fa-check"></i><b>3.2.7</b> Percentiles</a></li>
-<li class="chapter" data-level="3.2.8" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quartiles"><i class="fa fa-check"></i><b>3.2.8</b> Quartiles</a></li>
+<li class="chapter" data-level="4.2.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mean"><i class="fa fa-check"></i><b>4.2.1</b> Mean</a></li>
+<li class="chapter" data-level="4.2.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#median"><i class="fa fa-check"></i><b>4.2.2</b> Median</a></li>
+<li class="chapter" data-level="4.2.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#mode"><i class="fa fa-check"></i><b>4.2.3</b> Mode</a></li>
+<li class="chapter" data-level="4.2.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#variance"><i class="fa fa-check"></i><b>4.2.4</b> Variance</a></li>
+<li class="chapter" data-level="4.2.5" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#standard-deviation"><i class="fa fa-check"></i><b>4.2.5</b> Standard Deviation</a></li>
+<li class="chapter" data-level="4.2.6" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#range"><i class="fa fa-check"></i><b>4.2.6</b> Range</a></li>
+<li class="chapter" data-level="4.2.7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#percentiles"><i class="fa fa-check"></i><b>4.2.7</b> Percentiles</a></li>
+<li class="chapter" data-level="4.2.8" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#quartiles"><i class="fa fa-check"></i><b>4.2.8</b> Quartiles</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sec:GraphicalTechniques"><i class="fa fa-check"></i><b>3.3</b> Graphical Techniques</a>
+<li class="chapter" data-level="4.3" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sec:GraphicalTechniques"><i class="fa fa-check"></i><b>4.3</b> Graphical Techniques</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>3.3.1</b> Histograms</a></li>
-<li class="chapter" data-level="3.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#boxplots"><i class="fa fa-check"></i><b>3.3.2</b> Boxplots</a></li>
+<li class="chapter" data-level="4.3.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#histograms"><i class="fa fa-check"></i><b>4.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="4.3.2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#boxplots"><i class="fa fa-check"></i><b>4.3.2</b> Boxplots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sec:ch3exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.4" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#sec:ch3exercises"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html"><i class="fa fa-check"></i><b>4</b> Foundations of Inference</a>
+<li class="chapter" data-level="5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html"><i class="fa fa-check"></i><b>5</b> Foundations of Inference</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:inference"><i class="fa fa-check"></i><b>4.1</b> Some Important Statistical Distributions</a>
+<li class="chapter" data-level="5.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:inference"><i class="fa fa-check"></i><b>5.1</b> Some Important Statistical Distributions</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:IntroNormalDist"><i class="fa fa-check"></i><b>4.1.1</b> Introduction to the Normal Distribution</a></li>
-<li class="chapter" data-level="4.1.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution"><i class="fa fa-check"></i><b>4.1.2</b> Introduction to the Chi-Square distribution</a></li>
-<li class="chapter" data-level="4.1.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-t-distribution"><i class="fa fa-check"></i><b>4.1.3</b> Introduction to the t-Distribution</a></li>
-<li class="chapter" data-level="4.1.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-f-distribution"><i class="fa fa-check"></i><b>4.1.4</b> Introduction to the F-Distribution</a></li>
-<li class="chapter" data-level="4.1.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#distribution-calculator"><i class="fa fa-check"></i><b>4.1.5</b> Distribution Calculator</a></li>
+<li class="chapter" data-level="5.1.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sec:IntroNormalDist"><i class="fa fa-check"></i><b>5.1.1</b> Introduction to the Normal Distribution</a></li>
+<li class="chapter" data-level="5.1.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-chi-square-distribution"><i class="fa fa-check"></i><b>5.1.2</b> Introduction to the Chi-Square distribution</a></li>
+<li class="chapter" data-level="5.1.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-t-distribution"><i class="fa fa-check"></i><b>5.1.3</b> Introduction to the t-Distribution</a></li>
+<li class="chapter" data-level="5.1.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#introduction-to-the-f-distribution"><i class="fa fa-check"></i><b>5.1.4</b> Introduction to the F-Distribution</a></li>
+<li class="chapter" data-level="5.1.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#distribution-calculator"><i class="fa fa-check"></i><b>5.1.5</b> Distribution Calculator</a></li>
+<li class="chapter" data-level="5.1.6" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#arithmetics-of-rvs"><i class="fa fa-check"></i><b>5.1.6</b> Arithmetics of RV’s</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sampling-distributions"><i class="fa fa-check"></i><b>4.2</b> Sampling Distributions</a></li>
-<li class="chapter" data-level="4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>4.3</b> The Central Limit Theorem</a></li>
-<li class="chapter" data-level="4.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#law-of-large-numbers"><i class="fa fa-check"></i><b>4.4</b> Law of Large Numbers</a>
+<li class="chapter" data-level="5.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#sampling-distributions"><i class="fa fa-check"></i><b>5.2</b> Sampling Distributions</a></li>
+<li class="chapter" data-level="5.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>5.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="5.4" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#law-of-large-numbers"><i class="fa fa-check"></i><b>5.4</b> Law of Large Numbers</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#convergence-in-probability"><i class="fa fa-check"></i><b>4.4.1</b> Convergence in Probability</a></li>
-<li class="chapter" data-level="4.4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#weak-law-of-large-numbers-wlln"><i class="fa fa-check"></i><b>4.4.2</b> Weak Law of Large Numbers (WLLN)</a></li>
-<li class="chapter" data-level="4.4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#simulation"><i class="fa fa-check"></i><b>4.4.3</b> Simulation</a></li>
+<li class="chapter" data-level="5.4.1" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#convergence-in-probability"><i class="fa fa-check"></i><b>5.4.1</b> Convergence in Probability</a></li>
+<li class="chapter" data-level="5.4.2" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#weak-law-of-large-numbers-wlln"><i class="fa fa-check"></i><b>5.4.2</b> Weak Law of Large Numbers (WLLN)</a></li>
+<li class="chapter" data-level="5.4.3" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#simulation"><i class="fa fa-check"></i><b>5.4.3</b> Simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#exercises"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.5" data-path="foundations-of-inference.html"><a href="foundations-of-inference.html#exercises"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>5</b> Confidence Intervals</a>
+<li class="chapter" data-level="6" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6</b> Confidence Intervals</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#interpretation"><i class="fa fa-check"></i><b>5.2</b> Interpretation</a></li>
-<li class="chapter" data-level="5.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.3</b> One Sample Confidence Intervals</a>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#interpretation"><i class="fa fa-check"></i><b>6.2</b> Interpretation</a></li>
+<li class="chapter" data-level="6.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#one-sample-confidence-intervals"><i class="fa fa-check"></i><b>6.3</b> One Sample Confidence Intervals</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-mean"><i class="fa fa-check"></i><b>5.3.1</b> On a Population Mean</a></li>
-<li class="chapter" data-level="5.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-proportion"><i class="fa fa-check"></i><b>5.3.2</b> On a Population Proportion</a></li>
-<li class="chapter" data-level="5.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-variance"><i class="fa fa-check"></i><b>5.3.3</b> On a Population Variance</a></li>
-<li class="chapter" data-level="5.3.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assumptions"><i class="fa fa-check"></i><b>5.3.4</b> Assumptions</a></li>
+<li class="chapter" data-level="6.3.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-mean"><i class="fa fa-check"></i><b>6.3.1</b> On a Population Mean</a></li>
+<li class="chapter" data-level="6.3.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-proportion"><i class="fa fa-check"></i><b>6.3.2</b> On a Population Proportion</a></li>
+<li class="chapter" data-level="6.3.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-population-variance"><i class="fa fa-check"></i><b>6.3.3</b> On a Population Variance</a></li>
+<li class="chapter" data-level="6.3.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#assumptions"><i class="fa fa-check"></i><b>6.3.4</b> Assumptions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-confidence-intervals"><i class="fa fa-check"></i><b>5.4</b> Two Sample Confidence Intervals</a>
+<li class="chapter" data-level="6.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#two-sample-confidence-intervals"><i class="fa fa-check"></i><b>6.4</b> Two Sample Confidence Intervals</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-difference-of-means"><i class="fa fa-check"></i><b>5.4.1</b> On a Difference of Means</a></li>
-<li class="chapter" data-level="5.4.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-difference-of-proportions"><i class="fa fa-check"></i><b>5.4.2</b> On a Difference of Proportions</a></li>
-<li class="chapter" data-level="5.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-ratio-of-variances"><i class="fa fa-check"></i><b>5.4.3</b> On a Ratio of Variances</a></li>
+<li class="chapter" data-level="6.4.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-difference-of-means"><i class="fa fa-check"></i><b>6.4.1</b> On a Difference of Means</a></li>
+<li class="chapter" data-level="6.4.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-difference-of-proportions"><i class="fa fa-check"></i><b>6.4.2</b> On a Difference of Proportions</a></li>
+<li class="chapter" data-level="6.4.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#on-a-ratio-of-variances"><i class="fa fa-check"></i><b>6.4.3</b> On a Ratio of Variances</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sec:CIsOnPaired"><i class="fa fa-check"></i><b>5.5</b> Confidence Intervals on Paired Data</a></li>
-<li class="chapter" data-level="5.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sample-size-selection-using-confidence-intervals"><i class="fa fa-check"></i><b>5.6</b> Sample Size Selection using Confidence Intervals</a>
+<li class="chapter" data-level="6.5" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sec:CIsOnPaired"><i class="fa fa-check"></i><b>6.5</b> Confidence Intervals on Paired Data</a></li>
+<li class="chapter" data-level="6.6" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sample-size-selection-using-confidence-intervals"><i class="fa fa-check"></i><b>6.6</b> Sample Size Selection using Confidence Intervals</a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#secSampleSizeCIMean"><i class="fa fa-check"></i><b>5.6.1</b> Calculating Sample Size for a Confidence Interval on a Mean</a></li>
-<li class="chapter" data-level="5.6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-sample-size-for-a-confidence-interval-on-a-proportion"><i class="fa fa-check"></i><b>5.6.2</b> Calculating Sample Size for a Confidence Interval on a Proportion</a></li>
+<li class="chapter" data-level="6.6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#secSampleSizeCIMean"><i class="fa fa-check"></i><b>6.6.1</b> Calculating Sample Size for a Confidence Interval on a Mean</a></li>
+<li class="chapter" data-level="6.6.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#calculating-sample-size-for-a-confidence-interval-on-a-proportion"><i class="fa fa-check"></i><b>6.6.2</b> Calculating Sample Size for a Confidence Interval on a Proportion</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sec:ch5exercises"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
+<li class="chapter" data-level="6.7" data-path="confidence-intervals.html"><a href="confidence-intervals.html#sec:ch5exercises"><i class="fa fa-check"></i><b>6.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Tests</a>
+<li class="chapter" data-level="7" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Tests</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#one-sample-hypothesis-tests"><i class="fa fa-check"></i><b>6.2</b> One Sample Hypothesis Tests</a>
+<li class="chapter" data-level="7.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#introduction-2"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#one-sample-hypothesis-tests"><i class="fa fa-check"></i><b>7.2</b> One Sample Hypothesis Tests</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-mean-1"><i class="fa fa-check"></i><b>6.2.1</b> On a Population Mean</a></li>
-<li class="chapter" data-level="6.2.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-proportion-1"><i class="fa fa-check"></i><b>6.2.2</b> On a Population Proportion</a></li>
-<li class="chapter" data-level="6.2.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-variance-1"><i class="fa fa-check"></i><b>6.2.3</b> On a Population Variance</a></li>
+<li class="chapter" data-level="7.2.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-mean-1"><i class="fa fa-check"></i><b>7.2.1</b> On a Population Mean</a></li>
+<li class="chapter" data-level="7.2.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-proportion-1"><i class="fa fa-check"></i><b>7.2.2</b> On a Population Proportion</a></li>
+<li class="chapter" data-level="7.2.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-population-variance-1"><i class="fa fa-check"></i><b>7.2.3</b> On a Population Variance</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#two-sample-hypothesis-tests"><i class="fa fa-check"></i><b>6.3</b> Two Sample Hypothesis Tests</a>
+<li class="chapter" data-level="7.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#two-sample-hypothesis-tests"><i class="fa fa-check"></i><b>7.3</b> Two Sample Hypothesis Tests</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-means-1"><i class="fa fa-check"></i><b>6.3.1</b> On a Difference of Means</a></li>
-<li class="chapter" data-level="6.3.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-proportions-1"><i class="fa fa-check"></i><b>6.3.2</b> On a Difference of Proportions</a></li>
-<li class="chapter" data-level="6.3.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:RatioVars"><i class="fa fa-check"></i><b>6.3.3</b> On a Ratio of Variances</a></li>
+<li class="chapter" data-level="7.3.1" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-means-1"><i class="fa fa-check"></i><b>7.3.1</b> On a Difference of Means</a></li>
+<li class="chapter" data-level="7.3.2" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#on-a-difference-of-proportions-1"><i class="fa fa-check"></i><b>7.3.2</b> On a Difference of Proportions</a></li>
+<li class="chapter" data-level="7.3.3" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:RatioVars"><i class="fa fa-check"></i><b>7.3.3</b> On a Ratio of Variances</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-on-paired-data"><i class="fa fa-check"></i><b>6.4</b> Hypothesis Tests on Paired Data</a></li>
-<li class="chapter" data-level="6.5" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:ch6exercises"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+<li class="chapter" data-level="7.4" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#hypothesis-tests-on-paired-data"><i class="fa fa-check"></i><b>7.4</b> Hypothesis Tests on Paired Data</a></li>
+<li class="chapter" data-level="7.5" data-path="hypothesis-tests.html"><a href="hypothesis-tests.html#sec:ch6exercises"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>7</b> Statistical Power</a>
+<li class="chapter" data-level="8" data-path="statistical-power.html"><a href="statistical-power.html"><i class="fa fa-check"></i><b>8</b> Statistical Power</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="statistical-power.html"><a href="statistical-power.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="statistical-power.html"><a href="statistical-power.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>7.2</b> Type I and Type II Errors</a></li>
-<li class="chapter" data-level="7.3" data-path="statistical-power.html"><a href="statistical-power.html#using-power-to-determine-sample-size"><i class="fa fa-check"></i><b>7.3</b> Using Power to Determine Sample Size</a></li>
-<li class="chapter" data-level="7.4" data-path="statistical-power.html"><a href="statistical-power.html#sec:ch7exercises"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
+<li class="chapter" data-level="8.1" data-path="statistical-power.html"><a href="statistical-power.html#introduction-3"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="statistical-power.html"><a href="statistical-power.html#type-i-and-type-ii-errors"><i class="fa fa-check"></i><b>8.2</b> Type I and Type II Errors</a></li>
+<li class="chapter" data-level="8.3" data-path="statistical-power.html"><a href="statistical-power.html#using-power-to-determine-sample-size"><i class="fa fa-check"></i><b>8.3</b> Using Power to Determine Sample Size</a></li>
+<li class="chapter" data-level="8.4" data-path="statistical-power.html"><a href="statistical-power.html#sec:ch7exercises"><i class="fa fa-check"></i><b>8.4</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>8</b> Analysis of Variance</a>
+<li class="chapter" data-level="9" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html"><i class="fa fa-check"></i><b>9</b> Analysis of Variance</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#sec:ch8exercises"><i class="fa fa-check"></i><b>8.1</b> Exercises</a></li>
+<li class="chapter" data-level="9.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#introduction-to-analysis-of-variance"><i class="fa fa-check"></i><b>9.1</b> Introduction to Analysis of Variance</a></li>
+<li class="chapter" data-level="9.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#sources-and-decomposition-of-variation"><i class="fa fa-check"></i><b>9.2</b> Sources and Decomposition of Variation</a></li>
+<li class="chapter" data-level="9.3" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#the-anova-f-test"><i class="fa fa-check"></i><b>9.3</b> The ANOVA F-Test</a></li>
+<li class="chapter" data-level="9.4" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#one-way-anova-sales-across-countries"><i class="fa fa-check"></i><b>9.4</b> One-Way ANOVA: Sales Across Countries</a></li>
+<li class="chapter" data-level="9.5" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#anova-calculations-and-formulas"><i class="fa fa-check"></i><b>9.5</b> ANOVA Calculations and Formulas</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#worked-example-comparing-three-brands"><i class="fa fa-check"></i><b>9.5.1</b> Worked Example: Comparing Three Brands</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>9</b> Simple Linear Regression</a>
+<li class="chapter" data-level="9.6" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#assumptions-of-one-way-anova"><i class="fa fa-check"></i><b>9.6</b> Assumptions of One-Way ANOVA</a></li>
+<li class="chapter" data-level="9.7" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#multiple-comparisons-after-anova"><i class="fa fa-check"></i><b>9.7</b> Multiple Comparisons After ANOVA</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#introduction-to-the-linear-model"><i class="fa fa-check"></i><b>9.1</b> Introduction to the Linear Model</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sec:LeastSquaresMethod"><i class="fa fa-check"></i><b>9.1.1</b> Least Squares Method</a></li>
-<li class="chapter" data-level="9.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-parameters-for-the-simple-linear-model"><i class="fa fa-check"></i><b>9.1.2</b> Estimating Parameters for the Simple Linear Model</a></li>
-<li class="chapter" data-level="9.1.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#measures-of-linear-relationship"><i class="fa fa-check"></i><b>9.1.3</b> Measures of Linear Relationship</a></li>
-<li class="chapter" data-level="9.1.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sse-ssr-and-sst"><i class="fa fa-check"></i><b>9.1.4</b> SSE, SSR and SST</a></li>
+<li class="chapter" data-level="9.7.1" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#pairwise-confidence-intervals"><i class="fa fa-check"></i><b>9.7.1</b> Pairwise Confidence Intervals</a></li>
+<li class="chapter" data-level="9.7.2" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#bonferroni-versus-fishers-lsd"><i class="fa fa-check"></i><b>9.7.2</b> Bonferroni Versus Fisher’s LSD</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#inference-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2</b> Inference for Simple Linear Regression</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-variance-in-linear-regression"><i class="fa fa-check"></i><b>9.2.1</b> Estimating Variance in Linear Regression</a></li>
-<li class="chapter" data-level="9.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-and-hypothesis-tests"><i class="fa fa-check"></i><b>9.2.2</b> Confidence Intervals and Hypothesis Tests</a></li>
-<li class="chapter" data-level="9.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#anova-table-for-simple-linear-regression"><i class="fa fa-check"></i><b>9.2.3</b> ANOVA Table for Simple Linear Regression</a></li>
-<li class="chapter" data-level="9.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>9.2.4</b> Residual Plots</a></li>
+<li class="chapter" data-level="9.8" data-path="analysis-of-variance.html"><a href="analysis-of-variance.html#sec:ch8exercises"><i class="fa fa-check"></i><b>9.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#exercises-1"><i class="fa fa-check"></i><b>9.3</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>10</b> Analysis of Categorical Data</a>
+<li class="chapter" data-level="10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#multinomial-response-model"><i class="fa fa-check"></i><b>10.1</b> Multinomial Response Model</a></li>
-<li class="chapter" data-level="10.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>10.2</b> The Chi-square Test for Goodness of fit</a></li>
-<li class="chapter" data-level="10.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>10.3</b> Sample Size Assumption</a></li>
-<li class="chapter" data-level="10.4" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sec:ch10exercises"><i class="fa fa-check"></i><b>10.4</b> Exercises</a></li>
+<li class="chapter" data-level="10.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#introduction-to-the-linear-model"><i class="fa fa-check"></i><b>10.1</b> Introduction to the Linear Model</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sec:LeastSquaresMethod"><i class="fa fa-check"></i><b>10.1.1</b> Least Squares Method</a></li>
+<li class="chapter" data-level="10.1.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-parameters-for-the-simple-linear-model"><i class="fa fa-check"></i><b>10.1.2</b> Estimating Parameters for the Simple Linear Model</a></li>
+<li class="chapter" data-level="10.1.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#measures-of-linear-relationship"><i class="fa fa-check"></i><b>10.1.3</b> Measures of Linear Relationship</a></li>
+<li class="chapter" data-level="10.1.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sse-ssr-and-sst"><i class="fa fa-check"></i><b>10.1.4</b> SSE, SSR and SST</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#inference-for-simple-linear-regression"><i class="fa fa-check"></i><b>10.2</b> Inference for Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#estimating-variance-in-linear-regression"><i class="fa fa-check"></i><b>10.2.1</b> Estimating Variance in Linear Regression</a></li>
+<li class="chapter" data-level="10.2.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-and-hypothesis-tests"><i class="fa fa-check"></i><b>10.2.2</b> Confidence Intervals and Hypothesis Tests</a></li>
+<li class="chapter" data-level="10.2.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#anova-table-for-simple-linear-regression"><i class="fa fa-check"></i><b>10.2.3</b> ANOVA Table for Simple Linear Regression</a></li>
+<li class="chapter" data-level="10.2.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>10.2.4</b> Residual Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#exercises-1"><i class="fa fa-check"></i><b>10.3</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html"><i class="fa fa-check"></i><b>11</b> Analysis of Categorical Data</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#multinomial-response-model"><i class="fa fa-check"></i><b>11.1</b> Multinomial Response Model</a></li>
+<li class="chapter" data-level="11.2" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#the-chi-square-test-for-goodness-of-fit"><i class="fa fa-check"></i><b>11.2</b> The Chi-square Test for Goodness of fit</a></li>
+<li class="chapter" data-level="11.3" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sample-size-assumption"><i class="fa fa-check"></i><b>11.3</b> Sample Size Assumption</a></li>
+<li class="chapter" data-level="11.4" data-path="analysis-of-categorical-data.html"><a href="analysis-of-categorical-data.html#sec:ch10exercises"><i class="fa fa-check"></i><b>11.4</b> Exercises</a></li>
 </ul></li>
 </ul>
 
@@ -606,8 +605,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="analysis-of-variance" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Analysis of Variance<a href="analysis-of-variance.html#analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="analysis-of-variance" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Analysis of Variance<a href="analysis-of-variance.html#analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-to-analysis-of-variance" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Introduction to Analysis of Variance<a href="analysis-of-variance.html#introduction-to-analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>ANOVA (Analysis of Variance) is used to compare multiple means.<br>
 Suppose we have <span class="math inline">\(k\)</span> groups <span class="math inline">\((k \geqslant 3)\)</span> and each group is given a treatment.</p>
 <p>The ANOVA model is:</p>
@@ -642,6 +643,9 @@ n_1 &amp; n_2 &amp; \cdots &amp; n_K \\
 - <span class="math inline">\(\bar{X}_i\)</span>: sample mean of group <span class="math inline">\(i\)</span><br />
 - <span class="math inline">\(S_i^2\)</span>: sample variance of group <span class="math inline">\(i\)</span><br />
 - <span class="math inline">\(n_i\)</span>: sample size of group <span class="math inline">\(i\)</span></p>
+</div>
+<div id="sources-and-decomposition-of-variation" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Sources and Decomposition of Variation<a href="analysis-of-variance.html#sources-and-decomposition-of-variation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Total Sample Size and Overall Mean</strong></p>
 <p>Total sample size:</p>
 <p><span class="math display">\[
@@ -674,6 +678,9 @@ n = n_1 + n_2 + \cdots + n_k
 <p><span class="math display">\[
 \text{SSTotal} = \text{SSTr} + \text{SSE}
 \]</span></p>
+</div>
+<div id="the-anova-f-test" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> The ANOVA F-Test<a href="analysis-of-variance.html#the-anova-f-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>ANOVA Table</strong></p>
 <table>
 <colgroup>
@@ -742,12 +749,15 @@ F^* = \frac{\text{MSTr}}{\text{MSE}} = \frac{\text{SSTr} / (k - 1)}{\text{SSE} /
 </ul>
 <hr />
 <p><strong>P-value</strong></p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
-<img src="Book_files/figure-html/unnamed-chunk-25-1.png" alt="F-distribution with shaded p-value area" width="70%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="Book_files/figure-html/unnamed-chunk-2-1.png" alt="F-distribution with shaded p-value area" width="70%" />
 <p class="caption">
-Figure 8.1: F-distribution with shaded p-value area
+Figure 9.1: F-distribution with shaded p-value area
 </p>
 </div>
+</div>
+<div id="one-way-anova-sales-across-countries" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> One-Way ANOVA: Sales Across Countries<a href="analysis-of-variance.html#one-way-anova-sales-across-countries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>The Data Matrix</strong></p>
 <p>The following table shows last year’s sales data for a small business. The sample is put into a matrix format in which each of the three columns corresponds to one of the three countries in which the company does business. The numbers in the cell represent the sales (in units of <span class="math inline">\(\$ 1000\)</span> ) made in that country last year. These data will be used to develop the theory underlying <strong>Analysis of Variance</strong>, or, for short, <strong>ANOVA</strong>.</p>
 <table>
@@ -825,7 +835,7 @@ H_{a}: \mu_{C O L 1}, \mu_{C O L 2}, \mu_{C O L 3}, \text { are NOT all equal }
 \]</span></p>
 <p>If the null hypothesis is rejected, then we can be statistically confident that the column means are not all equal, and therefore that the individual column means (i. e., <span class="math inline">\(\$ 8, \$ 10, \$ 12\)</span> ) can be used to predict the amount of the next sale. If the next sale was going to occur in Country A , then the prediction would be <span class="math inline">\(\$ 8\)</span>. If the next sale was going to occur in Country B, then the prediction would be <span class="math inline">\(\$ 10\)</span>. If the next sale was going to occur in Country C , then the prediction would be <span class="math inline">\(\$ 12\)</span>.</p>
 <p><strong>The One-Factor ANOVA F Test</strong></p>
-<p>To test the null hypothesis stated above, we have to calculate an F-statistic. If <span class="math inline">\(F_{*}&gt;F_{(c-1, n-c), \alpha}\)</span>, then reject <span class="math inline">\(H_{0}\)</span>, and use the sample column means to predict future observations. Otherwise, do not reject <span class="math inline">\(H_{0}\)</span> and use the overall sample mean to predict future observations.</p>
+<p>To test the null hypothesis stated above, we calculate an F-statistic. Let <span class="math inline">\(k\)</span> denote the number of groups and <span class="math inline">\(n\)</span> the total number of observations. If <span class="math inline">\(F^* &gt; F_{(k-1,n-k),\alpha}\)</span>, then reject <span class="math inline">\(H_0\)</span>. Otherwise, do not reject <span class="math inline">\(H_0\)</span>. Rejecting <span class="math inline">\(H_0\)</span> provides evidence that at least one population mean differs from the others, while failing to reject <span class="math inline">\(H_0\)</span> indicates insufficient evidence of a difference among the population means.</p>
 <p><strong>ANOVA Table</strong></p>
 <p>To see how this <span class="math inline">\(F_{*}\)</span> is calculated, see the ANOVA Table below.</p>
 <table>
@@ -838,39 +848,32 @@ H_{a}: \mu_{C O L 1}, \mu_{C O L 2}, \mu_{C O L 3}, \text { are NOT all equal }
 </colgroup>
 <thead>
 <tr class="header">
-<th align="center">Source of <br> Variation</th>
-<th align="center">Degrees of <br> Freedom <br> <span class="math inline">\((\mathrm{df})\)</span></th>
-<th align="center">Sum of <br> Square <br> <span class="math inline">\((\mathrm{SS})\)</span></th>
-<th align="center">Mean Sum of <br> Squares <br> <span class="math inline">\((\)</span> MSS <span class="math inline">\()\)</span></th>
+<th align="center">Source of Variation</th>
+<th align="center">Degrees of Freedom (df)</th>
+<th align="center">Sum of Squares (SS)</th>
+<th align="center">Mean Square (MS)</th>
 <th align="center">F Ratio</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="center">Treatments</td>
-<td align="center"><span class="math inline">\(\mathrm{c}-1\)</span></td>
-<td align="center">SST</td>
-<td align="center"><span class="math inline">\(\frac{\text { SST }}{c-1}\)</span></td>
-<td align="center"><span class="math inline">\(F=\frac{\text { MST }}{\text { MSE }}\)</span></td>
+<td align="center"><span class="math inline">\(k-1\)</span></td>
+<td align="center"><span class="math inline">\(SSTr\)</span></td>
+<td align="center"><span class="math inline">\(MSTr = \frac{SSTr}{k-1}\)</span></td>
+<td align="center"><span class="math inline">\(F^* = \frac{MSTr}{MSE}\)</span></td>
 </tr>
 <tr class="even">
 <td align="center">Error</td>
-<td align="center"><span class="math inline">\(\mathrm{n}-\mathrm{c}\)</span></td>
-<td align="center">SSE</td>
-<td align="center"><span class="math inline">\(\frac{\text { SSE }}{n-c}\)</span></td>
+<td align="center"><span class="math inline">\(n-k\)</span></td>
+<td align="center"><span class="math inline">\(SSE\)</span></td>
+<td align="center"><span class="math inline">\(MSE = \frac{SSE}{n-k}\)</span></td>
 <td align="center"></td>
 </tr>
 <tr class="odd">
 <td align="center">Total</td>
-<td align="center"><span class="math inline">\(\mathrm{n}-1\)</span></td>
-<td align="center"><span class="math inline">\(\mathrm{SS}_{\mathrm{Total}}\)</span></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
+<td align="center"><span class="math inline">\(n-1\)</span></td>
+<td align="center"><span class="math inline">\(SSTotal\)</span></td>
 <td align="center"></td>
 <td align="center"></td>
 </tr>
@@ -977,7 +980,7 @@ H_{a}: \mu_{C O L 1}, \mu_{C O L 2}, \mu_{C O L 3}, \text { are NOT all equal }
 </tbody>
 </table>
 <p>Errors Squared when the Column Factor is used <span class="math inline">\((\)</span> Total <span class="math inline">\()=28\)</span>.</p>
-<p><strong>Calculation of SST</strong></p>
+<p><strong>Calculation of SSTr</strong></p>
 <p>The units explained by the column model are calculated by finding the square of each prediction change when moving from NO model to the column model. The following table presents the square of each prediction change:</p>
 <table>
 <thead>
@@ -1057,42 +1060,45 @@ H_{a}: \mu_{C O L 1}, \mu_{C O L 2}, \mu_{C O L 3}, \text { are NOT all equal }
 <p>So for this one-factor ANOVA model, <span class="math inline">\(F_{*}=5.1428\)</span>.</p>
 <p><strong>Conclusion</strong></p>
 <p>If the null hypothesis is true, then the F-statistic should be a value from the <span class="math inline">\(F_{2,9}\)</span> distribution. Referring to the table that contains the upper 0.05 cut-off points of F distributions, we see that <span class="math inline">\(F_{(2,9), 0.05}=4.256\)</span>. Since 5.1428 is greater than 4.256 , this tells us that the F -statistic is in the upper 0.05 of the <span class="math inline">\(F_{2,9}\)</span> distribution. Therefore we reject the null hypothesis at the 0.05 significance level, and we conclude that the country means are not all the same. Thus, the prediction for the next sale in a known country is the mean of all the previous sales in that country.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="analysis-of-variance.html#cb135-1" tabindex="-1"></a><span class="co"># R Code;</span></span>
-<span id="cb135-2"><a href="analysis-of-variance.html#cb135-2" tabindex="-1"></a>salesA<span class="ot">=</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">10</span>,<span class="dv">7</span>,<span class="dv">9</span>);</span>
-<span id="cb135-3"><a href="analysis-of-variance.html#cb135-3" tabindex="-1"></a>salesB<span class="ot">=</span><span class="fu">c</span> (<span class="dv">10</span>, <span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">10</span>);</span>
-<span id="cb135-4"><a href="analysis-of-variance.html#cb135-4" tabindex="-1"></a>salesC<span class="ot">=</span><span class="fu">c</span>(<span class="dv">14</span>,<span class="dv">13</span>,<span class="dv">11</span>,<span class="dv">10</span>);</span>
-<span id="cb135-5"><a href="analysis-of-variance.html#cb135-5" tabindex="-1"></a>sales<span class="ot">=</span><span class="fu">c</span>(salesA,salesB,salesC);</span>
-<span id="cb135-6"><a href="analysis-of-variance.html#cb135-6" tabindex="-1"></a>country<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">4</span>));</span>
-<span id="cb135-7"><a href="analysis-of-variance.html#cb135-7" tabindex="-1"></a><span class="fu">oneway.test</span>(sales<span class="sc">~</span>country,<span class="at">var.equal=</span><span class="cn">TRUE</span>);</span></code></pre></div>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="analysis-of-variance.html#cb136-1" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb136-2"><a href="analysis-of-variance.html#cb136-2" tabindex="-1"></a><span class="do">## One-way analysis of means</span></span>
-<span id="cb136-3"><a href="analysis-of-variance.html#cb136-3" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb136-4"><a href="analysis-of-variance.html#cb136-4" tabindex="-1"></a><span class="do">## data: sales and country</span></span>
-<span id="cb136-5"><a href="analysis-of-variance.html#cb136-5" tabindex="-1"></a><span class="do">## F = 5.1429, num df = 2, denom df = 9, p-value =</span></span>
-<span id="cb136-6"><a href="analysis-of-variance.html#cb136-6" tabindex="-1"></a><span class="do">## 0.0324</span></span></code></pre></div>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="analysis-of-variance.html#cb137-1" tabindex="-1"></a><span class="co"># R Code;</span></span>
-<span id="cb137-2"><a href="analysis-of-variance.html#cb137-2" tabindex="-1"></a><span class="co"># Another way: using lm;</span></span>
-<span id="cb137-3"><a href="analysis-of-variance.html#cb137-3" tabindex="-1"></a>salesA<span class="ot">=</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">10</span>,<span class="dv">7</span>,<span class="dv">9</span>);</span>
-<span id="cb137-4"><a href="analysis-of-variance.html#cb137-4" tabindex="-1"></a>salesB<span class="ot">=</span><span class="fu">c</span> (<span class="dv">10</span>, <span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">10</span>);</span>
-<span id="cb137-5"><a href="analysis-of-variance.html#cb137-5" tabindex="-1"></a>salesC<span class="ot">=</span><span class="fu">c</span>(<span class="dv">14</span>,<span class="dv">13</span>,<span class="dv">11</span>,<span class="dv">10</span>);</span>
-<span id="cb137-6"><a href="analysis-of-variance.html#cb137-6" tabindex="-1"></a>sales<span class="ot">=</span><span class="fu">c</span>(salesA,salesB,salesC);</span>
-<span id="cb137-7"><a href="analysis-of-variance.html#cb137-7" tabindex="-1"></a>country<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">4</span>));</span>
-<span id="cb137-8"><a href="analysis-of-variance.html#cb137-8" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(sales<span class="sc">~</span><span class="fu">factor</span>(country)));</span></code></pre></div>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="analysis-of-variance.html#cb138-1" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
-<span id="cb138-2"><a href="analysis-of-variance.html#cb138-2" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb138-3"><a href="analysis-of-variance.html#cb138-3" tabindex="-1"></a><span class="do">## Response: sales</span></span>
-<span id="cb138-4"><a href="analysis-of-variance.html#cb138-4" tabindex="-1"></a><span class="do">## Df Sum Sq Mean Sq F value Pr(&gt;F)</span></span>
-<span id="cb138-5"><a href="analysis-of-variance.html#cb138-5" tabindex="-1"></a><span class="do">## factor(country) 2 32 16.0000 5.1429 0.0324 *</span></span>
-<span id="cb138-6"><a href="analysis-of-variance.html#cb138-6" tabindex="-1"></a><span class="do">## Residuals 9 28 3.1111</span></span>
-<span id="cb138-7"><a href="analysis-of-variance.html#cb138-7" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb138-8"><a href="analysis-of-variance.html#cb138-8" tabindex="-1"></a><span class="do">## Signif. codes:</span></span>
-<span id="cb138-9"><a href="analysis-of-variance.html#cb138-9" tabindex="-1"></a><span class="do">## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysis-of-variance.html#cb1-1" tabindex="-1"></a><span class="co"># R Code;</span></span>
+<span id="cb1-2"><a href="analysis-of-variance.html#cb1-2" tabindex="-1"></a>salesA<span class="ot">=</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">10</span>,<span class="dv">7</span>,<span class="dv">9</span>);</span>
+<span id="cb1-3"><a href="analysis-of-variance.html#cb1-3" tabindex="-1"></a>salesB<span class="ot">=</span><span class="fu">c</span> (<span class="dv">10</span>, <span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">10</span>);</span>
+<span id="cb1-4"><a href="analysis-of-variance.html#cb1-4" tabindex="-1"></a>salesC<span class="ot">=</span><span class="fu">c</span>(<span class="dv">14</span>,<span class="dv">13</span>,<span class="dv">11</span>,<span class="dv">10</span>);</span>
+<span id="cb1-5"><a href="analysis-of-variance.html#cb1-5" tabindex="-1"></a>sales<span class="ot">=</span><span class="fu">c</span>(salesA,salesB,salesC);</span>
+<span id="cb1-6"><a href="analysis-of-variance.html#cb1-6" tabindex="-1"></a>country<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">4</span>));</span>
+<span id="cb1-7"><a href="analysis-of-variance.html#cb1-7" tabindex="-1"></a><span class="fu">oneway.test</span>(sales<span class="sc">~</span>country,<span class="at">var.equal=</span><span class="cn">TRUE</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analysis-of-variance.html#cb2-1" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb2-2"><a href="analysis-of-variance.html#cb2-2" tabindex="-1"></a><span class="do">## One-way analysis of means</span></span>
+<span id="cb2-3"><a href="analysis-of-variance.html#cb2-3" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb2-4"><a href="analysis-of-variance.html#cb2-4" tabindex="-1"></a><span class="do">## data: sales and country</span></span>
+<span id="cb2-5"><a href="analysis-of-variance.html#cb2-5" tabindex="-1"></a><span class="do">## F = 5.1429, num df = 2, denom df = 9, p-value =</span></span>
+<span id="cb2-6"><a href="analysis-of-variance.html#cb2-6" tabindex="-1"></a><span class="do">## 0.0324</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="analysis-of-variance.html#cb3-1" tabindex="-1"></a><span class="co"># R Code;</span></span>
+<span id="cb3-2"><a href="analysis-of-variance.html#cb3-2" tabindex="-1"></a><span class="co"># Another way: using lm;</span></span>
+<span id="cb3-3"><a href="analysis-of-variance.html#cb3-3" tabindex="-1"></a>salesA<span class="ot">=</span><span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">10</span>,<span class="dv">7</span>,<span class="dv">9</span>);</span>
+<span id="cb3-4"><a href="analysis-of-variance.html#cb3-4" tabindex="-1"></a>salesB<span class="ot">=</span><span class="fu">c</span> (<span class="dv">10</span>, <span class="dv">8</span>,<span class="dv">12</span>,<span class="dv">10</span>);</span>
+<span id="cb3-5"><a href="analysis-of-variance.html#cb3-5" tabindex="-1"></a>salesC<span class="ot">=</span><span class="fu">c</span>(<span class="dv">14</span>,<span class="dv">13</span>,<span class="dv">11</span>,<span class="dv">10</span>);</span>
+<span id="cb3-6"><a href="analysis-of-variance.html#cb3-6" tabindex="-1"></a>sales<span class="ot">=</span><span class="fu">c</span>(salesA,salesB,salesC);</span>
+<span id="cb3-7"><a href="analysis-of-variance.html#cb3-7" tabindex="-1"></a>country<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>),<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">4</span>));</span>
+<span id="cb3-8"><a href="analysis-of-variance.html#cb3-8" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(sales<span class="sc">~</span><span class="fu">factor</span>(country)));</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analysis-of-variance.html#cb4-1" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
+<span id="cb4-2"><a href="analysis-of-variance.html#cb4-2" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-3"><a href="analysis-of-variance.html#cb4-3" tabindex="-1"></a><span class="do">## Response: sales</span></span>
+<span id="cb4-4"><a href="analysis-of-variance.html#cb4-4" tabindex="-1"></a><span class="do">## Df Sum Sq Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb4-5"><a href="analysis-of-variance.html#cb4-5" tabindex="-1"></a><span class="do">## factor(country) 2 32 16.0000 5.1429 0.0324 *</span></span>
+<span id="cb4-6"><a href="analysis-of-variance.html#cb4-6" tabindex="-1"></a><span class="do">## Residuals 9 28 3.1111</span></span>
+<span id="cb4-7"><a href="analysis-of-variance.html#cb4-7" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb4-8"><a href="analysis-of-variance.html#cb4-8" tabindex="-1"></a><span class="do">## Signif. codes:</span></span>
+<span id="cb4-9"><a href="analysis-of-variance.html#cb4-9" tabindex="-1"></a><span class="do">## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
 <p>Officially, to use the predictions from an ANOVA model, three assumptions about the populations from which the sample was taken must be satisfied:</p>
 <ol style="list-style-type: decimal">
 <li>Each population has a Normal distribution.</li>
 <li>Each population has the <strong>same</strong> standard deviation <span class="math inline">\(\sigma\)</span>.</li>
 <li>The observations are mutually independent of one another.</li>
 </ol>
+</div>
+<div id="anova-calculations-and-formulas" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> ANOVA Calculations and Formulas<a href="analysis-of-variance.html#anova-calculations-and-formulas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Formulas</strong></p>
 <p>Sum of Squares for Treatments (a.k.a. between-treatments variation or Explained)</p>
 <p><span class="math display">\[
@@ -1289,7 +1295,9 @@ s^2 &amp; 10 &amp; 10 &amp; 10 \\
 </tr>
 </tbody>
 </table>
-<p>Exercise on 3 bounds</p>
+<div id="worked-example-comparing-three-brands" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Worked Example: Comparing Three Brands<a href="analysis-of-variance.html#worked-example-comparing-three-brands" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Exercise on 3 Brands</p>
 <p>Consider<br />
 <span class="math inline">\(\alpha = 0.05\)</span></p>
 <table>
@@ -1507,10 +1515,11 @@ SSE = \sum_{i=1}^{3} (n_i - 1) S_i^2 = (6 - 1)(1.87) + (6 - 1)(2.30) + (6 - 1)(1
 <hr />
 <p>Between (Treatment effect)</p>
 <p><span class="math display">\[
-SS_{\text{Tot}} = \sum_{i=1}^{3} n_i (\bar{x}_i - \bar{x})^2 = 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2
+SSTr = \sum_{i=1}^{3} n_i (\bar{x}_i - \bar{x})^2
+= 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2
 \]</span></p>
 <p><span class="math display">\[
-= \boxed{6.39}
+SSTr \approx \boxed{6.39}
 \]</span></p>
 <p>ANOVA Table</p>
 <p><span class="math display">\[
@@ -1576,11 +1585,12 @@ F^* = \frac{MS_{\text{Tr}}}{MSE} = \frac{SS_{\text{Tr}}/(k-1)}{SSE/(n-k)} = 1.70
 \text{p-value} &gt; 0.100 &gt; 0.05 \quad (\alpha)
 \]</span></p>
 <p>Conclusion of ANOVA</p>
-<p>There is <strong>insufficient evidence to reject</strong><br />
-<span class="math display">\[
-H_0: \mu_1 = \mu_2 = \mu_3
+<p>Since the p-value is greater than the significance level <span class="math inline">\(\alpha = 0.05\)</span>, we fail to reject the null hypothesis:</p>
+<p><span class="math display">\[
+H_0: \mu_1 = \mu_2 = \mu_3.
 \]</span></p>
-<p>The analysis from ANOVA suggests that all 3 groups have the same mean.</p>
+<p>There is insufficient statistical evidence to conclude that the population mean differences from the advertised amount differ among the three margarine brands.</p>
+<p>Failing to reject <span class="math inline">\(H_0\)</span> does not establish that the three population means are equal; it only indicates that the observed data do not provide sufficient evidence of a difference at the 5% significance level.</p>
 <p>What if <span class="math inline">\(H_0\)</span> had been rejected?</p>
 <p>Suppose we rejected <span class="math inline">\(H_0\)</span>.<br />
 Which mean (or means) are different?</p>
@@ -1633,7 +1643,7 @@ Which mean (or means) are different?</p>
 </table>
 <p>Grand mean = <span class="math inline">\(\bar{x} = 2.17\)</span>.</p>
 <p><span class="math display">\[
-SST = 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2 = 6.387 \approx 6.39
+SSTr = 6(1.33 - 2.17)^2 + 6(2.50 - 2.17)^2 + 6(2.67 - 2.17)^2 = 6.387 \approx 6.39
 \]</span></p>
 <p><span class="math display">\[
 SSE = (6 - 1)(1.87) + (6 - 1)(2.30) + (6 - 1)(1.47) = 28.20
@@ -1691,32 +1701,33 @@ F&gt;F_{0.05,2,15}=3.682
 \]</span></p>
 <p>Step 4. Conclusion.</p>
 <p>We found the value of the test statistic to be <span class="math inline">\(F=1.70\)</span>. Since <span class="math inline">\(F=1.70&lt;F_{0.05,2,15}=3.682\)</span>, we can’t reject <span class="math inline">\(H_{0}\)</span>. Thus, there is <strong>not</strong> evidence to infer that the average differences differ between the three brands.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="analysis-of-variance.html#cb139-1" tabindex="-1"></a><span class="co"># R Code;</span></span>
-<span id="cb139-2"><a href="analysis-of-variance.html#cb139-2" tabindex="-1"></a>brand1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>);</span>
-<span id="cb139-3"><a href="analysis-of-variance.html#cb139-3" tabindex="-1"></a>brand2<span class="ot">=</span><span class="fu">c</span> (<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">4</span>);</span>
-<span id="cb139-4"><a href="analysis-of-variance.html#cb139-4" tabindex="-1"></a>brand3<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>);</span>
-<span id="cb139-5"><a href="analysis-of-variance.html#cb139-5" tabindex="-1"></a>differences<span class="ot">=</span><span class="fu">c</span>(brand1,brand2,brand3);</span>
-<span id="cb139-6"><a href="analysis-of-variance.html#cb139-6" tabindex="-1"></a>brand<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">6</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">6</span>),<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>));</span>
-<span id="cb139-7"><a href="analysis-of-variance.html#cb139-7" tabindex="-1"></a><span class="fu">oneway.test</span>(differences<span class="sc">~</span>brand,<span class="at">var.equal=</span><span class="cn">TRUE</span>);</span></code></pre></div>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="analysis-of-variance.html#cb140-1" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb140-2"><a href="analysis-of-variance.html#cb140-2" tabindex="-1"></a><span class="do">## One-way analysis of means</span></span>
-<span id="cb140-3"><a href="analysis-of-variance.html#cb140-3" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb140-4"><a href="analysis-of-variance.html#cb140-4" tabindex="-1"></a><span class="do">## data: differences and brand</span></span>
-<span id="cb140-5"><a href="analysis-of-variance.html#cb140-5" tabindex="-1"></a><span class="do">## F = 1.6864, num df = 2, denom df = 15, p-value</span></span>
-<span id="cb140-6"><a href="analysis-of-variance.html#cb140-6" tabindex="-1"></a><span class="do">## = 0.2185</span></span>
-<span id="cb140-7"><a href="analysis-of-variance.html#cb140-7" tabindex="-1"></a><span class="do">##</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="analysis-of-variance.html#cb5-1" tabindex="-1"></a><span class="co"># R Code;</span></span>
+<span id="cb5-2"><a href="analysis-of-variance.html#cb5-2" tabindex="-1"></a>brand1<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>);</span>
+<span id="cb5-3"><a href="analysis-of-variance.html#cb5-3" tabindex="-1"></a>brand2<span class="ot">=</span><span class="fu">c</span> (<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">4</span>);</span>
+<span id="cb5-4"><a href="analysis-of-variance.html#cb5-4" tabindex="-1"></a>brand3<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>);</span>
+<span id="cb5-5"><a href="analysis-of-variance.html#cb5-5" tabindex="-1"></a>differences<span class="ot">=</span><span class="fu">c</span>(brand1,brand2,brand3);</span>
+<span id="cb5-6"><a href="analysis-of-variance.html#cb5-6" tabindex="-1"></a>brand<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">6</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">6</span>),<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">6</span>));</span>
+<span id="cb5-7"><a href="analysis-of-variance.html#cb5-7" tabindex="-1"></a><span class="fu">oneway.test</span>(differences<span class="sc">~</span>brand,<span class="at">var.equal=</span><span class="cn">TRUE</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analysis-of-variance.html#cb6-1" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb6-2"><a href="analysis-of-variance.html#cb6-2" tabindex="-1"></a><span class="do">## One-way analysis of means</span></span>
+<span id="cb6-3"><a href="analysis-of-variance.html#cb6-3" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb6-4"><a href="analysis-of-variance.html#cb6-4" tabindex="-1"></a><span class="do">## data: differences and brand</span></span>
+<span id="cb6-5"><a href="analysis-of-variance.html#cb6-5" tabindex="-1"></a><span class="do">## F = 1.6864, num df = 2, denom df = 15, p-value</span></span>
+<span id="cb6-6"><a href="analysis-of-variance.html#cb6-6" tabindex="-1"></a><span class="do">## = 0.2185</span></span>
+<span id="cb6-7"><a href="analysis-of-variance.html#cb6-7" tabindex="-1"></a><span class="do">##</span></span></code></pre></div>
 <p>Margarine example</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="analysis-of-variance.html#cb141-1" tabindex="-1"></a><span class="sc">&gt;</span> brand <span class="ot">=</span> <span class="fu">as.factor</span>(brand)</span>
-<span id="cb141-2"><a href="analysis-of-variance.html#cb141-2" tabindex="-1"></a><span class="sc">&gt;</span> anova_model <span class="ot">=</span> <span class="fu">aov</span>(differences <span class="sc">~</span> brand)</span>
-<span id="cb141-3"><a href="analysis-of-variance.html#cb141-3" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">anova</span>(anova_model)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="analysis-of-variance.html#cb7-1" tabindex="-1"></a><span class="sc">&gt;</span> brand <span class="ot">=</span> <span class="fu">as.factor</span>(brand)</span>
+<span id="cb7-2"><a href="analysis-of-variance.html#cb7-2" tabindex="-1"></a><span class="sc">&gt;</span> anova_model <span class="ot">=</span> <span class="fu">aov</span>(differences <span class="sc">~</span> brand)</span>
+<span id="cb7-3"><a href="analysis-of-variance.html#cb7-3" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">anova</span>(anova_model)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="left"></th>
+<th align="left">Source of Variation</th>
 <th align="right">Df</th>
 <th align="right">Sum Sq</th>
 <th align="right">Mean Sq</th>
-<th align="center"><span class="math inline">\(F\)</span> value</th>
+<th align="right">F value</th>
+<th align="right">Pr(&gt;F)</th>
 </tr>
 </thead>
 <tbody>
@@ -1725,14 +1736,16 @@ F&gt;F_{0.05,2,15}=3.682
 <td align="right">2</td>
 <td align="right">6.3333</td>
 <td align="right">3.1667</td>
-<td align="center">1.6864</td>
+<td align="right">1.6864</td>
+<td align="right">0.2185</td>
 </tr>
 <tr class="even">
 <td align="left">Residuals</td>
 <td align="right">15</td>
 <td align="right">28.1667</td>
 <td align="right">1.8778</td>
-<td align="center">0.2185</td>
+<td align="right"></td>
+<td align="right"></td>
 </tr>
 </tbody>
 </table>
@@ -1740,39 +1753,43 @@ F&gt;F_{0.05,2,15}=3.682
 <p>The friendly folks a the Internal Revenue Service (IRS) in the United States and Canada Revenue Agency (CRA) are always looking for ways to improve the wording and format of its tax return forms. Three new forms have been developed recently. To determine which, if any, are superior to the current form, 120 individuals were asked to participate in an experiment. Each of the three new forms and the currently used form were filled out by 30 different people. The amount of time (in minutes) taken by each person to complete the task was recorded.
 What conclusions can be drawn from these data?</p>
 <p>R Code</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="analysis-of-variance.html#cb142-1" tabindex="-1"></a><span class="co">#Step 1. Entering data;</span></span>
-<span id="cb142-2"><a href="analysis-of-variance.html#cb142-2" tabindex="-1"></a><span class="co"># importing data;</span></span>
-<span id="cb142-3"><a href="analysis-of-variance.html#cb142-3" tabindex="-1"></a><span class="co"># url of tax return forms;</span></span>
-<span id="cb142-4"><a href="analysis-of-variance.html#cb142-4" tabindex="-1"></a>forms_url <span class="ot">=</span></span>
-<span id="cb142-5"><a href="analysis-of-variance.html#cb142-5" tabindex="-1"></a><span class="st">&quot;https://mcs.utm.utoronto.ca/&quot;</span>nosedal<span class="sc">/</span>data<span class="sc">/</span>tax<span class="sc">-</span>forms.txt<span class="st">&quot;</span></span>
-<span id="cb142-6"><a href="analysis-of-variance.html#cb142-6" tabindex="-1"></a><span class="st">forms_data= read.table(forms_url,header=TRUE);</span></span>
-<span id="cb142-7"><a href="analysis-of-variance.html#cb142-7" tabindex="-1"></a><span class="st">names(forms_data);</span></span>
-<span id="cb142-8"><a href="analysis-of-variance.html#cb142-8" tabindex="-1"></a><span class="st">forms_data[1:4, ];</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analysis-of-variance.html#cb8-1" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="analysis-of-variance.html#cb8-2" tabindex="-1"></a><span class="co"># Step 1. Import the tax return forms data</span></span>
+<span id="cb8-3"><a href="analysis-of-variance.html#cb8-3" tabindex="-1"></a>forms_url <span class="ot">=</span> <span class="st">&quot;https://mcs.utm.utoronto.ca/~nosedal/data/tax-forms.txt&quot;</span></span>
+<span id="cb8-4"><a href="analysis-of-variance.html#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="analysis-of-variance.html#cb8-5" tabindex="-1"></a>forms_data <span class="ot">=</span> <span class="fu">read.table</span>(forms_url, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-6"><a href="analysis-of-variance.html#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="analysis-of-variance.html#cb8-7" tabindex="-1"></a><span class="fu">names</span>(forms_data)</span>
+<span id="cb8-8"><a href="analysis-of-variance.html#cb8-8" tabindex="-1"></a>forms_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, ]</span></code></pre></div>
 <p>R Code</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="analysis-of-variance.html#cb143-1" tabindex="-1"></a><span class="do">## [1] &quot;Form1&quot; &quot;Form2&quot; &quot;Form3&quot; &quot;Form4&quot;</span></span>
-<span id="cb143-2"><a href="analysis-of-variance.html#cb143-2" tabindex="-1"></a><span class="do">##   Form1 Form2 Form3 Form4</span></span>
-<span id="cb143-3"><a href="analysis-of-variance.html#cb143-3" tabindex="-1"></a><span class="do">## 1    23    88   116   103</span></span>
-<span id="cb143-4"><a href="analysis-of-variance.html#cb143-4" tabindex="-1"></a><span class="do">## 2    59   114   123   122</span></span>
-<span id="cb143-5"><a href="analysis-of-variance.html#cb143-5" tabindex="-1"></a><span class="do">## 3    68    81    64   105</span></span>
-<span id="cb143-6"><a href="analysis-of-variance.html#cb143-6" tabindex="-1"></a><span class="do">## 4   122    41   136    73</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analysis-of-variance.html#cb9-1" tabindex="-1"></a><span class="do">## [1] &quot;Form1&quot; &quot;Form2&quot; &quot;Form3&quot; &quot;Form4&quot;</span></span>
+<span id="cb9-2"><a href="analysis-of-variance.html#cb9-2" tabindex="-1"></a><span class="do">##   Form1 Form2 Form3 Form4</span></span>
+<span id="cb9-3"><a href="analysis-of-variance.html#cb9-3" tabindex="-1"></a><span class="do">## 1    23    88   116   103</span></span>
+<span id="cb9-4"><a href="analysis-of-variance.html#cb9-4" tabindex="-1"></a><span class="do">## 2    59   114   123   122</span></span>
+<span id="cb9-5"><a href="analysis-of-variance.html#cb9-5" tabindex="-1"></a><span class="do">## 3    68    81    64   105</span></span>
+<span id="cb9-6"><a href="analysis-of-variance.html#cb9-6" tabindex="-1"></a><span class="do">## 4   122    41   136    73</span></span></code></pre></div>
 <p>R Code</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="analysis-of-variance.html#cb144-1" tabindex="-1"></a><span class="co">#Step 2. ANOVA;</span></span>
-<span id="cb144-2"><a href="analysis-of-variance.html#cb144-2" tabindex="-1"></a>time1<span class="ot">=</span>forms_data<span class="sc">$</span>Form1;</span>
-<span id="cb144-3"><a href="analysis-of-variance.html#cb144-3" tabindex="-1"></a>time2<span class="ot">=</span>forms_data<span class="sc">$</span>Form2;</span>
-<span id="cb144-4"><a href="analysis-of-variance.html#cb144-4" tabindex="-1"></a>time3<span class="ot">=</span>forms_data<span class="sc">$</span>Form3;</span>
-<span id="cb144-5"><a href="analysis-of-variance.html#cb144-5" tabindex="-1"></a>time4<span class="ot">=</span>forms_data<span class="sc">$</span>Form4;</span>
-<span id="cb144-6"><a href="analysis-of-variance.html#cb144-6" tabindex="-1"></a><span class="fu">length</span>(forms_data<span class="sc">$</span>Form1);</span>
-<span id="cb144-7"><a href="analysis-of-variance.html#cb144-7" tabindex="-1"></a>times<span class="ot">=</span><span class="fu">c</span>(time1,time2,time3,time4);</span>
-<span id="cb144-8"><a href="analysis-of-variance.html#cb144-8" tabindex="-1"></a>forms<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">30</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">30</span>),<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">30</span>),<span class="fu">rep</span>(<span class="dv">4</span>,<span class="dv">30</span>));</span>
-<span id="cb144-9"><a href="analysis-of-variance.html#cb144-9" tabindex="-1"></a><span class="fu">oneway.test</span>(times<span class="sc">~</span>forms,<span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analysis-of-variance.html#cb10-1" tabindex="-1"></a><span class="co">#Step 2. ANOVA;</span></span>
+<span id="cb10-2"><a href="analysis-of-variance.html#cb10-2" tabindex="-1"></a>time1<span class="ot">=</span>forms_data<span class="sc">$</span>Form1;</span>
+<span id="cb10-3"><a href="analysis-of-variance.html#cb10-3" tabindex="-1"></a>time2<span class="ot">=</span>forms_data<span class="sc">$</span>Form2;</span>
+<span id="cb10-4"><a href="analysis-of-variance.html#cb10-4" tabindex="-1"></a>time3<span class="ot">=</span>forms_data<span class="sc">$</span>Form3;</span>
+<span id="cb10-5"><a href="analysis-of-variance.html#cb10-5" tabindex="-1"></a>time4<span class="ot">=</span>forms_data<span class="sc">$</span>Form4;</span>
+<span id="cb10-6"><a href="analysis-of-variance.html#cb10-6" tabindex="-1"></a><span class="fu">length</span>(forms_data<span class="sc">$</span>Form1);</span>
+<span id="cb10-7"><a href="analysis-of-variance.html#cb10-7" tabindex="-1"></a>times<span class="ot">=</span><span class="fu">c</span>(time1,time2,time3,time4);</span>
+<span id="cb10-8"><a href="analysis-of-variance.html#cb10-8" tabindex="-1"></a>forms<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">30</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">30</span>),<span class="fu">rep</span>(<span class="dv">3</span>,<span class="dv">30</span>),<span class="fu">rep</span>(<span class="dv">4</span>,<span class="dv">30</span>));</span>
+<span id="cb10-9"><a href="analysis-of-variance.html#cb10-9" tabindex="-1"></a><span class="fu">oneway.test</span>(times<span class="sc">~</span>forms,<span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p>R Code</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="analysis-of-variance.html#cb145-1" tabindex="-1"></a><span class="do">## [1] 30</span></span>
-<span id="cb145-2"><a href="analysis-of-variance.html#cb145-2" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb145-3"><a href="analysis-of-variance.html#cb145-3" tabindex="-1"></a><span class="do">## One-way analysis of means</span></span>
-<span id="cb145-4"><a href="analysis-of-variance.html#cb145-4" tabindex="-1"></a><span class="do">##</span></span>
-<span id="cb145-5"><a href="analysis-of-variance.html#cb145-5" tabindex="-1"></a><span class="do">## data: times and forms</span></span>
-<span id="cb145-6"><a href="analysis-of-variance.html#cb145-6" tabindex="-1"></a><span class="do">## F = 2.9358, num df = 3, denom df = 116, p-value</span></span>
-<span id="cb145-7"><a href="analysis-of-variance.html#cb145-7" tabindex="-1"></a><span class="do">## = 0.03632</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analysis-of-variance.html#cb11-1" tabindex="-1"></a><span class="do">## [1] 30</span></span>
+<span id="cb11-2"><a href="analysis-of-variance.html#cb11-2" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb11-3"><a href="analysis-of-variance.html#cb11-3" tabindex="-1"></a><span class="do">## One-way analysis of means</span></span>
+<span id="cb11-4"><a href="analysis-of-variance.html#cb11-4" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb11-5"><a href="analysis-of-variance.html#cb11-5" tabindex="-1"></a><span class="do">## data: times and forms</span></span>
+<span id="cb11-6"><a href="analysis-of-variance.html#cb11-6" tabindex="-1"></a><span class="do">## F = 2.9358, num df = 3, denom df = 116, p-value</span></span>
+<span id="cb11-7"><a href="analysis-of-variance.html#cb11-7" tabindex="-1"></a><span class="do">## = 0.03632</span></span></code></pre></div>
+</div>
+</div>
+<div id="assumptions-of-one-way-anova" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Assumptions of One-Way ANOVA<a href="analysis-of-variance.html#assumptions-of-one-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Assumptions of ANOVA</p>
 <p>Model</p>
 <p><span class="math display">\[
@@ -1794,6 +1811,9 @@ Y_{ij} = \mu_i + \epsilon_{ij} \quad \text{with} \quad \epsilon_{ij} \sim \mathc
 <p><span class="math display">\[
 \hat{\sigma}^2 = \text{MSE}
 \]</span></p>
+</div>
+<div id="multiple-comparisons-after-anova" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Multiple Comparisons After ANOVA<a href="analysis-of-variance.html#multiple-comparisons-after-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Multiple Comparisons</strong></p>
 <p>Example</p>
 <p>Because of foreign competition, North American automobile manufacturers have become more concerned with quality. One aspect of quality is the cost of repairing damage caused by accidents. A manufacturer is considering several new types of bumpers. To test how well they react to low-speed collisions, 10 bumpers of each of four different types were installed on mid-size cars, which were then driven into a wall at 5 miles per hour. The cost of repairing the damage in each case was assessed. The data are shown below.</p>
@@ -1873,23 +1893,64 @@ Y_{ij} = \mu_i + \epsilon_{ij} \quad \text{with} \quad \epsilon_{ij} \sim \mathc
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="analysis-of-variance.html#cb146-1" tabindex="-1"></a>cost_bumper1 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">610</span>, <span class="dv">354</span>, <span class="dv">234</span>, <span class="dv">399</span>, <span class="dv">278</span>, <span class="dv">358</span>, <span class="dv">379</span>, <span class="dv">548</span>, <span class="dv">196</span>, <span class="dv">444</span>)</span>
-<span id="cb146-2"><a href="analysis-of-variance.html#cb146-2" tabindex="-1"></a>cost_bumper2 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">404</span>, <span class="dv">663</span>, <span class="dv">521</span>, <span class="dv">518</span>, <span class="dv">499</span>, <span class="dv">374</span>, <span class="dv">562</span>, <span class="dv">505</span>, <span class="dv">375</span>, <span class="dv">438</span>)</span>
-<span id="cb146-3"><a href="analysis-of-variance.html#cb146-3" tabindex="-1"></a>cost_bumper3 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">599</span>, <span class="dv">426</span>, <span class="dv">429</span>, <span class="dv">621</span>, <span class="dv">426</span>, <span class="dv">414</span>, <span class="dv">332</span>, <span class="dv">460</span>, <span class="dv">494</span>, <span class="dv">637</span>)</span>
-<span id="cb146-4"><a href="analysis-of-variance.html#cb146-4" tabindex="-1"></a>cost_bumper4 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">272</span>, <span class="dv">405</span>, <span class="dv">197</span>, <span class="dv">363</span>, <span class="dv">297</span>, <span class="dv">538</span>, <span class="dv">181</span>, <span class="dv">318</span>, <span class="dv">412</span>, <span class="dv">499</span>)</span>
-<span id="cb146-5"><a href="analysis-of-variance.html#cb146-5" tabindex="-1"></a>bumper_data <span class="ot">=</span> <span class="fu">rbind</span>(</span>
-<span id="cb146-6"><a href="analysis-of-variance.html#cb146-6" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">cost =</span> cost_bumper1, <span class="at">type =</span> <span class="st">&quot;Bumper 1&quot;</span>),</span>
-<span id="cb146-7"><a href="analysis-of-variance.html#cb146-7" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">cost =</span> cost_bumper2, <span class="at">type =</span> <span class="st">&quot;Bumper 2&quot;</span>),</span>
-<span id="cb146-8"><a href="analysis-of-variance.html#cb146-8" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">cost =</span> cost_bumper3, <span class="at">type =</span> <span class="st">&quot;Bumper 3&quot;</span>),</span>
-<span id="cb146-9"><a href="analysis-of-variance.html#cb146-9" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">cost =</span> cost_bumper4, <span class="at">type =</span> <span class="st">&quot;Bumper 4&quot;</span>)</span>
-<span id="cb146-10"><a href="analysis-of-variance.html#cb146-10" tabindex="-1"></a>)</span>
-<span id="cb146-11"><a href="analysis-of-variance.html#cb146-11" tabindex="-1"></a><span class="co"># data in long form at</span></span>
-<span id="cb146-12"><a href="analysis-of-variance.html#cb146-12" tabindex="-1"></a>bumper_data</span></code></pre></div>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="analysis-of-variance.html#cb147-1" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
-<span id="cb147-2"><a href="analysis-of-variance.html#cb147-2" tabindex="-1"></a>result <span class="ot">=</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">list</span>(cost_bumper1, cost_bumper2,</span>
-<span id="cb147-3"><a href="analysis-of-variance.html#cb147-3" tabindex="-1"></a>    cost_bumper3, cost_bumper4), fav_stats))</span>
-<span id="cb147-4"><a href="analysis-of-variance.html#cb147-4" tabindex="-1"></a><span class="fu">rownames</span>(result) <span class="ot">=</span> <span class="fu">paste</span>(<span class="st">&quot;Bumper&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
-<span id="cb147-5"><a href="analysis-of-variance.html#cb147-5" tabindex="-1"></a>result</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analysis-of-variance.html#cb12-1" tabindex="-1"></a>cost_bumper1 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">610</span>, <span class="dv">354</span>, <span class="dv">234</span>, <span class="dv">399</span>, <span class="dv">278</span>, <span class="dv">358</span>, <span class="dv">379</span>, <span class="dv">548</span>, <span class="dv">196</span>, <span class="dv">444</span>)</span>
+<span id="cb12-2"><a href="analysis-of-variance.html#cb12-2" tabindex="-1"></a>cost_bumper2 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">404</span>, <span class="dv">663</span>, <span class="dv">521</span>, <span class="dv">518</span>, <span class="dv">499</span>, <span class="dv">374</span>, <span class="dv">562</span>, <span class="dv">505</span>, <span class="dv">375</span>, <span class="dv">438</span>)</span>
+<span id="cb12-3"><a href="analysis-of-variance.html#cb12-3" tabindex="-1"></a>cost_bumper3 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">599</span>, <span class="dv">426</span>, <span class="dv">429</span>, <span class="dv">621</span>, <span class="dv">426</span>, <span class="dv">414</span>, <span class="dv">332</span>, <span class="dv">460</span>, <span class="dv">494</span>, <span class="dv">637</span>)</span>
+<span id="cb12-4"><a href="analysis-of-variance.html#cb12-4" tabindex="-1"></a>cost_bumper4 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">272</span>, <span class="dv">405</span>, <span class="dv">197</span>, <span class="dv">363</span>, <span class="dv">297</span>, <span class="dv">538</span>, <span class="dv">181</span>, <span class="dv">318</span>, <span class="dv">412</span>, <span class="dv">499</span>)</span>
+<span id="cb12-5"><a href="analysis-of-variance.html#cb12-5" tabindex="-1"></a>bumper_data <span class="ot">=</span> <span class="fu">rbind</span>(</span>
+<span id="cb12-6"><a href="analysis-of-variance.html#cb12-6" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">cost =</span> cost_bumper1, <span class="at">type =</span> <span class="st">&quot;Bumper 1&quot;</span>),</span>
+<span id="cb12-7"><a href="analysis-of-variance.html#cb12-7" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">cost =</span> cost_bumper2, <span class="at">type =</span> <span class="st">&quot;Bumper 2&quot;</span>),</span>
+<span id="cb12-8"><a href="analysis-of-variance.html#cb12-8" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">cost =</span> cost_bumper3, <span class="at">type =</span> <span class="st">&quot;Bumper 3&quot;</span>),</span>
+<span id="cb12-9"><a href="analysis-of-variance.html#cb12-9" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">cost =</span> cost_bumper4, <span class="at">type =</span> <span class="st">&quot;Bumper 4&quot;</span>)</span>
+<span id="cb12-10"><a href="analysis-of-variance.html#cb12-10" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="analysis-of-variance.html#cb12-11" tabindex="-1"></a><span class="co"># data in long form at</span></span>
+<span id="cb12-12"><a href="analysis-of-variance.html#cb12-12" tabindex="-1"></a>bumper_data</span></code></pre></div>
+<pre><code>##    cost     type
+## 1   610 Bumper 1
+## 2   354 Bumper 1
+## 3   234 Bumper 1
+## 4   399 Bumper 1
+## 5   278 Bumper 1
+## 6   358 Bumper 1
+## 7   379 Bumper 1
+## 8   548 Bumper 1
+## 9   196 Bumper 1
+## 10  444 Bumper 1
+## 11  404 Bumper 2
+## 12  663 Bumper 2
+## 13  521 Bumper 2
+## 14  518 Bumper 2
+## 15  499 Bumper 2
+## 16  374 Bumper 2
+## 17  562 Bumper 2
+## 18  505 Bumper 2
+## 19  375 Bumper 2
+## 20  438 Bumper 2
+## 21  599 Bumper 3
+## 22  426 Bumper 3
+## 23  429 Bumper 3
+## 24  621 Bumper 3
+## 25  426 Bumper 3
+## 26  414 Bumper 3
+## 27  332 Bumper 3
+## 28  460 Bumper 3
+## 29  494 Bumper 3
+## 30  637 Bumper 3
+## 31  272 Bumper 4
+## 32  405 Bumper 4
+## 33  197 Bumper 4
+## 34  363 Bumper 4
+## 35  297 Bumper 4
+## 36  538 Bumper 4
+## 37  181 Bumper 4
+## 38  318 Bumper 4
+## 39  412 Bumper 4
+## 40  499 Bumper 4</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analysis-of-variance.html#cb14-1" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb14-2"><a href="analysis-of-variance.html#cb14-2" tabindex="-1"></a>result <span class="ot">=</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">list</span>(cost_bumper1, cost_bumper2,</span>
+<span id="cb14-3"><a href="analysis-of-variance.html#cb14-3" tabindex="-1"></a>    cost_bumper3, cost_bumper4), fav_stats))</span>
+<span id="cb14-4"><a href="analysis-of-variance.html#cb14-4" tabindex="-1"></a><span class="fu">rownames</span>(result) <span class="ot">=</span> <span class="fu">paste</span>(<span class="st">&quot;Bumper&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb14-5"><a href="analysis-of-variance.html#cb14-5" tabindex="-1"></a>result</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="10%" />
@@ -1968,10 +2029,19 @@ Y_{ij} = \mu_i + \epsilon_{ij} \quad \text{with} \quad \epsilon_{ij} \sim \mathc
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="analysis-of-variance.html#cb148-1" tabindex="-1"></a>    <span class="co"># Create anova model</span></span>
-<span id="cb148-2"><a href="analysis-of-variance.html#cb148-2" tabindex="-1"></a>    bumper_model <span class="ot">=</span> <span class="fu">aov</span>(cost <span class="sc">~</span> type, <span class="at">data =</span> bumper_data)</span>
-<span id="cb148-3"><a href="analysis-of-variance.html#cb148-3" tabindex="-1"></a>    <span class="co"># Get ANOVA table</span></span>
-<span id="cb148-4"><a href="analysis-of-variance.html#cb148-4" tabindex="-1"></a>    <span class="fu">anova</span>(bumper_model)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="analysis-of-variance.html#cb15-1" tabindex="-1"></a><span class="co"># Create ANOVA model</span></span>
+<span id="cb15-2"><a href="analysis-of-variance.html#cb15-2" tabindex="-1"></a>bumper_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(cost <span class="sc">~</span> type, <span class="at">data =</span> bumper_data)</span>
+<span id="cb15-3"><a href="analysis-of-variance.html#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="analysis-of-variance.html#cb15-4" tabindex="-1"></a><span class="co"># Display ANOVA table</span></span>
+<span id="cb15-5"><a href="analysis-of-variance.html#cb15-5" tabindex="-1"></a><span class="fu">anova</span>(bumper_model)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: cost
+##           Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## type       3 150884   50295  4.0563 0.01395 *
+## Residuals 36 446368   12399                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Bumper Example</p>
 <p>Hypotheses</p>
 <p>Let:</p>
@@ -2006,21 +2076,25 @@ Y_{ij} = \mu_i + \epsilon_{ij} \quad \text{with} \quad \epsilon_{ij} \sim \mathc
 <p><span class="math display">\[
 \binom{4}{2} = 6
 \]</span></p>
+<div id="pairwise-confidence-intervals" class="section level3 hasAnchor" number="9.7.1">
+<h3><span class="header-section-number">9.7.1</span> Pairwise Confidence Intervals<a href="analysis-of-variance.html#pairwise-confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Pairwise confidence Intervals</strong></p>
 <p>Fisher’s LSD</p>
 <p><span class="math display">\[
-(\bar{x}_i - \bar{x}_j) \pm t_{(n - k,\ \alpha/2)} \cdot \sqrt{MSE \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}
+(\bar{x}_i - \bar{x}_j) \pm t_{(n-k,\ \alpha/2)}
+\sqrt{MSE\left(\frac{1}{n_i}+\frac{1}{n_j}\right)}
 \]</span></p>
 <p>Bonferroni</p>
 <p><span class="math display">\[
-(\bar{x}_i - \bar{x}_j) \pm t_{(n - k,\ \alpha / (2m))} \cdot \sqrt{MSE \left( \frac{1}{n_1} + \frac{1}{n_2} \right)}
+(\bar{x}_i - \bar{x}_j) \pm t_{(n-k,\ \alpha/(2m))}
+\sqrt{MSE\left(\frac{1}{n_i}+\frac{1}{n_j}\right)}
 \]</span></p>
 <p><span style="color:red"><span class="math inline">\(m = \binom{k}{2}\)</span>      # pairwise comparisons</span></p>
 <p><strong>Note:</strong> <em>not</em> conducting pairwise hypothesis tests</p>
 <p>Fisher’s is easier to calculate, has more statistical power; however, Bonferroni maintains experiment-wise error rate.</p>
 <ul>
 <li><strong>Fisher:</strong> <span class="math inline">\(\alpha_E \approx 1 - (1 - \alpha)^m\)</span> (exact only if comparisons are independent; pairwise tests on the same data are generally dependent)</li>
-<li><strong>Bonferroni:</strong> <span class="math inline">\(\alpha_E \le 1 - \left( 1 - \frac{\alpha}{m} \right)^m \le \alpha\)</span></li>
+<li><strong>Bonferroni:</strong> <span class="math inline">\(\alpha_E \le m(\alpha/m)=\alpha\)</span> for any dependence structure. If the comparisons are independent, <span class="math inline">\(\alpha_E = 1-(1-\alpha/m)^m\)</span>.</li>
 </ul>
 <p>Fisher</p>
 <ul>
@@ -2031,11 +2105,17 @@ Y_{ij} = \mu_i + \epsilon_{ij} \quad \text{with} \quad \epsilon_{ij} \sim \mathc
 </ul>
 <p>As <span class="math inline">\(m \uparrow\)</span>, error rate <span class="math inline">\(\uparrow\)</span></p>
 <p>Bonferroni</p>
-<p>As <span class="math inline">\(m \uparrow\)</span>,<br />
-<span class="math display">\[
-\alpha_E = \left( 1 - \frac{\alpha}{m} \right)^m
-\]</span><br />
-remains <em>almost constant</em></p>
+<p>The Bonferroni adjustment controls the experimentwise Type I error rate by dividing the overall significance level <span class="math inline">\(\alpha\)</span> by the number of comparisons <span class="math inline">\(m\)</span>. Thus, each comparison is conducted at significance level <span class="math inline">\(\alpha/m\)</span>.</p>
+<p>By the Bonferroni inequality, the experimentwise error rate satisfies</p>
+<p><span class="math display">\[
+\alpha_E \leq m\left(\frac{\alpha}{m}\right)=\alpha.
+\]</span></p>
+<p>This guarantee holds even when the comparisons are dependent.</p>
+<p>If the comparisons are independent, the experimentwise error rate is exactly</p>
+<p><span class="math display">\[
+\alpha_E = 1-\left(1-\frac{\alpha}{m}\right)^m.
+\]</span></p>
+<p>For <span class="math inline">\(\alpha=0.05\)</span>, this expression remains close to, but does not exceed, <span class="math inline">\(0.05\)</span> as <span class="math inline">\(m\)</span> increases. Thus, the Bonferroni adjustment controls the experimentwise Type I error rate at the desired level.</p>
 <p>Solution a)</p>
 <p>The test statistic is <span class="math inline">\(F_{*}=4.06\)</span> and the <span class="math inline">\(P-\)</span> value <span class="math inline">\(=0.0139\)</span>. There is enough statistical evidence to infer that there are differences between some of the bumpers. The question is now, Which bumpers differ?</p>
 <p>Fisher’s Least Significant Difference Method</p>
@@ -2085,8 +2165,8 @@ If we perform the LSD procedure with the Bonferroni adjustment, the number of pa
 <span class="math display">\[
 t_{\alpha/2,\, n-k} = t_{0.00415, 36} = 2.7935 \quad \text{(using R)}
 \]</span></p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="analysis-of-variance.html#cb149-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.00415</span>, <span class="dv">36</span>)</span>
-<span id="cb149-2"><a href="analysis-of-variance.html#cb149-2" tabindex="-1"></a><span class="do">## [1] -2.793555</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="analysis-of-variance.html#cb17-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.00415</span>, <span class="dv">36</span>)</span>
+<span id="cb17-2"><a href="analysis-of-variance.html#cb17-2" tabindex="-1"></a><span class="do">## [1] 2.793555</span></span></code></pre></div>
 <p><span class="math display">\[
 LSD = t_{\alpha/2} \sqrt{ MSE \left( \frac{1}{n_i} + \frac{1}{n_j} \right) }
 \approx 2.7935 \cdot \sqrt{ 12399 \left( \frac{1}{10} + \frac{1}{10} \right) }
@@ -2095,11 +2175,11 @@ LSD = t_{\alpha/2} \sqrt{ MSE \left( \frac{1}{n_i} + \frac{1}{n_j} \right) }
 <p>Now no pair of means differ because all the absolute values of the differences between sample means are less than 139.1095.
 The drawback to the LSD procedure is that we increase the probability of at least one Type I error. The Bonferroni adjustment corrects this problem.</p>
 <p>Bumper example</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="analysis-of-variance.html#cb150-1" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
-<span id="cb150-2"><a href="analysis-of-variance.html#cb150-2" tabindex="-1"></a>result <span class="ot">=</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">list</span>(cost_bumper1, cost_bumper2,</span>
-<span id="cb150-3"><a href="analysis-of-variance.html#cb150-3" tabindex="-1"></a>    cost_bumper3, cost_bumper4), fav_stats))</span>
-<span id="cb150-4"><a href="analysis-of-variance.html#cb150-4" tabindex="-1"></a><span class="fu">rownames</span>(result) <span class="ot">=</span> <span class="fu">paste</span>(<span class="st">&quot;Bumper&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
-<span id="cb150-5"><a href="analysis-of-variance.html#cb150-5" tabindex="-1"></a>result</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="analysis-of-variance.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb18-2"><a href="analysis-of-variance.html#cb18-2" tabindex="-1"></a>result <span class="ot">=</span> <span class="fu">do.call</span>(rbind, <span class="fu">lapply</span>(<span class="fu">list</span>(cost_bumper1, cost_bumper2,</span>
+<span id="cb18-3"><a href="analysis-of-variance.html#cb18-3" tabindex="-1"></a>    cost_bumper3, cost_bumper4), fav_stats))</span>
+<span id="cb18-4"><a href="analysis-of-variance.html#cb18-4" tabindex="-1"></a><span class="fu">rownames</span>(result) <span class="ot">=</span> <span class="fu">paste</span>(<span class="st">&quot;Bumper&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb18-5"><a href="analysis-of-variance.html#cb18-5" tabindex="-1"></a>result</span></code></pre></div>
 <table>
 <colgroup>
 <col width="4%" />
@@ -2179,10 +2259,10 @@ The drawback to the LSD procedure is that we increase the probability of at leas
 </tbody>
 </table>
 <div style="text-align: center;">
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
-<img src="Book_files/figure-html/unnamed-chunk-26-1.png" alt="95% Confidence Intervals for Mean Cost by Bumper Group" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="Book_files/figure-html/unnamed-chunk-3-1.png" alt="95% Confidence Intervals for Mean Cost by Bumper Group" width="672" />
 <p class="caption">
-Figure 8.2: 95% Confidence Intervals for Mean Cost by Bumper Group
+Figure 9.2: 95% Confidence Intervals for Mean Cost by Bumper Group
 </p>
 </div>
 </div>
@@ -2197,8 +2277,8 @@ Figure 8.2: 95% Confidence Intervals for Mean Cost by Bumper Group
 (380 - 485.9) \pm t_{(36,\ 0.025)} \cdot \sqrt{12399 \left( \frac{1}{10} + \frac{1}{10} \right)}
 \]</span></p>
 <p>From R:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="analysis-of-variance.html#cb151-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.025</span>, <span class="dv">36</span>)</span>
-<span id="cb151-2"><a href="analysis-of-variance.html#cb151-2" tabindex="-1"></a><span class="do">## [1] 2.028</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="analysis-of-variance.html#cb19-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.025</span>, <span class="dv">36</span>)</span>
+<span id="cb19-2"><a href="analysis-of-variance.html#cb19-2" tabindex="-1"></a><span class="do">## [1] 2.028</span></span></code></pre></div>
 <p><span class="math display">\[
 = -105.9 \pm 2.028 \cdot \sqrt{12399 \cdot \left( \frac{1}{10} + \frac{1}{10} \right)}
 \]</span></p>
@@ -2227,8 +2307,8 @@ Fisher’s LSD suggests <span class="math inline">\(\mu_2 &gt; \mu_1\)</span></p
 \alpha/2m = \frac{0.05}{2 \times 6} = 0.004167
 \]</span></p>
 <p>From R:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="analysis-of-variance.html#cb152-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.004167</span>, <span class="dv">36</span>)</span>
-<span id="cb152-2"><a href="analysis-of-variance.html#cb152-2" tabindex="-1"></a><span class="do">## [1] 2.79197</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="analysis-of-variance.html#cb20-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.004167</span>, <span class="dv">36</span>)</span>
+<span id="cb20-2"><a href="analysis-of-variance.html#cb20-2" tabindex="-1"></a><span class="do">## [1] 2.79197</span></span></code></pre></div>
 <p><span class="math display">\[
 = -105.9 \pm 2.79197 \cdot \sqrt{12399 \left( \frac{1}{10} + \frac{1}{10} \right)}
 = -105.9 \pm 139.0338
@@ -2243,15 +2323,33 @@ Fisher’s LSD suggests <span class="math inline">\(\mu_2 &gt; \mu_1\)</span></p
 <p>Conclusion:
 Bonferroni informs us it is <strong>plausible</strong> that <span class="math inline">\(\mu_1 = \mu_2\)</span></p>
 <div style="text-align: center;">
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
-<img src="Book_files/figure-html/unnamed-chunk-27-1.png" alt="Comparison of LSD and Bonferroni Confidence Intervals for \(\mu_1 - \mu_2\). LSD is narrower; Bonferroni adjusts for multiple comparisons." width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="Book_files/figure-html/unnamed-chunk-4-1.png" alt="Comparison of LSD and Bonferroni Confidence Intervals for \(\mu_1 - \mu_2\). LSD is narrower; Bonferroni adjusts for multiple comparisons." width="672" />
 <p class="caption">
-Figure 8.3: Comparison of LSD and Bonferroni Confidence Intervals for <span class="math inline">\(\mu_1 - \mu_2\)</span>. LSD is narrower; Bonferroni adjusts for multiple comparisons.
+Figure 9.3: Comparison of LSD and Bonferroni Confidence Intervals for <span class="math inline">\(\mu_1 - \mu_2\)</span>. LSD is narrower; Bonferroni adjusts for multiple comparisons.
 </p>
 </div>
 </div>
 <p>Using <code>DescTools::PostHocTest()</code> for Fisher’s LSD</p>
 <p>We perform Fisher’s LSD post-hoc test using the <code>DescTools</code> package:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="analysis-of-variance.html#cb21-1" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
+<span id="cb21-2"><a href="analysis-of-variance.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="analysis-of-variance.html#cb21-3" tabindex="-1"></a><span class="fu">PostHocTest</span>(bumper_model, <span class="at">method =</span> <span class="st">&quot;lsd&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##   Posthoc multiple comparisons of means : Fisher LSD 
+##     95% family-wise confidence level
+## 
+## $type
+##                     diff      lwr.ci    upr.ci   pval    
+## Bumper 2-Bumper 1  105.9    4.905342 206.89466 0.0404 *  
+## Bumper 3-Bumper 1  103.8    2.805342 204.79466 0.0443 *  
+## Bumper 4-Bumper 1  -31.8 -132.794658  69.19466 0.5271    
+## Bumper 3-Bumper 2   -2.1 -103.094658  98.89466 0.9666    
+## Bumper 4-Bumper 2 -137.7 -238.694658 -36.70534 0.0089 ** 
+## Bumper 4-Bumper 3 -135.6 -236.594658 -34.60534 0.0099 ** 
+## 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>This returns the following multiple comparisons of means:</p>
 <p>95% Family-wise Confidence Level – Fisher LSD</p>
 <table>
@@ -2312,8 +2410,8 @@ Figure 8.3: Comparison of LSD and Bonferroni Confidence Intervals for <span clas
 <p>Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
 <p>Using <code>DescTools::PostHocTest()</code> for Bonferroni Correction</p>
 <p>We perform a Bonferroni-adjusted post-hoc test using the <code>DescTools</code> package:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="analysis-of-variance.html#cb153-1" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
-<span id="cb153-2"><a href="analysis-of-variance.html#cb153-2" tabindex="-1"></a><span class="fu">PostHocTest</span>(bumper_model, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="analysis-of-variance.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(DescTools)</span>
+<span id="cb23-2"><a href="analysis-of-variance.html#cb23-2" tabindex="-1"></a><span class="fu">PostHocTest</span>(bumper_model, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <p>This returns the following multiple comparisons of means:</p>
 <p>95% Family-wise Confidence Level – Bonferroni</p>
 <table>
@@ -2372,6 +2470,9 @@ Figure 8.3: Comparison of LSD and Bonferroni Confidence Intervals for <span clas
 </tbody>
 </table>
 <p>Signif. codes: 0 ‘<em><strong>’ 0.001 ‘</strong>’ 0.01 ‘</em>’ 0.05 ‘.’ 0.1 ‘ ’ 1</p>
+</div>
+<div id="bonferroni-versus-fishers-lsd" class="section level3 hasAnchor" number="9.7.2">
+<h3><span class="header-section-number">9.7.2</span> Bonferroni Versus Fisher’s LSD<a href="analysis-of-variance.html#bonferroni-versus-fishers-lsd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Bonferroni vs. LSD Comparison</strong></p>
 <table>
 <colgroup>
@@ -2411,8 +2512,7 @@ Figure 8.3: Comparison of LSD and Bonferroni Confidence Intervals for <span clas
 <p>An apple juice manufacturer has developed a new product - a liquid concentrate that, when mixed with water, produces 1 liter of apple juice. The product has several attractive features. First, it is more convenient that canned apple juice. Second, because the apple juice that is sold in cans is actually made from concentrate, the quality of the new product is at least as high as canned apple juice. Third, the cost of the new product is slightly lower than canned apple juice. The marketing manager has to decide how to market the new product. She can create advertising that emphasizes convenience, quality, or price.</p>
 <p>To facilitate a decision, she conducts an experiment. In three different cities that are similar in size and demographic makeup, she launches the product with advertising stressing the convenience of the liquid concentrate in one city. In the second city, the advertisements emphasize the quality of the product. Advertising that highlights the relatively low cost of the liquid concentrate is used in the third city. The number of packages sold weekly is recorded for the 20 weeks following the beginning of the campaign.</p>
 <p>These data are available at:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="analysis-of-variance.html#cb154-1" tabindex="-1"></a>ad_url <span class="ot">=</span></span>
-<span id="cb154-2"><a href="analysis-of-variance.html#cb154-2" tabindex="-1"></a><span class="st">&quot;https://mcs.utm.utoronto.ca/ ~nosedal/data/ad-strategies.t</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="analysis-of-variance.html#cb24-1" tabindex="-1"></a>ad_url <span class="ot">&lt;-</span> <span class="st">&quot;https://mcs.utm.utoronto.ca/~nosedal/data/ad-strategies.txt&quot;</span></span></code></pre></div>
 <p>The marketing manager wants to know if differences in sales exist between the three advertising strategies.</p>
 <p>To illustrate Fisher’s LSD method and the Bonferroni adjustment, consider the dataset described above and assume we tested to determine whether population means differ using a <span class="math inline">\(5 \%\)</span> significance level. The three sample means are: <span class="math inline">\(577.55,653.0\)</span>, and 608.65 .
 The pair-wise absolute differences are</p>
@@ -2424,8 +2524,8 @@ The pair-wise absolute differences are</p>
 \end{aligned}
 \]</span></p>
 <p>If we conduct the LSD procedure with <span class="math inline">\(\alpha=0.05\)</span> we find <span class="math inline">\(\left|t_{\alpha / 2, n-k}\right|=\left|t_{0.025,57}\right|=|-2.0024655|=2.0024655\)</span></p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="analysis-of-variance.html#cb155-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">57</span>)</span>
-<span id="cb155-2"><a href="analysis-of-variance.html#cb155-2" tabindex="-1"></a><span class="do">## [1] -2.002465</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="analysis-of-variance.html#cb25-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">57</span>)</span>
+<span id="cb25-2"><a href="analysis-of-variance.html#cb25-2" tabindex="-1"></a><span class="do">## [1] -2.002465</span></span></code></pre></div>
 <p><span class="math display">\[
 \text{LSD} = t_{\alpha / 2} \cdot \sqrt{MSE \left( \frac{1}{n_i} + \frac{1}{n_j} \right)}
 \approx 2.002 \cdot \sqrt{8894 \left( \frac{1}{20} + \frac{1}{20} \right)} = 59.71
@@ -2445,8 +2545,10 @@ t_{\alpha / 2} \sqrt{M S E\left(\frac{1}{n_{i}}+\frac{1}{n_{j}}\right)} \approx 
 \]</span></p>
 <p>Again we conclude that only <span class="math inline">\(\mu_{1}\)</span> and <span class="math inline">\(\mu_{2}\)</span> differ. Notice, however, in the second calculation LSD is larger.
 The drawback to LSD is that we increase the probability of at least one Type I error. The Bonferroni adjustment corrects this problem.</p>
-<div id="sec:ch8exercises" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Exercises<a href="analysis-of-variance.html#sec:ch8exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+</div>
+<div id="sec:ch8exercises" class="section level2 hasAnchor" number="9.8">
+<h2><span class="header-section-number">9.8</span> Exercises<a href="analysis-of-variance.html#sec:ch8exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <hr />
 <div class="exercise-box">
 <div class="exercise-label">
@@ -3027,13 +3129,13 @@ Question 12
 <div class="content">
 <p>Since p-value <span class="math inline">\(= 0.2185 &gt; \alpha = 0.05\)</span>, we <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>.</p>
 <p>There is <strong>not</strong> sufficient evidence to conclude that the mean shortfall differs among the three margarine brands. The observed difference in sample means could easily be due to random variation.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="analysis-of-variance.html#cb156-1" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb156-2"><a href="analysis-of-variance.html#cb156-2" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>)</span>
-<span id="cb156-3"><a href="analysis-of-variance.html#cb156-3" tabindex="-1"></a>b3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb156-4"><a href="analysis-of-variance.html#cb156-4" tabindex="-1"></a>differences <span class="ot">&lt;-</span> <span class="fu">c</span>(b1, b2, b3)</span>
-<span id="cb156-5"><a href="analysis-of-variance.html#cb156-5" tabindex="-1"></a>brand <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Brand1&quot;</span>,<span class="st">&quot;Brand2&quot;</span>,<span class="st">&quot;Brand3&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>))</span>
-<span id="cb156-6"><a href="analysis-of-variance.html#cb156-6" tabindex="-1"></a><span class="fu">oneway.test</span>(differences <span class="sc">~</span> brand, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb156-7"><a href="analysis-of-variance.html#cb156-7" tabindex="-1"></a><span class="co"># F = 1.6864, p-value = 0.2185</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="analysis-of-variance.html#cb26-1" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb26-2"><a href="analysis-of-variance.html#cb26-2" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>)</span>
+<span id="cb26-3"><a href="analysis-of-variance.html#cb26-3" tabindex="-1"></a>b3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb26-4"><a href="analysis-of-variance.html#cb26-4" tabindex="-1"></a>differences <span class="ot">&lt;-</span> <span class="fu">c</span>(b1, b2, b3)</span>
+<span id="cb26-5"><a href="analysis-of-variance.html#cb26-5" tabindex="-1"></a>brand <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Brand1&quot;</span>,<span class="st">&quot;Brand2&quot;</span>,<span class="st">&quot;Brand3&quot;</span>), <span class="at">each =</span> <span class="dv">6</span>))</span>
+<span id="cb26-6"><a href="analysis-of-variance.html#cb26-6" tabindex="-1"></a><span class="fu">oneway.test</span>(differences <span class="sc">~</span> brand, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-7"><a href="analysis-of-variance.html#cb26-7" tabindex="-1"></a><span class="co"># F = 1.6864, p-value = 0.2185</span></span></code></pre></div>
 </div>
 </details>
 <hr />
@@ -3364,13 +3466,13 @@ sales</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="analysis-of-variance.html#cb158-1" tabindex="-1"></a>salesA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">9</span>)</span>
-<span id="cb158-2"><a href="analysis-of-variance.html#cb158-2" tabindex="-1"></a>salesB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">10</span>)</span>
-<span id="cb158-3"><a href="analysis-of-variance.html#cb158-3" tabindex="-1"></a>salesC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">13</span>, <span class="dv">11</span>, <span class="dv">10</span>)</span>
-<span id="cb158-4"><a href="analysis-of-variance.html#cb158-4" tabindex="-1"></a></span>
-<span id="cb158-5"><a href="analysis-of-variance.html#cb158-5" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">c</span>(salesA, salesB, salesC)</span>
-<span id="cb158-6"><a href="analysis-of-variance.html#cb158-6" tabindex="-1"></a>sales</span>
-<span id="cb158-7"><a href="analysis-of-variance.html#cb158-7" tabindex="-1"></a><span class="co"># [1]  6 10  7  9 10  8 12 10 14 13 11 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="analysis-of-variance.html#cb28-1" tabindex="-1"></a>salesA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">9</span>)</span>
+<span id="cb28-2"><a href="analysis-of-variance.html#cb28-2" tabindex="-1"></a>salesB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">10</span>)</span>
+<span id="cb28-3"><a href="analysis-of-variance.html#cb28-3" tabindex="-1"></a>salesC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">13</span>, <span class="dv">11</span>, <span class="dv">10</span>)</span>
+<span id="cb28-4"><a href="analysis-of-variance.html#cb28-4" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="analysis-of-variance.html#cb28-5" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">c</span>(salesA, salesB, salesC)</span>
+<span id="cb28-6"><a href="analysis-of-variance.html#cb28-6" tabindex="-1"></a>sales</span>
+<span id="cb28-7"><a href="analysis-of-variance.html#cb28-7" tabindex="-1"></a><span class="co"># [1]  6 10  7  9 10  8 12 10 14 13 11 10</span></span></code></pre></div>
 </div>
 </details>
 <hr />
@@ -3415,10 +3517,10 @@ country</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="analysis-of-variance.html#cb159-1" tabindex="-1"></a>country <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">&quot;B&quot;</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">&quot;C&quot;</span>, <span class="dv">4</span>)))</span>
-<span id="cb159-2"><a href="analysis-of-variance.html#cb159-2" tabindex="-1"></a>country</span>
-<span id="cb159-3"><a href="analysis-of-variance.html#cb159-3" tabindex="-1"></a><span class="co"># [1] A A A A B B B B C C C C</span></span>
-<span id="cb159-4"><a href="analysis-of-variance.html#cb159-4" tabindex="-1"></a><span class="co"># Levels: A B C</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="analysis-of-variance.html#cb29-1" tabindex="-1"></a>country <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">&quot;B&quot;</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="st">&quot;C&quot;</span>, <span class="dv">4</span>)))</span>
+<span id="cb29-2"><a href="analysis-of-variance.html#cb29-2" tabindex="-1"></a>country</span>
+<span id="cb29-3"><a href="analysis-of-variance.html#cb29-3" tabindex="-1"></a><span class="co"># [1] A A A A B B B B C C C C</span></span>
+<span id="cb29-4"><a href="analysis-of-variance.html#cb29-4" tabindex="-1"></a><span class="co"># Levels: A B C</span></span></code></pre></div>
 </div>
 </details>
 <hr />
@@ -3467,9 +3569,9 @@ tapply(___, ___, ___)</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="analysis-of-variance.html#cb160-1" tabindex="-1"></a><span class="fu">tapply</span>(sales, country, mean)</span>
-<span id="cb160-2"><a href="analysis-of-variance.html#cb160-2" tabindex="-1"></a><span class="co">#  A  B  C</span></span>
-<span id="cb160-3"><a href="analysis-of-variance.html#cb160-3" tabindex="-1"></a><span class="co">#  8 10 12</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="analysis-of-variance.html#cb30-1" tabindex="-1"></a><span class="fu">tapply</span>(sales, country, mean)</span>
+<span id="cb30-2"><a href="analysis-of-variance.html#cb30-2" tabindex="-1"></a><span class="co">#  A  B  C</span></span>
+<span id="cb30-3"><a href="analysis-of-variance.html#cb30-3" tabindex="-1"></a><span class="co">#  8 10 12</span></span></code></pre></div>
 <p>Country A has the lowest mean (8), Country C the highest (12).</p>
 </div>
 </details>
@@ -3518,8 +3620,8 @@ mean(___)</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="analysis-of-variance.html#cb161-1" tabindex="-1"></a><span class="fu">mean</span>(sales)</span>
-<span id="cb161-2"><a href="analysis-of-variance.html#cb161-2" tabindex="-1"></a><span class="co"># [1] 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="analysis-of-variance.html#cb31-1" tabindex="-1"></a><span class="fu">mean</span>(sales)</span>
+<span id="cb31-2"><a href="analysis-of-variance.html#cb31-2" tabindex="-1"></a><span class="co"># [1] 10</span></span></code></pre></div>
 <p>The grand mean is <span class="math inline">\(\bar{x} = 10\)</span>, equal to the average of the three group means <span class="math inline">\((8 + 10 + 12)/3 = 10\)</span> because the group sizes are equal.</p>
 </div>
 </details>
@@ -3569,9 +3671,9 @@ tapply(sales, country, ___)</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="analysis-of-variance.html#cb162-1" tabindex="-1"></a><span class="fu">tapply</span>(sales, country, var)</span>
-<span id="cb162-2"><a href="analysis-of-variance.html#cb162-2" tabindex="-1"></a><span class="co">#        A        B        C</span></span>
-<span id="cb162-3"><a href="analysis-of-variance.html#cb162-3" tabindex="-1"></a><span class="co"># 3.333333 2.666667 3.333333</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="analysis-of-variance.html#cb32-1" tabindex="-1"></a><span class="fu">tapply</span>(sales, country, var)</span>
+<span id="cb32-2"><a href="analysis-of-variance.html#cb32-2" tabindex="-1"></a><span class="co">#        A        B        C</span></span>
+<span id="cb32-3"><a href="analysis-of-variance.html#cb32-3" tabindex="-1"></a><span class="co"># 3.333333 2.666667 3.333333</span></span></code></pre></div>
 <p>Countries A and C have sample variance <span class="math inline">\(\approx 3.33\)</span> and Country B has <span class="math inline">\(\approx 2.67\)</span>. These values are similar in this small sample and do not show an obvious variance difference, supporting the equal-variance assumption. Note that similar-looking sample variances do not prove that the population variances are equal; the assumption should be checked with additional diagnostic tools (e.g., Levene’s test) in practice.</p>
 </div>
 </details>
@@ -3623,13 +3725,13 @@ anova(model)</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="analysis-of-variance.html#cb163-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> country)</span>
-<span id="cb163-2"><a href="analysis-of-variance.html#cb163-2" tabindex="-1"></a><span class="fu">anova</span>(model)</span>
-<span id="cb163-3"><a href="analysis-of-variance.html#cb163-3" tabindex="-1"></a><span class="co"># Analysis of Variance Table</span></span>
-<span id="cb163-4"><a href="analysis-of-variance.html#cb163-4" tabindex="-1"></a><span class="co"># Response: sales</span></span>
-<span id="cb163-5"><a href="analysis-of-variance.html#cb163-5" tabindex="-1"></a><span class="co">#           Df Sum Sq Mean Sq F value  Pr(&gt;F)</span></span>
-<span id="cb163-6"><a href="analysis-of-variance.html#cb163-6" tabindex="-1"></a><span class="co"># country    2     32  16.000  5.1429 0.03240 *</span></span>
-<span id="cb163-7"><a href="analysis-of-variance.html#cb163-7" tabindex="-1"></a><span class="co"># Residuals  9     28   3.111</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="analysis-of-variance.html#cb33-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> country)</span>
+<span id="cb33-2"><a href="analysis-of-variance.html#cb33-2" tabindex="-1"></a><span class="fu">anova</span>(model)</span>
+<span id="cb33-3"><a href="analysis-of-variance.html#cb33-3" tabindex="-1"></a><span class="co"># Analysis of Variance Table</span></span>
+<span id="cb33-4"><a href="analysis-of-variance.html#cb33-4" tabindex="-1"></a><span class="co"># Response: sales</span></span>
+<span id="cb33-5"><a href="analysis-of-variance.html#cb33-5" tabindex="-1"></a><span class="co">#           Df Sum Sq Mean Sq F value  Pr(&gt;F)</span></span>
+<span id="cb33-6"><a href="analysis-of-variance.html#cb33-6" tabindex="-1"></a><span class="co"># country    2     32  16.000  5.1429 0.03240 *</span></span>
+<span id="cb33-7"><a href="analysis-of-variance.html#cb33-7" tabindex="-1"></a><span class="co"># Residuals  9     28   3.111</span></span></code></pre></div>
 <p><span class="math inline">\(F^* = 5.1429\)</span>, p-value <span class="math inline">\(= 0.0324 &lt; 0.05\)</span> → reject <span class="math inline">\(H_0\)</span>. Not all country means are equal.</p>
 </div>
 </details>
@@ -3680,9 +3782,9 @@ oneway.test(sales ~ country, var.equal = ___)</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="analysis-of-variance.html#cb164-1" tabindex="-1"></a><span class="fu">oneway.test</span>(sales <span class="sc">~</span> country, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb164-2"><a href="analysis-of-variance.html#cb164-2" tabindex="-1"></a><span class="co"># One-way analysis of means</span></span>
-<span id="cb164-3"><a href="analysis-of-variance.html#cb164-3" tabindex="-1"></a><span class="co"># F = 5.1429, num df = 2, denom df = 9, p-value = 0.0324</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="analysis-of-variance.html#cb34-1" tabindex="-1"></a><span class="fu">oneway.test</span>(sales <span class="sc">~</span> country, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb34-2"><a href="analysis-of-variance.html#cb34-2" tabindex="-1"></a><span class="co"># One-way analysis of means</span></span>
+<span id="cb34-3"><a href="analysis-of-variance.html#cb34-3" tabindex="-1"></a><span class="co"># F = 5.1429, num df = 2, denom df = 9, p-value = 0.0324</span></span></code></pre></div>
 <p>Same result as <code>aov()</code>: <span class="math inline">\(F = 5.1429\)</span>, p-value <span class="math inline">\(= 0.0324\)</span>. Both functions implement the same classical ANOVA when <code>var.equal = TRUE</code>.</p>
 </div>
 </details>
@@ -3735,12 +3837,12 @@ anova(model)</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="analysis-of-variance.html#cb165-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> country)   <span class="co"># response ~ group</span></span>
-<span id="cb165-2"><a href="analysis-of-variance.html#cb165-2" tabindex="-1"></a><span class="fu">anova</span>(model)</span>
-<span id="cb165-3"><a href="analysis-of-variance.html#cb165-3" tabindex="-1"></a><span class="co"># Response: sales</span></span>
-<span id="cb165-4"><a href="analysis-of-variance.html#cb165-4" tabindex="-1"></a><span class="co">#           Df Sum Sq Mean Sq F value Pr(&gt;F)</span></span>
-<span id="cb165-5"><a href="analysis-of-variance.html#cb165-5" tabindex="-1"></a><span class="co"># country    2     32      16  5.1429 0.0324 *</span></span>
-<span id="cb165-6"><a href="analysis-of-variance.html#cb165-6" tabindex="-1"></a><span class="co"># Residuals  9     28       3</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="analysis-of-variance.html#cb35-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(sales <span class="sc">~</span> country)   <span class="co"># response ~ group</span></span>
+<span id="cb35-2"><a href="analysis-of-variance.html#cb35-2" tabindex="-1"></a><span class="fu">anova</span>(model)</span>
+<span id="cb35-3"><a href="analysis-of-variance.html#cb35-3" tabindex="-1"></a><span class="co"># Response: sales</span></span>
+<span id="cb35-4"><a href="analysis-of-variance.html#cb35-4" tabindex="-1"></a><span class="co">#           Df Sum Sq Mean Sq F value Pr(&gt;F)</span></span>
+<span id="cb35-5"><a href="analysis-of-variance.html#cb35-5" tabindex="-1"></a><span class="co"># country    2     32      16  5.1429 0.0324 *</span></span>
+<span id="cb35-6"><a href="analysis-of-variance.html#cb35-6" tabindex="-1"></a><span class="co"># Residuals  9     28       3</span></span></code></pre></div>
 <p>The response variable (<code>sales</code>) must appear on the <strong>left</strong> of <code>~</code> and the grouping factor (<code>country</code>) on the <strong>right</strong>.</p>
 </div>
 </details>
@@ -3794,10 +3896,10 @@ boxplot(____ ~ ____,
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="analysis-of-variance.html#cb166-1" tabindex="-1"></a><span class="fu">boxplot</span>(sales <span class="sc">~</span> country,</span>
-<span id="cb166-2"><a href="analysis-of-variance.html#cb166-2" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Sales by Country&quot;</span>,</span>
-<span id="cb166-3"><a href="analysis-of-variance.html#cb166-3" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Country&quot;</span>,</span>
-<span id="cb166-4"><a href="analysis-of-variance.html#cb166-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Sales&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="analysis-of-variance.html#cb36-1" tabindex="-1"></a><span class="fu">boxplot</span>(sales <span class="sc">~</span> country,</span>
+<span id="cb36-2"><a href="analysis-of-variance.html#cb36-2" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Sales by Country&quot;</span>,</span>
+<span id="cb36-3"><a href="analysis-of-variance.html#cb36-3" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Country&quot;</span>,</span>
+<span id="cb36-4"><a href="analysis-of-variance.html#cb36-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Sales&quot;</span>)</span></code></pre></div>
 <p>The boxplot shows three increasing medians: <span class="math inline">\(\tilde{x}_A = 8\)</span> (sorted: 6, 7, <strong>7+9</strong>/2 = 8), <span class="math inline">\(\tilde{x}_B = 10\)</span> (sorted: 8, 10, <strong>10+10</strong>/2 = 10), <span class="math inline">\(\tilde{x}_C = 12\)</span> (sorted: 10, 11, <strong>11+13</strong>/2 = 12). Country C has the highest median and Country A the lowest, consistent with the ANOVA result that group means differ.</p>
 </div>
 </details>
@@ -4417,36 +4519,36 @@ pairwise.t.test(study$score, study$method,
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="analysis-of-variance.html#cb168-1" tabindex="-1"></a>study <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ch8-study-methods.csv&quot;</span>)</span>
-<span id="cb168-2"><a href="analysis-of-variance.html#cb168-2" tabindex="-1"></a></span>
-<span id="cb168-3"><a href="analysis-of-variance.html#cb168-3" tabindex="-1"></a><span class="co"># (b)</span></span>
-<span id="cb168-4"><a href="analysis-of-variance.html#cb168-4" tabindex="-1"></a><span class="fu">table</span>(study<span class="sc">$</span>method)</span>
-<span id="cb168-5"><a href="analysis-of-variance.html#cb168-5" tabindex="-1"></a><span class="co"># Group Lecture  Online SelfStudy    Tutor</span></span>
-<span id="cb168-6"><a href="analysis-of-variance.html#cb168-6" tabindex="-1"></a><span class="co">#    12       8      10        11        9</span></span>
-<span id="cb168-7"><a href="analysis-of-variance.html#cb168-7" tabindex="-1"></a></span>
-<span id="cb168-8"><a href="analysis-of-variance.html#cb168-8" tabindex="-1"></a><span class="co"># (c)</span></span>
-<span id="cb168-9"><a href="analysis-of-variance.html#cb168-9" tabindex="-1"></a><span class="fu">tapply</span>(study<span class="sc">$</span>score, study<span class="sc">$</span>method, mean)</span>
-<span id="cb168-10"><a href="analysis-of-variance.html#cb168-10" tabindex="-1"></a><span class="co">#    Group  Lecture   Online SelfStudy    Tutor</span></span>
-<span id="cb168-11"><a href="analysis-of-variance.html#cb168-11" tabindex="-1"></a><span class="co"># 81.6667  72.1250  76.9000   74.0909  86.6667</span></span>
-<span id="cb168-12"><a href="analysis-of-variance.html#cb168-12" tabindex="-1"></a></span>
-<span id="cb168-13"><a href="analysis-of-variance.html#cb168-13" tabindex="-1"></a><span class="co"># (d)</span></span>
-<span id="cb168-14"><a href="analysis-of-variance.html#cb168-14" tabindex="-1"></a><span class="fu">boxplot</span>(score <span class="sc">~</span> method,</span>
-<span id="cb168-15"><a href="analysis-of-variance.html#cb168-15" tabindex="-1"></a>        <span class="at">data  =</span> study,</span>
-<span id="cb168-16"><a href="analysis-of-variance.html#cb168-16" tabindex="-1"></a>        <span class="at">main  =</span> <span class="st">&quot;Final Exam Scores by Study Method&quot;</span>,</span>
-<span id="cb168-17"><a href="analysis-of-variance.html#cb168-17" tabindex="-1"></a>        <span class="at">xlab  =</span> <span class="st">&quot;Study Method&quot;</span>,</span>
-<span id="cb168-18"><a href="analysis-of-variance.html#cb168-18" tabindex="-1"></a>        <span class="at">ylab  =</span> <span class="st">&quot;Final Exam Score&quot;</span>)</span>
-<span id="cb168-19"><a href="analysis-of-variance.html#cb168-19" tabindex="-1"></a></span>
-<span id="cb168-20"><a href="analysis-of-variance.html#cb168-20" tabindex="-1"></a><span class="co"># (e)</span></span>
-<span id="cb168-21"><a href="analysis-of-variance.html#cb168-21" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> method, <span class="at">data =</span> study)</span>
-<span id="cb168-22"><a href="analysis-of-variance.html#cb168-22" tabindex="-1"></a><span class="fu">anova</span>(model)</span>
-<span id="cb168-23"><a href="analysis-of-variance.html#cb168-23" tabindex="-1"></a><span class="co"># Response: score</span></span>
-<span id="cb168-24"><a href="analysis-of-variance.html#cb168-24" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
-<span id="cb168-25"><a href="analysis-of-variance.html#cb168-25" tabindex="-1"></a><span class="co"># method     4 1284.83  321.21  39.134 4.129e-14 ***</span></span>
-<span id="cb168-26"><a href="analysis-of-variance.html#cb168-26" tabindex="-1"></a><span class="co"># Residuals 45  369.35    8.21</span></span>
-<span id="cb168-27"><a href="analysis-of-variance.html#cb168-27" tabindex="-1"></a></span>
-<span id="cb168-28"><a href="analysis-of-variance.html#cb168-28" tabindex="-1"></a><span class="co"># (g)</span></span>
-<span id="cb168-29"><a href="analysis-of-variance.html#cb168-29" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(study<span class="sc">$</span>score, study<span class="sc">$</span>method,</span>
-<span id="cb168-30"><a href="analysis-of-variance.html#cb168-30" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="analysis-of-variance.html#cb38-1" tabindex="-1"></a>study <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ch8-study-methods.csv&quot;</span>)</span>
+<span id="cb38-2"><a href="analysis-of-variance.html#cb38-2" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="analysis-of-variance.html#cb38-3" tabindex="-1"></a><span class="co"># (b)</span></span>
+<span id="cb38-4"><a href="analysis-of-variance.html#cb38-4" tabindex="-1"></a><span class="fu">table</span>(study<span class="sc">$</span>method)</span>
+<span id="cb38-5"><a href="analysis-of-variance.html#cb38-5" tabindex="-1"></a><span class="co"># Group Lecture  Online SelfStudy    Tutor</span></span>
+<span id="cb38-6"><a href="analysis-of-variance.html#cb38-6" tabindex="-1"></a><span class="co">#    12       8      10        11        9</span></span>
+<span id="cb38-7"><a href="analysis-of-variance.html#cb38-7" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="analysis-of-variance.html#cb38-8" tabindex="-1"></a><span class="co"># (c)</span></span>
+<span id="cb38-9"><a href="analysis-of-variance.html#cb38-9" tabindex="-1"></a><span class="fu">tapply</span>(study<span class="sc">$</span>score, study<span class="sc">$</span>method, mean)</span>
+<span id="cb38-10"><a href="analysis-of-variance.html#cb38-10" tabindex="-1"></a><span class="co">#    Group  Lecture   Online SelfStudy    Tutor</span></span>
+<span id="cb38-11"><a href="analysis-of-variance.html#cb38-11" tabindex="-1"></a><span class="co"># 81.6667  72.1250  76.9000   74.0909  86.6667</span></span>
+<span id="cb38-12"><a href="analysis-of-variance.html#cb38-12" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="analysis-of-variance.html#cb38-13" tabindex="-1"></a><span class="co"># (d)</span></span>
+<span id="cb38-14"><a href="analysis-of-variance.html#cb38-14" tabindex="-1"></a><span class="fu">boxplot</span>(score <span class="sc">~</span> method,</span>
+<span id="cb38-15"><a href="analysis-of-variance.html#cb38-15" tabindex="-1"></a>        <span class="at">data  =</span> study,</span>
+<span id="cb38-16"><a href="analysis-of-variance.html#cb38-16" tabindex="-1"></a>        <span class="at">main  =</span> <span class="st">&quot;Final Exam Scores by Study Method&quot;</span>,</span>
+<span id="cb38-17"><a href="analysis-of-variance.html#cb38-17" tabindex="-1"></a>        <span class="at">xlab  =</span> <span class="st">&quot;Study Method&quot;</span>,</span>
+<span id="cb38-18"><a href="analysis-of-variance.html#cb38-18" tabindex="-1"></a>        <span class="at">ylab  =</span> <span class="st">&quot;Final Exam Score&quot;</span>)</span>
+<span id="cb38-19"><a href="analysis-of-variance.html#cb38-19" tabindex="-1"></a></span>
+<span id="cb38-20"><a href="analysis-of-variance.html#cb38-20" tabindex="-1"></a><span class="co"># (e)</span></span>
+<span id="cb38-21"><a href="analysis-of-variance.html#cb38-21" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(score <span class="sc">~</span> method, <span class="at">data =</span> study)</span>
+<span id="cb38-22"><a href="analysis-of-variance.html#cb38-22" tabindex="-1"></a><span class="fu">anova</span>(model)</span>
+<span id="cb38-23"><a href="analysis-of-variance.html#cb38-23" tabindex="-1"></a><span class="co"># Response: score</span></span>
+<span id="cb38-24"><a href="analysis-of-variance.html#cb38-24" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
+<span id="cb38-25"><a href="analysis-of-variance.html#cb38-25" tabindex="-1"></a><span class="co"># method     4 1284.83  321.21  39.134 4.129e-14 ***</span></span>
+<span id="cb38-26"><a href="analysis-of-variance.html#cb38-26" tabindex="-1"></a><span class="co"># Residuals 45  369.35    8.21</span></span>
+<span id="cb38-27"><a href="analysis-of-variance.html#cb38-27" tabindex="-1"></a></span>
+<span id="cb38-28"><a href="analysis-of-variance.html#cb38-28" tabindex="-1"></a><span class="co"># (g)</span></span>
+<span id="cb38-29"><a href="analysis-of-variance.html#cb38-29" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(study<span class="sc">$</span>score, study<span class="sc">$</span>method,</span>
+<span id="cb38-30"><a href="analysis-of-variance.html#cb38-30" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <p><strong>(f) Interpretation:</strong> p-value <span class="math inline">\(= 4.13 \times 10^{-14} \ll 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is overwhelming evidence that at least two study methods have different mean exam scores.</p>
 <p><strong>(g) Bonferroni result:</strong> The Tutor group differs significantly from all other groups (all adjusted p <span class="math inline">\(&lt; 0.05\)</span>). Lecture and SelfStudy do not differ from each other (<span class="math inline">\(p = 1.00\)</span>), but both differ from Group and Tutor. Online differs from Group (<span class="math inline">\(p = 0.0033\)</span>) and Tutor, but not from SelfStudy.</p>
 <blockquote>
@@ -4523,37 +4625,37 @@ anova(delivery_model)</textarea>
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="analysis-of-variance.html#cb169-1" tabindex="-1"></a>delivery <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ch8-delivery-times.csv&quot;</span>)</span>
-<span id="cb169-2"><a href="analysis-of-variance.html#cb169-2" tabindex="-1"></a></span>
-<span id="cb169-3"><a href="analysis-of-variance.html#cb169-3" tabindex="-1"></a><span class="co"># (b)</span></span>
-<span id="cb169-4"><a href="analysis-of-variance.html#cb169-4" tabindex="-1"></a><span class="fu">table</span>(delivery<span class="sc">$</span>company)</span>
-<span id="cb169-5"><a href="analysis-of-variance.html#cb169-5" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
-<span id="cb169-6"><a href="analysis-of-variance.html#cb169-6" tabindex="-1"></a><span class="co">#        7        9        8       10</span></span>
-<span id="cb169-7"><a href="analysis-of-variance.html#cb169-7" tabindex="-1"></a></span>
-<span id="cb169-8"><a href="analysis-of-variance.html#cb169-8" tabindex="-1"></a><span class="co"># (c)</span></span>
-<span id="cb169-9"><a href="analysis-of-variance.html#cb169-9" tabindex="-1"></a><span class="fu">tapply</span>(delivery<span class="sc">$</span>time, delivery<span class="sc">$</span>company, mean)</span>
-<span id="cb169-10"><a href="analysis-of-variance.html#cb169-10" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
-<span id="cb169-11"><a href="analysis-of-variance.html#cb169-11" tabindex="-1"></a><span class="co">#     41.0     57.0     48.0     64.9</span></span>
-<span id="cb169-12"><a href="analysis-of-variance.html#cb169-12" tabindex="-1"></a></span>
-<span id="cb169-13"><a href="analysis-of-variance.html#cb169-13" tabindex="-1"></a><span class="co"># (d)</span></span>
-<span id="cb169-14"><a href="analysis-of-variance.html#cb169-14" tabindex="-1"></a><span class="fu">tapply</span>(delivery<span class="sc">$</span>time, delivery<span class="sc">$</span>company, var)</span>
-<span id="cb169-15"><a href="analysis-of-variance.html#cb169-15" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
-<span id="cb169-16"><a href="analysis-of-variance.html#cb169-16" tabindex="-1"></a><span class="co">#    4.667    7.500    4.000    6.767</span></span>
-<span id="cb169-17"><a href="analysis-of-variance.html#cb169-17" tabindex="-1"></a></span>
-<span id="cb169-18"><a href="analysis-of-variance.html#cb169-18" tabindex="-1"></a><span class="co"># (e)</span></span>
-<span id="cb169-19"><a href="analysis-of-variance.html#cb169-19" tabindex="-1"></a><span class="fu">boxplot</span>(time <span class="sc">~</span> company,</span>
-<span id="cb169-20"><a href="analysis-of-variance.html#cb169-20" tabindex="-1"></a>        <span class="at">data =</span> delivery,</span>
-<span id="cb169-21"><a href="analysis-of-variance.html#cb169-21" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Delivery Times by Company&quot;</span>,</span>
-<span id="cb169-22"><a href="analysis-of-variance.html#cb169-22" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Company&quot;</span>,</span>
-<span id="cb169-23"><a href="analysis-of-variance.html#cb169-23" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Delivery Time (min)&quot;</span>)</span>
-<span id="cb169-24"><a href="analysis-of-variance.html#cb169-24" tabindex="-1"></a></span>
-<span id="cb169-25"><a href="analysis-of-variance.html#cb169-25" tabindex="-1"></a><span class="co"># (f)</span></span>
-<span id="cb169-26"><a href="analysis-of-variance.html#cb169-26" tabindex="-1"></a>delivery_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> company, <span class="at">data =</span> delivery)</span>
-<span id="cb169-27"><a href="analysis-of-variance.html#cb169-27" tabindex="-1"></a><span class="fu">anova</span>(delivery_model)</span>
-<span id="cb169-28"><a href="analysis-of-variance.html#cb169-28" tabindex="-1"></a><span class="co"># Response: time</span></span>
-<span id="cb169-29"><a href="analysis-of-variance.html#cb169-29" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
-<span id="cb169-30"><a href="analysis-of-variance.html#cb169-30" tabindex="-1"></a><span class="co"># company    3 2739.84  913.28  154.88 &lt; 2.2e-16 ***</span></span>
-<span id="cb169-31"><a href="analysis-of-variance.html#cb169-31" tabindex="-1"></a><span class="co"># Residuals 30  176.90    5.90</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="analysis-of-variance.html#cb39-1" tabindex="-1"></a>delivery <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ch8-delivery-times.csv&quot;</span>)</span>
+<span id="cb39-2"><a href="analysis-of-variance.html#cb39-2" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="analysis-of-variance.html#cb39-3" tabindex="-1"></a><span class="co"># (b)</span></span>
+<span id="cb39-4"><a href="analysis-of-variance.html#cb39-4" tabindex="-1"></a><span class="fu">table</span>(delivery<span class="sc">$</span>company)</span>
+<span id="cb39-5"><a href="analysis-of-variance.html#cb39-5" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
+<span id="cb39-6"><a href="analysis-of-variance.html#cb39-6" tabindex="-1"></a><span class="co">#        7        9        8       10</span></span>
+<span id="cb39-7"><a href="analysis-of-variance.html#cb39-7" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="analysis-of-variance.html#cb39-8" tabindex="-1"></a><span class="co"># (c)</span></span>
+<span id="cb39-9"><a href="analysis-of-variance.html#cb39-9" tabindex="-1"></a><span class="fu">tapply</span>(delivery<span class="sc">$</span>time, delivery<span class="sc">$</span>company, mean)</span>
+<span id="cb39-10"><a href="analysis-of-variance.html#cb39-10" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
+<span id="cb39-11"><a href="analysis-of-variance.html#cb39-11" tabindex="-1"></a><span class="co">#     41.0     57.0     48.0     64.9</span></span>
+<span id="cb39-12"><a href="analysis-of-variance.html#cb39-12" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="analysis-of-variance.html#cb39-13" tabindex="-1"></a><span class="co"># (d)</span></span>
+<span id="cb39-14"><a href="analysis-of-variance.html#cb39-14" tabindex="-1"></a><span class="fu">tapply</span>(delivery<span class="sc">$</span>time, delivery<span class="sc">$</span>company, var)</span>
+<span id="cb39-15"><a href="analysis-of-variance.html#cb39-15" tabindex="-1"></a><span class="co"># CompanyA CompanyB CompanyC CompanyD</span></span>
+<span id="cb39-16"><a href="analysis-of-variance.html#cb39-16" tabindex="-1"></a><span class="co">#    4.667    7.500    4.000    6.767</span></span>
+<span id="cb39-17"><a href="analysis-of-variance.html#cb39-17" tabindex="-1"></a></span>
+<span id="cb39-18"><a href="analysis-of-variance.html#cb39-18" tabindex="-1"></a><span class="co"># (e)</span></span>
+<span id="cb39-19"><a href="analysis-of-variance.html#cb39-19" tabindex="-1"></a><span class="fu">boxplot</span>(time <span class="sc">~</span> company,</span>
+<span id="cb39-20"><a href="analysis-of-variance.html#cb39-20" tabindex="-1"></a>        <span class="at">data =</span> delivery,</span>
+<span id="cb39-21"><a href="analysis-of-variance.html#cb39-21" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Delivery Times by Company&quot;</span>,</span>
+<span id="cb39-22"><a href="analysis-of-variance.html#cb39-22" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Company&quot;</span>,</span>
+<span id="cb39-23"><a href="analysis-of-variance.html#cb39-23" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Delivery Time (min)&quot;</span>)</span>
+<span id="cb39-24"><a href="analysis-of-variance.html#cb39-24" tabindex="-1"></a></span>
+<span id="cb39-25"><a href="analysis-of-variance.html#cb39-25" tabindex="-1"></a><span class="co"># (f)</span></span>
+<span id="cb39-26"><a href="analysis-of-variance.html#cb39-26" tabindex="-1"></a>delivery_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(time <span class="sc">~</span> company, <span class="at">data =</span> delivery)</span>
+<span id="cb39-27"><a href="analysis-of-variance.html#cb39-27" tabindex="-1"></a><span class="fu">anova</span>(delivery_model)</span>
+<span id="cb39-28"><a href="analysis-of-variance.html#cb39-28" tabindex="-1"></a><span class="co"># Response: time</span></span>
+<span id="cb39-29"><a href="analysis-of-variance.html#cb39-29" tabindex="-1"></a><span class="co">#           Df  Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
+<span id="cb39-30"><a href="analysis-of-variance.html#cb39-30" tabindex="-1"></a><span class="co"># company    3 2739.84  913.28  154.88 &lt; 2.2e-16 ***</span></span>
+<span id="cb39-31"><a href="analysis-of-variance.html#cb39-31" tabindex="-1"></a><span class="co"># Residuals 30  176.90    5.90</span></span></code></pre></div>
 <p><strong>(g)</strong> p-value <span class="math inline">\(&lt; 2.2 \times 10^{-16} \ll 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>. There is overwhelming evidence that at least two companies have different mean delivery times.</p>
 <p><strong>(h)</strong> <strong>Company A</strong> is fastest: <span class="math inline">\(\bar{x}_A = 41.0\)</span> min, the smallest mean.</p>
 <blockquote>
@@ -4626,35 +4728,35 @@ pairwise.t.test(fert$yield, fert$fertilizer,
 ✅ Answer
 </summary>
 <div class="content">
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="analysis-of-variance.html#cb170-1" tabindex="-1"></a>fert <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ch8-fertilizer-yield.csv&quot;</span>)</span>
-<span id="cb170-2"><a href="analysis-of-variance.html#cb170-2" tabindex="-1"></a></span>
-<span id="cb170-3"><a href="analysis-of-variance.html#cb170-3" tabindex="-1"></a><span class="co"># (b)</span></span>
-<span id="cb170-4"><a href="analysis-of-variance.html#cb170-4" tabindex="-1"></a><span class="fu">table</span>(fert<span class="sc">$</span>fertilizer)</span>
-<span id="cb170-5"><a href="analysis-of-variance.html#cb170-5" tabindex="-1"></a><span class="co"># F1 F2 F3 F4</span></span>
-<span id="cb170-6"><a href="analysis-of-variance.html#cb170-6" tabindex="-1"></a><span class="co">#  8 10 12  9</span></span>
-<span id="cb170-7"><a href="analysis-of-variance.html#cb170-7" tabindex="-1"></a></span>
-<span id="cb170-8"><a href="analysis-of-variance.html#cb170-8" tabindex="-1"></a><span class="co"># (c)</span></span>
-<span id="cb170-9"><a href="analysis-of-variance.html#cb170-9" tabindex="-1"></a><span class="fu">boxplot</span>(yield <span class="sc">~</span> fertilizer,</span>
-<span id="cb170-10"><a href="analysis-of-variance.html#cb170-10" tabindex="-1"></a>        <span class="at">data =</span> fert,</span>
-<span id="cb170-11"><a href="analysis-of-variance.html#cb170-11" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Crop Yield by Fertilizer&quot;</span>,</span>
-<span id="cb170-12"><a href="analysis-of-variance.html#cb170-12" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Fertilizer&quot;</span>,</span>
-<span id="cb170-13"><a href="analysis-of-variance.html#cb170-13" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Yield&quot;</span>)</span>
-<span id="cb170-14"><a href="analysis-of-variance.html#cb170-14" tabindex="-1"></a></span>
-<span id="cb170-15"><a href="analysis-of-variance.html#cb170-15" tabindex="-1"></a><span class="co"># (d)</span></span>
-<span id="cb170-16"><a href="analysis-of-variance.html#cb170-16" tabindex="-1"></a>fert_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> fertilizer, <span class="at">data =</span> fert)</span>
-<span id="cb170-17"><a href="analysis-of-variance.html#cb170-17" tabindex="-1"></a><span class="fu">anova</span>(fert_model)</span>
-<span id="cb170-18"><a href="analysis-of-variance.html#cb170-18" tabindex="-1"></a><span class="co"># Response: yield</span></span>
-<span id="cb170-19"><a href="analysis-of-variance.html#cb170-19" tabindex="-1"></a><span class="co">#            Df Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
-<span id="cb170-20"><a href="analysis-of-variance.html#cb170-20" tabindex="-1"></a><span class="co"># fertilizer  3 659.97  219.99   43.84 6.03e-12 ***</span></span>
-<span id="cb170-21"><a href="analysis-of-variance.html#cb170-21" tabindex="-1"></a><span class="co"># Residuals  35 175.62    5.02</span></span>
-<span id="cb170-22"><a href="analysis-of-variance.html#cb170-22" tabindex="-1"></a></span>
-<span id="cb170-23"><a href="analysis-of-variance.html#cb170-23" tabindex="-1"></a><span class="co"># (e)</span></span>
-<span id="cb170-24"><a href="analysis-of-variance.html#cb170-24" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(fert<span class="sc">$</span>yield, fert<span class="sc">$</span>fertilizer,</span>
-<span id="cb170-25"><a href="analysis-of-variance.html#cb170-25" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
-<span id="cb170-26"><a href="analysis-of-variance.html#cb170-26" tabindex="-1"></a><span class="co">#    F1      F2      F3</span></span>
-<span id="cb170-27"><a href="analysis-of-variance.html#cb170-27" tabindex="-1"></a><span class="co"># F2 1.8e-05 -       -</span></span>
-<span id="cb170-28"><a href="analysis-of-variance.html#cb170-28" tabindex="-1"></a><span class="co"># F3 7.3e-12 3.7e-05 -</span></span>
-<span id="cb170-29"><a href="analysis-of-variance.html#cb170-29" tabindex="-1"></a><span class="co"># F4 0.049   0.054   1.1e-08</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="analysis-of-variance.html#cb40-1" tabindex="-1"></a>fert <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;ch8-fertilizer-yield.csv&quot;</span>)</span>
+<span id="cb40-2"><a href="analysis-of-variance.html#cb40-2" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="analysis-of-variance.html#cb40-3" tabindex="-1"></a><span class="co"># (b)</span></span>
+<span id="cb40-4"><a href="analysis-of-variance.html#cb40-4" tabindex="-1"></a><span class="fu">table</span>(fert<span class="sc">$</span>fertilizer)</span>
+<span id="cb40-5"><a href="analysis-of-variance.html#cb40-5" tabindex="-1"></a><span class="co"># F1 F2 F3 F4</span></span>
+<span id="cb40-6"><a href="analysis-of-variance.html#cb40-6" tabindex="-1"></a><span class="co">#  8 10 12  9</span></span>
+<span id="cb40-7"><a href="analysis-of-variance.html#cb40-7" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="analysis-of-variance.html#cb40-8" tabindex="-1"></a><span class="co"># (c)</span></span>
+<span id="cb40-9"><a href="analysis-of-variance.html#cb40-9" tabindex="-1"></a><span class="fu">boxplot</span>(yield <span class="sc">~</span> fertilizer,</span>
+<span id="cb40-10"><a href="analysis-of-variance.html#cb40-10" tabindex="-1"></a>        <span class="at">data =</span> fert,</span>
+<span id="cb40-11"><a href="analysis-of-variance.html#cb40-11" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Crop Yield by Fertilizer&quot;</span>,</span>
+<span id="cb40-12"><a href="analysis-of-variance.html#cb40-12" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Fertilizer&quot;</span>,</span>
+<span id="cb40-13"><a href="analysis-of-variance.html#cb40-13" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Yield&quot;</span>)</span>
+<span id="cb40-14"><a href="analysis-of-variance.html#cb40-14" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="analysis-of-variance.html#cb40-15" tabindex="-1"></a><span class="co"># (d)</span></span>
+<span id="cb40-16"><a href="analysis-of-variance.html#cb40-16" tabindex="-1"></a>fert_model <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> fertilizer, <span class="at">data =</span> fert)</span>
+<span id="cb40-17"><a href="analysis-of-variance.html#cb40-17" tabindex="-1"></a><span class="fu">anova</span>(fert_model)</span>
+<span id="cb40-18"><a href="analysis-of-variance.html#cb40-18" tabindex="-1"></a><span class="co"># Response: yield</span></span>
+<span id="cb40-19"><a href="analysis-of-variance.html#cb40-19" tabindex="-1"></a><span class="co">#            Df Sum Sq Mean Sq F value    Pr(&gt;F)</span></span>
+<span id="cb40-20"><a href="analysis-of-variance.html#cb40-20" tabindex="-1"></a><span class="co"># fertilizer  3 659.97  219.99   43.84 6.03e-12 ***</span></span>
+<span id="cb40-21"><a href="analysis-of-variance.html#cb40-21" tabindex="-1"></a><span class="co"># Residuals  35 175.62    5.02</span></span>
+<span id="cb40-22"><a href="analysis-of-variance.html#cb40-22" tabindex="-1"></a></span>
+<span id="cb40-23"><a href="analysis-of-variance.html#cb40-23" tabindex="-1"></a><span class="co"># (e)</span></span>
+<span id="cb40-24"><a href="analysis-of-variance.html#cb40-24" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(fert<span class="sc">$</span>yield, fert<span class="sc">$</span>fertilizer,</span>
+<span id="cb40-25"><a href="analysis-of-variance.html#cb40-25" tabindex="-1"></a>                <span class="at">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span>
+<span id="cb40-26"><a href="analysis-of-variance.html#cb40-26" tabindex="-1"></a><span class="co">#    F1      F2      F3</span></span>
+<span id="cb40-27"><a href="analysis-of-variance.html#cb40-27" tabindex="-1"></a><span class="co"># F2 1.8e-05 -       -</span></span>
+<span id="cb40-28"><a href="analysis-of-variance.html#cb40-28" tabindex="-1"></a><span class="co"># F3 7.3e-12 3.7e-05 -</span></span>
+<span id="cb40-29"><a href="analysis-of-variance.html#cb40-29" tabindex="-1"></a><span class="co"># F4 0.049   0.054   1.1e-08</span></span></code></pre></div>
 <p>ANOVA result: <span class="math inline">\(F = 43.84\)</span>, p-value <span class="math inline">\(= 6.03 \times 10^{-12} \ll 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p>
 <p>Bonferroni pairwise results:
 - F1 vs F2, F1 vs F3, F2 vs F3, F3 vs F4: all significantly different (p <span class="math inline">\(\ll 0.05\)</span>).
