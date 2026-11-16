@@ -43,14 +43,14 @@ He argued that $Q_{k-1}$ has an approximate chi-square distribution with $k-1$ d
 
 ## Multinomial Response Model
 
-- When a categorical (qualitative) variable of interest results in one of two responses ( $k=2$ ) (e.g., "Yes" or "No" to had epidural to reduce pain during child birth, "Yes" or "No" still breastfeeding at six months) the data ? called counts ? can be analyzed with a Binomial probability distribution.
+- When a categorical (qualitative) variable of interest results in one of two responses ($k=2$) (e.g., "Yes" or "No" to having had an epidural to reduce pain during childbirth, or "Yes" or "No" to still breastfeeding at six months), the data, called counts, can be analyzed with a Binomial probability distribution.
 - Categorical data with more than two levels (classes, categories) often result from a multinomial model.
 - Binomial model is a multinomial model with $k=2$.
 
 
 **Properties of the Multinomial Model**
 
-1. The are $n$ identical trials.
+1. There are $n$ identical trials.
 2. There are k (or: $r \times c$ " r for number of rows" and " c for number of columns") possible outcomes to each trial. These outcomes are sometimes called classes, categories, or cells.
 3. The probabilities of the $k$ outcomes, denoted by $p_{1}, p_{2}, p_{3}, \ldots, p_{k}$, where $p_{1}+p_{2}+p_{3}+\ldots+p_{k}=1$, remain the same from trial to trial.
 4. The trials are independent.
@@ -60,15 +60,17 @@ He argued that $Q_{k-1}$ has an approximate chi-square distribution with $k-1$ d
 ::::: example
 Suppose that customers can purchase one of the three brands of milk at a supermarket. In a study to determine whether one brand is preferred over another, a record is made of a sample of $n=300$ milk purchases. The data are shown below. Do the data provide sufficient evidence to indicate a preference for one or more brands?
 
+
 <div style="text-align: center">
 
-**Table 18.1: Table of Example 18.1**
+**Table 10.1: Observed Counts for Example 10.1**
 
 | Brand 1 | Brand 2 | Brand 3 | Total |
 | :---: | :---: | :---: | :---: |
-| 100 | 100 | 100 | 300 |
+| 78 | 117 | 105 | 300 |
 
 </div>
+
 
 
 **Step 1. State Hypotheses.**
@@ -100,7 +102,7 @@ $$
 
 <div style="text-align: center">
 
-**Table 18.2: Table of Expected Counts**
+**Table 10.2: Expected Counts for Example 10.1**
 
 | Brand 1 | Brand 2 | Brand 3 | Total |
 | :---: | :---: | :---: | :---: |
@@ -135,7 +137,7 @@ Raymond Weil is about to come out with a new watch and wants to find out whether
 
 <div style="text-align: center">
 
-**Table 18.3: Table of Example 18.2**
+**Table 10.3: Observed Counts for Example 10.2**
 
 | Tan | Brown | Maroon | Black | Total |
 | :---: | :---: | :---: | :---: | :---: |
@@ -173,7 +175,7 @@ $$
 
 <div style="text-align: center">
 
-**Table 18.4: Table of Expected Counts**
+**Table 10.4: Expected Counts for Example 10.2**
 
 | Tan | Brown | Maroon | Black | Total |
 |:---:|:---:|:---:|:---:|:---:|
@@ -189,7 +191,7 @@ The test statistic for comparing the observed and expected cell counts (and, con
 \begin{aligned}
   \chi^{2} &=\sum_{\text {all cells }} \frac{(\text { observed }- \text { expected })^{2}}{\text { expected }} \\
            &= \sum_{\text {all cells }} \frac{\left(n_{i}-E\left(n_{i}\right)\right)^{2}}{E\left(n_{i}\right)} \\
-           &= \frac{(12-20)^{2}}{20}+\frac{(40-20)^{2}}{20}+\frac{(8-20)^{2}}{20}+\frac{(2-20)^{2}}{20} \\
+           &= \frac{(12-20)^{2}}{20}+\frac{(40-20)^{2}}{20}+\frac{(8-20)^{2}}{20}+\frac{(20-20)^{2}}{20} \\
            &= 64 / 20+400 / 20+144 / 20+0=30.4
 \end{aligned}
 
@@ -235,7 +237,7 @@ Test the hypothesis at the $1 \%$ significance level.
 
 <div style="text-align: center">
 
-**Table 18.5: Table of Exercise 18.1**
+**Table 10.5: Observed Counts for Exercise 10.1**
 
 | Cell | 1 | 2 | 3 | 4 | 5 |
 | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -258,7 +260,7 @@ $$
 
 <div style="text-align: center">
 
-**Table 18.6: Table of Expected Counts**
+**Table 10.6: Expected Counts for Exercise 10.1**
 
 | Cell | 1 | 2 | 3 | 4 | 5 |
 | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -292,14 +294,16 @@ Since our $P-$ value $>0.25>\alpha=0.01$, we conclude that there is NOT enough e
 A categorical variable has $k$ possible outcomes, with probabilities $p_{1}, p_{2}, \ldots, p_{k}$. That is , $p_{i}$ is the probability of the $i$ th outcome. We have $n$ independent observations from this categorical variable. To test the null hypothesis that the probabilities have specified values
 
 
-\begin{aligned}
-H_{0}:& \, p_{1} = p_{hyp_1}, \, 
-           p_{2} = p_{hyp_2}, \,
-           \ldots, \,
-           p_{k} = p_{hyp_k}   \\
 
-H_{a}:& \, \text{at least one of } \, p_{1}, p_{2}, p_{3} \, \text { is different }
+$$
+\begin{aligned}
+H_{0}:& \quad p_i = p_{\mathrm{hyp},i}
+\quad \text{for all } i=1,\ldots,k,\\
+H_{a}:& \quad p_i \neq p_{\mathrm{hyp},i}
+\quad \text{for at least one } i=1,\ldots,k.
 \end{aligned}
+$$
+
 
 
 Use the chi-square statistic
