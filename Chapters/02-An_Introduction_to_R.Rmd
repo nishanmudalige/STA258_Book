@@ -11,7 +11,7 @@ Unlike point-and-click software tools, R allows users to write scripts that docu
 
 ## Installing R and RStudio
 
-Before we can begin working with R code, we need to install both the R programming language itself and an interface to work in — such as RStudio.
+For this course, we recommend installing R and RStudio. RStudio provides a convenient development environment, but R can also be used without it.
 
 ---
 
@@ -119,71 +119,56 @@ R is a powerful language for numerical and statistical computing, and it support
 Firstly, let's begin with basic arithmetic:
 
 ```r
-2 + 3, addition → 5;
-
-4 - 1, subtraction → 3;
-
-6 * 2, multiplication → 12;
-
-8 / 2, division → 4;
-
-5^2, exponentiation → 25;
-
-9 %% 4, modulo (remainder) → 1;
-
-9 %/% 4, integer division → 2.
+2 + 3    # Addition: 5
+4 - 1    # Subtraction: 3
+6 * 2    # Multiplication: 12
+8 / 2    # Division: 4
+5^2      # Exponentiation: 25
+9 %% 4   # Modulo (remainder): 1
+9 %/% 4  # Integer division: 2
 ```
 
 Then, it's going to be vector operations:
 
 ```r
-x <- c(1, 2, 3), assigning a vector variable on x;
 
-y <- c(4, 5, 6), assigning a vector variable on y;
+x <- c(1, 2, 3)  # Assign a vector to x
+y <- c(4, 5, 6)  # Assign a vector to y
 
-x + y, element-wise addition → 5 7 9;
+x + y  # Element-wise addition: 5 7 9
+x * y  # Element-wise multiplication: 4 10 18
+x^2    # Square each element: 1 4 9
 
-x * y, element-wise multiplication → 4 10 18;
-
-x^2, square each element → 1 4 9.
 ```
 
 We are able to do math functions as well:
 
 ```r
-sqrt(16), square root → 4;
 
-log(10), satural log → ~2.3;
+sqrt(16)          # Square root: 4
+log(10)           # Natural logarithm: approximately 2.303
+log10(100)        # Logarithm base 10: 2
+exp(1)            # e^1: approximately 2.718
+abs(-5)           # Absolute value: 5
+round(3.1415, 2)  # Round to 2 decimal places: 3.14
+sin(pi / 2)       # Sine: 1
+cos(0)            # Cosine: 1
+tan(pi / 4)       # Tangent: approximately 1
 
-log10(100), log base 10 → 2;
-
-exp(1), e^1 → ~2.718;
-
-abs(-5), absolute value → 5;
-
-round(3.1415, 2), round to 2 decimals → 3.14;
-
-sin(pi / 2) → 1;
-
-cos(0) → 1;
-
-tan(pi / 4) → 1.
 ```
 
-Finally, there are some useful summery functions in R:
+
+Finally, there are some useful summary functions in R:
 
 ```r
-mean(x), average;
 
-sum(x), total;
+mean(x)  # Average
+sum(x)   # Total
+min(x)   # Minimum
+max(x)   # Maximum
+sd(x)    # Standard deviation
+var(x)   # Variance
 
-min(x), minimum;
-
-max(x), maximum;
-
-sd(x), standard deviation;
-
-var(x), variance.
 ```
 
 ### Basic R Data Structures
@@ -197,8 +182,10 @@ In R, vectors are the fundamental building blocks for data storage and manipulat
 For example:
 
 ```r
-Assigning a variable be a vector
+
+# Assign a vector to the variable v
 v <- c(1, 2, 3, 4, 5)
+
 ```
 
 **Lists**
@@ -208,17 +195,19 @@ In R, a list is a flexible data structure that can store elements of different t
 For example:
 
 ```r
-Creating a list contains some random elements
+
+# Create a list containing different types of elements
 my_list <- list(name = "Alice", age = 25, scores = c(90, 85, 88), passed = TRUE)
 
-Accessing code:
+# Access elements of the list
 my_list$name         # Access by name
 my_list[[2]]         # Access by index
-my_list[["scores"]]  # Another way to access 'scores'
+my_list[["scores"]]  # Access the scores element
 
-Modifying an element of the list:
+# Modify elements of the list
 my_list$age <- 26
 my_list$new_field <- "Added!"
+
 ```
 
 **Matrices**
@@ -228,19 +217,26 @@ In R, a matrix is a two-dimensional data structure that stores elements of the s
 For example:
 
 ```r
+
 # Create a 3x2 matrix filled by column (default)
 m <- matrix(c(1, 2, 3, 4, 5, 6), nrow = 3, ncol = 2)
 
-Accessing elements in the matrix above:
+# Access elements in the matrix
 m[1, 2]     # Element in row 1, column 2
-m[ , 1]     # All rows of column 1
+m[, 1]      # All rows of column 1
 m[2, ]      # All columns of row 2
 
-Basic matrices operations:
+# Basic matrix operations
 t(m)        # Transpose
 m %*% t(m)  # Matrix multiplication
-det(m)      # Determinant (square matrix only)
-solve(m)    # Inverse (if square and invertible)
+
+# Create a separate square, nonsingular matrix
+m_square <- matrix(c(1, 2, 3, 5), nrow = 2, ncol = 2)
+
+# Calculate the determinant and inverse
+det(m_square)    # Determinant: -1
+solve(m_square)  # Inverse of the square matrix
+
 ```
 
 **Arrays**
@@ -250,12 +246,14 @@ In R, an array is a multi-dimensional data structure that stores elements of the
 For example:
 
 ```r
-# Create a 3D array (2 rows × 3 columns × 2 layers)
+
+# Create a 3D array (2 rows x 3 columns x 2 layers)
 a <- array(1:12, dim = c(2, 3, 2))
 
-Accessing elements in the array above:
-a[1, 2, 1]     # Element at row 1, column 2, layer 1
-a[ , , 2]      # All rows and columns in layer 2
+# Access elements in the array
+a[1, 2, 1]  # Element at row 1, column 2, layer 1
+a[, , 2]    # All rows and columns in layer 2
+
 ```
 
 **Factors**
@@ -265,12 +263,14 @@ In R, a factor is a data structure used to represent categorical variables, such
 For example:
 
 ```r
-Creating a factor
+
+# Create a factor
 gender <- factor(c("Male", "Female", "Female", "Male"))
 
-Check levels
+# Check factor levels
 levels(gender)
 # [1] "Female" "Male"
+
 ```
 
 **Data Frames**
@@ -280,24 +280,31 @@ In R, a data frame is a fundamental data structure used for storing tabular data
 For example:
 
 ```r
-Creating a data frame:
-df <- data.frame(name = c("Alice", "Bob", "Charlie"), age = c(25, 30, 28), passed = c(TRUE, FALSE, TRUE))
 
-Accessing data from the data frame above:
-df$name        # Access 'name' column
-df[1, ]        # First row
-df[ ,2]        # Second column
-df[2, 3]       # Row 2, column 3
+# Create a data frame
+df <- data.frame(name = c("Alice", "Bob", "Charlie"),
+                 age = c(25, 30, 28),
+                 passed = c(TRUE, FALSE, TRUE))
 
-Adding a new column or row:
-df$score <- c(90, 85, 88)  # Add new column
-df <- rbind(df, data.frame(name="David", age=27, passed=TRUE, score=92))  # Add new row
+# Access data from the data frame
+df$name   # Access the name column
+df[1, ]   # First row
+df[, 2]   # Second column
+df[2, 3]  # Row 2, column 3
 
-Some useful functions:
-str(df)        # Structure of the data frame
-summary(df)    # Summary stats
-nrow(df)       # Number of rows
-ncol(df)       # Number of columns
+# Add a new column
+df$score <- c(90, 85, 88)
+
+# Add a new row
+df <- rbind(df, data.frame(name = "David", age = 27,
+                           passed = TRUE, score = 92))
+
+# Useful functions
+str(df)      # Structure of the data frame
+summary(df)  # Summary statistics
+nrow(df)     # Number of rows
+ncol(df)     # Number of columns
+
 ```
 
 
@@ -316,7 +323,9 @@ min(x)
 sort(x)     # ascending order
 sort(x, decreasing = TRUE)  # descending order
 
-# Find the order (ranks) of elements
+
+
+# Return the indices that sort x in ascending order
 order(x)
 ```
 
@@ -389,14 +398,17 @@ Once loaded, you can use functions from that package — for example, `ggplot()`
 
 > Tip: You only need to install a package once, but you must load it with `library()` every time you restart RStudio.
 
-You can search for packages or view installed ones using:
+
+You can view installed packages or search their help documentation using:
 
 ```r
+
 # View all installed packages
 installed.packages()
 
-# Search for packages by keyword
+# Search help topics in installed packages
 help.search("regression")
+
 ```
 
 R packages are stored in CRAN (Comprehensive R Archive Network), which you accessed when installing R. There are also GitHub-hosted packages for advanced users.
