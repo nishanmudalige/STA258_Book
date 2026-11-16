@@ -2,19 +2,27 @@
 
 ## Introduction to the Linear Model
 
-A linear model is a function the form
+A linear model is a function of the form
 
-$$y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots + \beta_p x_{ip} + \varepsilon_i, \quad \varepsilon_i \sim N(0, \sigma^2)$$
+$$
+y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \ldots + \beta_p x_{ip} + \varepsilon_i,
+\quad \varepsilon_i \sim N(0, \sigma^2).
+$$
 
-where $y$ is the _response_ (also called the _outcome_ or _dependent_) variable, $(x_{i1},\dots,x_{ip})$ are the _predictors_ (also called _explanatory_ or _independent_ variables or _covariates_) and $\varepsilon_i$ is random error.
-In practice, the aim of constructing a linear model is usually prediction using the $x_{ij}$ to predict $y$, and to conduct statistical inference to assess whether $y$ is related to the predictors, such as testing for association.
-In this mode, $x_{ij}$ are assumed fixed, $y_i$ are random and the error terms $\varepsilon_i$ is independent Gaussian noise with a constant variance $\sigma^2$.
+where $y_i$ is the *response* (also called the *outcome* or *dependent*) variable, $(x_{i1},\dots,x_{ip})$ are the *predictors* (also called *explanatory* or *independent* variables or *covariates*), and $\varepsilon_i$ is the random error term.
+
+In practice, the aim of constructing a linear model is usually to predict $y_i$ using the predictors $x_{ij}$ and to conduct statistical inference to assess whether the response is related to the predictors, such as testing for association.
+
+In this model, the predictors $x_{ij}$ are assumed fixed, the responses $y_i$ are random, and the error terms $\varepsilon_i$ are independent Gaussian random variables with mean zero and constant variance $\sigma^2$.
+
 The coefficients $\beta_0, \ldots, \beta_p$ are fixed but unknown constants.
 
-A simple linear regression (SLR) model is a linear regression model with just 1 predictor and it has the form
+A simple linear regression (SLR) model is a linear regression model with just one predictor and has the form
 
-$$y_i = \beta_0 + \beta_1 x_{i} \varepsilon_i, \quad \varepsilon_i \sim N(0, \sigma^2).$$
-
+$$
+y_i = \beta_0 + \beta_1 x_i + \varepsilon_i,
+\quad \varepsilon_i \sim N(0, \sigma^2).
+$$
 
 ### Least Squares Method {#sec:LeastSquaresMethod}
 
@@ -68,7 +76,7 @@ $$
 \begin{align*}
 &\textbf{y}\in\mathbb{R}^{n}\ \text{is a response vector }(y_1,\dots,y_n)^{\top}.\\
 &\textbf{X}\in\mathbb{R}^{n\times(p+1)}\ \text{is a design matrix }[\,\mathbf{1}\ \ x_1\ \ \cdots\ \ x_p\,],\ \text{with first column of ones (intercept)}.\\
-&\boldsymbol{\beta}\in\mathbb{R}^{p+1}\ \text{is a vector if parameters }(\beta_0,\beta_1,\dots,\beta_p)^{\top}.\\
+&\boldsymbol{\beta}\in\mathbb{R}^{p+1}\ \text{is a vector of parameters }(\beta_0,\beta_1,\dots,\beta_p)^{\top}.\\
 \end{align*}
 $$
 Using matrix calculus, we can show the solution for the least squares optimization problem is
@@ -208,7 +216,9 @@ p_sse <- ggplot(df, aes(x, y)) +
 print(p_sse)
 ```
 
-Recall in Section \@ref(sec:LeastSquaresMethod) that we discussed that the technique used to determine the line of best fit is to minimize the sum the squared distances between the observed $y_{i}$'s from our data and the fitter $\hat{y}_{i}$'s which are predicted from the line (See Figure \@ref(fig:PlotPtsLnRes)).
+
+Recall from Section \@ref(sec:LeastSquaresMethod) that the least-squares method determines the line of best fit by minimizing the sum of the squared vertical distances between the observed responses $y_i$ and the fitted values $\hat{y}_i$ predicted by the regression line (see Figure \@ref(fig:PlotPtsLnRes)).
+
 
 ```{r PlotPtsLnRes, fig.cap="The distances between each observed $y_i$ and fitted $\\hat{y}_{i}$ from Figure \\@ref(fig:PlotPointsLine).", message=FALSE,warning=FALSE,echo=FALSE,fig.align='center'}
 library(ggplot2)
@@ -307,7 +317,9 @@ $$
   &= \sum_{i=1}^{n} \big(y_i - (\hat{\beta}_0 + \hat{\beta}_1x_i) \big)^2.
 \end{aligned}
 $$ 
-The find the values of $\hat{\beta}_0$ and $\hat{\beta}_1$ which minimizes the SSSE, we take the partial derivatives of the SSE with respect to $\hat{\beta}_0$ and $\hat{\beta}_1$, setting the expression to 0 and solving for each term, we obtain 
+
+To find the values of $\hat{\beta}_0$ and $\hat{\beta}_1$ that minimize the SSE, we take the partial derivatives of the SSE with respect to $\hat{\beta}_0$ and $\hat{\beta}_1$, set them equal to zero, and solve the resulting equations.
+
 
 ::: {.definition }
 For a model of the form $y = \beta_{0} + \beta_{1}x + \varepsilon, \, \varepsilon \sim N(0, \sigma^2)$, the least square estimates for $\beta_{0}$ and $\beta_{1}$ are given by
@@ -334,20 +346,17 @@ $y =$ dependent variable, $x =$ independent variable, $\beta_0$
 y-intercept, $\beta_1 =$ slope of the line and $\varepsilon =$ error
 variable.
 
+
 ::: {.smalltbl}
-| Day | Number of tools (X) | Electricity costs (Y) |
-|:---:|:-------------------:|:---------------------:|
-|  1  |          7          |         23.80         |
-|  2  |          3          |         11.89         |
-|  3  |          2          |         15.89         |
-|  4  |          5          |         26.11         |
-|  5  |          8          |         31.79         |
-|  6  |         11          |         39.93         |
-|  7  |          5          |         12.27         |
-|  8  |         15          |         40.06         |
-|  9  |          3          |         21.38         |
-| 10  |          6          |         18.65         |
+| Month | Advertising expenditure (x) | Sales revenue (y) |
+|:-----:|:---------------------------:|:-----------------:|
+|   1   |              1              |         1         |
+|   2   |              2              |         1         |
+|   3   |              3              |         2         |
+|   4   |              4              |         2         |
+|   5   |              5              |         4         |
 :::
+
 
 a\) Obtain the least squares estimates of $\beta_0$ and $\beta_1$, and
 state the estimated regression function.
@@ -366,12 +375,20 @@ squares line is $\hat{y} = -0.1 + 0.7x$.
 b\) R-code
 
 ::: tcolorbox
-    plot(x, y, main="Scatterplot: Simple Linear Regression",
-    xlab="x", ylab="y", pch=19,col="blue");
+    x <- c(1, 2, 3, 4, 5)
+    y <- c(1, 1, 2, 2, 4)
 
-    abline(coef(linear.reg), col="red",lty=2);
+    linear.reg <- lm(y ~ x)
+
+    plot(x, y,
+         main = "Advertising Expenditure vs Sales Revenue",
+         xlab = "Advertising Expenditure",
+         ylab = "Sales Revenue",
+         pch = 19, col = "blue")
+
+    abline(linear.reg, col = "red", lty = 2)
 :::
-:::::
+
 
 
 
@@ -420,7 +437,7 @@ the Least Squares Method.
 |:---:|:-------------------:|:---------------------:|
 |  1  |          7          |         23.80         |
 |  2  |          3          |         11.89         |
-|  3  |          2          |         15.89         |
+|  3  |          2          |         15.98         |
 |  4  |          5          |         26.11         |
 |  5  |          8          |         31.79         |
 |  6  |         11          |         39.93         |
@@ -489,9 +506,9 @@ variable. In this example, the slope is $2.25$, which means that in this
 sample, for each one-unit increase in the number of tools, the marginal
 increase in the electricity cost is $\$ 2.25$ per tool.
 
-The $y$-intercept is $9.57$; that is, the line strikes the $y$-axis at
-$9.57$. However, when $x = 0$, we are producing no tools and hence the
-estimated ﬁxed cost of electricity is $\$9.57$ per day .
+
+The $y$-intercept is approximately $9.59$. This represents the estimated fixed daily electricity cost when no tools are produced ($x = 0$). Thus, the model predicts an electricity cost of approximately $\$9.59$ per day even when production is zero.
+
 ::::
 
 
@@ -585,7 +602,7 @@ variables.
 - If $r_{xy} \approx +1$, then we say that the two random variables have
   strong positive correlation (See Figure \@ref(fig:examplePositiveCorr)).
 
-```{r examplePositiveCorr,fig.cap="An illustration of strong negative correlation ($r_{xy} \\approx +1$).", echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+```{r examplePositiveCorr, fig.cap="An illustration of strong positive correlation ($r_{xy} \\approx +1$).", echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 # Load necessary library
 library(plotly)
 
@@ -771,7 +788,10 @@ Then: $s_x = 5.4313$ and $s_y = 11.4017$.
 
 Step 3: Find $s_{xy}$ and $r$.
 
-$$\sum_{i=1}^{5}x_i \cdot y_i = 1600, \text{ then } s_{xy} = \frac{1600}{5-1} - \frac{5\cdot8\cdot46}{5-1} = -60 \text{ and } r_{xy} = \frac{s_{xy}}{s_x \cdot s_y} = 0.9688.$$
+
+$$\sum_{i=1}^{5}x_i \cdot y_i = 1600, \text{ then } s_{xy} = \frac{1600}{5-1} - \frac{5\cdot8\cdot46}{5-1} = -60 \text{ and } r_{xy} = \frac{s_{xy}}{s_x \cdot s_y} \approx -0.9689.$$
+
+The correlation coefficient indicates a strong negative linear association between the two variables: as $x$ increases, $y$ tends to decrease.
 
 **R code**
 
@@ -804,7 +824,7 @@ Step 4: Finding standard deviations;
 ::: tcolorbox
     sd(X);
 
-    sd(Y):
+    sd(Y);
 :::
 
 Step 5: Finding covariance and correlation;
@@ -941,7 +961,9 @@ data) and the mean of dependent data ($\bar{y}$).
 It is illustrated in Figure \@ref(fig:SSRregression).
 
 
-```{r SSRregression, fig.cap= "An illustration of $y_i - \\bar{y}$. when these distances are squared and added together, we get the SSR.", echo=FALSE, out.width='90%',fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+
+```{r SSRregression, fig.cap="An illustration of the deviations $\\hat{y}_i - \\bar{y}$ from the sample mean. Squaring and summing these deviations gives the regression sum of squares (SSR).", echo=FALSE, out.width='90%', fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+
 library(ggplot2)
 
 # --- Manually chosen data for clear distances ---
@@ -1032,7 +1054,9 @@ The SST is the sum of the squared differences between the
 observations and their overall mean $\bar{y}$ in the data. 
 This is illustrated in Figure \@ref(fig:SSTregression).
 
-```{r SSTregression, fig.cap= "An illustration of $\\hat{y}_i - \\bar{y}$. when these distances are squared and added together, we get the SST.", echo=FALSE, out.width='90%',fig.align='center'}
+
+```{r SSTregression, fig.cap="An illustration of the deviations $y_i - \\bar{y}$ from the sample mean. Squaring and summing these deviations gives the total sum of squares (SST).", echo=FALSE, out.width='90%', fig.align='center'}
+
 library(ggplot2)
 
 # --- Manually chosen data for clear distances ---
@@ -1380,24 +1404,26 @@ model lies between 0.0908 and 1.3092.
 
 <!-- ### Interpreting Confidence Intervals for $\beta_1$ {#interpreting-confidence-intervals-for-beta_1 .unnumbered} -->
 
+
 ::: center
   ----------------- ----------------------------------------------------------
     **Suppose CI:** $(-, -)$
-                    Suggests $\beta_1$ has a **negative** sign.
-                    Suggests negative correlation, potentially good model.
-                    
+                    The interval contains only negative values.
+                    This provides evidence that the slope is negative.
+
     **Suppose CI:** $(+, +)$
-                    Suggests $\beta_1$ has a **positive** sign.
-                    Suggests positive correlation, potentially good model.
-                    
+                    The interval contains only positive values.
+                    This provides evidence that the slope is positive.
+
     **Suppose CI:** $(-, +)$
-                    $\beta_1 = 0$ is plausible.
-                    Suggests **no linear relationship** between $x$ and $y$.
+                    The interval contains zero.
+                    A zero slope remains plausible, so there is insufficient
+                    evidence of a nonzero linear relationship at the
+                    corresponding significance level.
   ----------------- ----------------------------------------------------------
 :::
 
-In cases where the CI does not contain zero, we can infer the sign of
-the slope (just not the steepness)
+A confidence interval that excludes zero provides evidence of a nonzero slope. The interval also gives a range of plausible values for the slope, including its magnitude. However, excluding zero does not by itself establish that the model provides good predictions.
 
 
 The **regression standard error** is
@@ -1414,7 +1440,13 @@ $$\hat{\beta}_1 \pm t^* SE(\hat{\beta}_1)$$
 
 In this formula, the standard error of the least-squares slope $\beta_{1}$ is
 
-$$SE(\hat{\beta}_1) = \frac{s}{\sqrt{\sum (x_i - \bar{x})^2}} = \frac{s}{\sqrt{(n - 1) SS_{xx} }}$$
+
+$$
+SE(\hat{\beta}_1)
+= \frac{s}{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2}}
+= \frac{s}{\sqrt{SS_{xx}}}.
+$$
+
 
 and $t^*$ is the critical value for the $t(n - 2)$ density curve with
 area $C$ between $-t^*$ and $t^*$.
@@ -1454,7 +1486,9 @@ degrees of freedom.
 **Decision Rule:**
 
 Using a two-tailed test:
-$$\text{p-value} = 2 \cdot P(T_3 > 3.6558) < 0.01 \Rightarrow \text{p-value} < 0.05$$
+
+$$\text{p-value} = 2 \cdot P(T_3 > 3.6558) \approx 0.0353 < 0.05$$
+
 
 **Conclusion:** Since $p$-value $< 0.05$, we reject $H_0$ and conclude
 $H_a\!: \beta_1 \neq 0$.
@@ -1734,25 +1768,25 @@ dollars), area (in 100 square feet), and number of beds and baths.
          660                 7.3               2           1
   ----------------- ---------------------- ---------- -----------
 :::
-```{r fig.cap="Plot of Price vs Area for Apartments near UTM",echo=FALSE, fig.align='center', out.width='80%'}
+
+```{r fig.cap="Plot of Price vs Area for Apartments near UTM", echo=FALSE, fig.align='center', out.width='80%'}
 library(ggplot2)
 
-# Data
-area <- c(5.5, 6.5, 7.5, 8.0, 8.3, 9.8, 11.0, 12.5, 13.8, 10.2)
-price <- c(490, 590, 660, 700, 710, 630, 630, 760, 810, 680)
+area <- c(11.0, 6.5, 10.0, 8.4, 8.0, 5.7, 12.0, 14.0, 7.3)
+price <- c(620, 590, 620, 700, 680, 500, 760, 800, 660)
+
 df <- data.frame(area, price)
 
-# Plot
 ggplot(df, aes(x = area, y = price)) +
   geom_point(size = 3, color = "#000000") +
   labs(
-    x = "Area (sq ft)",
-    y = "Price (x$1000)",
+    x = "Area (hundreds of sq ft)",
+    y = "Price (thousands of dollars)",
     title = "Plot of Price vs Area for Apartments near UTM"
   ) +
   theme_minimal(base_size = 14)
-
 ```
+
 
 
 | Price | Area | $(x-\bar{x})$ | $(y-\bar{y})$ | $(x-\bar{x})(y-\bar{y})$ | $(x-\bar{x})^2$ |
@@ -1790,7 +1824,7 @@ $$
 \begin{aligned}
 \hat{\beta}_1 &= \frac{S_{xy}}{S_{xx}} = \frac{1541.11}{60} = 25.69 \\
 \hfill\\
-\hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x} = 658.89 - (25.69)(9.21) = 422.28
+\hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x} \approx 422.26
 \end{aligned}
 $$
 
@@ -1799,7 +1833,8 @@ $$
 
 Using the values above, we write the estimated regression equation as:
 
-$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x = 422.28 + 25.69x$$
+
+$$\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x \approx 422.26 + 25.69x$$
 
 This equation gives the predicted apartment price (in \$1000s) based on
 area (in 100 sq ft).
@@ -1811,7 +1846,7 @@ ft in area, we expect the apartment price to increase by approximately
 \$25,690 on average
 
 
-The intercept $\hat{\beta}_0 = 422.28$ suggests the predicted price when
+The intercept $\hat{\beta}_0 = 422.26$ suggests the predicted price when
 the area is zero. While this has no practical interpretation in this
 context, it is a necessary component of the regression model.
 
@@ -1820,14 +1855,14 @@ context, it is a necessary component of the regression model.
 To estimate the price of an apartment with an area of 800 sq ft (i.e.,
 $x = 8$), we compute:
 
-$$\hat{y} = 422.28 + 25.69(8) = 627.8 \quad (\$1000)$$
+$$\hat{y} = 422.26 + 25.69(8) \approx 627.78 \quad (\$1000)$$
 
 Since 8 is within the range of observed values, this is an example of
 **interpolation.**
 
 For an apartment with 2,500 sq ft ($x = 25$):
 
-$$\hat{y} = 422.28 + 25.69(25) = 1064.53 \quad (\$1000)$$
+$$\hat{y} = 422.26 + 25.69(25) \approx 1064.51 \quad (\$1000)$$
 
 This is an example of **extrapolation**, and such predictions should be
 treated with caution since they lie outside the data range
@@ -1901,7 +1936,9 @@ $$t = \frac{\hat{\beta}_1 - 0}{SE(\hat{\beta}_1)} = \frac{25.69}{7.82} = 3.284$$
 
 **Step 3: Conclusion** Using $t$-distribution with 7 degrees of freedom:
 
-$$0.005 < p\text{-value} < 0.01$$
+
+$$p\text{-value} \approx 0.0134 < 0.05$$
+
 
 Since $p$-value $< 0.05$, we reject $H_0$ and conclude that there is
 sufficient evidence that $\beta_1 \ne 0$.This suggests there is a
@@ -1933,12 +1970,12 @@ $$\hat{y} = 25.69x + 422.26$$
 
 **Coefficient of Determination and Correlation**
 
-$$r^2 = \frac{SSR}{SST} = \frac{39591.06}{65288.90} = 0.6063 = 60.63\%$$
+$$r^2 = \frac{SSR}{SST} \approx 0.6064 = 60.64\%$$
 
 Interpretation: Approximately 60.63% of the variability in price is
 explained by the regression model.
 
-$$r = \pm \sqrt{r^2} = \pm \sqrt{0.6063} = \pm 0.779$$
+$$r = \sqrt{r^2} = \sqrt{0.6064} \approx 0.779$$
 
 Since $\hat{\beta}_1 > 0$, we choose the positive root:
 
@@ -2042,7 +2079,9 @@ satisfied, the residual plot should have the following features:
 
 <!-- # ```{r residual-stack, fig.width=6, fig.height=16, dev="png", out.width="100%", fig.align="center", message=FALSE, warning=FALSE} -->
 
-```{r fig.cap="Examples of residual plots which satisfy assumpations and which violate assumptions", echo=FALSE, warning=FALSE, fig.align="center", out.width='70%', fig.width=6, fig.height=16}
+
+```{r fig.cap="Examples of residual plots that satisfy or violate regression assumptions", echo=FALSE, warning=FALSE, fig.align="center", out.width='70%', fig.width=6, fig.height=16}
+
 # Load libraries
 library(ggplot2)
 library(patchwork)
@@ -2124,22 +2163,27 @@ print(final_plot)
 ```
 
 
+
 ::: tcolorbox
-The model is: $Y = \beta_0 + \beta_1 X + \varepsilon$, where
-$\varepsilon \sim \mathcal{N}(0, \sigma^2)$
+The simple linear regression model is:
 
-- The relationship between $X$ and $Y$ is linear.
+$$Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i,$$
 
-- Residuals:
+where the error terms $\varepsilon_i$ are assumed to be independent and normally distributed with mean zero and constant variance $\sigma^2$.
 
-  - are independent
+The main assumptions are:
 
-  - have constant variance
+- **Linearity:** The mean response is a linear function of the predictor $X$.
 
-  - are normally distributed
+- **Independence:** The error terms $\varepsilon_i$ are independent.
 
-  These assumptions can be verified using residual plots.
+- **Constant variance:** The error terms have the same variance $\sigma^2$ for all values of $X$.
+
+- **Normality:** The error terms are normally distributed with mean zero.
+
+Residual plots and other diagnostic methods are used to assess whether these assumptions are reasonable. Residuals are estimates of the unobserved errors, rather than the errors themselves.
 :::
+
 
 ## Exercises
 
